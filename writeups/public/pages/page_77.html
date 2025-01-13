@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	
+
+	<script type="text/javascript">
+		document.documentElement.className = 'js';
+	</script>
+	
+	<script>var et_site_url='https://labs.jumpsec.com';var et_post_id='19628';function et_core_page_resource_fallback(a,b){"undefined"===typeof b&&(b=a.sheet.cssRules&&0===a.sheet.cssRules.length);b&&(a.onerror=null,a.onload=null,a.href?a.href=et_site_url+"/?et_core_page_resource="+a.id+et_post_id:a.src&&(a.src=et_site_url+"/?et_core_page_resource="+a.id+et_post_id))}
+</script><meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
+
+	<title>Advisory: IDOR in Microsoft Teams Allows for External Tenants to Introduce Malware | JUMPSEC LABS</title>
+	<link rel="canonical" href="https://labs.jumpsec.com/advisory-idor-in-microsoft-teams-allows-for-external-tenants-to-introduce-malware/" />
+	<meta property="og:locale" content="en_GB" />
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="Advisory: IDOR in Microsoft Teams Allows for External Tenants to Introduce Malware | JUMPSEC LABS" />
+	<meta property="og:description" content="TL;DR Max Corbridge (@CorbridgeMax) and Tom Ellson (@tde_sec) of JUMPSEC’s Red Team recently discovered a vulnerability in the latest version of Microsoft Teams which allows for the possible introduction of malware into any organisations using Microsoft Teams in its default configuration. This is done by bypassing client-side security controls which prevent external tenants from sending [&hellip;]" />
+	<meta property="og:url" content="https://labs.jumpsec.com/advisory-idor-in-microsoft-teams-allows-for-external-tenants-to-introduce-malware/" />
+	<meta property="og:site_name" content="JUMPSEC LABS" />
+	<meta property="article:published_time" content="2023-06-21T15:27:37+00:00" />
+	<meta property="article:modified_time" content="2023-06-21T15:32:52+00:00" />
+	<meta property="og:image" content="https://labs.jumpsec.com/wp-content/uploads/sites/2/2023/06/3.png" />
+	<meta property="og:image:width" content="1429" />
+	<meta property="og:image:height" content="853" />
+	<meta property="og:image:type" content="image/png" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:creator" content="@JumpsecLabs" />
+	<meta name="twitter:site" content="@JumpsecLabs" />
+	<meta name="twitter:label1" content="Written by" />
+	<meta name="twitter:data1" content="Max Corbridge" />
+	<meta name="twitter:label2" content="Estimated reading time" />
+	<meta name="twitter:data2" content="9 minutes" />
+	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://labs.jumpsec.com/#organization","name":"JUMPSEC","url":"https://labs.jumpsec.com/","sameAs":["https://www.linkedin.com/company/jumpsec","https://www.youtube.com/channel/UCXSbS5DNUZA2LNidrb67tvw","https://twitter.com/JumpsecLabs"],"logo":{"@type":"ImageObject","@id":"https://labs.jumpsec.com/#logo","inLanguage":"en-GB","url":"https://labs.jumpsec.com/wp-content/uploads/sites/2/2020/06/Jumpsec-Labs-Logo-Light.png","contentUrl":"https://labs.jumpsec.com/wp-content/uploads/sites/2/2020/06/Jumpsec-Labs-Logo-Light.png","width":350,"height":45,"caption":"JUMPSEC"},"image":{"@id":"https://labs.jumpsec.com/#logo"}},{"@type":"WebSite","@id":"https://labs.jumpsec.com/#website","url":"https://labs.jumpsec.com/","name":"JUMPSEC LABS","description":"","publisher":{"@id":"https://labs.jumpsec.com/#organization"},"potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://labs.jumpsec.com/?s={search_term_string}"},"query-input":"required name=search_term_string"}],"inLanguage":"en-GB"},{"@type":"ImageObject","@id":"https://labs.jumpsec.com/advisory-idor-in-microsoft-teams-allows-for-external-tenants-to-introduce-malware/#primaryimage","inLanguage":"en-GB","url":"https://labs.jumpsec.com/wp-content/uploads/sites/2/2023/06/3.png","contentUrl":"https://labs.jumpsec.com/wp-content/uploads/sites/2/2023/06/3.png","width":1429,"height":853,"caption":"Payload delivered directly into a target inbox"},{"@type":"WebPage","@id":"https://labs.jumpsec.com/advisory-idor-in-microsoft-teams-allows-for-external-tenants-to-introduce-malware/#webpage","url":"https://labs.jumpsec.com/advisory-idor-in-microsoft-teams-allows-for-external-tenants-to-introduce-malware/","name":"Advisory: IDOR in Microsoft Teams Allows for External Tenants to Introduce Malware | JUMPSEC LABS","isPartOf":{"@id":"https://labs.jumpsec.com/#website"},"primaryImageOfPage":{"@id":"https://labs.jumpsec.com/advisory-idor-in-microsoft-teams-allows-for-external-tenants-to-introduce-malware/#primaryimage"},"datePublished":"2023-06-21T15:27:37+00:00","dateModified":"2023-06-21T15:32:52+00:00","breadcrumb":{"@id":"https://labs.jumpsec.com/advisory-idor-in-microsoft-teams-allows-for-external-tenants-to-introduce-malware/#breadcrumb"},"inLanguage":"en-GB","potentialAction":[{"@type":"ReadAction","target":["https://labs.jumpsec.com/advisory-idor-in-microsoft-teams-allows-for-external-tenants-to-introduce-malware/"]}]},{"@type":"BreadcrumbList","@id":"https://labs.jumpsec.com/advisory-idor-in-microsoft-teams-allows-for-external-tenants-to-introduce-malware/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Published","item":"https://labs.jumpsec.com/"},{"@type":"ListItem","position":2,"name":"Advisory: IDOR in Microsoft Teams Allows for External Tenants to Introduce Malware"}]},{"@type":"Article","@id":"https://labs.jumpsec.com/advisory-idor-in-microsoft-teams-allows-for-external-tenants-to-introduce-malware/#article","isPartOf":{"@id":"https://labs.jumpsec.com/advisory-idor-in-microsoft-teams-allows-for-external-tenants-to-introduce-malware/#webpage"},"author":{"@id":"https://labs.jumpsec.com/#/schema/person/84f4405b9bf23eb490b1c93d8e679a50"},"headline":"Advisory: IDOR in Microsoft Teams Allows for External Tenants to Introduce Malware","datePublished":"2023-06-21T15:27:37+00:00","dateModified":"2023-06-21T15:32:52+00:00","mainEntityOfPage":{"@id":"https://labs.jumpsec.com/advisory-idor-in-microsoft-teams-allows-for-external-tenants-to-introduce-malware/#webpage"},"wordCount":1823,"publisher":{"@id":"https://labs.jumpsec.com/#organization"},"image":{"@id":"https://labs.jumpsec.com/advisory-idor-in-microsoft-teams-allows-for-external-tenants-to-introduce-malware/#primaryimage"},"thumbnailUrl":"https://labs.jumpsec.com/wp-content/uploads/sites/2/2023/06/3.png","keywords":["advisory","BOLA","bug bounty","cve","external tenant","finding","IDOR","initial access","logs","Microsoft","payload","R&amp;D","red team","red teaming","research","security advisory","social engineering","teams","threat actor","vulnerability"],"articleSection":["Exploitation","Research","Security Bug","Vulnerability","Windows"],"inLanguage":"en-GB"},{"@type":"Person","@id":"https://labs.jumpsec.com/#/schema/person/84f4405b9bf23eb490b1c93d8e679a50","name":"Max Corbridge","image":{"@type":"ImageObject","@id":"https://labs.jumpsec.com/#personlogo","inLanguage":"en-GB","url":"https://secure.gravatar.com/avatar/41dee616543d0bdb5e673d6f6797fbfc?s=96&d=retro&r=g","contentUrl":"https://secure.gravatar.com/avatar/41dee616543d0bdb5e673d6f6797fbfc?s=96&d=retro&r=g","caption":"Max Corbridge"},"sameAs":["https://www.linkedin.com/in/max-c-25571a191/"]}]}</script>
+
+
+<link rel='dns-prefetch' href='//www.googletagmanager.com' />
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel="alternate" type="application/rss+xml" title="JUMPSEC LABS &raquo; Feed" href="https://labs.jumpsec.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="JUMPSEC LABS &raquo; Comments Feed" href="https://labs.jumpsec.com/comments/feed/" />
+<script type="text/javascript">
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/14.0.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/14.0.0\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/labs.jumpsec.com\/wp-includes\/js\/wp-emoji-release.min.js"}};
+/*! This file is auto-generated */
+!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode,e=(p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0),i.toDataURL());return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(p&&p.fillText)switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([129777,127995,8205,129778,127999],[129777,127995,8203,129778,127999])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(e=t.source||{}).concatemoji?c(e.concatemoji):e.wpemoji&&e.twemoji&&(c(e.twemoji),c(e.wpemoji)))}(window,document,window._wpemojiSettings);
+</script>
+<meta content="Labs Jumpsec Divi Child Theme v.1.0.0" name="generator"/><style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 0.07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+			<style type="text/css">			.tweeter-info .fts-twitter-text, .fts-twitter-reply-wrap:before, a span.fts-video-loading-notice {
+				color: #f3f3f3 !important;
+			}
+
+						.fts-twitter-reply-wrap  svg, .tweeter-info .fts-twitter-text a, .tweeter-info .fts-twitter-text .time a, .fts-twitter-reply-wrap a, .tweeter-info a, .twitter-followers-fts a, body.fts-twitter-reply-wrap a, body.fts-twitter-reply-wrap svg {
+				color: #ffffff !important;
+			}
+
+
+			            .fts-tweeter-wrap:hover i:before, body.fts-twitter-reply-wrap a:hover svg, .tweeter-info a:hover, .tweeter-info:hover .fts-twitter-reply, body.fts-twitter-reply-wrap a:hover {
+				color: #e40233 !important;
+			}
+
+						.fts-twitter-div {
+				background: ffff !important;
+			}
+
+						.tweeter-info {
+				border-bottom: 1px solid #bababa !important;
+			}
+
+						.fts-twitter-link-image {
+				max-width: 300px !important;
+				display: block;
+			}
+
+			
+		</style>
+		<link rel='stylesheet' id='wp-block-library-css' href='https://labs.jumpsec.com/wp-includes/css/dist/block-library/style.min.css' type='text/css' media='all' />
+<link rel='stylesheet' id='classic-theme-styles-css' href='https://labs.jumpsec.com/wp-includes/css/classic-themes.min.css' type='text/css' media='all' />
+<style id='global-styles-inline-css' type='text/css'>
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--duotone--dark-grayscale: url('#wp-duotone-dark-grayscale');--wp--preset--duotone--grayscale: url('#wp-duotone-grayscale');--wp--preset--duotone--purple-yellow: url('#wp-duotone-purple-yellow');--wp--preset--duotone--blue-red: url('#wp-duotone-blue-red');--wp--preset--duotone--midnight: url('#wp-duotone-midnight');--wp--preset--duotone--magenta-yellow: url('#wp-duotone-magenta-yellow');--wp--preset--duotone--purple-green: url('#wp-duotone-purple-green');--wp--preset--duotone--blue-orange: url('#wp-duotone-blue-orange');--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;}:where(.is-layout-flex){gap: 0.5em;}body .is-layout-flow > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-flow > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-flow > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-constrained > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-constrained > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)){max-width: var(--wp--style--global--content-size);margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignwide{max-width: var(--wp--style--global--wide-size);}body .is-layout-flex{display: flex;}body .is-layout-flex{flex-wrap: wrap;align-items: center;}body .is-layout-flex > *{margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+.wp-block-navigation a:where(:not(.wp-element-button)){color: inherit;}
+:where(.wp-block-columns.is-layout-flex){gap: 2em;}
+.wp-block-pullquote{font-size: 1.5em;line-height: 1.6;}
+</style>
+<link rel='stylesheet' id='fts-feeds-css' href='https://labs.jumpsec.com/wp-content/plugins/feed-them-social/feeds/css/styles.css' type='text/css' media='' />
+<link rel='stylesheet' id='et_monarch-css-css' href='https://labs.jumpsec.com/wp-content/plugins/monarch/css/style.css' type='text/css' media='all' />
+<link rel='stylesheet' id='et-gf-open-sans-css' href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' type='text/css' media='all' />
+<link rel='stylesheet' id='parent-style-css' href='https://labs.jumpsec.com/wp-content/themes/Divi/style.css' type='text/css' media='all' />
+<link rel='stylesheet' id='divi-style-css' href='https://labs.jumpsec.com/wp-content/themes/Labs-Jumpsec-Divi-Child-Theme/style.css' type='text/css' media='all' />
+<link rel='stylesheet' id='et-builder-googlefonts-cached-css' href='https://fonts.googleapis.com/css?family=Ubuntu+Mono:regular,italic,700,700italic|Open+Sans:300,300italic,regular,italic,600,600italic,700,700italic,800,800italic|Share+Tech:regular|Roboto:100,100italic,300,300italic,regular,italic,500,500italic,700,700italic,900,900italic|Josefin+Sans:100,200,300,regular,500,600,700,100italic,200italic,300italic,italic,500italic,600italic,700italic&#038;subset=latin,latin-ext&#038;display=swap' type='text/css' media='all' />
+<link rel='stylesheet' id='tablepress-default-css' href='https://labs.jumpsec.com/wp-content/uploads/sites/2/tablepress-combined.min.css' type='text/css' media='all' />
+<link rel='stylesheet' id='dashicons-css' href='https://labs.jumpsec.com/wp-includes/css/dashicons.min.css' type='text/css' media='all' />
+<script type='text/javascript' src='https://labs.jumpsec.com/wp-includes/js/jquery/jquery.min.js' id='jquery-core-js'></script>
+<script type='text/javascript' src='https://labs.jumpsec.com/wp-includes/js/jquery/jquery-migrate.min.js' id='jquery-migrate-js'></script>
+<script type='text/javascript' src='https://labs.jumpsec.com/wp-content/plugins/feed-them-social/feeds/js/powered-by.js' id='fts_powered_by_js-js'></script>
+<script type='text/javascript' id='fts-global-js-extra'>
+/* <![CDATA[ */
+var fts_twitter_ajax = {"ajax_url":"https:\/\/labs.jumpsec.com\/wp-admin\/admin-ajax.php"};
+var fts_twitter_ajax = {"ajax_url":"https:\/\/labs.jumpsec.com\/wp-admin\/admin-ajax.php"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://labs.jumpsec.com/wp-content/plugins/feed-them-social/feeds/js/fts-global.js' id='fts-global-js'></script>
+<script type='text/javascript' src='https://labs.jumpsec.com/wp-content/themes/Labs-Jumpsec-Divi-Child-Theme/ds-script.js' id='ds-theme-script-js'></script>
+
+<!-- Google tag (gtag.js) snippet added by Site Kit -->
+
+<!-- Google Analytics snippet added by Site Kit -->
+<script type='text/javascript' src='https://www.googletagmanager.com/gtag/js?id=GT-55V7RHV3' id='google_gtagjs-js' async></script>
+<script type='text/javascript' id='google_gtagjs-js-after'>
+window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}
+gtag("set","linker",{"domains":["labs.jumpsec.com"]});
+gtag("js", new Date());
+gtag("set", "developer_id.dZTNiMT", true);
+gtag("config", "GT-55V7RHV3");
+</script>
+
+<!-- End Google tag (gtag.js) snippet added by Site Kit -->
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://labs.jumpsec.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://labs.jumpsec.com/wp-includes/wlwmanifest.xml" />
+
+<link rel='shortlink' href='https://labs.jumpsec.com/?p=19628' />
+<link rel="alternate" type="application/json+oembed" href="https://labs.jumpsec.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Flabs.jumpsec.com%2Fadvisory-idor-in-microsoft-teams-allows-for-external-tenants-to-introduce-malware%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://labs.jumpsec.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Flabs.jumpsec.com%2Fadvisory-idor-in-microsoft-teams-allows-for-external-tenants-to-introduce-malware%2F&#038;format=xml" />
+<style>.dbcs-clipboard-button { 
+	position: absolute;
+	right: 1em;
+	margin-top: 0.7em;
+	font-family: 'ETmodules' !important;
+	font-size: 16pt; 
+	opacity: 0.4;
+	cursor: pointer;
+}
+.dbcs-clipboard-button:before {
+	content: '\69';
+}
+.dbcs-clipboard-button:hover {
+	opacity: 1;
+}
+.dbcs-clipboard-button.dbcs-copied-to-clipboard {
+	color: green; 
+	opacity: 1;
+}
+.dbcs-clipboard-button.dbcs-copied-to-clipboard:before {
+	content: '\4e';
+}</style><style>.et_pb_dmb_code_snippet{visibility:hidden;}</style><meta name="generator" content="Site Kit by Google 1.128.1" /><style type="text/css" id="et-social-custom-css">
+				.et_monarch .et_social_sidebar_networks li, .et_monarch .et_social_mobile li { background: #8a111b; } .et_monarch .et_social_sidebar_networks .et_social_icons_container li:hover, .et_monarch .et_social_mobile .et_social_icons_container li:hover { background: #545454 !important; } .et_social_sidebar_border li { border-color: #545454 !important; } .et_monarch .et_social_sidebar_networks .et_social_icons_container li i, .et_monarch .et_social_sidebar_networks .et_social_icons_container li .et_social_count, .et_monarch .et_social_mobile .et_social_icons_container li i, .et_monarch .et_social_mobile .et_social_icons_container li .et_social_count { color: #ffffff; } .et_monarch .et_social_sidebar_networks .et_social_icons_container li:hover i, .et_monarch .et_social_sidebar_networks .et_social_icons_container li:hover .et_social_count, .et_monarch .et_social_mobile .et_social_icons_container li:hover i, .et_monarch .et_social_mobile .et_social_icons_container li:hover .et_social_count { color: #ffffff !important; } 
+			</style><link rel="preload" href="https://labs.jumpsec.com/wp-content/themes/Divi/core/admin/fonts/modules.ttf" as="font" crossorigin="anonymous"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" /><style type="text/css" id="custom-background-css">
+body.custom-background { background-color: #000000; }
+</style>
+	<script>
+jQuery(document).ready(function(){
+jQuery('a[href*="github"].icon').attr('title', 'Fork us on GitHub');
+jQuery(window).scroll(function() {
+var scroll = jQuery(window).scrollTop();
+
+if (scroll >= 100) {
+jQuery(".pa-header").addClass("pa-fixed-header");
+}
+else{
+jQuery(".pa-header").removeClass("pa-fixed-header");
+}
+});
+});
+</script><link rel="icon" href="https://labs.jumpsec.com/wp-content/uploads/sites/2/2021/05/cropped-JUMPSEC-security-Profile-32x32.png" sizes="32x32" />
+<link rel="icon" href="https://labs.jumpsec.com/wp-content/uploads/sites/2/2021/05/cropped-JUMPSEC-security-Profile-192x192.png" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://labs.jumpsec.com/wp-content/uploads/sites/2/2021/05/cropped-JUMPSEC-security-Profile-180x180.png" />
+<meta name="msapplication-TileImage" content="https://labs.jumpsec.com/wp-content/uploads/sites/2/2021/05/cropped-JUMPSEC-security-Profile-270x270.png" />
+<link rel="stylesheet" id="et-divi-customizer-global-cached-inline-styles" href="https://labs.jumpsec.com/wp-content/et-cache/1/2/global/et-divi-customizer-global-17363484371234.min.css" onerror="et_core_page_resource_fallback(this, true)" onload="et_core_page_resource_fallback(this)" /><link rel="stylesheet" id="et-core-unified-tb-395-tb-15230-tb-15445-19628-cached-inline-styles" href="https://labs.jumpsec.com/wp-content/et-cache/1/2/19628/et-core-unified-tb-395-tb-15230-tb-15445-19628-17363545482662.min.css" onerror="et_core_page_resource_fallback(this, true)" onload="et_core_page_resource_fallback(this)" /></head>
+<body class="post-template-default single single-post postid-19628 single-format-standard custom-background et-tb-has-template et-tb-has-header et-tb-has-body et-tb-has-footer et_monarch et_pb_button_helper_class et_cover_background et_pb_gutter et_pb_gutters3 et_smooth_scroll et_divi_theme et-db et_minified_js et_minified_css">
+	<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-dark-grayscale"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0 0.49803921568627" /><feFuncG type="table" tableValues="0 0.49803921568627" /><feFuncB type="table" tableValues="0 0.49803921568627" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-grayscale"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0 1" /><feFuncG type="table" tableValues="0 1" /><feFuncB type="table" tableValues="0 1" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-purple-yellow"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0.54901960784314 0.98823529411765" /><feFuncG type="table" tableValues="0 1" /><feFuncB type="table" tableValues="0.71764705882353 0.25490196078431" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-blue-red"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0 1" /><feFuncG type="table" tableValues="0 0.27843137254902" /><feFuncB type="table" tableValues="0.5921568627451 0.27843137254902" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-midnight"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0 0" /><feFuncG type="table" tableValues="0 0.64705882352941" /><feFuncB type="table" tableValues="0 1" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-magenta-yellow"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0.78039215686275 1" /><feFuncG type="table" tableValues="0 0.94901960784314" /><feFuncB type="table" tableValues="0.35294117647059 0.47058823529412" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-purple-green"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0.65098039215686 0.40392156862745" /><feFuncG type="table" tableValues="0 1" /><feFuncB type="table" tableValues="0.44705882352941 0.4" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-blue-orange"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0.098039215686275 1" /><feFuncG type="table" tableValues="0 0.66274509803922" /><feFuncB type="table" tableValues="0.84705882352941 0.41960784313725" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><div id="page-container">
+<div id="et-boc" class="et-boc">
+			
+		<header class="et-l et-l--header">
+			<div class="et_builder_inner_content et_pb_gutters3">
+		<div class="et_pb_with_border et_pb_section et_pb_section_0_tb_header pa-header et_section_regular et_pb_section--fixed" >
+				
+				
+				
+				
+					<div class="et_pb_row et_pb_row_0_tb_header et_pb_equal_columns et_pb_gutters1">
+				<div class="et_pb_column et_pb_column_1_2 et_pb_column_0_tb_header  et_pb_css_mix_blend_mode_passthrough">
+				
+				
+				<ul class="et_pb_module et_pb_social_media_follow et_pb_social_media_follow_0_tb_header clearfix  et_pb_bg_layout_light">
+				
+				
+				<li
+            class='et_pb_with_border et_pb_social_media_follow_network_0_tb_header et_pb_social_icon et_pb_social_network_link  et-social-linkedin et_pb_social_media_follow_network_0_tb_header'><a
+              href='https://www.linkedin.com/company/jumpsec'
+              class='icon et_pb_with_border'
+              title='Follow on LinkedIn'
+               target="_blank"><span
+                class='et_pb_social_media_follow_network_name'
+                aria-hidden='true'
+                >Follow</span></a></li><li
+            class='et_pb_with_border et_pb_social_media_follow_network_1_tb_header et_pb_social_icon et_pb_social_network_link  et-social-twitter et_pb_social_media_follow_network_1_tb_header'><a
+              href='https://twitter.com/JumpsecLabs'
+              class='icon et_pb_with_border'
+              title='Follow on Twitter'
+               target="_blank"><span
+                class='et_pb_social_media_follow_network_name'
+                aria-hidden='true'
+                >Follow</span></a></li><li
+            class='et_pb_with_border et_pb_social_media_follow_network_2_tb_header et_pb_social_icon et_pb_social_network_link  et-social-youtube et_pb_social_media_follow_network_2_tb_header'><a
+              href='https://www.youtube.com/channel/UCXSbS5DNUZA2LNidrb67tvw'
+              class='icon et_pb_with_border'
+              title='Follow on Youtube'
+               target="_blank"><span
+                class='et_pb_social_media_follow_network_name'
+                aria-hidden='true'
+                >Follow</span></a></li><li
+            class='et_pb_with_border et_pb_social_media_follow_network_3_tb_header et_pb_social_icon et_pb_social_network_link  et-social-rss et_pb_social_media_follow_network_3_tb_header'><a
+              href='https://www.github.com/JUMPSECLabs'
+              class='icon et_pb_with_border'
+              title='Follow on RSS'
+               target="_blank"><span
+                class='et_pb_social_media_follow_network_name'
+                aria-hidden='true'
+                >Follow</span></a></li>
+			</ul> <!-- .et_pb_counters -->
+			</div> <!-- .et_pb_column --><div class="et_pb_column et_pb_column_1_2 et_pb_column_1_tb_header  et_pb_css_mix_blend_mode_passthrough et-last-child">
+				
+				
+				<div class="et_pb_module et_pb_text et_pb_text_0_tb_header  et_pb_text_align_left et_pb_bg_layout_light">
+				
+				
+				<div class="et_pb_text_inner"><p style="text-align: right"><span class="et-pb-icon" style="font-size: 13px;vertical-align: middle"></span><a href="/cdn-cgi/l/email-protection#b3dbd6dfdfdcf3d9c6dec3c0d6d09dd0dcde" style="color: #f3f3f3"> <span class="__cf_email__" data-cfemail="c9a1aca5a5a689a3bca4b9baacaae7aaa6a4">[email&#160;protected]</span> </a>&ensp;&ensp;&ensp;&ensp;<span class="et-pb-icon" style="font-size: 13px;vertical-align: middle"></span><a href="tel:03339398080" style="color: #f3f3f3"> 0333 939 8080</a></p></div>
+			</div> <!-- .et_pb_text -->
+			</div> <!-- .et_pb_column -->
+				
+				
+			</div> <!-- .et_pb_row -->
+				
+				
+			</div> <!-- .et_pb_section --><div id="section-padding" class="et_pb_with_border et_pb_section et_pb_section_1_tb_header et_section_regular et_pb_section--fixed" >
+				
+				
+				
+				
+					<div id="row-width" class="et_pb_row et_pb_row_1_tb_header et_pb_equal_columns et_pb_gutters1 et_pb_row--with-menu">
+				<div class="et_pb_column et_pb_column_2_5 et_pb_column_2_tb_header  et_pb_css_mix_blend_mode_passthrough">
+				
+				
+				<div class="et_pb_module et_pb_image et_pb_image_0_tb_header">
+				
+				
+				<a href="https://labs.jumpsec.com/"><span class="et_pb_image_wrap "><img decoding="async" loading="lazy" src="https://labs.jumpsec.com/wp-content/uploads/sites/2/2021/05/jumpsec-labs-2021.png" alt="Jumpsec Labs" title="jumpsec labs 2021" height="auto" width="auto" srcset="https://labs.jumpsec.com/wp-content/uploads/sites/2/2021/05/jumpsec-labs-2021.png 350w, https://labs.jumpsec.com/wp-content/uploads/sites/2/2021/05/jumpsec-labs-2021-300x39.png 300w" sizes="(max-width: 350px) 100vw, 350px" class="wp-image-17481" /></span></a>
+			</div>
+			</div> <!-- .et_pb_column --><div class="et_pb_column et_pb_column_3_5 et_pb_column_3_tb_header  et_pb_css_mix_blend_mode_passthrough et-last-child et_pb_column--with-menu">
+				
+				
+				<div class="et_pb_module et_pb_menu et_pb_menu_0_tb_header et_pb_bg_layout_light  et_pb_text_align_left et_dropdown_animation_fade et_pb_menu--without-logo et_pb_menu--style-left_aligned">
+					
+					
+					<div class="et_pb_menu_inner_container clearfix">
+						
+						<div class="et_pb_menu__wrap">
+							<div class="et_pb_menu__menu">
+								<nav class="et-menu-nav"><ul id="menu-primary-menu" class="et-menu nav"><li class="et_pb_menu_page_id-home menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-385"><a href="https://labs.jumpsec.com/">Articles</a></li>
+<li class="et_pb_menu_page_id-407 menu-item menu-item-type-custom menu-item-object-custom menu-item-407"><a href="https://www.jumpsec.com/">JUMPSEC</a></li>
+</ul></nav>
+							</div>
+							
+							
+							<div class="et_mobile_nav_menu">
+				<a href="#" class="mobile_nav closed">
+					<span class="mobile_menu_bar"></span>
+				</a>
+			</div>
+						</div>
+						
+					</div>
+				</div>
+			</div> <!-- .et_pb_column -->
+				
+				
+			</div> <!-- .et_pb_row -->
+				
+				
+			</div> <!-- .et_pb_section --><div id="section-padding" class="et_pb_with_border et_pb_section et_pb_section_2_tb_header et_section_regular et_pb_section--fixed" >
+				
+				
+				
+				
+					<div id="row-width" class="et_pb_row et_pb_row_2_tb_header et_pb_equal_columns et_pb_gutters1">
+				<div class="et_pb_column et_pb_column_1_2 et_pb_column_4_tb_header  et_pb_css_mix_blend_mode_passthrough">
+				
+				
+				<div class="et_pb_module et_pb_text et_pb_text_1_tb_header  et_pb_text_align_left et_pb_text_align_center-phone et_pb_bg_layout_dark">
+				
+				
+				<div class="et_pb_text_inner"><p style="text-align: center"><span style="color: #e40233"> <a href="/cdn-cgi/l/email-protection#a8c0cdc4c4c7e8c2ddc5d8dbcdcb86cbc7c5" style="color: #e40233"> <span class="__cf_email__" data-cfemail="442c2128282b042e3129343721276a272b29">[email&#160;protected]</span></a></span></p></div>
+			</div> <!-- .et_pb_text -->
+			</div> <!-- .et_pb_column --><div class="et_pb_column et_pb_column_1_2 et_pb_column_5_tb_header  et_pb_css_mix_blend_mode_passthrough et-last-child">
+				
+				
+				<div class="et_pb_module et_pb_text et_pb_text_2_tb_header  et_pb_text_align_left et_pb_text_align_right-phone et_pb_bg_layout_dark">
+				
+				
+				<div class="et_pb_text_inner"><p style="text-align: center"><span style="color: #e40233"> <a href="tel:03339398080" style="color: #e40233"> 0333 939 8080</a></span></p></div>
+			</div> <!-- .et_pb_text -->
+			</div> <!-- .et_pb_column -->
+				
+				
+			</div> <!-- .et_pb_row --><div id="row-width" class="et_pb_row et_pb_row_3_tb_header et_pb_equal_columns et_pb_gutters1 et_pb_row--with-menu">
+				<div class="et_pb_column et_pb_column_2_5 et_pb_column_6_tb_header  et_pb_css_mix_blend_mode_passthrough">
+				
+				
+				<div class="et_pb_module et_pb_image et_pb_image_1_tb_header et_pb_image_sticky">
+				
+				
+				<a href="https://labs.jumpsec.com/"><span class="et_pb_image_wrap "><img decoding="async" loading="lazy" src="https://labs.jumpsec.com/wp-content/uploads/sites/2/2021/05/jumpsec-labs-2021.png" alt="Jumpsec Labs" title="jumpsec labs 2021" height="auto" width="auto" srcset="https://labs.jumpsec.com/wp-content/uploads/sites/2/2021/05/jumpsec-labs-2021.png 350w, https://labs.jumpsec.com/wp-content/uploads/sites/2/2021/05/jumpsec-labs-2021-300x39.png 300w" sizes="(max-width: 350px) 100vw, 350px" class="wp-image-17481" /></span></a>
+			</div>
+			</div> <!-- .et_pb_column --><div class="et_pb_column et_pb_column_3_5 et_pb_column_7_tb_header  et_pb_css_mix_blend_mode_passthrough et-last-child et_pb_column--with-menu">
+				
+				
+				<div class="et_pb_module et_pb_menu et_pb_menu_1_tb_header et_pb_bg_layout_light  et_pb_text_align_left et_dropdown_animation_fade et_pb_menu--without-logo et_pb_menu--style-centered">
+					
+					
+					<div class="et_pb_menu_inner_container clearfix">
+						
+						<div class="et_pb_menu__wrap">
+							<div class="et_pb_menu__menu">
+								<nav class="et-menu-nav"><ul id="menu-primary-menu-1" class="et-menu nav"><li class="et_pb_menu_page_id-home menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-385"><a href="https://labs.jumpsec.com/">Articles</a></li>
+<li class="et_pb_menu_page_id-407 menu-item menu-item-type-custom menu-item-object-custom menu-item-407"><a href="https://www.jumpsec.com/">JUMPSEC</a></li>
+</ul></nav>
+							</div>
+							
+							
+							<div class="et_mobile_nav_menu">
+				<a href="#" class="mobile_nav closed">
+					<span class="mobile_menu_bar"></span>
+				</a>
+			</div>
+						</div>
+						
+					</div>
+				</div>
+			</div> <!-- .et_pb_column -->
+				
+				
+			</div> <!-- .et_pb_row -->
+				
+				
+			</div> <!-- .et_pb_section -->		</div><!-- .et_builder_inner_content -->
+	</header><!-- .et-l -->
+	<div id="et-main-area">
+	
+    <div id="main-content">
+    <style>
+.github-activity-item {
+	border-bottom: 1px solid #eee;
+	font-size: 13px;
+	padding: 10px 0;
+}
+.github-activity-item:first-of-type {
+	padding-top: 0;
+}
+.github-activity-item a {
+	white-space: nowrap;
+}
+.github-activity-item .gravatar {
+	display: none;
+}
+.github-activity-item img {
+	height: 20px;
+	margin-right: 3px;
+	width: 20px;
+}
+.github-activity-item .time {
+	color: #999;
+	font-size: 12px;
+	line-height: 1.2em;
+}
+.github-activity-item .commits {
+	font-size: 12px;
+}
+.github-activity-item .commits ul,
+.github-activity-item .commits ul li {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+.github-activity-item .commits ul li {
+	line-height: 20px;
+	padding-left: 10px;
+}
+.github-activity-item .commits ul li.more {
+	font-size: 12px;
+	padding: 0;
+}
+.github-activity-item .message,
+.github-activity-item .message blockquote {
+	display: inline;
+}
+.github-activity-item .message blockquote {
+	border: 0;
+	font-size: 13px;
+	font-style: normal;
+	margin: 0;
+	padding-left: 3px;
+}
+</style>
+<div class="et-l et-l--body">
+			<div class="et_builder_inner_content et_pb_gutters3">
+		<div class="et_pb_section et_pb_section_0_tb_body et_pb_with_background et_section_regular" >
+				
+				
+				
+				
+					<div class="et_pb_row et_pb_row_0_tb_body">
+				<div class="et_pb_column et_pb_column_2_3 et_pb_column_0_tb_body  et_pb_css_mix_blend_mode_passthrough">
+				
+				
+				<div class="et_pb_module et_pb_post_title et_pb_post_title_0_tb_body et_pb_bg_layout_light  et_pb_text_align_left"   >
+				
+				
+				
+				<div class="et_pb_title_container">
+					<h1 class="entry-title">Advisory: IDOR in Microsoft Teams Allows for External Tenants to Introduce Malware</h1><p class="et_pb_title_meta_container"> by <span class="author vcard"><span rel="author">Max Corbridge</span></span> | <span class="published">Jun 21, 2023</span> | <a href="https://labs.jumpsec.com/category/exploitation/" rel="category tag">Exploitation</a>, <a href="https://labs.jumpsec.com/category/research/" rel="category tag">Research</a>, <a href="https://labs.jumpsec.com/category/security-bug/" rel="category tag">Security Bug</a>, <a href="https://labs.jumpsec.com/category/vulnerability/" rel="category tag">Vulnerability</a>, <a href="https://labs.jumpsec.com/category/windows/" rel="category tag">Windows</a></p>
+				</div>
+				
+			</div><div class="et_pb_module et_pb_post_content et_pb_post_content_0_tb_body">
+				
+				
+				<h3><b>TL;DR</b></h3>
+<p><span style="font-weight: 400">Max Corbridge (@CorbridgeMax) and Tom Ellson (@tde_sec) of JUMPSEC’s Red Team recently discovered a vulnerability in the latest version of Microsoft Teams which allows for the possible introduction of malware into any organisations using Microsoft Teams in its default configuration. This is done by bypassing client-side security controls which prevent external tenants from sending files (malware in this case) to staff in your organisation. JUMPSEC has detailed remediation options, as well as some detection opportunities. </span></p>
+<h3>Introduction</h3>
+<p><span style="font-weight: 400">Introducing malware into target organisations is becoming increasingly difficult. Many of the traditional payload types (.exe, Office Macros, etc) are now heavily-scrutinised or have been proactively addressed to reduce their <a href="https://learn.microsoft.com/en-us/deployoffice/security/internet-macros-blocked"><em><span style="text-decoration: underline">efficacy</span></em></a></span><span style="font-weight: 400">. </span><span style="font-weight: 400">Similarly, payload delivery avenues such as phishing are becoming increasingly monitored and secured to reduce the ease with which threat actors’ malware can reach end-user devices. Mail security controls, IP blocklists, domain reputation, email HTML, content inspection, third-party mail security products, URL filtering and many more must be bypassed for a phishing campaign to traverse all anti-phishing security controls and land in a target’s inbox. </span></p>
+<p><span style="font-weight: 400">As such, threat actors and red teams alike are looking for newer and potentially overlooked avenues of payload delivery. One such novel avenue is Microsoft Teams External Tenants. Organisations that use Microsoft Teams (91% of the Fortune 100 according to <a href="https://www.linkedin.com/pulse/91-fortune-100-companies-use-teams-techbanditshack"><span style="text-decoration: underline"><em>this article</em></span></a></span><span style="font-weight: 400">) inherit Microsoft’s default configuration which allows users from outside of their organisation to reach out to their staff members. By allowing this, an entirely new avenue of social engineering (and now payload delivery as this blog will explain) is created.</span></p>
+<h3>Detail</h3>
+<p><span style="font-weight: 400">Microsoft Teams allows any user with a Microsoft account to reach out to ‘external tenancies’. Here, external tenancies can be thought of as any business or organisation using Microsoft Teams. These organisations each have their own Microsoft tenancy, and users from one tenancy are able to send messages to users in another tenancy. When doing so, an ‘External’ banner appears alongside the name as seen below. </span></p>
+<div id="attachment_19671" style="width: 401px" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-19671" decoding="async" loading="lazy" class="wp-image-19671 size-full" title="External banner on incoming message" src="https://labs.jumpsec.com/wp-content/uploads/sites/2/2023/06/external.png" alt="" width="391" height="66" srcset="https://labs.jumpsec.com/wp-content/uploads/sites/2/2023/06/external.png 391w, https://labs.jumpsec.com/wp-content/uploads/sites/2/2023/06/external-300x51.png 300w" sizes="(max-width: 391px) 100vw, 391px" /><p id="caption-attachment-19671" class="wp-caption-text">External banner applied to incoming message requests</p></div>
+<p><span style="font-weight: 400">As someone who spent a long time doing purely social engineering (phishing, vishing, smshing, etc.) this is not a show stopper by any means. In my experience, whilst this banner (and the subsequent pop-up) may deter a handful of targets, there is still a significant percentage of staff that would click on a message from an external tenant and accept the subsequent warning that the user is ‘external’. In fact, this was proven only last month, as the techniques used in this blog post were successfully used to gain an initial foothold in a client’s environment as part of a red team engagement. This is especially true if the malicious party is impersonating a known member of your organisation, and has purchased and registered a brand-impersonation domain as red teams often do.</span></p>
+<p><span style="font-weight: 400">When messaging staff in another organisation you are blocked from sending files to them, unlike with members of your own tenancy. See below the difference:</span></p>
+<div id="attachment_19672" style="width: 1506px" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-19672" decoding="async" loading="lazy" class="wp-image-19672 size-full" title="Messaging a member of the same organisation" src="https://labs.jumpsec.com/wp-content/uploads/sites/2/2023/06/1.png" alt="Messaging a member of the same organisation " width="1496" height="915" srcset="https://labs.jumpsec.com/wp-content/uploads/sites/2/2023/06/1.png 1496w, https://labs.jumpsec.com/wp-content/uploads/sites/2/2023/06/1-1280x783.png 1280w, https://labs.jumpsec.com/wp-content/uploads/sites/2/2023/06/1-980x599.png 980w, https://labs.jumpsec.com/wp-content/uploads/sites/2/2023/06/1-480x294.png 480w" sizes="(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) and (max-width: 980px) 980px, (min-width: 981px) and (max-width: 1280px) 1280px, (min-width: 1281px) 1496px, 100vw" /><p id="caption-attachment-19672" class="wp-caption-text">Messaging a member of the same organisation</p></div>
+<div id="attachment_19673" style="width: 1431px" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-19673" decoding="async" loading="lazy" class="size-full wp-image-19673" title="Restrictions when messaging someone in a different organisation" src="https://labs.jumpsec.com/wp-content/uploads/sites/2/2023/06/2.png" alt="Restrictions when messaging someone in a different organisation" width="1421" height="904" srcset="https://labs.jumpsec.com/wp-content/uploads/sites/2/2023/06/2.png 1421w, https://labs.jumpsec.com/wp-content/uploads/sites/2/2023/06/2-1280x814.png 1280w, https://labs.jumpsec.com/wp-content/uploads/sites/2/2023/06/2-980x623.png 980w, https://labs.jumpsec.com/wp-content/uploads/sites/2/2023/06/2-480x305.png 480w" sizes="(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) and (max-width: 980px) 980px, (min-width: 981px) and (max-width: 1280px) 1280px, (min-width: 1281px) 1421px, 100vw" /><p id="caption-attachment-19673" class="wp-caption-text">Restrictions when messaging someone in a different organisation</p></div>
+<p><span style="font-weight: 400">So far, this is nothing new. However, having leveraged this social engineering avenue in the past I began wondering if this security control could be bypassed to allow for seamless delivery of payloads directly into a target&#8217;s inbox on our red team engagements. I began looking online, and articles <a href="https://aadinternals.com/post/teams-policies/"><em><span style="text-decoration: underline">like this</span></em></a></span><span style="font-weight: 400"> suggested that certain security controls are actually implemented client-side in Microsoft Teams.</span></p>
+<p><span style="font-weight: 400">I raised this with JUMPSEC’s Head of Offensive Security (Tom Ellson) and no more than 10 minutes later we had bypassed the security control and were able to send files into a target organisation. Exploitation of the vulnerability was straightforward using a traditional IDOR technique of switching the internal and external recipient ID on the POST request, usually here: </span></p>
+<pre><span style="font-weight: 400">/v1/users/ME/conversations/&lt;RECIPIENT_ID&gt;/messages 
+
+</span></pre>
+<div id="attachment_19674" style="width: 1439px" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-19674" decoding="async" loading="lazy" class="size-full wp-image-19674" title="3" src="https://labs.jumpsec.com/wp-content/uploads/sites/2/2023/06/3.png" alt="3" width="1429" height="853" srcset="https://labs.jumpsec.com/wp-content/uploads/sites/2/2023/06/3.png 1429w, https://labs.jumpsec.com/wp-content/uploads/sites/2/2023/06/3-1280x764.png 1280w, https://labs.jumpsec.com/wp-content/uploads/sites/2/2023/06/3-980x585.png 980w, https://labs.jumpsec.com/wp-content/uploads/sites/2/2023/06/3-480x287.png 480w" sizes="(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) and (max-width: 980px) 980px, (min-width: 981px) and (max-width: 1280px) 1280px, (min-width: 1281px) 1429px, 100vw" /><p id="caption-attachment-19674" class="wp-caption-text">Payload delivered directly into a target inbox</p></div>
+<p><span style="font-weight: 400">When sending the payload like this, it is actually hosted on a Sharepoint domain and the target downloads it from there. It appears, however, in the target inbox as a file, not a link. </span></p>
+<p><span style="font-weight: 400">Having identified the issue, I wanted to validate that this vulnerability would work as intended as an avenue for payload delivery into a target organisation, and not fall short for some unknown reason when used in a mature client environment. As such, last month I used this vulnerability to deliver our red team C2 (malware) payload directly into a target inbox to gain our initial foothold on a covert red team engagement. This allowed for a much more simple, reliable, and user-friendly payload delivery avenue than traditional phishing journeys. </span></p>
+<h3>Why is this a big deal?</h3>
+<p><span style="font-weight: 400">The true reason I see this to be a potentially lucrative avenue for threat actors to deliver payloads is the fact that this bypasses nearly all modern anti-phishing security controls mentioned in the introduction of this advisory. </span></p>
+<p><span style="font-weight: 400">Firstly, it is very straightforward to buy a domain similar to your target organisations and register it with M365. It avoids the need to use mature domains, with web servers, landing pages, CAPTCHAs, domain categorisation, and URL filtering. This is a huge time saver, as this can cost several days or more on a red team engagement when setting up the various bits of infrastructure needed for a convincing phishing campaign. </span></p>
+<p><span style="font-weight: 400">Secondly, it avoids the now-rightfully-dangerous act of clicking on a link in an email, something that staff have been trained to avoid for years now, greatly reducing the likelihood of a typical staff member detecting this as a phishing attack. The payload will now be served by a trusted Sharepoint domain, and will arrive in the form of a file in a target’s Teams inbox. As such, the payload inherits the trust reputation of Sharepoint, not a malicious phishing website.</span></p>
+<p><span style="font-weight: 400">Finally, when this vulnerability is combined with social engineering via Teams it becomes very easy to start a back-and-forth conversation, jump on a call, share screens, and more. By comparison, it makes social engineering via email feel very stagnant, and stop-start. When using this on a real engagement the pretext of an IT technician was used to ask the target if they could jump on a call to update some critical software. Once on the call this vulnerability was leveraged to deliver a payload and, when combined with a full social engineering attack, was implicitly trusted by the target. </span></p>
+<h3>Impact</h3>
+<p><span style="font-weight: 400">This vulnerability affects every organisation using Teams in the default configuration. As such it has huge potential reach, and could be leveraged by threat actors to bypass many traditional payload delivery security controls. Having now proven this hypothesis, and used this vulnerability to successfully deliver malware that compromised a target machine in a client&#8217;s environment, I feel this has been successfully demonstrated as an exploitable finding.</span></p>
+<h3>Remediation and Detection</h3>
+<p><span style="font-weight: 400">This vulnerability was reported to Microsoft, who validated that the vulnerability is legitimate, but said that it ‘did not meet the bar for immediate servicing’. I think this is a shame, but was nonetheless expected. As such, JUMPSEC has added this section to help organisations who might be concerned about the above findings. </span></p>
+<p><span style="font-weight: 400">Firstly, I urge you to review if there is a business requirement for external tenants to have permission to message your staff in the first place. Of course, many businesses do legitimately require communication with other organisations, service providers, and more. That is not the case, however, for all businesses that use Teams. If you are not currently using Teams for regular communication with external tenants, tighten up your security controls and remove the option altogether. This can be done in Microsoft Teams Admin Center &gt; External Access.</span></p>
+<p><span style="font-weight: 400">If you do require communication with external tenants, but there are only a handful of organisations that you regularly communicate with, then you can change the security settings to only allow communication with certain allow-listed domains. This would be a good middle ground for shutting down this attack path, without affecting your business operations. This can be done in Microsoft Teams Admin Center &gt; External Access. </span></p>
+<p><span style="font-weight: 400">If either of the above will not work in your unique business case you have a few options. Firstly, endeavour to educate staff on the possibility of productivity apps such as Teams, Slack, Sharepoint, etc, for launching social engineering campaigns. It is not just email that is being abused any more, and yet it seems, in my personal opinion, that when using alternative avenues to email there is an inherent trust, due to the rich history connecting phishing and emails. </span></p>
+<p><span style="font-weight: 400">Regarding detections, there is currently limited support from Microsoft. Whilst there are plenty of Teams logs (see here for a full list </span><a href="https://learn.microsoft.com/en-us/microsoft-365/compliance/audit-teams-audit-log-events?view=o365-worldwide"><span style="font-weight: 400">https://learn.microsoft.com/en-us/microsoft-365/compliance/audit-teams-audit-log-events?view=o365-worldwide</span></a><span style="font-weight: 400">) these do not currently cover the crucial ‘External Tenants Messaging your Staff’, or even better ‘Staff Member Accepts Message Request from External Tenant’. The latter would be preferable, as it would eliminate alerts from previously-known external tenants (your service providers, etc) and focus just on new message requests. I have reached out to Microsoft to attempt to turn on these logs so that they can be monitored in line with the increased usage of Teams for social engineering. If you agree that this should be made available, then please give the feature request a thumbs up (https://feedbackportal.microsoft.com/feedback/idea/16fe3111-4410-ee11-a81c-000d3a7a48db)</span></p>
+<p><span style="font-weight: 400">Whilst not a perfect solution, it would be possible to use web proxy logs to alert on, or more likely gain some baseline visibility into, staff members accepting external message requests. In EMEA, when a Teams user accepts a message request from an external tenant it sends a POST request to a unique URI which you can monitor:</span></p>
+<p><span style="font-weight: 400">/api/mt/emea/beta/userSettings/acceptlist/manage</span></p>
+<p>&nbsp;</p>
+<div id="attachment_19675" style="width: 957px" class="wp-caption aligncenter"><img aria-describedby="caption-attachment-19675" decoding="async" loading="lazy" class="size-full wp-image-19675" title="request clean" src="https://labs.jumpsec.com/wp-content/uploads/sites/2/2023/06/request_clean.png" alt="request clean" width="947" height="328" srcset="https://labs.jumpsec.com/wp-content/uploads/sites/2/2023/06/request_clean.png 947w, https://labs.jumpsec.com/wp-content/uploads/sites/2/2023/06/request_clean-480x166.png 480w" sizes="(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 947px, 100vw" /><p id="caption-attachment-19675" class="wp-caption-text">URI for accepting external message requests</p></div>
+<p><span style="font-weight: 400">The difficulty, at present, is turning this into a useful piece of telemetry with usernames, and the message in question. Monitoring this will, however, give you an idea of how common this transaction is in your estate, and allow you to potentially implement some of the mitigation factors mentioned above with a more educated understanding. </span></p>
+<h3>Conclusion</h3>
+<p><span style="font-weight: 400">As a Red Teamer regularly tasked with achieving an initial foothold in a target organisation, I have a unique appreciation and concern for the above-mentioned finding. With over 270 million active monthly users, Teams is incredibly common in target organisations. JUMPSEC’s Detection and Response Team (DART) have seen a trend towards novel phishing and payload delivery techniques leveraged in the wild, including but not limited to using Teams external tenancies for social engineering. With threat actors continually experimenting with new social engineering attacks, organisations are having to expand their security awareness to cover previously-overlooked frontiers. </span></p>
+<p><span style="font-weight: 400"> </span></p>
+<p>&nbsp;</p>
+<span class="et_social_bottom_trigger"></span>
+			</div> <!-- .et_pb_post_content --><div class="et_pb_module et_pb_text et_pb_text_0_tb_body  et_pb_text_align_left et_pb_bg_layout_light">
+				
+				
+				<div class="et_pb_text_inner"><h2>Disclaimer</h2>
+<p><em>The information provided on this website is to be used for educational purposes only. The author is in no way responsible for any misuse of the information provided. Any actions and or activities related to the material contained within this website is solely your responsibility.</em></p></div>
+			</div> <!-- .et_pb_text -->
+			</div> <!-- .et_pb_column --><div class="et_pb_column et_pb_column_1_3 et_pb_column_1_tb_body  et_pb_css_mix_blend_mode_passthrough et-last-child">
+				
+				
+				<div class="et_pb_module et_pb_sidebar_0_tb_body et_pb_widget_area clearfix et_pb_widget_area_left et_pb_bg_layout_light">
+				
+				
+				
+		<div id="recent-posts-2" class="et_pb_widget widget_recent_entries">
+		<h4 class="widgettitle">[Latest Posts]</h4>
+		<ul>
+											<li>
+					<a href="https://labs.jumpsec.com/tokensmith-bypassing-intune-compliant-device-conditional-access/">TokenSmith &#8211; Bypassing Intune Compliant Device Conditional Access</a>
+									</li>
+											<li>
+					<a href="https://labs.jumpsec.com/bcp-as-easy-as-abc/">BCP, as easy as ABC?</a>
+									</li>
+											<li>
+					<a href="https://labs.jumpsec.com/weaponize-your-word-malicious-template-injection/">Weaponize Your Word &#8211; Malicious Template Injection</a>
+									</li>
+											<li>
+					<a href="https://labs.jumpsec.com/breaking-into-libraries-dll-hijacking/">Breaking into Libraries &#8211; DLL Hijacking</a>
+									</li>
+											<li>
+					<a href="https://labs.jumpsec.com/active-cyber-defence-taking-back-control/">Active Cyber Defence &#8211; Taking back control</a>
+									</li>
+					</ul>
+
+		</div> <!-- end .et_pb_widget --><div id="categories-2" class="et_pb_widget widget_categories"><h4 class="widgettitle">[Categories]</h4>
+			<ul>
+					<li class="cat-item cat-item-195"><a href="https://labs.jumpsec.com/category/adversary-infrastructure/">Adversary Infrastructure</a>
+</li>
+	<li class="cat-item cat-item-96"><a href="https://labs.jumpsec.com/category/application-security/">Application Security</a>
+</li>
+	<li class="cat-item cat-item-179"><a href="https://labs.jumpsec.com/category/azure-cloud/">Azure Cloud</a>
+</li>
+	<li class="cat-item cat-item-181"><a href="https://labs.jumpsec.com/category/azure-devops/">Azure DevOps</a>
+</li>
+	<li class="cat-item cat-item-2"><a href="https://labs.jumpsec.com/category/binary-analysis/">Binary Analysis</a>
+</li>
+	<li class="cat-item cat-item-109"><a href="https://labs.jumpsec.com/category/burpsuite/">burpsuite</a>
+</li>
+	<li class="cat-item cat-item-182"><a href="https://labs.jumpsec.com/category/cloud-red-team/">Cloud Red Team</a>
+</li>
+	<li class="cat-item cat-item-3"><a href="https://labs.jumpsec.com/category/ctfs/">CTFs</a>
+</li>
+	<li class="cat-item cat-item-71"><a href="https://labs.jumpsec.com/category/detection/">Detection</a>
+</li>
+	<li class="cat-item cat-item-4"><a href="https://labs.jumpsec.com/category/exploitation/">Exploitation</a>
+</li>
+	<li class="cat-item cat-item-5"><a href="https://labs.jumpsec.com/category/forensics/">Forensics</a>
+</li>
+	<li class="cat-item cat-item-192"><a href="https://labs.jumpsec.com/category/hardening/">Hardening</a>
+</li>
+	<li class="cat-item cat-item-6"><a href="https://labs.jumpsec.com/category/incident-response/">Incident Response</a>
+</li>
+	<li class="cat-item cat-item-180"><a href="https://labs.jumpsec.com/category/initial-access/">Initial Access</a>
+</li>
+	<li class="cat-item cat-item-73"><a href="https://labs.jumpsec.com/category/jumpsec/">Jumpsec</a>
+</li>
+	<li class="cat-item cat-item-193"><a href="https://labs.jumpsec.com/category/mail-security/">Mail Security</a>
+</li>
+	<li class="cat-item cat-item-7"><a href="https://labs.jumpsec.com/category/monitoring/">Monitoring</a>
+</li>
+	<li class="cat-item cat-item-108"><a href="https://labs.jumpsec.com/category/network/">network</a>
+</li>
+	<li class="cat-item cat-item-8"><a href="https://labs.jumpsec.com/category/network-forensics/">Network Forensics</a>
+</li>
+	<li class="cat-item cat-item-9"><a href="https://labs.jumpsec.com/category/network-tools/">Network Tools</a>
+</li>
+	<li class="cat-item cat-item-10"><a href="https://labs.jumpsec.com/category/obfuscation/">Obfuscation</a>
+</li>
+	<li class="cat-item cat-item-11"><a href="https://labs.jumpsec.com/category/password-cracking/">Password Cracking</a>
+</li>
+	<li class="cat-item cat-item-12"><a href="https://labs.jumpsec.com/category/pcap-analysis/">Pcap analysis</a>
+</li>
+	<li class="cat-item cat-item-189"><a href="https://labs.jumpsec.com/category/red-teaming/">Red Teaming</a>
+</li>
+	<li class="cat-item cat-item-13"><a href="https://labs.jumpsec.com/category/research/">Research</a>
+</li>
+	<li class="cat-item cat-item-14"><a href="https://labs.jumpsec.com/category/security-bug/">Security Bug</a>
+</li>
+	<li class="cat-item cat-item-15"><a href="https://labs.jumpsec.com/category/social-engineering/">Social Engineering</a>
+</li>
+	<li class="cat-item cat-item-1"><a href="https://labs.jumpsec.com/category/uncategorized/">Uncategorized</a>
+</li>
+	<li class="cat-item cat-item-97"><a href="https://labs.jumpsec.com/category/vulnerability/">Vulnerability</a>
+</li>
+	<li class="cat-item cat-item-107"><a href="https://labs.jumpsec.com/category/windows/">Windows</a>
+</li>
+			</ul>
+
+			</div> <!-- end .et_pb_widget -->
+			</div> <!-- .et_pb_widget_area --><div class="et_pb_module et_pb_text et_pb_text_1_tb_body  et_pb_text_align_left et_pb_bg_layout_light">
+				
+				
+				<div class="et_pb_text_inner"><h3>GitHub Activity</h3>
+<div class="github-activity-item"><div class="public js-feed-item-view" data-hydro-view="{&quot;event_type&quot;:&quot;news_feed.event.view&quot;,&quot;payload&quot;:{&quot;event&quot;:{&quot;repo_id&quot;:906002865,&quot;actor_id&quot;:49488209,&quot;public&quot;:true,&quot;type&quot;:&quot;PublicEvent&quot;,&quot;target_id&quot;:null,&quot;id&quot;:44967134069,&quot;additional_details_shown&quot;:true,&quot;grouped&quot;:false},&quot;event_group&quot;:null,&quot;org_id&quot;:null,&quot;target_type&quot;:&quot;event&quot;,&quot;user_id&quot;:null,&quot;feed_card&quot;:{&quot;card_retrieved_id&quot;:&quot;6738a97f-efd3-4d9b-93e2-ed1da5d348cc&quot;},&quot;originating_url&quot;:&quot;https://github.com/JumpsecLabs.atom&quot;}}" data-hydro-view-hmac="0bf0f31e670d80885ef49666d36b99279c6b8bd91e98842ced04795f35898620"><div class="body">
+<!-- public -->
+<div class="d-flex flex-items-baseline py-4">
+  <div class="d-flex flex-column width-full">
+      <div class="d-flex flex-items-baseline">
+        <div class="color-fg-muted">
+            <span class="mr-2"><a class="d-inline-block" data-hovercard-type="organization" data-hovercard-url="/orgs/JumpsecLabs/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="/JumpsecLabs" rel="noreferrer"><img decoding="async" loading="lazy" class="avatar" src="https://avatars.githubusercontent.com/u/49488209?s=64&amp;v=4" width="32" height="32" alt="@JumpsecLabs"></a></span>
+            <a class="Link--primary no-underline wb-break-all" href="/JumpsecLabs" rel="noreferrer">JumpsecLabs</a>
+            
+            made
+          <a class="Link--primary no-underline wb-break-all" href="/JumpsecLabs/TokenSmith" rel="noreferrer">JumpsecLabs/TokenSmith</a>
+          public
+          <span>
+            · <relative-time tense="past" datetime="2024-12-20T02:22:52Z" data-view-component="true">December 20, 2024 02:22</relative-time>
+          </span>
+        </div>
+      </div>
+
+      <div class="Box p-3 my-2 color-shadow-medium ">
+        <div>
+          <div class="f4 lh-condensed text-bold color-fg-default">
+            <a class="Link--primary text-bold no-underline wb-break-all d-inline-block" href="/JumpsecLabs/TokenSmith" rel="noreferrer">JumpsecLabs/TokenSmith</a>
+          </div>
+          <div class="dashboard-break-word color-fg-muted mt-1 mb-0 repo-description">
+            <p>TokenSmith generates Entra ID access &amp; refresh tokens on offensive engagements. It is suitable for both covert adversary simulations and penetratio…</p>
+          </div>
+
+          <p class="f6 color-fg-muted mt-2 mb-0">
+              <span class="d-inline-block color-fg-muted mr-3">
+                <span class="ml-0">
+  <span class="repo-language-color" style="background-color: #00ADD8"></span>
+  <span itemprop="programmingLanguage">Go</span>
+</span>
+
+              </span>
+
+              <span class="d-inline-block mr-3">
+                <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-star mr-1">
+    <path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694Z"></path>
+</svg>174
+              </span>
+
+
+              <span>Updated Dec 24, 2024</span>
+          </p>
+        </div>
+      </div>
+  </div>
+</div>
+</div></div></div><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+jQuery(function($) {
+	$('.github-activity-item a').each(function() {
+		var href = $(this).attr('href');
+		if (href.indexOf('https://') == -1) {
+			$(this).attr('href', 'https://github.com' + href);
+		}
+	});
+});
+</script>
+
+<p>&nbsp;</p></div>
+			</div> <!-- .et_pb_text --><div class="et_pb_module et_pb_text et_pb_text_2_tb_body  et_pb_text_align_left et_pb_bg_layout_light">
+				
+				
+				<div class="et_pb_text_inner"><h3>Follow JUMPSECLabs</h3></div>
+			</div> <!-- .et_pb_text --><ul class="et_pb_module et_pb_social_media_follow et_pb_social_media_follow_0_tb_body clearfix  et_pb_text_align_left et_pb_bg_layout_light">
+				
+				
+				<li
+            class='et_pb_with_border et_pb_social_media_follow_network_0_tb_body et_pb_social_icon et_pb_social_network_link  et-social-linkedin et_pb_social_media_follow_network_0_tb_body'><a
+              href='https://www.linkedin.com/company/jumpsec'
+              class='icon et_pb_with_border'
+              title='Follow on LinkedIn'
+               target="_blank"><span
+                class='et_pb_social_media_follow_network_name'
+                aria-hidden='true'
+                >Follow</span></a></li><li
+            class='et_pb_with_border et_pb_social_media_follow_network_1_tb_body et_pb_social_icon et_pb_social_network_link  et-social-twitter et_pb_social_media_follow_network_1_tb_body'><a
+              href='https://twitter.com/JumpsecLabs'
+              class='icon et_pb_with_border'
+              title='Follow on Twitter'
+               target="_blank"><span
+                class='et_pb_social_media_follow_network_name'
+                aria-hidden='true'
+                >Follow</span></a></li><li
+            class='et_pb_with_border et_pb_social_media_follow_network_2_tb_body et_pb_social_icon et_pb_social_network_link  et-social-youtube et_pb_social_media_follow_network_2_tb_body'><a
+              href='https://www.youtube.com/channel/UCXSbS5DNUZA2LNidrb67tvw'
+              class='icon et_pb_with_border'
+              title='Follow on Youtube'
+               target="_blank"><span
+                class='et_pb_social_media_follow_network_name'
+                aria-hidden='true'
+                >Follow</span></a></li><li
+            class='et_pb_with_border et_pb_social_media_follow_network_3_tb_body et_pb_social_icon et_pb_social_network_link  et-social-rss et_pb_social_media_follow_network_3_tb_body'><a
+              href='https://www.github.com/JUMPSECLabs'
+              class='icon et_pb_with_border'
+              title='Follow on RSS'
+               target="_blank"><span
+                class='et_pb_social_media_follow_network_name'
+                aria-hidden='true'
+                >Follow</span></a></li>
+			</ul> <!-- .et_pb_counters --><div class="et_pb_module et_pb_text et_pb_text_3_tb_body  et_pb_text_align_left et_pb_bg_layout_light">
+				
+				
+				<div class="et_pb_text_inner"><h3>Latest from JUMPSEC</h3>
+<p><span><ul class="jsrecentposts"><li><a href="https://www.jumpsec.com/guides/security-penetration-testing-a-guide-to-protecting-your-business/" target=\"_blank\" title="Posted January 8, 2025">Security penetration testing: A guide to protecting your business</a></li><li><a href="https://www.jumpsec.com/guides/edge-device-botnet-compromise/" target=\"_blank\" title="Posted October 16, 2024">Edge Device Botnet Compromise</a></li><li><a href="https://www.jumpsec.com/guides/jumpsec-announces-its-assured-service-provider-status-for-ncscs-cyber-incident-exercising-cie-scheme/" target=\"_blank\" title="Posted October 16, 2024">JUMPSEC announces its Assured Service Provider status for NCSC’s Cyber Incident Exercising (CIE) Scheme</a></li><li><a href="https://www.jumpsec.com/guides/what-is-penetration-testing/" target=\"_blank\" title="Posted November 15, 2024">What is Penetration Testing?</a></li></ul></span></p></div>
+			</div> <!-- .et_pb_text --><div class="et_pb_module et_pb_text et_pb_text_4_tb_body  et_pb_text_align_left et_pb_bg_layout_light">
+				
+				
+				<div class="et_pb_text_inner"><h3>Disclaimer</h3>
+<p>The information provided on this website is to be used for educational purposes only. The author is in no way responsible for any misuse of the information provided. Any actions and or activities related to the material contained within this website is solely your responsibility.</p></div>
+			</div> <!-- .et_pb_text -->
+			</div> <!-- .et_pb_column -->
+				
+				
+			</div> <!-- .et_pb_row -->
+				
+				
+			</div> <!-- .et_pb_section --><div class="et_pb_section et_pb_section_1_tb_body et_pb_with_background et_section_regular" >
+				
+				
+				
+				
+					<div class="et_pb_row et_pb_row_1_tb_body">
+				<div class="et_pb_column et_pb_column_4_4 et_pb_column_2_tb_body  et_pb_css_mix_blend_mode_passthrough et-last-child">
+				
+				
+				<div class="et_pb_module et_pb_text et_pb_text_5_tb_body  et_pb_text_align_left et_pb_bg_layout_light">
+				
+				
+				<div class="et_pb_text_inner"><h2><span style="font-family: Ubuntu Mono">You may also like&#8230;</span></h2></div>
+			</div> <!-- .et_pb_text --><div class="et_pb_with_border et_pb_module et_pb_blog_0_tb_body et_pb_blog_grid_wrapper et_pb_bg_layout_light">
+					<div class="et_pb_blog_grid clearfix ">
+					
+					
+					<div class="et_pb_ajax_pagination_container">
+						<div class="et_pb_salvattore_content" data-columns>
+			<article id="post-20477" class="et_pb_post clearfix et_pb_no_thumb et_pb_blog_item_0_0 post-20477 post type-post status-publish format-standard hentry category-detection category-initial-access category-red-teaming category-research category-windows">
+
+				
+														<h2 class="entry-title"><a href="https://labs.jumpsec.com/weaponize-your-word-malicious-template-injection/">Weaponize Your Word &#8211; Malicious Template Injection</a></h2>
+				
+					<p class="post-meta"></p><div class="post-content"><div class="post-content-inner"><p>Weaponize Your Word - Malicious Template Injection Historically, files sent via email have been a common initial access technique employed by threat actors. Personally, I have...</p>
+</div></div>			
+			</article> <!-- .et_pb_post -->
+				
+			<article id="post-20373" class="et_pb_post clearfix et_pb_no_thumb et_pb_blog_item_0_1 post-20373 post type-post status-publish format-standard hentry category-red-teaming category-windows">
+
+				
+														<h2 class="entry-title"><a href="https://labs.jumpsec.com/breaking-into-libraries-dll-hijacking/">Breaking into Libraries &#8211; DLL Hijacking</a></h2>
+				
+					<p class="post-meta"></p><div class="post-content"><div class="post-content-inner"><p>Breaking into Libraries - DLL Hijacking Many of us have likely encountered DLL errors when trying to open Windows applications. If you were like my younger self, you might have...</p>
+</div></div>			
+			</article> <!-- .et_pb_post -->
+				
+			<article id="post-20176" class="et_pb_post clearfix et_pb_no_thumb et_pb_blog_item_0_2 post-20176 post type-post status-publish format-standard has-post-thumbnail hentry category-jumpsec category-research tag-dev">
+
+				
+														<h2 class="entry-title"><a href="https://labs.jumpsec.com/how-to-handle-development-projects-in-a-pentest-company/">How to Handle Development Projects in a Pentest Company</a></h2>
+				
+					<p class="post-meta"></p><div class="post-content"><div class="post-content-inner"><p>If you are a pentester you probably never really think about programming. Instead you are testing what others have developed. However, every now and then a quick python or bash...</p>
+</div></div>			
+			</article> <!-- .et_pb_post -->
+				</div><!-- .et_pb_salvattore_content -->
+					</div>
+					</div> <!-- .et_pb_posts --> 
+				</div>
+			</div> <!-- .et_pb_column -->
+				
+				
+			</div> <!-- .et_pb_row -->
+				
+				
+			</div> <!-- .et_pb_section -->		</div><!-- .et_builder_inner_content -->
+	</div><!-- .et-l -->
+	    </div>
+    
+	<footer class="et-l et-l--footer">
+			<div class="et_builder_inner_content et_pb_gutters3">
+		<div class="et_pb_section et_pb_section_1_tb_footer et_section_regular" >
+				
+				
+				
+				
+					<div class="et_pb_row et_pb_row_0_tb_footer et_pb_equal_columns et_pb_gutters3">
+				<div class="et_pb_column et_pb_column_1_2 et_pb_column_0_tb_footer  et_pb_css_mix_blend_mode_passthrough">
+				
+				
+				<ul class="et_pb_module et_pb_social_media_follow et_pb_social_media_follow_0_tb_footer clearfix  et_pb_bg_layout_light">
+				
+				
+				<li
+            class='et_pb_social_media_follow_network_0_tb_footer et_pb_social_icon et_pb_social_network_link  et-social-twitter et_pb_social_media_follow_network_0_tb_footer'><a
+              href='https://twitter.com/JUMPSEC'
+              class='icon et_pb_with_border'
+              title='Follow on Twitter'
+               target="_blank"><span
+                class='et_pb_social_media_follow_network_name'
+                aria-hidden='true'
+                >Follow</span></a></li><li
+            class='et_pb_social_media_follow_network_1_tb_footer et_pb_social_icon et_pb_social_network_link  et-social-linkedin et_pb_social_media_follow_network_1_tb_footer'><a
+              href='https://twitter.com/JUMPSEC'
+              class='icon et_pb_with_border'
+              title='Follow on LinkedIn'
+               target="_blank"><span
+                class='et_pb_social_media_follow_network_name'
+                aria-hidden='true'
+                >Follow</span></a></li><li
+            class='et_pb_social_media_follow_network_2_tb_footer et_pb_social_icon et_pb_social_network_link  et-social-youtube et_pb_social_media_follow_network_2_tb_footer'><a
+              href='https://www.youtube.com/channel/UCpwVvJpDfFzBClzGhLUAZBw'
+              class='icon et_pb_with_border'
+              title='Follow on Youtube'
+               target="_blank"><span
+                class='et_pb_social_media_follow_network_name'
+                aria-hidden='true'
+                >Follow</span></a></li>
+			</ul> <!-- .et_pb_counters --><div class="et_pb_module et_pb_text et_pb_text_0_tb_footer  et_pb_text_align_left et_pb_bg_layout_light">
+				
+				
+				<div class="et_pb_text_inner"><p>Jumpsec, Unit 3E – 3F, 33 – 34 Westpoint,<br /> Warple Way, Acton<br /> W3 0RG</p></div>
+			</div> <!-- .et_pb_text -->
+			</div> <!-- .et_pb_column --><div class="et_pb_column et_pb_column_1_2 et_pb_column_1_tb_footer  et_pb_css_mix_blend_mode_passthrough et-last-child">
+				
+				
+				<div class="et_pb_module et_pb_text et_pb_text_1_tb_footer  et_pb_text_align_left et_pb_bg_layout_light">
+				
+				
+				<div class="et_pb_text_inner"><p>To learn more about JUMPSEC's services please get in touch:</p>
+<p>Give us a call: <span style="color: #ffffff;"><a href="tel: 03339398080" style="color: #ffffff;"> 0333 939 8080</a></span></p>
+<p>Send us a message: <a href="#FreeDemo"><span style="color: #ffffff;"><span class="__cf_email__" data-cfemail="1b737e7777745b716e766b687e7835787476">[email&#160;protected]</span></span></a></p></div>
+			</div> <!-- .et_pb_text -->
+			</div> <!-- .et_pb_column -->
+				
+				
+			</div> <!-- .et_pb_row -->
+				
+				
+			</div> <!-- .et_pb_section --><div class="et_pb_section et_pb_section_3_tb_footer et_section_regular" >
+				
+				
+				
+				
+					<div class="et_pb_row et_pb_row_1_tb_footer et_pb_equal_columns et_pb_gutters3">
+				<div class="et_pb_column et_pb_column_4_4 et_pb_column_2_tb_footer  et_pb_css_mix_blend_mode_passthrough et-last-child">
+				
+				
+				<div class="et_pb_module et_pb_image et_pb_image_0_tb_footer">
+				
+				
+				<a href="https://www.jumpsec.com/"><span class="et_pb_image_wrap "><img decoding="async" loading="lazy" src="https://labs.jumpsec.com/wp-content/uploads/sites/2/2020/06/Jumpsec-logo-white.png" alt="" title="" height="auto" width="auto" class="wp-image-447" /></span></a>
+			</div><ul class="et_pb_module et_pb_social_media_follow et_pb_social_media_follow_1_tb_footer clearfix  et_pb_text_align_center-tablet et_pb_bg_layout_light">
+				
+				
+				<li
+            class='et_pb_social_media_follow_network_3_tb_footer et_pb_social_icon et_pb_social_network_link  et-social-twitter et_pb_social_media_follow_network_3_tb_footer'><a
+              href='https://twitter.com/JUMPSEC'
+              class='icon et_pb_with_border'
+              title='Follow on Twitter'
+               target="_blank"><span
+                class='et_pb_social_media_follow_network_name'
+                aria-hidden='true'
+                >Follow</span></a></li><li
+            class='et_pb_social_media_follow_network_4_tb_footer et_pb_social_icon et_pb_social_network_link  et-social-linkedin et_pb_social_media_follow_network_4_tb_footer'><a
+              href='https://twitter.com/JUMPSEC'
+              class='icon et_pb_with_border'
+              title='Follow on LinkedIn'
+               target="_blank"><span
+                class='et_pb_social_media_follow_network_name'
+                aria-hidden='true'
+                >Follow</span></a></li><li
+            class='et_pb_social_media_follow_network_5_tb_footer et_pb_social_icon et_pb_social_network_link  et-social-youtube et_pb_social_media_follow_network_5_tb_footer'><a
+              href='https://www.youtube.com/channel/UCpwVvJpDfFzBClzGhLUAZBw'
+              class='icon et_pb_with_border'
+              title='Follow on Youtube'
+               target="_blank"><span
+                class='et_pb_social_media_follow_network_name'
+                aria-hidden='true'
+                >Follow</span></a></li>
+			</ul> <!-- .et_pb_counters --><div class="et_pb_module et_pb_text et_pb_text_2_tb_footer  et_pb_text_align_center et_pb_bg_layout_light">
+				
+				
+				<div class="et_pb_text_inner"><p>To learn more about JUMPSEC'S services please get in touch:</p>
+<p>Give us a call: <span style="color: #ffffff;"><a href="tel: 03339398080" style="color: #ffffff;"> 0333 939 8080</a></span></p>
+<p>Send us a message: <a href="#FreeDemo"><span style="color: #ffffff;"><span class="__cf_email__" data-cfemail="650d0009090a250f1008151600064b060a08">[email&#160;protected]</span></span></a></p>
+<p><span style="font-size: small;">Jumpsec, Unit 3E – 3F, 33 – 34 Westpoint,</span><br /><span style="font-size: small;"> Warple Way, Acton, W3 0RG</span></p></div>
+			</div> <!-- .et_pb_text -->
+			</div> <!-- .et_pb_column -->
+				
+				
+			</div> <!-- .et_pb_row -->
+				
+				
+			</div> <!-- .et_pb_section --><div class="et_pb_section et_pb_section_4_tb_footer et_pb_with_background et_section_regular" >
+				
+				
+				
+				
+					<div class="et_pb_row et_pb_row_2_tb_footer">
+				<div class="et_pb_column et_pb_column_4_4 et_pb_column_3_tb_footer  et_pb_css_mix_blend_mode_passthrough et-last-child">
+				
+				
+				<div class="et_pb_module et_pb_text et_pb_text_3_tb_footer  et_pb_text_align_left et_pb_bg_layout_light">
+				
+				
+				<div class="et_pb_text_inner"><p style="text-align: center">&copy; JUMPSEC 2020 | <a href="https://www.jumpsec.com/privacy-policy/" target="_blank" rel="noopener noreferrer">Privacy Policy</a><br /> JUMPSEC Ltd. is a company registered in England and Wales. Registered Address: 1 Golden Court, Richmond, Surrey, TW9 1EU. Registration Number: 08327063</p></div>
+			</div> <!-- .et_pb_text -->
+			</div> <!-- .et_pb_column -->
+				
+				
+			</div> <!-- .et_pb_row -->
+				
+				
+			</div> <!-- .et_pb_section -->		</div><!-- .et_builder_inner_content -->
+	</footer><!-- .et-l -->
+	    </div> <!-- #et-main-area -->
+
+			
+		</div><!-- #et-boc -->
+		</div> <!-- #page-container -->
+
+			<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>jQuery(
+	function($){
+		
+		addCopyToClipboardButton();
+		
+		function addCopyToClipboardButton() {
+			$('.dbcs-clipboard-button')
+				.click(function() {
+					var $button = $(this);
+					var code = $button.closest('.dbcs-clipboard-enabled').find('code').text();
+					copyToClipboard(code);
+					displayCopiedMessage($button);
+				});
+		}
+		
+		function displayCopiedMessage($button) {
+			var copied = 'dbcs-copied-to-clipboard';
+			$button
+				.addClass(copied)
+				.delay(3000)
+				.queue(function(next){
+					$button.removeClass(copied);
+					next();
+				});
+		}
+		
+		function copyToClipboard(content) {
+			var $temp = $("<textarea>");
+			$("body").append($temp);
+			$temp.val(content).select();
+			document.execCommand("copy");
+			$temp.remove();
+		}
+	}
+);</script><div class="et_social_sidebar_networks et_social_visible_sidebar et_social_slideright et_social_animated et_social_rounded et_social_sidebar_slide et_social_mobile_on et_social_sidebar_networks_right">
+					
+					<ul class="et_social_icons_container"><li class="et_social_twitter">
+									<a href="https://twitter.com/share?text=Advisory%3A%20IDOR%20in%20Microsoft%20Teams%20Allows%20for%20External%20Tenants%20to%20Introduce%20Malware&#038;url=https%3A%2F%2Flabs.jumpsec.com%2Fadvisory-idor-in-microsoft-teams-allows-for-external-tenants-to-introduce-malware%2F" class="et_social_share" rel="nofollow" data-social_name="twitter" data-post_id="19628" data-social_type="share" data-location="sidebar">
+										<i class="et_social_icon et_social_icon_twitter"></i>
+										
+										
+										<span class="et_social_overlay"></span>
+									</a>
+								</li><li class="et_social_linkedin">
+									<a href="http://www.linkedin.com/shareArticle?mini=true&#038;url=https%3A%2F%2Flabs.jumpsec.com%2Fadvisory-idor-in-microsoft-teams-allows-for-external-tenants-to-introduce-malware%2F&#038;title=Advisory%3A%20IDOR%20in%20Microsoft%20Teams%20Allows%20for%20External%20Tenants%20to%20Introduce%20Malware" class="et_social_share" rel="nofollow" data-social_name="linkedin" data-post_id="19628" data-social_type="share" data-location="sidebar">
+										<i class="et_social_icon et_social_icon_linkedin"></i>
+										
+										
+										<span class="et_social_overlay"></span>
+									</a>
+								</li><li class="et_social_gmail">
+									<a href="https://mail.google.com/mail/u/0/?view=cm&#038;fs=1&#038;su=Advisory%3A%20IDOR%20in%20Microsoft%20Teams%20Allows%20for%20External%20Tenants%20to%20Introduce%20Malware&#038;body=https%3A%2F%2Flabs.jumpsec.com%2Fadvisory-idor-in-microsoft-teams-allows-for-external-tenants-to-introduce-malware%2F&#038;ui=2&#038;tf=1" class="et_social_share" rel="nofollow" data-social_name="gmail" data-post_id="19628" data-social_type="share" data-location="sidebar">
+										<i class="et_social_icon et_social_icon_gmail"></i>
+										
+										
+										<span class="et_social_overlay"></span>
+									</a>
+								</li></ul>
+					<span class="et_social_hide_sidebar et_social_icon"></span>
+				</div><div class="et_social_mobile_button"></div>
+					<div class="et_social_mobile et_social_fadein">
+						<div class="et_social_heading">Share This</div>
+						<span class="et_social_close"></span>
+						<div class="et_social_networks et_social_simple et_social_rounded et_social_left">
+							<ul class="et_social_icons_container"><li class="et_social_twitter">
+									<a href="https://twitter.com/share?text=Advisory%3A%20IDOR%20in%20Microsoft%20Teams%20Allows%20for%20External%20Tenants%20to%20Introduce%20Malware&#038;url=https%3A%2F%2Flabs.jumpsec.com%2Fadvisory-idor-in-microsoft-teams-allows-for-external-tenants-to-introduce-malware%2F" class="et_social_share" rel="nofollow" data-social_name="twitter" data-post_id="19628" data-social_type="share" data-location="sidebar">
+										<i class="et_social_icon et_social_icon_twitter"></i>
+										<div class="et_social_network_label"><div class="et_social_networkname">Twitter</div></div>
+										
+										<span class="et_social_overlay"></span>
+									</a>
+								</li><li class="et_social_linkedin">
+									<a href="http://www.linkedin.com/shareArticle?mini=true&#038;url=https%3A%2F%2Flabs.jumpsec.com%2Fadvisory-idor-in-microsoft-teams-allows-for-external-tenants-to-introduce-malware%2F&#038;title=Advisory%3A%20IDOR%20in%20Microsoft%20Teams%20Allows%20for%20External%20Tenants%20to%20Introduce%20Malware" class="et_social_share" rel="nofollow" data-social_name="linkedin" data-post_id="19628" data-social_type="share" data-location="sidebar">
+										<i class="et_social_icon et_social_icon_linkedin"></i>
+										<div class="et_social_network_label"><div class="et_social_networkname">LinkedIn</div></div>
+										
+										<span class="et_social_overlay"></span>
+									</a>
+								</li><li class="et_social_gmail">
+									<a href="https://mail.google.com/mail/u/0/?view=cm&#038;fs=1&#038;su=Advisory%3A%20IDOR%20in%20Microsoft%20Teams%20Allows%20for%20External%20Tenants%20to%20Introduce%20Malware&#038;body=https%3A%2F%2Flabs.jumpsec.com%2Fadvisory-idor-in-microsoft-teams-allows-for-external-tenants-to-introduce-malware%2F&#038;ui=2&#038;tf=1" class="et_social_share" rel="nofollow" data-social_name="gmail" data-post_id="19628" data-social_type="share" data-location="sidebar">
+										<i class="et_social_icon et_social_icon_gmail"></i>
+										<div class="et_social_network_label"><div class="et_social_networkname">Gmail</div></div>
+										
+										<span class="et_social_overlay"></span>
+									</a>
+								</li></ul>
+						</div>
+					</div>
+					<div class="et_social_mobile_overlay"></div><script type="text/javascript">/* <![CDATA[ */!function(e,n){var r={"selectors":{"block":"pre.EnlighterJSRAW","inline":"code.EnlighterJSRAW"},"options":{"indent":4,"ampersandCleanup":true,"linehover":true,"rawcodeDbclick":false,"textOverflow":"break","linenumbers":true,"theme":"atomic","language":"generic","retainCssClasses":false,"collapse":false,"toolbarOuter":"","toolbarTop":"{BTN_RAW}{BTN_COPY}{BTN_WINDOW}{BTN_WEBSITE}","toolbarBottom":""},"resources":["https:\/\/labs.jumpsec.com\/wp-content\/plugins\/enlighter\/cache\/X2_enlighterjs.min.css?\/3CaWZ0Q8uFEfTo","https:\/\/labs.jumpsec.com\/wp-content\/plugins\/enlighter\/resources\/enlighterjs\/enlighterjs.min.js"]},o=document.getElementsByTagName("head")[0],t=n&&(n.error||n.log)||function(){};e.EnlighterJSINIT=function(){!function(e,n){var r=0,l=null;function c(o){l=o,++r==e.length&&(!0,n(l))}e.forEach(function(e){switch(e.match(/\.([a-z]+)(?:[#?].*)?$/)[1]){case"js":var n=document.createElement("script");n.onload=function(){c(null)},n.onerror=c,n.src=e,n.async=!0,o.appendChild(n);break;case"css":var r=document.createElement("link");r.onload=function(){c(null)},r.onerror=c,r.rel="stylesheet",r.type="text/css",r.href=e,r.media="all",o.appendChild(r);break;default:t("Error: invalid file extension",e)}})}(r.resources,function(e){e?t("Error: failed to dynamically load EnlighterJS resources!",e):"undefined"!=typeof EnlighterJS?EnlighterJS.init(r.selectors.block,r.selectors.inline,r.options):t("Error: EnlighterJS resources not loaded yet!")})},(document.querySelector(r.selectors.block)||document.querySelector(r.selectors.inline))&&e.EnlighterJSINIT()}(window,console); /* ]]> */</script><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-49091372-2" integrity="sha384-YhdGPaAiL9ISVFm2tPKgkoixJCPLcaZdvu8yj4zzulfXtxohyx2fG386IWjXcGg+" crossorigin="anonymous"></script>
+
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-49091372-2');
+</script><link rel='stylesheet' id='mediaelement-css' href='https://labs.jumpsec.com/wp-includes/js/mediaelement/mediaelementplayer-legacy.min.css' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-mediaelement-css' href='https://labs.jumpsec.com/wp-includes/js/mediaelement/wp-mediaelement.min.css' type='text/css' media='all' />
+<script type='text/javascript' src='https://labs.jumpsec.com/wp-content/plugins/monarch/js/idle-timer.min.js' id='et_monarch-idle-js'></script>
+<script type='text/javascript' id='et_monarch-custom-js-js-extra'>
+/* <![CDATA[ */
+var monarchSettings = {"ajaxurl":"https:\/\/labs.jumpsec.com\/wp-admin\/admin-ajax.php","pageurl":"https:\/\/labs.jumpsec.com\/advisory-idor-in-microsoft-teams-allows-for-external-tenants-to-introduce-malware\/","stats_nonce":"fa90fc9656","share_counts":"bd86f3759a","follow_counts":"fed2892b66","total_counts":"b299aa22b6","media_single":"ca64ab168b","media_total":"f50497c6d1","generate_all_window_nonce":"8864187821","no_img_message":"No images available for sharing on this page"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://labs.jumpsec.com/wp-content/plugins/monarch/js/custom.js' id='et_monarch-custom-js-js'></script>
+<script type='text/javascript' id='divi-custom-script-js-extra'>
+/* <![CDATA[ */
+var DIVI = {"item_count":"%d Item","items_count":"%d Items"};
+var et_shortcodes_strings = {"previous":"Previous","next":"Next"};
+var et_pb_custom = {"ajaxurl":"https:\/\/labs.jumpsec.com\/wp-admin\/admin-ajax.php","images_uri":"https:\/\/labs.jumpsec.com\/wp-content\/themes\/Divi\/images","builder_images_uri":"https:\/\/labs.jumpsec.com\/wp-content\/themes\/Divi\/includes\/builder\/images","et_frontend_nonce":"d09d94ce05","subscription_failed":"Please, check the fields below to make sure you entered the correct information.","et_ab_log_nonce":"b88f584cb0","fill_message":"Please, fill in the following fields:","contact_error_message":"Please, fix the following errors:","invalid":"Invalid email","captcha":"Captcha","prev":"Prev","previous":"Previous","next":"Next","wrong_captcha":"You entered the wrong number in captcha.","wrong_checkbox":"Checkbox","ignore_waypoints":"no","is_divi_theme_used":"1","widget_search_selector":".widget_search","ab_tests":[],"is_ab_testing_active":"","page_id":"19628","unique_test_id":"","ab_bounce_rate":"5","is_cache_plugin_active":"no","is_shortcode_tracking":"","tinymce_uri":""}; var et_builder_utils_params = {"condition":{"diviTheme":true,"extraTheme":false},"scrollLocations":["app","top"],"builderScrollLocations":{"desktop":"app","tablet":"app","phone":"app"},"onloadScrollLocation":"app","builderType":"fe"}; var et_frontend_scripts = {"builderCssContainerPrefix":"#et-boc","builderCssLayoutPrefix":"#et-boc .et-l"};
+var et_pb_box_shadow_elements = [];
+var et_pb_motion_elements = {"desktop":[],"tablet":[],"phone":[]};
+var et_pb_sticky_elements = [];
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://labs.jumpsec.com/wp-content/themes/Divi/js/custom.unified.js' id='divi-custom-script-js'></script>
+<script type='text/javascript' src='https://labs.jumpsec.com/wp-content/themes/Divi/core/admin/js/common.js' id='et-core-common-js'></script>
+<script type='text/javascript' id='mediaelement-core-js-before'>
+var mejsL10n = {"language":"en","strings":{"mejs.download-file":"Download File","mejs.install-flash":"You are using a browser that does not have Flash player enabled or installed. Please turn on your Flash player plugin or download the latest version from https:\/\/get.adobe.com\/flashplayer\/","mejs.fullscreen":"Fullscreen","mejs.play":"Play","mejs.pause":"Pause","mejs.time-slider":"Time Slider","mejs.time-help-text":"Use Left\/Right Arrow keys to advance one second, Up\/Down arrows to advance ten seconds.","mejs.live-broadcast":"Live Broadcast","mejs.volume-help-text":"Use Up\/Down Arrow keys to increase or decrease volume.","mejs.unmute":"Unmute","mejs.mute":"Mute","mejs.volume-slider":"Volume Slider","mejs.video-player":"Video Player","mejs.audio-player":"Audio Player","mejs.captions-subtitles":"Captions\/Subtitles","mejs.captions-chapters":"Chapters","mejs.none":"None","mejs.afrikaans":"Afrikaans","mejs.albanian":"Albanian","mejs.arabic":"Arabic","mejs.belarusian":"Belarusian","mejs.bulgarian":"Bulgarian","mejs.catalan":"Catalan","mejs.chinese":"Chinese","mejs.chinese-simplified":"Chinese (Simplified)","mejs.chinese-traditional":"Chinese (Traditional)","mejs.croatian":"Croatian","mejs.czech":"Czech","mejs.danish":"Danish","mejs.dutch":"Dutch","mejs.english":"English","mejs.estonian":"Estonian","mejs.filipino":"Filipino","mejs.finnish":"Finnish","mejs.french":"French","mejs.galician":"Galician","mejs.german":"German","mejs.greek":"Greek","mejs.haitian-creole":"Haitian Creole","mejs.hebrew":"Hebrew","mejs.hindi":"Hindi","mejs.hungarian":"Hungarian","mejs.icelandic":"Icelandic","mejs.indonesian":"Indonesian","mejs.irish":"Irish","mejs.italian":"Italian","mejs.japanese":"Japanese","mejs.korean":"Korean","mejs.latvian":"Latvian","mejs.lithuanian":"Lithuanian","mejs.macedonian":"Macedonian","mejs.malay":"Malay","mejs.maltese":"Maltese","mejs.norwegian":"Norwegian","mejs.persian":"Persian","mejs.polish":"Polish","mejs.portuguese":"Portuguese","mejs.romanian":"Romanian","mejs.russian":"Russian","mejs.serbian":"Serbian","mejs.slovak":"Slovak","mejs.slovenian":"Slovenian","mejs.spanish":"Spanish","mejs.swahili":"Swahili","mejs.swedish":"Swedish","mejs.tagalog":"Tagalog","mejs.thai":"Thai","mejs.turkish":"Turkish","mejs.ukrainian":"Ukrainian","mejs.vietnamese":"Vietnamese","mejs.welsh":"Welsh","mejs.yiddish":"Yiddish"}};
+</script>
+<script type='text/javascript' src='https://labs.jumpsec.com/wp-includes/js/mediaelement/mediaelement-and-player.min.js' id='mediaelement-core-js'></script>
+<script type='text/javascript' src='https://labs.jumpsec.com/wp-includes/js/mediaelement/mediaelement-migrate.min.js' id='mediaelement-migrate-js'></script>
+<script type='text/javascript' id='mediaelement-js-extra'>
+/* <![CDATA[ */
+var _wpmejsSettings = {"pluginPath":"\/wp-includes\/js\/mediaelement\/","classPrefix":"mejs-","stretching":"responsive"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://labs.jumpsec.com/wp-includes/js/mediaelement/wp-mediaelement.min.js' id='wp-mediaelement-js'></script>
+		
+			<span class="et_pb_scroll_top et-pb-icon"></span>
+	</body>
+</html>

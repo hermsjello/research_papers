@@ -1,0 +1,536 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.15.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>From Multiple IDORs leading to Code Execution on a different Host Container - Rahul R</title>
+<meta name="description" content="Here is a short write-up on an interesting bug that I found while testing a site where I was able to chain multiple IDORs to execute Code on the server">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Rahul R">
+<meta property="og:title" content="From Multiple IDORs leading to Code Execution on a different Host Container">
+<meta property="og:url" content="https://rahulr.in/idor-to-rce/">
+
+
+  <meta property="og:description" content="Here is a short write-up on an interesting bug that I found while testing a site where I was able to chain multiple IDORs to execute Code on the server">
+
+
+
+  <meta property="og:image" content="https://rahulr.in/assets/images/idor-to-rce/arc.png">
+
+
+
+
+
+  <meta property="article:published_time" content="2019-10-04T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://rahulr.in/idor-to-rce/">
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Rahul R",
+      "url": "https://rahulr.in",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Rahul R Feed">
+<link rel="shortcut icon" type="image/png" href="/assets/images/hacker.png"/>
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6FTHS5L22F"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6FTHS5L22F');
+</script>
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE ]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/"><img src="/assets/images/masthead.png" alt=""></a>
+                
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/" >Home</a>
+            </li><li class="masthead__menu-item">
+              <a href="/year-archive/" >Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/" >Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/" >Tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/" >About</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+    
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="https://rahulr.in/" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        <li class="current">From Multiple IDORs leading to Code Execution on a different Host Container</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+
+      
+        <img src="/assets/images/avatar.png" alt="Rahul R" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Rahul R</h3>
+    
+    
+      <p class="author__bio" itemprop="description">
+        Pentester, CTF player<br>SOC guy
+      </p>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">India</span>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://twitter.com/Rahul_R95" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter
+          </a>
+        </li>
+      
+
+      
+        <li>
+          <a href="https://www.facebook.com/rahul.raveendran.92351" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-facebook-square" aria-hidden="true"></i> Facebook
+          </a>
+        </li>
+      
+
+      
+
+      
+        <li>
+          <a href="https://www.linkedin.com/in/rahul-r-3b0433a6" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://github.com/rahulr311295" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="From Multiple IDORs leading to Code Execution on a different Host Container">
+    <meta itemprop="description" content="Here is a short write-up on an interesting bug that I found while testing a site where I was able to chain multiple IDORs to execute Code on the server">
+    <meta itemprop="datePublished" content="October 04, 2019">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">From Multiple IDORs leading to Code Execution on a different Host Container
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p class="page__meta">
+          
+            <i class="fa fa-fw fa-calendar" aria-hidden="true"></i> <time datetime="2019-10-04T00:00:00+00:00">October 04, 2019 </time>&emsp;
+          
+          
+        </p>
+        <p>Here is a short write-up on an interesting bug that I found while testing a Site there won’t be many screenshots of the bug as I can’t disclose any detail about the target.</p>
+
+<p>Let’s talk about the target now the site is somewhat similar to any web hosting platform instead of providing a domain name and hosting web services like WordPress or Joomla. In this platform, we can host services such as Wordpress or Joomla and point that to our domain the backend uses docker as a medium to host the service which means that when we create a new service a docker container is created and the service is isolated within the docker container.</p>
+
+<p><img src="/assets/images/idor-to-rce/arc.png" alt="" /></p>
+
+<p>This is what I think of how the backend system creates a new service. So where is the vulnerability then in that platform I was able to find multiple IDORs such as stopping or starting any users hosted service and enabling and diabling security features but what made the application vulnerable to IDOR or Access Control Issues.The site uses a cookie called access_token to verify the session but there were no additional cookies that checked for Access Control Validations which made it vulnerable .This is how the IDOR request looked like.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET /site/ID HTTP/1.1
+Host: sub.redacted.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:69.0) Gecko/20100101 Firefox/69.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: https://sub.redacted.com/
+X-Requested-With: XMLHttpRequest
+Connection: close
+Cookie: access_token=random-access-token; user_time_zone=Asia%2FKolkata
+</code></pre></div></div>
+
+<p>By changing the ID to another user’s ID I was able to get into their site dashboard. So I was sure that every end point is vulnerable but starting or stopping a service is not what I wanted but something more which was the api after fuzzing for sometime I was able to find an endpoint which I think was for debugging because of the information it displayed.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET /sites/ID/container?access_token=some-random-access-token HTTP/1.1
+Host: api.redacted.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:69.0) Gecko/20100101 Firefox/69.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: https://sub.redacted.com/
+Connection: close
+</code></pre></div></div>
+<p>The response had a long json data with so much information such as their rancher cluster url the version of the service private ip of loadbalancer and docker container but the thing that caught my eye was MYSQL.</p>
+
+<p><img src="/assets/images/idor-to-rce/mysql_info.png" alt="" /></p>
+
+<p>Now with this endpoint I was able to gather the MYSQL and SFTP username and password of any user by just changing the ID so I created two wordpress demo sites to see if i can change the data that is stored in the database, Inorder to do that I needed to execute code on the container which was easy and the container had mysql installed but when I tried to connect to a remote host it failed, I also tried to connect to my own database but it still failed WTF so where is the database after reading the whole json data I got an idea of how the database connects to the website.</p>
+
+<p><img src="/assets/images/idor-to-rce/mysql_arc.png" alt="" /></p>
+
+<p>So the database is actually on a different instance as a container and it is using a proxy to establish a connection with the website.So for every website there is a MYSQL database container and we can only connect to that container only and now we need to escape out mysql container and here is IDOR to the rescue we can use phpmyadmin to login to the database when the request is processed the backend verifies the user with the site ID so if I could change the site ID to the victim’s ID the backend server takes it as a valid request and logs me in.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET /site/ID/pmalogin HTTP/1.1
+Host: sub.redacted.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:69.0) Gecko/20100101 Firefox/69.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: https://sub.redacted.com/
+Connection: close
+Cookie:access_token=random-access-token; user_time_zone=Asia%2FKolkata;
+Upgrade-Insecure-Requests: 1
+</code></pre></div></div>
+
+<p><img src="/assets/images/idor-to-rce/mysql_alert.png" alt="" /></p>
+
+<p><img src="/assets/images/idor-to-rce/phpmyadmin.png" alt="" /></p>
+
+<p><img src="/assets/images/idor-to-rce/db.png" alt="" /></p>
+
+<p>And I was able to take control of the whole site which also means code execution.The company was also generous enough to fix the issue and reward me $$$.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#bugbounty" class="page__taxonomy-item" rel="tag">bugbounty</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#idor" class="page__taxonomy-item" rel="tag">idor</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#rce" class="page__taxonomy-item" rel="tag">rce</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#bugbounty" class="page__taxonomy-item" rel="tag">bugbounty</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/categories/#infosec" class="page__taxonomy-item" rel="tag">infosec</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-10-04T00:00:00+00:00">October 04, 2019</time></p>
+        
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/C0C0N-XII-CTF-Walkthrough/" class="pagination--pager" title="COCON XII DOME CTF Walkthrough
+">Previous</a>
+    
+    
+      <a href="/Ra-Tryhackme-Walkthrough/" class="pagination--pager" title="Tryhackme Ra Walkthrough
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+</div>
+
+    </div>
+
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 Rahul R</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script data-search-pseudo-elements defer src="https://use.fontawesome.com/releases/v5.7.1/js/all.js" integrity="sha384-eVEQC9zshBn0rFj4+TU78eNA19HMNigMviK/PU/FFjLXqa/GKPgX58rvt5Z8PLs7" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'G-6FTHS5L22F']);
+  
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+
+
+
+  </body>
+</html>

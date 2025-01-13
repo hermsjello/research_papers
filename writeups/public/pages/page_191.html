@@ -1,0 +1,691 @@
+    <!DOCTYPE html>
+    <html lang="en-US">
+
+
+
+<head>
+
+	        <meta charset="UTF-8">
+        <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'/>
+        <link rel="profile" href="https://gmpg.org/xfn/11">
+        <link rel="pingback" href="https://blog.deteact.com/xmlrpc.php">
+<title>Account Takeover via IDOR - Deteact - continuous information security services</title>
+<meta name='robots' content='max-image-preview:large' />
+
+<!-- This site is optimized with the Yoast SEO plugin v11.7 - https://yoast.com/wordpress/plugins/seo/ -->
+<link rel="canonical" href="https://blog.deteact.com/account-takeover-via-idor/" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Account Takeover via IDOR" />
+<meta property="og:description" content="Authorization flaws and other business logic vulnerabilities can lead to serious data breaches. Learn more about the typical cases of such vulnerabilities as Insecure Direct Object References." />
+<meta property="og:url" content="https://blog.deteact.com/account-takeover-via-idor/" />
+<meta property="og:site_name" content="Deteact - continuous information security services" />
+<meta property="article:section" content="Bug Bounty" />
+<meta property="article:published_time" content="2020-09-04T20:50:06+00:00" />
+<meta property="article:modified_time" content="2020-09-11T17:43:46+00:00" />
+<meta property="og:updated_time" content="2020-09-11T17:43:46+00:00" />
+<meta property="og:image" content="https://blog.deteact.com/wp-content/uploads/2020/09/image5-1024x592-1.png" />
+<meta property="og:image:secure_url" content="https://blog.deteact.com/wp-content/uploads/2020/09/image5-1024x592-1.png" />
+<meta property="og:image:width" content="1024" />
+<meta property="og:image:height" content="592" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:description" content="Authorization flaws and other business logic vulnerabilities can lead to serious data breaches. Learn more about the typical cases of such vulnerabilities as Insecure Direct Object References." />
+<meta name="twitter:title" content="Account Takeover via IDOR" />
+<meta name="twitter:image" content="https://blog.deteact.com/wp-content/uploads/2020/09/image5-1024x592-1.png" />
+<script type='application/ld+json' class='yoast-schema-graph yoast-schema-graph--main'>{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://blog.deteact.com/#website","url":"https://blog.deteact.com/","name":"Deteact - continuous information security services","potentialAction":{"@type":"SearchAction","target":"https://blog.deteact.com/?s={search_term_string}","query-input":"required name=search_term_string"}},{"@type":"ImageObject","@id":"https://blog.deteact.com/account-takeover-via-idor/#primaryimage","url":"https://blog.deteact.com/ru/wp-content/uploads/sites/2/2020/08/image5-1024x592.png"},{"@type":"WebPage","@id":"https://blog.deteact.com/account-takeover-via-idor/#webpage","url":"https://blog.deteact.com/account-takeover-via-idor/","inLanguage":"en-US","name":"Account Takeover via IDOR - Deteact - continuous information security services","isPartOf":{"@id":"https://blog.deteact.com/#website"},"primaryImageOfPage":{"@id":"https://blog.deteact.com/account-takeover-via-idor/#primaryimage"},"datePublished":"2020-09-04T20:50:06+00:00","dateModified":"2020-09-11T17:43:46+00:00","author":{"@id":"https://blog.deteact.com/#/schema/person/2cf7aed34c3eb7e8c2bd82142cde80ad"}},{"@type":["Person"],"@id":"https://blog.deteact.com/#/schema/person/2cf7aed34c3eb7e8c2bd82142cde80ad","name":"Roma Ramazanoff","image":{"@type":"ImageObject","@id":"https://blog.deteact.com/#authorlogo","url":"https://secure.gravatar.com/avatar/6204a5bf0c53e057638972b27cc88087?s=96&d=mm&r=g","caption":"Roma Ramazanoff"},"sameAs":[]}]}</script>
+<!-- / Yoast SEO plugin. -->
+
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel="alternate" type="application/rss+xml" title="Deteact - continuous information security services &raquo; Feed" href="https://blog.deteact.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Deteact - continuous information security services &raquo; Comments Feed" href="https://blog.deteact.com/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Deteact - continuous information security services &raquo; Account Takeover via IDOR Comments Feed" href="https://blog.deteact.com/account-takeover-via-idor/feed/" />
+<script type="text/javascript">
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/14.0.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/14.0.0\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/blog.deteact.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=6.2.6"}};
+/*! This file is auto-generated */
+!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){p.clearRect(0,0,i.width,i.height),p.fillText(e,0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(t,0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(p&&p.fillText)switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s("\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!s("\ud83c\uddfa\ud83c\uddf3","\ud83c\uddfa\u200b\ud83c\uddf3")&&!s("\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!s("\ud83e\udef1\ud83c\udffb\u200d\ud83e\udef2\ud83c\udfff","\ud83e\udef1\ud83c\udffb\u200b\ud83e\udef2\ud83c\udfff")}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(e=t.source||{}).concatemoji?c(e.concatemoji):e.wpemoji&&e.twemoji&&(c(e.twemoji),c(e.wpemoji)))}(window,document,window._wpemojiSettings);
+</script>
+<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 0.07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='crayon-css' href='https://blog.deteact.com/wp-content/plugins/crayon-syntax-highlighter/css/min/crayon.min.css?ver=_2.7.2_beta' type='text/css' media='all' />
+<link rel='stylesheet' id='crayon-theme-eclipse-css' href='https://blog.deteact.com/wp-content/plugins/crayon-syntax-highlighter/themes/eclipse/eclipse.css?ver=_2.7.2_beta' type='text/css' media='all' />
+<link rel='stylesheet' id='crayon-font-ubuntu-mono-css' href='https://blog.deteact.com/wp-content/plugins/crayon-syntax-highlighter/fonts/ubuntu-mono.css?ver=_2.7.2_beta' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-block-library-css' href='https://blog.deteact.com/wp-includes/css/dist/block-library/style.min.css?ver=6.2.6' type='text/css' media='all' />
+<style id='wp-block-library-theme-inline-css' type='text/css'>
+.wp-block-audio figcaption{color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-audio figcaption{color:hsla(0,0%,100%,.65)}.wp-block-audio{margin:0 0 1em}.wp-block-code{border:1px solid #ccc;border-radius:4px;font-family:Menlo,Consolas,monaco,monospace;padding:.8em 1em}.wp-block-embed figcaption{color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-embed figcaption{color:hsla(0,0%,100%,.65)}.wp-block-embed{margin:0 0 1em}.blocks-gallery-caption{color:#555;font-size:13px;text-align:center}.is-dark-theme .blocks-gallery-caption{color:hsla(0,0%,100%,.65)}.wp-block-image figcaption{color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-image figcaption{color:hsla(0,0%,100%,.65)}.wp-block-image{margin:0 0 1em}.wp-block-pullquote{border-bottom:4px solid;border-top:4px solid;color:currentColor;margin-bottom:1.75em}.wp-block-pullquote cite,.wp-block-pullquote footer,.wp-block-pullquote__citation{color:currentColor;font-size:.8125em;font-style:normal;text-transform:uppercase}.wp-block-quote{border-left:.25em solid;margin:0 0 1.75em;padding-left:1em}.wp-block-quote cite,.wp-block-quote footer{color:currentColor;font-size:.8125em;font-style:normal;position:relative}.wp-block-quote.has-text-align-right{border-left:none;border-right:.25em solid;padding-left:0;padding-right:1em}.wp-block-quote.has-text-align-center{border:none;padding-left:0}.wp-block-quote.is-large,.wp-block-quote.is-style-large,.wp-block-quote.is-style-plain{border:none}.wp-block-search .wp-block-search__label{font-weight:700}.wp-block-search__button{border:1px solid #ccc;padding:.375em .625em}:where(.wp-block-group.has-background){padding:1.25em 2.375em}.wp-block-separator.has-css-opacity{opacity:.4}.wp-block-separator{border:none;border-bottom:2px solid;margin-left:auto;margin-right:auto}.wp-block-separator.has-alpha-channel-opacity{opacity:1}.wp-block-separator:not(.is-style-wide):not(.is-style-dots){width:100px}.wp-block-separator.has-background:not(.is-style-dots){border-bottom:none;height:1px}.wp-block-separator.has-background:not(.is-style-wide):not(.is-style-dots){height:2px}.wp-block-table{margin:0 0 1em}.wp-block-table td,.wp-block-table th{word-break:normal}.wp-block-table figcaption{color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-table figcaption{color:hsla(0,0%,100%,.65)}.wp-block-video figcaption{color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-video figcaption{color:hsla(0,0%,100%,.65)}.wp-block-video{margin:0 0 1em}.wp-block-template-part.has-background{margin-bottom:0;margin-top:0;padding:1.25em 2.375em}
+</style>
+<link rel='stylesheet' id='classic-theme-styles-css' href='https://blog.deteact.com/wp-includes/css/classic-themes.min.css?ver=6.2.6' type='text/css' media='all' />
+<style id='global-styles-inline-css' type='text/css'>
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--duotone--dark-grayscale: url('#wp-duotone-dark-grayscale');--wp--preset--duotone--grayscale: url('#wp-duotone-grayscale');--wp--preset--duotone--purple-yellow: url('#wp-duotone-purple-yellow');--wp--preset--duotone--blue-red: url('#wp-duotone-blue-red');--wp--preset--duotone--midnight: url('#wp-duotone-midnight');--wp--preset--duotone--magenta-yellow: url('#wp-duotone-magenta-yellow');--wp--preset--duotone--purple-green: url('#wp-duotone-purple-green');--wp--preset--duotone--blue-orange: url('#wp-duotone-blue-orange');--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);--wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);}:where(.is-layout-flex){gap: 0.5em;}body .is-layout-flow > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-flow > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-flow > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-constrained > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-constrained > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)){max-width: var(--wp--style--global--content-size);margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignwide{max-width: var(--wp--style--global--wide-size);}body .is-layout-flex{display: flex;}body .is-layout-flex{flex-wrap: wrap;align-items: center;}body .is-layout-flex > *{margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+.wp-block-navigation a:where(:not(.wp-element-button)){color: inherit;}
+:where(.wp-block-columns.is-layout-flex){gap: 2em;}
+.wp-block-pullquote{font-size: 1.5em;line-height: 1.6;}
+</style>
+<link rel='stylesheet' id='widget-css' href='https://blog.deteact.com/wp-content/themes/trade-hub/inc/widget/assets/widget.css?ver=6.2.6' type='text/css' media='all' />
+<link rel='stylesheet' id='slick-css-css' href='https://blog.deteact.com/wp-content/themes/trade-hub/assets/frameworks/slick/slick.css?ver=3.4.0' type='text/css' media='all' />
+<link rel='stylesheet' id='trade-hub-style-css' href='https://blog.deteact.com/wp-content/themes/trade-hub/style.css?ver=6.2.6' type='text/css' media='all' />
+<link rel='stylesheet' id='trade-hub-google-fonts-css' href='https://fonts.googleapis.com/css?family=Roboto%3A400%2C500%2C300%2C700%2C400italic%7CRoboto%3A400%2C500%2C300%2C700%2C400italic%7CRoboto%3A400%2C500%2C300%2C700%2C400italic%7CRoboto%3A400%2C500%2C300%2C700%2C400italic&#038;ver=6.2.6' type='text/css' media='all' />
+<script type='text/javascript' src='https://blog.deteact.com/wp-includes/js/jquery/jquery.min.js?ver=3.6.4' id='jquery-core-js'></script>
+<script type='text/javascript' src='https://blog.deteact.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.0' id='jquery-migrate-js'></script>
+<script type='text/javascript' id='crayon_js-js-extra'>
+/* <![CDATA[ */
+var CrayonSyntaxSettings = {"version":"_2.7.2_beta","is_admin":"0","ajaxurl":"https:\/\/blog.deteact.com\/wp-admin\/admin-ajax.php","prefix":"crayon-","setting":"crayon-setting","selected":"crayon-setting-selected","changed":"crayon-setting-changed","special":"crayon-setting-special","orig_value":"data-orig-value","debug":""};
+var CrayonSyntaxStrings = {"copy":"Press %s to Copy, %s to Paste","minimize":"Click To Expand Code"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://blog.deteact.com/wp-content/plugins/crayon-syntax-highlighter/js/min/crayon.min.js?ver=_2.7.2_beta' id='crayon_js-js'></script>
+<link rel="https://api.w.org/" href="https://blog.deteact.com/wp-json/" /><link rel="alternate" type="application/json" href="https://blog.deteact.com/wp-json/wp/v2/posts/336" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://blog.deteact.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://blog.deteact.com/wp-includes/wlwmanifest.xml" />
+<meta name="generator" content="WordPress 6.2.6" />
+<link rel='shortlink' href='https://blog.deteact.com/?p=336' />
+		<!-- Custom Logo: hide header text -->
+		<style id="custom-logo-css" type="text/css">
+			.site-title, .site-description {
+				position: absolute;
+				clip: rect(1px, 1px, 1px, 1px);
+			}
+		</style>
+		<link rel="alternate" type="application/json+oembed" href="https://blog.deteact.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fblog.deteact.com%2Faccount-takeover-via-idor%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://blog.deteact.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fblog.deteact.com%2Faccount-takeover-via-idor%2F&#038;format=xml" />
+        <style type="text/css">
+        /*site identity font family*/
+        .site-title,
+        .site-title a,
+        .site-description,
+        .site-description a {
+            font-family: 'Roboto'!important;
+        }
+        /*main menu*/
+        .main-navigation a{
+            font-family: 'Roboto'!important;
+        }
+        
+        h2, h2 a, .h2, .h2 a, 
+        h2.widget-title, .h1, .h3, .h4, .h5, .h6, 
+        h1, h3, h4, h5, h6 .h1 a, .h3 a, .h4 a,
+        .h5 a, .h6 a, h1 a, h3 a, h4 a, h5 a, 
+        h6 a {
+            font-family: 'Roboto'!important;
+        }
+        
+        html,body {
+            font-family: 'Roboto';
+        }
+
+        /*=====COLOR OPTION=====*/
+
+        /*Color*/
+        /*----------------------------------*/
+        /*background color*/ 
+                    /*Site identity / logo & tagline*/
+            body:not(.transparent-header) .site-branding a,
+            body:not(.transparent-header) .site-branding p,
+            body.home.transparent-header.small-header .site-branding a,
+            body.home.transparent-header.small-header .site-branding p {
+              color: #313131;
+            }
+                  
+          body{
+            background-color: #ffffff;
+          }
+                  
+            h2, h2 a, .h2, .h2 a, 
+            h2.widget-title, .h1, .h3, .h4, .h5, .h6, 
+            h1, h3, h4, h5, h6 .h1 a, .h3 a, .h4 a,
+            .h5 a, .h6 a, h1 a, h3 a, h4 a, h5 a, 
+            h6 a {
+            color: #000000;
+          }
+                    /* menu text color */
+            .main-navigation a, .main-navigation a:visited
+            {
+                color: #000000;
+            }
+                   {
+              background-color: #dd3333;
+            }
+
+            .widget-title,
+            .widgettitle,
+            .wrapper-slider,
+            .flip-container .front,
+            .flip-container .back,            
+            .ribbon span::before {
+              border-color: #dd3333; 
+            }
+
+            section#banner-section {
+              border-bottom-color: #dd3333 !important; 
+            }
+
+            .main-navigation .current_page_item > a:after,
+            .main-navigation .current-menu-item > a:after,
+            .main-navigation .current_page_ancestor > a:after,
+            .main-navigation li.active > a:after,
+            .main-navigation li.active > a:after,
+            .main-navigation li.active > a:after,
+            a.border-btn,
+            .main-navigation li.current_page_parent a:after,
+            a#gotop,
+            .overlay-callback,
+            section#trade-hub-callback,
+            .ribbon span,
+            .button, button, html input[type="button"], input[type="button"], input[type="reset"], input[type="submit"], .button:visited, button:visited, html input[type="button"]:visited, input[type="button"]:visited, input[type="reset"]:visited, input[type="submit"]:visited,
+            h2.widget-title:after,
+            .nav-holder #sec-menu-toggle,
+            section.testimonials-section .slick-dots li.slick-active,
+            .slick-dots li.slick-active {
+                background-color: #dd3333;
+              }
+         
+
+            .latestpost-footer .moredetail a,
+            .latestpost-footer .moredetail a:visited,
+            h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover,
+            .posted-on a:hover, .date a:hover, .cat-links a:hover, .tags-links a:hover, .author a:hover, .comments-link a:hover,
+            .edit-link a:hover,
+            .edit-link a:focus,            
+            .widget li a:hover, .widget li a:focus, .widget li a:active, .widget li a:visited:hover, .widget li a:visited:focus, .widget li a:visited:active,
+            .main-navigation a:hover, .main-navigation a:focus, .main-navigation a:active, .main-navigation a:visited:hover, .main-navigation a:visited:focus, .main-navigation a:visited:active,
+            .site-branding h1 a:hover,
+            .site-branding p a:hover,
+            .trade-hub-top-menu ul li a:hover,
+            .top-header .noticebar .ticker .slide-item a:hover,
+            h2.user-title a span,
+            .page-inner-title .entry-header a:hover, .page-inner-title .entry-header a:focus, .page-inner-title .entry-header a:active, .page-inner-title .entry-header a:visited:hover, .page-inner-title .entry-header a:visited:focus, .page-inner-title .entry-header a:visited:active, .page-inner-title .entry-header time:hover, .page-inner-title .entry-header time:focus, .page-inner-title .entry-header time:active, .page-inner-title .entry-header time:visited:hover, .page-inner-title .entry-header time:visited:focus, .page-inner-title .entry-header time:visited:active,
+            .wrap-breadcrumb a:hover, .wrap-breadcrumb a:focus, .wrap-breadcrumb a:active,
+            body.blog .content-start article:hover h2 a,
+            .popular:hover i,
+            .comment:hover i,
+            .recent:hover i,
+            a.blog-meta:hover,
+            a.blog-meta:focus,
+            a.know-more:hover,
+            a.know-more:focus,
+            a.border-btn:hover,
+            a.border-btn:focus,
+            a.border-btn:active,
+            .feature-content:hover i,
+            .site-footer .site-info a:hover, .site-footer .site-info a:focus, .site-footer .site-info a:active, .site-footer .site-info a:visited:hover, .site-footer .site-info a:visited:focus, .site-footer .site-info a:visited:active,
+            .main-navigation.sec-main-navigation ul ul li:hover > a, .main-navigation.sec-main-navigation ul ul li:focus > a, .main-navigation.sec-main-navigation ul ul li:active > a  {
+              color: #dd3333;
+            }
+                    /* section heading color */
+             section.section-wrapper h2, section.section-wrapper h2 a
+            {
+                color: #000000;
+            }
+                    .main-navigation {
+                margin-right: 10px;
+            }
+
+                </style>
+    <link rel="icon" href="https://blog.deteact.com/wp-content/uploads/2019/07/DA_Icon-150x150.png" sizes="32x32" />
+<link rel="icon" href="https://blog.deteact.com/wp-content/uploads/2019/07/DA_Icon-300x300.png" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://blog.deteact.com/wp-content/uploads/2019/07/DA_Icon-300x300.png" />
+<meta name="msapplication-TileImage" content="https://blog.deteact.com/wp-content/uploads/2019/07/DA_Icon-300x300.png" />
+		<style type="text/css" id="wp-custom-css">
+			code {
+  font-family: Consolas,"courier new";
+  color: crimson;
+  background-color: #f1f1f1;
+  padding: 2px;
+  font-size: 105%;
+}		</style>
+		
+</head>
+
+<body class="post-template-default single single-post postid-336 single-format-standard wp-custom-logo wp-embed-responsive evision-right-sidebar alternate group-blog">
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-dark-grayscale"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0 0.49803921568627" /><feFuncG type="table" tableValues="0 0.49803921568627" /><feFuncB type="table" tableValues="0 0.49803921568627" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-grayscale"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0 1" /><feFuncG type="table" tableValues="0 1" /><feFuncB type="table" tableValues="0 1" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-purple-yellow"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0.54901960784314 0.98823529411765" /><feFuncG type="table" tableValues="0 1" /><feFuncB type="table" tableValues="0.71764705882353 0.25490196078431" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-blue-red"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0 1" /><feFuncG type="table" tableValues="0 0.27843137254902" /><feFuncB type="table" tableValues="0.5921568627451 0.27843137254902" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-midnight"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0 0" /><feFuncG type="table" tableValues="0 0.64705882352941" /><feFuncB type="table" tableValues="0 1" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-magenta-yellow"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0.78039215686275 1" /><feFuncG type="table" tableValues="0 0.94901960784314" /><feFuncB type="table" tableValues="0.35294117647059 0.47058823529412" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-purple-green"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0.65098039215686 0.40392156862745" /><feFuncG type="table" tableValues="0 1" /><feFuncB type="table" tableValues="0.44705882352941 0.4" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-blue-orange"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0.098039215686275 1" /><feFuncG type="table" tableValues="0 0.66274509803922" /><feFuncB type="table" tableValues="0.84705882352941 0.41960784313725" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg>    <div id="page" class="site clearfix">
+    <a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+        <div id="preloader">
+          <div id="status">&nbsp;</div>
+        </div>
+        <header id="masthead" class="wrapper wrap-head site-header">
+
+                 <!-- topheader -->
+                    <div class="container top-header-wrap">
+            <div class="row">
+              <div class="col-md-4 wrapper wrapper-site-identity">
+                <div class="site-branding">
+                 <a href="https://blog.deteact.com/" class="custom-logo-link" rel="home"><img width="622" height="124" src="https://blog.deteact.com/wp-content/uploads/2018/09/cropped-logo_new_black.png" class="custom-logo" alt="Deteact &#8211; continuous information security services" decoding="async" srcset="https://blog.deteact.com/wp-content/uploads/2018/09/cropped-logo_new_black.png 622w, https://blog.deteact.com/wp-content/uploads/2018/09/cropped-logo_new_black-300x60.png 300w" sizes="(max-width: 622px) 100vw, 622px" /></a>                                    <p class="site-title"><a href="https://blog.deteact.com/" rel="home">Deteact &#8211; continuous information security services</a></p>
+                                    <p class="site-description">Application Security, Penetration Testing, Security Consulting, Vulnerability Management, DDoS Testing, Threat Hunting, Awareness Training, Bug Bounty, Blockchain Security, Security Research</p>
+                                 
+                </div>
+              </div>
+              <nav class="col-md-8 wrapper wrap-nav">
+                 <div class="container--">
+                    <div class="wrap-inner">
+                       <div class="sec-menu">
+                          <nav id="sec-site-navigation" class="main-navigation sec-main-navigation" role="navigation" aria-label="secondary-menu">
+                             <div class="menu-about-container"><ul id="primary-menu" class="primary-menu"><li id="menu-item-31" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-31"><a href="https://deteact.com/">Home</a></li>
+<li id="menu-item-32" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-32"><a href="https://blog.deteact.com/about/">About</a></li>
+<li id="menu-item-137" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-137"><a href="https://blog.deteact.com/ru">RU</a></li>
+</ul></div>                          </nav>
+                          <!-- #site-navigation -->
+                          <div class="nav-holder">
+                             <button id="sec-menu-toggle" class="menu-toggle" aria-controls="secondary-menu" aria-expanded="false"><i class="fa fa-bars"></i></button>
+                             <div id="sec-site-header-menu" class="site-header-menu">
+                                <div class="container">
+                                   <div class="row">
+                                      <div class="col-xs-12 col-sm-12 col-md-12">
+                                         <button id="mobile-menu-toggle-close" class="menu-toggle" aria-controls="secondary-menu"><i class="fa fa-close"></i></button>
+                                      </div>
+                                      <div class="col-xs-12 col-sm-12 col-md-12 trade-hub-main-nav">
+                                         <nav id="sec-site-navigation-mobile" class="main-navigation sec-main-navigation" role="navigation" aria-label="secondary-menu">
+                                            <div class="menu-about-container"><ul id="primary-menu-mobile" class="primary-menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-31"><a href="https://deteact.com/">Home</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-32"><a href="https://blog.deteact.com/about/">About</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-137"><a href="https://blog.deteact.com/ru">RU</a></li>
+</ul></div>                                         </nav>
+                                         <!-- #site-navigation -->
+                                      </div>
+                                   </div>
+                                </div>
+                             </div>
+                             <!-- site-header-menu -->
+                          </div>
+                       </div>
+                      
+                       <div class="nav-buttons col-md-1">                       
+                          <div class="button-list">
+                                                         <div class="search-holder">
+                                <a class="button-search button-outline">
+                                <i class="fa fa-search"></i>
+                                </a>                                
+                             </div>
+                                                      </div>                        
+                       </div>                                             
+                    </div>
+
+                    <div class="search-form-nav" id="top-search">
+                       <form role="search" method="get" class="search-form" action="https://blog.deteact.com/">
+				<label>
+					<span class="screen-reader-text">Search for:</span>
+					<input type="search" class="search-field" placeholder="Search &hellip;" value="" name="s" />
+				</label>
+				<input type="submit" class="search-submit" value="Search" />
+			</form>                    </div>
+                   
+                 </div>
+              </nav>
+            </div>
+          </div>
+        </header>
+        
+
+<div id="content" class="site-content">
+
+<div id="breadcrumb" class="wrapper wrap-breadcrumb"><div class="container"><div role="navigation" aria-label="Breadcrumbs" class="breadcrumb-trail breadcrumbs" itemprop="breadcrumb"><ul class="trail-items" itemscope itemtype="http://schema.org/BreadcrumbList"><meta name="numberOfItems" content="3" /><meta name="itemListOrder" content="Ascending" /><li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" class="trail-item trail-begin"><a href="https://blog.deteact.com" rel="home"><span itemprop="name">Home</span></a><meta itemprop="position" content="1" /></li><li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" class="trail-item"><a href="https://blog.deteact.com/category/uncategorized/"><span itemprop="name">Uncategorized</span></a><meta itemprop="position" content="2" /></li><li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" class="trail-item trail-end"><span itemprop="name">Account Takeover via IDOR</span><meta itemprop="position" content="3" /></li></ul></div></div><!-- .container --></div><!-- #breadcrumb -->
+	<div class="container">
+		<div id="primary" class="content-area">
+			<main id="main" class="site-main" role="main">
+
+			<div class="wrapper page-inner-title">
+	<div class="container">
+	    <div class="row">
+	        <div class="col-md-12 col-sm-12 col-xs-12">
+				<header class="entry-header">
+					<div class="inner-banner-overlay">
+												<h1 class="entry-title">Account Takeover via IDOR</h1>													<header class="entry-header">
+								<div class="entry-meta entry-inner">
+									<span class="posted-on"><a href="https://blog.deteact.com/2020/09/04/" rel="bookmark"><time class="entry-date published" datetime="2020-09-04T20:50:06+00:00">September 4, 2020</time><time class="updated" datetime="2020-09-11T17:43:46+00:00">September 11, 2020</time></a></span><span class="byline"> <span class="author vcard"><a class="url fn n" href="https://blog.deteact.com/author/r0hack/">r0hack</a></span></span>								</div><!-- .entry-meta -->
+							</header><!-- .entry-header -->
+											</div>
+				</header><!-- .entry-header -->
+	        </div>
+	    </div>
+	</div>
+</div>
+	<div class="entry-content">
+		<div class='image-full'></div>
+		
+<p><strong>Insecure Direct Object Reference (IDOR)</strong> is a very common type of weakness in the application authorization logic. The potential damage from IDOR exploitation can be either minimal or critical. Let&#8217;s consider some cases when the presence of IDOR allowed to perform an attack with a high impact level &#8211; account takeover or project takeover.</p>
+
+
+
+<figure class="wp-block-image"><img decoding="async" src="https://blog.deteact.com/ru/wp-content/uploads/sites/2/2020/08/image5-1024x592.png" alt=""/></figure>
+
+
+
+<p>Account takeover gives the attacker full or nearly full access to the victim&#8217;s account.</p>
+
+
+
+<p>Project takeover gives the attacker access to a separate project created inside a user account. Often, the attack does not allow the full takeover of the account, but you can control some resources belonging to another user (for example, a project or an internal user created by the administrator). I have repeatedly encountered such vulnerabilities in Bug Bounty programs.</p>
+
+
+
+<div style="height:20px" aria-hidden="true" class="wp-block-spacer"></div>
+
+
+
+<h3 class="wp-block-heading"><strong>What is this IDOR?</strong></h3>
+
+
+
+<p>IDOR — is an Insecure Direct Object Reference. This flaw is often explained by the example of the helpdesk interface: by changing the ticket ID you can read the tickets of other users. But in fact, the IDOR is not limited to changing the numeric identifier to read the data, the result of an attack can lead to the data altering.</p>
+
+
+
+<p>There are also cases where it is difficult to guess the ID, for example, it could be a hash or UUID, in this case, the risk is greatly reduced. But in my practice, it has almost always been possible to find ways to find out the ID of the victim.</p>
+
+
+
+<p>I think that IDOR can be divided into sub-types by the type of resulting action:</p>
+
+
+
+<ol><li>Data reading</li><li>Data altering</li><li>Privilege escalation (a special case of data change)</li><li>Account takeover (private case of privilege escalation)</li></ol>
+
+
+
+<p>Consider an example of using IDOR to capture an account or project.</p>
+
+
+
+<div style="height:20px" aria-hidden="true" class="wp-block-spacer"></div>
+
+
+
+<h2 class="wp-block-heading"><strong>IDOR leads to Account TakeOver</strong></h2>
+
+
+
+<p>How can IDOR lead to the takeover of an account or any other entity that is created inside an account (most often it is an internal project)? For example, a user creates a manager or some project in their account, and control over these entities may be captured by an attacker.</p>
+
+
+
+<p>It is not so easy to hack the main account or a user session, because the main account is usually not directly accessible to the attacker from their account. The main account takeover is often done via the entities of the account, for example, via a project or the manager (a lower privilege user connected to the project). Below are some specific cases from Bug Bounty.</p>
+
+
+
+<div style="height:20px" aria-hidden="true" class="wp-block-spacer"></div>
+
+
+
+<h3 class="wp-block-heading"><strong>IDOR when adding and deleting a project in a group</strong></h3>
+
+
+
+<p>There are projects with different subscription plans that can be purchased for a certain price. There is also a special Enterprise plan, which adjusts to the client depending on their needs. In one of the projects, when you connect the Enterprise plan, you can add usual projects to the group, and then they also get the Enterprise status.</p>
+
+
+
+<p>IDOR was detected in two places at once: when you add a project to an Enterprise-group and when you delete it. When adding a project, everything was trivial: a POST request with JSON body was passed, which contained the project name that was open for everyone, so you could add someone else&#8217;s project to your group and get control over it:</p>
+
+
+
+<!-- Crayon Syntax Highlighter v_2.7.2_beta -->
+
+		<div id="crayon-67821f70dab38354597735" class="crayon-syntax crayon-theme-eclipse crayon-font-ubuntu-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover wrap" style=" margin-top: 12px; margin-bottom: 12px; font-size: 17px !important; line-height: 17px !important;">
+		
+			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 17px !important;height: 25.5px !important; line-height: 25.5px !important;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 17px !important;height: 25.5px !important; line-height: 25.5px !important;"><div class="crayon-button crayon-nums-button" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div></div></div>
+			<div class="crayon-info" style="min-height: 23.8px !important; line-height: 23.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea  class="crayon-plain print-no" data-settings="dblclick" readonly style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 17px !important; line-height: 17px !important;">
+POST /api/projects/victim/children HTTP/1.1
+Host: victim.com
+ 
+{"subdomain":"victim1"}</textarea></div>
+			<div class="crayon-main" style="">
+				<table class="crayon-table">
+					<tr class="crayon-row">
+				<td class="crayon-nums " data-settings="hide">
+					<div class="crayon-nums-content" style="font-size: 17px !important; line-height: 17px !important;"><div class="crayon-num" data-line="crayon-67821f70dab38354597735-1">1</div><div class="crayon-num" data-line="crayon-67821f70dab38354597735-2">2</div><div class="crayon-num" data-line="crayon-67821f70dab38354597735-3">3</div><div class="crayon-num" data-line="crayon-67821f70dab38354597735-4">4</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 17px !important; line-height: 17px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-67821f70dab38354597735-1"><span class="crayon-v">POST</span><span class="crayon-h"> </span><span class="crayon-o">/</span><span class="crayon-v">api</span><span class="crayon-o">/</span><span class="crayon-v">projects</span><span class="crayon-o">/</span><span class="crayon-v">victim</span><span class="crayon-o">/</span><span class="crayon-e">children </span><span class="crayon-v">HTTP</span><span class="crayon-o">/</span><span class="crayon-cn">1.1</span></div><div class="crayon-line" id="crayon-67821f70dab38354597735-2"><span class="crayon-v">Host</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-v">victim</span><span class="crayon-sy">.</span><span class="crayon-i">com</span></div><div class="crayon-line" id="crayon-67821f70dab38354597735-3"><span class="crayon-h"> </span></div><div class="crayon-line" id="crayon-67821f70dab38354597735-4"><span class="crayon-sy">{</span><span class="crayon-s">"subdomain"</span><span class="crayon-o">:</span><span class="crayon-s">"victim1"</span><span class="crayon-sy">}</span></div></div></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0006 seconds] -->
+
+
+
+
+<p>Another exploit was a little more tricky. The process of project deletion from a group was implemented logically incorrectly. When a project was deleted, a POST request with a complete description of the group was passed in a serialized form, but the ID of the project, whose deletion was requested, was omitted.</p>
+
+
+
+<p>You could simply add or change the project ID in the JSON body and point it to someone else&#8217;s project.</p>
+
+
+
+<p>The exploitation was complicated by the fact that the ID was a random value, which could not be guessed. But it was possible to find a way to find the project ID through the frontend: you could navigate to the project page (the projects had corresponding public pages) and find the ID in the HTML code:</p>
+
+
+
+<figure class="wp-block-image"><img decoding="async" src="https://blog.deteact.com/ru/wp-content/uploads/sites/2/2020/08/image.png" alt=""/></figure>
+
+
+
+<p>Final request:</p>
+
+
+
+<!-- Crayon Syntax Highlighter v_2.7.2_beta -->
+
+		<div id="crayon-67821f70dab43198428648" class="crayon-syntax crayon-theme-eclipse crayon-font-ubuntu-mono crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover wrap" style=" margin-top: 12px; margin-bottom: 12px; font-size: 17px !important; line-height: 17px !important;">
+		
+			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 17px !important;height: 25.5px !important; line-height: 25.5px !important;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 17px !important;height: 25.5px !important; line-height: 25.5px !important;"><div class="crayon-button crayon-nums-button" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div></div></div>
+			<div class="crayon-info" style="min-height: 23.8px !important; line-height: 23.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea  class="crayon-plain print-no" data-settings="dblclick" readonly style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 17px !important; line-height: 17px !important;">
+Host: victim.com
+Cookie: ...
+ 
+{"childrenProjects":&amp;#91;"id_project1","id_project2","id_project_victim"]}</textarea></div>
+			<div class="crayon-main" style="">
+				<table class="crayon-table">
+					<tr class="crayon-row">
+				<td class="crayon-nums " data-settings="hide">
+					<div class="crayon-nums-content" style="font-size: 17px !important; line-height: 17px !important;"><div class="crayon-num" data-line="crayon-67821f70dab43198428648-1">1</div><div class="crayon-num" data-line="crayon-67821f70dab43198428648-2">2</div><div class="crayon-num" data-line="crayon-67821f70dab43198428648-3">3</div><div class="crayon-num" data-line="crayon-67821f70dab43198428648-4">4</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 17px !important; line-height: 17px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-67821f70dab43198428648-1"><span class="crayon-v">Host</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-v">victim</span><span class="crayon-sy">.</span><span class="crayon-e">com</span></div><div class="crayon-line" id="crayon-67821f70dab43198428648-2"><span class="crayon-v">Cookie</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-sy">.</span><span class="crayon-sy">.</span><span class="crayon-sy">.</span></div><div class="crayon-line" id="crayon-67821f70dab43198428648-3"><span class="crayon-h"> </span></div><div class="crayon-line" id="crayon-67821f70dab43198428648-4"><span class="crayon-sy">{</span><span class="crayon-s">"childrenProjects"</span><span class="crayon-o">:</span><span class="crayon-o">&amp;</span><span class="crayon-p">#91;"id_project1","id_project2","id_project_victim"]}</span></div></div></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0004 seconds] -->
+
+
+
+
+<div style="height:20px" aria-hidden="true" class="wp-block-spacer"></div>
+
+
+
+<h3 class="wp-block-heading"><strong>IDOR in user reassignment</strong></h3>
+
+
+
+<p>This attack used 2 vulnerabilities at once, thanks to the chain a very high risk level was obtained. These are Improper Access Control and IDOR .</p>
+
+
+
+<p>Due to incorrectly configured access, you could view other people&#8217;s projects and managers that were linked to these projects. This vulnerability already allowed to steal some confidential data.</p>
+
+
+
+<p>But in the course of further study of the application, another drawback was found, which allowed connecting someone else&#8217;s manager to your account by their identifier (so it is IDOR), when updating the profile.</p>
+
+
+
+<p>The manager&#8217;s ID could be recognized through previous vulnerability. By connecting someone else&#8217;s manager to his account, the attacker got privileges of this manager and got control over his project, the access allowed to view and edit data.</p>
+
+
+
+<p>We are talking about a vulnerability described in the <a href="https://hackerone.com/reports/863983">Cross-organization data access in city-mobil.ru</a> report. The vulnerability allowed access to data of more than 1 million drivers: passports, driver licenses. Also by capturing partner&#8217;s account, the attacker could change drivers&#8217; data, which were registered with this partner (taxi company).</p>
+
+
+
+<div style="height:20px" aria-hidden="true" class="wp-block-spacer"></div>
+
+
+
+<h2 class="wp-block-heading">Takeaways</h2>
+
+
+
+<p>More than $25,000 was paid for the vulnerabilities described above, and the potential damage from the cybercriminals&#8217; actions could exceed this amount many times.</p>
+
+
+
+<p>To avoid such losses, analyze the security of your projects in a timely manner. Contact us for <a href="https://pentest.deteact.ru/">security assessment and penetration testing services</a>.</p>
+			</div><!-- .entry-content -->
+
+	<footer class="entry-footer">
+		<span class="cat-links"><a href="https://blog.deteact.com/category/research/bug-bounty/" rel="category tag">Bug Bounty</a> <a href="https://blog.deteact.com/category/research/" rel="category tag">Research</a> <a href="https://blog.deteact.com/category/uncategorized/" rel="category tag">Uncategorized</a> <a href="https://blog.deteact.com/category/research/web/" rel="category tag">Web Security</a></span>	</footer><!-- .entry-footer -->
+</article><!-- #post-## -->
+
+
+	<nav class="navigation post-navigation" aria-label="Posts">
+		<h2 class="screen-reader-text">Post navigation</h2>
+		<div class="nav-links"><div class="nav-previous"><a href="https://blog.deteact.com/google-closure-library-sanitizer-bypass/" rel="prev"><span class="post-navi" aria-hidden="true">PREVIOUS POST</span> <span class="screen-reader-text">Previous post:</span> <span class="post-title">Defeating Google Closure Library Sanitizer</span></a></div><div class="nav-next"><a href="https://blog.deteact.com/the-standoff-pwned/" rel="next"><span class="post-navi" aria-hidden="true">NEXT POST</span> <span class="screen-reader-text">Next post:</span> <span class="post-title">We won The Standoff</span></a></div></div>
+	</nav>
+<div id="comments" class="comments-area">
+
+		<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="/account-takeover-via-idor/#respond" style="display:none;">Cancel reply</a></small></h3><form action="https://blog.deteact.com/wp-comments-post.php" method="post" id="commentform" class="comment-form" novalidate><p class="comment-notes"><span id="email-notes">Your email address will not be published.</span> <span class="required-field-message">Required fields are marked <span class="required">*</span></span></p><p class="comment-form-comment"><label for="comment">Comment <span class="required">*</span></label> <textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" required></textarea></p><p class="comment-form-author"><label for="author">Name <span class="required">*</span></label> <input id="author" name="author" type="text" value="" size="30" maxlength="245" autocomplete="name" required /></p>
+<p class="comment-form-email"><label for="email">Email <span class="required">*</span></label> <input id="email" name="email" type="email" value="" size="30" maxlength="100" aria-describedby="email-notes" autocomplete="email" required /></p>
+<p class="comment-form-url"><label for="url">Website</label> <input id="url" name="url" type="url" value="" size="30" maxlength="200" autocomplete="url" /></p>
+<p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="Post Comment" /> <input type='hidden' name='comment_post_ID' value='336' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+</p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="71e3d04694" /></p><p style="display: none !important;"><label>&#916;<textarea name="ak_hp_textarea" cols="45" rows="8" maxlength="100"></textarea></label><input type="hidden" id="ak_js_1" name="ak_js" value="172"/><script>document.getElementById( "ak_js_1" ).setAttribute( "value", ( new Date() ).getTime() );</script></p></form>	</div><!-- #respond -->
+	
+</div><!-- #comments -->
+
+			</main><!-- #main -->
+		</div><!-- #primary -->
+		
+<aside id="secondary" class="widget-area" role="complementary">
+	<section id="search-2" class="widget widget_search"><form role="search" method="get" class="search-form" action="https://blog.deteact.com/">
+				<label>
+					<span class="screen-reader-text">Search for:</span>
+					<input type="search" class="search-field" placeholder="Search &hellip;" value="" name="s" />
+				</label>
+				<input type="submit" class="search-submit" value="Search" />
+			</form></section>
+		<section id="recent-posts-2" class="widget widget_recent_entries">
+		<h2 class="widget-title">Recent Posts</h2>
+		<ul>
+											<li>
+					<a href="https://blog.deteact.com/east-finance-security-audit/">Security Audit of EAST Finance Protocol</a>
+									</li>
+											<li>
+					<a href="https://blog.deteact.com/top-pentest-company/">Top-10 Penetration Testing Company</a>
+									</li>
+											<li>
+					<a href="https://blog.deteact.com/leap-year-for-deteact/">Leap Year for DeteAct</a>
+									</li>
+											<li>
+					<a href="https://blog.deteact.com/the-standoff-pwned/">We won The Standoff</a>
+									</li>
+											<li>
+					<a href="https://blog.deteact.com/account-takeover-via-idor/" aria-current="page">Account Takeover via IDOR</a>
+									</li>
+					</ul>
+
+		</section><section id="archives-2" class="widget widget_archive"><h2 class="widget-title">Archives</h2>
+			<ul>
+					<li><a href='https://blog.deteact.com/2021/10/'>October 2021</a></li>
+	<li><a href='https://blog.deteact.com/2021/08/'>August 2021</a></li>
+	<li><a href='https://blog.deteact.com/2020/12/'>December 2020</a></li>
+	<li><a href='https://blog.deteact.com/2020/11/'>November 2020</a></li>
+	<li><a href='https://blog.deteact.com/2020/09/'>September 2020</a></li>
+	<li><a href='https://blog.deteact.com/2020/08/'>August 2020</a></li>
+	<li><a href='https://blog.deteact.com/2020/07/'>July 2020</a></li>
+	<li><a href='https://blog.deteact.com/2020/06/'>June 2020</a></li>
+	<li><a href='https://blog.deteact.com/2020/05/'>May 2020</a></li>
+	<li><a href='https://blog.deteact.com/2020/04/'>April 2020</a></li>
+	<li><a href='https://blog.deteact.com/2019/12/'>December 2019</a></li>
+	<li><a href='https://blog.deteact.com/2019/11/'>November 2019</a></li>
+	<li><a href='https://blog.deteact.com/2019/10/'>October 2019</a></li>
+	<li><a href='https://blog.deteact.com/2019/09/'>September 2019</a></li>
+	<li><a href='https://blog.deteact.com/2019/07/'>July 2019</a></li>
+	<li><a href='https://blog.deteact.com/2019/06/'>June 2019</a></li>
+	<li><a href='https://blog.deteact.com/2019/05/'>May 2019</a></li>
+	<li><a href='https://blog.deteact.com/2019/01/'>January 2019</a></li>
+	<li><a href='https://blog.deteact.com/2018/08/'>August 2018</a></li>
+	<li><a href='https://blog.deteact.com/2018/04/'>April 2018</a></li>
+			</ul>
+
+			</section><section id="categories-2" class="widget widget_categories"><h2 class="widget-title">Categories</h2>
+			<ul>
+					<li class="cat-item cat-item-26"><a href="https://blog.deteact.com/category/research/application-security/">Application Security</a>
+</li>
+	<li class="cat-item cat-item-10"><a href="https://blog.deteact.com/category/research/bug-bounty/">Bug Bounty</a>
+</li>
+	<li class="cat-item cat-item-3"><a href="https://blog.deteact.com/category/business/">Business</a>
+</li>
+	<li class="cat-item cat-item-25"><a href="https://blog.deteact.com/category/research/ctf/">CTF</a>
+</li>
+	<li class="cat-item cat-item-5"><a href="https://blog.deteact.com/category/business/information/">Information</a>
+</li>
+	<li class="cat-item cat-item-8"><a href="https://blog.deteact.com/category/business/news/">News</a>
+</li>
+	<li class="cat-item cat-item-27"><a href="https://blog.deteact.com/category/business/press-releases/">Press releases</a>
+</li>
+	<li class="cat-item cat-item-6"><a href="https://blog.deteact.com/category/research/">Research</a>
+</li>
+	<li class="cat-item cat-item-4"><a href="https://blog.deteact.com/category/business/services/">Services</a>
+</li>
+	<li class="cat-item cat-item-7"><a href="https://blog.deteact.com/category/research/tools/">Tools</a>
+</li>
+	<li class="cat-item cat-item-1"><a href="https://blog.deteact.com/category/uncategorized/">Uncategorized</a>
+</li>
+	<li class="cat-item cat-item-9"><a href="https://blog.deteact.com/category/research/web/">Web Security</a>
+</li>
+			</ul>
+
+			</section></aside><!-- #secondary -->
+	</div>
+
+        </div><!-- #content -->
+    </div>
+    </section>
+            <!-- *****************************************
+             Footer section starts
+    ****************************************** -->
+    <footer class="wrapper wrap-footer">
+     
+        <!-- footer site info -->
+        <section id="colophon" class="wrapper site-footer" role="contentinfo">
+            <div class="container">
+                <div class="row">
+                    <div class="xs-12 col-sm-12 col-md-12">
+                        <div class="site-info">
+                            Copyright &copy; All right reserved.                                                    </div><!-- .site-info -->
+                    </div>                   
+                </div>
+            </div>
+        </section><!-- #colophon -->     
+
+    </footer><!-- #colophon -->
+    <!-- *****************************************
+             Footer section ends
+    ****************************************** -->
+                    <a id="gotop" class="evision-back-to-top" href="#page"><i class="fa fa-angle-up"></i></a>
+            </div><!-- #page -->
+    <script type='text/javascript' src='https://blog.deteact.com/wp-content/themes/trade-hub/assets/js/modernizr.min.js?ver=2.8.3' id='jquery-modernizr-js'></script>
+<script type='text/javascript' src='https://blog.deteact.com/wp-content/themes/trade-hub/assets/frameworks/jquery.easing/jquery.easing.js?ver=0.3.6' id='jquery-easing-js'></script>
+<script type='text/javascript' src='https://blog.deteact.com/wp-content/themes/trade-hub/assets/frameworks/slick/slick.min.js?ver=1.6.0' id='jquery-slick-js'></script>
+<script type='text/javascript' src='https://blog.deteact.com/wp-content/themes/trade-hub/assets/frameworks/waypoints/jquery.waypoints.min.js?ver=4.0.0' id='jquery-waypoints-js'></script>
+<script type='text/javascript' src='https://blog.deteact.com/wp-content/themes/trade-hub/assets/js/evision-custom.js?ver=6.2.6' id='trade-hub-custom-js-js'></script>
+<script type='text/javascript' src='https://blog.deteact.com/wp-content/themes/trade-hub./assets/js/skip-link-focus-fix.js?ver=20151215' id='trade-hub-skip-link-focus-fix-js'></script>
+<script type='text/javascript' src='https://blog.deteact.com/wp-includes/js/comment-reply.min.js?ver=6.2.6' id='comment-reply-js'></script>
+<script defer type='text/javascript' src='https://blog.deteact.com/wp-content/plugins/akismet/_inc/akismet-frontend.js?ver=1701205780' id='akismet-frontend-js'></script>
+</body>
+</html>

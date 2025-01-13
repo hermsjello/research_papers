@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-US">
+<head>
+  <script data-ad-client="ca-pub-7955742872432397" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="profile" href="https://gmpg.org/xfn/11" />
+  <link rel="pingback" href="https://bugbountypoc.com/xmlrpc.php">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-7955742872432397",
+          enable_page_level_ads: true
+     });
+</script>
+  <title>How I was able to Harvest other Vine users IP address - Bug Bounty POC</title>
+<script>document.documentElement.className = document.documentElement.className.replace("no-js","js");</script>
+
+<!-- This site is optimized with the Yoast SEO plugin v12.4 - https://yoast.com/wordpress/plugins/seo/ -->
+<meta name="robots" content="max-snippet:-1, max-image-preview:large, max-video-preview:-1"/>
+<link rel="canonical" href="https://bugbountypoc.com/how-i-was-able-to-harvest-other-vine-users-ip-address/" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="How I was able to Harvest other Vine users IP address - Bug Bounty POC" />
+<meta property="og:description" content="Hello BugBountyPoc viewers,This is Prial again . Today I will share about another Information disclosure Vulnerability which was leaking users IP address . Last time I disclosed a POC on How I was able&#046;&#046;&#046;" />
+<meta property="og:url" content="https://bugbountypoc.com/how-i-was-able-to-harvest-other-vine-users-ip-address/" />
+<meta property="og:site_name" content="Bug Bounty POC" />
+<meta property="article:author" content="https://www.facebook.com/prial261" />
+<meta property="article:section" content="Guest Writeup" />
+<meta property="article:published_time" content="2019-01-02T10:31:46+00:00" />
+<meta property="article:modified_time" content="2019-01-02T10:31:48+00:00" />
+<meta property="og:updated_time" content="2019-01-02T10:31:48+00:00" />
+<meta property="og:image" content="https://scontent-sit4-1.xx.fbcdn.net/v/t1.0-9/19875190_1622467124431510_6099535669972850510_n.png?oh=40183365d8075a93e9faf20302849dfa&#038;oe=5A4C22A9" />
+<meta property="og:image:secure_url" content="https://scontent-sit4-1.xx.fbcdn.net/v/t1.0-9/19875190_1622467124431510_6099535669972850510_n.png?oh=40183365d8075a93e9faf20302849dfa&#038;oe=5A4C22A9" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:description" content="Hello BugBountyPoc viewers,This is Prial again . Today I will share about another Information disclosure Vulnerability which was leaking users IP address . Last time I disclosed a POC on How I was able&#046;&#046;&#046;" />
+<meta name="twitter:title" content="How I was able to Harvest other Vine users IP address - Bug Bounty POC" />
+<meta name="twitter:image" content="https://scontent-sit4-1.xx.fbcdn.net/v/t1.0-9/19875190_1622467124431510_6099535669972850510_n.png?oh=40183365d8075a93e9faf20302849dfa&#038;oe=5A4C22A9" />
+<meta name="twitter:creator" content="@prial261" />
+<script type='application/ld+json' class='yoast-schema-graph yoast-schema-graph--main'>{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://bugbountypoc.com/#website","url":"https://bugbountypoc.com/","name":"Bug Bounty POC","potentialAction":{"@type":"SearchAction","target":"https://bugbountypoc.com/?s={search_term_string}","query-input":"required name=search_term_string"}},{"@type":"ImageObject","@id":"https://bugbountypoc.com/how-i-was-able-to-harvest-other-vine-users-ip-address/#primaryimage","url":"https://scontent-sit4-1.xx.fbcdn.net/v/t1.0-9/19875190_1622467124431510_6099535669972850510_n.png?oh=40183365d8075a93e9faf20302849dfa&amp;oe=5A4C22A9"},{"@type":"WebPage","@id":"https://bugbountypoc.com/how-i-was-able-to-harvest-other-vine-users-ip-address/#webpage","url":"https://bugbountypoc.com/how-i-was-able-to-harvest-other-vine-users-ip-address/","inLanguage":"en-US","name":"How I was able to Harvest other Vine users IP address - Bug Bounty POC","isPartOf":{"@id":"https://bugbountypoc.com/#website"},"primaryImageOfPage":{"@id":"https://bugbountypoc.com/how-i-was-able-to-harvest-other-vine-users-ip-address/#primaryimage"},"datePublished":"2019-01-02T10:31:46+00:00","dateModified":"2019-01-02T10:31:48+00:00","author":{"@id":"https://bugbountypoc.com/#/schema/person/68866cd9d5ff8e661a9bd8c96f79ecfe"}},{"@type":["Person"],"@id":"https://bugbountypoc.com/#/schema/person/68866cd9d5ff8e661a9bd8c96f79ecfe","name":"Prial Islam","image":{"@type":"ImageObject","@id":"https://bugbountypoc.com/#authorlogo","url":"https://secure.gravatar.com/avatar/4cdb3cda4c6d785055f47ec7e40b75ed?s=96&d=mm&r=g","caption":"Prial Islam"},"description":"A teenager boy with passion of Breaking Security .","sameAs":["https://www.facebook.com/prial261","https://twitter.com/prial261"]}]}</script>
+<!-- / Yoast SEO plugin. -->
+
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="Bug Bounty POC &raquo; Feed" href="https://bugbountypoc.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Bug Bounty POC &raquo; Comments Feed" href="https://bugbountypoc.com/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Bug Bounty POC &raquo; How I was able to Harvest other Vine users IP address Comments Feed" href="https://bugbountypoc.com/how-i-was-able-to-harvest-other-vine-users-ip-address/feed/" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/bugbountypoc.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.2.18"}};
+			!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])?!1:!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([55357,56424,55356,57342,8205,55358,56605,8205,55357,56424,55356,57340],[55357,56424,55356,57342,8203,55358,56605,8203,55357,56424,55356,57340])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='wp-block-library-css'  href='https://bugbountypoc.com/wp-includes/css/dist/block-library/style.min.css?ver=5.2.18' type='text/css' media='all' />
+<link rel='stylesheet' id='hueman-main-style-css'  href='https://bugbountypoc.com/wp-content/themes/hueman/assets/front/css/main.min.css?ver=3.4.11' type='text/css' media='all' />
+<style id='hueman-main-style-inline-css' type='text/css'>
+body { font-size:1.00rem; }@media only screen and (min-width: 720px) {
+        .nav > li { font-size:1.00rem; }
+      }::selection { background-color: #3b8dbd; }
+::-moz-selection { background-color: #3b8dbd; }a,a+span.hu-external::after,.themeform label .required,#flexslider-featured .flex-direction-nav .flex-next:hover,#flexslider-featured .flex-direction-nav .flex-prev:hover,.post-hover:hover .post-title a,.post-title a:hover,.sidebar.s1 .post-nav li a:hover i,.content .post-nav li a:hover i,.post-related a:hover,.sidebar.s1 .widget_rss ul li a,#footer .widget_rss ul li a,.sidebar.s1 .widget_calendar a,#footer .widget_calendar a,.sidebar.s1 .alx-tab .tab-item-category a,.sidebar.s1 .alx-posts .post-item-category a,.sidebar.s1 .alx-tab li:hover .tab-item-title a,.sidebar.s1 .alx-tab li:hover .tab-item-comment a,.sidebar.s1 .alx-posts li:hover .post-item-title a,#footer .alx-tab .tab-item-category a,#footer .alx-posts .post-item-category a,#footer .alx-tab li:hover .tab-item-title a,#footer .alx-tab li:hover .tab-item-comment a,#footer .alx-posts li:hover .post-item-title a,.comment-tabs li.active a,.comment-awaiting-moderation,.child-menu a:hover,.child-menu .current_page_item > a,.wp-pagenavi a{ color: #3b8dbd; }.themeform input[type="submit"],.themeform button[type="submit"],.sidebar.s1 .sidebar-top,.sidebar.s1 .sidebar-toggle,#flexslider-featured .flex-control-nav li a.flex-active,.post-tags a:hover,.sidebar.s1 .widget_calendar caption,#footer .widget_calendar caption,.author-bio .bio-avatar:after,.commentlist li.bypostauthor > .comment-body:after,.commentlist li.comment-author-admin > .comment-body:after{ background-color: #3b8dbd; }.post-format .format-container { border-color: #3b8dbd; }.sidebar.s1 .alx-tabs-nav li.active a,#footer .alx-tabs-nav li.active a,.comment-tabs li.active a,.wp-pagenavi a:hover,.wp-pagenavi a:active,.wp-pagenavi span.current{ border-bottom-color: #3b8dbd!important; }.sidebar.s2 .post-nav li a:hover i,
+.sidebar.s2 .widget_rss ul li a,
+.sidebar.s2 .widget_calendar a,
+.sidebar.s2 .alx-tab .tab-item-category a,
+.sidebar.s2 .alx-posts .post-item-category a,
+.sidebar.s2 .alx-tab li:hover .tab-item-title a,
+.sidebar.s2 .alx-tab li:hover .tab-item-comment a,
+.sidebar.s2 .alx-posts li:hover .post-item-title a { color: #82b965; }
+.sidebar.s2 .sidebar-top,.sidebar.s2 .sidebar-toggle,.post-comments,.jp-play-bar,.jp-volume-bar-value,.sidebar.s2 .widget_calendar caption{ background-color: #82b965; }.sidebar.s2 .alx-tabs-nav li.active a { border-bottom-color: #82b965; }
+.post-comments span:before { border-right-color: #82b965; }
+      .search-expand,
+              #nav-topbar.nav-container { background-color: #26272b}@media only screen and (min-width: 720px) {
+                #nav-topbar .nav ul { background-color: #26272b; }
+              }.is-scrolled #header .nav-container.desktop-sticky,
+              .is-scrolled #header .search-expand { background-color: #26272b; background-color: rgba(38,39,43,0.90) }.is-scrolled .topbar-transparent #nav-topbar.desktop-sticky .nav ul { background-color: #26272b; background-color: rgba(38,39,43,0.95) }#header { background-color: #33363b; }
+@media only screen and (min-width: 720px) {
+  #nav-header .nav ul { background-color: #33363b; }
+}
+        .is-scrolled #header #nav-mobile { background-color: #454e5c; background-color: rgba(69,78,92,0.90) }#nav-header.nav-container, #main-header-search .search-expand { background-color: ; }
+@media only screen and (min-width: 720px) {
+  #nav-header .nav ul { background-color: ; }
+}
+        body { background-color: #eaeaea; }
+</style>
+<link rel='stylesheet' id='hueman-font-awesome-css'  href='https://bugbountypoc.com/wp-content/themes/hueman/assets/front/css/font-awesome.min.css?ver=3.4.11' type='text/css' media='all' />
+<script type='text/javascript' src='https://bugbountypoc.com/wp-includes/js/jquery/jquery.js?ver=1.12.4-wp'></script>
+<script type='text/javascript' src='https://bugbountypoc.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var AjaxCheckClicks = {"ajaxurl":"https:\/\/bugbountypoc.com\/wp-admin\/admin-ajax.php","nonce":"392558ae93"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://bugbountypoc.com/wp-content/plugins/adsense-click-fraud-monitoring-master/js/checkclicks.js?ver=5.2.18'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var AjaxUpdateClicks = {"ajaxurl":"https:\/\/bugbountypoc.com\/wp-admin\/admin-ajax.php","nonce":"ea3d873063"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://bugbountypoc.com/wp-content/plugins/adsense-click-fraud-monitoring-master/js/updateclicks.js?ver=5.2.18'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var clientcfmonitor = {"client_ip":"38.255.145.35","clickcount":"3","bannedperiod":"1","preurl":"https:\/\/bugbountypoc.com\/wp-content\/plugins\/adsense-click-fraud-monitoring-master\/clickupdate.php","firstclickdate":[[""],[""]],"updatedVisitCount":"0","isblockedcount":"0","customclass":"cfmonitor","firstclick":"false","disablead":"false","currentURL":"\/how-i-was-able-to-harvest-other-vine-users-ip-address\/"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://bugbountypoc.com/wp-content/plugins/adsense-click-fraud-monitoring-master/js/check_min.js?ver=5.2.18'></script>
+<link rel='https://api.w.org/' href='https://bugbountypoc.com/wp-json/' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://bugbountypoc.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://bugbountypoc.com/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 5.2.18" />
+<link rel='shortlink' href='https://bugbountypoc.com/?p=575' />
+<link rel="alternate" type="application/json+oembed" href="https://bugbountypoc.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fbugbountypoc.com%2Fhow-i-was-able-to-harvest-other-vine-users-ip-address%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://bugbountypoc.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fbugbountypoc.com%2Fhow-i-was-able-to-harvest-other-vine-users-ip-address%2F&#038;format=xml" />
+<!-- Analytics by WP-Statistics v12.6.10 - https://wp-statistics.com/ -->
+<!--[if lt IE 9]>
+<script src="https://bugbountypoc.com/wp-content/themes/hueman/assets/front/js/ie/html5shiv-printshiv.min.js"></script>
+<script src="https://bugbountypoc.com/wp-content/themes/hueman/assets/front/js/ie/selectivizr.js"></script>
+<![endif]-->
+		<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+		</head>
+
+<body class="post-template-default single single-post postid-575 single-format-standard wp-embed-responsive col-3cm full-width topbar-enabled header-desktop-sticky header-mobile-sticky unknown">
+
+<div id="wrapper">
+
+  
+  <header id="header" class="top-menu-mobile-on one-mobile-menu top_menu header-ads-desktop  topbar-transparent no-header-img">
+        <nav class="nav-container group mobile-menu mobile-sticky " id="nav-mobile" data-menu-id="header-1">
+  <div class="mobile-title-logo-in-header">                  <p class="site-title"><a class="custom-logo-link" href="https://bugbountypoc.com/" rel="home" title="Bug Bounty POC | Home page">Bug Bounty POC</a></p>
+                </div>
+        
+                    <!-- <div class="ham__navbar-toggler collapsed" aria-expanded="false">
+          <div class="ham__navbar-span-wrapper">
+            <span class="ham-toggler-menu__span"></span>
+          </div>
+        </div> -->
+        <div class="ham__navbar-toggler-two collapsed" title="Menu" aria-expanded="false">
+          <div class="ham__navbar-span-wrapper">
+            <span class="line line-1"></span>
+            <span class="line line-2"></span>
+            <span class="line line-3"></span>
+          </div>
+        </div>
+            
+      <div class="nav-text"></div>
+      <div class="nav-wrap container">
+                  <ul class="nav container-inner group mobile-search">
+                            <li>
+                  <form method="get" class="searchform themeform" action="https://bugbountypoc.com/">
+	<div>
+		<input type="text" class="search" name="s" onblur="if(this.value=='')this.value='To search type and hit enter';" onfocus="if(this.value=='To search type and hit enter')this.value='';" value="To search type and hit enter" />
+	</div>
+</form>                </li>
+                      </ul>
+                <ul id="menu-home" class="nav container-inner group"><li id="menu-item-6" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-6"><a href="http://bugbountypoc.com/">Home</a></li>
+<li id="menu-item-7" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-7"><a href="https://bugbountypoc.com/category/vulnerability/">Vulnerability</a>
+<ul class="sub-menu">
+	<li id="menu-item-8" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8"><a href="https://bugbountypoc.com/category/cross-site-scripting/">Cross Site Scripting</a></li>
+	<li id="menu-item-9" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-9"><a href="https://bugbountypoc.com/category/csrf/">CSRF</a></li>
+	<li id="menu-item-10" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-10"><a href="https://bugbountypoc.com/category/session-bug/">Session bug</a></li>
+	<li id="menu-item-11" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-11"><a href="https://bugbountypoc.com/category/other-bugs/">Other</a></li>
+</ul>
+</li>
+<li id="menu-item-177" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-177"><a href="https://bugbountypoc.com/category/guest-writeup/">Guest Writeup</a></li>
+</ul>      </div>
+</nav><!--/#nav-topbar-->  
+        <nav class="nav-container group desktop-menu desktop-sticky " id="nav-topbar" data-menu-id="header-2">
+    <div class="nav-text"></div>
+  <div class="topbar-toggle-down">
+    <i class="fas fa-angle-double-down" aria-hidden="true" data-toggle="down" title="Expand menu"></i>
+    <i class="fas fa-angle-double-up" aria-hidden="true" data-toggle="up" title="Collapse menu"></i>
+  </div>
+  <div class="nav-wrap container">
+    <ul id="menu-home-1" class="nav container-inner group"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-6"><a href="http://bugbountypoc.com/">Home</a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-7"><a href="https://bugbountypoc.com/category/vulnerability/">Vulnerability</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8"><a href="https://bugbountypoc.com/category/cross-site-scripting/">Cross Site Scripting</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-9"><a href="https://bugbountypoc.com/category/csrf/">CSRF</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-10"><a href="https://bugbountypoc.com/category/session-bug/">Session bug</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-11"><a href="https://bugbountypoc.com/category/other-bugs/">Other</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-177"><a href="https://bugbountypoc.com/category/guest-writeup/">Guest Writeup</a></li>
+</ul>  </div>
+      <div id="topbar-header-search" class="container">
+      <div class="container-inner">
+        <div class="toggle-search"><i class="fas fa-search"></i></div>
+        <div class="search-expand">
+          <div class="search-expand-inner"><form method="get" class="searchform themeform" action="https://bugbountypoc.com/">
+	<div>
+		<input type="text" class="search" name="s" onblur="if(this.value=='')this.value='To search type and hit enter';" onfocus="if(this.value=='To search type and hit enter')this.value='';" value="To search type and hit enter" />
+	</div>
+</form></div>
+        </div>
+      </div><!--/.container-inner-->
+    </div><!--/.container-->
+  
+</nav><!--/#nav-topbar-->  
+  <div class="container group">
+        <div class="container-inner">
+
+                    <div class="group pad central-header-zone">
+                  <div class="logo-tagline-group">
+                                        <p class="site-title"><a class="custom-logo-link" href="https://bugbountypoc.com/" rel="home" title="Bug Bounty POC | Home page">Bug Bounty POC</a></p>
+                                                                <p class="site-description">All Bug Bounty POC write ups by Security Researchers.</p>
+                                        </div>
+
+                                </div>
+      
+      
+    </div><!--/.container-inner-->
+      </div><!--/.container-->
+
+</header><!--/#header-->
+  
+  <div class="container" id="page">
+    <div class="container-inner">
+            <div class="main">
+        <div class="main-inner group">
+          
+              <section class="content">
+              <div class="page-title pad group">
+          	    		<ul class="meta-single group">
+    			<li class="category"><a href="https://bugbountypoc.com/category/guest-writeup/" rel="category tag">Guest Writeup</a></li>
+    			    			<li class="comments"><a href="https://bugbountypoc.com/how-i-was-able-to-harvest-other-vine-users-ip-address/#respond"><i class="far fa-comments"></i>0</a></li>
+    			    		</ul>
+
+    	
+    </div><!--/.page-title-->
+          <div class="pad group">
+              <article class="post-575 post type-post status-publish format-standard hentry category-guest-writeup">
+    <div class="post-inner group">
+
+      <h1 class="post-title entry-title">How I was able to Harvest other Vine users IP address</h1>
+<p class="post-byline">by   <span class="vcard author">
+     <span class="fn"><a href="https://bugbountypoc.com/author/prial261/" title="Posts by Prial Islam" rel="author">Prial Islam</a></span>
+   </span> &middot;
+                            <time class="published" datetime="January 2, 2019">January 2, 2019</time>
+               </p>
+      
+      <div class="clear"></div>
+
+      <div class="entry themeform">
+        <div class="entry-inner">
+          <p><strong>Hello</strong> <a href="https://bugbountypoc.com">BugBountyPoc</a> viewers,This is <a href="https://www.facebook.com/prial261"><strong>Prial</strong></a> again . Today I will share about another Information disclosure Vulnerability which was leaking users IP address . Last time I disclosed a POC on How I was able to get all vine users sensitive Information including <span class="_4yxo"><strong>Phone no</strong>/ <strong>IP Address</strong> / <strong>Emails</strong></span> and Many more what was reported to twitter and they patched it and rewarded me <span class="_4yxo">7560$ </span>. Those who missed it you can get the <a href="https://bugbountypoc.com/vine-user-private-information-disclosure/" target="_blank" rel="noopener">POC Here</a> and Orginal <a href="https://hackerone.com/reports/202823" target="_blank" rel="noopener">Report Here</a> .</p>
+<div class="_2cuy _3dgx _2vxa">When I testing vine <span class="_4yxo">API</span> Endpoints I noticed a Endpoint what uses in Vine Repost mechanism which have a Parameter Named <strong><span class="_4yxo">&#8220;ipAddress&#8221;</span></strong> with some plain Number value Like :- <strong><span class="_4yxo">2130706433 </span></strong>. We all know Ip Addresses look like :- <a href="http://127.0.0.1/">127.0.0.1</a> . But the value of the <strong><span class="_4yxo">&#8220;ipAddress&#8221; </span></strong>looks invalid . Then when I tried to search about it on google I came to know that the value is valid . Actually it was Converted to <strong><span class="_4yxo">IP Address to Long/Decimal</span></strong> format . So I used a Online Converter tools and was able to get the real Ip . ( <a href="http://www.smartconversion.com/unit_conversion/IP_Address_Converter.aspx" target="_blank" rel="noopener">Online Converter I used</a> )</div>
+<div></div>
+<div>&nbsp;##</div>
+<div class="_2cuy _3dgx _2vxa"><strong>Vulnerable Endpoint :</strong> https://vine.co/api/timelines/users/&lt;POST ID&gt;</div>
+<div>&nbsp;##</div>
+<div></div>
+<div class="_2cuy _3dgx _2vxa"><strong><span class="_4yxo">Reproduce :</span></strong></div>
+<ul class="_5a_q _5yj1">
+<li class="_2cuy _509q _2vxa">TO reproduce this issue victim User have to repost any vine in his timeline and a lot of vine users reposted many Vine post in their timeline .</li>
+<li class="_2cuy _509q _2vxa">So Copy a Reposted Vine POST ID and place it in the Endpoint and visit it . Example : <a href="https://vine.co/api/timelines/users/1293308695089926144">https://vine.co/api/timelines/users/1293308695089926144</a></li>
+<li>Now when I visited the link I got a response like below (The contents was removed by twitter security team ) :-</li>
+</ul>
+<div class="_2cuy _3dgx _2vxa">&#8220;repost&#8221;: { &#8220;username&#8221;: &#8220;██████&#8221;, &#8220;verified&#8221;: 0, &#8220;vanityUrls&#8221;: [], &#8220;created&#8221;: &#8220;█████&#8221;, &#8220;repostId&#8221;: ████████, &#8220;avatarUrl&#8221;: &#8220;██████&#8221;, &#8220;userId&#8221;: ████, &#8220;user&#8221;: { &#8220;username&#8221;: &#8220;█████████&#8221;, &#8220;verified&#8221;: 0, &#8220;vanityUrls&#8221;: [], &#8220;avatarUrl&#8221;: &#8220;█████████&#8221;, &#8220;userId&#8221;: ████, &#8220;private&#8221;: 0, &#8220;location&#8221;: █████████ }, &#8220;flags|platform_lo&#8221;: 1, &#8220;postId&#8221;: ███, &#8220;ipAddress&#8221;: 2130706433 , &#8220;flags|platform_hi&#8221;: 1 }</div>
+<ul class="_5a_q _5yj1">
+<li class="_2cuy _509q _2vxa">As you can see the <span class="_4yxo">IP address</span> value is converted now Just Use my give online tool to again convert it to valid <span class="_4yxo">ip address</span> value .</li>
+</ul>
+<div class="_2cuy _3dgx _2vxa">I reported this issue in <strong><span class="_4yxo">Jan 26th </span></strong>and they paid me<strong> 5040$</strong> for reporting this on <strong>Feb 25th</strong> . Main Report :- <a href="https://hackerone.com/reports/201300">https://hackerone.com/reports/201300</a></div>
+<div></div>
+<div>
+<p><img class="alignnone size-medium" src="https://scontent-sit4-1.xx.fbcdn.net/v/t1.0-9/19875190_1622467124431510_6099535669972850510_n.png?oh=40183365d8075a93e9faf20302849dfa&amp;oe=5A4C22A9" width="941" height="253"></p>
+</div>
+<p>This is for today . Hope you guys will like it .</p>
+<p>Thanks for Reading .</p>
+<p>&nbsp;</p>
+          <nav class="pagination group">
+                      </nav><!--/.pagination-->
+        </div>
+
+        
+        <div class="clear"></div>
+      </div><!--/.entry-->
+
+    </div><!--/.post-inner-->
+  </article><!--/.post-->
+
+<div class="clear"></div>
+
+
+  <div class="author-bio">
+    <div class="bio-avatar"><img alt='' src='https://secure.gravatar.com/avatar/4cdb3cda4c6d785055f47ec7e40b75ed?s=128&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/4cdb3cda4c6d785055f47ec7e40b75ed?s=256&#038;d=mm&#038;r=g 2x' class='avatar avatar-128 photo' height='128' width='128' /></div>
+    <p class="bio-name">Prial Islam</p>
+    <p class="bio-desc">A teenager boy with passion of Breaking Security .</p>
+    <div class="clear"></div>
+  </div>
+
+
+
+
+<h4 class="heading">
+	<i class="far fa-hand-point-right"></i>You may also like...</h4>
+
+<ul class="related-posts group">
+
+		<li class="related post-hover">
+		<article class="post-215 post type-post status-publish format-standard has-post-thumbnail hentry category-guest-writeup tag-bug-bounty-poc tag-google-bug tag-guest-writeup tag-open-redirection">
+
+			<div class="post-thumbnail">
+				<a href="https://bugbountypoc.com/open-redirection-due-misconfigured-oauth/" title="Permalink to Open Redirection Due To MisConfigured Oauth">
+					<img width="520" height="245" src="https://bugbountypoc.com/wp-content/uploads/2016/04/google-bug-520x245.jpg" class="attachment-thumb-medium size-thumb-medium wp-post-image" alt="" srcset="https://bugbountypoc.com/wp-content/uploads/2016/04/google-bug-520x245.jpg 520w, https://bugbountypoc.com/wp-content/uploads/2016/04/google-bug-720x340.jpg 720w" sizes="(max-width: 520px) 100vw, 520px" />																			</a>
+									<a class="post-comments" href="https://bugbountypoc.com/open-redirection-due-misconfigured-oauth/#comments"><span><i class="far fa-comments"></i>2</span></a>
+							</div><!--/.post-thumbnail-->
+
+			<div class="related-inner">
+
+				<h4 class="post-title entry-title">
+					<a href="https://bugbountypoc.com/open-redirection-due-misconfigured-oauth/" rel="bookmark" title="Permalink to Open Redirection Due To MisConfigured Oauth">Open Redirection Due To MisConfigured Oauth</a>
+				</h4><!--/.post-title-->
+
+				<div class="post-meta group">
+					<p class="post-date">
+  <time class="published updated" datetime="2016-04-09 21:12:18">April 9, 2016</time>
+</p>
+
+  <p class="post-byline" style="display:none">&nbsp;by    <span class="vcard author">
+      <span class="fn"><a href="https://bugbountypoc.com/author/bugdiscloseguy/" title="Posts by bugdiscloseguy" rel="author">bugdiscloseguy</a></span>
+    </span> &middot; Published <span class="published">April 9, 2016</span>
+      </p>
+				</div><!--/.post-meta-->
+
+			</div><!--/.related-inner-->
+
+		</article>
+	</li><!--/.related-->
+		<li class="related post-hover">
+		<article class="post-357 post type-post status-publish format-standard has-post-thumbnail hentry category-guest-writeup tag-ddos tag-ddos-website tag-guest-writeup tag-upload-ddos">
+
+			<div class="post-thumbnail">
+				<a href="https://bugbountypoc.com/ddos-website-using-image/" title="Permalink to Ddos Website Using Image">
+					<img width="520" height="245" src="https://bugbountypoc.com/wp-content/uploads/2016/06/ddos-520x245.jpg" class="attachment-thumb-medium size-thumb-medium wp-post-image" alt="" srcset="https://bugbountypoc.com/wp-content/uploads/2016/06/ddos-520x245.jpg 520w, https://bugbountypoc.com/wp-content/uploads/2016/06/ddos-720x340.jpg 720w" sizes="(max-width: 520px) 100vw, 520px" />																			</a>
+									<a class="post-comments" href="https://bugbountypoc.com/ddos-website-using-image/#comments"><span><i class="far fa-comments"></i>3</span></a>
+							</div><!--/.post-thumbnail-->
+
+			<div class="related-inner">
+
+				<h4 class="post-title entry-title">
+					<a href="https://bugbountypoc.com/ddos-website-using-image/" rel="bookmark" title="Permalink to Ddos Website Using Image">Ddos Website Using Image</a>
+				</h4><!--/.post-title-->
+
+				<div class="post-meta group">
+					<p class="post-date">
+  <time class="published updated" datetime="2016-06-20 11:42:01">June 20, 2016</time>
+</p>
+
+  <p class="post-byline" style="display:none">&nbsp;by    <span class="vcard author">
+      <span class="fn"><a href="https://bugbountypoc.com/author/mubassir/" title="Posts by Mubassir" rel="author">Mubassir</a></span>
+    </span> &middot; Published <span class="published">June 20, 2016</span>
+      </p>
+				</div><!--/.post-meta-->
+
+			</div><!--/.related-inner-->
+
+		</article>
+	</li><!--/.related-->
+		<li class="related post-hover">
+		<article class="post-183 post type-post status-publish format-standard has-post-thumbnail hentry category-guest-writeup tag-bug-bounty-poc tag-stored-xss">
+
+			<div class="post-thumbnail">
+				<a href="https://bugbountypoc.com/stored-xss-picturepush/" title="Permalink to Stored XSS(cross site scripting ) in Picturepush.com">
+					<img width="520" height="245" src="https://bugbountypoc.com/wp-content/uploads/2016/04/picturepush-1-520x245.jpg" class="attachment-thumb-medium size-thumb-medium wp-post-image" alt="" srcset="https://bugbountypoc.com/wp-content/uploads/2016/04/picturepush-1-520x245.jpg 520w, https://bugbountypoc.com/wp-content/uploads/2016/04/picturepush-1-300x141.jpg 300w, https://bugbountypoc.com/wp-content/uploads/2016/04/picturepush-1-720x340.jpg 720w, https://bugbountypoc.com/wp-content/uploads/2016/04/picturepush-1.jpg 850w" sizes="(max-width: 520px) 100vw, 520px" />																			</a>
+									<a class="post-comments" href="https://bugbountypoc.com/stored-xss-picturepush/#respond"><span><i class="far fa-comments"></i>0</span></a>
+							</div><!--/.post-thumbnail-->
+
+			<div class="related-inner">
+
+				<h4 class="post-title entry-title">
+					<a href="https://bugbountypoc.com/stored-xss-picturepush/" rel="bookmark" title="Permalink to Stored XSS(cross site scripting ) in Picturepush.com">Stored XSS(cross site scripting ) in Picturepush.com</a>
+				</h4><!--/.post-title-->
+
+				<div class="post-meta group">
+					<p class="post-date">
+  <time class="published updated" datetime="2016-04-01 15:31:16">April 1, 2016</time>
+</p>
+
+  <p class="post-byline" style="display:none">&nbsp;by    <span class="vcard author">
+      <span class="fn"><a href="https://bugbountypoc.com/author/yogendra_jaiswal/" title="Posts by yogendra_jaiswal" rel="author">yogendra_jaiswal</a></span>
+    </span> &middot; Published <span class="published">April 1, 2016</span>
+      </p>
+				</div><!--/.post-meta-->
+
+			</div><!--/.related-inner-->
+
+		</article>
+	</li><!--/.related-->
+		
+</ul><!--/.post-related-->
+
+
+
+<section id="comments" class="themeform">
+
+	
+					<!-- comments open, no comments -->
+		
+	
+		<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="/how-i-was-able-to-harvest-other-vine-users-ip-address/#respond" style="display:none;">Cancel reply</a></small></h3>			<form action="https://bugbountypoc.com/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+				<p class="comment-notes"><span id="email-notes">Your email address will not be published.</span> Required fields are marked <span class="required">*</span></p><p class="comment-form-comment"><label for="comment">Comment</label> <textarea onfocus="if(!this._s==true){var _i=document.createElement('input');_i.setAttribute('type','hidden');_i.setAttribute('name','ssc_key_41f8ccbf4c690566');_i.setAttribute('value','fa83d2bdbfff48c9');var _p=this.parentNode;_p.insertBefore(_i,this);this._s=true;}" id="comment" name="comment" cols="45" rows="8" maxlength="65525" required="required"></textarea></p><p class="comment-form-author"><label for="author">Name <span class="required">*</span></label> <input id="author" name="author" type="text" value="" size="30" maxlength="245" required='required' /></p>
+<p class="comment-form-email"><label for="email">Email <span class="required">*</span></label> <input id="email" name="email" type="text" value="" size="30" maxlength="100" aria-describedby="email-notes" required='required' /></p>
+<p class="comment-form-url"><label for="url">Website</label> <input id="url" name="url" type="text" value="" size="30" maxlength="200" /></p>
+<div class="gglcptch gglcptch_v2"><div id="gglcptch_recaptcha_1245047337" class="gglcptch_recaptcha"></div>
+				<noscript>
+					<div style="width: 302px;">
+						<div style="width: 302px; height: 422px; position: relative;">
+							<div style="width: 302px; height: 422px; position: absolute;">
+								<iframe src="https://www.google.com/recaptcha/api/fallback?k=6LcWtCATAAAAADCSEWovdplXKCs-zInrGOJkBFGO" frameborder="0" scrolling="no" style="width: 302px; height:422px; border-style: none;"></iframe>
+							</div>
+						</div>
+						<div style="border-style: none; bottom: 12px; left: 25px; margin: 0px; padding: 0px; right: 25px; background: #f9f9f9; border: 1px solid #c1c1c1; border-radius: 3px; height: 60px; width: 300px;">
+							<textarea id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px !important; height: 40px !important; border: 1px solid #c1c1c1 !important; margin: 10px 25px !important; padding: 0px !important; resize: none !important;"></textarea>
+						</div>
+					</div>
+				</noscript></div><p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="Post Comment" /> <input type='hidden' name='comment_post_ID' value='575' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+</p><style>.ssc_notice_41f8ccbf4c690566 strong {display:none;}.ssc_notice_41f8ccbf4c690566:after {content:'\2018\0066\0061\0038\0033\0064\0032\0062\0064\0062\0066\0066\0066\0034\0038\0063\0039\0034\0031\0066\0038\0063\0063\0062\0066\0034\0063\0036\0039\0030\0035\0036\0036\2019';font-weight:bold;}</style><noscript><p class="ssc_notice_41f8ccbf4c690566">Notice: It seems you have Javascript disabled in your Browser. In order to submit a comment to this post, please write this code along with your comment: <strong aria-hidden="true">d48ab698bcc4bf15082f96f6fcf3fc4d</strong></p></noscript>			</form>
+			</div><!-- #respond -->
+	
+</section><!--/#comments-->          </div><!--/.pad-->
+        </section><!--/.content-->
+          
+
+	<div class="sidebar s1 collapsed" data-position="left" data-layout="col-3cm" data-sb-id="s1">
+
+		<a class="sidebar-toggle" title="Expand Sidebar"><i class="fas icon-sidebar-toggle"></i></a>
+
+		<div class="sidebar-content">
+
+			  			<div class="sidebar-top group">
+                                          <p>&nbsp;</p>                        
+            			</div>
+			
+				<ul class="post-nav group">
+		<li class="next"><a href="https://bugbountypoc.com/s3-bucket-misconfiguration-from-basics-to-pawn/" rel="next"><i class="fas fa-chevron-right"></i><strong>Next story</strong> <span>S3 Bucket Misconfiguration: From Basics to Pawn</span></a></li>
+		<li class="previous"><a href="https://bugbountypoc.com/bugcrowds-domain-takeover/" rel="prev"><i class="fas fa-chevron-left"></i><strong>Previous story</strong> <span>Bugcrowd&#8217;s Domain &#038; Subdomain Takeover!</span></a></li>
+	</ul>
+
+			
+			<div id="alxtabs-2" class="widget widget_hu_tabs">
+<h3 class="widget-title"></h3><ul class="alx-tabs-nav group tab-count-4"><li class="alx-tab tab-recent"><a href="#tab-recent-2" title="Recent Posts"><i class="far fa-clock"></i><span>Recent Posts</span></a></li><li class="alx-tab tab-popular"><a href="#tab-popular-2" title="Popular Posts"><i class="fas fa-star"></i><span>Popular Posts</span></a></li><li class="alx-tab tab-comments"><a href="#tab-comments-2" title="Recent Comments"><i class="far fa-comments"></i><span>Recent Comments</span></a></li><li class="alx-tab tab-tags"><a href="#tab-tags-2" title="Tags"><i class="fas fa-tags"></i><span>Tags</span></a></li></ul>
+	<div class="alx-tabs-container">
+
+
+		
+						
+			<ul id="tab-recent-2" class="alx-tab group thumbs-enabled">
+								<li>
+
+										<div class="tab-item-thumbnail">
+						<a href="https://bugbountypoc.com/instagram-account-is-reactivated-without-entering-2fa/" title="Permalink to Instagram account is reactivated without entering 2FA ($500)">
+							<img width="160" height="160" src="https://bugbountypoc.com/wp-content/uploads/2019/08/101007485-insta-xlarge_trans_NvBQzQNjv4BqZgEkZX3M936N5BQK4Va8RWtT0gK_6EfZT336f62EI5U-160x160.jpg" class="attachment-thumb-small size-thumb-small wp-post-image" alt="" srcset="https://bugbountypoc.com/wp-content/uploads/2019/08/101007485-insta-xlarge_trans_NvBQzQNjv4BqZgEkZX3M936N5BQK4Va8RWtT0gK_6EfZT336f62EI5U-160x160.jpg 160w, https://bugbountypoc.com/wp-content/uploads/2019/08/101007485-insta-xlarge_trans_NvBQzQNjv4BqZgEkZX3M936N5BQK4Va8RWtT0gK_6EfZT336f62EI5U-150x150.jpg 150w, https://bugbountypoc.com/wp-content/uploads/2019/08/101007485-insta-xlarge_trans_NvBQzQNjv4BqZgEkZX3M936N5BQK4Va8RWtT0gK_6EfZT336f62EI5U-320x320.jpg 320w" sizes="(max-width: 160px) 100vw, 160px" />																											</a>
+					</div>
+					
+					<div class="tab-item-inner group">
+						<p class="tab-item-category"><a href="https://bugbountypoc.com/category/other-bugs/" rel="category tag">Other</a></p>						<p class="tab-item-title"><a href="https://bugbountypoc.com/instagram-account-is-reactivated-without-entering-2fa/" rel="bookmark" title="Permalink to Instagram account is reactivated without entering 2FA ($500)">Instagram account is reactivated without entering 2FA ($500)</a></p>
+						<p class="tab-item-date">21 Aug, 2019</p>					</div>
+
+				</li>
+								<li>
+
+										<div class="tab-item-thumbnail">
+						<a href="https://bugbountypoc.com/s3-bucket-misconfiguration-from-basics-to-pawn/" title="Permalink to S3 Bucket Misconfiguration: From Basics to Pawn">
+							<img width="160" height="160" src="https://bugbountypoc.com/wp-content/uploads/2019/01/aws-gateway-s3-01-160x160.jpg" class="attachment-thumb-small size-thumb-small wp-post-image" alt="" srcset="https://bugbountypoc.com/wp-content/uploads/2019/01/aws-gateway-s3-01-160x160.jpg 160w, https://bugbountypoc.com/wp-content/uploads/2019/01/aws-gateway-s3-01-150x150.jpg 150w" sizes="(max-width: 160px) 100vw, 160px" />																											</a>
+					</div>
+					
+					<div class="tab-item-inner group">
+						<p class="tab-item-category"><a href="https://bugbountypoc.com/category/s3-bucket-misconfiguration/" rel="category tag">S3 Bucket Misconfiguration</a> / <a href="https://bugbountypoc.com/category/vulnerability/" rel="category tag">Vulnerability</a></p>						<p class="tab-item-title"><a href="https://bugbountypoc.com/s3-bucket-misconfiguration-from-basics-to-pawn/" rel="bookmark" title="Permalink to S3 Bucket Misconfiguration: From Basics to Pawn">S3 Bucket Misconfiguration: From Basics to Pawn</a></p>
+						<p class="tab-item-date">3 Jan, 2019</p>					</div>
+
+				</li>
+								<li>
+
+										<div class="tab-item-thumbnail">
+						<a href="https://bugbountypoc.com/how-i-was-able-to-harvest-other-vine-users-ip-address/" title="Permalink to How I was able to Harvest other Vine users IP address">
+							        <svg class="hu-svg-placeholder thumb-small-empty" id="6782201902e9f" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M928 832q0-14-9-23t-23-9q-66 0-113 47t-47 113q0 14 9 23t23 9 23-9 9-23q0-40 28-68t68-28q14 0 23-9t9-23zm224 130q0 106-75 181t-181 75-181-75-75-181 75-181 181-75 181 75 75 181zm-1024 574h1536v-128h-1536v128zm1152-574q0-159-112.5-271.5t-271.5-112.5-271.5 112.5-112.5 271.5 112.5 271.5 271.5 112.5 271.5-112.5 112.5-271.5zm-1024-642h384v-128h-384v128zm-128 192h1536v-256h-828l-64 128h-644v128zm1664-256v1280q0 53-37.5 90.5t-90.5 37.5h-1536q-53 0-90.5-37.5t-37.5-90.5v-1280q0-53 37.5-90.5t90.5-37.5h1536q53 0 90.5 37.5t37.5 90.5z"/></svg>
+
+        <script type="text/javascript">
+          jQuery( function($){
+            if ( $('#flexslider-featured').length ) {
+              $('#flexslider-featured').on('featured-slider-ready', function() {
+                $( '#6782201902e9f' ).animateSvg();
+              });
+            } else { $( '#6782201902e9f' ).animateSvg( { svg_opacity : 0.3, filter_opacity : 0.5 } ); }
+          });
+        </script>
+         <img class="hu-img-placeholder" src="https://bugbountypoc.com/wp-content/themes/hueman/assets/front/img/thumb-small-empty.png" alt="How I was able to Harvest other Vine users IP address" data-hu-post-id="6782201902e9f" />																											</a>
+					</div>
+					
+					<div class="tab-item-inner group">
+						<p class="tab-item-category"><a href="https://bugbountypoc.com/category/guest-writeup/" rel="category tag">Guest Writeup</a></p>						<p class="tab-item-title"><a href="https://bugbountypoc.com/how-i-was-able-to-harvest-other-vine-users-ip-address/" rel="bookmark" title="Permalink to How I was able to Harvest other Vine users IP address">How I was able to Harvest other Vine users IP address</a></p>
+						<p class="tab-item-date">2 Jan, 2019</p>					</div>
+
+				</li>
+								<li>
+
+										<div class="tab-item-thumbnail">
+						<a href="https://bugbountypoc.com/bugcrowds-domain-takeover/" title="Permalink to Bugcrowd&#8217;s Domain &#038; Subdomain Takeover!">
+							<img width="160" height="160" src="https://bugbountypoc.com/wp-content/uploads/2017/08/Backlit_keyboard-160x160.jpg" class="attachment-thumb-small size-thumb-small wp-post-image" alt="" srcset="https://bugbountypoc.com/wp-content/uploads/2017/08/Backlit_keyboard-160x160.jpg 160w, https://bugbountypoc.com/wp-content/uploads/2017/08/Backlit_keyboard-150x150.jpg 150w, https://bugbountypoc.com/wp-content/uploads/2017/08/Backlit_keyboard-320x320.jpg 320w" sizes="(max-width: 160px) 100vw, 160px" />																											</a>
+					</div>
+					
+					<div class="tab-item-inner group">
+						<p class="tab-item-category"><a href="https://bugbountypoc.com/category/guest-writeup/" rel="category tag">Guest Writeup</a></p>						<p class="tab-item-title"><a href="https://bugbountypoc.com/bugcrowds-domain-takeover/" rel="bookmark" title="Permalink to Bugcrowd&#8217;s Domain &#038; Subdomain Takeover!">Bugcrowd&#8217;s Domain &#038; Subdomain Takeover!</a></p>
+						<p class="tab-item-date">18 Aug, 2017</p>					</div>
+
+				</li>
+								<li>
+
+										<div class="tab-item-thumbnail">
+						<a href="https://bugbountypoc.com/aws-s3-bucket-writeable-authenticated-aws-users/" title="Permalink to AWS S3 bucket writeable for authenticated aws users">
+							<img width="160" height="160" src="https://bugbountypoc.com/wp-content/uploads/2017/07/Screenshot-from-2017-08-05-02-39-05-160x160.png" class="attachment-thumb-small size-thumb-small wp-post-image" alt="" srcset="https://bugbountypoc.com/wp-content/uploads/2017/07/Screenshot-from-2017-08-05-02-39-05-160x160.png 160w, https://bugbountypoc.com/wp-content/uploads/2017/07/Screenshot-from-2017-08-05-02-39-05-150x150.png 150w, https://bugbountypoc.com/wp-content/uploads/2017/07/Screenshot-from-2017-08-05-02-39-05-320x320.png 320w" sizes="(max-width: 160px) 100vw, 160px" />																											</a>
+					</div>
+					
+					<div class="tab-item-inner group">
+						<p class="tab-item-category"><a href="https://bugbountypoc.com/category/guest-writeup/" rel="category tag">Guest Writeup</a></p>						<p class="tab-item-title"><a href="https://bugbountypoc.com/aws-s3-bucket-writeable-authenticated-aws-users/" rel="bookmark" title="Permalink to AWS S3 bucket writeable for authenticated aws users">AWS S3 bucket writeable for authenticated aws users</a></p>
+						<p class="tab-item-date">22 Jul, 2017</p>					</div>
+
+				</li>
+											</ul><!--/.alx-tab-->
+
+		
+
+		
+						<ul id="tab-popular-2" class="alx-tab group thumbs-enabled">
+
+								<li>
+
+										<div class="tab-item-thumbnail">
+						<a href="https://bugbountypoc.com/facebook-live-application-authentication-bypass/" title="Permalink to Facebook Live Application Authentication bypass">
+							<img width="160" height="160" src="https://bugbountypoc.com/wp-content/uploads/2016/03/Facebook-Live-Application-Authentication-bypass-160x160.jpg" class="attachment-thumb-small size-thumb-small wp-post-image" alt="Facebook Live Application Authentication bypass" srcset="https://bugbountypoc.com/wp-content/uploads/2016/03/Facebook-Live-Application-Authentication-bypass-160x160.jpg 160w, https://bugbountypoc.com/wp-content/uploads/2016/03/Facebook-Live-Application-Authentication-bypass-150x150.jpg 150w, https://bugbountypoc.com/wp-content/uploads/2016/03/Facebook-Live-Application-Authentication-bypass-320x320.jpg 320w" sizes="(max-width: 160px) 100vw, 160px" />																											</a>
+					</div>
+					
+					<div class="tab-item-inner group">
+						<p class="tab-item-category"><a href="https://bugbountypoc.com/category/other-bugs/" rel="category tag">Other</a> / <a href="https://bugbountypoc.com/category/vulnerability/" rel="category tag">Vulnerability</a></p>						<p class="tab-item-title"><a href="https://bugbountypoc.com/facebook-live-application-authentication-bypass/" rel="bookmark" title="Permalink to Facebook Live Application Authentication bypass">Facebook Live Application Authentication bypass</a></p>
+						<p class="tab-item-date">25 Mar, 2016</p>					</div>
+
+				</li>
+								<li>
+
+										<div class="tab-item-thumbnail">
+						<a href="https://bugbountypoc.com/account-deletion-csrf-vulnerability-in-hired/" title="Permalink to Account Deletion CSRF vulnerability in hired">
+							<img width="160" height="160" src="https://bugbountypoc.com/wp-content/uploads/2016/03/Account-Deletion-CSRF-vulnerability-in-hired-160x160.png" class="attachment-thumb-small size-thumb-small wp-post-image" alt="" srcset="https://bugbountypoc.com/wp-content/uploads/2016/03/Account-Deletion-CSRF-vulnerability-in-hired-160x160.png 160w, https://bugbountypoc.com/wp-content/uploads/2016/03/Account-Deletion-CSRF-vulnerability-in-hired-150x150.png 150w, https://bugbountypoc.com/wp-content/uploads/2016/03/Account-Deletion-CSRF-vulnerability-in-hired-320x320.png 320w" sizes="(max-width: 160px) 100vw, 160px" />																											</a>
+					</div>
+					
+					<div class="tab-item-inner group">
+						<p class="tab-item-category"><a href="https://bugbountypoc.com/category/csrf/" rel="category tag">CSRF</a> / <a href="https://bugbountypoc.com/category/vulnerability/" rel="category tag">Vulnerability</a></p>						<p class="tab-item-title"><a href="https://bugbountypoc.com/account-deletion-csrf-vulnerability-in-hired/" rel="bookmark" title="Permalink to Account Deletion CSRF vulnerability in hired">Account Deletion CSRF vulnerability in hired</a></p>
+						<p class="tab-item-date">25 Mar, 2016</p>					</div>
+
+				</li>
+								<li>
+
+										<div class="tab-item-thumbnail">
+						<a href="https://bugbountypoc.com/user-agent-spoofing-in-email-notification/" title="Permalink to User agent spoofing in email notification">
+							<img width="160" height="160" src="https://bugbountypoc.com/wp-content/uploads/2016/04/Itbit-160x160.jpg" class="attachment-thumb-small size-thumb-small wp-post-image" alt="User agent spoofing in email notification" srcset="https://bugbountypoc.com/wp-content/uploads/2016/04/Itbit-160x160.jpg 160w, https://bugbountypoc.com/wp-content/uploads/2016/04/Itbit-150x150.jpg 150w, https://bugbountypoc.com/wp-content/uploads/2016/04/Itbit-320x320.jpg 320w" sizes="(max-width: 160px) 100vw, 160px" />																											</a>
+					</div>
+					
+					<div class="tab-item-inner group">
+						<p class="tab-item-category"><a href="https://bugbountypoc.com/category/other-bugs/" rel="category tag">Other</a> / <a href="https://bugbountypoc.com/category/vulnerability/" rel="category tag">Vulnerability</a></p>						<p class="tab-item-title"><a href="https://bugbountypoc.com/user-agent-spoofing-in-email-notification/" rel="bookmark" title="Permalink to User agent spoofing in email notification">User agent spoofing in email notification</a></p>
+						<p class="tab-item-date">2 Apr, 2016</p>					</div>
+
+				</li>
+								<li>
+
+										<div class="tab-item-thumbnail">
+						<a href="https://bugbountypoc.com/exploiting-cross-origin-resource-sharing/" title="Permalink to Exploiting Insecure Cross Origin Resource Sharing ( CORS ) | api.artsy.net">
+							<img width="160" height="160" src="https://bugbountypoc.com/wp-content/uploads/2017/07/cors-datafetch-160x160.png" class="attachment-thumb-small size-thumb-small wp-post-image" alt="Exploting Cross Origin Resource Sharing" srcset="https://bugbountypoc.com/wp-content/uploads/2017/07/cors-datafetch-160x160.png 160w, https://bugbountypoc.com/wp-content/uploads/2017/07/cors-datafetch-150x150.png 150w, https://bugbountypoc.com/wp-content/uploads/2017/07/cors-datafetch-320x320.png 320w" sizes="(max-width: 160px) 100vw, 160px" />																											</a>
+					</div>
+					
+					<div class="tab-item-inner group">
+						<p class="tab-item-category"><a href="https://bugbountypoc.com/category/guest-writeup/" rel="category tag">Guest Writeup</a></p>						<p class="tab-item-title"><a href="https://bugbountypoc.com/exploiting-cross-origin-resource-sharing/" rel="bookmark" title="Permalink to Exploiting Insecure Cross Origin Resource Sharing ( CORS ) | api.artsy.net">Exploiting Insecure Cross Origin Resource Sharing ( CORS ) | api.artsy.net</a></p>
+						<p class="tab-item-date">8 Jul, 2017</p>					</div>
+
+				</li>
+								<li>
+
+										<div class="tab-item-thumbnail">
+						<a href="https://bugbountypoc.com/bugcrowds-domain-takeover/" title="Permalink to Bugcrowd&#8217;s Domain &#038; Subdomain Takeover!">
+							<img width="160" height="160" src="https://bugbountypoc.com/wp-content/uploads/2017/08/Backlit_keyboard-160x160.jpg" class="attachment-thumb-small size-thumb-small wp-post-image" alt="" srcset="https://bugbountypoc.com/wp-content/uploads/2017/08/Backlit_keyboard-160x160.jpg 160w, https://bugbountypoc.com/wp-content/uploads/2017/08/Backlit_keyboard-150x150.jpg 150w, https://bugbountypoc.com/wp-content/uploads/2017/08/Backlit_keyboard-320x320.jpg 320w" sizes="(max-width: 160px) 100vw, 160px" />																											</a>
+					</div>
+					
+					<div class="tab-item-inner group">
+						<p class="tab-item-category"><a href="https://bugbountypoc.com/category/guest-writeup/" rel="category tag">Guest Writeup</a></p>						<p class="tab-item-title"><a href="https://bugbountypoc.com/bugcrowds-domain-takeover/" rel="bookmark" title="Permalink to Bugcrowd&#8217;s Domain &#038; Subdomain Takeover!">Bugcrowd&#8217;s Domain &#038; Subdomain Takeover!</a></p>
+						<p class="tab-item-date">18 Aug, 2017</p>					</div>
+
+				</li>
+											</ul><!--/.alx-tab-->
+
+		
+
+		
+			
+			<ul id="tab-comments-2" class="alx-tab group avatars-enabled">
+								<li>
+
+												<div class="tab-item-avatar">
+							<a href="https://bugbountypoc.com/instagram-account-is-reactivated-without-entering-2fa/#comment-1123">
+								<img alt='' src='https://secure.gravatar.com/avatar/b7c54ecbf241287c4e63416d0f39839f?s=96&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/b7c54ecbf241287c4e63416d0f39839f?s=192&#038;d=mm&#038;r=g 2x' class='avatar avatar-96 photo' height='96' width='96' />							</a>
+						</div>
+						
+						<div class="tab-item-inner group">
+														<div class="tab-item-name">Tanio says:</div>
+							<div class="tab-item-comment"><a href="https://bugbountypoc.com/instagram-account-is-reactivated-without-entering-2fa/#comment-1123">Hi, I deactivated my account and 2 FA doesn’t work for...</a></div>
+
+						</div>
+
+				</li>
+								<li>
+
+												<div class="tab-item-avatar">
+							<a href="https://bugbountypoc.com/account-takeover-through-password-reset/#comment-1110">
+								<img alt='' src='https://secure.gravatar.com/avatar/821e4a258e1884e63237f63a30b91cde?s=96&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/821e4a258e1884e63237f63a30b91cde?s=192&#038;d=mm&#038;r=g 2x' class='avatar avatar-96 photo' height='96' width='96' />							</a>
+						</div>
+						
+						<div class="tab-item-inner group">
+														<div class="tab-item-name">SHADOW says:</div>
+							<div class="tab-item-comment"><a href="https://bugbountypoc.com/account-takeover-through-password-reset/#comment-1110">Its Really awesome bro,can u plz post about different encoding techniques</a></div>
+
+						</div>
+
+				</li>
+								<li>
+
+												<div class="tab-item-avatar">
+							<a href="https://bugbountypoc.com/exploiting-cross-origin-resource-sharing/#comment-1105">
+								<img alt='' src='https://secure.gravatar.com/avatar/?s=96&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/?s=192&#038;d=mm&#038;r=g 2x' class='avatar avatar-96 photo avatar-default' height='96' width='96' />							</a>
+						</div>
+						
+						<div class="tab-item-inner group">
+														<div class="tab-item-name">CORS攻击案例 &#8211; penenote says:</div>
+							<div class="tab-item-comment"><a href="https://bugbountypoc.com/exploiting-cross-origin-resource-sharing/#comment-1105">[&#8230;] Exploiting Misconfigured CORS (Cross Origin Resource Sharing) Exploiting Insecure Cross...</a></div>
+
+						</div>
+
+				</li>
+								<li>
+
+												<div class="tab-item-avatar">
+							<a href="https://bugbountypoc.com/account-takeover-through-password-reset/#comment-1104">
+								<img alt='' src='https://secure.gravatar.com/avatar/554ee126ad598e0ec82f5cc2dc9d994f?s=96&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/554ee126ad598e0ec82f5cc2dc9d994f?s=192&#038;d=mm&#038;r=g 2x' class='avatar avatar-96 photo' height='96' width='96' />							</a>
+						</div>
+						
+						<div class="tab-item-inner group">
+														<div class="tab-item-name">Abhishek says:</div>
+							<div class="tab-item-comment"><a href="https://bugbountypoc.com/account-takeover-through-password-reset/#comment-1104">Can you make video on it so I better understand about...</a></div>
+
+						</div>
+
+				</li>
+								<li>
+
+												<div class="tab-item-avatar">
+							<a href="https://bugbountypoc.com/invisionapp-idor-explained/#comment-1103">
+								<img alt='' src='https://secure.gravatar.com/avatar/43bf1a3901ae96bca333c825dfb9c8f1?s=96&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/43bf1a3901ae96bca333c825dfb9c8f1?s=192&#038;d=mm&#038;r=g 2x' class='avatar avatar-96 photo' height='96' width='96' />							</a>
+						</div>
+						
+						<div class="tab-item-inner group">
+														<div class="tab-item-name">Pranob Nath says:</div>
+							<div class="tab-item-comment"><a href="https://bugbountypoc.com/invisionapp-idor-explained/#comment-1103">Wow... nice finding But i have a question there&#039;s no CSRF...</a></div>
+
+						</div>
+
+				</li>
+							</ul><!--/.alx-tab-->
+
+		
+		
+			<ul id="tab-tags-2" class="alx-tab group">
+				<li>
+					<a href="https://bugbountypoc.com/tag/99design/" class="tag-cloud-link tag-link-31 tag-link-position-1" style="font-size: 8pt;" aria-label="99design (1 item)">99design</a>
+<a href="https://bugbountypoc.com/tag/account-deletion-csrf-vuln-in-hired/" class="tag-cloud-link tag-link-39 tag-link-position-2" style="font-size: 8pt;" aria-label="Account Deletion CSRF vuln in hired (1 item)">Account Deletion CSRF vuln in hired</a>
+<a href="https://bugbountypoc.com/tag/account-takeover/" class="tag-cloud-link tag-link-47 tag-link-position-3" style="font-size: 11.652173913043pt;" aria-label="Account Takeover (3 items)">Account Takeover</a>
+<a href="https://bugbountypoc.com/tag/account-takeover-through-password-reset/" class="tag-cloud-link tag-link-29 tag-link-position-4" style="font-size: 8pt;" aria-label="Account Takeover through Password Reset (1 item)">Account Takeover through Password Reset</a>
+<a href="https://bugbountypoc.com/tag/auth-bypass-in-facebook-aquired-parse/" class="tag-cloud-link tag-link-34 tag-link-position-5" style="font-size: 8pt;" aria-label="Auth bypass in Facebook Aquired Parse (1 item)">Auth bypass in Facebook Aquired Parse</a>
+<a href="https://bugbountypoc.com/tag/badoo-account-takeover/" class="tag-cloud-link tag-link-46 tag-link-position-6" style="font-size: 8pt;" aria-label="Badoo Account takeover (1 item)">Badoo Account takeover</a>
+<a href="https://bugbountypoc.com/tag/bug-bounty/" class="tag-cloud-link tag-link-91 tag-link-position-7" style="font-size: 11.652173913043pt;" aria-label="Bug Bounty (3 items)">Bug Bounty</a>
+<a href="https://bugbountypoc.com/tag/bug-bounty-poc/" class="tag-cloud-link tag-link-14 tag-link-position-8" style="font-size: 22pt;" aria-label="Bug bounty POC (27 items)">Bug bounty POC</a>
+<a href="https://bugbountypoc.com/tag/bugbountypoc/" class="tag-cloud-link tag-link-90 tag-link-position-9" style="font-size: 11.652173913043pt;" aria-label="BugBountyPoc (3 items)">BugBountyPoc</a>
+<a href="https://bugbountypoc.com/tag/business-logic-flaw/" class="tag-cloud-link tag-link-24 tag-link-position-10" style="font-size: 8pt;" aria-label="Business Logic Flaw (1 item)">Business Logic Flaw</a>
+<a href="https://bugbountypoc.com/tag/business-logic-flaw-in-facebook/" class="tag-cloud-link tag-link-22 tag-link-position-11" style="font-size: 10.191304347826pt;" aria-label="Business Logic Flaw in Facebook (2 items)">Business Logic Flaw in Facebook</a>
+<a href="https://bugbountypoc.com/tag/coinbase/" class="tag-cloud-link tag-link-17 tag-link-position-12" style="font-size: 10.191304347826pt;" aria-label="Coinbase (2 items)">Coinbase</a>
+<a href="https://bugbountypoc.com/tag/cross-site-scripting/" class="tag-cloud-link tag-link-7 tag-link-position-13" style="font-size: 13.84347826087pt;" aria-label="Cross Site Scripting (5 items)">Cross Site Scripting</a>
+<a href="https://bugbountypoc.com/tag/cross-site-scripting-in-hostinger/" class="tag-cloud-link tag-link-9 tag-link-position-14" style="font-size: 8pt;" aria-label="Cross Site Scripting in Hostinger (1 item)">Cross Site Scripting in Hostinger</a>
+<a href="https://bugbountypoc.com/tag/csrf/" class="tag-cloud-link tag-link-20 tag-link-position-15" style="font-size: 11.652173913043pt;" aria-label="CSRF (3 items)">CSRF</a>
+<a href="https://bugbountypoc.com/tag/csrf-vulnerability-in-oculus/" class="tag-cloud-link tag-link-19 tag-link-position-16" style="font-size: 8pt;" aria-label="CSRF Vulnerability in Oculus (1 item)">CSRF Vulnerability in Oculus</a>
+<a href="https://bugbountypoc.com/tag/facebook/" class="tag-cloud-link tag-link-23 tag-link-position-17" style="font-size: 10.191304347826pt;" aria-label="Facebook (2 items)">Facebook</a>
+<a href="https://bugbountypoc.com/tag/facebook-aquired-parse/" class="tag-cloud-link tag-link-36 tag-link-position-18" style="font-size: 8pt;" aria-label="Facebook aquired parse (1 item)">Facebook aquired parse</a>
+<a href="https://bugbountypoc.com/tag/facebook-bug-bounty/" class="tag-cloud-link tag-link-44 tag-link-position-19" style="font-size: 8pt;" aria-label="Facebook bug bounty (1 item)">Facebook bug bounty</a>
+<a href="https://bugbountypoc.com/tag/facebook-live-application-authentication-bypass/" class="tag-cloud-link tag-link-43 tag-link-position-20" style="font-size: 8pt;" aria-label="Facebook Live Application Authentication bypass (1 item)">Facebook Live Application Authentication bypass</a>
+<a href="https://bugbountypoc.com/tag/google-bug/" class="tag-cloud-link tag-link-60 tag-link-position-21" style="font-size: 10.191304347826pt;" aria-label="google bug (2 items)">google bug</a>
+<a href="https://bugbountypoc.com/tag/guest-post/" class="tag-cloud-link tag-link-42 tag-link-position-22" style="font-size: 8pt;" aria-label="guest post (1 item)">guest post</a>
+<a href="https://bugbountypoc.com/tag/guest-writeup/" class="tag-cloud-link tag-link-41 tag-link-position-23" style="font-size: 12.869565217391pt;" aria-label="Guest writeup (4 items)">Guest writeup</a>
+<a href="https://bugbountypoc.com/tag/hackerone/" class="tag-cloud-link tag-link-13 tag-link-position-24" style="font-size: 15.304347826087pt;" aria-label="Hackerone (7 items)">Hackerone</a>
+<a href="https://bugbountypoc.com/tag/hackerrank/" class="tag-cloud-link tag-link-48 tag-link-position-25" style="font-size: 8pt;" aria-label="HackerRank (1 item)">HackerRank</a>
+<a href="https://bugbountypoc.com/tag/hired/" class="tag-cloud-link tag-link-40 tag-link-position-26" style="font-size: 8pt;" aria-label="Hired (1 item)">Hired</a>
+<a href="https://bugbountypoc.com/tag/hostinger/" class="tag-cloud-link tag-link-8 tag-link-position-27" style="font-size: 8pt;" aria-label="Hostinger (1 item)">Hostinger</a>
+<a href="https://bugbountypoc.com/tag/idor/" class="tag-cloud-link tag-link-12 tag-link-position-28" style="font-size: 11.652173913043pt;" aria-label="IDOR (3 items)">IDOR</a>
+<a href="https://bugbountypoc.com/tag/idor-vulnerability-in-hackerone/" class="tag-cloud-link tag-link-11 tag-link-position-29" style="font-size: 8pt;" aria-label="IDOR vulnerability in hackerone (1 item)">IDOR vulnerability in hackerone</a>
+<a href="https://bugbountypoc.com/tag/oculus/" class="tag-cloud-link tag-link-21 tag-link-position-30" style="font-size: 8pt;" aria-label="Oculus (1 item)">Oculus</a>
+<a href="https://bugbountypoc.com/tag/open-redirection-in-99design/" class="tag-cloud-link tag-link-30 tag-link-position-31" style="font-size: 8pt;" aria-label="Open redirection in 99design (1 item)">Open redirection in 99design</a>
+<a href="https://bugbountypoc.com/tag/parse/" class="tag-cloud-link tag-link-35 tag-link-position-32" style="font-size: 8pt;" aria-label="Parse (1 item)">Parse</a>
+<a href="https://bugbountypoc.com/tag/phone-number-verification-bypass/" class="tag-cloud-link tag-link-28 tag-link-position-33" style="font-size: 8pt;" aria-label="Phone Number Verification Bypass (1 item)">Phone Number Verification Bypass</a>
+<a href="https://bugbountypoc.com/tag/phone-number-verification-bypass-in-twitter/" class="tag-cloud-link tag-link-25 tag-link-position-34" style="font-size: 8pt;" aria-label="Phone Number Verification Bypass in Twitter (1 item)">Phone Number Verification Bypass in Twitter</a>
+<a href="https://bugbountypoc.com/tag/price-manipulation/" class="tag-cloud-link tag-link-33 tag-link-position-35" style="font-size: 8pt;" aria-label="Price Manipulation (1 item)">Price Manipulation</a>
+<a href="https://bugbountypoc.com/tag/price-manipulation-on-opendrive/" class="tag-cloud-link tag-link-32 tag-link-position-36" style="font-size: 8pt;" aria-label="Price Manipulation on OpenDrive (1 item)">Price Manipulation on OpenDrive</a>
+<a href="https://bugbountypoc.com/tag/private-website/" class="tag-cloud-link tag-link-38 tag-link-position-37" style="font-size: 10.191304347826pt;" aria-label="private website (2 items)">private website</a>
+<a href="https://bugbountypoc.com/tag/remote-code-execution-in-private-website/" class="tag-cloud-link tag-link-37 tag-link-position-38" style="font-size: 8pt;" aria-label="Remote Code Execution in private website (1 item)">Remote Code Execution in private website</a>
+<a href="https://bugbountypoc.com/tag/session-bug/" class="tag-cloud-link tag-link-16 tag-link-position-39" style="font-size: 8pt;" aria-label="Session Bug (1 item)">Session Bug</a>
+<a href="https://bugbountypoc.com/tag/session-issue/" class="tag-cloud-link tag-link-18 tag-link-position-40" style="font-size: 8pt;" aria-label="Session Issue (1 item)">Session Issue</a>
+<a href="https://bugbountypoc.com/tag/session-issue-in-coinbase/" class="tag-cloud-link tag-link-15 tag-link-position-41" style="font-size: 8pt;" aria-label="Session issue in Coinbase (1 item)">Session issue in Coinbase</a>
+<a href="https://bugbountypoc.com/tag/stored-xss/" class="tag-cloud-link tag-link-50 tag-link-position-42" style="font-size: 10.191304347826pt;" aria-label="Stored XSS (2 items)">Stored XSS</a>
+<a href="https://bugbountypoc.com/tag/twitter/" class="tag-cloud-link tag-link-27 tag-link-position-43" style="font-size: 8pt;" aria-label="Twitter (1 item)">Twitter</a>
+<a href="https://bugbountypoc.com/tag/verification-bypass/" class="tag-cloud-link tag-link-26 tag-link-position-44" style="font-size: 8pt;" aria-label="Verification bypass (1 item)">Verification bypass</a>
+<a href="https://bugbountypoc.com/tag/xss/" class="tag-cloud-link tag-link-10 tag-link-position-45" style="font-size: 8pt;" aria-label="XSS (1 item)">XSS</a>				</li>
+			</ul><!--/.alx-tab-->
+
+			</div>
+
+</div>
+<div id="text-2" class="widget widget_text">			<div class="textwidget"><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-9493271618615491",
+    enable_page_level_ads: true
+  });
+</script></div>
+		</div>
+		</div><!--/.sidebar-content-->
+
+	</div><!--/.sidebar-->
+
+	<div class="sidebar s2 collapsed" data-position="right" data-layout="col-3cm" data-sb-id="s2">
+
+	<a class="sidebar-toggle" title="Expand Sidebar"><i class="fas icon-sidebar-toggle"></i></a>
+
+	<div class="sidebar-content">
+
+		  		<div class="sidebar-top group">
+  			<p>More</p>
+  		</div>
+		
+		
+				<div id="recent-posts-2" class="widget widget_recent_entries">		<h3 class="widget-title">Recent Posts</h3>		<ul>
+											<li>
+					<a href="https://bugbountypoc.com/instagram-account-is-reactivated-without-entering-2fa/">Instagram account is reactivated without entering 2FA ($500)</a>
+									</li>
+											<li>
+					<a href="https://bugbountypoc.com/s3-bucket-misconfiguration-from-basics-to-pawn/">S3 Bucket Misconfiguration: From Basics to Pawn</a>
+									</li>
+											<li>
+					<a href="https://bugbountypoc.com/how-i-was-able-to-harvest-other-vine-users-ip-address/">How I was able to Harvest other Vine users IP address</a>
+									</li>
+											<li>
+					<a href="https://bugbountypoc.com/bugcrowds-domain-takeover/">Bugcrowd&#8217;s Domain &#038; Subdomain Takeover!</a>
+									</li>
+											<li>
+					<a href="https://bugbountypoc.com/aws-s3-bucket-writeable-authenticated-aws-users/">AWS S3 bucket writeable for authenticated aws users</a>
+									</li>
+					</ul>
+		</div>
+	</div><!--/.sidebar-content-->
+
+</div><!--/.sidebar-->
+
+        </div><!--/.main-inner-->
+      </div><!--/.main-->
+    </div><!--/.container-inner-->
+  </div><!--/.container-->
+    <footer id="footer">
+
+    
+    
+    
+    <section class="container" id="footer-bottom">
+      <div class="container-inner">
+
+        <a id="back-to-top" href="#"><i class="fas fa-angle-up"></i></a>
+
+        <div class="pad group">
+
+          <div class="grid one-half">
+                        
+            <div id="copyright">
+                              <p>Bug Bounty POC &copy; 2025. All Rights Reserved.</p>
+                          </div><!--/#copyright-->
+
+                                                          <div id="credit" style="">
+                    <p>Powered by&nbsp;<a class="fab fa-wordpress" title="Powered by WordPress" href="https://wordpress.org/" target="_blank"></a> - Designed with the&nbsp;<a href="https://presscustomizr.com/hueman/" title="Hueman theme">Hueman theme</a></p>
+                  </div><!--/#credit-->
+                          
+          </div>
+
+          <div class="grid one-half last">
+                                                  </div>
+
+        </div><!--/.pad-->
+
+      </div><!--/.container-inner-->
+    </section><!--/.container-->
+
+  </footer><!--/#footer-->
+
+</div><!--/#wrapper-->
+
+<link rel='stylesheet' id='gglcptch-css'  href='https://bugbountypoc.com/wp-content/plugins/google-captcha/css/gglcptch.css?ver=1.52' type='text/css' media='all' />
+<script type='text/javascript' src='https://bugbountypoc.com/wp-includes/js/underscore.min.js?ver=1.8.3'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var HUParams = {"_disabled":[],"SmoothScroll":{"Enabled":true,"Options":{"touchpadSupport":false}},"centerAllImg":"1","timerOnScrollAllBrowsers":"1","extLinksStyle":"","extLinksTargetExt":"","extLinksSkipSelectors":{"classes":["btn","button"],"ids":[]},"imgSmartLoadEnabled":"","imgSmartLoadOpts":{"parentSelectors":[".container .content",".container .sidebar","#footer","#header-widgets"],"opts":{"excludeImg":[".tc-holder-img"],"fadeIn_options":100}},"goldenRatio":"1.618","gridGoldenRatioLimit":"350","sbStickyUserSettings":{"desktop":false,"mobile":false},"isWPMobile":"","menuStickyUserSettings":{"desktop":"stick_up","mobile":"stick_up"},"mobileSubmenuExpandOnClick":"1","submenuTogglerIcon":"<i class=\"fas fa-angle-down\"><\/i>","isDevMode":"","ajaxUrl":"https:\/\/bugbountypoc.com\/?huajax=1","frontNonce":{"id":"HuFrontNonce","handle":"ddd29c68e8"},"userStarted":{"with":"with|3.4.11","on":{"date":"2019-01-02 09:06:18.387399","timezone_type":3,"timezone":"UTC"}},"isWelcomeNoteOn":"","welcomeContent":"","i18n":{"collapsibleExpand":"Expand","collapsibleCollapse":"Collapse"}};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://bugbountypoc.com/wp-content/themes/hueman/assets/front/js/scripts.min.js?ver=3.4.11'></script>
+<script type='text/javascript' src='https://bugbountypoc.com/wp-includes/js/comment-reply.min.js?ver=5.2.18'></script>
+<script type='text/javascript' src='https://bugbountypoc.com/wp-includes/js/wp-embed.min.js?ver=5.2.18'></script>
+<script type='text/javascript' data-cfasync="false" async="async" defer="defer" src='https://www.google.com/recaptcha/api.js?render=explicit&#038;ver=1.52'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var gglcptch = {"options":{"version":"v2","sitekey":"6LcWtCATAAAAADCSEWovdplXKCs-zInrGOJkBFGO","theme":"light","error":"<strong>Warning<\/strong>:&nbsp;More than one reCAPTCHA has been found in the current form. Please remove all unnecessary reCAPTCHA fields to make it work properly.","disable":0},"vars":{"visibility":false}};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://bugbountypoc.com/wp-content/plugins/google-captcha/js/script.js?ver=1.52'></script>
+<!--[if lt IE 9]>
+<script src="https://bugbountypoc.com/wp-content/themes/hueman/assets/front/js/ie/respond.js"></script>
+<![endif]-->
+</body>
+</html>
+<!-- Page generated by LiteSpeed Cache 3.6.4 on 2025-01-11 07:39:05 -->

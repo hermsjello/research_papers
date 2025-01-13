@@ -1,0 +1,1114 @@
+    <!DOCTYPE html>
+    <html lang="en-US">
+    <head itemscope itemtype="https://schema.org/WebSite">
+	    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="profile" href="http://gmpg.org/xfn/11">
+    <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
+	<style>img:is([sizes="auto" i], [sizes^="auto," i]) { contain-intrinsic-size: 3000px 1500px }</style>
+	
+	<!-- This site is optimized with the Yoast SEO plugin v24.0 - https://yoast.com/wordpress/plugins/seo/ -->
+	<title>Bypassing Firebase authorization to create custom app.goo.gl subdomains - Web Security Blog</title>
+	<link rel="canonical" href="https://websecblog.com/vulns/bypassing-firebase-authorization-to-create-custom-goo-gl-subdomains/" />
+	<meta property="og:locale" content="en_US" />
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="Bypassing Firebase authorization to create custom app.goo.gl subdomains - Web Security Blog" />
+	<meta property="og:description" content="As a result of an improper authorization in the Firebase Console, it was possible to create custom *.app.goo.gl subdomains via Firebase Dynamic Links." />
+	<meta property="og:url" content="https://websecblog.com/vulns/bypassing-firebase-authorization-to-create-custom-goo-gl-subdomains/" />
+	<meta property="og:site_name" content="Web Security Blog" />
+	<meta property="article:published_time" content="2018-09-21T04:51:47+00:00" />
+	<meta property="article:modified_time" content="2024-09-23T17:26:36+00:00" />
+	<meta property="og:image" content="https://websecblog.com/wp-content/uploads/dynamic-links.png" />
+	<meta property="og:image:width" content="1001" />
+	<meta property="og:image:height" content="457" />
+	<meta property="og:image:type" content="image/png" />
+	<meta name="author" content="Thomas Orlita" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:creator" content="@ThomasOrlita" />
+	<meta name="twitter:label1" content="Written by" />
+	<meta name="twitter:data1" content="Thomas Orlita" />
+	<meta name="twitter:label2" content="Est. reading time" />
+	<meta name="twitter:data2" content="4 minutes" />
+	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://websecblog.com/vulns/bypassing-firebase-authorization-to-create-custom-goo-gl-subdomains/","url":"https://websecblog.com/vulns/bypassing-firebase-authorization-to-create-custom-goo-gl-subdomains/","name":"Bypassing Firebase authorization to create custom app.goo.gl subdomains - Web Security Blog","isPartOf":{"@id":"https://websecblog.com/#website"},"primaryImageOfPage":{"@id":"https://websecblog.com/vulns/bypassing-firebase-authorization-to-create-custom-goo-gl-subdomains/#primaryimage"},"image":{"@id":"https://websecblog.com/vulns/bypassing-firebase-authorization-to-create-custom-goo-gl-subdomains/#primaryimage"},"thumbnailUrl":"https://websecblog.com/wp-content/uploads/dynamic-links.png","datePublished":"2018-09-21T04:51:47+00:00","dateModified":"2024-09-23T17:26:36+00:00","author":{"@id":"https://websecblog.com/#/schema/person/cc15217a6c2b86d41acb6b60939718fe"},"breadcrumb":{"@id":"https://websecblog.com/vulns/bypassing-firebase-authorization-to-create-custom-goo-gl-subdomains/#breadcrumb"},"inLanguage":"en-US","potentialAction":[{"@type":"ReadAction","target":["https://websecblog.com/vulns/bypassing-firebase-authorization-to-create-custom-goo-gl-subdomains/"]}]},{"@type":"ImageObject","inLanguage":"en-US","@id":"https://websecblog.com/vulns/bypassing-firebase-authorization-to-create-custom-goo-gl-subdomains/#primaryimage","url":"https://websecblog.com/wp-content/uploads/dynamic-links.png","contentUrl":"https://websecblog.com/wp-content/uploads/dynamic-links.png","width":1001,"height":457},{"@type":"BreadcrumbList","@id":"https://websecblog.com/vulns/bypassing-firebase-authorization-to-create-custom-goo-gl-subdomains/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://websecblog.com/"},{"@type":"ListItem","position":2,"name":"Bypassing Firebase authorization to create custom app.goo.gl subdomains"}]},{"@type":"WebSite","@id":"https://websecblog.com/#website","url":"https://websecblog.com/","name":"Web Security Blog","description":"Thomas Orlita’s blog","inLanguage":"en-US"},{"@type":"Person","@id":"https://websecblog.com/#/schema/person/cc15217a6c2b86d41acb6b60939718fe","name":"Thomas Orlita","image":{"@type":"ImageObject","inLanguage":"en-US","@id":"https://websecblog.com/#/schema/person/image/","url":"https://secure.gravatar.com/avatar/5bfb7af02d130573dc9cde61e8ac43b1?s=96&d=mm&r=g","contentUrl":"https://secure.gravatar.com/avatar/5bfb7af02d130573dc9cde61e8ac43b1?s=96&d=mm&r=g","caption":"Thomas Orlita"},"description":"@ThomasOrlita, ThomasOrlita.com","sameAs":["https://thomasorlita.com","https://www.linkedin.com/in/thomasorlita/","https://x.com/ThomasOrlita","https://www.youtube.com/ThomasOrlita"],"url":"https://websecblog.com/author/admin/"}]}</script>
+	<!-- / Yoast SEO plugin. -->
+
+
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel="alternate" type="application/rss+xml" title="Web Security Blog &raquo; Feed" href="https://websecblog.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Web Security Blog &raquo; Comments Feed" href="https://websecblog.com/comments/feed/" />
+<script type="text/javascript">
+/* <![CDATA[ */
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15.0.3\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15.0.3\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/websecblog.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=6.7.1"}};
+/*! This file is auto-generated */
+!function(i,n){var o,s,e;function c(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(o,JSON.stringify(t))}catch(e){}}function p(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data),r=(e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0),new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data));return t.every(function(e,t){return e===r[t]})}function u(e,t,n){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\uddfa\ud83c\uddf3","\ud83c\uddfa\u200b\ud83c\uddf3")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!n(e,"\ud83d\udc26\u200d\u2b1b","\ud83d\udc26\u200b\u2b1b")}return!1}function f(e,t,n){var r="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):i.createElement("canvas"),a=r.getContext("2d",{willReadFrequently:!0}),o=(a.textBaseline="top",a.font="600 32px Arial",{});return e.forEach(function(e){o[e]=t(a,e,n)}),o}function t(e){var t=i.createElement("script");t.src=e,t.defer=!0,i.head.appendChild(t)}"undefined"!=typeof Promise&&(o="wpEmojiSettingsSupports",s=["flag","emoji"],n.supports={everything:!0,everythingExceptFlag:!0},e=new Promise(function(e){i.addEventListener("DOMContentLoaded",e,{once:!0})}),new Promise(function(t){var n=function(){try{var e=JSON.parse(sessionStorage.getItem(o));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(s),u.toString(),p.toString()].join(",")+"));",r=new Blob([e],{type:"text/javascript"}),a=new Worker(URL.createObjectURL(r),{name:"wpTestEmojiSupports"});return void(a.onmessage=function(e){c(n=e.data),a.terminate(),t(n)})}catch(e){}c(n=f(s,u,p))}t(n)}).then(function(e){for(var t in e)n.supports[t]=e[t],n.supports.everything=n.supports.everything&&n.supports[t],"flag"!==t&&(n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&n.supports[t]);n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&!n.supports.flag,n.DOMReady=!1,n.readyCallback=function(){n.DOMReady=!0}}).then(function(){return e}).then(function(){var e;n.supports.everything||(n.readyCallback(),(e=n.source||{}).concatemoji?t(e.concatemoji):e.wpemoji&&e.twemoji&&(t(e.twemoji),t(e.wpemoji)))}))}((window,document),window._wpemojiSettings);
+/* ]]> */
+</script>
+<style id='wp-emoji-styles-inline-css' type='text/css'>
+
+	img.wp-smiley, img.emoji {
+		display: inline !important;
+		border: none !important;
+		box-shadow: none !important;
+		height: 1em !important;
+		width: 1em !important;
+		margin: 0 0.07em !important;
+		vertical-align: -0.1em !important;
+		background: none !important;
+		padding: 0 !important;
+	}
+</style>
+<link rel='stylesheet' id='wp-block-library-css' href='https://websecblog.com/wp-includes/css/dist/block-library/style.min.css?ver=6.7.1' type='text/css' media='all' />
+<style id='classic-theme-styles-inline-css' type='text/css'>
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+</style>
+<style id='global-styles-inline-css' type='text/css'>
+:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);--wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);}:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}
+:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}
+:root :where(.wp-block-pullquote){font-size: 1.5em;line-height: 1.6;}
+</style>
+<link rel='stylesheet' id='mkaz-code-syntax-prism-css-css' href='https://websecblog.com/wp-content/plugins/code-syntax-block/assets/prism-onedark.css?ver=1717234881' type='text/css' media='all' />
+<link rel='stylesheet' id='magic-liquidizer-table-style-css' href='https://websecblog.com/wp-content/plugins/magic-liquidizer-responsive-table/idcss/ml-responsive-table.css?ver=2.0.3' type='text/css' media='all' />
+<link rel='stylesheet' id='digital-download-google-fonts-css' href='https://fonts.googleapis.com/css?family=Roboto%3A100%2C100i%2C300%2C300i%2C400%2C400i%2C500%2C500i%2C700%2C700i%2C900%2C900i' type='text/css' media='all' />
+<link rel='stylesheet' id='digital-download-css' href='https://websecblog.com/wp-content/themes/digital-download/style.css?ver=1.1.0' type='text/css' media='all' />
+<script type="text/javascript" src="https://websecblog.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1" id="jquery-core-js"></script>
+<script type="text/javascript" src="https://websecblog.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1" id="jquery-migrate-js"></script>
+<script type="text/javascript" src="https://websecblog.com/wp-content/plugins/magic-liquidizer-responsive-table/idjs/ml.responsive.table.min.js?ver=2.0.3" id="magic-liquidizer-table-js"></script>
+<link rel="https://api.w.org/" href="https://websecblog.com/wp-json/" /><link rel="alternate" title="JSON" type="application/json" href="https://websecblog.com/wp-json/wp/v2/posts/156" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://websecblog.com/xmlrpc.php?rsd" />
+<meta name="generator" content="WordPress 6.7.1" />
+<link rel='shortlink' href='https://websecblog.com/?p=156' />
+<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="https://websecblog.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwebsecblog.com%2Fvulns%2Fbypassing-firebase-authorization-to-create-custom-goo-gl-subdomains%2F" />
+<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="https://websecblog.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwebsecblog.com%2Fvulns%2Fbypassing-firebase-authorization-to-create-custom-goo-gl-subdomains%2F&#038;format=xml" />
+<script async defer data-website-id="f29cb54f-2e6a-457c-b96a-de46184e7e06" src="https://um.app.quest/script.js"></script><link rel="icon" href="https://websecblog.com/wp-content/uploads/2019/01/cropped-t-ikona-32x32.png" sizes="32x32" />
+<link rel="icon" href="https://websecblog.com/wp-content/uploads/2019/01/cropped-t-ikona-192x192.png" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://websecblog.com/wp-content/uploads/2019/01/cropped-t-ikona-180x180.png" />
+<meta name="msapplication-TileImage" content="https://websecblog.com/wp-content/uploads/2019/01/cropped-t-ikona-270x270.png" />
+		<style type="text/css" id="wp-custom-css">
+			blockquote {
+	padding: 10px 20px !important;
+	margin: 0 0 20px !important;
+	font-size: 17.5px !important;
+	border-left: 5px solid #eee !important;
+	font-weight: normal !important;
+}
+
+:not(#\9).entry-content a,
+:not(#\9).entry-summary a,
+:not(#\9).page-content a,
+:not(#\9).comment-content a,
+:not(#\9).widget .textwidget a {
+	  color: #2f8be6;
+    text-decoration: none;
+}
+
+:not(#\9).entry-content a:hover, 
+:not(#\9).entry-summary a:hover, 
+:not(#\9).page-content a:hover,
+:not(#\9).comment-content a:hover, 
+:not(#\9).widget .textwidget a:hover {
+    text-decoration: underline;
+}
+
+.related-posts .section-title {
+	
+    margin: 0 0 30px !important;
+}
+
+#primary .post .entry-content ul li,
+#primary .post .entry-content ol li,
+#primary .page .entry-content ul li,
+#primary .page .entry-content ol li,
+#primary .edd-download .entry-content ul li,
+#primary .edd-download .entry-content ol li {
+	margin: 0;
+}
+
+#toggle-button:hover span::before, #toggle-button:focus span::before {
+    content: 'MENU';
+    width: 100px;
+    position: absolute;
+    right: 0;
+    top: -12px;
+    font-weight: 300;
+  	color: #545454;
+}
+
+@media (prefers-color-scheme: dark) {
+	#toggle-button:hover span::before, #toggle-button:focus span::before  {
+    color: #d1d1d1;
+	}
+}
+
+#acc-content {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+}
+
+.related-posts .post-holder .col .post-thumbnail img.attachment-digital-download-related {
+	display: none;
+}
+
+.svg-holder {
+	display: none;
+}
+
+html {
+    overflow-y: auto!important;
+    position: relative!important;
+}
+
+html,
+body,
+#page {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+
+#content {
+	flex: 1;
+}
+
+body {
+	word-break: break-word;
+	background: #FDFDFD;
+}
+
+.site-header {
+	margin-top: 8px;
+}
+
+.site-header .site-branding .site-description {
+	color: #6f7f90;
+}
+
+.site-header {
+	border-bottom: none;
+}
+
+.related-posts {
+	background: #fff;
+}
+
+.header-holder>.container:after {
+	content: "";
+	display: block;
+	clear: both;
+	border-bottom: 4px solid #f4f4f4;
+	position: absolute;
+	left: 0;
+	right: 0;
+	width: 100%;
+}
+
+#primary .post .entry-footer .btn-readmore:after,
+#primary .search-post .entry-footer .btn-readmore:after {
+	content: none;
+}
+
+.full-width .related-posts .post-holder .col {
+	width: 100%;
+}
+
+.related-posts .post-holder .col .entry-title a {
+	font-weight: 400;
+}
+
+.post-navigation {
+	display: none;
+}
+
+.subheading {
+	margin-top: 4em;
+	margin-bottom: 1.5em;
+}
+
+.single #primary .post .text-holder {
+	padding-bottom: 25px;
+}
+
+.important {
+	margin-top: 3em;
+	padding: 10px 20px;
+	border-left: 5px solid #2196F3;
+}
+
+.important2 {
+	margin-top: 3em;
+	padding: 10px 20px;
+	border-left: 5px solid currentColor;
+	color: currentColor;
+}
+
+.important2 * {
+	color: currentColor;
+}
+
+code .important {
+    margin-top: inherit!important;
+    padding: inherit!important;
+    border-left: inherit!important;
+    background: inherit!important;
+}
+
+.nomargin {
+	margin: 0 !important;
+}
+
+.notopmargin {
+	margin-top: 0 !important;
+}
+
+
+.authorheading {
+	margin-top: 3em;
+	padding: 10px 20px !important;
+	border-left: 5px solid #2196F3 !important;
+	font-weight: normal !important;
+	font-family: "Roboto", sans-serif;
+}
+
+#primary .post .entry-content, #primary .page .entry-content, #primary .edd-download .entry-content {
+    font-family: "Roboto", sans-serif!important;
+}
+
+#comments {
+	display: none;
+}
+
+.error404 .error-holder {
+	margin-top: 4em;
+}
+
+.wp-block-image {
+	display: table;
+}
+
+.wp-block-image figcaption {
+	display: table-caption;
+	caption-side: bottom;
+}
+.wp-block-table thead {
+	border-bottom: none!important;
+}
+.wp-block-table td {
+    border: inherit!important;
+}
+
+code {
+	background-color: #eff0f1;
+	padding: 1px 5px;
+	white-space: pre-wrap;
+}
+
+h2 {
+	font-size: 1.55em !important;
+  margin: auto!important;
+}
+
+#primary .post,
+.related-posts {
+	margin: auto;
+	max-width: 780px;
+	margin-bottom: 60px;
+}
+
+.pagination,
+.edd_pagination {
+	overflow: hidden;
+	max-width: 780px;
+	margin: auto;
+}
+
+.related-posts {
+	background-color: #fff;
+	background: linear-gradient(180deg, rgba(253, 253, 253, 1) 0%, rgba(255, 255, 255, 1) 100%);
+}
+
+.site {
+	background: inherit;
+}
+
+#primary .post .entry-content,
+#primary .page .entry-content,
+#primary .edd-download .entry-content {
+	font-family: 'PT Serif', 'Noto Serif', "Roboto", sans-serif;
+}
+
+#primary .post .entry-content h1,
+#primary .post .entry-content h2,
+#primary .post .entry-content h3,
+#primary .post .entry-content h4,
+#primary .post .entry-content h5,
+#primary .post .entry-content h6,
+#primary .page .entry-content h1,
+#primary .page .entry-content h2,
+#primary .page .entry-content h3,
+#primary .page .entry-content h4,
+#primary .page .entry-content h5,
+#primary .page .entry-content h6,
+#primary .edd-download .entry-content h1,
+#primary .edd-download .entry-content h2,
+#primary .edd-download .entry-content h3,
+#primary .edd-download .entry-content h4,
+#primary .edd-download .entry-content h5,
+#primary .edd-download .entry-content h6,
+.default-font {
+	font-family: "Roboto", sans-serif;
+    border-bottom: none;
+}
+
+.wp-block-image figcaption {
+	display: table-caption;
+	caption-side: bottom;
+	font-size: 0.75em;
+	color: #848484;
+	margin-top: 0em;
+}
+
+.tools {
+	display: none !important;
+	border: none;
+}
+
+footer .site-info {
+	margin-top: 0.5em;
+	font-size: 0.55em !important;
+	color: #bbb !important;
+	margin-bottom: 1em;
+}
+
+.site-info * {
+	color: #bbb !important;
+}
+.site-info .copyright {
+	display:block;
+	font-size: 1.35em;
+    margin-bottom: 0.25em;
+}
+.site-info {
+    font-size: 0.6em!important;
+    line-height: 1.25;
+}
+
+#primary .post .post-thumbnail img,
+#primary .search-post .post-thumbnail img {
+	border: 1px solid rgba(218, 225, 231, 0.5);
+	border-bottom: none;
+}
+
+.error404 .error-holder .sub-title {
+	display: none;
+}
+
+.error404 .search-form {
+	display: none;
+}
+
+ ::-webkit-scrollbar {
+	width: 0.6em;
+	height: 0.45em;
+}
+
+ ::-webkit-scrollbar-thumb {
+	background-color: #bdbdbd;
+}
+
+ ::-webkit-scrollbar-thumb:hover {
+	background-color: #616161;
+}
+
+ ::-webkit-scrollbar-thumb:active {
+	background-color: #9e9e9e;
+}
+
+#cheatsheet h2 {
+    position: sticky;
+    top: 0;
+    padding: 0.75em 0;
+    background: #fdfdfd;
+    margin-bottom: 0!important;
+}
+#cheatsheet h2 a {
+	  color: inherit;
+    font-weight: 700;
+}
+
+#primary .post .entry-content table tbody tr, #primary .page .entry-content table tbody tr, #primary .edd-download .entry-content table tbody tr {
+    border-bottom: 1px solid #e8eaea;
+}
+
+.wp-block-table figcaption {
+    font-size: 0.725em;
+    color: #848484;
+    margin-top: -1em;
+    margin-bottom: 1em;
+    text-align: center;
+}
+
+.ml-responsive-table {
+    margin-bottom: 2em;
+}
+
+.wp-block-table.is-style-regular .ml-responsive-table dl {
+	background: transparent;
+    border-bottom: 1px solid #e8eaea;
+}
+
+.wp-block-table.is-style-regular.no-title .ml-responsive-table dl dt.ml-title {
+	display: none;
+}
+
+.wp-block-table.is-style-regular.no-title .ml-responsive-table dl dd {
+    margin: 0.1em;
+}
+
+#primary .post .non-responsive-table table {
+    display: table!important;
+}
+
+#primary .post .non-responsive-table .ml-responsive-table {
+    display: none!important;
+}
+
+
+#primary .post .dense-table thead th {
+    padding: 10px!important;
+    border: none!important;
+}
+
+#primary .post .dense-table tbody tr td {
+    line-height: 1.5em;
+	  padding: 9px 10px!important;
+    border: none!important;
+}
+
+#primary .post .dense-table tbody tr td:first-child {
+	  min-width: 12ch;
+	  font-variant-numeric: normal;
+}
+
+#primary .post .is-style-regular tbody {
+    border-bottom: 1px solid #e8eaea;
+}
+
+.light-only-img {
+	display: block;
+}
+.dark-only-img {
+	display: none;
+}
+
+h2 a[href^="#"], 
+h3 a[href^="#"], 
+h4 a[href^="#"] {
+  color: inherit;
+}
+
+/*    .dark     */
+
+@media (prefers-color-scheme: dark) {
+	
+.light-only-img {
+	display: none!important;
+}
+.dark-only-img {
+	display: block!important;
+}
+
+	 ::-webkit-scrollbar {
+		width: 0.6em;
+		background-color: #0f0f0f;
+	}
+	 ::-webkit-scrollbar-thumb {
+		background-color: #616161;
+	}
+	 ::-webkit-scrollbar-thumb:hover {
+		background-color: rgba(247, 247, 247, 0.75);
+	}
+	 ::-webkit-scrollbar-thumb:active {
+		background-color: rgba(173, 173, 173, 0.75);
+	}
+	#primary .post .entry-content table tbody tr, #primary .page .entry-content table tbody tr, #primary .edd-download .entry-content table tbody tr {
+    border-bottom: 1px solid #2f3131;
+}
+	
+#primary .post .dense-table.is-style-regular thead th {
+    background: #1c1e20!important;
+}
+#primary .post .is-style-regular tbody {
+    border-bottom: 1px solid #2f3131!important;
+}
+	hr {
+    background-color: #292929;
+	}
+	.error404 {
+		background: inherit;
+		color: #f1f5f8;
+	}
+	.error404 .latest-post .section-header .section-title,
+	.error404 .latest-post .post-holder .col .entry-title a {
+		color: inherit;
+	}
+	#primary .post .post-thumbnail img,
+	#primary .search-post .post-thumbnail img {
+		border: none;
+	}
+	html,
+	body {
+		background: #0f0f0f;
+	}
+
+	#cheatsheet h2 {
+		background: #0f0f0f;
+	}
+	.page-header .page-title {
+		color: #f9f9f9;
+	}
+	#primary .post .entry-header .entry-title a,
+	#primary .search-post .entry-header .entry-title a {
+		color: #d0d0d0;
+	}
+	.site-header .site-branding .site-title a {
+		color: #f3f3f3;
+	}
+	.site-header .site-branding .site-description {
+		color: #c8d1da;
+	}
+	.main-navigation ul li a {
+		color: rgba(255, 255, 255, 0.8);
+	}
+	#primary .post .entry-content,
+	#primary .page .entry-content,
+	#primary .edd-download .entry-content {
+		color: #cacaca;
+	}
+	a {
+		color: #f5f5f5;
+	}
+	
+	:not(#\9).entry-content a,
+:not(#\9).entry-summary a,
+:not(#\9).page-content a,
+:not(#\9).comment-content a,
+:not(#\9).widget .textwidget a {
+		color: #f5f5f5;
+}
+
+	
+	.header-holder {
+		background: #131313;
+	}
+	.header-holder>.container:after {
+		border-bottom: 4px solid #272727;
+	}
+	#primary .post,
+	.related-posts {
+		background: #131313;
+	}
+	#primary .post .text-holder,
+	#primary .search-post .text-holder {
+		border: 1px solid rgba(218, 225, 231, 0);
+		box-shadow: 0 3px 0 #1d1d1d;
+	}
+	.entry-header .entry-title {
+		color: #c5c5c5 !important;
+	}
+	.single #primary .post,
+	.single .related-posts {
+		background: none;
+	}
+	.related-posts .section-title {
+		color: #d8d8d8;
+	}
+	.related-posts .post-holder .col .entry-title a {
+		color: #e3e4e4;
+	}
+	img {
+		filter: brightness(0.9);
+	}
+	code {
+		background-color: #1b1b1b;
+	}
+	.wp-block-table.is-style-stripes {
+    border-bottom: 1px solid #f0f0f014;
+}
+	.wp-block-table.is-style-stripes tbody tr:nth-child(odd) {
+		background-color: #131313;
+	}
+	.site-header .site-branding .site-title a:hover,
+	.site-header .site-branding .site-title a:focus {
+		color: #fff;
+	}
+	#primary .post .entry-header .entry-title a:hover,
+	#primary .post .entry-header .entry-title a:focus,
+	#primary .search-post .entry-header .entry-title a:hover,
+	#primary .search-post .entry-header .entry-title a:focus {
+		color: #fff;
+	}
+	.related-posts .post-holder .col .entry-title a:hover,
+	.related-posts .post-holder .col .entry-title a:focus {
+		color: #fff;
+	}
+	#primary .post .entry-header .entry-meta a:hover,
+	#primary .post .entry-header .entry-meta a:focus,
+	#primary .search-post .entry-header .entry-meta a:hover,
+	#primary .search-post .entry-header .entry-meta a:focus {
+		color: #fff;
+	}
+	.main-navigation ul li:hover>a,
+	.main-navigation ul li:focus>a,
+	.main-navigation ul li.current-menu-item>a,
+	.main-navigation ul li.current-menu-ancestor>a,
+	.main-navigation ul li.current_page_item>a,
+	.main-navigation ul li.current_page_ancestor>a {
+		color: rgba(255, 255, 255, 0.8);
+	}
+	.pagination .page-numbers,
+	.edd_pagination .page-numbers {
+		color: #e3e5e6;
+		background: #131313;
+	}
+	.pagination .page-numbers:hover,
+	.pagination .page-numbers:focus,
+	.pagination .page-numbers.current,
+	.edd_pagination .page-numbers:hover,
+	.edd_pagination .page-numbers:focus,
+	.edd_pagination .page-numbers.current {
+		text-decoration: none;
+		background: #2f8be6;
+		color: #ffffff;
+	}
+	.site-footer .footer-b .social-networks li a:hover,
+	.site-footer .footer-b .social-networks li a:focus {
+		color: #ffffff;
+	}
+	.pagination .page-numbers:hover,
+	.pagination .page-numbers:focus,
+	.pagination .page-numbers.current,
+	.edd_pagination .page-numbers:hover,
+	.edd_pagination .page-numbers:focus,
+	.edd_pagination .page-numbers.current {
+		background: #2d2d2d;
+	}
+	.site-footer {
+		background: #131313;
+	}
+	.archive.author .page-header .text-holder .author-archive-title {
+		color: #ffffff;
+	}
+	.post-count em {
+		font-weight: 700;
+		color: #ffffff;
+	}
+	#primary .post .entry-footer .tags a,
+	#primary .search-post .entry-footer .tags a {
+		background-color: #1f1f1f;
+		color: #cdcfd2;
+	}
+	#primary .post .entry-footer .tags a:hover,
+	#primary .post .entry-footer .tags a:focus,
+	#primary .search-post .entry-footer .tags a:hover,
+	#primary .search-post .entry-footer .tags a:focus {
+		background: #383737;
+	}
+	@media only screen and (max-width: 1024px) {
+		#toggle-button:before {
+			background: #ffffff;
+		}
+		#toggle-button span {
+			background: #ffffff;
+		}
+		#toggle-button:after {
+			background: #ffffff;
+		}
+	}
+	.authorheading,
+	.important {
+		border-left: 5px solid #f7f7f7 !important;
+		background: #131313;
+	}
+	.related-posts .post-holder .col .entry-meta a:hover,
+	.related-posts .post-holder .col .entry-meta a:focus {
+		color: #fff;
+	}
+	#primary .post .entry-content h1,
+	#primary .post .entry-content h2,
+	#primary .post .entry-content h3,
+	#primary .post .entry-content h4,
+	#primary .post .entry-content h5,
+	#primary .post .entry-content h6,
+	#primary .page .entry-content h1,
+	#primary .page .entry-content h2,
+	#primary .page .entry-content h3,
+	#primary .page .entry-content h4,
+	#primary .page .entry-content h5,
+	#primary .page .entry-content h6,
+	#primary .edd-download .entry-content h1,
+	#primary .edd-download .entry-content h2,
+	#primary .edd-download .entry-content h3,
+	#primary .edd-download .entry-content h4,
+	#primary .edd-download .entry-content h5,
+	#primary .edd-download .entry-content h6 {
+		color: #e6e6e6;
+		font-weight: 500;
+	}
+	#primary .post .entry-content blockquote,
+	#primary .page .entry-content blockquote,
+	#primary .edd-download .entry-content blockquote {
+		color: #ebeff3;
+	}
+}
+
+div.enlighter {
+	background-color: #f9f9f9;
+}
+
+.wp-block-code {
+	margin-bottom: 1.5em !important;
+}
+
+hr.wp-block-separator {
+	border: none!important;
+}
+
+@media only screen and (min-width: 1024px) {
+	.wp-block-code.code-wrap>code {
+		white-space: pre-wrap;
+	}
+}
+
+#footer-info-sub {
+	font-size: 0.85em;
+	line-height: 1.25;
+	margin-top: 0.5em;
+}
+		</style>
+		</head>
+
+<body class="post-template-default single single-post postid-156 single-format-standard full-width" itemscope itemtype="https://schema.org/WebPage">
+
+
+    <div id="page" class="site">
+        <a class="skip-link screen-reader-text" href="#acc-content">Skip to content (Press Enter)</a>
+    	<div class="header-holder">
+		<div class="overlay"></div>
+		<div class="container">
+			<header id="masthead" class="site-header" itemscope itemtype="https://schema.org/WPHeader">
+				    <div class="site-branding" itemscope itemtype="https://schema.org/Organization">
+		        <div class="text-logo">
+                            <p class="site-title" itemprop="name"><a href="https://websecblog.com/" rel="home" itemprop="url">Web Security Blog</a></p>
+                            <p class="site-description">Thomas Orlita’s blog</p>
+                    </div><!-- .text-logo -->
+	</div><!-- .site-branding -->
+    				<div class="right">
+					<button id="toggle-button" data-toggle-target=".main-menu-modal" data-toggle-body-class="showing-main-menu-modal" aria-expanded="false" data-set-focus=".close-main-nav-toggle"><span></span></button>
+
+                    <div class="mobile-menu-wrapper">
+                        <nav id="mobile-site-navigation" class="main-navigation mobile-navigation">        
+                            <div class="primary-menu-list main-menu-modal cover-modal" data-modal-target-string=".main-menu-modal">
+                                <button class="close close-main-nav-toggle" data-toggle-target=".main-menu-modal" data-toggle-body-class="showing-main-menu-modal" aria-expanded="false" data-set-focus=".main-menu-modal"><i class="fas fa-times"></i></button>
+                                <div class="mobile-menu" aria-label="Mobile">
+                                    <div class="menu-top-menu-container"><ul id="mobile-primary-menu" class="nav-menu main-menu-modal"><li id="menu-item-34" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-34"><a href="https://ThomasOrlita.com">About Me</a></li>
+<li id="menu-item-1212" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1212"><a href="https://websecblog.com/cheatsheet/">Cheatsheet</a></li>
+</ul></div>                                </div>
+                            </div>
+                        </nav><!-- #mobile-site-navigation -->
+                    </div>
+
+                    <nav id="site-navigation" class="main-navigation" itemscope itemtype="https://schema.org/SiteNavigationElement">
+                        <div class="menu-top-menu-container"><ul id="primary-menu" class="menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-34"><a href="https://ThomasOrlita.com">About Me</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1212"><a href="https://websecblog.com/cheatsheet/">Cheatsheet</a></li>
+</ul></div>                    </nav><!-- #site-navigation -->
+					<div class="tools">						
+												
+					</div>
+				</div>
+			</header>
+		</div>
+	</div>
+    <div id="acc-content"><!-- for acccessibility purpose -->            <div id="content" class="site-content">
+                    <div class="container">            
+        
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main">
+
+		
+<article id="post-156" class="post-156 post type-post status-publish format-standard has-post-thumbnail hentry category-vulns">
+	<div class="post-thumbnail"></div>    
+    <div class="text-holder">
+        <header class="entry-header">
+		<h1 class="entry-title">Bypassing Firebase authorization to create custom app.goo.gl subdomains</h1><div class="entry-meta"><span class="byline" itemprop="author" itemscope itemtype="https://schema.org/Person"><a href="https://websecblog.com/author/admin/"><img alt='' src='https://secure.gravatar.com/avatar/5bfb7af02d130573dc9cde61e8ac43b1?s=24&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/5bfb7af02d130573dc9cde61e8ac43b1?s=48&#038;d=mm&#038;r=g 2x' class='avatar avatar-24 photo' height='24' width='24' decoding='async'/></a>by <span itemprop="name"><a class="url fn n" href="https://websecblog.com/author/admin/" itemprop="url">Thomas Orlita</a></span></span><span class="cat-links" itemprop="about"><a href="https://websecblog.com/category/vulns/" rel="category tag">Vulnerabilities</a></span><span class="posted-on"><a href="https://websecblog.com/vulns/bypassing-firebase-authorization-to-create-custom-goo-gl-subdomains/" rel="bookmark"><time class="entry-date published" datetime="2018-09-21T04:51:47+00:00" itemprop="datePublished">September 21, 2018</time><time class="updated" datetime="2024-09-23T17:26:36+00:00" itemprop="dateModified">September 23, 2024</time></a></span></div>	</header>         
+        <div class="entry-content">
+		
+<figure class="wp-block-image size-full"><img fetchpriority="high" decoding="async" width="1001" height="457" src="https://websecblog.com/wp-content/uploads/dynamic-links.png" alt="" class="wp-image-1055" srcset="https://websecblog.com/wp-content/uploads/dynamic-links.png 1001w, https://websecblog.com/wp-content/uploads/dynamic-links-300x137.png 300w, https://websecblog.com/wp-content/uploads/dynamic-links-768x351.png 768w, https://websecblog.com/wp-content/uploads/dynamic-links-131x60.png 131w" sizes="(max-width: 1001px) 100vw, 1001px" /></figure>
+
+
+
+<p>Since the support of goo.gl has already ended, I&#8217;ve been looking for ways to shorten URLs using Google services.</p>
+
+
+
+<p>Some time ago I found a bug that allowed me to shorten links using Google&#8217;s official <a href="https://g.co" target="_blank" rel="noreferrer noopener">g.co</a> shortener.</p>
+
+
+
+<p>This time I took a look at <a href="https://firebase.google.com/docs/dynamic-links/" target="_blank" rel="noopener noreferrer">Firebase Dynamic Links</a>.</p>
+
+
+
+<div style="height:12px" aria-hidden="true" class="wp-block-spacer"></div>
+
+
+
+<h2 class="wp-block-heading">Firebase Dynamic Links</h2>
+
+
+
+<p>They work by allowing you to create short URLs on either <code>*.app.goo.gl</code> or <code>*.page.link</code> subdomains.</p>
+
+
+
+<p>Before <code>app.goo.gl</code> subdomains in Firebase were discontinued, there was a randomly generated <code>app.goo.gl</code> subdomain for each Firebase project, something like <code>i63lqb.app.goo.gl</code><em>.</em> It could also be accessed via&nbsp;<code>goo.gl/app/i63lqb/ourLink</code><em>&nbsp;</em>(=&nbsp;<code>i63lqb.app.goo.gl/ourLink</code> on mobile devices).</p>
+
+
+
+<p>You could also create four more&nbsp;<code>*.page.link</code> subdomains, but this time you could choose your own subdomain.</p>
+
+
+
+<div style="height:25px" aria-hidden="true" class="wp-block-spacer"></div>
+
+
+
+<h2 class="wp-block-heading">Setting up a new subdomain</h2>
+
+
+
+<p>When I was setting up a new subdomain I noticed an interesting API call.</p>
+
+
+
+<pre class="wp-block-code"><code lang="rest" class="language-rest">/v1/checkValidDomainForProject</code></pre>
+
+
+
+<p>This returned an <code>OK</code> response in case the subdomain I wanted to create was both valid and not already in use. In case it was <code>OK</code>, the <em>Create </em>button was enabled and I was able to create it. Otherwise, it showed an error.</p>
+
+
+
+<p>Once I clicked the button to create it, another API call was fired, this time to:</p>
+
+
+
+<pre class="wp-block-code"><code lang="rest" class="language-rest">/v1/createDomainForProject</code></pre>
+
+
+
+<p>also containing the desired subdomain in its body.</p>
+
+
+
+<p>If I let the POST call through, it would successfully add the subdomain to my project.</p>
+
+
+
+<p>But let&#8217;s go back to the last API call. Since we know there are two types of domains we can use to shorten links in Firebase, let&#8217;s try to replace the value of the&nbsp;<em>domainUriPrefix</em> parameter from&nbsp;<code>page.link</code> with<em> </em><code>app.goo.gl</code><em>.</em></p>
+
+
+
+<p>Surprisingly, this actually worked. A <code>&lt;myCustomPrefix>.app.goo.gl</code> subdomain was added and could be used in the project.</p>
+
+
+
+<p>Since custom&nbsp;<code>*.app.goo.gl</code> subdomains like <code>maps.app.goo.gl</code> or <code>news.app.goo.gl</code> are used only for official products by Google, they should be registered only by them.</p>
+
+
+
+<div style="height:23px" aria-hidden="true" class="wp-block-spacer"></div>
+
+
+
+<p>This leaves us with the following attack scenario:</p>
+
+
+
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p>A regular user can create custom subdomains on&nbsp;<a href="https://www.google.com/url?q=http://app.goo.gl&amp;sa=D&amp;usg=AFQjCNGlb_Dx8VpxWbjUfUTvICqWC_h17A" target="_blank" rel="noreferrer noopener">app.goo.gl</a>&nbsp;via the Firebase Console. This should be possible to do only by Google.</p>
+</blockquote>
+
+
+
+<section id="timeline" class="wp-block-group"><div class="wp-block-group__inner-container is-layout-flow wp-block-group-is-layout-flow">
+<div style="height:15px" aria-hidden="true" class="wp-block-spacer"></div>
+
+
+
+<hr class="wp-block-separator has-css-opacity is-style-default"/>
+
+
+
+<div style="height:20px" aria-hidden="true" class="wp-block-spacer"></div>
+
+
+
+<figure class="wp-block-table is-style-regular dense-table non-responsive-table"><table><thead><tr><th>Timeline</th><th></th></tr></thead><tbody><tr><td>2018-08-10</td><td>Vulnerability reported </td></tr><tr><td>2018-08-13</td><td>Priority changed to P1</td></tr><tr><td>2018-08-14</td><td>Accepted</td></tr><tr><td>2018-08-22</td><td>Fixed</td></tr><tr><td>2018-08-29</td><td>Reward issued</td></tr></tbody></table></figure>
+</div></section>
+
+
+
+<p class="authorheading">Written by <a aria-label=" (opens in a new tab)" href="https://thomasorlita.com/" target="_blank" rel="noreferrer noopener">Thomas Orlita</a><br>Follow me on Twitter: <a aria-label=" (opens in a new tab)" href="https://twitter.com/ThomasOrlita" target="_blank" rel="noreferrer noopener">@ThomasOrlita</a> / Mastodon: <a href="https://infosec.exchange/@thomasorlita" target="_blank" rel="noreferrer noopener">@ThomasOrlita@infosec.exchange</a></p>
+	</div><!-- .entry-content -->
+    	<footer class="entry-footer">
+			</footer><!-- .entry-footer -->
+	    </div><!-- .text-holder -->    
+</article><!-- #post-156 -->
+		</main><!-- #main -->
+        
+                    
+            <nav class="navigation post-navigation" role="navigation">
+    			<h2 class="screen-reader-text">Post Navigation</h2>
+    			<div class="nav-links">
+    				                    <div class="nav-previous nav-holder">
+						<div class="holder">
+                            <a href="https://websecblog.com/vulns/google-csp-evaluator/" rel="prev">
+    							<span class="meta-nav">Previuos Article</span>
+                                <img src="https://websecblog.com/wp-content/uploads/csp-evaluator-1-150x150.png" alt="How to use Google&#8217;s CSP Evaluator to bypass CSP">                                <span class="screen-reader-text">Previous Article:</span>
+    							<span class="post-title">How to use Google&#8217;s CSP Evaluator to bypass CSP</span>
+    						</a>
+                        </div>
+					</div>
+					                                        <div class="nav-next nav-holder">
+						<div class="holder">
+                            <a href="https://websecblog.com/vulns/google-code-in-xss/" rel="next">
+    							<span class="meta-nav">Next Article</span>
+                                <span class="post-title">XSSing Google Code-in thanks to improperly escaped JSON data</span>
+                                <img src="https://websecblog.com/wp-content/uploads/codein-xss-150x150.png" alt="XSSing Google Code-in thanks to improperly escaped JSON data">    							
+    						</a>
+                        </div>
+					</div>
+                        			</div>
+    		</nav>        
+                
+        <div class="related-posts">
+    		<h2 class="section-title">Related Articles</h2>			<div class="post-holder">
+                                <div class="col">
+    				<a href="https://websecblog.com/vulns/google-earth-studio-vulnerability/" class="post-thumbnail">
+                        <img width="370" height="280" src="https://websecblog.com/wp-content/uploads/2019/03/earth_studio_splash_screen-1-370x280.png" class="attachment-digital-download-related size-digital-download-related wp-post-image" alt="Google Earth Studio Splash Screen" itemprop="image" decoding="async" loading="lazy" />                    </a>
+                    <h3 class="entry-title"><a href="https://websecblog.com/vulns/google-earth-studio-vulnerability/" rel="bookmark">Inserting arbitrary files into anyone&#8217;s Google Earth Studio Projects Archive</a></h3>                    <div class="entry-meta">
+						<a href="https://websecblog.com/author/admin/"><img alt='' src='https://secure.gravatar.com/avatar/5bfb7af02d130573dc9cde61e8ac43b1?s=20&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/5bfb7af02d130573dc9cde61e8ac43b1?s=40&#038;d=mm&#038;r=g 2x' class='avatar avatar-20 photo' height='20' width='20' loading='lazy' decoding='async'/></a>
+                        by <a href="https://websecblog.com/author/admin/">Thomas Orlita</a> in <a href="https://websecblog.com/category/vulns/" rel="category tag">Vulnerabilities</a>					</div>
+    			</div>
+    			                <div class="col">
+    				<a href="https://websecblog.com/vulns/google-threadit/" class="post-thumbnail">
+                        <img width="370" height="280" src="https://websecblog.com/wp-content/uploads/threadit_hero-370x280.jpg" class="attachment-digital-download-related size-digital-download-related wp-post-image" alt="Threadit Vulnerabilities" itemprop="image" decoding="async" loading="lazy" />                    </a>
+                    <h3 class="entry-title"><a href="https://websecblog.com/vulns/google-threadit/" rel="bookmark">5 Different Vulnerabilities in Google&#8217;s Threadit</a></h3>                    <div class="entry-meta">
+						<a href="https://websecblog.com/author/admin/"><img alt='' src='https://secure.gravatar.com/avatar/5bfb7af02d130573dc9cde61e8ac43b1?s=20&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/5bfb7af02d130573dc9cde61e8ac43b1?s=40&#038;d=mm&#038;r=g 2x' class='avatar avatar-20 photo' height='20' width='20' loading='lazy' decoding='async'/></a>
+                        by <a href="https://websecblog.com/author/admin/">Thomas Orlita</a> in <a href="https://websecblog.com/category/vulns/" rel="category tag">Vulnerabilities</a>					</div>
+    			</div>
+    			                <div class="col">
+    				<a href="https://websecblog.com/vulns/google-csp-evaluator/" class="post-thumbnail">
+                        <img width="370" height="280" src="https://websecblog.com/wp-content/uploads/csp-evaluator-1-370x280.png" class="attachment-digital-download-related size-digital-download-related wp-post-image" alt="" itemprop="image" decoding="async" loading="lazy" />                    </a>
+                    <h3 class="entry-title"><a href="https://websecblog.com/vulns/google-csp-evaluator/" rel="bookmark">How to use Google&#8217;s CSP Evaluator to bypass CSP</a></h3>                    <div class="entry-meta">
+						<a href="https://websecblog.com/author/admin/"><img alt='' src='https://secure.gravatar.com/avatar/5bfb7af02d130573dc9cde61e8ac43b1?s=20&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/5bfb7af02d130573dc9cde61e8ac43b1?s=40&#038;d=mm&#038;r=g 2x' class='avatar avatar-20 photo' height='20' width='20' loading='lazy' decoding='async'/></a>
+                        by <a href="https://websecblog.com/author/admin/">Thomas Orlita</a> in <a href="https://websecblog.com/category/vulns/" rel="category tag">Vulnerabilities</a>					</div>
+    			</div>
+    			                <div class="col">
+    				<a href="https://websecblog.com/vulns/public-google-cloud-blog-bucket/" class="post-thumbnail">
+                        <img width="370" height="280" src="https://websecblog.com/wp-content/uploads/storage-googleapis-vuln-370x280.png" class="attachment-digital-download-related size-digital-download-related wp-post-image" alt="Google Cloud Storage Blog Posts" itemprop="image" decoding="async" loading="lazy" />                    </a>
+                    <h3 class="entry-title"><a href="https://websecblog.com/vulns/public-google-cloud-blog-bucket/" rel="bookmark">Public Bucket Allowed Access to Images on Upcoming Google Cloud Blog Posts</a></h3>                    <div class="entry-meta">
+						<a href="https://websecblog.com/author/admin/"><img alt='' src='https://secure.gravatar.com/avatar/5bfb7af02d130573dc9cde61e8ac43b1?s=20&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/5bfb7af02d130573dc9cde61e8ac43b1?s=40&#038;d=mm&#038;r=g 2x' class='avatar avatar-20 photo' height='20' width='20' loading='lazy' decoding='async'/></a>
+                        by <a href="https://websecblog.com/author/admin/">Thomas Orlita</a> in <a href="https://websecblog.com/category/vulns/" rel="category tag">Vulnerabilities</a>					</div>
+    			</div>
+    			            </div><!-- .post-holder -->
+    	</div>
+                
+	</div><!-- #primary -->
+
+            
+            </div><!-- .container -->        
+                    </div><!-- .site-content -->
+            <footer id="colophon" class="site-footer" itemscope itemtype="https://schema.org/WPFooter">
+        <div class="footer-b">
+		<div class="container">
+			<div class="site-info">            
+            <span class="copyright"><a href="https://websecblog.com/">Web Security Blog</a> by <a href="https://thomasorlita.com/" target="_blank">Thomas Orlita</a></span>Digital Download | Developed by <a href="https://rarathemes.com/" rel="nofollow" target="_blank">Rara Theme</a>. Powered by <a href="https://wordpress.org/" target="_blank">WordPress</a>.               
+            </div>
+                <ul class="social-networks">
+                <li>
+                <a href="/feed/" target="_blank" rel="nofollow noopener">
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>    	   
+                        <li>
+                <a href="https://thomasorlita.com" target="_blank" rel="nofollow noopener">
+                    <i class="fas fa-info"></i>
+                </a>
+            </li>    	   
+                        <li>
+                <a href="https://twitter.com/ThomasOrlita" target="_blank" rel="nofollow noopener">
+                    <i class="fab fa-twitter"></i>
+                </a>
+            </li>    	   
+                        <li>
+                <a href="https://github.com/ThomasOrlita" target="_blank" rel="nofollow noopener">
+                    <i class="fab fa-github"></i>
+                </a>
+            </li>    	   
+                        <li>
+                <a href="http://stackoverflow.com/users/4227998/" target="_blank" rel="nofollow noopener">
+                    <i class="fab fa-stack-exchange"></i>
+                </a>
+            </li>    	   
+                        <li>
+                <a href="https://www.linkedin.com/in/thomasorlita/" target="_blank" rel="nofollow noopener">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+            </li>    	   
+                        <li>
+                <a href="mailto:blog@thomasorlita.com" target="_blank" rel="nofollow noopener">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </li>    	   
+            	</ul>
+        		</div>
+	</div>
+        </footer><!-- #colophon -->
+            </div><!-- #acc-content -->
+    </div><!-- #page -->
+    
+<script type='text/javascript'>
+	//<![CDATA[
+    jQuery(document).ready(function($) { 
+    	$('html').MagicLiquidizerTable({ whichelement: 'table', breakpoint: '780', headerSelector: 'thead td, thead th, tr th', bodyRowSelector: 'tbody tr, tr', table: '1' })
+    })
+	//]]>
+</script> 	
+<script type="text/javascript" id="mkaz-code-syntax-prism-js-js-extra">
+/* <![CDATA[ */
+var prism_settings = {"pluginUrl":"https:\/\/websecblog.com\/wp-content\/plugins\/code-syntax-block\/"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://websecblog.com/wp-content/plugins/code-syntax-block/assets/prism/prism.js?ver=1717234881" id="mkaz-code-syntax-prism-js-js"></script>
+<script type="text/javascript" src="https://websecblog.com/wp-content/themes/digital-download/js/all.min.js?ver=6.1.1" id="all-js"></script>
+<script type="text/javascript" src="https://websecblog.com/wp-content/themes/digital-download/js/v4-shims.min.js?ver=6.1.1" id="v4-shims-js"></script>
+<script type="text/javascript" src="https://websecblog.com/wp-content/themes/digital-download/js/modal-accessibility.min.js?ver=1.1.0" id="digital-download-modal-accessibility-js"></script>
+<script type="text/javascript" id="digital-download-js-extra">
+/* <![CDATA[ */
+var digital_download = {"is_rtc_active":""};
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://websecblog.com/wp-content/themes/digital-download/js/custom.min.js?ver=1.1.0" id="digital-download-js"></script>
+
+</body>
+</html>
+
+<!--
+Performance optimized by W3 Total Cache. Learn more: https://www.boldgrid.com/w3-total-cache/
+
+Page Caching using Disk: Enhanced 
+
+Served from: websecblog.com @ 2024-12-08 13:16:38 by W3 Total Cache
+-->

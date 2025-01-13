@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#
+" lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Credit card statement disclosure vulnerability in Viseca's eXpense portal | Pentagrid AG</title>
+<link href="../../../assets/fontawesome/css/all.min.css" rel="stylesheet" type="text/css">
+<link href="../../../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="../../../assets/css/baguetteBox.min.css" rel="stylesheet" type="text/css">
+<link href="../../../assets/css/rst.css" rel="stylesheet" type="text/css">
+<link href="../../../assets/css/code.css" rel="stylesheet" type="text/css">
+<link href="../../../assets/css/theme.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<link rel="alternate" type="application/rss+xml" title="RSS (de)" href="../../rss.xml">
+<link rel="alternate" type="application/rss+xml" title="RSS (en)" href="../../../en/rss.xml">
+<link rel="canonical" href="https://www.pentagrid.ch/de/blog/viseca-expense-credit-card-statement-disclosure/">
+<link rel="icon" href="../../../favicon.ico" sizes="16x16">
+<link rel="icon" href="../../../icon_128x128.png" sizes="128x128">
+<link rel="apple-touch-icon" href="../../../icon_128x128.png" sizes="128x128">
+<!--[if lt IE 9]><script src="../../../assets/js/html5.js"></script><![endif]--><meta name="author" content="Pentagrid AG">
+<link rel="prev" href="../open-source-sms-gateway-for-pentest-projects/" title="Ein Open-Source-SMS-Gateway fÃ¼r Pentest-Projekte" type="text/html">
+<link rel="next" href="../multiple-vulnerabilities-in-aten-PE8108-power-distribution-unit/" title="Multiple vulnerabilities in Aten PE8108 power distribution unit" type="text/html">
+<meta property="og:site_name" content="Pentagrid AG">
+<meta property="og:title" content="Credit card statement disclosure vulnerability in Viseca's eXpense por">
+<meta property="og:url" content="https://www.pentagrid.ch/de/blog/viseca-expense-credit-card-statement-disclosure/">
+<meta property="og:description" content="As a security company we try to use services that are solid, trustworthy and secure and therefore we do our due diligence if we find the time for it. Checking products for IT security issues in a non-">
+<meta property="og:image" content="https://www.pentagrid.ch/images/202303_expense_demo_login.png">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2023-03-20T04:23:42+01:00">
+<meta property="article:tag" content="Advisory">
+<meta property="article:tag" content="Exploit">
+<meta property="article:tag" content="IDOR">
+<meta property="article:tag" content="Privacy">
+<meta property="article:tag" content="Vulnerability">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@pentagridsec">
+<meta name="twitter:creator" content="@pentagridsec">
+<link rel="alternate" hreflang="en" href="../../../en/blog/viseca-expense-credit-card-statement-disclosure/">
+<meta name="geo.region" content="CH-SG">
+<meta name="geo.placename" content="Buchs SG">
+<meta name="geo.position" content="47.166808762756524;9.47720487085083">
+<meta name="ICBM" content="47.166808762756524, 9.47720487085083">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Springe zum Hauptinhalt</a>
+
+<!-- Menubar -->
+<nav class="navbar navbar-expand-md static-top mb-4 navbar-dark bg-dark navbar-inverse bg-inverse "><div class="container">
+<!-- This keeps the margins nice -->
+        <a class="navbar-brand" href="https://www.pentagrid.ch/de/">
+            <img src="../../../assets/images/logos/Logo_single_row_h25.png" alt="Pentagrid AG" id="logo" class="nav-link"><!-- was: d-inline-block align-middle --></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="bs-navbar">
+            <ul class="navbar-nav mr-auto">
+<li class="nav-item">
+<a href="../../pages/home/" class="nav-link">Start</a>
+                </li>
+<li class="nav-item">
+<a href="../../pages/services/" class="nav-link">Dienstleistungen</a>
+                </li>
+<li class="nav-item">
+<a href="../../pages/about-us/" class="nav-link">ÃberÂ uns</a>
+                </li>
+<li class="nav-item">
+<a href="../../pages/career/" class="nav-link">Karriere</a>
+                </li>
+<li class="nav-item">
+<a href="../" class="nav-link">Blog</a>
+                </li>
+<li class="nav-item">
+<a href="../../pages/imprint-and-contact/" class="nav-link">ImpressumÂ undÂ Kontakt</a>
+
+                
+            </li>
+</ul>
+<ul class="navbar-nav navbar-right">
+<li>
+            </li>
+<li class="nav-item"><a href="https://www.pentagrid.ch/en/" rel="alternate" hreflang="en" class="nav-link">English</a></li>
+
+                
+                
+            </ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><!-- Insert Carusel? --><!-- Content --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        
+        
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Credit card statement disclosure vulnerability in Viseca's eXpense portal</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">
+                    Pentagrid AG
+            </span></p>
+            <p class="dateline">
+            <a href="." rel="bookmark">
+            <time class="published dt-published" datetime="2023-03-20T04:23:42+01:00" itemprop="datePublished" title="2023-03-20 04:23">2023-03-20 04:23</time></a>
+            </p>
+            
+
+        </div>
+        
+
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <p>As a security company we try to use services that are solid, trustworthy and secure and therefore we do our due diligence if we find the time for it. Checking products for IT security issues in a non-intrusive way is a part of that. You can call it supply chain security if you like.</p>
+<p>To avoid scanning credit card paper statements sent by snail mail every month, Pentagrid was looking for an option to receive them electronically. For our bank though, the only option was to sign up for Viseca's eXpense platform, which allows access to business credit card statements in PDF format. However, uppon login into the portal for the first time, our experienced analyst's gut feeling told us something is not right. For example, the second-factor authentication when doing a login on the eXpense platform was simply typing the last four digits of our telephone number. And that's definitely not state-of-the-art security.</p>
+<p>We decided to have a quick look. Our experience in web application security analysis told us that the download function for PDF statements was a good candidate to have a look at. We've seen this kind of functionality fail in many applications before. You may guess, what happened.</p>
+<!-- TEASER_END -->
+<section id="approach"><h2>Approach</h2>
+<p>Before signing up to Viseca's eXpense platform, we noticed that Viseca provides a demo account for a login into the eXpense platform publicly on their website.</p>
+<a class="reference external image-reference" href="../../../images/202303_expense_demo_login.png"><img alt="Viseca's website offering the eXpense demo login." class="align-center" src="../../../images/202303_expense_demo_login.thumbnail.png"></a>
+<p>When using the "demo" login credentials for Viseca's eXpense portal, Pentagrid was able to access the platform and then download Pentagrid's own credit card statement.</p>
+<p>After we found this security issue, we immediately started our Coordinated Disclosure process and tried to contact Viseca's Chief Information Security Office (CISO). We sent the first draft of vulnerability details on the following day (see timeline below).</p>
+<p>Later on we realised that logging into demo account wasn't even necessary, knowing the URL was sufficient. The identified security issue was therefore missing authentication as well as a standard Indirect Object Reference (IDOR) authorisation vulnerability.</p>
+<p>We did not conduct any further security analysis to find other issues, but it was recommended to Viseca to conduct a full security analysis on the service.</p>
+</section><section id="impact"><h2>Impact</h2>
+<p>The vulnerability allows downloading credit card statements of business customers of Viseca. As Viseca is handling credit cards for most Swiss banks (except very large banks such as UBS), it is assumed many if not most businesses with a credit card in Switzerland would have been susceptible.</p>
+<p>A credit card statement includes statements for one or more credit cards. The credit card statement includes the company address, the card account number, the card owner's names, the masked form of the credit card numbers (in the form 1111 11XX XXXX 1111), the card limits, type of card and payments made with the cards in the statement date range. Payments often allow to map the card owner to a geolocation at a certain point in time and it can reveal business relationships and preferred places for meeting customers outside of office buildings.</p>
+</section><section id="timeline"><h2>Timeline</h2>
+<ul class="simple">
+<li><p>2022-11-10: Vulnerability noticed. Initial contact request via LinkedIn.</p></li>
+<li><p>2022-11-11: Initial contact with Viseca including telephone call. Initial response by Viseca. Technical details and disclosure deadline (2023-02-09) communicated.</p></li>
+<li><p>2022-11-15: Further communication, clarifying that the demo account is not necessary and that the <code class="docutils literal">visecaStatementId</code> parameter is mainly a timestamp.</p></li>
+<li><p>2022-11-17: Viseca communicates that countermeasures are planned: Removing the demo account, fix/patch the vulnerabilities ("this week"), monitoring and investigation, check why internal security checks of supplier didn't catch it earlier.</p></li>
+<li><p>2022-11-23: Findings retested by Pentagrid, unauthenticated download of Pentagrid's statement is not possible anymore.</p></li>
+<li><p>2022-11-25: Viseca informs that the issue was fixed and a security analysis is currently taking place.</p></li>
+<li><p>2022-12-19: Viseca provides feedback on an earlier version of this advisory.</p></li>
+<li><p>2023-03-20: Publication of advisory.</p></li>
+<li><p>2023-03-20: Republik published a background story: <a class="reference external" href="https://www.republik.ch/2023/03/20/kreditkarten-abrechnungen-offen-zugaenglich-im-internet">Zehntausende Schweizer Kreditkarten-Abrechnungen offen zugÃ¤nglich im Internet</a>.</p></li>
+</ul></section><section id="affected-components"><h2>Affected Components</h2>
+<p>Affected was the Viseca eXpense solution web application, which is a third-party product hosted on the third-party domain <a class="reference external" href="https://www.dcalonline.com/">https://www.dcalonline.com/</a>. This website indicates in it's footer that "Fiserv, Inc" is the owner. The endpoint for the PDF download responds with some interesting HTTP headers that seem to indicate that an Oracle system is used as the underlying technology:</p>
+<div class="code"><pre class="code text"><a id="rest_code_83d54f342a3f4856964e20f99ef58ba0-1" name="rest_code_83d54f342a3f4856964e20f99ef58ba0-1" href="#rest_code_83d54f342a3f4856964e20f99ef58ba0-1"></a>X-ORACLE-DMS-RID: 0
+<a id="rest_code_83d54f342a3f4856964e20f99ef58ba0-2" name="rest_code_83d54f342a3f4856964e20f99ef58ba0-2" href="#rest_code_83d54f342a3f4856964e20f99ef58ba0-2"></a>X-ORACLE-DMS-ECID: dbfb9a1e-5dae-4473-9779-a007e900c203-0001e167
+</pre></div>
+<p>It is unknown to Pentagrid if other instances of the same software on the Internet are present or if only Viseca and Swiss Business Credit cards are affected.</p>
+</section><section id="technical-details"><h2>Technical Details</h2>
+<p>The security issue is a standard Indirect Object Reference (IDOR) authorisation vulnerability paired with a missing authentication check (there is no need to send an HTTP cookie or similar). It could be exploited by knowing the correct URL. The following URL was taken from the authenticated area of the demo account:</p>
+<p><a class="reference external" href="https://www.dcalonline.com/new360/EStatements?method=displayVisecaStatement&amp;cardId=763454&amp;visecaStatementId=20200410063027000681">https://www.dcalonline.com/new360/EStatements?method=displayVisecaStatement&amp;cardId=763454&amp;visecaStatementId=20200410063027000681</a></p>
+<p>Although this particular URL is referenced in the application for the demo account, it will not return a PDF. This is probably the case because there is no PDF present for the demo account or because the statement is too old (year 2020).</p>
+<p>The <code class="docutils literal">cardId</code> parameter in the URL has to be any valid <code class="docutils literal">cardId</code>, but it doesn't matter which <code class="docutils literal">cardId</code>. There seems to be no correlation on the server-side between <code class="docutils literal">cardId</code> and <code class="docutils literal">visecaStatementId</code> and therefore using the demo account's <code class="docutils literal">cardId</code> of 763454 is sufficient to download other user's credit card statement.</p>
+<p>By providing any valid <code class="docutils literal">visecaStatementId</code> it seemed possible to download arbitrary credit card statements from other customers of Viseca. We used one of Pentagrid's <code class="docutils literal">visecaStatementId</code> to download Pentagrid's credit card statement with the demo account. It was possible to download Pentagrid's credit card statement in PDF format without any authentication.</p>
+<p>The only thing left to proof was that the <code class="docutils literal">visecaStatementId</code> does not include sufficient entropy and is therefore guessable and can be brute-forced. If we look at the <code class="docutils literal">visecaStatementId</code> it can be noticed that it starts with a time stamp of year, month, day. So we had a proper look at Pentagrid's credit card statement <code class="docutils literal">visecaStatementId</code>, which was 20221022093536019983. After a while we had the idea to extract meta data of the PDF statement:</p>
+<div class="code"><pre class="code text"><a id="rest_code_33899f18ed84405e9334c0821305f689-1" name="rest_code_33899f18ed84405e9334c0821305f689-1" href="#rest_code_33899f18ed84405e9334c0821305f689-1"></a>% exiftool -a -u -g1 statement.pdf
+<a id="rest_code_33899f18ed84405e9334c0821305f689-2" name="rest_code_33899f18ed84405e9334c0821305f689-2" href="#rest_code_33899f18ed84405e9334c0821305f689-2"></a>[...]
+<a id="rest_code_33899f18ed84405e9334c0821305f689-3" name="rest_code_33899f18ed84405e9334c0821305f689-3" href="#rest_code_33899f18ed84405e9334c0821305f689-3"></a>Producer                        : Compart MFFPDF I/O Filter 2019-07-30 00:56:08
+<a id="rest_code_33899f18ed84405e9334c0821305f689-4" name="rest_code_33899f18ed84405e9334c0821305f689-4" href="#rest_code_33899f18ed84405e9334c0821305f689-4"></a>Creator                         : Compart Docponent API (201908-STABLE)
+<a id="rest_code_33899f18ed84405e9334c0821305f689-5" name="rest_code_33899f18ed84405e9334c0821305f689-5" href="#rest_code_33899f18ed84405e9334c0821305f689-5"></a>Create Date                     : 2022:10:22 09:35:36+01:00
+<a id="rest_code_33899f18ed84405e9334c0821305f689-6" name="rest_code_33899f18ed84405e9334c0821305f689-6" href="#rest_code_33899f18ed84405e9334c0821305f689-6"></a>Modify Date                     : 2022:10:22 09:35:36+01:00
+<a id="rest_code_33899f18ed84405e9334c0821305f689-7" name="rest_code_33899f18ed84405e9334c0821305f689-7" href="#rest_code_33899f18ed84405e9334c0821305f689-7"></a>[...]
+</pre></div>
+<p>By writing the <code class="docutils literal">visecaStatementId</code> and the <code class="docutils literal">create date</code> of the PDF above each other and inserting spaces shows that the <code class="docutils literal">visecaStatementId</code> has very little entropy as it includes a full timestamp including hour, minutes and seconds:</p>
+<div class="code"><pre class="code text"><a id="rest_code_af929c473b634d4baf72dfdc454983d2-1" name="rest_code_af929c473b634d4baf72dfdc454983d2-1" href="#rest_code_af929c473b634d4baf72dfdc454983d2-1"></a>2022 10 22 09 35 36 019983 (visecaStatementId)
+<a id="rest_code_af929c473b634d4baf72dfdc454983d2-2" name="rest_code_af929c473b634d4baf72dfdc454983d2-2" href="#rest_code_af929c473b634d4baf72dfdc454983d2-2"></a>2022:10:22 09:35:36+01:00 (Create Date)
+</pre></div>
+<p>The timezone (+01) seems to be just a coincidence that it matches with the number in the <code class="docutils literal">visecaStatementId</code>. The last six digits for Pentagrid in the last few monthly statements were:</p>
+<div class="code"><pre class="code text"><a id="rest_code_da7c82de3df34c8da0dc5585fc2dae37-1" name="rest_code_da7c82de3df34c8da0dc5585fc2dae37-1" href="#rest_code_da7c82de3df34c8da0dc5585fc2dae37-1"></a>2021-10: 025323
+<a id="rest_code_da7c82de3df34c8da0dc5585fc2dae37-2" name="rest_code_da7c82de3df34c8da0dc5585fc2dae37-2" href="#rest_code_da7c82de3df34c8da0dc5585fc2dae37-2"></a>2021-11: 021534
+<a id="rest_code_da7c82de3df34c8da0dc5585fc2dae37-3" name="rest_code_da7c82de3df34c8da0dc5585fc2dae37-3" href="#rest_code_da7c82de3df34c8da0dc5585fc2dae37-3"></a>2021-12: 020879
+<a id="rest_code_da7c82de3df34c8da0dc5585fc2dae37-4" name="rest_code_da7c82de3df34c8da0dc5585fc2dae37-4" href="#rest_code_da7c82de3df34c8da0dc5585fc2dae37-4"></a>2022-01: 020786
+<a id="rest_code_da7c82de3df34c8da0dc5585fc2dae37-5" name="rest_code_da7c82de3df34c8da0dc5585fc2dae37-5" href="#rest_code_da7c82de3df34c8da0dc5585fc2dae37-5"></a>2022-02: 021019
+<a id="rest_code_da7c82de3df34c8da0dc5585fc2dae37-6" name="rest_code_da7c82de3df34c8da0dc5585fc2dae37-6" href="#rest_code_da7c82de3df34c8da0dc5585fc2dae37-6"></a>2022-03: 020725
+<a id="rest_code_da7c82de3df34c8da0dc5585fc2dae37-7" name="rest_code_da7c82de3df34c8da0dc5585fc2dae37-7" href="#rest_code_da7c82de3df34c8da0dc5585fc2dae37-7"></a>2022-04: 025125
+<a id="rest_code_da7c82de3df34c8da0dc5585fc2dae37-8" name="rest_code_da7c82de3df34c8da0dc5585fc2dae37-8" href="#rest_code_da7c82de3df34c8da0dc5585fc2dae37-8"></a>2022-05: 020649
+<a id="rest_code_da7c82de3df34c8da0dc5585fc2dae37-9" name="rest_code_da7c82de3df34c8da0dc5585fc2dae37-9" href="#rest_code_da7c82de3df34c8da0dc5585fc2dae37-9"></a>2022-06: 020541
+<a id="rest_code_da7c82de3df34c8da0dc5585fc2dae37-10" name="rest_code_da7c82de3df34c8da0dc5585fc2dae37-10" href="#rest_code_da7c82de3df34c8da0dc5585fc2dae37-10"></a>2022-07: 024985
+<a id="rest_code_da7c82de3df34c8da0dc5585fc2dae37-11" name="rest_code_da7c82de3df34c8da0dc5585fc2dae37-11" href="#rest_code_da7c82de3df34c8da0dc5585fc2dae37-11"></a>2022-08: 019883
+<a id="rest_code_da7c82de3df34c8da0dc5585fc2dae37-12" name="rest_code_da7c82de3df34c8da0dc5585fc2dae37-12" href="#rest_code_da7c82de3df34c8da0dc5585fc2dae37-12"></a>2022-09: 025733
+<a id="rest_code_da7c82de3df34c8da0dc5585fc2dae37-13" name="rest_code_da7c82de3df34c8da0dc5585fc2dae37-13" href="#rest_code_da7c82de3df34c8da0dc5585fc2dae37-13"></a>2022-10: 019983
+</pre></div>
+<p>These digits do not include a lot of entropy and seem to vary between the numbers 19983 and 25733. These numbers are assumed to be incrementing IDs per month over all statements of all customers.</p>
+<p>Therefore, Pentagrid concludes that the <code class="docutils literal">visecaStatementId</code> is just a timestamp of the creation date of the PDF plus six digits. As credit card statements are likely to be created in sequence as a massive batch job, the entropy of the <code class="docutils literal">visecaStatementId</code> is even lower than expected.</p>
+<p>Unfortunately, this endpoint on the webserver did not support HTTP HEAD, Range, If-Modified-Since or other HTTP request techniques that would have allowed Pentagrid to get metadata information about a PDF file (e.g. their byte length in the Content-Length header) or a side-channel (e.g. response time difference) without receiving the full PDF. The full PDF includes sensitive information of third-parties and therefore we did not want to access this data. This prevented us from brute-forcing <code class="docutils literal">visecaStatementId</code> to prove our point: It is assumed that when the last six digits would be incremented or decremented, PDF credit card statements of other companies could be downloaded.</p>
+</section><section id="precondition"><h2>Precondition</h2>
+<p>There were no special preconditions for exploitation, it was feasible for every user on the Internet. An attacker had to know timestamps when credit card statements were created, for example by having legitimate access to statements or by guessing or brute-forcing.</p>
+</section><section id="recommendation"><h2>Recommendation</h2>
+<p>During the disclosure process Pentagrid recommended Viseca to:</p>
+<ul class="simple">
+<li><p>Take the expense portal offline immediately until the issue is resolved or prevent the portal from acquiring Viseca credit card statements.</p></li>
+<li><p>Contact the third-party who is running the affected service and require an emergency change to fix the issue.</p></li>
+<li><p>Start an investigation if the issue was exploited in the past.</p></li>
+<li><p>Check the regulatory obligations that might apply in case of such an issue and take appropriate actions.</p></li>
+<li><p>Check if Web Application Firewall (WAF) rules could be put in place that prevent or mitigate the issue from arising in the future.</p></li>
+<li><p>Conduct security measures such as contracting a third-party to do a security analysis of the issue including code review to identify potential further issues.</p></li>
+</ul>
+<p>Pentagrid recommended Fiserv to:</p>
+<ul class="simple">
+<li><p>Take the expense portal offline immediately until the issue is resolved.</p></li>
+<li><p>Do a root cause analysis of the security issue and fix it (e.g. check the role concept, authentication and authorisation model of the website).</p></li>
+<li><p>Conduct security measures such as contracting a third-party to do a security analysis of the issue including code review to identify potential further issues.</p></li>
+<li><p>Start an investigation if the issue was exploited in the past.</p></li>
+<li><p>Check the regulatory obligations that might apply in case of such an issue and take appropriate actions.</p></li>
+</ul>
+<p>Pentagrid recommends business customers to:</p>
+<ul class="simple">
+<li><p>Take the usual precautions regarding credit card fraud.</p></li>
+<li><p>Check the regulatory obligations that might apply in case of such an issue and take appropriate actions.</p></li>
+</ul></section><section id="resolution"><h2>Resolution</h2>
+<p>According to Viseca, the following actions took place:</p>
+<ul class="simple">
+<li><p>Contacted the third-party who is running the affected service and requested an emergency change to resolve the issue.</p></li>
+<li><p>Analyzed log files for any signs the vulnerability had been exploited and found no indication of unauthorized access or disclosure of customer information.</p></li>
+<li><p>Checked wether regulatory notifications are required and, if so, take required actions.</p></li>
+<li><p>Checked if Web Application Firewall (WAF) rules could be put in place to prevent or mitigate the similar issues from arising in the future.</p></li>
+<li><p>Conducted security measures such as contracting a third-party to do a security analysis of the issue including code review to identify potential further issues.</p></li>
+</ul>
+<p>According to Viseca, the owner took the following actions:</p>
+<ul class="simple">
+<li><p>Conducted a root cause analysis of the security issue and resolved it.</p></li>
+<li><p>Conducted security measures such as contracting a third-party to do a security analysis of the issue including code review to identify potential further issues.</p></li>
+</ul></section><section id="credits"><h2>Credits</h2>
+<p>The vulnerability has been found by Pentagrid.</p>
+</section>
+</div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../../categories/advisory/" rel="tag">Advisory</a></li>
+            <li><a class="tag p-category" href="../../categories/exploit/" rel="tag">Exploit</a></li>
+            <li><a class="tag p-category" href="../../categories/idor/" rel="tag">IDOR</a></li>
+            <li><a class="tag p-category" href="../../categories/privacy/" rel="tag">Privacy</a></li>
+            <li><a class="tag p-category" href="../../categories/vulnerability/" rel="tag">Vulnerability</a></li>
+        </ul>
+<ul class="pager hidden-print">
+<li class="previous">
+                <a href="../open-source-sms-gateway-for-pentest-projects/" rel="prev" title="Ein Open-Source-SMS-Gateway fÃ¼r Pentest-Projekte">Vorheriger Eintrag</a>
+            </li>
+            <li class="next">
+                <a href="../multiple-vulnerabilities-in-aten-PE8108-power-distribution-unit/" rel="next" title="Multiple vulnerabilities in Aten PE8108 power distribution unit">NÃ¤chster Eintrag</a>
+            </li>
+        </ul></nav></aside></article><!--End of body content-->
+</div>
+</div>
+
+
+
+            <script src="../../../assets/js/jquery.min.js"></script><script src="../../../assets/js/popper.min.js"></script><script src="../../../assets/js/bootstrap.min.js"></script><script src="../../../assets/js/baguetteBox.min.js"></script><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element) {
+            return element.getElementsByTagName('img')[0].alt;
+    }});
+    </script><!-- Footer --><div class="d-print-none" style="position: relative; width: 20px; height: 20px; background-color: #ff0000; float: right; margin: 0px; top: -20px;"></div>
+
+
+<footer class="jumbotron jumbotron-fluid bg-secondary text-light mb-0 d-print-none" id="footer"><div class="container">
+
+    <!-- First footer row -->
+    
+    <div class="row">
+
+      <div class="col-md-6">      
+        <p>
+	Kontakt:</p>
+	<p>
+        <b>PentagridÂ AG</b><br>
+        Bahnhofstrasse 7<br>
+        CH-9470 Buchs SG<br>
+	Schweiz
+        </p>
+	<p>
+        <b>PentagridÂ GmbH</b><br>
+        Am Treptower Park 75<br>
+        DE-12435 Berlin<br>
+        Deutschland
+        </p>
+	<p>
+        Telefon: +41 81 511 2556<br>	
+	E-Mail: <a href="mailto:kontakt@pentagrid.ch">kontakt@pentagrid.ch</a>
+	</p>
+      </div>
+
+
+      <div class="col-md-3">
+      <p>
+	   Folgen Sie uns:
+      </p>
+      <p>
+	   <a href="../../rss.xml" aria-label="RSS">
+	   <i class="fas fa-rss fa-2x fa-inverse mr-2" aria-hidden="true"></i>
+	   </a>
+
+	   <a rel="me" href="https://infosec.exchange/@pentagrid" aria-label="Mastodon">
+	   <i class="fab fa-mastodon fa-2x fa-inverse mr-2" aria-hidden="true"></i>
+	   </a>
+
+	   <a href="https://bsky.app/profile/pentagrid.bsky.social" aria-label="Bluesky">
+	   <i class="fab fa-bluesky fa-2x fa-inverse mr-2" aria-hidden="true"></i>
+	   </a>
+
+	   <a href="https://github.com/pentagridsec" aria-label="Github">
+	   <i class="fab fa-github fa-2x fa-inverse mr-2" aria-hidden="true"></i>
+	   </a>
+	   
+	   <a href="https://www.linkedin.com/company/67698060/" aria-label="LinkedIn">
+	   <i class="fab fa-linkedin fa-2x fa-inverse mr-2" aria-hidden="true"></i>
+	   </a>
+	   
+	   <a href="https://www.xing.com/companies/pentagridag" aria-label="Xing">
+	   <i class="fab fa-xing fa-2x fa-inverse mr-2" aria-hidden="true"></i>
+	   </a>
+	   	   
+	</p>	   
+      </div>
+
+
+    </div>
+
+    <!-- Second footer row -->
+    <div class="row">
+      <div class="col-md-3">
+        <p>
+	   
+	   
+	   Â© 2025 PentagridÂ AG. Inhalte sind urheberrechtlich geschÃ¼tzt.
+        </p>
+      </div>
+    </div>
+    
+  </div>
+</footer>
+</body>
+</html>

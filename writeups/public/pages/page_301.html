@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Beautiful Jekyll | MIT license | Copyright Dean Attali 2016 -->
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+
+  <title>Bug Writeup: FBCTF IDOR</title>
+
+  <meta name="author" content="George Osterweil" />
+
+  
+
+  <link rel="alternate" type="application/rss+xml" title="George Osterweil - My personal site. I mostly break things, but sometimes I'll code things also." href="/feed.xml" />
+
+  
+
+  
+
+  
+
+
+  
+    
+      
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css" />
+
+
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    
+      <link rel="stylesheet" href="/css/bootstrap-social.css" />
+    
+      <link rel="stylesheet" href="/css/main.css" />
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+    
+  
+
+  
+
+  
+
+  
+
+    <!-- Facebook OpenGraph tags -->
+  
+
+  
+  <meta property="og:title" content="Bug Writeup: FBCTF IDOR" />
+  
+
+   
+  <meta property="og:description" content="Introduction This is a writeup for a bug I found a few months ago in Facebookâs Capture the Flag Platform (FBCTF). It was a fixed a while ago, so Iâll describe the bug and how I found it. I discovered this bug when participating in Facebookâs 2018 CTF and Bug...">
+  
+
+
+  <meta property="og:type" content="website" />
+
+  
+  <meta property="og:url" content="https://georgeosterweil.com/2019-02-20-fbctf-idor/" />
+  <link rel="canonical" href="https://georgeosterweil.com/2019-02-20-fbctf-idor/" />
+  
+
+  
+  <meta property="og:image" content="https://georgeosterweil.com/img/avatar-icon.jpg" />
+  
+
+
+  <!-- Twitter summary cards -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@" />
+  <meta name="twitter:creator" content="@" />
+
+  
+  <meta name="twitter:title" content="Bug Writeup: FBCTF IDOR" />
+  
+
+  
+  <meta name="twitter:description" content="Introduction This is a writeup for a bug I found a few months ago in Facebookâs Capture the Flag Platform (FBCTF). It was a fixed a while ago, so Iâll describe the bug and how I found it. I discovered this bug when participating in Facebookâs 2018 CTF and Bug...">
+  
+
+  
+  <meta name="twitter:image" content="https://georgeosterweil.com/img/avatar-icon.jpg" />
+  
+
+  
+
+  
+
+</head>
+
+
+  <body>
+
+    
+
+  
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+        <a class="navbar-brand" href="https://georgeosterweil.com">George Osterweil</a>
+      
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+      
+        
+          <li>
+            
+
+
+
+
+
+
+<a href="/aboutme">About</a>
+
+          </li>
+        
+        
+      </ul>
+    </div>
+
+	
+	<div class="avatar-container">
+	  <div class="avatar-img-border">
+	    <a href="https://georgeosterweil.com">
+	      <img class="avatar-img" src="/img/avatar-icon.jpg" />
+		</a>
+	  </div>
+	</div>
+	
+
+  </div>
+</nav>
+
+
+    <!-- TODO this file has become a mess, refactor it -->
+
+
+
+
+  <div id="header-big-imgs" data-num-img=1
+    
+	  
+	  
+	    
+		  data-img-src-1="head.png"
+		
+	  
+    
+  ></div>
+
+
+<header class="header-section has-img">
+
+<div class="big-img intro-header">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-heading">
+          <h1>Bug Writeup: FBCTF IDOR</h1>
+		  
+		  
+		  
+		  <span class="post-meta">Posted on February 20, 2019</span>
+		  
+        </div>
+      </div>
+    </div>
+  </div>
+  <span class='img-desc'></span>
+</div>
+
+<div class="intro-header no-img">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-heading">
+          <h1>Bug Writeup: FBCTF IDOR</h1>
+		  
+		  
+		  
+		  <span class="post-meta">Posted on February 20, 2019</span>
+		  
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+      
+
+      <article role="main" class="blog-post">
+        <h3 id="introduction">Introduction</h3>
+<p>This is a writeup for a bug I found a few months ago in Facebookâs Capture the Flag Platform (FBCTF). It was a fixed a while ago, so Iâll describe the bug and how I found it. I discovered this bug when participating in Facebookâs 2018 CTF and Bug Bounty Competition, an invite-only CTF for students involved with Facebook Securityâs university initiatives. As the CTF was intended to test improvements to the FBCTF platform, bonus points were awarded to contestants who reported valid security vulnerabilities in the platform. Reporting the bug gave me a significant point advantage and ultimately helped me finish first place in the CTF.</p>
+
+<p>The CTF organizers informed me that I could also submit the finding to Facebookâs regular bug bounty program. I did so, but was informed it had unfortunately already been reported a couple months prior.</p>
+
+<h3 id="background">Background</h3>
+<p>FBCTF is a Capture the Flag platform written in Hack, a programming language written by Facebook which is based on PHP. As with most CTF platforms, FBCTF allows for flags to be set as inactive, meaning that they arenât accessible to competitors yet. This allows new flags to be rolled out gradually during the competition, a common practice in CTF events. Flags can also have associated attachments, usually files like Wireshark .pcaps. These attachments usually will hide the flag somewhere in their content.</p>
+
+<h3 id="poc-url">POC URL</h3>
+<p>As an authenticated regular user, request:<br />
+<a href="https://example.com/data/attachment.php?id=xxx">https://example.com/data/attachment.php?id=xxx</a><br />
+Replace xx with the id of an inactive attachment, and it will be accessible. This parameter is sequential and easily brute forced.</p>
+<h3 id="vulnerability-description">Vulnerability Description</h3>
+
+<p>The FBCTF platform prior to the most recent commit has an Insecure Direct Object Reference (IDOR) vulnerability in the endpoint <code class="highlighter-rouge">/data/attachment.php</code>.<br />
+By changing the <code class="highlighter-rouge">id</code> GET parameter, any registered team can access a flagâs attachment, even if that flag is not active.</p>
+
+<p>As mentioned in the introduction, flag attachments in a CTF event usually contain the flag itself. As such, teams exploiting this vulnerability could gain an unfair advantage in a CTF event by finding the flag before itâs active, and then submitting it the moment the flag becomes active. This would seriously compromise the competitive integrity of a CTF event due to the time advantage granted by early access to attachments.</p>
+
+<h3 id="exploit-steps">Exploit Steps</h3>
+<p>To reproduce this vulnerability, I used a Ubuntu 16.04 VM running the previous commit of FBCTF. I created two flags, one active and one inactive.<br />
+<img src="active_flag.png" alt="active flag" /></p>
+
+<p><img src="inactive_flag.png" alt="inactive flag" /></p>
+
+<p>To exploit the IDOR:</p>
+<ol>
+  <li>Log in as a non-admin user</li>
+  <li>From the gameboard, select an active flag.<br />
+<img src="active_modal.png" alt="flag dialog" /></li>
+  <li>Click the attachment link below the description, and view the captured request in Burp. Right click and choose âSend to Repeaterâ. <br />
+<img src="burp_1.png" alt="active flag request" /></li>
+  <li>Change the id parameter to the id of an inactive flag.</li>
+  <li>You will see the flagâs attachment.<br />
+<img src="burp_2.png" alt="inactive flag request" /></li>
+</ol>
+
+<h3 id="affected-source">Affected Source</h3>
+<p>The vulnerability exists in the function genGenerateData() in <a href="https://github.com/facebook/fbctf/blob/eb06ec4490593e14d6a2d2f09e3b1cd2229800ab/src/data/attachment.php#L6">/data/Attachment.php</a> <br />
+The code does not check whether the flag is active before serving the attachment.</p>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="nv">$attachment_id</span> <span class="o">=</span> <span class="nx">idx</span><span class="p">(</span><span class="nx">Utils</span><span class="o">::</span><span class="na">getGET</span><span class="p">(),</span> <span class="s1">'id'</span><span class="p">,</span> <span class="s1">''</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">intval</span><span class="p">(</span><span class="nv">$attachment_id</span><span class="p">)</span> <span class="o">!==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nv">$attachment_exists</span> <span class="o">=</span>
+        <span class="nx">await</span> <span class="nx">Attachment</span><span class="o">::</span><span class="na">genCheckExists</span><span class="p">(</span><span class="nb">intval</span><span class="p">(</span><span class="nv">$attachment_id</span><span class="p">));</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nv">$attachment_exists</span> <span class="o">===</span> <span class="kc">true</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$attachment</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Attachment</span><span class="o">::</span><span class="na">gen</span><span class="p">(</span><span class="nb">intval</span><span class="p">(</span><span class="nv">$attachment_id</span><span class="p">));</span>
+        <span class="nv">$filename</span> <span class="o">=</span> <span class="nv">$attachment</span><span class="o">-&gt;</span><span class="na">getFilename</span><span class="p">();</span>
+        <span class="c1">// Remove all non alpahnum characters from filename - allow international chars, dash, underscore, and period
+</span>        <span class="nv">$filename</span> <span class="o">=</span> <span class="nb">preg_replace</span><span class="p">(</span><span class="s1">'/[^\p{L}\p{N}_\-.]+/u'</span><span class="p">,</span> <span class="s1">'_'</span><span class="p">,</span> <span class="nv">$filename</span><span class="p">);</span>
+        <span class="nv">$data</span> <span class="o">=</span> <span class="nb">file_get_contents</span><span class="p">(</span><span class="nx">Attachment</span><span class="o">::</span><span class="na">attachmentsDir</span><span class="o">.</span><span class="nv">$filename</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">downloadSend</span><span class="p">(</span><span class="nv">$filename</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
+</code></pre></div></div>
+<p>In the fixed version, the developers added an active flag check:</p>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      <span class="nv">$attachment_exists</span> <span class="o">=</span>
+        <span class="nx">await</span> <span class="nx">Attachment</span><span class="o">::</span><span class="na">genCheckExists</span><span class="p">(</span><span class="nb">intval</span><span class="p">(</span><span class="nv">$attachment_id</span><span class="p">));</span>
+      <span class="nv">$active</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Attachment</span><span class="o">::</span><span class="na">checkActive</span><span class="p">(</span><span class="nb">intval</span><span class="p">(</span><span class="nv">$attachment_id</span><span class="p">));</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nv">$attachment_exists</span> <span class="o">===</span> <span class="kc">true</span> <span class="o">&amp;&amp;</span> <span class="nv">$active</span> <span class="o">===</span> <span class="kc">true</span><span class="p">)</span>
+</code></pre></div></div>
+<h3 id="disclosure-timeline">Disclosure Timeline</h3>
+<p>Sep 4, 2018: Reported to Facebook CTF and Bug Bounty Competition</p>
+
+<p>Sep 5, 2018: Bug hotfixed in CTF event, bonus points awarded</p>
+
+<p>Sep 6, 2018: Re-submitted report to Facebook Whitehat program</p>
+
+<p>Sep 11, 2018: Response from Facebook: âWe are working to reproduce your reportâ</p>
+
+<p>Sep 11, 2018: Further response from Facebook: âThe vulnerability was already reported to us by another researcher and we are working on a fixâ Report closed</p>
+
+<p>Sep 11, 2018: Fix pushed to FBCTF master branch on Github</p>
+
+<p>Feb 19, 2019: Publicly disclosed</p>
+
+      </article>
+
+      
+
+      
+        <!-- Check if any share-links are active -->
+
+
+
+
+
+      
+
+      <ul class="pager blog-pager">
+        
+        <li class="previous">
+          <a href="/2019-02-16-hi/" data-toggle="tooltip" data-placement="top" title="Hi">&larr; Previous Post</a>
+        </li>
+        
+        
+        <li class="next">
+          <a href="/2019-03-02-HTB-access/" data-toggle="tooltip" data-placement="top" title="Hack the Box Writeup: Access">Next Post &rarr;</a>
+        </li>
+        
+      </ul>
+
+      
+        <div class="disqus-comments">
+          
+        </div>
+          
+        <div class="staticman-comments">
+          
+
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+
+    <footer>
+  <div class="container beautiful-jekyll-footer">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links"><li><a href="/feed.xml" title="RSS"><span class="fa-stack fa-lg" aria-hidden="true">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                </span>
+                <span class="sr-only">RSS</span>
+              </a>
+            </li><li><a href="mailto:george@georgesterweil.com" title="Email me"><span class="fa-stack fa-lg" aria-hidden="true">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                </span>
+                <span class="sr-only">Email me</span>
+              </a>
+            </li><li><a href="https://github.com/gosterweil" title="GitHub"><span class="fa-stack fa-lg" aria-hidden="true">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                </span>
+                <span class="sr-only">GitHub</span>
+              </a>
+            </li><li><a href="https://linkedin.com/in/george-osterweil" title="LinkedIn"><span class="fa-stack fa-lg" aria-hidden="true">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                </span>
+                <span class="sr-only">LinkedIn</span>
+              </a>
+            </li></ul>
+      <p class="copyright text-muted">
+      George Osterweil
+      &nbsp;&bull;&nbsp;
+      2023
+
+      
+      &nbsp;&bull;&nbsp;
+      <a href="https://georgeosterweil.com">georgeosterweil.com</a>
+      
+
+      
+      </p>
+          <!-- Please don't remove this, keep my open source work credited :) -->
+    <p class="theme-by text-muted">
+      Theme by
+      <a href="https://deanattali.com/beautiful-jekyll/">beautiful-jekyll</a>
+    </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  
+    
+
+
+
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script>
+      	if (typeof jQuery == 'undefined') {
+      	  document.write('<script src="/js/jquery-1.11.2.min.js"></scr' + 'ipt>');
+      	}
+      </script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+	<script src="/js/bootstrap.min.js"></script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+	<script src="/js/main.js"></script>
+    
+  
+
+
+  
+  </body>
+</html>

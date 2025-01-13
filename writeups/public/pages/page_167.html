@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head><script type="text/javascript" src="/_static/js/bundle-playback.js?v=HxkREWBo" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=txqj7nKC" charset="utf-8"></script>
+<script>window.RufflePlayer=window.RufflePlayer||{};window.RufflePlayer.config={"autoplay":"on","unmuteOverlay":"hidden"};</script>
+<script type="text/javascript" src="/_static/js/ruffle/ruffle.js"></script>
+<script type="text/javascript">
+    __wm.init("https://web.archive.org/web");
+  __wm.wombat("https://pmoc.netsoc.cloud/oauth-idor-pii/","20210920030213","https://web.archive.org/","web","/_static/",
+	      "1632106933");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=3PDvdIFv" />
+<!-- End Wayback Rewrite JS Include -->
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Oauth client secret leak and possible IDOR leading to PII Disclosure</title>
+    <link rel="stylesheet" href="/web/20210920030213cs_/https://pmoc.netsoc.cloud/assets/built/screen.css?v=dede57791f">
+    <link rel="stylesheet" href="https://web.archive.org/web/20210920030213cs_/https://fonts.googleapis.com/css?family=Raleway:400,400i,500,700,700i,800&amp;subset=latin-ext">
+
+    
+
+    <link rel="icon" href="/web/20210920030213im_/https://pmoc.netsoc.cloud/favicon.ico" type="image/x-icon"/>
+    <link rel="canonical" href="https://web.archive.org/web/20210920030213/https://pmoc.netsoc.cloud/oauth-idor-pii/"/>
+    <meta name="referrer" content="no-referrer-when-downgrade"/>
+    <link rel="amphtml" href="https://web.archive.org/web/20210920030213/https://pmoc.netsoc.cloud/oauth-idor-pii/amp/"/>
+    
+    <meta property="og:site_name" content="Monke's Cybersecurity Blog"/>
+    <meta property="og:type" content="article"/>
+    <meta property="og:title" content="Oauth client secret leak and possible IDOR leading to PII Disclosure"/>
+    <meta property="og:description" content="Given that this vulnerability is still in triage, I will give a vague overview of the bug chain. Whilst working on my automation, I was investigating various interesting subdomains that it had found. One given subdomain was owned by a SaaS bug bounty program. I was reading the HTML source"/>
+    <meta property="og:url" content="https://web.archive.org/web/20210920030213/https://pmoc.netsoc.cloud/oauth-idor-pii/"/>
+    <meta property="article:published_time" content="2021-08-26T15:13:13.000Z"/>
+    <meta property="article:modified_time" content="2021-08-26T15:13:13.000Z"/>
+    <meta property="article:tag" content="Info Disclosure"/>
+    <meta property="article:tag" content="IDOR"/>
+    
+    <meta property="article:publisher" content="https://www.facebook.com/ghost"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="Oauth client secret leak and possible IDOR leading to PII Disclosure"/>
+    <meta name="twitter:description" content="Given that this vulnerability is still in triage, I will give a vague overview of the bug chain. Whilst working on my automation, I was investigating various interesting subdomains that it had found. One given subdomain was owned by a SaaS bug bounty program. I was reading the HTML source"/>
+    <meta name="twitter:url" content="https://web.archive.org/web/20210920030213im_/https://pmoc.netsoc.cloud/oauth-idor-pii/"/>
+    <meta name="twitter:label1" content="Written by"/>
+    <meta name="twitter:data1" content="Monke"/>
+    <meta name="twitter:label2" content="Filed under"/>
+    <meta name="twitter:data2" content="Info Disclosure, IDOR"/>
+    <meta name="twitter:site" content="@pmofcats"/>
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://web.archive.org/web/20210920030213/https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Monke&#x27;s Cybersecurity Blog",
+        "url": "https://web.archive.org/web/20210920030213/https://pmoc.netsoc.cloud/",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://web.archive.org/web/20210920030213/https://pmoc.netsoc.cloud/favicon.ico"
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Monke",
+        "image": {
+            "@type": "ImageObject",
+            "url": "https://web.archive.org/web/20210920030213/https://pmoc.netsoc.cloud/content/images/2021/03/pfp.png",
+            "width": 658,
+            "height": 613
+        },
+        "url": "https://web.archive.org/web/20210920030213/https://pmoc.netsoc.cloud/author/monke/",
+        "sameAs": []
+    },
+    "headline": "Oauth client secret leak and possible IDOR leading to PII Disclosure",
+    "url": "https://web.archive.org/web/20210920030213/https://pmoc.netsoc.cloud/oauth-idor-pii/",
+    "datePublished": "2021-08-26T15:13:13.000Z",
+    "dateModified": "2021-08-26T15:13:13.000Z",
+    "keywords": "Info Disclosure, IDOR",
+    "description": "Given that this vulnerability is still in triage, I will give a vague overview\nof the bug chain.\n\nWhilst working on my automation, I was investigating various interesting\nsubdomains that it had found. One given subdomain was owned by a SaaS bug bounty\nprogram. I was reading the HTML source of various pages, especially on one page\nfor Oauth login, which we&#x27;ll refer to as oauth.example.com. I noticed a\nJavascript file containing what seemed to be environment variables on the\n&quot;Username Recovery&quot; pa",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://web.archive.org/web/20210920030213/https://pmoc.netsoc.cloud/"
+    }
+}
+    </script>
+
+    <meta name="generator" content="Ghost 3.41"/>
+    <link rel="alternate" type="application/rss+xml" title="Monke's Cybersecurity Blog" href="https://web.archive.org/web/20210920030213/https://pmoc.netsoc.cloud/rss/"/>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://web.archive.org/web/20210920030213js_/https://www.googletagmanager.com/gtag/js?id=UA-191383326-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-191383326-1');
+</script>
+</head>
+
+<body class="post-template tag-info-disclosure tag-idor">
+    <div class="site">
+        <header class="site-header">
+    <div class="navbar">
+        <a class="logo" href="https://web.archive.org/web/20210920030213/https://pmoc.netsoc.cloud/">
+        <span class="logo-text">Monke&#x27;s Cybersecurity Blog</span>
+</a>        <div class="burger"></div>
+    </div>
+</header>        <div class="site-content">
+            
+<div class="content-area">
+    <main class="site-main">
+            <article class="post tag-info-disclosure tag-idor no-image no-image single-post">
+                                    <header class="post-header">
+            <div class="post-tags">
+                    <a class="post-tag post-tag-info-disclosure" href="/web/20210920030213/https://pmoc.netsoc.cloud/tag/info-disclosure/" title="Info Disclosure">Info Disclosure</a>
+                    <a class="post-tag post-tag-idor" href="/web/20210920030213/https://pmoc.netsoc.cloud/tag/idor/" title="IDOR">IDOR</a>
+            </div>
+        <h1 class="post-title">Oauth client secret leak and possible IDOR leading to PII Disclosure</h1>
+            <div class="post-meta">
+        <span class="post-meta-item post-meta-date">
+            <time datetime="2021-08-26">
+                    Aug 26, 2021
+            </time>
+        </span>
+        <span class="post-meta-item post-meta-length">2 min read</span>
+    </div>
+</header>                <div class="post-content kg-canvas u-text-format">
+                    <p>Given that this vulnerability is still in triage, I will give a vague overview of the bug chain.</p><p>Whilst working on my automation, I was investigating various interesting subdomains that it had found. One given subdomain was owned by a SaaS bug bounty program. I was reading the HTML source of various pages, especially on one page for Oauth login, which we'll refer to as <em>oauth.example.com</em>. I noticed a Javascript file containing what seemed to be environment variables on the "Username Recovery" page.</p><figure class="kg-card kg-image-card"><img src="https://web.archive.org/web/20210920030213im_/https://pmoc.netsoc.cloud/content/images/2021/08/jsfile.png" class="kg-image" alt srcset="https://web.archive.org/web/20210920030213im_/https://pmoc.netsoc.cloud/content/images/size/w600/2021/08/jsfile.png 600w, https://web.archive.org/web/20210920030213im_/https://pmoc.netsoc.cloud/content/images/2021/08/jsfile.png 905w" sizes="(min-width: 720px) 720px"></figure><p>Crafting a POST request, I was able to generate an access token. At this point, I contacted my good friend Bendtheory for some collaboration. Now, this JS file contained a subdomain called <em>api.example.com</em>. Bendy decided to shove this subdomain into Gau, and it returned some endpoints. This gave us several site-specific ID values.</p><!--kg-card-begin: html--><img src="https://web.archive.org/web/20210920030213im_/https://media2.giphy.com/media/3o6Ztf2G1n4a5QQlWw/giphy.gif"><!--kg-card-end: html--><p>Next, opening Burpsuite, we booted up Intruder, and tested those endpoints with our newfound access token, and enumerated across the previously mentioned ID values. Incredibly, the access token gave us access to PII of the BBP's customers. Using data gathered from those endpoints, we were able to extensively test the API. A <em>widgets</em> endpoint leaked the entire list of users for a given organisation. We also looked on Github for more endpoints to test.</p><p>This leaked:</p><ul><li> Full Names</li><li>Usernames</li><li>Email Addresses</li><li>Phone Numbers</li><li>Employee IDs</li><li>Job Titles</li><li>Login Timestamps</li></ul><p>The <em>/me</em> endpoint returned the following message:</p><!--kg-card-begin: markdown--><p><code>User '&lt;system&gt;' does not fall under the requested users hierarchy.</code></p>
+<!--kg-card-end: markdown--><!--kg-card-begin: html--><img src="https://web.archive.org/web/20210920030213im_/https://media1.giphy.com/media/3o6ZsXHLRnkgPtEYVi/giphy.gif?cid=790b7611b9c1fb3812f04034dc6a2221dd6a78c75b29df5f&amp;rid=giphy.gif&amp;ct=g"><!--kg-card-end: html--><p>It is not clear whether the PII was accessible due to an IDOR in the ID parameter, or special privileges given to the &lt;system&gt; user. Given that the ID values are publicly available, it would be possible to enumerate the PII of any customer in a highly targeted manner.</p><p>This vulnerability was triaged as Critical.</p>
+                </div>
+                <div class="share container medium">
+    <a class="share-item share-facebook" href="https://web.archive.org/web/20210920030213/https://www.facebook.com/sharer.php?u=https://pmoc.netsoc.cloud/oauth-idor-pii/" target="_blank">
+        <i class="icon icon-facebook"></i>
+        <span class="share-label">Share</span>
+    </a>
+    <a class="share-item share-twitter" href="https://web.archive.org/web/20210920030213/https://twitter.com/intent/tweet?url=https://pmoc.netsoc.cloud/oauth-idor-pii/&amp;text=Oauth%20client%20secret%20leak%20and%20possible%20IDOR%20leading%20to%20PII%20Disclosure" target="_blank">
+        <i class="icon icon-twitter"></i>
+        <span class="share-label">Tweet</span>
+    </a>
+    <a class="share-item share-pinterest" href="https://web.archive.org/web/20210920030213/https://pinterest.com/pin/create/button/?url=https://pmoc.netsoc.cloud/oauth-idor-pii/&amp;media=&amp;description=Oauth%20client%20secret%20leak%20and%20possible%20IDOR%20leading%20to%20PII%20Disclosure" target="_blank">
+        <i class="icon icon-pinterest"></i>
+        <span class="share-label">Pin</span>
+    </a>
+</div>            </article>
+                <section class="author container medium">
+            <div class="author-image-placeholder u-placeholder">
+                <img class="author-image lazyload u-object-fit" data-src="/content/images/size/w150/2021/03/pfp.png" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Monke">
+            </div>
+        <div class="author-wrapper">
+            <header class="author-header">
+                <div class="author-header-wrapper">
+                    <h4 class="author-name">Monke</h4>
+                    <div class="author-social">
+                        <a class="author-social-item author-more" href="/web/20210920030213/https://pmoc.netsoc.cloud/author/monke/">More posts</a>
+                    </div>
+                </div>
+            </header>
+                <div class="author-location">
+                    <i class="icon icon-map-marker"></i> Ireland
+                </div>
+            <div class="author-bio">I&#x27;m a college student studying Computer Science. </div>
+        </div>
+    </section>
+                <section class="related-posts container medium">
+            <h3 class="related-title">You might also like...</h3>
+            <div class="post-feed">
+                    <article class="post-list post tag-info-disclosure no-image no-image">
+                                                <div class="post-wrapper">
+                            <header class="post-header">
+            <div class="post-meta">
+        <span class="post-meta-item post-meta-date">
+            <time datetime="2021-07-19">
+                    2 months ago
+            </time>
+        </span>
+        <span class="post-meta-item post-meta-length">2 min read</span>
+    </div>
+        <h4 class="post-title">
+            <a class="post-title-link" href="/web/20210920030213/https://pmoc.netsoc.cloud/github-dorking/">Github Dorking for sensitive information</a>
+        </h4>
+</header>                            <footer class="post-footer">
+    <div class="post-author">
+    </div>
+    <a class="read-more button-arrow-right" href="/web/20210920030213/https://pmoc.netsoc.cloud/github-dorking/">
+        Read More
+        <i class="button-arrow-icon icon icon-arrow-right"></i>
+    </a>
+</footer>                        </div>
+                    </article>
+                    <article class="post-list post tag-info-disclosure no-image no-image">
+                                                <div class="post-wrapper">
+                            <header class="post-header">
+            <div class="post-meta">
+        <span class="post-meta-item post-meta-date">
+            <time datetime="2021-03-27">
+                    6 months ago
+            </time>
+        </span>
+        <span class="post-meta-item post-meta-length">2 min read</span>
+    </div>
+        <h4 class="post-title">
+            <a class="post-title-link" href="/web/20210920030213/https://pmoc.netsoc.cloud/on-exposed-jira-dashboards/">On Exposed Jira Dashboards</a>
+        </h4>
+</header>                            <footer class="post-footer">
+    <div class="post-author">
+    </div>
+    <a class="read-more button-arrow-right" href="/web/20210920030213/https://pmoc.netsoc.cloud/on-exposed-jira-dashboards/">
+        Read More
+        <i class="button-arrow-icon icon icon-arrow-right"></i>
+    </a>
+</footer>                        </div>
+                    </article>
+                    <article class="post-list post tag-idor no-image no-image">
+                                                <div class="post-wrapper">
+                            <header class="post-header">
+            <div class="post-meta">
+        <span class="post-meta-item post-meta-date">
+            <time datetime="2021-03-04">
+                    6 months ago
+            </time>
+        </span>
+        <span class="post-meta-item post-meta-length">1 min read</span>
+    </div>
+        <h4 class="post-title">
+            <a class="post-title-link" href="/web/20210920030213/https://pmoc.netsoc.cloud/01_21_idor/">January 2021 - My first bounty</a>
+        </h4>
+</header>                            <footer class="post-footer">
+    <div class="post-author">
+    </div>
+    <a class="read-more button-arrow-right" href="/web/20210920030213/https://pmoc.netsoc.cloud/01_21_idor/">
+        Read More
+        <i class="button-arrow-icon icon icon-arrow-right"></i>
+    </a>
+</footer>                        </div>
+                    </article>
+            </div>
+        </section>
+            </main>
+</div>
+        </div>
+        <footer class="site-footer">
+    <div class="copyright">
+        Powered by <a href="https://web.archive.org/web/20210920030213/https://ghost.org/" target="_blank">Ghost</a>
+    </div>
+    <a class="logo" href="https://web.archive.org/web/20210920030213/https://pmoc.netsoc.cloud/">
+        <span class="logo-text">Monke&#x27;s Cybersecurity Blog</span>
+</a>    <div class="footer-social">
+            <a class="footer-social-item" href="https://web.archive.org/web/20210920030213/https://www.facebook.com/ghost" target="_blank" rel="noopener noreferrer">
+                <i class="icon icon-facebook"></i>
+            </a>
+            <a class="footer-social-item" href="https://web.archive.org/web/20210920030213/https://twitter.com/pmofcats" target="_blank" rel="noopener noreferrer">
+                <i class="icon icon-twitter"></i>
+            </a>
+        <a class="footer-social-item footer-social-item-rss" href="https://web.archive.org/web/20210920030213/https://feedly.com/i/subscription/feed/https://pmoc.netsoc.cloud/rss/" target="_blank" rel="noopener noreferrer">
+            <i class="icon icon-rss"></i>
+        </a>
+    </div>
+</footer>    </div>
+
+    <div class="dimmer"></div>
+
+    <aside class="off-canvas">
+    <div class="canvas-close">
+        <i class="canvas-icon icon icon-window-close"></i>
+    </div>
+        <nav class="main-menu widget">
+            <ul class="nav-list u-plain-list">
+        <li class="menu-item menu-item-home">
+            <a class="menu-item-link u-underline" href="https://web.archive.org/web/20210920030213/https://monke.ie/">Home</a>
+        </li>
+        <li class="menu-item menu-item-about-me">
+            <a class="menu-item-link u-underline" href="https://web.archive.org/web/20210920030213/https://monke.ie/about-me">About Me</a>
+        </li>
+</ul>
+        </nav>
+    <section class="widget widget-facebook">
+    <h4 class="widget-title">Follow Us on Facebook</h4>
+    <div class="fb-page" data-href="" data-small-header="false" data-hide-cover="false" data-show-facepile="true" data-hide-cta="false" data-tabs="none">
+    </div>
+</section><div class="widget widget-recent">
+    <h4 class="widget-title">Recent Posts</h4>
+            <div class="recent-posts">
+                    <article class="recent">
+                        <header class="post-header">
+            <div class="post-meta">
+        <span class="post-meta-item post-meta-date">
+            <time datetime="2021-09-19">
+                    8 hours ago
+            </time>
+        </span>
+        <span class="post-meta-item post-meta-length">2 min read</span>
+    </div>
+        <h5 class="post-title">
+            <a class="post-title-link" href="/web/20210920030213/https://pmoc.netsoc.cloud/hacktivitycon-ctf-2021/">H@cktivityCon 2021 CTF</a>
+        </h5>
+</header>                    </article>
+                    <article class="recent">
+                        <header class="post-header">
+            <div class="post-meta">
+        <span class="post-meta-item post-meta-date">
+            <time datetime="2021-08-26">
+                    24 days ago
+            </time>
+        </span>
+        <span class="post-meta-item post-meta-length">2 min read</span>
+    </div>
+        <h5 class="post-title">
+            <a class="post-title-link" href="/web/20210920030213/https://pmoc.netsoc.cloud/oauth-idor-pii/">Oauth client secret leak and possible IDOR leading to PII Disclosure</a>
+        </h5>
+</header>                    </article>
+                    <article class="recent">
+                        <header class="post-header">
+            <div class="post-meta">
+        <span class="post-meta-item post-meta-date">
+            <time datetime="2021-08-17">
+                    a month ago
+            </time>
+        </span>
+        <span class="post-meta-item post-meta-length">4 min read</span>
+    </div>
+        <h5 class="post-title">
+            <a class="post-title-link" href="/web/20210920030213/https://pmoc.netsoc.cloud/intigriti-xss-challenge-august-2021/">Intigriti XSS Challenge - August 2021 - A venture into prototype pollution</a>
+        </h5>
+</header>                    </article>
+            </div>
+</div><section class="widget widget-links">
+    <h4 class="widget-title">Useful Links</h4>
+    
+</section></aside>
+    <script>
+        if (document.getElementsByClassName('tag-feed').length) {
+            document.getElementsByClassName('tag-feed')[0].style.height = window.innerHeight + 'px';
+        }
+    </script>
+
+    <script src="https://web.archive.org/web/20210920030213js_/https://code.jquery.com/jquery-3.5.1.min.js" integrity="" crossorigin="anonymous">
+    </script>
+    <script src="/web/20210920030213js_/https://pmoc.netsoc.cloud/assets/built/main.min.js?v=dede57791f"></script>
+
+    <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://web.archive.org/web/20210920030213js_/https://connect.facebook.net/en_US/sdk.js#xfbml=1&amp;version=v3.2"></script>
+    
+
+    
+</body>
+
+</html><!--
+     FILE ARCHIVED ON 03:02:13 Sep 20, 2021 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 07:35:49 Jan 11, 2025.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 0.867
+  exclusion.robots: 0.044
+  exclusion.robots.policy: 0.022
+  esindex: 0.018
+  cdx.remote: 8.332
+  LoadShardBlock: 593.563 (3)
+  PetaboxLoader3.datanode: 344.802 (4)
+  PetaboxLoader3.resolve: 430.106 (2)
+  load_resource: 369.798
+-->

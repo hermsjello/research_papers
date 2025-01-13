@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head><script type="text/javascript" src="/_static/js/bundle-playback.js?v=HxkREWBo" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=txqj7nKC" charset="utf-8"></script>
+<script>window.RufflePlayer=window.RufflePlayer||{};window.RufflePlayer.config={"autoplay":"on","unmuteOverlay":"hidden"};</script>
+<script type="text/javascript" src="/_static/js/ruffle/ruffle.js"></script>
+<script type="text/javascript">
+    __wm.init("https://web.archive.org/web");
+  __wm.wombat("https://monke.ie/unicorn-programs/","20211106100048","https://web.archive.org/","web","/_static/",
+	      "1636192848");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=3PDvdIFv" />
+<!-- End Wayback Rewrite JS Include -->
+
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+
+    <title>4 Crits in 48 hours: Unicorn Programs</title>
+
+    <meta name="HandheldFriendly" content="True"/>
+    <meta name="MobileOptimized" content="320"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <link rel="stylesheet" type="text/css" href="/web/20211106100048cs_/https://monke.ie/assets/css/normalize.css?v=2b4353425d"/>
+    <link rel="stylesheet" type="text/css" href="/web/20211106100048cs_/https://monke.ie/assets/css/screen.css?v=2b4353425d"/>
+
+    <link rel="icon" href="/web/20211106100048im_/https://monke.ie/favicon.ico" type="image/x-icon"/>
+    <link rel="canonical" href="https://web.archive.org/web/20211106100048/https://monke.ie/unicorn-programs/"/>
+    <meta name="referrer" content="no-referrer-when-downgrade"/>
+    <link rel="amphtml" href="https://web.archive.org/web/20211106100048/https://monke.ie/unicorn-programs/amp/"/>
+    
+    <meta property="og:site_name" content="Monke's Security Blog"/>
+    <meta property="og:type" content="article"/>
+    <meta property="og:title" content="4 Crits in 48 hours: Unicorn Programs"/>
+    <meta property="og:description" content="This is a review of the four critical vulnerabilities I discovered in a private program. All terms will be generalised to protect the program. PrimerBounty Program provides a service, &quot;SaaS A&quot;.A customer buys &quot;SaaS A&quot; to manage a specific service, &quot;Service A&quot;.Companies managed by the customer are managed"/>
+    <meta property="og:url" content="https://web.archive.org/web/20211106100048/https://monke.ie/unicorn-programs/"/>
+    <meta property="og:image" content="https://web.archive.org/web/20211106100048im_/https://static.ghost.org/v3.0.0/images/publication-cover.png"/>
+    <meta property="article:published_time" content="2021-11-06T01:24:40.000Z"/>
+    <meta property="article:modified_time" content="2021-11-06T01:54:23.000Z"/>
+    <meta property="article:tag" content="IDOR"/>
+    <meta property="article:tag" content="Info Disclosure"/>
+    
+    <meta property="article:publisher" content="https://www.facebook.com/ghost"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content="4 Crits in 48 hours: Unicorn Programs"/>
+    <meta name="twitter:description" content="This is a review of the four critical vulnerabilities I discovered in a private program. All terms will be generalised to protect the program. PrimerBounty Program provides a service, &quot;SaaS A&quot;.A customer buys &quot;SaaS A&quot; to manage a specific service, &quot;Service A&quot;.Companies managed by the customer are managed"/>
+    <meta name="twitter:url" content="https://web.archive.org/web/20211106100048im_/https://monke.ie/unicorn-programs/"/>
+    <meta name="twitter:image" content="https://web.archive.org/web/20211106100048im_/https://static.ghost.org/v3.0.0/images/publication-cover.png"/>
+    <meta name="twitter:label1" content="Written by"/>
+    <meta name="twitter:data1" content="Monke"/>
+    <meta name="twitter:label2" content="Filed under"/>
+    <meta name="twitter:data2" content="IDOR, Info Disclosure"/>
+    <meta name="twitter:site" content="@ghost"/>
+    <meta property="og:image:width" content="2709"/>
+    <meta property="og:image:height" content="938"/>
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://web.archive.org/web/20211106100048/https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Monke&#x27;s Security Blog",
+        "url": "https://web.archive.org/web/20211106100048/https://monke.ie/",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://web.archive.org/web/20211106100048/https://monke.ie/content/images/2021/10/monkepfp.png"
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Monke",
+        "image": {
+            "@type": "ImageObject",
+            "url": "https://web.archive.org/web/20211106100048/https://monke.ie/content/images/2021/10/monkepfp-1.png",
+            "width": 184,
+            "height": 167
+        },
+        "url": "https://web.archive.org/web/20211106100048/https://monke.ie/author/monke/",
+        "sameAs": []
+    },
+    "headline": "4 Crits in 48 hours: Unicorn Programs",
+    "url": "https://web.archive.org/web/20211106100048/https://monke.ie/unicorn-programs/",
+    "datePublished": "2021-11-06T01:24:40.000Z",
+    "dateModified": "2021-11-06T01:54:23.000Z",
+    "keywords": "IDOR, Info Disclosure",
+    "description": "This is a review of the four critical vulnerabilities I discovered in a private\nprogram. All terms will be generalised to protect the program.\n\nPrimer\n * Bounty Program provides a service, &quot;SaaS A&quot;.\n * A customer buys &quot;SaaS A&quot; to manage a specific service, &quot;Service A&quot;.\n * Companies managed by the customer are managed through the &quot;SaaS&quot; API and\n   customers have a Customer-ID. Companies have a Company-ID. Employees have a\n   User-ID.\n\nCrit 1: Privilege Escalation\nThe forms that would be emailed t",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://web.archive.org/web/20211106100048/https://monke.ie/"
+    }
+}
+    </script>
+
+    <meta name="generator" content="Ghost 4.19"/>
+    <link rel="alternate" type="application/rss+xml" title="Monke's Security Blog" href="https://web.archive.org/web/20211106100048/https://monke.ie/rss/"/>
+    <script defer src="https://web.archive.org/web/20211106100048js_/https://unpkg.com/@tryghost/portal@~1.12.0/umd/portal.min.js" data-ghost="https://monke.ie/" crossorigin="anonymous"></script><style id="gh-members-styles">.gh-post-upgrade-cta-content,
+.gh-post-upgrade-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-align: center;
+    width: 100%;
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.gh-post-upgrade-cta-content {
+    border-radius: 8px;
+    padding: 40px 4vw;
+}
+
+.gh-post-upgrade-cta h2 {
+    color: #ffffff;
+    font-size: 28px;
+    letter-spacing: -0.2px;
+    margin: 0;
+    padding: 0;
+}
+
+.gh-post-upgrade-cta p {
+    margin: 20px 0 0;
+    padding: 0;
+}
+
+.gh-post-upgrade-cta small {
+    font-size: 16px;
+    letter-spacing: -0.2px;
+}
+
+.gh-post-upgrade-cta a {
+    color: #ffffff;
+    cursor: pointer;
+    font-weight: 500;
+    box-shadow: none;
+    text-decoration: underline;
+}
+
+.gh-post-upgrade-cta a:hover {
+    color: #ffffff;
+    opacity: 0.8;
+    box-shadow: none;
+    text-decoration: underline;
+}
+
+.gh-post-upgrade-cta a.gh-btn {
+    display: block;
+    background: #ffffff;
+    text-decoration: none;
+    margin: 28px 0 0;
+    padding: 8px 18px;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.gh-post-upgrade-cta a.gh-btn:hover {
+    opacity: 0.92;
+}</style><style>:root {--ghost-accent-color: #15171A;}</style>
+</head>
+<body class="post-template tag-idor tag-info-disclosure">
+
+    
+
+<main class="content" role="main">
+
+    <article class="post tag-idor tag-info-disclosure no-image">
+
+        <header class="post-header">
+            <a id="blog-logo" href="https://web.archive.org/web/20211106100048/https://monke.ie/">
+                    <img src="https://web.archive.org/web/20211106100048im_/https://monke.ie/content/images/2021/10/monkepfp.png" alt="Blog Logo"/>
+            </a>
+            <div class="inner">
+                <nav class="site-nav">
+    <div class="site-nav-left">
+            <ul class="nav">
+    <li class="nav-home"><a href="https://web.archive.org/web/20211106100048/https://monke.ie/">Home</a></li>
+</ul>
+
+    </div>
+</nav>
+            </div>
+        </header>
+
+
+        <span class="post-meta"><time datetime="2021-11-06">06 Nov 2021</time> on <a href="/web/20211106100048/https://monke.ie/tag/idor/">IDOR</a> | <a href="/web/20211106100048/https://monke.ie/tag/info-disclosure/">Info Disclosure</a></span>
+
+        <h1 class="post-title">4 Crits in 48 hours: Unicorn Programs</h1>
+
+        <section class="post-content">
+            <p>This is a review of the four critical vulnerabilities I discovered in a private program. All terms will be generalised to protect the program.</p><h2 id="primer">Primer</h2><ul><li>Bounty Program provides a service, "SaaS A".</li><li>A customer buys "SaaS A" to manage a specific service, "Service A".</li><li>Companies managed by the customer are managed through the "SaaS" API and customers have a Customer-ID. Companies have a Company-ID. Employees have a User-ID.</li></ul><h2 id="crit-1-privilege-escalation">Crit 1: Privilege Escalation</h2><p>The forms that would be emailed to new employees for onboarding leaked the Company-ID in one of the requests. It was apparent that E-Tags were used as some kind of response disguise. It was weird.</p><p>This Company-ID is powerful - and I chained it with a lack of protection on registering admin users to promote myself to administrator in the company. I was also able to list live API keys and other secrets with only the Company-ID.</p><p>The Get User endpoint for administrator leaked the Customer-ID. I used the Customer-Id in the API to list all of the customer's companies, along with their Company-IDs. This let me register admin users in any of them with the previous flaw. Admin users can do anything.</p><p><strong>Impact</strong>: Pre-onboarding employee could take over any company managed by the customer.</p><h2 id="crit-2-sensitive-plaintext-in-url">Crit 2: Sensitive Plaintext in URL.</h2><p>For some reason, the object storage used by the API actually had the Customer-ID in its URL. This let me, as a pre-onboarding employee again, take over any company managed by the customer. Crazy. Aside from obvious MITM issues, of course.</p><h2 id="crit-3-cookie-substitution">Crit 3: Cookie Substitution</h2><p>There was a page on the front-end with very limited functionality, designed for users with Role A. However, I discovered that Role A's cookies could be used in the <em>back-end</em> API to bypass the restrictions in place. They could be used to get the Customer-ID again. You know how it goes.</p><h2 id="crit-4-pre-auth-idor">Crit 4: Pre-auth IDOR</h2><p>There was an API endpoint that allows the user to fetch API keys, secret keys, and more sensitive info with only the Company-ID. This alone would be a P2 at most because the Company-ID is somewhat obscure and hard to guess. However, it becomes P1 when the Company-ID can be used, without any authentication, to fetch API keys.</p><p> The previous endpoints needed authentication in some form, or an employee onboarding invitation. This didn't - it was public. This means that anyone who knew a company's Company-ID could take over <em>its managing customer's entire company list, without any initial authentication. </em>Brutal.</p><h2 id="conclusion">Conclusion</h2><p>This program triaged and paid within 18 hours of each report. It was exemplary program management. More programs would do well to learn from them. The program closed itself to submissions shortly after my fourth critical find. I'm sorry, program. You were great.</p>
+        </section>
+
+        <footer class="post-footer">
+
+                <section class="author">
+                    <h4>Monke</h4>
+                    <p>I&#x27;m a college student studying Computer Science. </p>
+                </section>
+        </footer>
+
+
+    </article>
+
+</main>
+
+
+    <footer class="site-footer">
+        <!-- <a class="subscribe icon-feed" href="https://monke.ie/rss/"><span class="tooltip">Subscribe!</span></a> -->
+        <div class="inner">
+             <section class="copyright">All content copyright <a href="/web/20211106100048/https://monke.ie/">Monke&#x27;s Security Blog</a> &copy; 2021 &bull; All rights reserved.</section>
+             <section class="poweredby">Proudly published with <a class="icon-ghost" href="https://web.archive.org/web/20211106100048/http://ghost.org/"><span class="icon-ghost-text">Ghost</span></a> in <a href="https://web.archive.org/web/20211106100048/https://github.com/mityalebedev/The-Shell">The Shell</a> theme.</section>
+        </div>
+    </footer>
+
+    
+
+</body>
+</html>
+<!--
+     FILE ARCHIVED ON 10:00:48 Nov 06, 2021 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 07:34:01 Jan 11, 2025.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 0.522
+  exclusion.robots: 0.025
+  exclusion.robots.policy: 0.015
+  esindex: 0.01
+  cdx.remote: 16.354
+  LoadShardBlock: 281.211 (3)
+  PetaboxLoader3.resolve: 213.47 (3)
+  PetaboxLoader3.datanode: 125.254 (4)
+  load_resource: 159.709
+-->

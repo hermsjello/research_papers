@@ -1,0 +1,2826 @@
+<!doctype html>
+<html
+    class="overflow-x-hidden"
+    lang="en"
+>
+<head>
+    <meta charset="utf-8">
+
+    <meta
+        http-equiv="X-UA-Compatible"
+        content="IE=edge"
+    >
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+    >
+    
+        <title>Security Flaws Exposed in QuickBlox Chat And Video Framework | Claroty</title>
+<meta name="description" content="Team82 and Check Point Research collaborated to look at the security of the popular QuickBlox SDK and API. Learn more." />
+<meta property="og:type" content="article" />
+<meta name="author" content="Amir Preminger">
+<meta name="author" content="Sharon Brizinov">
+<meta name="author" content="Itay Cohen">
+<meta name="author" content="Oleg Ilushin">
+<meta property="article:published_time" content="2023-07-12T13:00:00+00:00">
+<meta property="article:modified_time" content="2023-10-30T13:36:01+00:00">
+<meta property="og:title" content="Security Flaws Exposed in QuickBlox Chat And Video Framework" />
+<meta property="og:description" content="Team82 and Check Point Research collaborated to look at the security of the popular QuickBlox SDK and API. Learn more." />
+<meta property="og:url" content="https://claroty.com/team82/research/major-security-flaws-in-popular-quickblox-chat-and-video-framework-expose-sensitive-data-of-millions" />
+<meta property="og:site_name" content="Claroty" />
+<meta property="og:locale" content="en_US" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@Claroty" />
+<meta name="twitter:title" content="Security Flaws Exposed in QuickBlox Chat And Video Framework" />
+<meta name="twitter:description" content="Team82 and Check Point Research collaborated to look at the security of the popular QuickBlox SDK and API. Learn more." />
+<meta property="og:image" content="https://claroty.com/img/asset/YXNzZXRzL3F1aWNrYmxveC1ibG9nLWdyYXBoaWNzLTAzLTE2ODg1NzE0ODMuanBn/quickblox-blog-graphics-03-1688571483.jpg?p=seo_pro_og&s=2e9950e31db483bdadd34a0e46389f46" />
+<meta property="og:image:width" content="1146" />
+<meta property="og:image:height" content="600" />
+<meta property="og:image:alt" content="Security Flaws Exposed in QuickBlox Chat And Video Framework" />
+<meta name="twitter:image" content="https://claroty.com/img/asset/YXNzZXRzL3F1aWNrYmxveC1ibG9nLWdyYXBoaWNzLTAzLTE2ODg1NzE0ODMuanBn/quickblox-blog-graphics-03-1688571483.jpg?p=seo_pro_twitter&s=c5c5c8ca56ed6953c6e2dd9d96b921af" />
+<meta name="twitter:image:alt" content="Security Flaws Exposed in QuickBlox Chat And Video Framework" />
+<link href="https://claroty.com/" rel="home" />
+<link href="https://claroty.com/team82/research/major-security-flaws-in-popular-quickblox-chat-and-video-framework-expose-sensitive-data-of-millions" rel="canonical" />
+<link type="text/plain" rel="author" href="https://claroty.com/humans.txt" />
+        <link rel="alternate" type="application/atom+xml" title="Team82 Disclosure Dashboard"  href="/team82/disclosure-dashboard/feed/atom" />
+<link rel="alternate" type="application/rss+xml" title="Team82 Disclosure Dashboard"  href="/team82/disclosure-dashboard/feed" />
+    
+
+    
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=2">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=2">
+    <link rel="manifest" href="/site.webmanifest?v=2">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg?v=2" color="#e20ab7">
+    <link rel="shortcut icon" href="/favicon.ico?v=2">
+    <meta name="msapplication-TileColor" content="#9f00a7">
+    <meta name="theme-color" content="#000000">
+
+    <link rel="preload" as="style" href="https://claroty.com/build/assets/claroty-83uWGvIO.css" /><link rel="modulepreload" href="https://claroty.com/build/assets/claroty-Bx4nbM7b.js" /><link rel="stylesheet" href="https://claroty.com/build/assets/claroty-83uWGvIO.css" data-navigate-track="reload" /><script type="module" src="https://claroty.com/build/assets/claroty-Bx4nbM7b.js" data-navigate-track="reload"></script>
+    
+    <!-- Livewire Styles --><style >[wire\:loading][wire\:loading], [wire\:loading\.delay][wire\:loading\.delay], [wire\:loading\.inline-block][wire\:loading\.inline-block], [wire\:loading\.inline][wire\:loading\.inline], [wire\:loading\.block][wire\:loading\.block], [wire\:loading\.flex][wire\:loading\.flex], [wire\:loading\.table][wire\:loading\.table], [wire\:loading\.grid][wire\:loading\.grid], [wire\:loading\.inline-flex][wire\:loading\.inline-flex] {display: none;}[wire\:loading\.delay\.none][wire\:loading\.delay\.none], [wire\:loading\.delay\.shortest][wire\:loading\.delay\.shortest], [wire\:loading\.delay\.shorter][wire\:loading\.delay\.shorter], [wire\:loading\.delay\.short][wire\:loading\.delay\.short], [wire\:loading\.delay\.default][wire\:loading\.delay\.default], [wire\:loading\.delay\.long][wire\:loading\.delay\.long], [wire\:loading\.delay\.longer][wire\:loading\.delay\.longer], [wire\:loading\.delay\.longest][wire\:loading\.delay\.longest] {display: none;}[wire\:offline][wire\:offline] {display: none;}[wire\:dirty]:not(textarea):not(input):not(select) {display: none;}:root {--livewire-progress-bar-color: #2299dd;}[x-cloak] {display: none !important;}</style>
+    
+    <style>
+        :root {
+            --accent-color: 
+    
+    #cc0030
+;
+        }
+    </style>
+
+    <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MWHFVG2');</script>
+<!-- End Google Tag Manager -->
+<!-- Hotjar Tracking Code for Claroty.com -->
+<script>
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:3443429,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+</script>
+<script src="https://cdn.bizible.com/scripts/bizible.js" async="" id="bizible-settings" data-form-provider="discover.claroty.com"></script>
+
+<meta name="google-site-verification" content="r30S7x7xVlJwZSgWdeXToxMEsKD8_V3LPx3D691sVhU" />
+
+<!-- Transperfect -->
+
+<!-- End Transperfect -->
+
+<!-- Start of HubSpot Cookie Blocking Code -->
+<script type="application/javascript" id="hs-cookie-banner-scan" data-hs-allowed="true" src="https://js.hs-banner.com/cookie-scanning/20307279/d44331c910ed5795dcf0803f1f8c018d0b78673e308a02768f49c5dce853cf48.js"></script>
+<!-- End of HubSpot Cookie Blocking Code -->
+
+
+</head>
+<body class="flex flex-col min-h-screen overflow-x-hidden bg-black text-light team82">
+    
+    
+    <div class="container flex flex-wrap items-center py-4">
+    <a
+        href="/team82"
+        class="mr-auto"
+    >
+        <img
+            src="https://claroty.com/build/assets/team82-logo-white-BGiCQ9zb.svg"
+            class="h-16"
+            alt="Team82 Logo"
+        >
+    </a>
+
+    
+    <ul class="relative flex flex-wrap items-center gap-x-4 md-max:order-last md-max:w-full md-max:-mx-2 md-max:mt-4">
+        
+    <li class="">
+        <a
+            href="/team82/research"
+            class="flex items-center gap-2 p-2"
+        >Research</a>
+    </li>
+
+        
+    <li class="">
+        <a
+            href="/team82/disclosure-dashboard"
+            class="flex items-center gap-2 p-2"
+        >Vulnerability Dashboard</a>
+    </li>
+
+        
+    <li class="">
+        <a
+            href="/team82/talks"
+            class="flex items-center gap-2 p-2"
+        >Talks</a>
+    </li>
+
+        
+    <li class="">
+        <a
+            href="/team82/#tools"
+            class="flex items-center gap-2 p-2"
+        >Tools</a>
+    </li>
+
+        
+    <li class="">
+        <a
+            href="/team82/#about"
+            class="flex items-center gap-2 p-2"
+        >About</a>
+    </li>
+
+    </ul>
+
+    <span class="h-8 ml-8 mr-2 border-l md-max:hidden border-white/20"></span>
+
+    <a href="/">
+        <img
+            src="https://claroty.com/build/assets/logo-solid-white-DcRiqKcD.svg"
+            class="h-6 ml-6"
+            alt="Claroty"
+        >
+    </a>
+</div>
+    <div class="grow">
+        <div class="py-20 bg-black text-light">
+    <div class="container grid grid-cols-1 md:grid-cols-2 gap-28">
+        <div class="space-y-6">
+    
+    <a href="/team82/research" target="_self" class="text-link text-sm">
+        <svg class="svg-inline--fa fa-arrow-left" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"></path></svg>
+        <span>Return to Team82 Research</span>
+    </a>
+    
+    <h1 itemprop="headline" class="h-6xl">Major Security Flaws in Popular QuickBlox Chat And Video Framework Expose Sensitive Data Of Millions</h1>
+    <div class="flex flex-wrap items-center font-semibold gap-x-2">
+    
+        
+            <div class="flex items-center gap-4" itemprop="author" itemscope itemtype="https://schema.org/Person">
+                
+                <span itemprop="name">
+                    Amir Preminger, 
+                </span>
+            </div>
+        
+            <div class="flex items-center gap-4" itemprop="author" itemscope itemtype="https://schema.org/Person">
+                
+                <span itemprop="name">
+                    Sharon Brizinov, 
+                </span>
+            </div>
+        
+            <div class="flex items-center gap-4" itemprop="author" itemscope itemtype="https://schema.org/Person">
+                
+                <span itemprop="name">
+                    Itay Cohen, 
+                </span>
+            </div>
+        
+            <div class="flex items-center gap-4" itemprop="author" itemscope itemtype="https://schema.org/Person">
+                
+                <span itemprop="name">
+                    Oleg Ilushin
+                </span>
+            </div>
+        
+
+        <span class="mx-2 text-subtle">/</span>
+    
+    <span itemprop="datePublished" content="2023-07-12T13:00:00+00:00">July 12th, 2023</span>
+    
+    
+    
+</div>
+</div>
+        
+            <div>
+                
+                    <img
+                        src="/img/asset/YXNzZXRzL3F1aWNrYmxveC1ibG9nLWdyYXBoaWNzLTAzLTE2ODg1NzE0ODMuanBn/quickblox-blog-graphics-03-1688571483.jpg?fm=webp&fit=crop&w=800&h=450&s=447921ddad01df1b15ca8141f9af8f1d"
+                        width="800"
+                        height="450"
+                        class="object-cover mb-10 aspect-video"
+                        alt="Security Flaws Exposed in QuickBlox Chat And Video Framework"
+                    >
+                
+            </div>
+        
+    </div>
+</div>
+
+<div class="py-20 bg-gray-900 text-light">
+    <div class="container grid grid-cols-1 gap-20 md:grid-cols-3 md:gap-28">
+        <div class="md:col-span-2">
+            <div itemprop="text" class="rich-text lg:text-lg">
+    
+    
+    
+        <h2>Executive Summary</h2><ul><li><p>Team82 and Check Point Research (CPR) collaborated to look at the security of the popular QuickBlox software development kit (SDK) and application programming interface (API). </p></li><li><p>QuickBlox’s development framework runs under the hood of popular chat and video applications in critical industries such as finance and telemedicine. </p></li><li><p>Together, we uncovered <a href="https://claroty.com/team82/disclosure-dashboard">critical vulnerabilities</a> that could put the personal information of millions of users at risk. </p></li><li><p>Team82 and CPR also demonstrate proof-of-concept exploits against applications running the QuickBlox SDK and API. </p></li><li><p>We explain a number of unique attacks that could allow a threat actor to, for example, access smart intercoms and remotely open doors, or leak patient data from telemedicine applications. </p></li><li><p>QuickBlox worked closely with Team82 and CPR to address our disclosure, and has fixed the vulnerabilities via a new secure architecture design and new API.</p></li></ul><h4>Table of Contents</h4><ol><li><p><a href="#QuickBlox-Architecture">QuickBlox Architecture</a></p></li><li><p><a href="#QuickBlox-Vulnerabilities">QuickBlox Vulnerabilities</a></p></li><li><p><a href="#Impact">Impact</a></p></li><li><p><a href="#Exploiting-an-Intercom-IoT-Platform:-ROZCOM">Exploiting an Intercom IoT Platform: ROZCOM</a></p></li><li><p><a href="#Controlling-All-the-Intercoms">Controlling All the Intercoms</a></p></li><li><p><a href="#Reviewing-[REDACTED]-Telemedicine-Platform">Reviewing [REDACTED] Telemedicine Platform</a></p></li><li><p><a href="#PII-Leak-en-Masse">PII Leak en Masse</a></p></li><li><p><a href="#Conclusion">Conclusion</a></p></li></ol><h2>What is Quickblox Framework?</h2><p>Real-time chat and video services available within telemedicine, finance, and smart IoT device applications used by millions of people, rely on the popular <a target="_blank" href="https://quickblox.com/">QuickBlox framework</a>. QuickBlox supplies mobile and web application developers with a SDK and APIs to deliver not only user management, real-time public and private chat features, for example, but also security features that ensure compliance with HIPAA and GDPR.</p><p>Claroty Team82, in collaboration with <a target="_blank" href="https://research.checkpoint.com/">Check Point Research (CPR)</a>, conducted a joint research project to look at the security of the QuickBlox SDK. Together, we uncovered a few major security vulnerabilities in the QuickBlox platform architecture that, if exploited, could allow threat actors to access tens of thousands of applications’ user databases and put millions of user records at risk.</p>
+    
+        
+
+<figure class="relative flex flex-wrap justify-center">
+    
+        <img
+            src="/img/asset/YXNzZXRzL3F1aWNrYmxveC1mZWF0dXJlcy5wbmc=/quickblox-features.png?fm=webp&fit=crop&s=3a24a1575fbb94041a29c87de1048ee0"
+            width="1234"
+            height="1054"
+            class="  "
+            style="width: ; max-width: ; height: ; mix-blend-mode: ; object-fit: ;"
+            loading="lazy"
+            alt="QuickBlox Features"
+        >
+        
+            <button
+                type="button"
+                class="absolute flex w-10 h-10 text-white rounded-full -top-4 -right-4 bg-gradient-to-r from-purple to-pink hover:scale-110"
+                x-data
+                @click="$store.modal.open('3923553d528d495e1826a1849b8d7a90')"
+            >
+                <i class="m-auto fa-regular fa-plus"></i>
+            </button>
+        
+    
+    
+        <figcaption class="w-full mt-4 text-sm text-center">QuickBlox chat and video feature (Source: QuickBlox)</figcaption>
+    
+</figure>
+
+
+    
+        
+    
+
+    
+        <p>In this report, we will demonstrate exploits against multiple applications running the QuickBlox SDK under the hood, specifically against smart intercom and telemedicine applications. By chaining the vulnerabilities we identified with other flaws in the targeted applications, we found unique ways to carry out attacks that enabled us to remotely open doors via intercom applications, and also leak patient information from a major telemedicine platform. </p><p>Team82 and CPR worked closely with QuickBlox to resolve all of the uncovered vulnerabilities. QuickBlox committed to the fix by designing a new, secure architecture and API, and urging its customers to migrate to the latest version. We would like to express our gratitude and appreciation.</p>
+    
+        <div id="QuickBlox-Architecture"></div>
+    
+        <h2>QuickBlox Architecture</h2><p>QuickBlox is a chat and video calling platform for developing iOS, Android, and web applications. It provides an API for authentication, user management, chat, and messaging, file management, etc, and an easy-to-use SDK that enables voice and video features. Therefore, it’s no surprise we first encountered QuickBlox while researching a particular intercom mobile application that would rely on such a framework. This led us down the research rabbit hole into both the QuickBlox framework and various applications that use it.</p><p>Before we understand the vulnerabilities we uncovered in QuickBlox, we must understand how a developer integrates the framework into their application. First, developers must <a target="_blank" href="https://admin.quickblox.com/signup">create a QuickBlox account</a>. A new application is then created using the QuickBlox dashboard that  will generate the following credentials for the application: </p><ul><li><p>Application ID</p></li><li><p>Authorization Key</p></li><li><p>Authorization Secret</p></li><li><p>Account Key</p></li></ul>
+    
+        
+
+<figure class="relative flex flex-wrap justify-center">
+    
+        <img
+            src="/img/asset/YXNzZXRzL3F1aWNrYmxveC1kYXNoYm9hcmQucG5n/quickblox-dashboard.png?fm=webp&fit=crop&s=d8024309a65b6cd4a4056f530556c347"
+            width="1714"
+            height="1200"
+            class="  "
+            style="width: ; max-width: ; height: ; mix-blend-mode: ; object-fit: ;"
+            loading="lazy"
+            alt="QuickBlox Dashboard"
+        >
+        
+            <button
+                type="button"
+                class="absolute flex w-10 h-10 text-white rounded-full -top-4 -right-4 bg-gradient-to-r from-purple to-pink hover:scale-110"
+                x-data
+                @click="$store.modal.open('a7ba52ba0714c5fba8dc9256eb4926dc')"
+            >
+                <i class="m-auto fa-regular fa-plus"></i>
+            </button>
+        
+    
+    
+        <figcaption class="w-full mt-4 text-sm text-center">The QuickBlox account creation dashboard.</figcaption>
+    
+</figure>
+
+
+    
+        
+    
+
+    
+        <p>With these pieces of information, the application can <a target="_blank" href="https://docs.quickblox.com/reference/create-session">request</a> a <code>QB-Token</code> that  will be used in further API requests. The given token is an application-level token that has limited functionality.</p>
+    
+        
+
+<figure class="relative flex flex-wrap justify-center">
+    
+        <img
+            src="/img/asset/YXNzZXRzL3F1aWNrYmxveC10b2tlbi1yZXF1ZXN0LnBuZw==/quickblox-token-request.png?fm=webp&fit=crop&s=e1d82114c16df3e06f14b9c1ee0ba5df"
+            width="659"
+            height="162"
+            class="  "
+            style="width: ; max-width: ; height: ; mix-blend-mode: ; object-fit: ;"
+            loading="lazy"
+            alt="Requesting an application-level QB Token"
+        >
+        
+            <button
+                type="button"
+                class="absolute flex w-10 h-10 text-white rounded-full -top-4 -right-4 bg-gradient-to-r from-purple to-pink hover:scale-110"
+                x-data
+                @click="$store.modal.open('58d7e4c9a67ed759c089d6dc18557410')"
+            >
+                <i class="m-auto fa-regular fa-plus"></i>
+            </button>
+        
+    
+    
+        <figcaption class="w-full mt-4 text-sm text-center">Requesting an application-level QB Token via a /session.json API route</figcaption>
+    
+</figure>
+
+
+    
+        
+    
+
+    
+        <p>Once the application retrieves the <code>QB-Token</code>, it enables users to <a target="_blank" href="https://docs.quickblox.com/reference/log-in">log in</a> on top of this session so the session will have the context of the logged-in user. This is done by providing both the application session and the user credentials. Now the session is fully authenticated and authorized with the user permissions.</p><p>However, this way of authentication exposes a major flaw: an application session is required to create a user session. This means that each user must obtain an application session, which requires knowledge of the application’s secrets, specifically the Application ID, Authorization Key, Authorization Secret, and Account Key. In order to make it technologically applicable, app developers had to make sure these secret keys are accessible to all users. When looking at applications using QuickBlox, we noticed that most of them chose to simply insert the application secrets into the application.</p>
+    
+        
+
+<figure class="relative flex flex-wrap justify-center">
+    
+        <img
+            src="/img/asset/YXNzZXRzL3NjcmVlbnNob3QtMjAyMy0wNy0wNS1hdC0xMS4wNS4wMi1hbS5wbmc=/screenshot-2023-07-05-at-11.05.02-am.png?fm=webp&fit=crop&s=18b28f7092d9946bea9f3564b8708008"
+            width="1236"
+            height="228"
+            class="  "
+            style="width: ; max-width: ; height: ; mix-blend-mode: ; object-fit: ;"
+            loading="lazy"
+            alt="Sample of application credentials from QuickBlox"
+        >
+        
+            <button
+                type="button"
+                class="absolute flex w-10 h-10 text-white rounded-full -top-4 -right-4 bg-gradient-to-r from-purple to-pink hover:scale-110"
+                x-data
+                @click="$store.modal.open('10d5bd83d6fb84f7879f70cf600f33a8')"
+            >
+                <i class="m-auto fa-regular fa-plus"></i>
+            </button>
+        
+    
+    
+        <figcaption class="w-full mt-4 text-sm text-center">A sample of application credentials from QuickBlox documentation.</figcaption>
+    
+</figure>
+
+
+    
+        
+    
+
+    
+        <p>When we first noticed that the official documentation guides customers to add secrets (<code>AUTH_KEY, AUTH_SECRET</code>) to their applications, we felt uneasy. It’s never a good idea to hide secret authentication tokens in applications because they are considered public information and can be easily extracted using various methods, from reverse engineering to dynamic analysis with <a target="_blank" href="https://frida.re/">Frida</a>.</p>
+    
+        <div id="QuickBlox-Vulnerabilities"></div>
+    
+        <h2>QuickBlox Vulnerabilities</h2><p>Once we understood the QuickBlox architecture, we decided to look into the QuickBlox API and examine what we can access using “public” information: application secret keys. We discovered a few critical vulnerabilities in the QuickBlox API that could allow attackers to leak the user database from many popular applications.</p><p>By default, QuickBlox settings allow anyone with an application-level session to retrieve sensitive information such as:</p><ul><li><p>Get a full list of all users using the <code>/users.json</code> API route</p></li><li><p>Get PII user information by ID using the <code>/ID.json</code> API route - including name, email, phone, etc</p></li><li><p>Create new users using the <code>/users.json</code></p></li></ul><p>This means that anyone who is able to extract the static QuickBlox settings from the application will be able to retrieve personal user information, below, of <strong>all</strong> application users, and also be able to create multiple attacker-controlled accounts.</p>
+    
+        
+
+<figure class="relative flex flex-wrap justify-center">
+    
+        <img
+            src="/img/asset/YXNzZXRzL3F1aWNrYmxveF91c2VyLWluZm8ucG5n/quickblox_user-info.png?fm=webp&fit=crop&s=c6616d97c44effb730032b4252a31e12"
+            width="1054"
+            height="814"
+            class="  "
+            style="width: ; max-width: ; height: ; mix-blend-mode: ; object-fit: ;"
+            loading="lazy"
+            alt="Obtained user information"
+        >
+        
+            <button
+                type="button"
+                class="absolute flex w-10 h-10 text-white rounded-full -top-4 -right-4 bg-gradient-to-r from-purple to-pink hover:scale-110"
+                x-data
+                @click="$store.modal.open('4df23dc844009e542a69fa24e330f8ac')"
+            >
+                <i class="m-auto fa-regular fa-plus"></i>
+            </button>
+        
+    
+    
+        <figcaption class="w-full mt-4 text-sm text-center">Example of user information obtained from an application using QuickBlox.</figcaption>
+    
+</figure>
+
+
+    
+        
+    
+
+    
+        <p>Although the default API settings do allow all of the above (get the full list of users, retrieve user information, and create new users), application owners can limit the application-level API access using an inner-settings menu.</p>
+    
+        
+
+<figure class="relative flex flex-wrap justify-center">
+    
+        <img
+            src="/img/asset/YXNzZXRzL3F1aWNrYmxveF9wcml2YWN5LnBuZw==/quickblox_privacy.png?fm=webp&fit=crop&s=5b9dc3214ee6ab819e0b6c5ca9324383"
+            width="657"
+            height="501"
+            class="  "
+            style="width: ; max-width: ; height: ; mix-blend-mode: ; object-fit: ;"
+            loading="lazy"
+            alt="QuickBlox user privacy settings"
+        >
+        
+            <button
+                type="button"
+                class="absolute flex w-10 h-10 text-white rounded-full -top-4 -right-4 bg-gradient-to-r from-purple to-pink hover:scale-110"
+                x-data
+                @click="$store.modal.open('6beb799a0d3bfb3d5b88652f465aec14')"
+            >
+                <i class="m-auto fa-regular fa-plus"></i>
+            </button>
+        
+    
+    
+        <figcaption class="w-full mt-4 text-sm text-center">Available QuickBlox user privacy settings. </figcaption>
+    
+</figure>
+
+
+    
+        
+    
+
+    
+        <p>While this does offer some mitigation to the vulnerabilities we discovered, we discovered another way of leaking the entire application database. By creating a rogue user account, it is possible for attackers to leak specific user information by accessing the <code>/ID.json</code>, where ID is the sequential user ID. Since QuickBlox uses sequential IDs, by simply brute-forcing a limited range, it is possible to leak all of an application’s user information. However, from a check we performed regarding this privacy setting on all of the applications we researched and retrieved the keys for, we discovered that only a handful chose to disable this API.</p>
+    
+        <div id="Impact"></div>
+    
+        <h2>Impact</h2><p>To understand the full scope of the issue, we decided to explore what types of applications are using QuickBlox SDK and what would be the potential risk if attackers were to extract the secret tokens. Using various methods such as Google dorking, searches in <a href="https://bevigil.com/">BeVigil</a>, and other search engines we were able to find and extract QB tokens from dozens of different applications. Here’s a partial list:</p>
+    
+        
+
+<figure class="relative flex flex-wrap justify-center">
+    
+        <img
+            src="/img/asset/YXNzZXRzL3F1aWNrYmxveC1ibG9nLWdyYXBoaWNzLTAxLmpwZw==/quickblox-blog-graphics-01.jpg?fm=webp&fit=crop&s=366c9e983c3e72c2888e0ba065c13fbc"
+            width="1166"
+            height="1618"
+            class="  "
+            style="width: ; max-width: ; height: ; mix-blend-mode: ; object-fit: ;"
+            loading="lazy"
+            alt="Quick Blox Redacted info"
+        >
+        
+            <button
+                type="button"
+                class="absolute flex w-10 h-10 text-white rounded-full -top-4 -right-4 bg-gradient-to-r from-purple to-pink hover:scale-110"
+                x-data
+                @click="$store.modal.open('99d4053afcbbc0a1dc0e05a45d675198')"
+            >
+                <i class="m-auto fa-regular fa-plus"></i>
+            </button>
+        
+    
+    
+</figure>
+
+
+    
+        
+    
+
+    
+        <p>Extracting keys was not as simple as looking in the code. In some instances, the keys were encrypted, while in others, the code was heavily obfuscated. In some extreme cases they were dynamically received encrypted from a remote server. However, regardless of the application, any app would require the secret key and somehow use it with a QuickBlox server. Developers can only put in obstacles to complicate recovering the application key; which will always be accessible to attackers, whether it takes five minutes to extract or two hours.</p><p>After extracting the tokens from each application we tried to understand how attackers could leverage their attack based on the application’s capabilities and/or further vulnerabilities in the application platform. We found many interesting attack vectors; here we will explain two scenarios - Cloud-based Intercom solution and a Telemedicine app.<br></p>
+    
+        <div id="Exploiting-an-Intercom-IoT-Platform:-ROZCOM"></div>
+    
+        <h2>Exploiting an Intercom IoT Platform: ROZCOM</h2><p>The first attack vector we’ll explore involves finding and exploiting vulnerabilities in a cloud-based IoT platform used to manage smart intercoms sold by Rozcom, an Israel-based vendor that sells intercoms for residential and commercial use cases. </p><p>The company’s solutions include video intercoms that allow users to see who’s attempting to access a building or apartment that connects to Rozcom’s cloud-based management system via the QuickBlox platform.  All of these connections and features can be accessed via Rozcom’s mobile application. </p><p>We found multiple vulnerabilities in the Rozcom architecture that enabled us to download all user databases and perform full account takeover attacks. As a result, we were able to take over all Rozcom intercom devices, giving us full control and allowing us us to access device cameras and microphones, wiretap into its feed, open doors managed by the devices, and more.</p><p>Rozcom, for a year-and-a-half, ignored our attempts to privately disclose our findings with the <a target="_blank" href="https://www.gov.il/en/Departments/faq/cve_advisories">Israel National Cyber Directorate (INCD)</a> acting as coordinator. INCD on May 4 allocated and published <a target="_blank" href="https://www.gov.il/en/Departments/faq/cve_advisories">CVE-2023-31184</a>, <a target="_blank" href="https://www.gov.il/en/Departments/faq/cve_advisories">CVE-2023-31185</a> for the two vulnerabilities we uncovered.</p><h3>Rozcom Architecture</h3>
+    
+        
+
+<figure class="relative flex flex-wrap justify-center">
+    
+        <img
+            src="/img/asset/YXNzZXRzL3F1aWNrYmxveC1ibG9nLWdyYXBoaWNzLTAyLmpwZw==/quickblox-blog-graphics-02.jpg?fm=webp&fit=crop&s=e54ee810447e4c8b793a4089cede283d"
+            width="1321"
+            height="1022"
+            class="  "
+            style="width: ; max-width: ; height: ; mix-blend-mode: ; object-fit: ;"
+            loading="lazy"
+            alt="Rozcom platform architecture"
+        >
+        
+            <button
+                type="button"
+                class="absolute flex w-10 h-10 text-white rounded-full -top-4 -right-4 bg-gradient-to-r from-purple to-pink hover:scale-110"
+                x-data
+                @click="$store.modal.open('5b4f066f2a105c552bdbbe7bcc365975')"
+            >
+                <i class="m-auto fa-regular fa-plus"></i>
+            </button>
+        
+    
+    
+        <figcaption class="w-full mt-4 text-sm text-center">Rozcom platform architecture.</figcaption>
+    
+</figure>
+
+
+    
+        
+    
+
+    
+        <p>Rozcom uses many identifiers for its assets. First, each building has a unique 10-digit identification number (for example: <span style="color: #E20AB7;">171XXXX708</span>), used to differentiate between different buildings on the platform. Unlike build IDs, which are constructed from “random” numbers, users are identified using the following structure: <span style="color: #E20AB7;">BUILDING ID</span> + <span style="color: #8815FF;">PHONE NUMBER</span> (for example: <span style="color: #E20AB7;">171XXXX708</span> <span style="color: #8815FF;">0501234567</span>). This means that the user ID is actually constructed from two different identifiers that should be kept a secret.</p><p>Users can use the <a target="_blank" href="https://play.google.com/store/apps/details?id=com.newlinks.intercomclient&amp;hl=en&amp;gl=US">Rozcom mobile application</a>, below, to manage their personal intercom devices. Using the app they can open a door/gate, initiate a multimedia session with the device (stream video/audio, and do push-to-talk communication).</p>
+    
+        
+
+<figure class="relative flex flex-wrap ">
+    
+        <img
+            src="/img/asset/YXNzZXRzL3F1aWNrYmxveF9tb2JpbGUucG5n/quickblox_mobile.png?fm=webp&fit=crop&s=2e85bf25abf26a6a2e7cd4c1d2990c42"
+            width="1058"
+            height="1378"
+            class="  "
+            style="width: ; max-width: ; height: ; mix-blend-mode: ; object-fit: ;"
+            loading="lazy"
+            alt="Quick Blox Mobile"
+        >
+        
+    
+    
+</figure>
+
+
+    
+
+    
+        <p>Behind the scenes, Rozcom is using the QuickBlox platform to handle multimedia sessions, transferring video/audio between the mobile app and the device.</p><p>As it turns out, Rozcom chose to use the user ID shown above as the user identifier in QuickBlox. And since we could leak the user database from QuickBlox we could get access to all of Rozcom users including Building IDs as well as the correlating users’ phone numbers.</p>
+    
+        
+
+<figure class="relative flex flex-wrap justify-center">
+    
+        <img
+            src="/img/asset/YXNzZXRzL3F1aWNrYmxveF9yb3otdXNlcmlkLnBuZw==/quickblox_roz-userid.png?fm=webp&fit=crop&s=5ac98fa2a441e001e2726aa541b454f2"
+            width="325"
+            height="100"
+            class="  "
+            style="width: ; max-width: ; height: ; mix-blend-mode: ; object-fit: ;"
+            loading="lazy"
+            alt="Rozcom User ID"
+        >
+        
+            <button
+                type="button"
+                class="absolute flex w-10 h-10 text-white rounded-full -top-4 -right-4 bg-gradient-to-r from-purple to-pink hover:scale-110"
+                x-data
+                @click="$store.modal.open('b52116169031dd489700b8e3fbf1cf6a')"
+            >
+                <i class="m-auto fa-regular fa-plus"></i>
+            </button>
+        
+    
+    
+        <figcaption class="w-full mt-4 text-sm text-center">An example of a QuickBlox user, containing the Rozcom User ID (building ID + phone number)</figcaption>
+    
+</figure>
+
+
+    
+        
+    
+
+    
+        <div id="Controlling-All-the-Intercoms"></div>
+    
+        <h2>Controlling All the Intercoms</h2><p>Our next step was to look at Rozcom’s applications and cloud APIs in order to better understand the possible attack vector using the identifiers we leaked.</p><p>The first API we discovered allowed us to retrieve information about a building managed by Rozcom, by supplying the Building ID. By accessing the following API: <code>getbuildingdetailpublic?buildingId=BUILDING_ID</code>, we could return each building’s full address as well as the number of apartments in that building, below.</p>
+    
+        
+
+<figure class="relative flex flex-wrap justify-center">
+    
+        <img
+            src="/img/asset/YXNzZXRzL3F1aWNrYmxveF9hcGFydG1lbnRzLnBuZw==/quickblox_apartments.png?fm=webp&fit=crop&s=62cc63f3f58d8d1a4d0169ba73b7d2ab"
+            width="218"
+            height="148"
+            class="  "
+            style="width: ; max-width: ; height: ; mix-blend-mode: ; object-fit: ;"
+            loading="lazy"
+            alt="Quick Blox Apartments"
+        >
+        
+            <button
+                type="button"
+                class="absolute flex w-10 h-10 text-white rounded-full -top-4 -right-4 bg-gradient-to-r from-purple to-pink hover:scale-110"
+                x-data
+                @click="$store.modal.open('8378811e7963900fddc18238fdbce8c8')"
+            >
+                <i class="m-auto fa-regular fa-plus"></i>
+            </button>
+        
+    
+    
+</figure>
+
+
+    
+        
+    
+
+    
+        <p>Next, we wanted to see if we could impersonate a user. By using the application, we noticed that users can access their account by entering their phone number and receiving a one-time password as an SMS message as an authenticator.</p>
+    
+        
+
+<figure class="relative flex flex-wrap justify-center">
+    
+        <img
+            src="/img/asset/YXNzZXRzL3F1aWNrYmxveF9yb3otbG9naW4ucG5n/quickblox_roz-login.png?fm=webp&fit=crop&s=1c5f9ac50e793651a307695e8dcc30a5"
+            width="828"
+            height="1792"
+            class="  "
+            style="width: ; max-width: ; height: ; mix-blend-mode: ; object-fit: ;"
+            loading="lazy"
+            alt="Rozcom login form"
+        >
+        
+            <button
+                type="button"
+                class="absolute flex w-10 h-10 text-white rounded-full -top-4 -right-4 bg-gradient-to-r from-purple to-pink hover:scale-110"
+                x-data
+                @click="$store.modal.open('31e5e50ac1bfeac425d82a33a7dd3f19')"
+            >
+                <i class="m-auto fa-regular fa-plus"></i>
+            </button>
+        
+    
+    
+        <figcaption class="w-full mt-4 text-sm text-center">The Rozcom login form. </figcaption>
+    
+</figure>
+
+
+    
+        
+    
+
+    
+        <p>However, we discovered that this so-called OTP is actually not so one-time. Instead the same OTP token is maintained throughout every session. Users don’t usually notice this because they are only required to enter it during initial login, and the application saves the token behind the scenes. Then, using the user ID and the OTP, users authenticate to the application.</p><p>Furthermore, by reverse engineering the mobile application, we discovered another API route that could be used by attackers to leak the OTP token. By calling Rozcom’s API with the following function: <code>gettenantauth?cellular=PHONE_NUMBER</code>, the backend server returns the user’s OTP token.</p>
+    
+        
+
+<figure class="relative flex flex-wrap justify-center">
+    
+        <img
+            src="/img/asset/YXNzZXRzL3F1aWNrYmxveF9hdXRoY29kZS5wbmc=/quickblox_authcode.png?fm=webp&fit=crop&s=e3f5d06f27c2d0cf31e886f26955d094"
+            width="185"
+            height="70"
+            class="  "
+            style="width: ; max-width: ; height: ; mix-blend-mode: ; object-fit: ;"
+            loading="lazy"
+            alt="Rozcom API user's authcode"
+        >
+        
+            <button
+                type="button"
+                class="absolute flex w-10 h-10 text-white rounded-full -top-4 -right-4 bg-gradient-to-r from-purple to-pink hover:scale-110"
+                x-data
+                @click="$store.modal.open('ede75b20e6a0240e4548f8a4b3b6af16')"
+            >
+                <i class="m-auto fa-regular fa-plus"></i>
+            </button>
+        
+    
+    
+        <figcaption class="w-full mt-4 text-sm text-center">The Rozcom API result returning a user's authcode.</figcaption>
+    
+</figure>
+
+
+    
+        
+    
+
+    
+        <p>This means that the only requirement to retrieve a user’s credentials is their phone number, which we managed to leak using the QuickBlox vulnerability. Moreover, the authentication code is static. Therefore, attackers can easily login on behalf of any user and use the application’s functionality to its extent. This allows them to open the door/gate, open video streams and more; they now fully control the intercom device remotely.</p>
+    
+        
+
+<figure class="relative flex flex-wrap justify-center">
+    
+        <img
+            src="/img/asset/YXNzZXRzL3F1aWNrYmxveF9yZW1vdGUtYWNjZXNzLnBuZw==/quickblox_remote-access.png?fm=webp&fit=crop&s=600c2b8ba1d8402f70323fbd31ffe0bc"
+            width="363"
+            height="675"
+            class="  "
+            style="width: ; max-width: ; height: ; mix-blend-mode: ; object-fit: ;"
+            loading="lazy"
+            alt="Quck Blox remote access"
+        >
+        
+            <button
+                type="button"
+                class="absolute flex w-10 h-10 text-white rounded-full -top-4 -right-4 bg-gradient-to-r from-purple to-pink hover:scale-110"
+                x-data
+                @click="$store.modal.open('c9828f5d42daa2c4354787273a9ce6b4')"
+            >
+                <i class="m-auto fa-regular fa-plus"></i>
+            </button>
+        
+    
+    
+        <figcaption class="w-full mt-4 text-sm text-center">Remote access to a Rozcom intercom’s video feed.</figcaption>
+    
+</figure>
+
+
+    
+        
+    
+
+    
+        <div id="Reviewing-[REDACTED]-Telemedicine-Platform"></div>
+    
+        <h2>Reviewing [REDACTED] Telemedicine Platform</h2><p>Telemedicine is the distribution of health-related services and information via electronic information and telecommunication technologies. It allows long-distance patient and clinician contact, care, advice, reminders, education, intervention, monitoring, and remote admissions.</p><p>We chose to look at a popular telemedicine application integrated with the QuickBlox SDK, in order to explore its attack surface by abusing the QuickBlox vulnerabilities described above. We are not disclosing the name of the app because it has yet to update to the new QuickBlox API and remains vulnerable at the time of publication. </p><p>This particular telemedicine platform provides chat and video services enabling patients to communicate with doctors. By combining the QuickBlox vulnerabilities alongside the specific telemedicine app vulnerabilities, we were able to leak all of its user database, along with related medical records and history stored in the application.</p>
+    
+        <div id="PII-Leak-en-Masse"></div>
+    
+        <h2>PII Leak en Masse</h2><p>While researching the affected Android application, we were able to extract the embedded QuickBlox application keys. We could then authenticate to the QuickBlox API server, get an authentication token and obtain a user database for the application. These steps are not different from any other application that uses QuickBlox. However, here we are talking about patient and physician information, below.</p>
+    
+        
+
+<figure class="relative flex flex-wrap justify-center">
+    
+        <img
+            src="/img/asset/YXNzZXRzL3F1aWNrYmxveC1ibG9nLWdyYXBoaWNzLTA1LSgxKS0xNjg5MTY3Mzk5LnBuZw==/quickblox-blog-graphics-05-%281%29-1689167399.png?fm=webp&fit=crop&s=d8109be676695352437388aa786faeb9"
+            width="1711"
+            height="831"
+            class="  "
+            style="width: ; max-width: ; height: ; mix-blend-mode: ; object-fit: ;"
+            loading="lazy"
+            alt="Quick blox placeholder text"
+        >
+        
+            <button
+                type="button"
+                class="absolute flex w-10 h-10 text-white rounded-full -top-4 -right-4 bg-gradient-to-r from-purple to-pink hover:scale-110"
+                x-data
+                @click="$store.modal.open('c5e37ca69b7064de4c3941ac94010372')"
+            >
+                <i class="m-auto fa-regular fa-plus"></i>
+            </button>
+        
+    
+    
+</figure>
+
+
+    
+        
+    
+
+    
+        <p>In this telemedicine app, each user chooses their UserID and Password credentials used by the application. However, we discovered through reverse-engineering that the [REDACTED] application creates a new QuickBlox user with their UserID as login and a hard-coded static password ([REDACTED] for patients, and [REDACTED] for doctors).</p><p>This makes it possible to login in QuickBlox on behalf of any user—doctor or patient—and view all of their data. This includes:</p><ul><li><p>Personal information</p></li><li><p>Medical history</p></li><li><p>Chat history</p></li><li><p>Medical record files</p></li></ul>
+    
+        
+
+<figure class="relative flex flex-wrap justify-center">
+    
+        <img
+            src="/img/asset/YXNzZXRzL3F1aWNrYmxveC1ibG9nLWdyYXBoaWNzLTA0LnBuZw==/quickblox-blog-graphics-04.png?fm=webp&fit=crop&s=c07828a239947d7ba7f6a1d071bb1a10"
+            width="2542"
+            height="1667"
+            class="  "
+            style="width: ; max-width: ; height: ; mix-blend-mode: ; object-fit: ;"
+            loading="lazy"
+            alt="Successful Quick Blox exploit PII"
+        >
+        
+            <button
+                type="button"
+                class="absolute flex w-10 h-10 text-white rounded-full -top-4 -right-4 bg-gradient-to-r from-purple to-pink hover:scale-110"
+                x-data
+                @click="$store.modal.open('7b67f751afa4fe19f58b4fc09f744d45')"
+            >
+                <i class="m-auto fa-regular fa-plus"></i>
+            </button>
+        
+    
+    
+        <figcaption class="w-full mt-4 text-sm text-center">A successful exploit can allow an attacker to steal chat history, and other personal data. </figcaption>
+    
+</figure>
+
+
+    
+        
+    
+
+    
+        <p>Furthermore, because full impersonation is possible by this attack, anyone can impersonate a doctor and modify information or even communicate in real time via chat and video with real patients on the platform on behalf of an actual physician. This is a very scary scenario.</p>
+    
+        
+
+<figure class="relative flex flex-wrap justify-center">
+    
+        <img
+            src="/img/asset/YXNzZXRzL3F1aWNrYmxveC1ibG9nLWdyYXBoaWNzLTAzLTE2ODg1NzA3OTMuanBn/quickblox-blog-graphics-03-1688570793.jpg?fm=webp&fit=crop&s=600bc2dcc31d957a1fd54c3461030a66"
+            width="1271"
+            height="834"
+            class="  "
+            style="width: ; max-width: ; height: ; mix-blend-mode: ; object-fit: ;"
+            loading="lazy"
+            alt="An attacker may inject themselves in video telemedicine calls"
+        >
+        
+            <button
+                type="button"
+                class="absolute flex w-10 h-10 text-white rounded-full -top-4 -right-4 bg-gradient-to-r from-purple to-pink hover:scale-110"
+                x-data
+                @click="$store.modal.open('64587b3a8797636be2bf7fcba613c49f')"
+            >
+                <i class="m-auto fa-regular fa-plus"></i>
+            </button>
+        
+    
+    
+        <figcaption class="w-full mt-4 text-sm text-center">An attacker may inject themselves in video telemedicine calls between doctors and patients. </figcaption>
+    
+</figure>
+
+
+    
+        
+    
+
+    
+        <div id="Conclusion"></div>
+    
+        <h2>Conclusion</h2><p>Team82 and Check Point Research collaborated on this extensive look at the QuickBlox API, which is prominent in many chat and video applications used by millions of people across different industries. Together, we were able to uncover vulnerabilities in the QuickBlox platform architecture that could be exploited to allow attackers access to applications’ user databases. Millions of user records were at risk because of these vulnerabilities.</p><p>Our joint research led to a number of proof-of-concept exploits against applications running the affected API. We demonstrated how the combination of secret tokens and passwords embedded in the application and usage of an insecure QuickBlox API design could allow attackers to obtain a great amount of information about the end-users. </p><p>We worked closely with QuickBlox to remediate the issues. QuickBlox responded to our disclosure by designing a new secure architecture for its platform, and a new API. Its customers have been urged to migrate to the latest versions of both. Again, we thank QuickBlox for its cooperation and quick response to ensure these vulnerabilities were addressed and its users privacy and security ensured.</p>
+    
+
+</div>
+
+<div class="flex items-center justify-between pt-10 mt-10 border-t">
+    <div>
+        <div class="text-base flex items-center gap-4">
+    
+    <div>Share</div>
+    
+
+    <div class="flex flex-wrap gap-2">
+        <a
+            href="https://www.linkedin.com/shareArticle/?url=https://claroty.com/team82/research/major-security-flaws-in-popular-quickblox-chat-and-video-framework-expose-sensitive-data-of-millions"
+            class="flex w-10 h-8 border rounded hover:border-gray-400"
+            target="_blank"
+        >
+            <i class="m-auto fa-brands fa-linkedin"></i>
+            <span class="sr-only">LinkedIn</span>
+        </a>
+
+        <a
+            href="https://twitter.com/intent/post?text=Major Security Flaws in Popular QuickBlox Chat And Video Framework Expose Sensitive Data Of Millions&url=https://claroty.com/team82/research/major-security-flaws-in-popular-quickblox-chat-and-video-framework-expose-sensitive-data-of-millions"
+            class="flex w-10 h-8 border rounded hover:border-gray-400"
+            target="_blank"
+        >
+            <i class="m-auto fa-brands fa-square-x-twitter"></i>
+            <span class="sr-only">Twitter</span>
+        </a>
+
+        <a
+            href="https://www.facebook.com/sharer/sharer.php?u=https://claroty.com/team82/research/major-security-flaws-in-popular-quickblox-chat-and-video-framework-expose-sensitive-data-of-millions"
+            class="flex w-10 h-8 border rounded hover:border-gray-400"
+            target="_blank"
+        >
+            <i class="m-auto fa-brands fa-facebook"></i>
+            <span class="sr-only">Facebook</span>
+        </a>
+
+        <a
+            href="mailto:?subject=Major Security Flaws in Popular QuickBlox Chat And Video Framework Expose Sensitive Data Of Millions&body=https://claroty.com/team82/research/major-security-flaws-in-popular-quickblox-chat-and-video-framework-expose-sensitive-data-of-millions"
+            class="flex w-10 h-8 border rounded hover:border-gray-400"
+            target="_blank"
+        >
+            <i class="m-auto fa-regular fa-envelope"></i>
+            <span class="sr-only"></span>
+        </a>
+    </div>
+</div>
+    </div>
+
+    
+</div>
+
+    <div class="mt-10 divide-y">
+        
+            
+        
+            
+        
+            
+                <div class="flex items-start gap-10 p-10 bg-gray-50">
+                    
+                    <div>
+                        <h3 class="h-2xl">Itay Cohen</h3>
+                        
+                            <p class="mt-2 text-sm text-subtle">Research Lead</p>
+                        
+                        
+                            <div class="mt-4 rich-text"><p>Check Point Research (CPR)</p>
+</div>
+                        
+                    </div>
+                </div>
+            
+        
+            
+                <div class="flex items-start gap-10 p-10 bg-gray-50">
+                    
+                    <div>
+                        <h3 class="h-2xl">Oleg Ilushin</h3>
+                        
+                            <p class="mt-2 text-sm text-subtle">Security researcher</p>
+                        
+                        
+                            <div class="mt-4 rich-text"><p>Check Point Research (CPR)</p>
+</div>
+                        
+                    </div>
+                </div>
+            
+        
+    </div>
+
+            <div class="relative mt-10 text-white md:mt-16">
+    <img
+        src="https://claroty.com/build/assets/team82-newsletter-bg-BlXIsUMi.jpg"
+        class="object-cover layer"
+        loading="lazy"
+        alt=""
+    >
+
+    <div class="absolute top-0 w-8 bg-gray-900 right-8 aspect-square"></div>
+    <div class="absolute right-0 w-8 bg-gray-900 top-8 aspect-square"></div>
+
+    <div class="relative p-10 md:p-16">
+        <span class="h-xs">Stay in the know</span>
+        <span class="mt-4 mb-10 h-4xl block">Get the Team82 Newsletter</span>
+        <div
+    class="opacity-0"
+    x-data="hubspotForm('4ec0d86c-87f7-4863-8c01-93bea20ffd85')"
+></div>
+
+
+    
+
+    </div>
+</div>
+        </div>
+
+        <div>
+            <div class="mb-16 sm-max:hidden">
+    <div class="text-base space-y-2">
+    
+    <div>Share</div>
+    
+
+    <div class="flex flex-wrap gap-2">
+        <a
+            href="https://www.linkedin.com/shareArticle/?url=https://claroty.com/team82/research/major-security-flaws-in-popular-quickblox-chat-and-video-framework-expose-sensitive-data-of-millions"
+            class="flex w-10 h-8 border rounded hover:border-gray-400"
+            target="_blank"
+        >
+            <i class="m-auto fa-brands fa-linkedin"></i>
+            <span class="sr-only">LinkedIn</span>
+        </a>
+
+        <a
+            href="https://twitter.com/intent/post?text=Major Security Flaws in Popular QuickBlox Chat And Video Framework Expose Sensitive Data Of Millions&url=https://claroty.com/team82/research/major-security-flaws-in-popular-quickblox-chat-and-video-framework-expose-sensitive-data-of-millions"
+            class="flex w-10 h-8 border rounded hover:border-gray-400"
+            target="_blank"
+        >
+            <i class="m-auto fa-brands fa-square-x-twitter"></i>
+            <span class="sr-only">Twitter</span>
+        </a>
+
+        <a
+            href="https://www.facebook.com/sharer/sharer.php?u=https://claroty.com/team82/research/major-security-flaws-in-popular-quickblox-chat-and-video-framework-expose-sensitive-data-of-millions"
+            class="flex w-10 h-8 border rounded hover:border-gray-400"
+            target="_blank"
+        >
+            <i class="m-auto fa-brands fa-facebook"></i>
+            <span class="sr-only">Facebook</span>
+        </a>
+
+        <a
+            href="mailto:?subject=Major Security Flaws in Popular QuickBlox Chat And Video Framework Expose Sensitive Data Of Millions&body=https://claroty.com/team82/research/major-security-flaws-in-popular-quickblox-chat-and-video-framework-expose-sensitive-data-of-millions"
+            class="flex w-10 h-8 border rounded hover:border-gray-400"
+            target="_blank"
+        >
+            <i class="m-auto fa-regular fa-envelope"></i>
+            <span class="sr-only"></span>
+        </a>
+    </div>
+</div>
+</div>
+
+<div>
+    <span class="h-xl">Related Vulnerability Disclosures</span>
+    
+    <ul class="mt-6 text-sm">
+        
+            <li class="py-4 border-t">
+                <a
+                    href="/team82/disclosure-dashboard/cve-2023-31184"
+                    class="space-y-4 group"
+                >
+                    <h5 class="duration-150 h-lg group-hover:text-red">CVE-2023-31184</h5>
+                    <p>CWE-798: Use of Hard-coded Credentials</p>
+<p>Misconfiguration may allow information disclosure via an unspecified request.</p>
+
+                    <p class="h-xs">CVSS v3: 8.0</p>
+                </a>
+            </li>
+        
+            <li class="py-4 border-t">
+                <a
+                    href="/team82/disclosure-dashboard/cve-2023-31185"
+                    class="space-y-4 group"
+                >
+                    <h5 class="duration-150 h-lg group-hover:text-red">CVE-2023-31185</h5>
+                    <p>Misconfiguration may allow information disclosure via an unspecified request.</p>
+
+                    <p class="h-xs">CVSS v3: 8.0</p>
+                </a>
+            </li>
+        
+    </ul>
+</div>
+        </div>
+    </div>
+</div>
+    </div>
+
+    
+    <footer class="py-20 lg:py-28 bg-gray-900 text-light">
+        <div class="container">
+            
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-8 gap-y-12">
+                    
+                        <div class="space-y-4">
+                            <span class="h-xs text-subtle">Solutions</span>
+
+                            <ul class="space-y-2">
+                                
+                                    <li>
+                                        <a
+                                            href="/platform"
+                                            target=""
+                                        >Claroty xDome Platform</a>
+                                    </li>
+                                
+                                    <li>
+                                        <a
+                                            href="/industrial-cybersecurity"
+                                            target=""
+                                        >Industrial Cybersecurity</a>
+                                    </li>
+                                
+                                    <li>
+                                        <a
+                                            href="/healthcare-cybersecurity"
+                                            target=""
+                                        >Healthcare Cybersecurity</a>
+                                    </li>
+                                
+                                    <li>
+                                        <a
+                                            href="/commercial-cybersecurity"
+                                            target=""
+                                        >Commercial Cybersecurity</a>
+                                    </li>
+                                
+                                    <li>
+                                        <a
+                                            href="/public-sector-cybersecurity"
+                                            target=""
+                                        >Public Sector Cybersecurity</a>
+                                    </li>
+                                
+                            </ul>
+                        </div>
+                    
+                        <div class="space-y-4">
+                            <span class="h-xs text-subtle">Threat Research</span>
+
+                            <ul class="space-y-2">
+                                
+                                    <li>
+                                        <a
+                                            href="/team82"
+                                            target=""
+                                        >Team82 Home</a>
+                                    </li>
+                                
+                                    <li>
+                                        <a
+                                            href="/team82/disclosure-dashboard"
+                                            target=""
+                                        >Vulnerability Disclosure Dashboard</a>
+                                    </li>
+                                
+                                    <li>
+                                        <a
+                                            href="/team82/research"
+                                            target=""
+                                        >Research</a>
+                                    </li>
+                                
+                                    <li>
+                                        <a
+                                            href="/team82/pgp-key"
+                                            target=""
+                                        >PGP Key</a>
+                                    </li>
+                                
+                            </ul>
+                        </div>
+                    
+                        <div class="space-y-4">
+                            <span class="h-xs text-subtle">Partners</span>
+
+                            <ul class="space-y-2">
+                                
+                                    <li>
+                                        <a
+                                            href="/partners"
+                                            target=""
+                                        >Partners</a>
+                                    </li>
+                                
+                                    <li>
+                                        <a
+                                            href="/partners/technology-alliances"
+                                            target=""
+                                        >Technology Alliance Partners</a>
+                                    </li>
+                                
+                                    <li>
+                                        <a
+                                            href="/partners/channel-partners"
+                                            target=""
+                                        >Channel Partners</a>
+                                    </li>
+                                
+                                    <li>
+                                        <a
+                                            href="/partners/channel-partners/managed-security-service-providers"
+                                            target=""
+                                        >Managed Security Service Providers</a>
+                                    </li>
+                                
+                                    <li>
+                                        <a
+                                            href="https://portal.claroty.com/English/register_email.aspx"
+                                            target="_blank"
+                                        >Become a Partner</a>
+                                    </li>
+                                
+                                    <li>
+                                        <a
+                                            href="https://portal.claroty.com/"
+                                            target="_blank"
+                                        >Partner Login</a>
+                                    </li>
+                                
+                            </ul>
+                        </div>
+                    
+                        <div class="space-y-4">
+                            <span class="h-xs text-subtle">Resources</span>
+
+                            <ul class="space-y-2">
+                                
+                                    <li>
+                                        <a
+                                            href="/resources"
+                                            target=""
+                                        >Resource Library</a>
+                                    </li>
+                                
+                                    <li>
+                                        <a
+                                            href="/blog"
+                                            target=""
+                                        >Blog</a>
+                                    </li>
+                                
+                                    <li>
+                                        <a
+                                            href="/resources/white-papers"
+                                            target=""
+                                        >White Papers</a>
+                                    </li>
+                                
+                                    <li>
+                                        <a
+                                            href="/resources/reports"
+                                            target=""
+                                        >Reports</a>
+                                    </li>
+                                
+                                    <li>
+                                        <a
+                                            href="/resources/case-studies"
+                                            target=""
+                                        >Case Studies</a>
+                                    </li>
+                                
+                                    <li>
+                                        <a
+                                            href="/resources/datasheets"
+                                            target=""
+                                        >Datasheets</a>
+                                    </li>
+                                
+                                    <li>
+                                        <a
+                                            href="/resources/integration-briefs"
+                                            target=""
+                                        >Integration Briefs</a>
+                                    </li>
+                                
+                                    <li>
+                                        <a
+                                            href="https://nexusconnect.io/podcasts"
+                                            target="_blank"
+                                        >Podcasts</a>
+                                    </li>
+                                
+                                    <li>
+                                        <a
+                                            href="/resources/videos"
+                                            target=""
+                                        >Videos</a>
+                                    </li>
+                                
+                            </ul>
+                        </div>
+                    
+                        <div class="space-y-4">
+                            <span class="h-xs text-subtle">Company</span>
+
+                            <ul class="space-y-2">
+                                
+                                    <li>
+                                        <a
+                                            href="/company"
+                                            target=""
+                                        >About Us</a>
+                                    </li>
+                                
+                                    <li>
+                                        <a
+                                            href="/careers"
+                                            target=""
+                                        >Careers</a>
+                                    </li>
+                                
+                                    <li>
+                                        <a
+                                            href="/leadership"
+                                            target=""
+                                        >Leadership</a>
+                                    </li>
+                                
+                                    <li>
+                                        <a
+                                            href="/newsroom"
+                                            target=""
+                                        >Newsroom</a>
+                                    </li>
+                                
+                                    <li>
+                                        <a
+                                            href="/trust"
+                                            target=""
+                                        >Trust Center</a>
+                                    </li>
+                                
+                                    <li>
+                                        <a
+                                            href="/customer-experience"
+                                            target=""
+                                        >Customer Experience</a>
+                                    </li>
+                                
+                                    <li>
+                                        <a
+                                            href="/event-listing"
+                                            target=""
+                                        >Events</a>
+                                    </li>
+                                
+                                    <li>
+                                        <a
+                                            href="/contact-us"
+                                            target=""
+                                        >Contact Us</a>
+                                    </li>
+                                
+                            </ul>
+                        </div>
+                    
+                </div>
+                <div class="my-10 border-t lg:mt-16"></div>
+            
+            <div class="flex flex-wrap justify-between gap-10 text-sm">
+                <div class="flex flex-col items-start gap-4 xs-max:w-full">
+                    <a
+                        href="/"
+                        class="mr-auto"
+                    >
+                        <img
+                            src="https://claroty.com/build/assets/logo-white-VeF9EwMy.svg"
+                            width="160"
+                            height="32"
+                            class="h-8"
+                            alt="Claroty"
+                        >
+                    </a>
+                    <p class="text-subtle">© 2025 Claroty. All rights reserved.</p>
+                </div>
+
+                <div class="flex flex-col gap-4 sm:items-end">
+                    
+    <div class="flex gap-2">
+        
+        
+            <a
+                href="https://www.linkedin.com/company/claroty/"
+                class="flex w-8 h-8 bg-gray-800/50 hover:bg-[#0a66c2] rounded"
+                target="_blank"
+            >
+                <i class="fa-brands fa-linkedin m-auto"></i>
+                <span class="sr-only">LinkedIn</span>
+            </a>
+        
+            <a
+                href="https://twitter.com/claroty"
+                class="flex w-8 h-8 bg-gray-800/50 hover:bg-[#1da1f2] rounded"
+                target="_blank"
+            >
+                <i class="fa-brands fa-square-x-twitter m-auto"></i>
+                <span class="sr-only">Twitter</span>
+            </a>
+        
+            <a
+                href="https://www.youtube.com/@claroty20"
+                class="flex w-8 h-8 bg-gray-800/50 hover:bg-[#f00] rounded"
+                target="_blank"
+            >
+                <i class="fa-brands fa-youtube m-auto"></i>
+                <span class="sr-only">YouTube</span>
+            </a>
+        
+            <a
+                href="https://www.facebook.com/ClarotyOT/"
+                class="flex w-8 h-8 bg-gray-800/50 hover:bg-[#1778f2] rounded"
+                target="_blank"
+            >
+                <i class="fa-brands fa-facebook m-auto"></i>
+                <span class="sr-only">Facebook</span>
+            </a>
+        
+    </div>
+
+                    <div class="flex gap-2">
+                        
+                            
+                            <a
+                                href="/terms-conditions"
+                                target=""
+                            >Terms & Conditions</a>
+                        
+                            
+                                <span class="text-subtle">/</span>
+                            
+                            <a
+                                href="/privacy-policy"
+                                target=""
+                            >Privacy Policy</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    
+<div>
+    
+            <div
+                id="3923553d528d495e1826a1849b8d7a90"
+                class="fixed inset-0 z-40 flex w-screen h-screen overflow-auto bg-black/30 text-dark"
+                x-data
+                x-show="$store.modal.isOpen('3923553d528d495e1826a1849b8d7a90')"
+                x-cloak
+                x-transition.opacity.300ms
+                @keyup.window.escape="$store.modal.close()"
+            >
+                <div
+                    class="layer"
+                    @click="$store.modal.close()"
+                ></div>
+
+                <div class="relative m-auto">
+                    <button
+    type="button"
+    class="absolute top-0 right-0 !h-10 !w-10 min-h-0 !p-0 btn btn-gradient"
+    aria-label="Close modal" 
+    @click="$store.modal.close()"
+>
+    <i class="fa-regular fa-xmark-large"></i>
+    <span class="sr-only">Close Modal</span>
+</button>
+                    <img
+                        src="/img/asset/YXNzZXRzL3F1aWNrYmxveC1mZWF0dXJlcy5wbmc=/quickblox-features.png?fm=webp&fit=crop&s=3a24a1575fbb94041a29c87de1048ee0"
+                        width="auto"
+                        height="1054"
+                        class="max-w-[90vw] max-h-[90vh]"
+                        loading="lazy"
+                        alt="QuickBlox Features"
+                    >
+                </div>
+            </div>
+        
+            <div
+                id="a7ba52ba0714c5fba8dc9256eb4926dc"
+                class="fixed inset-0 z-40 flex w-screen h-screen overflow-auto bg-black/30 text-dark"
+                x-data
+                x-show="$store.modal.isOpen('a7ba52ba0714c5fba8dc9256eb4926dc')"
+                x-cloak
+                x-transition.opacity.300ms
+                @keyup.window.escape="$store.modal.close()"
+            >
+                <div
+                    class="layer"
+                    @click="$store.modal.close()"
+                ></div>
+
+                <div class="relative m-auto">
+                    <button
+    type="button"
+    class="absolute top-0 right-0 !h-10 !w-10 min-h-0 !p-0 btn btn-gradient"
+    aria-label="Close modal" 
+    @click="$store.modal.close()"
+>
+    <i class="fa-regular fa-xmark-large"></i>
+    <span class="sr-only">Close Modal</span>
+</button>
+                    <img
+                        src="/img/asset/YXNzZXRzL3F1aWNrYmxveC1kYXNoYm9hcmQucG5n/quickblox-dashboard.png?fm=webp&fit=crop&s=d8024309a65b6cd4a4056f530556c347"
+                        width="auto"
+                        height="1200"
+                        class="max-w-[90vw] max-h-[90vh]"
+                        loading="lazy"
+                        alt="QuickBlox Dashboard"
+                    >
+                </div>
+            </div>
+        
+            <div
+                id="58d7e4c9a67ed759c089d6dc18557410"
+                class="fixed inset-0 z-40 flex w-screen h-screen overflow-auto bg-black/30 text-dark"
+                x-data
+                x-show="$store.modal.isOpen('58d7e4c9a67ed759c089d6dc18557410')"
+                x-cloak
+                x-transition.opacity.300ms
+                @keyup.window.escape="$store.modal.close()"
+            >
+                <div
+                    class="layer"
+                    @click="$store.modal.close()"
+                ></div>
+
+                <div class="relative m-auto">
+                    <button
+    type="button"
+    class="absolute top-0 right-0 !h-10 !w-10 min-h-0 !p-0 btn btn-gradient"
+    aria-label="Close modal" 
+    @click="$store.modal.close()"
+>
+    <i class="fa-regular fa-xmark-large"></i>
+    <span class="sr-only">Close Modal</span>
+</button>
+                    <img
+                        src="/img/asset/YXNzZXRzL3F1aWNrYmxveC10b2tlbi1yZXF1ZXN0LnBuZw==/quickblox-token-request.png?fm=webp&fit=crop&s=e1d82114c16df3e06f14b9c1ee0ba5df"
+                        width="auto"
+                        height="162"
+                        class="max-w-[90vw] max-h-[90vh]"
+                        loading="lazy"
+                        alt="Requesting an application-level QB Token"
+                    >
+                </div>
+            </div>
+        
+            <div
+                id="10d5bd83d6fb84f7879f70cf600f33a8"
+                class="fixed inset-0 z-40 flex w-screen h-screen overflow-auto bg-black/30 text-dark"
+                x-data
+                x-show="$store.modal.isOpen('10d5bd83d6fb84f7879f70cf600f33a8')"
+                x-cloak
+                x-transition.opacity.300ms
+                @keyup.window.escape="$store.modal.close()"
+            >
+                <div
+                    class="layer"
+                    @click="$store.modal.close()"
+                ></div>
+
+                <div class="relative m-auto">
+                    <button
+    type="button"
+    class="absolute top-0 right-0 !h-10 !w-10 min-h-0 !p-0 btn btn-gradient"
+    aria-label="Close modal" 
+    @click="$store.modal.close()"
+>
+    <i class="fa-regular fa-xmark-large"></i>
+    <span class="sr-only">Close Modal</span>
+</button>
+                    <img
+                        src="/img/asset/YXNzZXRzL3NjcmVlbnNob3QtMjAyMy0wNy0wNS1hdC0xMS4wNS4wMi1hbS5wbmc=/screenshot-2023-07-05-at-11.05.02-am.png?fm=webp&fit=crop&s=18b28f7092d9946bea9f3564b8708008"
+                        width="auto"
+                        height="228"
+                        class="max-w-[90vw] max-h-[90vh]"
+                        loading="lazy"
+                        alt="Sample of application credentials from QuickBlox"
+                    >
+                </div>
+            </div>
+        
+            <div
+                id="4df23dc844009e542a69fa24e330f8ac"
+                class="fixed inset-0 z-40 flex w-screen h-screen overflow-auto bg-black/30 text-dark"
+                x-data
+                x-show="$store.modal.isOpen('4df23dc844009e542a69fa24e330f8ac')"
+                x-cloak
+                x-transition.opacity.300ms
+                @keyup.window.escape="$store.modal.close()"
+            >
+                <div
+                    class="layer"
+                    @click="$store.modal.close()"
+                ></div>
+
+                <div class="relative m-auto">
+                    <button
+    type="button"
+    class="absolute top-0 right-0 !h-10 !w-10 min-h-0 !p-0 btn btn-gradient"
+    aria-label="Close modal" 
+    @click="$store.modal.close()"
+>
+    <i class="fa-regular fa-xmark-large"></i>
+    <span class="sr-only">Close Modal</span>
+</button>
+                    <img
+                        src="/img/asset/YXNzZXRzL3F1aWNrYmxveF91c2VyLWluZm8ucG5n/quickblox_user-info.png?fm=webp&fit=crop&s=c6616d97c44effb730032b4252a31e12"
+                        width="auto"
+                        height="814"
+                        class="max-w-[90vw] max-h-[90vh]"
+                        loading="lazy"
+                        alt="Obtained user information"
+                    >
+                </div>
+            </div>
+        
+            <div
+                id="6beb799a0d3bfb3d5b88652f465aec14"
+                class="fixed inset-0 z-40 flex w-screen h-screen overflow-auto bg-black/30 text-dark"
+                x-data
+                x-show="$store.modal.isOpen('6beb799a0d3bfb3d5b88652f465aec14')"
+                x-cloak
+                x-transition.opacity.300ms
+                @keyup.window.escape="$store.modal.close()"
+            >
+                <div
+                    class="layer"
+                    @click="$store.modal.close()"
+                ></div>
+
+                <div class="relative m-auto">
+                    <button
+    type="button"
+    class="absolute top-0 right-0 !h-10 !w-10 min-h-0 !p-0 btn btn-gradient"
+    aria-label="Close modal" 
+    @click="$store.modal.close()"
+>
+    <i class="fa-regular fa-xmark-large"></i>
+    <span class="sr-only">Close Modal</span>
+</button>
+                    <img
+                        src="/img/asset/YXNzZXRzL3F1aWNrYmxveF9wcml2YWN5LnBuZw==/quickblox_privacy.png?fm=webp&fit=crop&s=5b9dc3214ee6ab819e0b6c5ca9324383"
+                        width="auto"
+                        height="501"
+                        class="max-w-[90vw] max-h-[90vh]"
+                        loading="lazy"
+                        alt="QuickBlox user privacy settings"
+                    >
+                </div>
+            </div>
+        
+            <div
+                id="99d4053afcbbc0a1dc0e05a45d675198"
+                class="fixed inset-0 z-40 flex w-screen h-screen overflow-auto bg-black/30 text-dark"
+                x-data
+                x-show="$store.modal.isOpen('99d4053afcbbc0a1dc0e05a45d675198')"
+                x-cloak
+                x-transition.opacity.300ms
+                @keyup.window.escape="$store.modal.close()"
+            >
+                <div
+                    class="layer"
+                    @click="$store.modal.close()"
+                ></div>
+
+                <div class="relative m-auto">
+                    <button
+    type="button"
+    class="absolute top-0 right-0 !h-10 !w-10 min-h-0 !p-0 btn btn-gradient"
+    aria-label="Close modal" 
+    @click="$store.modal.close()"
+>
+    <i class="fa-regular fa-xmark-large"></i>
+    <span class="sr-only">Close Modal</span>
+</button>
+                    <img
+                        src="/img/asset/YXNzZXRzL3F1aWNrYmxveC1ibG9nLWdyYXBoaWNzLTAxLmpwZw==/quickblox-blog-graphics-01.jpg?fm=webp&fit=crop&s=366c9e983c3e72c2888e0ba065c13fbc"
+                        width="auto"
+                        height="1618"
+                        class="max-w-[90vw] max-h-[90vh]"
+                        loading="lazy"
+                        alt="Quick Blox Redacted info"
+                    >
+                </div>
+            </div>
+        
+            <div
+                id="5b4f066f2a105c552bdbbe7bcc365975"
+                class="fixed inset-0 z-40 flex w-screen h-screen overflow-auto bg-black/30 text-dark"
+                x-data
+                x-show="$store.modal.isOpen('5b4f066f2a105c552bdbbe7bcc365975')"
+                x-cloak
+                x-transition.opacity.300ms
+                @keyup.window.escape="$store.modal.close()"
+            >
+                <div
+                    class="layer"
+                    @click="$store.modal.close()"
+                ></div>
+
+                <div class="relative m-auto">
+                    <button
+    type="button"
+    class="absolute top-0 right-0 !h-10 !w-10 min-h-0 !p-0 btn btn-gradient"
+    aria-label="Close modal" 
+    @click="$store.modal.close()"
+>
+    <i class="fa-regular fa-xmark-large"></i>
+    <span class="sr-only">Close Modal</span>
+</button>
+                    <img
+                        src="/img/asset/YXNzZXRzL3F1aWNrYmxveC1ibG9nLWdyYXBoaWNzLTAyLmpwZw==/quickblox-blog-graphics-02.jpg?fm=webp&fit=crop&s=e54ee810447e4c8b793a4089cede283d"
+                        width="auto"
+                        height="1022"
+                        class="max-w-[90vw] max-h-[90vh]"
+                        loading="lazy"
+                        alt="Rozcom platform architecture"
+                    >
+                </div>
+            </div>
+        
+            <div
+                id="b52116169031dd489700b8e3fbf1cf6a"
+                class="fixed inset-0 z-40 flex w-screen h-screen overflow-auto bg-black/30 text-dark"
+                x-data
+                x-show="$store.modal.isOpen('b52116169031dd489700b8e3fbf1cf6a')"
+                x-cloak
+                x-transition.opacity.300ms
+                @keyup.window.escape="$store.modal.close()"
+            >
+                <div
+                    class="layer"
+                    @click="$store.modal.close()"
+                ></div>
+
+                <div class="relative m-auto">
+                    <button
+    type="button"
+    class="absolute top-0 right-0 !h-10 !w-10 min-h-0 !p-0 btn btn-gradient"
+    aria-label="Close modal" 
+    @click="$store.modal.close()"
+>
+    <i class="fa-regular fa-xmark-large"></i>
+    <span class="sr-only">Close Modal</span>
+</button>
+                    <img
+                        src="/img/asset/YXNzZXRzL3F1aWNrYmxveF9yb3otdXNlcmlkLnBuZw==/quickblox_roz-userid.png?fm=webp&fit=crop&s=5ac98fa2a441e001e2726aa541b454f2"
+                        width="auto"
+                        height="100"
+                        class="max-w-[90vw] max-h-[90vh]"
+                        loading="lazy"
+                        alt="Rozcom User ID"
+                    >
+                </div>
+            </div>
+        
+            <div
+                id="8378811e7963900fddc18238fdbce8c8"
+                class="fixed inset-0 z-40 flex w-screen h-screen overflow-auto bg-black/30 text-dark"
+                x-data
+                x-show="$store.modal.isOpen('8378811e7963900fddc18238fdbce8c8')"
+                x-cloak
+                x-transition.opacity.300ms
+                @keyup.window.escape="$store.modal.close()"
+            >
+                <div
+                    class="layer"
+                    @click="$store.modal.close()"
+                ></div>
+
+                <div class="relative m-auto">
+                    <button
+    type="button"
+    class="absolute top-0 right-0 !h-10 !w-10 min-h-0 !p-0 btn btn-gradient"
+    aria-label="Close modal" 
+    @click="$store.modal.close()"
+>
+    <i class="fa-regular fa-xmark-large"></i>
+    <span class="sr-only">Close Modal</span>
+</button>
+                    <img
+                        src="/img/asset/YXNzZXRzL3F1aWNrYmxveF9hcGFydG1lbnRzLnBuZw==/quickblox_apartments.png?fm=webp&fit=crop&s=62cc63f3f58d8d1a4d0169ba73b7d2ab"
+                        width="auto"
+                        height="148"
+                        class="max-w-[90vw] max-h-[90vh]"
+                        loading="lazy"
+                        alt="Quick Blox Apartments"
+                    >
+                </div>
+            </div>
+        
+            <div
+                id="31e5e50ac1bfeac425d82a33a7dd3f19"
+                class="fixed inset-0 z-40 flex w-screen h-screen overflow-auto bg-black/30 text-dark"
+                x-data
+                x-show="$store.modal.isOpen('31e5e50ac1bfeac425d82a33a7dd3f19')"
+                x-cloak
+                x-transition.opacity.300ms
+                @keyup.window.escape="$store.modal.close()"
+            >
+                <div
+                    class="layer"
+                    @click="$store.modal.close()"
+                ></div>
+
+                <div class="relative m-auto">
+                    <button
+    type="button"
+    class="absolute top-0 right-0 !h-10 !w-10 min-h-0 !p-0 btn btn-gradient"
+    aria-label="Close modal" 
+    @click="$store.modal.close()"
+>
+    <i class="fa-regular fa-xmark-large"></i>
+    <span class="sr-only">Close Modal</span>
+</button>
+                    <img
+                        src="/img/asset/YXNzZXRzL3F1aWNrYmxveF9yb3otbG9naW4ucG5n/quickblox_roz-login.png?fm=webp&fit=crop&s=1c5f9ac50e793651a307695e8dcc30a5"
+                        width="auto"
+                        height="1792"
+                        class="max-w-[90vw] max-h-[90vh]"
+                        loading="lazy"
+                        alt="Rozcom login form"
+                    >
+                </div>
+            </div>
+        
+            <div
+                id="ede75b20e6a0240e4548f8a4b3b6af16"
+                class="fixed inset-0 z-40 flex w-screen h-screen overflow-auto bg-black/30 text-dark"
+                x-data
+                x-show="$store.modal.isOpen('ede75b20e6a0240e4548f8a4b3b6af16')"
+                x-cloak
+                x-transition.opacity.300ms
+                @keyup.window.escape="$store.modal.close()"
+            >
+                <div
+                    class="layer"
+                    @click="$store.modal.close()"
+                ></div>
+
+                <div class="relative m-auto">
+                    <button
+    type="button"
+    class="absolute top-0 right-0 !h-10 !w-10 min-h-0 !p-0 btn btn-gradient"
+    aria-label="Close modal" 
+    @click="$store.modal.close()"
+>
+    <i class="fa-regular fa-xmark-large"></i>
+    <span class="sr-only">Close Modal</span>
+</button>
+                    <img
+                        src="/img/asset/YXNzZXRzL3F1aWNrYmxveF9hdXRoY29kZS5wbmc=/quickblox_authcode.png?fm=webp&fit=crop&s=e3f5d06f27c2d0cf31e886f26955d094"
+                        width="auto"
+                        height="70"
+                        class="max-w-[90vw] max-h-[90vh]"
+                        loading="lazy"
+                        alt="Rozcom API user's authcode"
+                    >
+                </div>
+            </div>
+        
+            <div
+                id="c9828f5d42daa2c4354787273a9ce6b4"
+                class="fixed inset-0 z-40 flex w-screen h-screen overflow-auto bg-black/30 text-dark"
+                x-data
+                x-show="$store.modal.isOpen('c9828f5d42daa2c4354787273a9ce6b4')"
+                x-cloak
+                x-transition.opacity.300ms
+                @keyup.window.escape="$store.modal.close()"
+            >
+                <div
+                    class="layer"
+                    @click="$store.modal.close()"
+                ></div>
+
+                <div class="relative m-auto">
+                    <button
+    type="button"
+    class="absolute top-0 right-0 !h-10 !w-10 min-h-0 !p-0 btn btn-gradient"
+    aria-label="Close modal" 
+    @click="$store.modal.close()"
+>
+    <i class="fa-regular fa-xmark-large"></i>
+    <span class="sr-only">Close Modal</span>
+</button>
+                    <img
+                        src="/img/asset/YXNzZXRzL3F1aWNrYmxveF9yZW1vdGUtYWNjZXNzLnBuZw==/quickblox_remote-access.png?fm=webp&fit=crop&s=600c2b8ba1d8402f70323fbd31ffe0bc"
+                        width="auto"
+                        height="675"
+                        class="max-w-[90vw] max-h-[90vh]"
+                        loading="lazy"
+                        alt="Quck Blox remote access"
+                    >
+                </div>
+            </div>
+        
+            <div
+                id="c5e37ca69b7064de4c3941ac94010372"
+                class="fixed inset-0 z-40 flex w-screen h-screen overflow-auto bg-black/30 text-dark"
+                x-data
+                x-show="$store.modal.isOpen('c5e37ca69b7064de4c3941ac94010372')"
+                x-cloak
+                x-transition.opacity.300ms
+                @keyup.window.escape="$store.modal.close()"
+            >
+                <div
+                    class="layer"
+                    @click="$store.modal.close()"
+                ></div>
+
+                <div class="relative m-auto">
+                    <button
+    type="button"
+    class="absolute top-0 right-0 !h-10 !w-10 min-h-0 !p-0 btn btn-gradient"
+    aria-label="Close modal" 
+    @click="$store.modal.close()"
+>
+    <i class="fa-regular fa-xmark-large"></i>
+    <span class="sr-only">Close Modal</span>
+</button>
+                    <img
+                        src="/img/asset/YXNzZXRzL3F1aWNrYmxveC1ibG9nLWdyYXBoaWNzLTA1LSgxKS0xNjg5MTY3Mzk5LnBuZw==/quickblox-blog-graphics-05-%281%29-1689167399.png?fm=webp&fit=crop&s=d8109be676695352437388aa786faeb9"
+                        width="auto"
+                        height="831"
+                        class="max-w-[90vw] max-h-[90vh]"
+                        loading="lazy"
+                        alt="Quick blox placeholder text"
+                    >
+                </div>
+            </div>
+        
+            <div
+                id="7b67f751afa4fe19f58b4fc09f744d45"
+                class="fixed inset-0 z-40 flex w-screen h-screen overflow-auto bg-black/30 text-dark"
+                x-data
+                x-show="$store.modal.isOpen('7b67f751afa4fe19f58b4fc09f744d45')"
+                x-cloak
+                x-transition.opacity.300ms
+                @keyup.window.escape="$store.modal.close()"
+            >
+                <div
+                    class="layer"
+                    @click="$store.modal.close()"
+                ></div>
+
+                <div class="relative m-auto">
+                    <button
+    type="button"
+    class="absolute top-0 right-0 !h-10 !w-10 min-h-0 !p-0 btn btn-gradient"
+    aria-label="Close modal" 
+    @click="$store.modal.close()"
+>
+    <i class="fa-regular fa-xmark-large"></i>
+    <span class="sr-only">Close Modal</span>
+</button>
+                    <img
+                        src="/img/asset/YXNzZXRzL3F1aWNrYmxveC1ibG9nLWdyYXBoaWNzLTA0LnBuZw==/quickblox-blog-graphics-04.png?fm=webp&fit=crop&s=c07828a239947d7ba7f6a1d071bb1a10"
+                        width="auto"
+                        height="1667"
+                        class="max-w-[90vw] max-h-[90vh]"
+                        loading="lazy"
+                        alt="Successful Quick Blox exploit PII"
+                    >
+                </div>
+            </div>
+        
+            <div
+                id="64587b3a8797636be2bf7fcba613c49f"
+                class="fixed inset-0 z-40 flex w-screen h-screen overflow-auto bg-black/30 text-dark"
+                x-data
+                x-show="$store.modal.isOpen('64587b3a8797636be2bf7fcba613c49f')"
+                x-cloak
+                x-transition.opacity.300ms
+                @keyup.window.escape="$store.modal.close()"
+            >
+                <div
+                    class="layer"
+                    @click="$store.modal.close()"
+                ></div>
+
+                <div class="relative m-auto">
+                    <button
+    type="button"
+    class="absolute top-0 right-0 !h-10 !w-10 min-h-0 !p-0 btn btn-gradient"
+    aria-label="Close modal" 
+    @click="$store.modal.close()"
+>
+    <i class="fa-regular fa-xmark-large"></i>
+    <span class="sr-only">Close Modal</span>
+</button>
+                    <img
+                        src="/img/asset/YXNzZXRzL3F1aWNrYmxveC1ibG9nLWdyYXBoaWNzLTAzLTE2ODg1NzA3OTMuanBn/quickblox-blog-graphics-03-1688570793.jpg?fm=webp&fit=crop&s=600bc2dcc31d957a1fd54c3461030a66"
+                        width="auto"
+                        height="834"
+                        class="max-w-[90vw] max-h-[90vh]"
+                        loading="lazy"
+                        alt="An attacker may inject themselves in video telemedicine calls"
+                    >
+                </div>
+            </div>
+        
+</div>
+<div class="mobile-menu fixed inset-0 overflow-auto p-[10%] bg-black text-light space-y-10 z-50">
+    <div class="flex items-center justify-between">
+        <img
+            src="https://claroty.com/build/assets/logo-white-VeF9EwMy.svg"
+            width="160"
+            height="32"
+            class="h-8"
+            alt="Claroty"
+        >
+
+        <button
+            type="button"
+            class="btn btn-gradient !h-10 !w-10 min-h-0 !p-0"
+            x-data="mobileMenuToggle"
+            @click="toggle()"
+        >
+            <i class="fa-regular fa-xmark-large"></i>
+            <span class="sr-only">Close Menu</span>
+        </button>
+    </div>
+
+    <ul class="text-lg">
+        
+            
+                
+    
+        <li
+            class="border-t"
+            x-data="{ open: false }"
+        >
+            <div class="flex">
+                <a
+                    href="/platform"
+                    class="flex items-center gap-2 leading-10 border-r grow"
+                >Platform</a>
+
+                <button
+                    type="button"
+                    class="flex w-10 h-10 shrink-0"
+                    @click="open = !open"
+                >
+                    <i
+                        class="block m-auto text-xs duration-150 opacity-50 fa-solid fa-angle-down"
+                        :class="{ 'rotate-180': open }"
+                    ></i>
+                </button>
+            </div>
+
+            
+    <div
+        class="h-xs"
+        x-show="open"
+        x-collapse
+    >
+        
+            <a
+                href="/platform"
+                class="block py-2"
+                target=""
+            >The Claroty Platform</a>
+        
+            <a
+                href="/platform/asset-inventory"
+                class="block py-2"
+                target=""
+            >Asset Inventory</a>
+        
+            <a
+                href="/platform/exposure-management"
+                class="block py-2"
+                target=""
+            >Exposure Management</a>
+        
+            <a
+                href="/platform/network-protection"
+                class="block py-2"
+                target=""
+            >Network Protection</a>
+        
+            <a
+                href="/platform/secure-access"
+                class="block py-2"
+                target=""
+            >Secure Access</a>
+        
+            <a
+                href="/platform/threat-detection"
+                class="block py-2"
+                target=""
+            >Threat Detection</a>
+        
+            <a
+                href="/platform/operational-efficiency"
+                class="block py-2"
+                target=""
+            >Operational Efficiency</a>
+        
+
+        <div class="h-3"></div>
+    </div>
+
+        </li>
+    
+
+            
+        
+            
+        
+            
+                
+    
+        <li
+            class="border-t"
+            x-data="{ open: false }"
+        >
+            <div class="flex">
+                <a
+                    href="/industrial-cybersecurity"
+                    class="flex items-center gap-2 leading-10 border-r grow"
+                >Industrial</a>
+
+                <button
+                    type="button"
+                    class="flex w-10 h-10 shrink-0"
+                    @click="open = !open"
+                >
+                    <i
+                        class="block m-auto text-xs duration-150 opacity-50 fa-solid fa-angle-down"
+                        :class="{ 'rotate-180': open }"
+                    ></i>
+                </button>
+            </div>
+
+            
+    <div
+        class="h-xs"
+        x-show="open"
+        x-collapse
+    >
+        
+            <a
+                href="/industrial-cybersecurity"
+                class="block py-2"
+                target=""
+            >Industrial Home</a>
+        
+            <a
+                href="/industrial-cybersecurity/xdome"
+                class="block py-2"
+                target=""
+            >Claroty xDome</a>
+        
+            <a
+                href="/industrial-cybersecurity/xdome-secure-access"
+                class="block py-2"
+                target=""
+            >Claroty xDome Secure Access</a>
+        
+            <a
+                href="/industrial-cybersecurity/ctd"
+                class="block py-2"
+                target=""
+            >Claroty Continuous Threat Detection (CTD)</a>
+        
+            <a
+                href="/industrial-cybersecurity/cyber-resilience"
+                class="block py-2"
+                target=""
+            >Cyber Resilience</a>
+        
+            <a
+                href="/industrial-cybersecurity/operational-resilience"
+                class="block py-2"
+                target=""
+            >Operational Resilience</a>
+        
+
+        <div class="h-3"></div>
+    </div>
+
+        </li>
+    
+
+            
+        
+            
+                
+    
+        <li
+            class="border-t"
+            x-data="{ open: false }"
+        >
+            <div class="flex">
+                <a
+                    href="/healthcare-cybersecurity"
+                    class="flex items-center gap-2 leading-10 border-r grow"
+                >Healthcare</a>
+
+                <button
+                    type="button"
+                    class="flex w-10 h-10 shrink-0"
+                    @click="open = !open"
+                >
+                    <i
+                        class="block m-auto text-xs duration-150 opacity-50 fa-solid fa-angle-down"
+                        :class="{ 'rotate-180': open }"
+                    ></i>
+                </button>
+            </div>
+
+            
+    <div
+        class="h-xs"
+        x-show="open"
+        x-collapse
+    >
+        
+            <a
+                href="/healthcare-cybersecurity"
+                class="block py-2"
+                target=""
+            >Healthcare Home</a>
+        
+            <a
+                href="/healthcare-cybersecurity/xdome-for-healthcare"
+                class="block py-2"
+                target=""
+            >Claroty xDome</a>
+        
+            <a
+                href="/healthcare-cybersecurity/secure-access"
+                class="block py-2"
+                target=""
+            >Healthcare Secure Access</a>
+        
+            <a
+                href="/healthcare-cybersecurity/cyber-resilience"
+                class="block py-2"
+                target=""
+            >Cyber Resilience</a>
+        
+            <a
+                href="/healthcare-cybersecurity/operational-resilience"
+                class="block py-2"
+                target=""
+            >Operational Resilience</a>
+        
+
+        <div class="h-3"></div>
+    </div>
+
+        </li>
+    
+
+            
+        
+            
+                
+    
+        <li
+            class="border-t"
+            x-data="{ open: false }"
+        >
+            <div class="flex">
+                <a
+                    href="/commercial-cybersecurity"
+                    class="flex items-center gap-2 leading-10 border-r grow"
+                >Commercial</a>
+
+                <button
+                    type="button"
+                    class="flex w-10 h-10 shrink-0"
+                    @click="open = !open"
+                >
+                    <i
+                        class="block m-auto text-xs duration-150 opacity-50 fa-solid fa-angle-down"
+                        :class="{ 'rotate-180': open }"
+                    ></i>
+                </button>
+            </div>
+
+            
+    <div
+        class="h-xs"
+        x-show="open"
+        x-collapse
+    >
+        
+            <a
+                href="/commercial-cybersecurity"
+                class="block py-2"
+                target=""
+            >Commercial Home</a>
+        
+            <a
+                href="/commercial-cybersecurity/xdome"
+                class="block py-2"
+                target=""
+            >Claroty xDome</a>
+        
+            <a
+                href="/commercial-cybersecurity/xdome-secure-access"
+                class="block py-2"
+                target=""
+            >Claroty xDome Secure Access</a>
+        
+            <a
+                href="/commercial-cybersecurity/ctd"
+                class="block py-2"
+                target=""
+            >Claroty Continuous Threat Detection (CTD)</a>
+        
+            <a
+                href="/commercial-cybersecurity/cyber-resilience"
+                class="block py-2"
+                target=""
+            >Cyber Resilience</a>
+        
+            <a
+                href="/commercial-cybersecurity/operational-resilience"
+                class="block py-2"
+                target=""
+            >Operational Resilience</a>
+        
+
+        <div class="h-3"></div>
+    </div>
+
+        </li>
+    
+
+            
+        
+            
+                
+    
+        <li
+            class="border-t"
+            x-data="{ open: false }"
+        >
+            <div class="flex">
+                <a
+                    href="/public-sector-cybersecurity"
+                    class="flex items-center gap-2 leading-10 border-r grow"
+                >Public Sector</a>
+
+                <button
+                    type="button"
+                    class="flex w-10 h-10 shrink-0"
+                    @click="open = !open"
+                >
+                    <i
+                        class="block m-auto text-xs duration-150 opacity-50 fa-solid fa-angle-down"
+                        :class="{ 'rotate-180': open }"
+                    ></i>
+                </button>
+            </div>
+
+            
+    <div
+        class="h-xs"
+        x-show="open"
+        x-collapse
+    >
+        
+            <a
+                href="/public-sector-cybersecurity"
+                class="block py-2"
+                target=""
+            >Public Sector Home</a>
+        
+            <a
+                href="/public-sector-cybersecurity/us-government-cybersecurity"
+                class="block py-2"
+                target=""
+            >U.S. Federal Government</a>
+        
+            <a
+                href="/public-sector-cybersecurity/sltt-government-cybersecurity"
+                class="block py-2"
+                target=""
+            >State, Local, Tribal, and Territorial (SLTT)</a>
+        
+            <a
+                href="/public-sector-cybersecurity/national-and-international-government-cybersecurity"
+                class="block py-2"
+                target=""
+            >National and International Government</a>
+        
+            <a
+                href="/public-sector-cybersecurity/enabling-government-regulatory-and-policy-compliance"
+                class="block py-2"
+                target=""
+            >Government Regulatory & Policy Compliance</a>
+        
+            <a
+                href="/public-sector-cybersecurity/us-government-cybersecurity/the-team"
+                class="block py-2"
+                target=""
+            >The Federal Team</a>
+        
+
+        <div class="h-3"></div>
+    </div>
+
+        </li>
+    
+
+            
+        
+            
+        
+            
+                
+    
+        <li
+            class="border-t"
+            x-data="{ open: false }"
+        >
+            <div class="flex">
+                <a
+                    href="/team82"
+                    class="flex items-center gap-2 leading-10 border-r grow"
+                >Threat Research</a>
+
+                <button
+                    type="button"
+                    class="flex w-10 h-10 shrink-0"
+                    @click="open = !open"
+                >
+                    <i
+                        class="block m-auto text-xs duration-150 opacity-50 fa-solid fa-angle-down"
+                        :class="{ 'rotate-180': open }"
+                    ></i>
+                </button>
+            </div>
+
+            
+    <div
+        class="h-xs"
+        x-show="open"
+        x-collapse
+    >
+        
+            <a
+                href="/team82"
+                class="block py-2"
+                target=""
+            >Team82 Home</a>
+        
+            <a
+                href="/threat-intelligence"
+                class="block py-2"
+                target=""
+            >Threat Intelligence</a>
+        
+            <a
+                href="/team82/disclosure-dashboard"
+                class="block py-2"
+                target=""
+            >Vulnerability Disclosure Dashboard</a>
+        
+            <a
+                href="/team82/research"
+                class="block py-2"
+                target=""
+            >Research</a>
+        
+            <a
+                href="/team82/talks"
+                class="block py-2"
+                target=""
+            >Talks</a>
+        
+            <a
+                href="/team82/pgp-key"
+                class="block py-2"
+                target=""
+            >PGP Key</a>
+        
+
+        <div class="h-3"></div>
+    </div>
+
+        </li>
+    
+
+            
+        
+            
+                
+    
+        <li
+            class="border-t"
+            x-data="{ open: false }"
+        >
+            <div class="flex">
+                <a
+                    href="/partners"
+                    class="flex items-center gap-2 leading-10 border-r grow"
+                >Partners</a>
+
+                <button
+                    type="button"
+                    class="flex w-10 h-10 shrink-0"
+                    @click="open = !open"
+                >
+                    <i
+                        class="block m-auto text-xs duration-150 opacity-50 fa-solid fa-angle-down"
+                        :class="{ 'rotate-180': open }"
+                    ></i>
+                </button>
+            </div>
+
+            
+    <div
+        class="h-xs"
+        x-show="open"
+        x-collapse
+    >
+        
+            <a
+                href="/partners"
+                class="block py-2"
+                target=""
+            >Partners</a>
+        
+            <a
+                href="/partners/technology-alliances"
+                class="block py-2"
+                target=""
+            >Technology Alliance Partners</a>
+        
+            <a
+                href="/partners/channel-partners"
+                class="block py-2"
+                target=""
+            >Channel Partners</a>
+        
+            <a
+                href="/partners/channel-partners/managed-security-service-providers"
+                class="block py-2"
+                target=""
+            >Managed Security Service Providers (MSSP)</a>
+        
+            <a
+                href="https://portal.claroty.com/English/register_email.aspx"
+                class="block py-2"
+                target="_blank"
+            >Become a Partner</a>
+        
+            <a
+                href="https://portal.claroty.com/English/"
+                class="block py-2"
+                target="_blank"
+            >Partner Login</a>
+        
+
+        <div class="h-3"></div>
+    </div>
+
+        </li>
+    
+
+            
+        
+            
+                
+    
+        <li
+            class="border-t"
+            x-data="{ open: false }"
+        >
+            <div class="flex">
+                <a
+                    href="/resources"
+                    class="flex items-center gap-2 leading-10 border-r grow"
+                >Resources</a>
+
+                <button
+                    type="button"
+                    class="flex w-10 h-10 shrink-0"
+                    @click="open = !open"
+                >
+                    <i
+                        class="block m-auto text-xs duration-150 opacity-50 fa-solid fa-angle-down"
+                        :class="{ 'rotate-180': open }"
+                    ></i>
+                </button>
+            </div>
+
+            
+    <div
+        class="h-xs"
+        x-show="open"
+        x-collapse
+    >
+        
+            <a
+                href="/blog"
+                class="block py-2"
+                target=""
+            >Blog</a>
+        
+            <a
+                href="/resources/reports"
+                class="block py-2"
+                target=""
+            >Reports</a>
+        
+            <a
+                href="/resources/white-papers"
+                class="block py-2"
+                target=""
+            >White Papers</a>
+        
+            <a
+                href="/resources/datasheets"
+                class="block py-2"
+                target=""
+            >Datasheets & Solution Overviews</a>
+        
+            <a
+                href="/resources/integration-briefs"
+                class="block py-2"
+                target=""
+            >Integration Briefs</a>
+        
+            <a
+                href="/resources/case-studies"
+                class="block py-2"
+                target=""
+            >Case Studies</a>
+        
+            <a
+                href="/resources/webinars"
+                class="block py-2"
+                target=""
+            >On-Demand Webinars</a>
+        
+            <a
+                href="https://nexusconnect.io/podcasts"
+                class="block py-2"
+                target="_blank"
+            >Podcasts</a>
+        
+
+        <div class="h-3"></div>
+    </div>
+
+        </li>
+    
+
+            
+        
+            
+                
+    
+        <li
+            class="border-t"
+            x-data="{ open: false }"
+        >
+            <div class="flex">
+                <a
+                    href="/company"
+                    class="flex items-center gap-2 leading-10 border-r grow"
+                >Company</a>
+
+                <button
+                    type="button"
+                    class="flex w-10 h-10 shrink-0"
+                    @click="open = !open"
+                >
+                    <i
+                        class="block m-auto text-xs duration-150 opacity-50 fa-solid fa-angle-down"
+                        :class="{ 'rotate-180': open }"
+                    ></i>
+                </button>
+            </div>
+
+            
+    <div
+        class="h-xs"
+        x-show="open"
+        x-collapse
+    >
+        
+            <a
+                href="/company"
+                class="block py-2"
+                target=""
+            >About Us</a>
+        
+            <a
+                href="/careers"
+                class="block py-2"
+                target=""
+            >Careers</a>
+        
+            <a
+                href="/leadership"
+                class="block py-2"
+                target=""
+            >Leadership</a>
+        
+            <a
+                href="/newsroom"
+                class="block py-2"
+                target=""
+            >Newsroom</a>
+        
+            <a
+                href="/trust"
+                class="block py-2"
+                target=""
+            >Trust Center</a>
+        
+            <a
+                href="/event-listing"
+                class="block py-2"
+                target=""
+            >Events</a>
+        
+            <a
+                href="/contact-us"
+                class="block py-2"
+                target=""
+            >Contact Us</a>
+        
+
+        <div class="h-3"></div>
+    </div>
+
+        </li>
+    
+
+            
+        
+
+        
+    
+        <li class="border-t">
+            <a
+                href="/search"
+                class="flex items-center gap-2 leading-10"
+            ><i class='fa-regular fa-search'></i>Search</a>
+        </li>
+    
+
+    </ul>
+
+    
+    <div class="flex gap-2">
+        
+        
+            <a
+                href="https://www.linkedin.com/company/claroty/"
+                class="flex w-8 h-8 bg-gray-800/50 hover:bg-[#0a66c2] rounded"
+                target="_blank"
+            >
+                <i class="fa-brands fa-linkedin m-auto"></i>
+                <span class="sr-only">LinkedIn</span>
+            </a>
+        
+            <a
+                href="https://twitter.com/claroty"
+                class="flex w-8 h-8 bg-gray-800/50 hover:bg-[#1da1f2] rounded"
+                target="_blank"
+            >
+                <i class="fa-brands fa-square-x-twitter m-auto"></i>
+                <span class="sr-only">Twitter</span>
+            </a>
+        
+            <a
+                href="https://www.youtube.com/@claroty20"
+                class="flex w-8 h-8 bg-gray-800/50 hover:bg-[#f00] rounded"
+                target="_blank"
+            >
+                <i class="fa-brands fa-youtube m-auto"></i>
+                <span class="sr-only">YouTube</span>
+            </a>
+        
+            <a
+                href="https://www.facebook.com/ClarotyOT/"
+                class="flex w-8 h-8 bg-gray-800/50 hover:bg-[#1778f2] rounded"
+                target="_blank"
+            >
+                <i class="fa-brands fa-facebook m-auto"></i>
+                <span class="sr-only">Facebook</span>
+            </a>
+        
+    </div>
+
+</div>
+<script data-navigate-once="true">window.livewireScriptConfig = {"csrf":"MSV8huuTfOU6USBzNyKwuBEnLoECOF4nRytj88Se","uri":"\/livewire\/update","progressBar":"","nonce":""};</script>
+
+        <script src="//js.hsforms.net/forms/embed/v2.js"></script>
+    
+<script>
+    let ClarotyHubspot = {}
+</script>
+
+<script
+    src="https://kit.fontawesome.com/da9381b325.js"
+    crossorigin="anonymous"
+></script>
+
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MWHFVG2"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<noscript>
+<img src="https://ws.zoominfo.com/pixel/jilEnH5CqVK0j3M3GHR5" width="1" height="1" style="display: none;" />
+</noscript>
+</body>
+</html>

@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<!--
+    Type on Strap jekyll theme v2.0.0
+    Copyright 2016-2019 Sylhare
+    Theme free for personal and commercial use under the MIT license
+    https://github.com/sylhare/Type-on-Strap/blob/master/LICENSE
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- Main JS (navbar.js, katex_init.js and masonry_init.js)-->
+    <script defer=true src="/assets/js/main.min.js"></script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="/assets/css/main.css">
+
+    <!--Favicon-->
+    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://blog.sambal0x.com/2020/04/30/Hacking-razer-pay-ewallet-app.html">
+
+    <!-- RSS -->
+    <link rel="alternate" type="application/atom+xml" title="Richard's Infosec blog" href="https://blog.sambal0x.com/feed.xml"/>
+    
+    
+
+    <!-- KaTeX 0.8.3 -->
+    <!-- if you have any issue check https://github.com/KaTeX/KaTeX -->
+    
+    <script src="/assets/js/vendor/katex.min.js"></script>
+    
+
+    <!-- Google Analytics -->
+    
+    <!-- Global site tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-150679675-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-150679675-1');
+    </script>
+    
+    <!-- Page analysis (analytics.js) -->
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'UA-150679675-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+     <!-- End Google Analytics -->
+
+    <!-- seo tags -->
+    <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Hacking Razer Pay Ewallet App | Richard’s Infosec blog</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="Hacking Razer Pay Ewallet App" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Introduction This write-up is about hacking the Razer Pay Android app - an E-Wallet app used in Singapore and Malaysia. It was an interesting journey worth blogging due to the use of some interesting techniques including Frida, a tool that I only thought was meant for bypassing SSL-pinning or root detection." />
+<meta property="og:description" content="Introduction This write-up is about hacking the Razer Pay Android app - an E-Wallet app used in Singapore and Malaysia. It was an interesting journey worth blogging due to the use of some interesting techniques including Frida, a tool that I only thought was meant for bypassing SSL-pinning or root detection." />
+<link rel="canonical" href="https://blog.sambal0x.com/2020/04/30/Hacking-razer-pay-ewallet-app.html" />
+<meta property="og:url" content="https://blog.sambal0x.com/2020/04/30/Hacking-razer-pay-ewallet-app.html" />
+<meta property="og:site_name" content="Richard’s Infosec blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-04-30T00:00:00+00:00" />
+<script type="application/ld+json">
+{"@type":"BlogPosting","headline":"Hacking Razer Pay Ewallet App","dateModified":"2020-04-30T00:00:00+00:00","datePublished":"2020-04-30T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.sambal0x.com/2020/04/30/Hacking-razer-pay-ewallet-app.html"},"url":"https://blog.sambal0x.com/2020/04/30/Hacking-razer-pay-ewallet-app.html","description":"Introduction This write-up is about hacking the Razer Pay Android app - an E-Wallet app used in Singapore and Malaysia. It was an interesting journey worth blogging due to the use of some interesting techniques including Frida, a tool that I only thought was meant for bypassing SSL-pinning or root detection.","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <!-- Manual seo tags -->
+    <!--
+    <title>Hacking Razer Pay Ewallet App | Richard's Infosec blog</title>
+    <meta name="description" content="IntroductionThis write-up is about hacking the Razer Pay Android app - an E-Wallet app used in Singapore and Malaysia. It was an interesting journey worth bl...">
+    -->
+</head>
+
+  <body>
+    <header class="site-header">
+
+    <!-- Logo and title -->
+	<div class="branding">
+        
+		<a href="/">
+			<img alt="logo img" class="avatar" src="/assets/img/author.jpg" />
+		</a>
+        
+
+		<h1 class="site-title">
+			<a aria-label="Richard's Infosec blog" href="/">
+        Richard's Infosec blog
+      </a>
+		</h1>
+	</div>
+
+    <!-- Toggle menu -->
+    <nav class="clear">
+    <a aria-label="pull" id="pull" class="toggle" href="#">
+    <i class="fa fa-bars fa-lg"></i>
+    </a>
+
+    <!-- Menu -->
+    <ul class="hide">
+        
+
+        
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="About" title="About" href="/about/">
+                     About 
+                </a>
+            </li>
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Search" title="Search" href="/search/">
+                     <i class="fa fa-search" aria-hidden="true"></i>
+                    
+                </a>
+            </li>
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Tags" title="Tags" href="/tags/">
+                     <i class="fa fa-tags" aria-hidden="true"></i>
+                    
+                </a>
+            </li>
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+    </ul>
+
+	</nav>
+</header>
+
+    <div class="content">
+      
+
+<meta property="og:url"          content="/2020/04/30/Hacking-razer-pay-ewallet-app.html" />
+<meta property="og:type"         content="article" />
+<meta property="og:title"        content="Hacking Razer Pay Ewallet App" />
+<meta property="og:description"  content="Introduction
+This write-up is about hacking the Razer Pay Android app - an E-Wallet app used in Singapore and Malaysia. It was an interesting journey worth blogging due to the use of some interesting techniques including Frida, a tool that I only ..." />
+<meta property="og:image"        content="assets/img/pexels/computer.jpeg" />
+
+
+<article >
+  <header id="main" style="">
+    
+      <h1 id="Hacking+Razer+Pay+Ewallet+App" class="title">Hacking Razer Pay Ewallet App</h1>
+      
+
+
+<div class="post-info">
+    <p class="meta">
+      April 30, 2020
+    </p></div>
+
+    
+  </header>
+  <section class="post-content">
+  
+      <h2 id="introduction">Introduction</h2>
+<p>This write-up is about hacking the Razer Pay Android app - an E-Wallet app used in Singapore and Malaysia. It was an interesting journey worth blogging due to the use of some interesting techniques including Frida, a tool that I only thought was meant for bypassing SSL-pinning or root detection.</p>
+
+<p>In this write-up I will show how I was able to use Frida to compromise the app, ranging from reading other user’s chat messages, deleting user’s bank accounts, gleaning user’s private info, and even stealing money from other user’s accounts.</p>
+
+<h2 id="tldr">TL;DR</h2>
+<p>The Razer Pay app utilised signatures to prevent tampering of request payloads. Each GET and POST request that was delivered to the server was protected with a calculated signature field.</p>
+
+<p><img src="/assets/img/blog/Razer-Pay1.png" alt="Razer-Pay1..." /></p>
+
+<p>Any attempts to modify the request parameters would result in a error response. However by reverse engineering the APK file and identifying the right methods, it was possible to to calculate the new signatures for modified payloads. Combining the use of Frida to automate the re-calculation of the new signatures, it was possible identify a large number of IDOR issues.</p>
+
+<h2 id="background">Background</h2>
+<p>When selecting programs to participate on, I normally like to choose programs that have higher barrier to entry to avoid duplicates. When Razer decided to participate on the Hackerone platform, the Razer Pay app caught my eye. This was because a Malaysian or Singaporean mobile number was required for registration. Living in Australia, I did not own a Malaysian/Singapore mobile numbers. However I had a some friends and family members who lived in Malaysia that were willing help source some Malaysian numbers for testing. Knowing that many bug bounty hunters would mostly have this resistance, I decided to take a deep dive in this app :)</p>
+
+<p><img src="/assets/img/blog/Razer-Pay2.png" alt="Razer-Pay1..." /></p>
+
+<p>I started analyising this application by proxying traffic using Burp and quickly noticed that a lot of parameters could not be tampered. This is due to the signature field in each request. My first thought was to register another user account and copy the same payload for an action that could only be made by that user, and perform it on the first user’s session. But that failed as the signature was also calculated based on the second user’s session auth header.</p>
+
+<p>I was determined to find how the signatures were calculated. So I decompiled the application using <strong>apktool</strong> and use <strong>Jadx-Gui</strong> to understand how the application worked. I started to search for API endpoints and traced it back a method called “MD5Encode”. The name suggested “MD5 hash” algorithm but I was never able to calculate the right signature by MD5-ing the payload (perhaps they were in the wrong order or wasn’t the normal implementation of MD5).</p>
+
+<p><img src="/assets/img/blog/Razer-Pay3.png" alt="Razer-Pay3..." /></p>
+
+<h2 id="deleting-other-users-bank-account">Deleting other user’s bank account</h2>
+<p>Not giving up, I decided to copy all the Java code and perform the signature calculation offline. My choice of IDE was <strong>IntelliJ IDEA</strong>. At this point, I knew the the right paramter value sequence to insert into the “MD5Encode” method based on my previous source code analysis. There were some minor tweaking required to get the code to compile (due to the code obfuscation) but it wasn’t too hard. Placing in the same parameter values for an existing request I previously made into the method yielded the same signature, so I knew I was on the right track!</p>
+
+<p><img src="/assets/img/blog/Razer-Pay4.png" alt="Example..." />
+<img src="/assets/img/blog/Razer-Pay5.png" alt="Example..." /></p>
+
+<p>I wanted to test for IDORs as I thought there is a good probability that developers were depending on the <code class="language-plaintext highlighter-rouge">signatures</code> to protect against parameter value tampering. In this specific API that I was testing <code class="language-plaintext highlighter-rouge">/deleteBankAccount</code>, I calculated the signatures for a range of predictable <code class="language-plaintext highlighter-rouge">id</code> values and its corresponding <code class="language-plaintext highlighter-rouge">signature</code> value. I then selected the <code class="language-plaintext highlighter-rouge">id</code> (bank Id) for a second account that I owned and delivered the payload.</p>
+
+<p>This worked and I was able to delete my another user’s bank account! Nasty…</p>
+
+<p><img src="/assets/img/blog/Razer-Pay6.png" alt="Example..." /></p>
+
+<h2 id="frida-to-the-rescue">Frida to the rescue</h2>
+<p>At this point, I knew there must be other API endpoints that were vulnerable to IDOR but protected by the signature field. I tried to repeat the same attack I did previously but nothing worked. This was because other API endpoints used different algorithm and were painful obfuscated. The code compilation failed and I was wasting a lot of time troubleshooting obfuscated code.</p>
+
+<p>This is where Frida came to the rescue. Frida was awesome as it did all the heavy lifting and all I needed to do was identify the right method that I wanted to hook. By hooking the right method and providing Frida with the neccessary values it needed to calculated the new signatures, I was able to quickly automate things and get the right signature.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// frida.js - Use this for recalculating signature for adding user to other people's chatgroup
+
+console.log("Starting...")
+Java.perform(function () {
+    var MD5 = Java.use('com.mol.molwallet.view.MD5')
+    MD5.MD5Encode.implementation = function (arg)
+    {
+        console.log("Hooking class MD5 - method MD5Encode")
+
+       //Extra step - calculate new signature
+        var ret_value = this.MD5Encode("groupId=1x9&amp;userIds=95xxx7&amp;token=b6fxxxd3-2xxc-4xxf-bxx7-7fxxxxa6")
+        console.log("[+]  signature= " + ret_value)
+
+        //Call method with original arguments so app doesn't crash ..
+        var ret_value = this.MD5Encode(arg) //original value
+                console.log("original ARG: " + arg)  
+        return ret_value;
+    }
+})
+</code></pre></div></div>
+
+<p>To run the frida, I had to have root access (This did not matter as I was testing a server side issue and an attacker could easily use a rooted device to perform the attack). The following commands were used to start frida server on the mobile device.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ adb shell
+# sudo su
+# /data/local/tmp/frida-server
+</code></pre></div></div>
+
+<p>On a different terminal tab, I ran the following commands to run the Frida script.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ frida -l frida.js -U com.mol.molwallet
+</code></pre></div></div>
+
+<p>As I browsed the mobile app, any action that utilised the hooked method “MD5Encode” would run the script loaded. As a result, I was able to get the right signature that I needed to make a valid request. In this specific example, I was able to add myself to a chatgroup that I was not invited to. The impact of this is that I am able to view other user’s chat messages , and worst of all steal unclaimed money that is shared betweem members in a group chat.</p>
+
+<p><img src="/assets/img/blog/Razer-Pay7.png" alt="Example..." />
+<img src="/assets/img/blog/Razer-Pay8.png" alt="Example..." /></p>
+
+<h2 id="rinse-and-repeat">Rinse and repeat</h2>
+<p>I repeated the same technique with Frida for all other API endpoints that were vulnerable. Some high impact issues include enumerating how much red packet (money) was shared between users or in a group, viewing and modifying other user’s transaction details and personal information.</p>
+
+<h2 id="final-thoughts">Final thoughts</h2>
+<p>The total bounty received for reporting these issues was approximately $6,000. The disclosure and reward process with Razer team were at time frusfrating due to the lack of response. Sometimes I cringe when I read my multiple follow ups for a response or follow ups on bounty rewards that were forgotten. However most of the issues were resolved recently and I have personally decided to take a break from this program going forward given the experience I had.</p>
+
+    
+  </section>
+
+  <!-- Social media shares -->
+  
+
+<div class="share-buttons">
+    <ul class="share-buttons">
+        <div class="meta">Share</div>
+        
+        <li>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fblog.sambal0x.com%2F2020%2F04%2F30%2FHacking-razer-pay-ewallet-app.html" target="_blank" title=" Facebook">
+			<i class="fa fa-facebook-square fa-2x" aria-hidden="true"></i>
+			<span class="sr-only">Share on Facebook</span>
+		</a>
+        </li>
+         
+        <li>
+            <a href="https://twitter.com/intent/tweet?text=Hacking+Razer+Pay+Ewallet+App%20https%3A%2F%2Fblog.sambal0x.com%2F2020%2F04%2F30%2FHacking-razer-pay-ewallet-app.html" target="_blank" title="">
+			<i class="fa fa-twitter-square fa-2x" aria-hidden="true"></i>
+			<span class="sr-only">Tweet</span>
+		</a>
+        </li>
+            
+        <li>
+            <a href="http://www.reddit.com/submit?url=https://blog.sambal0x.com/2020/04/30/Hacking-razer-pay-ewallet-app.html&title=Hacking+Razer+Pay+Ewallet+App%20%7C%20Richard%27s+Infosec+blog" target="_blank" title=" Reddit">
+			<i class="fa fa-reddit-square fa-2x" aria-hidden="true"></i>
+			<span class="sr-only">Share on Reddit</span>
+		</a>
+        </li>
+         
+        <li>
+            <a href="http://www.linkedin.com/shareArticle?mini=true&url=https://blog.sambal0x.com/2020/04/30/Hacking-razer-pay-ewallet-app.html&title=Hacking+Razer+Pay+Ewallet+App%20%7C%20Richard%27s+Infosec+blog&summary=&source=https://blog.sambal0x.com/2020/04/30/Hacking-razer-pay-ewallet-app.html" target="_blank" title=" LinkedIn">
+			<i class="fa fa-linkedin fa-2x" aria-hidden="true"></i>
+			<span class="sr-only">Share on LinkedIn</span>
+		</a>
+        </li>
+          
+        <li>
+            <a href="mailto:?subject=Hacking+Razer+Pay+Ewallet+App%20%7C%20Richard%27s+Infosec+blog&body=:%20https://blog.sambal0x.com/2020/04/30/Hacking-razer-pay-ewallet-app.html" target="_blank" title="">
+			<i class="fa fa-envelope-square fa-2x" aria-hidden="true"></i>
+			<span class="sr-only">Email</span>
+		</a>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+
+   <!-- Tag list -->
+  
+  
+
+
+<footer>
+  <div class="tag-list">
+    
+      <div class="meta">Tags</div>
+    
+
+    
+    <a class="button" href="/tags#Bug+bounty">
+      <p><i class="fa fa-tag fa-fw"></i> Bug bounty</p>
+    </a>
+    
+    <a class="button" href="/tags#Mobile">
+      <p><i class="fa fa-tag fa-fw"></i> Mobile</p>
+    </a>
+    
+  </div>
+</footer>
+
+
+</article>
+
+<!-- Disqus -->
+
+
+<!-- Post navigation -->
+
+  <div id="post-nav">
+    
+    <div id="previous-post">
+        <a alt="Bountycon2020 Presentation" href="/2020/10/17/Bountycon2020-Presentation.html">
+            <p>Previous post</p>
+            Bountycon2020 Presentation
+        </a>
+    </div>
+    
+
+    
+    <div id="next-post">
+        <a alt="Enumerating hard to guess AD username format" href="/2019/11/01/Enumerating-hard-to-guess-AD-Username-format.html">
+            <p>Next post</p>
+            Enumerating hard to guess AD username format
+        </a>
+    </div>
+    
+</div>
+
+
+
+<!-- To change color of links in the page -->
+<style>
+  
+
+  header#main {
+    background-repeat:no-repeat;
+    
+  }
+</style>
+
+    </div>
+    <footer class="site-footer">
+    <p class="text">
+        <a> 2019 All rights reserved </a>
+</p>
+            <div class="footer-icons">
+                <ul>
+                <!-- Social icons from Font Awesome, if enabled -->
+                
+<li>
+	<a href="https://blog.sambal0x.com/feed.xml" title="Follow RSS feed">
+		<span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+        </span>
+	</a>
+</li>
+
+
+
+<li>
+	<a href="mailto:rhardtan@gmail.com" title="Email">
+		<span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+        </span>
+	</a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li>
+	<a href="https://github.com/sambal0x" title="Follow on GitHub">
+		<span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+        </span>
+	</a>
+</li>
+
+
+
+
+
+
+
+<li>
+	<a href="https://linkedin.com/in/sambal0x" title="Follow on LinkedIn">
+		<span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+        </span>
+	</a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li>
+	<a href="https://twitter.com/sambal0x" title="Follow on Twitter" class="type">
+        <span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+        </span>
+	</a>
+</li>
+
+
+
+
+
+
+
+
+                </ul>
+            </div>
+</footer>
+
+
+
+  </body>
+</html>

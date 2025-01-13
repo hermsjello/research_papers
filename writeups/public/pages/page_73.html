@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Let me Unmask my next 👻 | crypt0g30rgy.github.io</title>
+<meta name="generator" content="Jekyll v3.9.3" />
+<meta property="og:title" content="Let me Unmask my next 👻" />
+<meta property="og:locale" content="en_US" />
+<link rel="canonical" href="https://crypt0g30rgy.github.io/post/TinderBug.html" />
+<meta property="og:url" content="https://crypt0g30rgy.github.io/post/TinderBug.html" />
+<meta property="og:site_name" content="crypt0g30rgy.github.io" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-02-22T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Let me Unmask my next 👻" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-02-22T00:00:00+00:00","datePublished":"2022-02-22T00:00:00+00:00","headline":"Let me Unmask my next 👻","mainEntityOfPage":{"@type":"WebPage","@id":"https://crypt0g30rgy.github.io/post/TinderBug.html"},"url":"https://crypt0g30rgy.github.io/post/TinderBug.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/assets/css/style.css?v=b5e9c3519607149a888befa9a2d9b53d676dba34">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      
+      <h1><a href="https://crypt0g30rgy.github.io/">crypt0g30rgy.github.io</a></h1>
+      
+
+      <h1 id="let-me-unmask-my-next-">Let me Unmask my next 👻</h1>
+
+<h2 id="aint-we-all-humans-">Ain’t we all humans 😂</h2>
+
+<p>This is a story about a bug i found on the popular dating app tinder, it involved a paywall bypass and idor that could enable me to see who had matched and liked my profile without waiting or paying.</p>
+
+<p>i reported this bug on february of 2022, i was in my house bored and lonely one day in the month of <code class="language-plaintext highlighter-rouge">"love"</code> february, i hadn’t had much luck with <code class="language-plaintext highlighter-rouge">"love"</code> since am an indoor 24/7 person and i thought well if i get everything else i need from the internet why not also try to get <code class="language-plaintext highlighter-rouge">"love"</code> from there, made a tinder account. And after several swipes and like backs (a few days) i would always hit the paywall when i wanted to see who like me back. So on the 21 of that month i said to myself <code class="language-plaintext highlighter-rouge">"hey, am a hacker and no one applicatin should dictate to me what to do"</code> 
+So i grabbed my laptop, fired burp suite and firefox, proxy working i logged into my tinder account and within a few hours i figured the application flow between seeing who likes you and their info.</p>
+
+<p>The flow was as below;</p>
+
+<blockquote>
+  <p>When a normal user registers to tinder the are not allowed to view who has liked them until they purchase a subscription, you only get blurred data back.
+<img src="/images/poc/blured.jpg" alt="blurred" /></p>
+</blockquote>
+
+<blockquote>
+  <p>When the try to view data of a user who have liked them by visiting <a href="https://tinder.com/app/likes-you">https://tinder.com/app/likes-you</a> they are hit by a paywall and can not proceed.
+<img src="/images/poc/paywall.jpg" alt="paywall" /></p>
+</blockquote>
+
+<p>At this point all the liker’s data is blurred including pictures .
+However i realized that this security measure is only applied in the frontend and the underlying api brings back all the user data including user_id which can then be user to query each individual users data where we can even view the full unblurred /Original images.
+The api gives users this information really quick and easy and its just not shown in the frontend due to the paywall</p>
+
+<p>After finding this information disclosure i started poking around for a way to retrive a specific (single) user data. this is where i ended up finding an idor at
+<code class="language-plaintext highlighter-rouge">"/user/'your likers id'?locale=en-GB"</code></p>
+
+<p>With all the data in place i could query the data of users who had liked me back and also get their unblurred versions of pictures and any other information that they had on their profile.</p>
+
+<h2 id="reproduction-steps">Reproduction Steps</h2>
+
+<ol>
+  <li>Connect a http logging and editing tool to your browser like burp and visit <a href="https://tinder.com/app/likes-you">https://tinder.com/app/likes-you</a> (Should have someone liking your profile first) and you should see the blurred profile</li>
+  <li>Look at your burp history and find a request to the api <code class="language-plaintext highlighter-rouge">GET /v2/my-likes?locale=en-GB</code></li>
+  <li>Find the likers’ user_id under ‘{“type”:”user”,”user”:{“_id”:”<your likers="">","badges":[],'</your></li>
+  <li>Now hit the below api endpoint;</li>
+</ol>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET /user/`your likers id`?locale=en-GB HTTP/2
+Host: api.gotinder.com
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:97.0) Gecko/20100101 Firefox/97.0
+Accept: application/json
+App-Session-Id: &lt;&gt;
+User-Session-Id: &lt;&gt;
+X-Supported-Image-Formats: webp,jpeg
+Platform: web
+X-Auth-Token: &lt;&gt;
+Origin: https://tinder.com
+Referer: https://tinder.com/
+Te: trailers
+</code></pre></div></div>
+
+<ol>
+  <li>Replace all with their respective data like user tokens or in proxy find the <code class="language-plaintext highlighter-rouge">GET /v2/my-likes?locale=en-GB</code> api request and send to repeater then delete the “/v2/my-likes?locale=en-GB” and replace with <code class="language-plaintext highlighter-rouge">"/user/'your likers id'?locale=en-GB"</code>
+Observe the api response and you can find all the likers info which was blurred including original images, distance from you etc.
+Images with the string ‘original’ in url will result in being able to view the unblurred image.</li>
+</ol>
+
+<h2 id="report">Report</h2>
+
+<p>After i found this bug i was so excited, given the target and the bounty, 4000$ at the time.
+So i quickly headed to the report section of tinder and submitted my bug and waited to get rich 😂😂.</p>
+
+<p>The api model returning the data of who liked you was fixed and the following day was returning no data.</p>
+
+<p>well my dreams of getting rich quickly were extinguished early the next day when it turned out the idor was a duplicate 😂😂😂, ofcourse it had to be, i mean what are the chances, more than 75% i tell you.</p>
+
+<p><img src="/images/poc/duplicate.png" alt="dupped" /></p>
+
+<h2 id="contacts">Contacts</h2>
+
+<h3 id="github--twitter-linkedin---intigriti-hackerone_old">@<a href="https://github.com/crypt0g30rgy">github</a>  @<a href="https://twitter.com/crypt0g30rgy">twitter</a> @<a href="https://www.linkedin.com/in/george-maina-waithaka-95a465214/">LinkedIn</a>   @<a href="https://app.intigriti.com/profile/g30rgyth3d4rk">Intigriti</a> @<a href="https://hackerone.com/crypt0p3n3tr4t0r?type=user">hackerone_old</a></h3>
+
+
+      
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js" integrity="sha256-lZaRhKri35AyJSypXXs4o6OPFTbTmUoltBbDCbdzegg=" crossorigin="anonymous"></script>
+    <script>anchors.add();</script>
+  </body>
+</html>

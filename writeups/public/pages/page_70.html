@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="twitter:site"    content="@arbennsh">
+  <meta name="twitter:title"   content="Self XSS to Stored XSS through IDOR">
+  <meta name="twitter:creator"  content="arbennsh">
+  <meta name="twitter:description" content="In this blog post I will explain how I turned a Self-XSS to a Stored-XSS through IDOR.">
+  <meta name="twitter:card"  content="summary_large_image">
+  <meta name="twitter:image:src" content="https://arben.sh/assets/images/50.png">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/assets/favicon/site.webmanifest">
+  <title>Self XSS to Stored XSS through IDOR</title><link rel="stylesheet" type="text/css" href="/assets/main.css"></head>
+<body>
+    <div class="container"><header>
+  <div class="menu">
+    <ul><li><a href="/">~/index</a></li><li><a href="/categories/">~/categories</a></li><li><a href="/about/">~/about</a></li></ul>
+  </div>
+</header>
+<main>
+      <p> 
+<img src="/assets/images/50.png" alt="image50" class="images" />
+ </p>
+
+<p><strong>Table of Contents:</strong></p>
+
+<ul id="markdown-toc">
+  <li><a href="#summary" id="markdown-toc-summary">Summary</a></li>
+  <li><a href="#steps" id="markdown-toc-steps">Steps</a></li>
+  <li><a href="#suggested-fix" id="markdown-toc-suggested-fix">Suggested Fix</a></li>
+</ul>
+
+<h1 id="summary">Summary</h1>
+
+<p> 
+In this blog post I will explain how I turned a Self-XSS (cross-site scripting) vulnerability into a Stored-XSS by chaining it with an IDOR (insecure direct object reference) vulnerability. By chaining these two, I was able to turn a limited attack into a much more serious one. But first, let’s define these terms:
+ </p>
+
+<p><strong>XSS</strong> (cross-site scripting) is a type of vulnerability that allows an attacker to inject malicious code into a website, which is then executed by the victim’s browser, while on the other side, <strong>IDOR</strong> is a type of vulnerability that occurs when an application exposes internal object references, such as database IDs, in a way that allows an attacker to manipulate them. This can be exploited to access sensitive information or perform unauthorized actions.
+ </p>
+
+<p><strong>Where did the vulnerability occur?</strong>
+ </p>
+
+<p>An admin user could create his own folder structure within the web application. The created folder’s name was not properly sanitized, which allowed the attacker to inject malicious javascript code. Because only the owner of the folder could see and access it, this resulted in a Self-XSS. Due to the presence of an IDOR, an attacker could use it to increment the organization ID, transforming this vulnerability into a stored XSS that could attack other organization administrators and possibly takeover their accounts. Making it even worse, this could also be exploited from low-privileged users.
+ </p>
+
+<p>Because there was no WAF (web application firewall) and the organizational IDs were easily guessable, this flaw was easily exploited and demonstrates the need of properly securing web applications and protecting them against all types of vulnerabilities.</p>
+
+<h1 id="steps">Steps</h1>
+
+<p> 
+I’ve logged into an admin account and proved that a folder containing a malicious payload was not present, as seen on the screenshot below.</p>
+
+<p> 
+<img src="/assets/images/51.png" alt="image51" class="images" />
+ </p>
+
+<p>Now using a low-privileged account, I’ve created a new folder and intercepted the request in order to modify the data before the folder is created on the backend.</p>
+
+<p> 
+<img src="/assets/images/52.png" alt="image52" class="images" />
+ </p>
+
+<p>As seen on the screenshot above, I modified the following data:
+ </p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">project_id</span><span class="o">=</span><span class="mi">0</span>
+<span class="o">&amp;</span><span class="nx">parent_folder_id</span><span class="o">=</span><span class="mi">7</span> <span class="c1">//&lt;- Admin's main folder</span>
+<span class="o">&amp;</span><span class="nx">company_id</span><span class="o">=</span><span class="mi">10</span> <span class="c1">//&lt;- Admin's Company</span>
+<span class="o">&amp;</span><span class="nx">client_id</span><span class="o">=</span> 
+<span class="o">&amp;</span><span class="nx">folder_name</span><span class="o">=&gt;&lt;</span><span class="nx">img</span><span class="o">+</span><span class="nx">src</span><span class="o">=</span><span class="nx">x</span><span class="o">+</span><span class="nx">onerror</span><span class="o">=</span><span class="nx">alert</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">domain</span><span class="p">)</span><span class="o">&gt;</span>  <span class="c1">// &lt;- malicious payload</span>
+<span class="o">&amp;</span><span class="nx">addFolderBtn</span><span class="o">=+</span><span class="nx">Add</span><span class="o">+</span>
+</code></pre></div></div>
+
+<p> 
+Heading back to the admin account, we can see that the malicious folder has been created.
+ 
+<img src="/assets/images/53.png" alt="image53" class="images" />
+ </p>
+
+<p> 
+In order for the payload to get executed, the victim, in this case the admin user should perform an action such as “Previewing” or “Moving” any of the present files inside that structure.</p>
+
+<p> 
+<img src="/assets/images/54.png" alt="image54" class="images" />
+ </p>
+
+<p> 
+<img src="/assets/images/55.png" alt="image55" class="images" />
+ </p>
+
+<h1 id="suggested-fix">Suggested Fix</h1>
+
+<p>In order to mitigate XSS (cross-site scripting) attacks, the below requirements should be followed (as suggested by <a href="https://owasp.org">OWASP</a>):
+ </p>
+<ul>
+  <li>Require strong input validation. Do not accept untrusted input or HTML content in your application unless required. If needed, perform HTML encoding.</li>
+  <li>Always perform output encoding. Do not render or process input as it is. Perform encoding, escaping, or any technique to break the structure of a malicious payload so it is not rendered.</li>
+  <li>Use libraries and software components, such as the <a href="https://owasp.org/www-project-enterprise-security-api/">OWASP ESAPI</a>, which provide reusable software components for input validation, escaping, and more.</li>
+</ul>
+
+<p> </p>
+
+<p>Whereas for IDOR (insecure direct object reference) the below checks should be in place:
+ </p>
+
+<ul>
+  <li><strong>Use per user or session indirect object references</strong>. This prevents attackers from directly targeting unauthorized resources</li>
+  <li><strong>Check access</strong>. Each use of a direct object reference from an untrusted source must include an access control check to ensure the user is authorized for the requested object.</li>
+</ul>
+
+<p> 
+<em>Thank you for taking the time to read this, and I hope you’ll find it useful.</em>
+ </p>
+
+
+    </main><footer>
+  
+</footer>
+</div>
+  </body>
+</html>

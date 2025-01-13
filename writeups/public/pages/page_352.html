@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<!--[if IE 7]>
+<html class="ie ie7" lang="en-US">
+<![endif]-->
+<!--[if IE 8]>
+<html class="ie ie8" lang="en-US">
+<![endif]-->
+<!--[if !(IE 7) | !(IE 8)  ]><!-->
+<html lang="en-US" class="no-js">
+<!--<![endif]-->
+  <head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="profile"  href="https://gmpg.org/xfn/11" />
+  <link rel="pingback" href="https://haiderm.com/xmlrpc.php" />
+<script>(function(html){html.className = html.className.replace(/\bno-js\b/,'js')})(document.documentElement);</script>
+<meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
+
+	<!-- This site is optimized with the Yoast SEO plugin v21.1 - https://yoast.com/wordpress/plugins/seo/ -->
+	<title>How I was able to delete 13k+ Microsoft Translator Projects</title>
+	<meta name="description" content="Critical vulnerability found in Microsoft Translator Hub where all of its 13000 projects could be deleted using indirect object reference vulnerability" />
+	<link rel="canonical" href="https://haiderm.com/how-i-was-able-to-delete-13k-microsoft-translator-projects/" />
+	<meta property="og:locale" content="en_US" />
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="How I was able to delete 13k+ Microsoft Translator Projects" />
+	<meta property="og:description" content="Critical vulnerability found in Microsoft Translator Hub where all of its 13000 projects could be deleted using indirect object reference vulnerability" />
+	<meta property="og:url" content="https://haiderm.com/how-i-was-able-to-delete-13k-microsoft-translator-projects/" />
+	<meta property="og:site_name" content="Haider&#039;s Infosec Blog" />
+	<meta property="article:published_time" content="2018-07-19T13:06:49+00:00" />
+	<meta property="og:image" content="https://web.archive.org/web/20160304014038im_/https://haiderm.com/wp-content/uploads/2015/03/MicrosoftHallOfFame-1024x298.jpg?b2a1e3" />
+	<meta name="author" content="Haider Mahmood" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:label1" content="Written by" />
+	<meta name="twitter:data1" content="Haider Mahmood" />
+	<meta name="twitter:label2" content="Est. reading time" />
+	<meta name="twitter:data2" content="4 minutes" />
+	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":"Article","@id":"https://haiderm.com/how-i-was-able-to-delete-13k-microsoft-translator-projects/#article","isPartOf":{"@id":"https://haiderm.com/how-i-was-able-to-delete-13k-microsoft-translator-projects/"},"author":{"name":"Haider Mahmood","@id":"https://haiderm.com/#/schema/person/795021be2362389ebdaccf57b2906793"},"headline":"How I was able to delete 13k+ Microsoft Translator projects","datePublished":"2018-07-19T13:06:49+00:00","dateModified":"2018-07-19T13:06:49+00:00","mainEntityOfPage":{"@id":"https://haiderm.com/how-i-was-able-to-delete-13k-microsoft-translator-projects/"},"wordCount":627,"commentCount":2,"publisher":{"@id":"https://haiderm.com/#/schema/person/795021be2362389ebdaccf57b2906793"},"image":{"@id":"https://haiderm.com/how-i-was-able-to-delete-13k-microsoft-translator-projects/#primaryimage"},"thumbnailUrl":"https://web.archive.org/web/20160304014038im_/https://haiderm.com/wp-content/uploads/2015/03/MicrosoftHallOfFame-1024x298.jpg?b2a1e3","keywords":["appsec","bugbounty","CSRF"],"articleSection":["Appsec"],"inLanguage":"en-US","potentialAction":[{"@type":"CommentAction","name":"Comment","target":["https://haiderm.com/how-i-was-able-to-delete-13k-microsoft-translator-projects/#respond"]}]},{"@type":"WebPage","@id":"https://haiderm.com/how-i-was-able-to-delete-13k-microsoft-translator-projects/","url":"https://haiderm.com/how-i-was-able-to-delete-13k-microsoft-translator-projects/","name":"How I was able to delete 13k+ Microsoft Translator Projects","isPartOf":{"@id":"https://haiderm.com/#website"},"primaryImageOfPage":{"@id":"https://haiderm.com/how-i-was-able-to-delete-13k-microsoft-translator-projects/#primaryimage"},"image":{"@id":"https://haiderm.com/how-i-was-able-to-delete-13k-microsoft-translator-projects/#primaryimage"},"thumbnailUrl":"https://web.archive.org/web/20160304014038im_/https://haiderm.com/wp-content/uploads/2015/03/MicrosoftHallOfFame-1024x298.jpg?b2a1e3","datePublished":"2018-07-19T13:06:49+00:00","dateModified":"2018-07-19T13:06:49+00:00","description":"Critical vulnerability found in Microsoft Translator Hub where all of its 13000 projects could be deleted using indirect object reference vulnerability","breadcrumb":{"@id":"https://haiderm.com/how-i-was-able-to-delete-13k-microsoft-translator-projects/#breadcrumb"},"inLanguage":"en-US","potentialAction":[{"@type":"ReadAction","target":["https://haiderm.com/how-i-was-able-to-delete-13k-microsoft-translator-projects/"]}]},{"@type":"ImageObject","inLanguage":"en-US","@id":"https://haiderm.com/how-i-was-able-to-delete-13k-microsoft-translator-projects/#primaryimage","url":"https://web.archive.org/web/20160304014038im_/https://haiderm.com/wp-content/uploads/2015/03/MicrosoftHallOfFame-1024x298.jpg?b2a1e3","contentUrl":"https://web.archive.org/web/20160304014038im_/https://haiderm.com/wp-content/uploads/2015/03/MicrosoftHallOfFame-1024x298.jpg?b2a1e3"},{"@type":"BreadcrumbList","@id":"https://haiderm.com/how-i-was-able-to-delete-13k-microsoft-translator-projects/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://haiderm.com/"},{"@type":"ListItem","position":2,"name":"How I was able to delete 13k+ Microsoft Translator projects"}]},{"@type":"WebSite","@id":"https://haiderm.com/#website","url":"https://haiderm.com/","name":"Haider&#039;s Infosec Blog","description":"My 2 cents (read rants) on Information security","publisher":{"@id":"https://haiderm.com/#/schema/person/795021be2362389ebdaccf57b2906793"},"potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://haiderm.com/?s={search_term_string}"},"query-input":"required name=search_term_string"}],"inLanguage":"en-US"},{"@type":["Person","Organization"],"@id":"https://haiderm.com/#/schema/person/795021be2362389ebdaccf57b2906793","name":"Haider Mahmood","image":{"@type":"ImageObject","inLanguage":"en-US","@id":"https://haiderm.com/#/schema/person/image/","url":"https://haiderm.com/wp-content/uploads/2017/10/cropped-Efficiency-Hacker-Logo-top-e1661428450500.png","contentUrl":"https://haiderm.com/wp-content/uploads/2017/10/cropped-Efficiency-Hacker-Logo-top-e1661428450500.png","width":100,"height":75,"caption":"Haider Mahmood"},"logo":{"@id":"https://haiderm.com/#/schema/person/image/"},"url":"https://haiderm.com/author/haiderm/"}]}</script>
+	<!-- / Yoast SEO plugin. -->
+
+
+<link rel='dns-prefetch' href='//www.googletagmanager.com' />
+<link rel='dns-prefetch' href='//pagead2.googlesyndication.com' />
+<link rel="alternate" type="application/rss+xml" title="Haider&#039;s Infosec Blog &raquo; Feed" href="https://haiderm.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Haider&#039;s Infosec Blog &raquo; Comments Feed" href="https://haiderm.com/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Haider&#039;s Infosec Blog &raquo; How I was able to delete 13k+ Microsoft Translator projects Comments Feed" href="https://haiderm.com/how-i-was-able-to-delete-13k-microsoft-translator-projects/feed/" />
+<script>
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/14.0.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/14.0.0\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/haiderm.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=6.1.7"}};
+/*! This file is auto-generated */
+!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode,e=(p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0),i.toDataURL());return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(p&&p.fillText)switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([129777,127995,8205,129778,127999],[129777,127995,8203,129778,127999])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(e=t.source||{}).concatemoji?c(e.concatemoji):e.wpemoji&&e.twemoji&&(c(e.twemoji),c(e.wpemoji)))}(window,document,window._wpemojiSettings);
+</script>
+<style>
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 0.07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='wp-block-library-css' href='https://haiderm.com/wp-includes/css/dist/block-library/style.min.css?ver=6.1.7' media='all' />
+<link rel='stylesheet' id='classic-theme-styles-css' href='https://haiderm.com/wp-includes/css/classic-themes.min.css?ver=1' media='all' />
+<style id='global-styles-inline-css'>
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--duotone--dark-grayscale: url('#wp-duotone-dark-grayscale');--wp--preset--duotone--grayscale: url('#wp-duotone-grayscale');--wp--preset--duotone--purple-yellow: url('#wp-duotone-purple-yellow');--wp--preset--duotone--blue-red: url('#wp-duotone-blue-red');--wp--preset--duotone--midnight: url('#wp-duotone-midnight');--wp--preset--duotone--magenta-yellow: url('#wp-duotone-magenta-yellow');--wp--preset--duotone--purple-green: url('#wp-duotone-purple-green');--wp--preset--duotone--blue-orange: url('#wp-duotone-blue-orange');--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;}:where(.is-layout-flex){gap: 0.5em;}body .is-layout-flow > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-flow > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-flow > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-constrained > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-constrained > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)){max-width: var(--wp--style--global--content-size);margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignwide{max-width: var(--wp--style--global--wide-size);}body .is-layout-flex{display: flex;}body .is-layout-flex{flex-wrap: wrap;align-items: center;}body .is-layout-flex > *{margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+.wp-block-navigation a:where(:not(.wp-element-button)){color: inherit;}
+:where(.wp-block-columns.is-layout-flex){gap: 2em;}
+.wp-block-pullquote{font-size: 1.5em;line-height: 1.6;}
+</style>
+<link rel='stylesheet' id='wpdiscuz-frontend-css-css' href='https://haiderm.com/wp-content/plugins/wpdiscuz/themes/default/style.css?ver=7.6.15' media='all' />
+<style id='wpdiscuz-frontend-css-inline-css'>
+ #wpdcom .wpd-blog-administrator .wpd-comment-label{color:#ffffff;background-color:#00B38F;border:none}#wpdcom .wpd-blog-administrator .wpd-comment-author, #wpdcom .wpd-blog-administrator .wpd-comment-author a{color:#00B38F}#wpdcom.wpd-layout-1 .wpd-comment .wpd-blog-administrator .wpd-avatar img{border-color:#00B38F}#wpdcom.wpd-layout-2 .wpd-comment.wpd-reply .wpd-comment-wrap.wpd-blog-administrator{border-left:3px solid #00B38F}#wpdcom.wpd-layout-2 .wpd-comment .wpd-blog-administrator .wpd-avatar img{border-bottom-color:#00B38F}#wpdcom.wpd-layout-3 .wpd-blog-administrator .wpd-comment-subheader{border-top:1px dashed #00B38F}#wpdcom.wpd-layout-3 .wpd-reply .wpd-blog-administrator .wpd-comment-right{border-left:1px solid #00B38F}#wpdcom .wpd-blog-editor .wpd-comment-label{color:#ffffff;background-color:#00B38F;border:none}#wpdcom .wpd-blog-editor .wpd-comment-author, #wpdcom .wpd-blog-editor .wpd-comment-author a{color:#00B38F}#wpdcom.wpd-layout-1 .wpd-comment .wpd-blog-editor .wpd-avatar img{border-color:#00B38F}#wpdcom.wpd-layout-2 .wpd-comment.wpd-reply .wpd-comment-wrap.wpd-blog-editor{border-left:3px solid #00B38F}#wpdcom.wpd-layout-2 .wpd-comment .wpd-blog-editor .wpd-avatar img{border-bottom-color:#00B38F}#wpdcom.wpd-layout-3 .wpd-blog-editor .wpd-comment-subheader{border-top:1px dashed #00B38F}#wpdcom.wpd-layout-3 .wpd-reply .wpd-blog-editor .wpd-comment-right{border-left:1px solid #00B38F}#wpdcom .wpd-blog-author .wpd-comment-label{color:#ffffff;background-color:#00B38F;border:none}#wpdcom .wpd-blog-author .wpd-comment-author, #wpdcom .wpd-blog-author .wpd-comment-author a{color:#00B38F}#wpdcom.wpd-layout-1 .wpd-comment .wpd-blog-author .wpd-avatar img{border-color:#00B38F}#wpdcom.wpd-layout-2 .wpd-comment .wpd-blog-author .wpd-avatar img{border-bottom-color:#00B38F}#wpdcom.wpd-layout-3 .wpd-blog-author .wpd-comment-subheader{border-top:1px dashed #00B38F}#wpdcom.wpd-layout-3 .wpd-reply .wpd-blog-author .wpd-comment-right{border-left:1px solid #00B38F}#wpdcom .wpd-blog-contributor .wpd-comment-label{color:#ffffff;background-color:#00B38F;border:none}#wpdcom .wpd-blog-contributor .wpd-comment-author, #wpdcom .wpd-blog-contributor .wpd-comment-author a{color:#00B38F}#wpdcom.wpd-layout-1 .wpd-comment .wpd-blog-contributor .wpd-avatar img{border-color:#00B38F}#wpdcom.wpd-layout-2 .wpd-comment .wpd-blog-contributor .wpd-avatar img{border-bottom-color:#00B38F}#wpdcom.wpd-layout-3 .wpd-blog-contributor .wpd-comment-subheader{border-top:1px dashed #00B38F}#wpdcom.wpd-layout-3 .wpd-reply .wpd-blog-contributor .wpd-comment-right{border-left:1px solid #00B38F}#wpdcom .wpd-blog-subscriber .wpd-comment-label{color:#ffffff;background-color:#00B38F;border:none}#wpdcom .wpd-blog-subscriber .wpd-comment-author, #wpdcom .wpd-blog-subscriber .wpd-comment-author a{color:#00B38F}#wpdcom.wpd-layout-2 .wpd-comment .wpd-blog-subscriber .wpd-avatar img{border-bottom-color:#00B38F}#wpdcom.wpd-layout-3 .wpd-blog-subscriber .wpd-comment-subheader{border-top:1px dashed #00B38F}#wpdcom .wpd-blog-wpseo_manager .wpd-comment-label{color:#ffffff;background-color:#00B38F;border:none}#wpdcom .wpd-blog-wpseo_manager .wpd-comment-author, #wpdcom .wpd-blog-wpseo_manager .wpd-comment-author a{color:#00B38F}#wpdcom.wpd-layout-1 .wpd-comment .wpd-blog-wpseo_manager .wpd-avatar img{border-color:#00B38F}#wpdcom.wpd-layout-2 .wpd-comment .wpd-blog-wpseo_manager .wpd-avatar img{border-bottom-color:#00B38F}#wpdcom.wpd-layout-3 .wpd-blog-wpseo_manager .wpd-comment-subheader{border-top:1px dashed #00B38F}#wpdcom.wpd-layout-3 .wpd-reply .wpd-blog-wpseo_manager .wpd-comment-right{border-left:1px solid #00B38F}#wpdcom .wpd-blog-wpseo_editor .wpd-comment-label{color:#ffffff;background-color:#00B38F;border:none}#wpdcom .wpd-blog-wpseo_editor .wpd-comment-author, #wpdcom .wpd-blog-wpseo_editor .wpd-comment-author a{color:#00B38F}#wpdcom.wpd-layout-1 .wpd-comment .wpd-blog-wpseo_editor .wpd-avatar img{border-color:#00B38F}#wpdcom.wpd-layout-2 .wpd-comment .wpd-blog-wpseo_editor .wpd-avatar img{border-bottom-color:#00B38F}#wpdcom.wpd-layout-3 .wpd-blog-wpseo_editor .wpd-comment-subheader{border-top:1px dashed #00B38F}#wpdcom.wpd-layout-3 .wpd-reply .wpd-blog-wpseo_editor .wpd-comment-right{border-left:1px solid #00B38F}#wpdcom .wpd-blog-post_author .wpd-comment-label{color:#ffffff;background-color:#00B38F;border:none}#wpdcom .wpd-blog-post_author .wpd-comment-author, #wpdcom .wpd-blog-post_author .wpd-comment-author a{color:#00B38F}#wpdcom .wpd-blog-post_author .wpd-avatar img{border-color:#00B38F}#wpdcom.wpd-layout-1 .wpd-comment .wpd-blog-post_author .wpd-avatar img{border-color:#00B38F}#wpdcom.wpd-layout-2 .wpd-comment.wpd-reply .wpd-comment-wrap.wpd-blog-post_author{border-left:3px solid #00B38F}#wpdcom.wpd-layout-2 .wpd-comment .wpd-blog-post_author .wpd-avatar img{border-bottom-color:#00B38F}#wpdcom.wpd-layout-3 .wpd-blog-post_author .wpd-comment-subheader{border-top:1px dashed #00B38F}#wpdcom.wpd-layout-3 .wpd-reply .wpd-blog-post_author .wpd-comment-right{border-left:1px solid #00B38F}#wpdcom .wpd-blog-guest .wpd-comment-label{color:#ffffff;background-color:#00B38F;border:none}#wpdcom .wpd-blog-guest .wpd-comment-author, #wpdcom .wpd-blog-guest .wpd-comment-author a{color:#00B38F}#wpdcom.wpd-layout-3 .wpd-blog-guest .wpd-comment-subheader{border-top:1px dashed #00B38F}#comments, #respond, .comments-area, #wpdcom{}#wpdcom .ql-editor > *{color:#777777}#wpdcom .ql-editor::before{}#wpdcom .ql-toolbar{border:1px solid #DDDDDD;border-top:none}#wpdcom .ql-container{border:1px solid #DDDDDD;border-bottom:none}#wpdcom .wpd-form-row .wpdiscuz-item input[type="text"], #wpdcom .wpd-form-row .wpdiscuz-item input[type="email"], #wpdcom .wpd-form-row .wpdiscuz-item input[type="url"], #wpdcom .wpd-form-row .wpdiscuz-item input[type="color"], #wpdcom .wpd-form-row .wpdiscuz-item input[type="date"], #wpdcom .wpd-form-row .wpdiscuz-item input[type="datetime"], #wpdcom .wpd-form-row .wpdiscuz-item input[type="datetime-local"], #wpdcom .wpd-form-row .wpdiscuz-item input[type="month"], #wpdcom .wpd-form-row .wpdiscuz-item input[type="number"], #wpdcom .wpd-form-row .wpdiscuz-item input[type="time"], #wpdcom textarea, #wpdcom select{border:1px solid #DDDDDD;color:#777777}#wpdcom .wpd-form-row .wpdiscuz-item textarea{border:1px solid #DDDDDD}#wpdcom input::placeholder, #wpdcom textarea::placeholder, #wpdcom input::-moz-placeholder, #wpdcom textarea::-webkit-input-placeholder{}#wpdcom .wpd-comment-text{color:#777777}#wpdcom .wpd-thread-head .wpd-thread-info{border-bottom:2px solid #00B38F}#wpdcom .wpd-thread-head .wpd-thread-info.wpd-reviews-tab svg{fill:#00B38F}#wpdcom .wpd-thread-head .wpdiscuz-user-settings{border-bottom:2px solid #00B38F}#wpdcom .wpd-thread-head .wpdiscuz-user-settings:hover{color:#00B38F}#wpdcom .wpd-comment .wpd-follow-link:hover{color:#00B38F}#wpdcom .wpd-comment-status .wpd-sticky{color:#00B38F}#wpdcom .wpd-thread-filter .wpdf-active{color:#00B38F;border-bottom-color:#00B38F}#wpdcom .wpd-comment-info-bar{border:1px dashed #33c3a6;background:#e6f8f4}#wpdcom .wpd-comment-info-bar .wpd-current-view i{color:#00B38F}#wpdcom .wpd-filter-view-all:hover{background:#00B38F}#wpdcom .wpdiscuz-item .wpdiscuz-rating > label{color:#DDDDDD}#wpdcom .wpdiscuz-item .wpdiscuz-rating:not(:checked) > label:hover, .wpdiscuz-rating:not(:checked) > label:hover ~ label{}#wpdcom .wpdiscuz-item .wpdiscuz-rating > input ~ label:hover, #wpdcom .wpdiscuz-item .wpdiscuz-rating > input:not(:checked) ~ label:hover ~ label, #wpdcom .wpdiscuz-item .wpdiscuz-rating > input:not(:checked) ~ label:hover ~ label{color:#FFED85}#wpdcom .wpdiscuz-item .wpdiscuz-rating > input:checked ~ label:hover, #wpdcom .wpdiscuz-item .wpdiscuz-rating > input:checked ~ label:hover, #wpdcom .wpdiscuz-item .wpdiscuz-rating > label:hover ~ input:checked ~ label, #wpdcom .wpdiscuz-item .wpdiscuz-rating > input:checked + label:hover ~ label, #wpdcom .wpdiscuz-item .wpdiscuz-rating > input:checked ~ label:hover ~ label, .wpd-custom-field .wcf-active-star, #wpdcom .wpdiscuz-item .wpdiscuz-rating > input:checked ~ label{color:#FFD700}#wpd-post-rating .wpd-rating-wrap .wpd-rating-stars svg .wpd-star{fill:#DDDDDD}#wpd-post-rating .wpd-rating-wrap .wpd-rating-stars svg .wpd-active{fill:#FFD700}#wpd-post-rating .wpd-rating-wrap .wpd-rate-starts svg .wpd-star{fill:#DDDDDD}#wpd-post-rating .wpd-rating-wrap .wpd-rate-starts:hover svg .wpd-star{fill:#FFED85}#wpd-post-rating.wpd-not-rated .wpd-rating-wrap .wpd-rate-starts svg:hover ~ svg .wpd-star{fill:#DDDDDD}.wpdiscuz-post-rating-wrap .wpd-rating .wpd-rating-wrap .wpd-rating-stars svg .wpd-star{fill:#DDDDDD}.wpdiscuz-post-rating-wrap .wpd-rating .wpd-rating-wrap .wpd-rating-stars svg .wpd-active{fill:#FFD700}#wpdcom .wpd-comment .wpd-follow-active{color:#ff7a00}#wpdcom .page-numbers{color:#555;border:#555 1px solid}#wpdcom span.current{background:#555}#wpdcom.wpd-layout-1 .wpd-new-loaded-comment > .wpd-comment-wrap > .wpd-comment-right{background:#FFFAD6}#wpdcom.wpd-layout-2 .wpd-new-loaded-comment.wpd-comment > .wpd-comment-wrap > .wpd-comment-right{background:#FFFAD6}#wpdcom.wpd-layout-2 .wpd-new-loaded-comment.wpd-comment.wpd-reply > .wpd-comment-wrap > .wpd-comment-right{background:transparent}#wpdcom.wpd-layout-2 .wpd-new-loaded-comment.wpd-comment.wpd-reply > .wpd-comment-wrap{background:#FFFAD6}#wpdcom.wpd-layout-3 .wpd-new-loaded-comment.wpd-comment > .wpd-comment-wrap > .wpd-comment-right{background:#FFFAD6}#wpdcom .wpd-follow:hover i, #wpdcom .wpd-unfollow:hover i, #wpdcom .wpd-comment .wpd-follow-active:hover i{color:#00B38F}#wpdcom .wpdiscuz-readmore{cursor:pointer;color:#00B38F}.wpd-custom-field .wcf-pasiv-star, #wpcomm .wpdiscuz-item .wpdiscuz-rating > label{color:#DDDDDD}.wpd-wrapper .wpd-list-item.wpd-active{border-top:3px solid #00B38F}#wpdcom.wpd-layout-2 .wpd-comment.wpd-reply.wpd-unapproved-comment .wpd-comment-wrap{border-left:3px solid #FFFAD6}#wpdcom.wpd-layout-3 .wpd-comment.wpd-reply.wpd-unapproved-comment .wpd-comment-right{border-left:1px solid #FFFAD6}#wpdcom .wpd-prim-button{background-color:#07B290;color:#FFFFFF}#wpdcom .wpd_label__check i.wpdicon-on{color:#07B290;border:1px solid #83d9c8}#wpd-bubble-wrapper #wpd-bubble-all-comments-count{color:#1DB99A}#wpd-bubble-wrapper > div{background-color:#1DB99A}#wpd-bubble-wrapper > #wpd-bubble #wpd-bubble-add-message{background-color:#1DB99A}#wpd-bubble-wrapper > #wpd-bubble #wpd-bubble-add-message::before{border-left-color:#1DB99A;border-right-color:#1DB99A}#wpd-bubble-wrapper.wpd-right-corner > #wpd-bubble #wpd-bubble-add-message::before{border-left-color:#1DB99A;border-right-color:#1DB99A}.wpd-inline-icon-wrapper path.wpd-inline-icon-first{fill:#1DB99A}.wpd-inline-icon-count{background-color:#1DB99A}.wpd-inline-icon-count::before{border-right-color:#1DB99A}.wpd-inline-form-wrapper::before{border-bottom-color:#1DB99A}.wpd-inline-form-question{background-color:#1DB99A}.wpd-inline-form{background-color:#1DB99A}.wpd-last-inline-comments-wrapper{border-color:#1DB99A}.wpd-last-inline-comments-wrapper::before{border-bottom-color:#1DB99A}.wpd-last-inline-comments-wrapper .wpd-view-all-inline-comments{background:#1DB99A}.wpd-last-inline-comments-wrapper .wpd-view-all-inline-comments:hover,.wpd-last-inline-comments-wrapper .wpd-view-all-inline-comments:active,.wpd-last-inline-comments-wrapper .wpd-view-all-inline-comments:focus{background-color:#1DB99A}#wpdcom .ql-snow .ql-tooltip[data-mode="link"]::before{content:"Enter link:"}#wpdcom .ql-snow .ql-tooltip.ql-editing a.ql-action::after{content:"Save"}.comments-area{width:auto}
+</style>
+<link rel='stylesheet' id='wpdiscuz-fa-css' href='https://haiderm.com/wp-content/plugins/wpdiscuz/assets/third-party/font-awesome-5.13.0/css/fa.min.css?ver=7.6.15' media='all' />
+<link rel='stylesheet' id='wpdiscuz-combo-css-css' href='https://haiderm.com/wp-content/plugins/wpdiscuz/assets/css/wpdiscuz-combo.min.css?ver=6.1.7' media='all' />
+<link rel='stylesheet' id='customizr-main-css' href='https://haiderm.com/wp-content/themes/customizr/assets/front/css/style.css?ver=4.4.21' media='all' />
+<style id='customizr-main-inline-css'>
+::-moz-selection{background-color:#319e1e}
+
+::selection{background-color:#319e1e}
+
+a,
+.btn-skin:active,
+.btn-skin:focus,
+.btn-skin:hover,
+.btn-skin.inverted,
+.grid-container__classic .post-type__icon,
+.post-type__icon:hover .icn-format,
+.grid-container__classic .post-type__icon:hover .icn-format,
+[class*='grid-container__'] .entry-title a.czr-title:hover,
+input[type=checkbox]:checked::before{color:#319e1e}
+
+.czr-css-loader > div ,
+.btn-skin,
+.btn-skin:active,
+.btn-skin:focus,
+.btn-skin:hover,
+.btn-skin-h-dark,
+.btn-skin-h-dark.inverted:active,
+.btn-skin-h-dark.inverted:focus,
+.btn-skin-h-dark.inverted:hover{border-color:#319e1e}
+
+.tc-header.border-top{border-top-color:#319e1e}
+
+[class*='grid-container__'] .entry-title a:hover::after,
+.grid-container__classic .post-type__icon,
+.btn-skin,
+.btn-skin.inverted:active,
+.btn-skin.inverted:focus,
+.btn-skin.inverted:hover,
+.btn-skin-h-dark,
+.btn-skin-h-dark.inverted:active,
+.btn-skin-h-dark.inverted:focus,
+.btn-skin-h-dark.inverted:hover,
+.sidebar .widget-title::after,
+input[type=radio]:checked::before{background-color:#319e1e}
+
+.btn-skin-light:active,
+.btn-skin-light:focus,
+.btn-skin-light:hover,
+.btn-skin-light.inverted{color:#49d831}
+
+input:not([type='submit']):not([type='button']):not([type='number']):not([type='checkbox']):not([type='radio']):focus,
+textarea:focus,
+.btn-skin-light,
+.btn-skin-light.inverted,
+.btn-skin-light:active,
+.btn-skin-light:focus,
+.btn-skin-light:hover,
+.btn-skin-light.inverted:active,
+.btn-skin-light.inverted:focus,
+.btn-skin-light.inverted:hover{border-color:#49d831}
+
+.btn-skin-light,
+.btn-skin-light.inverted:active,
+.btn-skin-light.inverted:focus,
+.btn-skin-light.inverted:hover{background-color:#49d831}
+
+.btn-skin-lightest:active,
+.btn-skin-lightest:focus,
+.btn-skin-lightest:hover,
+.btn-skin-lightest.inverted{color:#5cdc46}
+
+.btn-skin-lightest,
+.btn-skin-lightest.inverted,
+.btn-skin-lightest:active,
+.btn-skin-lightest:focus,
+.btn-skin-lightest:hover,
+.btn-skin-lightest.inverted:active,
+.btn-skin-lightest.inverted:focus,
+.btn-skin-lightest.inverted:hover{border-color:#5cdc46}
+
+.btn-skin-lightest,
+.btn-skin-lightest.inverted:active,
+.btn-skin-lightest.inverted:focus,
+.btn-skin-lightest.inverted:hover{background-color:#5cdc46}
+
+.pagination,
+a:hover,
+a:focus,
+a:active,
+.btn-skin-dark:active,
+.btn-skin-dark:focus,
+.btn-skin-dark:hover,
+.btn-skin-dark.inverted,
+.btn-skin-dark-oh:active,
+.btn-skin-dark-oh:focus,
+.btn-skin-dark-oh:hover,
+.post-info a:not(.btn):hover,
+.grid-container__classic .post-type__icon .icn-format,
+[class*='grid-container__'] .hover .entry-title a,
+.widget-area a:not(.btn):hover,
+a.czr-format-link:hover,
+.format-link.hover a.czr-format-link,
+button[type=submit]:hover,
+button[type=submit]:active,
+button[type=submit]:focus,
+input[type=submit]:hover,
+input[type=submit]:active,
+input[type=submit]:focus,
+.tabs .nav-link:hover,
+.tabs .nav-link.active,
+.tabs .nav-link.active:hover,
+.tabs .nav-link.active:focus{color:#216b14}
+
+.grid-container__classic.tc-grid-border .grid__item,
+.btn-skin-dark,
+.btn-skin-dark.inverted,
+button[type=submit],
+input[type=submit],
+.btn-skin-dark:active,
+.btn-skin-dark:focus,
+.btn-skin-dark:hover,
+.btn-skin-dark.inverted:active,
+.btn-skin-dark.inverted:focus,
+.btn-skin-dark.inverted:hover,
+.btn-skin-h-dark:active,
+.btn-skin-h-dark:focus,
+.btn-skin-h-dark:hover,
+.btn-skin-h-dark.inverted,
+.btn-skin-h-dark.inverted,
+.btn-skin-h-dark.inverted,
+.btn-skin-dark-oh:active,
+.btn-skin-dark-oh:focus,
+.btn-skin-dark-oh:hover,
+.btn-skin-dark-oh.inverted:active,
+.btn-skin-dark-oh.inverted:focus,
+.btn-skin-dark-oh.inverted:hover,
+button[type=submit]:hover,
+button[type=submit]:active,
+button[type=submit]:focus,
+input[type=submit]:hover,
+input[type=submit]:active,
+input[type=submit]:focus{border-color:#216b14}
+
+.btn-skin-dark,
+.btn-skin-dark.inverted:active,
+.btn-skin-dark.inverted:focus,
+.btn-skin-dark.inverted:hover,
+.btn-skin-h-dark:active,
+.btn-skin-h-dark:focus,
+.btn-skin-h-dark:hover,
+.btn-skin-h-dark.inverted,
+.btn-skin-h-dark.inverted,
+.btn-skin-h-dark.inverted,
+.btn-skin-dark-oh.inverted:active,
+.btn-skin-dark-oh.inverted:focus,
+.btn-skin-dark-oh.inverted:hover,
+.grid-container__classic .post-type__icon:hover,
+button[type=submit],
+input[type=submit],
+.czr-link-hover-underline .widgets-list-layout-links a:not(.btn)::before,
+.czr-link-hover-underline .widget_archive a:not(.btn)::before,
+.czr-link-hover-underline .widget_nav_menu a:not(.btn)::before,
+.czr-link-hover-underline .widget_rss ul a:not(.btn)::before,
+.czr-link-hover-underline .widget_recent_entries a:not(.btn)::before,
+.czr-link-hover-underline .widget_categories a:not(.btn)::before,
+.czr-link-hover-underline .widget_meta a:not(.btn)::before,
+.czr-link-hover-underline .widget_recent_comments a:not(.btn)::before,
+.czr-link-hover-underline .widget_pages a:not(.btn)::before,
+.czr-link-hover-underline .widget_calendar a:not(.btn)::before,
+[class*='grid-container__'] .hover .entry-title a::after,
+a.czr-format-link::before,
+.comment-author a::before,
+.comment-link::before,
+.tabs .nav-link.active::before{background-color:#216b14}
+
+.btn-skin-dark-shaded:active,
+.btn-skin-dark-shaded:focus,
+.btn-skin-dark-shaded:hover,
+.btn-skin-dark-shaded.inverted{background-color:rgba(33,107,20,0.2)}
+
+.btn-skin-dark-shaded,
+.btn-skin-dark-shaded.inverted:active,
+.btn-skin-dark-shaded.inverted:focus,
+.btn-skin-dark-shaded.inverted:hover{background-color:rgba(33,107,20,0.8)}.navbar-brand,.header-tagline,h1,h2,h3,.tc-dropcap { font-family : 'Sintony'; }
+body { font-family : 'Poppins'; }
+
+              body {
+                font-size : 1.00rem;
+                line-height : 1.5em;
+              }
+
+.tc-header.border-top { border-top-width: 5px; border-top-style: solid }
+#czr-push-footer { display: none; visibility: hidden; }
+        .czr-sticky-footer #czr-push-footer.sticky-footer-enabled { display: block; }
+        
+</style>
+<link rel='stylesheet' id='enlighterjs-css' href='https://haiderm.com/wp-content/plugins/enlighter/cache/enlighterjs.min.css?ver=nLJ2PlCj61Q+xZO' media='all' />
+<script src='https://haiderm.com/wp-includes/js/jquery/jquery.min.js?ver=3.6.1' id='jquery-core-js'></script>
+<script src='https://haiderm.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2' id='jquery-migrate-js'></script>
+<script src='https://haiderm.com/wp-includes/js/underscore.min.js?ver=1.13.4' id='underscore-js'></script>
+<script id='czr-init-js-extra'>
+var CZRParams = {"assetsPath":"https:\/\/haiderm.com\/wp-content\/themes\/customizr\/assets\/front\/","mainScriptUrl":"https:\/\/haiderm.com\/wp-content\/themes\/customizr\/assets\/front\/js\/tc-scripts.min.js?4.4.21","deferFontAwesome":"1","fontAwesomeUrl":"https:\/\/haiderm.com\/wp-content\/themes\/customizr\/assets\/shared\/fonts\/fa\/css\/fontawesome-all.min.css?4.4.21","_disabled":[],"centerSliderImg":"1","isLightBoxEnabled":"1","SmoothScroll":{"Enabled":true,"Options":{"touchpadSupport":false}},"isAnchorScrollEnabled":"","anchorSmoothScrollExclude":{"simple":["[class*=edd]",".carousel-control","[data-toggle=\"modal\"]","[data-toggle=\"dropdown\"]","[data-toggle=\"czr-dropdown\"]","[data-toggle=\"tooltip\"]","[data-toggle=\"popover\"]","[data-toggle=\"collapse\"]","[data-toggle=\"czr-collapse\"]","[data-toggle=\"tab\"]","[data-toggle=\"pill\"]","[data-toggle=\"czr-pill\"]","[class*=upme]","[class*=um-]"],"deep":{"classes":[],"ids":[]}},"timerOnScrollAllBrowsers":"1","centerAllImg":"1","HasComments":"1","LoadModernizr":"1","stickyHeader":"","extLinksStyle":"","extLinksTargetExt":"","extLinksSkipSelectors":{"classes":["btn","button"],"ids":[]},"dropcapEnabled":"","dropcapWhere":{"post":"","page":""},"dropcapMinWords":"","dropcapSkipSelectors":{"tags":["IMG","IFRAME","H1","H2","H3","H4","H5","H6","BLOCKQUOTE","UL","OL"],"classes":["btn"],"id":[]},"imgSmartLoadEnabled":"1","imgSmartLoadOpts":{"parentSelectors":["[class*=grid-container], .article-container",".__before_main_wrapper",".widget-front",".post-related-articles",".tc-singular-thumbnail-wrapper",".sek-module-inner"],"opts":{"excludeImg":[".tc-holder-img"]}},"imgSmartLoadsForSliders":"","pluginCompats":[],"isWPMobile":"","menuStickyUserSettings":{"desktop":"stick_always","mobile":"stick_up"},"adminAjaxUrl":"https:\/\/haiderm.com\/wp-admin\/admin-ajax.php","ajaxUrl":"https:\/\/haiderm.com\/?czrajax=1","frontNonce":{"id":"CZRFrontNonce","handle":"9e7d494b28"},"isDevMode":"","isModernStyle":"1","i18n":{"Permanently dismiss":"Permanently dismiss"},"frontNotifications":{"welcome":{"enabled":false,"content":"","dismissAction":"dismiss_welcome_note_front"}},"preloadGfonts":"1","googleFonts":"Sintony%7CPoppins","version":"4.4.21"};
+</script>
+<script src='https://haiderm.com/wp-content/themes/customizr/assets/front/js/tc-init.min.js?ver=4.4.21' id='czr-init-js'></script>
+<script src='https://haiderm.com/wp-content/themes/customizr/assets/front/js/libs/modernizr.min.js?ver=4.4.21' id='modernizr-js'></script>
+
+<!-- Google Analytics snippet added by Site Kit -->
+<script src='https://www.googletagmanager.com/gtag/js?id=G-11DKHLMH0R' id='google_gtagjs-js' async></script>
+<script id='google_gtagjs-js-after'>
+window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}
+gtag('set', 'linker', {"domains":["haiderm.com"]} );
+gtag("js", new Date());
+gtag("set", "developer_id.dZTNiMT", true);
+gtag("config", "G-11DKHLMH0R");
+</script>
+
+<!-- End Google Analytics snippet added by Site Kit -->
+<link rel="https://api.w.org/" href="https://haiderm.com/wp-json/" /><link rel="alternate" type="application/json" href="https://haiderm.com/wp-json/wp/v2/posts/399" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://haiderm.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://haiderm.com/wp-includes/wlwmanifest.xml" />
+<meta name="generator" content="WordPress 6.1.7" />
+<link rel='shortlink' href='https://haiderm.com/?p=399' />
+<link rel="alternate" type="application/json+oembed" href="https://haiderm.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fhaiderm.com%2Fhow-i-was-able-to-delete-13k-microsoft-translator-projects%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://haiderm.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fhaiderm.com%2Fhow-i-was-able-to-delete-13k-microsoft-translator-projects%2F&#038;format=xml" />
+<meta name="generator" content="Site Kit by Google 1.122.0" />              <link rel="preload" as="font" type="font/woff2" href="https://haiderm.com/wp-content/themes/customizr/assets/shared/fonts/customizr/customizr.woff2?128396981" crossorigin="anonymous"/>
+            
+<!-- Google AdSense meta tags added by Site Kit -->
+<meta name="google-adsense-platform-account" content="ca-host-pub-2644536267352236">
+<meta name="google-adsense-platform-domain" content="sitekit.withgoogle.com">
+<!-- End Google AdSense meta tags added by Site Kit -->
+<style>.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+<!-- Google AdSense snippet added by Site Kit -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5342709176598654&amp;host=ca-host-pub-2644536267352236" crossorigin="anonymous"></script>
+
+<!-- End Google AdSense snippet added by Site Kit -->
+<link rel="icon" href="https://haiderm.com/wp-content/uploads/2017/10/cropped-Efficiency-Hacker-Logo-top-32x32.png" sizes="32x32" />
+<link rel="icon" href="https://haiderm.com/wp-content/uploads/2017/10/cropped-Efficiency-Hacker-Logo-top-192x192.png" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://haiderm.com/wp-content/uploads/2017/10/cropped-Efficiency-Hacker-Logo-top-180x180.png" />
+<meta name="msapplication-TileImage" content="https://haiderm.com/wp-content/uploads/2017/10/cropped-Efficiency-Hacker-Logo-top-270x270.png" />
+</head>
+
+  <body class="post-template-default single single-post postid-399 single-format-standard wp-custom-logo wp-embed-responsive czr-link-hover-underline-off header-skin-light footer-skin-light czr-no-sidebar tc-center-images czr-full-layout customizr-4-4-21 tc-link-not-underlined czr-sticky-footer">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-dark-grayscale"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0 0.49803921568627" /><feFuncG type="table" tableValues="0 0.49803921568627" /><feFuncB type="table" tableValues="0 0.49803921568627" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-grayscale"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0 1" /><feFuncG type="table" tableValues="0 1" /><feFuncB type="table" tableValues="0 1" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-purple-yellow"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0.54901960784314 0.98823529411765" /><feFuncG type="table" tableValues="0 1" /><feFuncB type="table" tableValues="0.71764705882353 0.25490196078431" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-blue-red"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0 1" /><feFuncG type="table" tableValues="0 0.27843137254902" /><feFuncB type="table" tableValues="0.5921568627451 0.27843137254902" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-midnight"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0 0" /><feFuncG type="table" tableValues="0 0.64705882352941" /><feFuncB type="table" tableValues="0 1" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-magenta-yellow"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0.78039215686275 1" /><feFuncG type="table" tableValues="0 0.94901960784314" /><feFuncB type="table" tableValues="0.35294117647059 0.47058823529412" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-purple-green"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0.65098039215686 0.40392156862745" /><feFuncG type="table" tableValues="0 1" /><feFuncB type="table" tableValues="0.44705882352941 0.4" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-blue-orange"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0.098039215686275 1" /><feFuncG type="table" tableValues="0 0.66274509803922" /><feFuncB type="table" tableValues="0.84705882352941 0.41960784313725" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg>      <a class="screen-reader-text skip-link" href="#content">Skip to content</a>
+    
+    
+    <div id="tc-page-wrap" class="">
+
+      <header class="tpnav-header__header tc-header sl-logo_left sticky-brand-shrink-on sticky-transparent border-top czr-submenu-fade czr-submenu-move" >
+        <div class="primary-navbar__wrapper d-none d-lg-block has-horizontal-menu has-branding-aside desktop-sticky" >
+  <div class="container-fluid">
+    <div class="row align-items-center flex-row primary-navbar__row">
+      <div class="branding__container col col-auto" >
+  <div class="branding align-items-center flex-column ">
+    <div class="branding-row d-flex flex-row align-items-center align-self-start">
+      <div class="navbar-brand col-auto " >
+  <a class="navbar-brand-sitelogo" href="https://haiderm.com/"  aria-label="Haider&#039;s Infosec Blog | My 2 cents (read rants) on Information security" >
+    <img src="https://haiderm.com/wp-content/uploads/2017/10/cropped-Efficiency-Hacker-Logo-top-e1661428450500.png" alt="Back Home" class="" width="100" height="75" style="max-width:250px;max-height:100px">  </a>
+</div>
+          <div class="branding-aside col-auto flex-column d-flex">
+          <span class="navbar-brand col-auto " >
+    <a class="navbar-brand-sitename  czr-underline" href="https://haiderm.com/">
+    <span>Haider&#039;s Infosec Blog</span>
+  </a>
+</span>
+          </div>
+                </div>
+    <span class="header-tagline " >
+  My 2 cents (read rants) on Information security</span>
+
+  </div>
+</div>
+      <div class="primary-nav__container justify-content-lg-around col col-lg-auto flex-lg-column" >
+  <div class="primary-nav__wrapper flex-lg-row align-items-center justify-content-end">
+              <nav class="primary-nav__nav col" id="primary-nav">
+          <div class="nav__menu-wrapper primary-nav__menu-wrapper justify-content-end czr-open-on-hover" >
+<ul id="main-menu" class="primary-nav__menu regular-nav nav__menu nav"><li id="menu-item-52" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-52"><a href="https://haiderm.com" class="nav__link"><span class="nav__title">Root</span></a></li>
+<li id="menu-item-41" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent current-active menu-item-41"><a href="https://haiderm.com/category/application-security/" class="nav__link"><span class="nav__title">Appsec</span></a></li>
+<li id="menu-item-44" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-44"><a href="https://haiderm.com/category/priviledge-escalation/" class="nav__link"><span class="nav__title">Privilege Escalation</span></a></li>
+<li id="menu-item-259" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-259"><a href="https://haiderm.com/category/binary-exploitation/" class="nav__link"><span class="nav__title">Binary Exploitation</span></a></li>
+<li id="menu-item-715" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-715"><a href="https://haiderm.com/category/cloud-security/" class="nav__link"><span class="nav__title">Cloud Security</span></a></li>
+<li id="menu-item-175" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-175"><a href="https://haiderm.com/category/noobtalk/" class="nav__link"><span class="nav__title">Noobtalk</span></a></li>
+<li id="menu-item-62" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-62"><a href="https://haiderm.com/whoami/" class="nav__link"><span class="nav__title">Whoami</span></a></li>
+</ul></div>        </nav>
+    <div class="primary-nav__utils nav__utils col-auto" >
+    <ul class="nav utils flex-row flex-nowrap regular-nav">
+      <li class="nav__search " >
+  <a href="#" class="search-toggle_btn icn-search czr-overlay-toggle_btn"  aria-expanded="false"><span class="sr-only">Search</span></a>
+        <div class="czr-search-expand">
+      <div class="czr-search-expand-inner"><div class="search-form__container " >
+  <form action="https://haiderm.com/" method="get" class="czr-form search-form">
+    <div class="form-group czr-focus">
+            <label for="s-678220727e35c" id="lsearch-678220727e35c">
+        <span class="screen-reader-text">Search</span>
+        <input id="s-678220727e35c" class="form-control czr-search-field" name="s" type="search" value="" aria-describedby="lsearch-678220727e35c" placeholder="Search &hellip;">
+      </label>
+      <button type="submit" class="button"><i class="icn-search"></i><span class="screen-reader-text">Search &hellip;</span></button>
+    </div>
+  </form>
+</div></div>
+    </div>
+    </li>
+    </ul>
+</div>  </div>
+</div>
+    </div>
+  </div>
+</div>    <div class="mobile-navbar__wrapper d-lg-none mobile-sticky" >
+    <div class="branding__container justify-content-between align-items-center container-fluid" >
+  <div class="branding flex-column">
+    <div class="branding-row d-flex align-self-start flex-row align-items-center">
+      <div class="navbar-brand col-auto " >
+  <a class="navbar-brand-sitelogo" href="https://haiderm.com/"  aria-label="Haider&#039;s Infosec Blog | My 2 cents (read rants) on Information security" >
+    <img src="https://haiderm.com/wp-content/uploads/2017/10/cropped-Efficiency-Hacker-Logo-top-e1661428450500.png" alt="Back Home" class="" width="100" height="75" style="max-width:250px;max-height:100px">  </a>
+</div>
+            <div class="branding-aside col-auto">
+              <span class="navbar-brand col-auto " >
+    <a class="navbar-brand-sitename  czr-underline" href="https://haiderm.com/">
+    <span>Haider&#039;s Infosec Blog</span>
+  </a>
+</span>
+            </div>
+            </div>
+    <span class="header-tagline col col-auto" >
+  My 2 cents (read rants) on Information security</span>
+
+  </div>
+  <div class="mobile-utils__wrapper nav__utils regular-nav">
+    <ul class="nav utils row flex-row flex-nowrap">
+      <li class="hamburger-toggler__container " >
+  <button class="ham-toggler-menu czr-collapsed" data-toggle="czr-collapse" data-target="#mobile-nav"><span class="ham__toggler-span-wrapper"><span class="line line-1"></span><span class="line line-2"></span><span class="line line-3"></span></span><span class="screen-reader-text">Menu</span></button>
+</li>
+    </ul>
+  </div>
+</div>
+<div class="mobile-nav__container " >
+   <nav class="mobile-nav__nav flex-column czr-collapse" id="mobile-nav">
+      <div class="mobile-nav__inner container-fluid">
+      <div class="header-search__container ">
+  <div class="search-form__container " >
+  <form action="https://haiderm.com/" method="get" class="czr-form search-form">
+    <div class="form-group czr-focus">
+            <label for="s-678220727ec09" id="lsearch-678220727ec09">
+        <span class="screen-reader-text">Search</span>
+        <input id="s-678220727ec09" class="form-control czr-search-field" name="s" type="search" value="" aria-describedby="lsearch-678220727ec09" placeholder="Search &hellip;">
+      </label>
+      <button type="submit" class="button"><i class="icn-search"></i><span class="screen-reader-text">Search &hellip;</span></button>
+    </div>
+  </form>
+</div></div><div class="nav__menu-wrapper mobile-nav__menu-wrapper czr-open-on-click" >
+<ul id="mobile-nav-menu" class="mobile-nav__menu vertical-nav nav__menu flex-column nav"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-52"><a href="https://haiderm.com" class="nav__link"><span class="nav__title">Root</span></a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent current-active menu-item-41"><a href="https://haiderm.com/category/application-security/" class="nav__link"><span class="nav__title">Appsec</span></a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-44"><a href="https://haiderm.com/category/priviledge-escalation/" class="nav__link"><span class="nav__title">Privilege Escalation</span></a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-259"><a href="https://haiderm.com/category/binary-exploitation/" class="nav__link"><span class="nav__title">Binary Exploitation</span></a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-715"><a href="https://haiderm.com/category/cloud-security/" class="nav__link"><span class="nav__title">Cloud Security</span></a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-175"><a href="https://haiderm.com/category/noobtalk/" class="nav__link"><span class="nav__title">Noobtalk</span></a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-62"><a href="https://haiderm.com/whoami/" class="nav__link"><span class="nav__title">Whoami</span></a></li>
+</ul></div>      </div>
+  </nav>
+</div></div></header>
+
+
+  
+    <div id="main-wrapper" class="section">
+
+                      
+
+          <div class="czr-hot-crumble container page-breadcrumbs" role="navigation" >
+  <div class="row">
+        <nav class="breadcrumbs col-12"><span class="trail-begin"><a href="https://haiderm.com" title="Haider&#039;s Infosec Blog" rel="home" class="trail-begin">Home</a></span> <span class="sep">&raquo;</span> <a href="https://haiderm.com/category/application-security/" title="Appsec">Appsec</a> <span class="sep">&raquo;</span> <span class="trail-end">How I was able to delete 13k+ Microsoft Translator projects</span></nav>  </div>
+</div>
+          <div class="container" role="main">
+
+            
+            <div class="flex-row row column-content-wrapper">
+
+                
+                <div id="content" class="col-12 article-container">
+
+                  <article id="post-399" class="post-399 post type-post status-publish format-standard category-application-security tag-appsec tag-bugbounty tag-csrf czr-hentry" >
+    <header class="entry-header " >
+  <div class="entry-header-inner">
+                <div class="tax__container post-info entry-meta">
+          <a class="tax__link" href="https://haiderm.com/category/application-security/" title="View all posts in Appsec"> <span>Appsec</span> </a>        </div>
+        <h1 class="entry-title">How I was able to delete 13k+ Microsoft Translator projects</h1>
+        <div class="header-bottom">
+      <div class="post-info">
+                  <span class="entry-meta">
+        <span class="author-meta">by <span class="author vcard"><span class="author_name"><a class="url fn n" href="https://haiderm.com/author/haiderm/" title="View all posts by Haider Mahmood" rel="author">Haider Mahmood</a></span></span></span><span class="v-separator">|</span>Published <a href="https://haiderm.com/2018/07/19/" title="1:06 pm" rel="bookmark"><time class="entry-date published updated" datetime="July 19, 2018">July 19, 2018</time></a><span class="v-separator">|</span></span><a class="comments__link" data-anchor-scroll="true" href="#czr-comments" title="2 Comments on How I was able to delete 13k+ Microsoft Translator projects" ><span>2 comments</span></a>      </div>
+    </div>
+      </div>
+</header>  <div class="post-entry tc-content-inner">
+    <section class="post-content entry-content " >
+            <div class="czr-wp-the-content">
+        <h2>Introduction</h2>
+<p>Sometime back I was hunting for Vulnerabilities in Microsoft Web services, as Microsoft has large online infrastructure, finding a vulnerability which could lead to <a href="https://technet.microsoft.com/en-us/security/cc308589.aspx">Microsoft hall of fame for security researchers </a>wasn’t difficult. While browsing around their online services, one of their services, <a href="https://hub.microsofttranslator.com/SignIn?returnURL=%2FHome%2FIndex">Microsoft hub translator </a>caught my attention.</p>
+<p>Microsoft hub translator is <strong>and I quote:</strong>  “<em>Microsoft Translator Hub empowers businesses and communities to build, train, and deploy customized automatic language translation systems—-”. </em></p>
+<p>I signed up and started looking for vulnerabilities and found critical level vulnerability through which I was able to delete All Microsoft hub translator 13000+ projects<strong>. </strong>As the vulnerability is fixed now, I’m sharing the technical details.</p>
+<h2>Technical Details</h2>
+<p>Microsoft hub translator allows you to create customized automatic language translation system projects. I signed up and created a project solely for bug finding purposes, I had no idea about its functionality though. Created a project named it ‘huntingbugs’.</p>
+<div id="attachment_509" class="wp-caption alignnone">
+<p><a href="https://web.archive.org/web/20160304014038/https://haiderm.com/wp-content/uploads/2015/03/MicrosoftHallOfFame.jpg?b2a1e3" data-lb-type="grouped-post"><img  decoding="async" class=" wp-image-509"  src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://web.archive.org/web/20160304014038im_/https://haiderm.com/wp-content/uploads/2015/03/MicrosoftHallOfFame-1024x298.jpg?b2a1e3"  alt="Microsoft Hall Of fame" width="1137" height="331" /></a></p>
+<p class="wp-caption-text"><span style="font-size: 11pt;">As you could see, it allows ‘Edit’ and ‘Remove’ functionality, if you hit remove, it simply removes the project, nothing fancy here. So I fired up burp suite and started intercepting HTTP requests. Below is the “Remove” HTTP request.</span></p>
+</div>
+<h3>Remove Project HTTP Request</h3>
+<pre class="EnlighterJSRAW" data-enlighter-language="generic" data-enlighter-theme="classic">POST /Projects/RemoveProject?projectId=12839 HTTP/1.1
+Host: hub.microsofttranslator.com
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:36.0) Gecko/20100101 Firefox/36.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: https://hub.microsofttranslator.com/Projects/Index
+Cookie: RPSAuth=FABKARSt1lMxfQ39EcbVsLWT8hLbEL12RANmAAAEgAAACI6Hs92zqyRlCAGce1EqwSJmjJe21nXVHarrEJ9ROzjj21XAthl%2BUUjzX3XR5JeCB8WI0oMdmwQhyn30OIiubBYaeLeg21nqXT06UwzczFIDAjoqU%2BQpCg9SWaLSVSC3aKMZPT92NVjgySbIV8YYxPA4XMVMbU04mvNKv8v5vaGVMUNBtjHldxFqKYEWqI5P0UZetmtagzOK%2Bf2CRFbgb3Gak68RN6Mjj/xXt2ovC8pxYn2qb9MqSNxHC4Y3bA8n6vyZoJzM6Uu0zZpTUPIhv5L1PyHOO3FdXFELqttx2Yd2LEJNvxjkmON9KcYXIR%2BlUsHfimE901msD9XWB1SLG3zvm06oacncf1WGrdjEdnA2lOgUALlEhQzxHbGm6TryDMpq%2BbrTU/wG; RPSSecAuth=FABKARSt1lMxfQ39EcbVsLWT8hLbEL12RANmAAAEgAAACKDdutui3VqgCAE5DVaipcaF6WaWT%2B0L0ppLMAd7kigpYcQ89xhwiDiYN9yNhyVf86EW6KiiOs7FY2PCTFH2rM/uH3LYLIhTEYturZ5vOjVPBUP6QqqAtP9rvUCtv9%2Bakv9WNwY4gpZzQ4SXjtVpSMqyrV3RIN/emocWtNDmU5BPrnAZk50oAnoSf6aJX5IjaNcXc61Tv3BSO6m3GKLevxWnpSoyLzIajETwMSBe84fL5fWyUI0r3jXq7rW/rUh/Go/R4OzS2nL1okl512yFcZFZFXdsEq6k5M0lKP0L9ZTVtaW0WiZKXKgY%2B%2BPPtImjI5whKX2U4wbqgPiD1rxXwDogAlcrLKu6YGEHfVg01iG0GQ0UAF%2BhVQ4CptuuRm8tI8XE9zmo3%2Bhr; ANON=A=365DFF2DD45617971705DA33FFFFFFFF&amp;E=1089&amp;W=1; NAP=V=1.9&amp;E=102f&amp;C=h8ZS17Xmf0z4Q2T9Dj26e_Pijaca9G00g1PJCcXaI36L1P7jWHYOFQ&amp;W=1; mstcid=[RemovedEmail]
+Connection: keep-alive
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 0</pre>
+<p>POST request with no content and parameter in the URL (its kinda weird isn’t it?) the &#8220;<strong>projectid</strong>&#8221; parameter in the above request is the ID of the individual project in the database, which in this case is &#8220;<strong>12839</strong>&#8220;, by observing the above HTTP request, a simple delete project query could be something like:-</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="generic" data-enlighter-theme="classic">Delete project
+FROM projects 
+WHERE projectid=12839;</pre>
+<p>After forwarding the HTTP request, our project &#8220;<strong>12839</strong>&#8221; got deleted, nothing out of the ordinary.</p>
+<div id="attachment_512" class="wp-caption aligncenter">
+<p><a href="https://web.archive.org/web/20160304014038/https://haiderm.com/wp-content/uploads/2015/03/MicrosoftSecurityBug.jpg?b2a1e3" data-lb-type="grouped-post"><img  decoding="async" loading="lazy" class=" wp-image-512"  src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://web.archive.org/web/20160304014038im_/https://haiderm.com/wp-content/uploads/2015/03/MicrosoftSecurityBug-1024x208.jpg?b2a1e3"  alt="Microsoft Security Bug" width="1132" height="230" /></a></p>
+<h2 class="wp-caption-text"><span style="font-family: Sintony; font-size: calc(0.83em + (0.1045 * ((100vw - 20em) / 40)));">CSRF Vulnerability</span></h2>
+</div>
+<p>Wait a minute, if you take a look at the Request, first thing to notice is there is no CSRF protection. This is prone to CSRF attack .In simple words, <a href="https://haiderm.com/10-methods-to-bypass-cross-site-request-forgery-csrf/">CSRF vulnerability allows attacker to impersonate legit logged in user, performing actions on their behalf</a>. Consider this:-</p>
+<ul>
+<li>Legit user is logged in.</li>
+<li>Attacker includes the URL in a page. (img tag, iframe, lots of possibilities here) “http://hub.microsofttranslator.com/Projects/RemoveProject?projectId=12839”</li>
+<li>Victim visits the page, above request will be sent from their browser.</li>
+<li>Requirement is that one should know the <strong>ProjectID</strong> number of logged in victim.</li>
+<li>As it has no CSRF projection like antiCSRF tokens it results in the removal of the project.</li>
+<li>Even if it has Anti-CSRF projection, here are ways to <a href="https://haiderm.com/10-methods-to-bypass-cross-site-request-forgery-csrf/">bypass CSRF Token protections</a>.</li>
+</ul>
+<h2>The worst is yet to come</h2>
+<p>lets again take a look at HTTP project removal request. What if we fuzz around projectID, change its value, for testing this behavior, I created another account, logged in from a different browser and created two projects.</p>
+<div id="attachment_513" class="wp-caption aligncenter">
+<p><a href="https://web.archive.org/web/20160304014038/https://haiderm.com/wp-content/uploads/2015/03/MicrosoftSecurityBulletin.jpg?b2a1e3" data-lb-type="grouped-post"><img  decoding="async" loading="lazy" class=" wp-image-513"  src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://web.archive.org/web/20160304014038im_/https://haiderm.com/wp-content/uploads/2015/03/MicrosoftSecurityBulletin-1024x307.jpg?b2a1e3"  alt="Microsoft Security Bulletin " width="1201" height="360" /></a></p>
+</div>
+<p>I got back to burp suite and started fuzzing around with projectID parameter value. I changed the ID parameter value from the same request posted above to the project ID value from the projects of second account and sent the request and refreshed the page.</p>
+<div id="attachment_508" class="wp-caption aligncenter">
+<p><a href="https://web.archive.org/web/20160304014038/https://haiderm.com/wp-content/uploads/2015/03/MicrosoftHackingNews.jpg?b2a1e3" data-lb-type="grouped-post"><img  decoding="async" loading="lazy" class=" wp-image-508"  src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://web.archive.org/web/20160304014038im_/https://haiderm.com/wp-content/uploads/2015/03/MicrosoftHackingNews-1024x278.jpg?b2a1e3"  alt="Microsoft Hacking " width="1142" height="310" /></a></p>
+<h2 class="wp-caption-text"><span style="font-family: Sintony; font-size: calc(0.83em + (0.1045 * ((100vw - 20em) / 40)));">Got Pwned?</span></h2>
+</div>
+<p>The project whose projectID I used in the HTTP request got deleted. Technically this vulnerability is called <strong><a href="https://www.owasp.org/index.php/Testing_for_Insecure_Direct_Object_References_(OTG-AUTHZ-004)">Indirect Object Reference</a>. </strong>now if I just loop through the values starting from 0 to 13000 (last project), I’m able to delete all projects from the database. The vulnerability could have been avoided using simple checks, either the project that the user requested is owned by the same user, associating the project owner with the project is another way, but its Microsoft so&#8230;.</p>
+<h2>Happy Ending</h2>
+<p>Reported the vulnerability to Microsoft under their <a href="https://technet.microsoft.com/en-us/security/ff852094.aspx">Security Acknowledgement program</a>. Their initial response</p>
+<div id="attachment_504" class="wp-caption aligncenter">
+<p><a href="https://web.archive.org/web/20160304014038/https://haiderm.com/wp-content/uploads/2015/03/BugBounty.jpg?b2a1e3" data-lb-type="grouped-post"><img  decoding="async" loading="lazy" class=" wp-image-504"  src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://web.archive.org/web/20160304014038im_/https://haiderm.com/wp-content/uploads/2015/03/BugBounty.jpg?b2a1e3"  alt="Microsoft Hall of fame" width="1098" height="396" /></a></p>
+<p class="wp-caption-text">Microsoft Hall of fame</p>
+</div>
+<p>&nbsp;</p>
+<p>Rewarded me Microsoft Hall of fame for Security Researchers.</p>
+<div id="attachment_505" class="wp-caption alignnone">
+<p><a href="https://web.archive.org/web/20160304014038/https://haiderm.com/wp-content/uploads/2015/03/HallOfFame.jpg?b2a1e3" data-lb-type="grouped-post"><img  decoding="async" loading="lazy" class="wp-image-505 "  src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://web.archive.org/web/20160304014038im_/https://haiderm.com/wp-content/uploads/2015/03/HallOfFame.jpg?b2a1e3"  alt="Microsoft Security Response Center" width="1030" height="619" /></a></p>
+<p class="wp-caption-text">Microsoft Security Response Center</p>
+</div>
+<p>Contrary  to previous experience with Microsoft Security acknowledgment program, they fixed the issue quickly in about two weeks.</p>
+      </div>
+      <footer class="post-footer clearfix">
+                <div class="row entry-meta justify-content-between align-items-center">
+                    <div class="post-tags col-xs-12 col-sm-auto col-sm">
+            <ul class="tags">
+              <li><a class="tag__link btn btn-skin-dark-oh inverted" href="https://haiderm.com/tag/appsec/" title="View all posts in appsec"> <span>appsec</span> </a></li><li><a class="tag__link btn btn-skin-dark-oh inverted" href="https://haiderm.com/tag/bugbounty/" title="View all posts in bugbounty"> <span>bugbounty</span> </a></li><li><a class="tag__link btn btn-skin-dark-oh inverted" href="https://haiderm.com/tag/csrf/" title="View all posts in CSRF"> <span>CSRF</span> </a></li>            </ul>
+          </div>
+                          </div>
+      </footer>
+    </section><!-- .entry-content -->
+  </div><!-- .post-entry -->
+  </article>                </div>
+
+                <section class="post-related-articles czr-carousel col-12 order-md-last" id="related-posts-section" >
+  <header class="row flex-row">
+    <h3 class="related-posts_title col">You may also like</h3>
+          <div class="related-posts_nav col col-auto">
+        <span class="btn btn-skin-dark inverted czr-carousel-prev slider-control czr-carousel-control disabled icn-left-open-big" title="Previous related articles" tabindex="0"></span>
+        <span class="btn btn-skin-dark inverted czr-carousel-next slider-control czr-carousel-control icn-right-open-big" title="Next related articles" tabindex="0"></span>
+      </div>
+      </header>
+  <div class="row grid-container__square-mini carousel-inner">
+  <article id="post-641_related_posts" class="col-6 grid-item czr-related-post post-641 post type-post status-publish format-standard has-post-thumbnail category-application-security tag-bugcrowd tag-hackerone tag-intigriti tag-synack tag-yeswehack table_tags-bug-bounty-platform-comparison czr-hentry" >
+  <div class="grid__item flex-wrap flex-lg-nowrap flex-row">
+    <section class="tc-thumbnail entry-media__holder col-12 col-lg-6 czr__r-w1by1" >
+  <div class="entry-media__wrapper czr__r-i js-centering">
+        <a class="bg-link" rel="bookmark" href="https://haiderm.com/how-i-was-able-to-delete-13k-microsoft-translator-projects/"></a>
+          <svg class="czr-svg-placeholder thumb-standard-empty" id="678220728369d" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M928 832q0-14-9-23t-23-9q-66 0-113 47t-47 113q0 14 9 23t23 9 23-9 9-23q0-40 28-68t68-28q14 0 23-9t9-23zm224 130q0 106-75 181t-181 75-181-75-75-181 75-181 181-75 181 75 75 181zm-1024 574h1536v-128h-1536v128zm1152-574q0-159-112.5-271.5t-271.5-112.5-271.5 112.5-112.5 271.5 112.5 271.5 271.5 112.5 271.5-112.5 112.5-271.5zm-1024-642h384v-128h-384v128zm-128 192h1536v-256h-828l-64 128h-644v128zm1664-256v1280q0 53-37.5 90.5t-90.5 37.5h-1536q-53 0-90.5-37.5t-37.5-90.5v-1280q0-53 37.5-90.5t90.5-37.5h1536q53 0 90.5 37.5t37.5 90.5z"/></svg>
+        <img class="czr-img-placeholder" src="https://haiderm.com/wp-content/themes/customizr/assets/front/img/thumb-standard-empty.png" alt="How I was able to delete 13k+ Microsoft Translator projects" data-czr-post-id="678220728369d" width="300" height="300"/>  </div>
+</section>      <section class="tc-content entry-content__holder col-12 col-lg-6 czr__r-w1by1">
+        <div class="entry-content__wrapper">
+        <header class="entry-header " >
+  <div class="entry-header-inner ">
+          <div class="entry-meta post-info">
+          Published <a href="https://haiderm.com/how-i-was-able-to-delete-13k-microsoft-translator-projects/" title="Permalink to:&nbsp;How I was able to delete 13k+ Microsoft Translator projects" rel="bookmark"><time class="entry-date published updated" datetime="July 19, 2018">July 19, 2018</time></a>      </div>
+              <h2 class="entry-title ">
+      <a class="czr-title" href="https://haiderm.com/how-i-was-able-to-delete-13k-microsoft-translator-projects/" rel="bookmark">How I was able to delete 13k+ Microsoft Translator projects</a>
+    </h2>
+          <div class="post-info"><a class="comments__link" data-anchor-scroll="true" href="#czr-comments" title="2 Comments on How I was able to delete 13k+ Microsoft Translator projects" ><span>2 comments</span></a></div>  </div>
+</header><div class="tc-content-inner entry-summary"  >
+            <div class="czr-wp-the-content">
+              <p>Introduction Sometime back I was hunting for Vulnerabilities in Microsoft Web services, as Microsoft has large online infrastructure, finding a vulnerability which could [&hellip;]</p>
+          </div>
+      </div>        </div>
+      </section>
+  </div>
+</article><article id="post-399_related_posts" class="col-6 grid-item czr-related-post post-399 post type-post status-publish format-standard category-application-security tag-appsec tag-bugbounty tag-csrf czr-hentry" >
+  <div class="grid__item flex-wrap flex-lg-nowrap flex-row">
+    <section class="tc-thumbnail entry-media__holder col-12 col-lg-6 czr__r-w1by1" >
+  <div class="entry-media__wrapper czr__r-i js-centering">
+        <a class="bg-link" rel="bookmark" href="https://haiderm.com/how-i-was-able-to-delete-13k-microsoft-translator-projects/"></a>
+          <svg class="czr-svg-placeholder thumb-standard-empty" id="678220728369d" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M928 832q0-14-9-23t-23-9q-66 0-113 47t-47 113q0 14 9 23t23 9 23-9 9-23q0-40 28-68t68-28q14 0 23-9t9-23zm224 130q0 106-75 181t-181 75-181-75-75-181 75-181 181-75 181 75 75 181zm-1024 574h1536v-128h-1536v128zm1152-574q0-159-112.5-271.5t-271.5-112.5-271.5 112.5-112.5 271.5 112.5 271.5 271.5 112.5 271.5-112.5 112.5-271.5zm-1024-642h384v-128h-384v128zm-128 192h1536v-256h-828l-64 128h-644v128zm1664-256v1280q0 53-37.5 90.5t-90.5 37.5h-1536q-53 0-90.5-37.5t-37.5-90.5v-1280q0-53 37.5-90.5t90.5-37.5h1536q53 0 90.5 37.5t37.5 90.5z"/></svg>
+        <img class="czr-img-placeholder" src="https://haiderm.com/wp-content/themes/customizr/assets/front/img/thumb-standard-empty.png" alt="How I was able to delete 13k+ Microsoft Translator projects" data-czr-post-id="678220728369d" width="300" height="300"/>  </div>
+</section>      <section class="tc-content entry-content__holder col-12 col-lg-6 czr__r-w1by1">
+        <div class="entry-content__wrapper">
+        <header class="entry-header " >
+  <div class="entry-header-inner ">
+          <div class="entry-meta post-info">
+          Published <a href="https://haiderm.com/how-i-was-able-to-delete-13k-microsoft-translator-projects/" title="Permalink to:&nbsp;How I was able to delete 13k+ Microsoft Translator projects" rel="bookmark"><time class="entry-date published updated" datetime="July 19, 2018">July 19, 2018</time></a>      </div>
+              <h2 class="entry-title ">
+      <a class="czr-title" href="https://haiderm.com/how-i-was-able-to-delete-13k-microsoft-translator-projects/" rel="bookmark">How I was able to delete 13k+ Microsoft Translator projects</a>
+    </h2>
+          <div class="post-info"><a class="comments__link" data-anchor-scroll="true" href="#czr-comments" title="2 Comments on How I was able to delete 13k+ Microsoft Translator projects" ><span>2 comments</span></a></div>  </div>
+</header><div class="tc-content-inner entry-summary"  >
+            <div class="czr-wp-the-content">
+              <p>Introduction Sometime back I was hunting for Vulnerabilities in Microsoft Web services, as Microsoft has large online infrastructure, finding a vulnerability which could [&hellip;]</p>
+          </div>
+      </div>        </div>
+      </section>
+  </div>
+</article>  </div>
+</section>
+
+<div id="czr-comments" class="comments-area col-12 order-md-last" >
+        <div class="wpdiscuz_top_clearing"></div>
+    <div id='comments' class='comments-area'><div id='respond' style='width: 0;height: 0;clear: both;margin: 0;padding: 0;'></div>    <div id="wpdcom" class="wpdiscuz_unauth wpd-default wpd-layout-2 wpd-comments-open">
+                    <div class="wc_social_plugin_wrapper">
+                            </div>
+            <div class="wpd-form-wrap">
+                <div class="wpd-form-head">
+                                            <div class="wpd-sbs-toggle">
+                            <i class="far fa-envelope"></i> <span
+                                    class="wpd-sbs-title">Subscribe</span>
+                            <i class="fas fa-caret-down"></i>
+                        </div>
+                                            <div class="wpd-auth">
+                                                <div class="wpd-login">
+                            <a rel="nofollow" href="https://haiderm.com/wp-login.php?redirect_to=https%3A%2F%2Fhaiderm.com%2Fhow-i-was-able-to-delete-13k-microsoft-translator-projects%2F"><i class='fas fa-sign-in-alt'></i> Login</a>                        </div>
+                    </div>
+                </div>
+                                                    <div class="wpdiscuz-subscribe-bar wpdiscuz-hidden">
+                                                    <form action="https://haiderm.com/wp-admin/admin-ajax.php?action=wpdAddSubscription"
+                                  method="post" id="wpdiscuz-subscribe-form">
+                                <div class="wpdiscuz-subscribe-form-intro">Notify of </div>
+                                <div class="wpdiscuz-subscribe-form-option"
+                                     style="width:40%;">
+                                    <select class="wpdiscuz_select" name="wpdiscuzSubscriptionType">
+                                                                                    <option value="post">new follow-up comments</option>
+                                                                                                                                <option value="all_comment" >new replies to my comments</option>
+                                                                                </select>
+                                </div>
+                                                                    <div class="wpdiscuz-item wpdiscuz-subscribe-form-email">
+                                        <input class="email" type="email" name="wpdiscuzSubscriptionEmail"
+                                               required="required" value=""
+                                               placeholder="Email"/>
+                                    </div>
+                                                                    <div class="wpdiscuz-subscribe-form-button">
+                                    <input id="wpdiscuz_subscription_button" class="wpd-prim-button wpd_not_clicked"
+                                           type="submit"
+                                           value="&rsaquo;"
+                                           name="wpdiscuz_subscription_button"/>
+                                </div>
+                                <input type="hidden" id="wpdiscuz_subscribe_form_nonce" name="wpdiscuz_subscribe_form_nonce" value="a96d4f3fbe" /><input type="hidden" name="_wp_http_referer" value="/how-i-was-able-to-delete-13k-microsoft-translator-projects/" />                            </form>
+                                                </div>
+                            <div class="wpd-form wpd-form-wrapper wpd-main-form-wrapper" id='wpd-main-form-wrapper-0_0'>
+                                        <form  method="post" enctype="multipart/form-data" data-uploading="false" class="wpd_comm_form wpd_main_comm_form"                >
+                                        <div class="wpd-field-comment">
+                        <div class="wpdiscuz-item wc-field-textarea">
+                            <div class="wpdiscuz-textarea-wrap ">
+                                                                                                        <div class="wpd-avatar">
+                                        <img alt='guest' src='https://secure.gravatar.com/avatar/352f0a344ad9367e5193e271dd1322ee?s=56&#038;d=wavatar&#038;r=g' srcset='https://secure.gravatar.com/avatar/352f0a344ad9367e5193e271dd1322ee?s=112&#038;d=wavatar&#038;r=g 2x' class='avatar avatar-56 photo' height='56' width='56' loading='lazy' decoding='async'/>                                    </div>
+                                                <div id="wpd-editor-wraper-0_0" style="display: none;">
+                <div id="wpd-editor-char-counter-0_0"
+                     class="wpd-editor-char-counter"></div>
+                <label style="display: none;" for="wc-textarea-0_0">Label</label>
+                <textarea id="wc-textarea-0_0" name="wc_comment"
+                          class="wc_comment wpd-field"></textarea>
+                <div id="wpd-editor-0_0"></div>
+                        <div id="wpd-editor-toolbar-0_0">
+                            <button title="Bold"
+                        class="ql-bold"  ></button>
+                                <button title="Italic"
+                        class="ql-italic"  ></button>
+                                <button title="Underline"
+                        class="ql-underline"  ></button>
+                                <button title="Strike"
+                        class="ql-strike"  ></button>
+                                <button title="Ordered List"
+                        class="ql-list" value='ordered' ></button>
+                                <button title="Unordered List"
+                        class="ql-list" value='bullet' ></button>
+                                <button title="Blockquote"
+                        class="ql-blockquote"  ></button>
+                                <button title="Code Block"
+                        class="ql-code-block"  ></button>
+                                <button title="Link"
+                        class="ql-link"  ></button>
+                                <button title="Source Code"
+                        class="ql-sourcecode"  data-wpde_button_name='sourcecode'>{}</button>
+                                <button title="Spoiler"
+                        class="ql-spoiler"  data-wpde_button_name='spoiler'>[+]</button>
+                            <div class="wpd-editor-buttons-right">
+                <span class='wmu-upload-wrap' wpd-tooltip='Attach an image to this comment' wpd-tooltip-position='left'><label class='wmu-add'><i class='far fa-image'></i><input style='display:none;' class='wmu-add-files' type='file' name='wmu_files[]'  accept='image/*'/></label></span>            </div>
+        </div>
+                    </div>
+                                        </div>
+                        </div>
+                    </div>
+                    <div class="wpd-form-foot" style='display:none;'>
+                        <div class="wpdiscuz-textarea-foot">
+                                                        <div class="wpdiscuz-button-actions"><div class='wmu-action-wrap'><div class='wmu-tabs wmu-images-tab wmu-hide'></div></div></div>
+                        </div>
+                                <div class="wpd-form-row">
+                    <div class="wpd-form-col-left">
+                        <div class="wpdiscuz-item wc_name-wrapper wpd-has-icon">
+                                    <div class="wpd-field-icon"><i
+                                class="fas fa-user"></i>
+                    </div>
+                                    <input id="wc_name-0_0" value="" required='required' aria-required='true'                       class="wc_name wpd-field" type="text"
+                       name="wc_name"
+                       placeholder="Name*"
+                       maxlength="50" pattern='.{3,50}'                       title="">
+                <label for="wc_name-0_0"
+                       class="wpdlb">Name*</label>
+                            </div>
+                        <div class="wpdiscuz-item wc_email-wrapper wpd-has-icon">
+                                    <div class="wpd-field-icon"><i
+                                class="fas fa-at"></i>
+                    </div>
+                                    <input id="wc_email-0_0" value="" required='required' aria-required='true'                       class="wc_email wpd-field" type="email"
+                       name="wc_email"
+                       placeholder="Email*"/>
+                <label for="wc_email-0_0"
+                       class="wpdlb">Email*</label>
+                            </div>
+                            <div class="wpdiscuz-item wc_website-wrapper wpd-has-icon">
+                                            <div class="wpd-field-icon"><i
+                                    class="fas fa-link"></i>
+                        </div>
+                                        <input id="wc_website-0_0" value=""
+                           class="wc_website wpd-field" type="text"
+                           name="wc_website"
+                           placeholder="Website"/>
+                    <label for="wc_website-0_0"
+                           class="wpdlb">Website</label>
+                                    </div>
+                        </div>
+                <div class="wpd-form-col-right">
+                    <div class="wc-field-submit">
+                                                                                    <label class="wpd_label"
+                               wpd-tooltip="Notify of new replies to this comment">
+                            <input id="wc_notification_new_comment-0_0"
+                                   class="wc_notification_new_comment-0_0 wpd_label__checkbox"
+                                   value="comment" type="checkbox"
+                                   name="wpdiscuz_notification_type" />
+                            <span class="wpd_label__text">
+                                <span class="wpd_label__check">
+                                    <i class="fas fa-bell wpdicon wpdicon-on"></i>
+                                    <i class="fas fa-bell-slash wpdicon wpdicon-off"></i>
+                                </span>
+                            </span>
+                        </label>
+                                                                <input id="wpd-field-submit-0_0"
+                   class="wc_comm_submit wpd_not_clicked wpd-prim-button" type="submit"
+                   name="submit" value="Post Comment"
+                   aria-label="Post Comment"/>
+        </div>
+                </div>
+                    <div class="clearfix"></div>
+        </div>
+                            </div>
+                                        <input type="hidden" class="wpdiscuz_unique_id" value="0_0"
+                           name="wpdiscuz_unique_id">
+                                    </form>
+                        </div>
+                <div id="wpdiscuz_hidden_secondary_form" style="display: none;">
+                    <div class="wpd-form wpd-form-wrapper wpd-secondary-form-wrapper" id='wpd-secondary-form-wrapper-wpdiscuzuniqueid' style='display: none;'>
+                            <div class="wpd-secondary-forms-social-content"></div>
+                <div class="clearfix"></div>
+                                        <form  method="post" enctype="multipart/form-data" data-uploading="false" class="wpd_comm_form wpd-secondary-form-wrapper"                >
+                                        <div class="wpd-field-comment">
+                        <div class="wpdiscuz-item wc-field-textarea">
+                            <div class="wpdiscuz-textarea-wrap ">
+                                                                                                        <div class="wpd-avatar">
+                                        <img alt='guest' src='https://secure.gravatar.com/avatar/3621aa9d23483d70143e96b84a7ec414?s=56&#038;d=wavatar&#038;r=g' srcset='https://secure.gravatar.com/avatar/3621aa9d23483d70143e96b84a7ec414?s=112&#038;d=wavatar&#038;r=g 2x' class='avatar avatar-56 photo' height='56' width='56' loading='lazy' decoding='async'/>                                    </div>
+                                                <div id="wpd-editor-wraper-wpdiscuzuniqueid" style="display: none;">
+                <div id="wpd-editor-char-counter-wpdiscuzuniqueid"
+                     class="wpd-editor-char-counter"></div>
+                <label style="display: none;" for="wc-textarea-wpdiscuzuniqueid">Label</label>
+                <textarea id="wc-textarea-wpdiscuzuniqueid" name="wc_comment"
+                          class="wc_comment wpd-field"></textarea>
+                <div id="wpd-editor-wpdiscuzuniqueid"></div>
+                        <div id="wpd-editor-toolbar-wpdiscuzuniqueid">
+                            <button title="Bold"
+                        class="ql-bold"  ></button>
+                                <button title="Italic"
+                        class="ql-italic"  ></button>
+                                <button title="Underline"
+                        class="ql-underline"  ></button>
+                                <button title="Strike"
+                        class="ql-strike"  ></button>
+                                <button title="Ordered List"
+                        class="ql-list" value='ordered' ></button>
+                                <button title="Unordered List"
+                        class="ql-list" value='bullet' ></button>
+                                <button title="Blockquote"
+                        class="ql-blockquote"  ></button>
+                                <button title="Code Block"
+                        class="ql-code-block"  ></button>
+                                <button title="Link"
+                        class="ql-link"  ></button>
+                                <button title="Source Code"
+                        class="ql-sourcecode"  data-wpde_button_name='sourcecode'>{}</button>
+                                <button title="Spoiler"
+                        class="ql-spoiler"  data-wpde_button_name='spoiler'>[+]</button>
+                            <div class="wpd-editor-buttons-right">
+                <span class='wmu-upload-wrap' wpd-tooltip='Attach an image to this comment' wpd-tooltip-position='left'><label class='wmu-add'><i class='far fa-image'></i><input style='display:none;' class='wmu-add-files' type='file' name='wmu_files[]'  accept='image/*'/></label></span>            </div>
+        </div>
+                    </div>
+                                        </div>
+                        </div>
+                    </div>
+                    <div class="wpd-form-foot" style='display:none;'>
+                        <div class="wpdiscuz-textarea-foot">
+                                                        <div class="wpdiscuz-button-actions"><div class='wmu-action-wrap'><div class='wmu-tabs wmu-images-tab wmu-hide'></div></div></div>
+                        </div>
+                                <div class="wpd-form-row">
+                    <div class="wpd-form-col-left">
+                        <div class="wpdiscuz-item wc_name-wrapper wpd-has-icon">
+                                    <div class="wpd-field-icon"><i
+                                class="fas fa-user"></i>
+                    </div>
+                                    <input id="wc_name-wpdiscuzuniqueid" value="" required='required' aria-required='true'                       class="wc_name wpd-field" type="text"
+                       name="wc_name"
+                       placeholder="Name*"
+                       maxlength="50" pattern='.{3,50}'                       title="">
+                <label for="wc_name-wpdiscuzuniqueid"
+                       class="wpdlb">Name*</label>
+                            </div>
+                        <div class="wpdiscuz-item wc_email-wrapper wpd-has-icon">
+                                    <div class="wpd-field-icon"><i
+                                class="fas fa-at"></i>
+                    </div>
+                                    <input id="wc_email-wpdiscuzuniqueid" value="" required='required' aria-required='true'                       class="wc_email wpd-field" type="email"
+                       name="wc_email"
+                       placeholder="Email*"/>
+                <label for="wc_email-wpdiscuzuniqueid"
+                       class="wpdlb">Email*</label>
+                            </div>
+                            <div class="wpdiscuz-item wc_website-wrapper wpd-has-icon">
+                                            <div class="wpd-field-icon"><i
+                                    class="fas fa-link"></i>
+                        </div>
+                                        <input id="wc_website-wpdiscuzuniqueid" value=""
+                           class="wc_website wpd-field" type="text"
+                           name="wc_website"
+                           placeholder="Website"/>
+                    <label for="wc_website-wpdiscuzuniqueid"
+                           class="wpdlb">Website</label>
+                                    </div>
+                        </div>
+                <div class="wpd-form-col-right">
+                    <div class="wc-field-submit">
+                                                                                    <label class="wpd_label"
+                               wpd-tooltip="Notify of new replies to this comment">
+                            <input id="wc_notification_new_comment-wpdiscuzuniqueid"
+                                   class="wc_notification_new_comment-wpdiscuzuniqueid wpd_label__checkbox"
+                                   value="comment" type="checkbox"
+                                   name="wpdiscuz_notification_type" />
+                            <span class="wpd_label__text">
+                                <span class="wpd_label__check">
+                                    <i class="fas fa-bell wpdicon wpdicon-on"></i>
+                                    <i class="fas fa-bell-slash wpdicon wpdicon-off"></i>
+                                </span>
+                            </span>
+                        </label>
+                                                                <input id="wpd-field-submit-wpdiscuzuniqueid"
+                   class="wc_comm_submit wpd_not_clicked wpd-prim-button" type="submit"
+                   name="submit" value="Post Comment"
+                   aria-label="Post Comment"/>
+        </div>
+                </div>
+                    <div class="clearfix"></div>
+        </div>
+                            </div>
+                                        <input type="hidden" class="wpdiscuz_unique_id" value="wpdiscuzuniqueid"
+                           name="wpdiscuz_unique_id">
+                                    </form>
+                        </div>
+                </div>
+                    </div>
+                        <div id="wpd-threads" class="wpd-thread-wrapper">
+                <div class="wpd-thread-head">
+                    <div class="wpd-thread-info "
+                         data-comments-count="2">
+                        <span class='wpdtc' title='2'>2</span> Comments                    </div>
+                                        <div class="wpd-space"></div>
+                    <div class="wpd-thread-filter">
+                                                    <div class="wpd-filter wpdf-reacted wpd_not_clicked"
+                                 wpd-tooltip="Most reacted comment">
+                                <i class="fas fa-bolt"></i></div>
+                                                        <div class="wpd-filter wpdf-hottest wpd_not_clicked"
+                                 wpd-tooltip="Hottest comment thread">
+                                <i class="fas fa-fire"></i></div>
+                                                        <div class="wpd-filter wpdf-sorting">
+                                                                        <span class="wpdiscuz-sort-button wpdiscuz-date-sort-asc wpdiscuz-sort-button-active"
+                                              data-sorting="oldest">Oldest</span>
+                                                                        <i class="fas fa-sort-down"></i>
+                                <div class="wpdiscuz-sort-buttons">
+                                                                            <span class="wpdiscuz-sort-button wpdiscuz-date-sort-desc"
+                                              data-sorting="newest">Newest</span>
+                                                                                <span class="wpdiscuz-sort-button wpdiscuz-vote-sort-up"
+                                              data-sorting="by_vote">Most Voted</span>
+                                                                        </div>
+                            </div>
+                                                </div>
+                </div>
+                <div class="wpd-comment-info-bar">
+                    <div class="wpd-current-view"><i
+                                class="fas fa-quote-left"></i> Inline Feedbacks                    </div>
+                    <div class="wpd-filter-view-all">View all comments</div>
+                </div>
+                                <div class="wpd-thread-list">
+                    <div id='wpd-comm-502_0' class='comment even thread-even depth-1 wpd-comment wpd_comment_level-1'><div class="wpd-comment-wrap wpd-blog-guest">
+    <div id="comment-502" class="wpd-comment-right">
+    <div class="wpd-comment-header">
+    <div class="wpd-avatar ">
+    <img alt='routetehpacketz' src='https://secure.gravatar.com/avatar/89d0550c0b9ce16e529562694ec0531d?s=64&#038;d=wavatar&#038;r=g' srcset='https://secure.gravatar.com/avatar/89d0550c0b9ce16e529562694ec0531d?s=128&#038;d=wavatar&#038;r=g 2x' class='avatar avatar-64 photo' height='64' width='64' loading='lazy' decoding='async'/>
+</div>
+    <div class="wpd-user-info">
+    <div class="wpd-uinfo-top">
+    <div class="wpd-comment-author ">
+    routetehpacketz
+</div>
+    
+    
+    <div class="wpd-comment-share wpd-hidden wpd-tooltip wpd-top">
+    <i class='fas fa-share-alt' aria-hidden='true'></i>
+    <div class="wpd-tooltip-content">
+        <a class='wc_tw' rel='noreferrer' target='_blank' href='https://twitter.com/intent/tweet?text=so was there a bounty?
+&url=https%3A%2F%2Fhaiderm.com%2Fhow-i-was-able-to-delete-13k-microsoft-translator-projects%2F%23comment-502' title='Share On Twitter'><i class='fab fa-twitter wpf-cta' aria-hidden='true'></i></a><a class='wc_vk' rel='noreferrer' target='_blank' href='https://vk.com/share.php?url=https://haiderm.com/how-i-was-able-to-delete-13k-microsoft-translator-projects/' title='Share On VKontakte'><i class='fab fa-vk wpf-cta' aria-hidden='true'></i></a><a class='wc_ok' rel='noreferrer' target='_blank' href='https://connect.ok.ru/offer?url=https://haiderm.com/how-i-was-able-to-delete-13k-microsoft-translator-projects/' title='Share On Odnoklassniki'><i class='fab fa-odnoklassniki wpf-cta' aria-hidden='true'></i></a>
+    </div>
+</div>
+    <div class="wpd-space"></div>
+</div>
+    <div class="wpd-uinfo-bottom">
+    
+    
+    <div class="wpd-comment-date" title="July 19, 2018 4:11 pm">
+    <i class='far fa-clock' aria-hidden='true'></i>
+    6 years ago
+</div>
+</div>
+</div>
+    <div class="wpd-comment-link wpd-hidden">
+    <span wpd-tooltip='Comment Link' wpd-tooltip-position='left'><i class='fas fa-link' aria-hidden='true' data-wpd-clipboard='https://haiderm.com/how-i-was-able-to-delete-13k-microsoft-translator-projects/#comment-502'></i></span>
+</div>
+</div>
+    <div class="wpd-comment-text">
+    <p>so was there a bounty?</p>
+
+</div>
+    <div class="wpd-comment-footer">
+    <div class="wpd-vote">
+    <div class="wpd-vote-up wpd_not_clicked">
+        <svg aria-hidden='true' focusable='false' data-prefix='fas' data-icon='plus' class='svg-inline--fa fa-plus fa-w-14' role='img' xmlns='https://www.w3.org/2000/svg' viewBox='0 0 448 512'><path d='M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z'></path></svg>
+    </div>
+    <div class='wpd-vote-result' title='0'>0</div>
+    <div class="wpd-vote-down wpd_not_clicked">
+        <svg aria-hidden='true' focusable='false' data-prefix='fas' data-icon='minus' class='svg-inline--fa fa-minus fa-w-14' role='img' xmlns='https://www.w3.org/2000/svg' viewBox='0 0 448 512'><path d='M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z'></path></svg>
+    </div>
+</div>
+    <div class="wpd-reply-button">
+    <svg xmlns='https://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M10 9V5l-7 7 7 7v-4.1c5 0 8.5 1.6 11 5.1-1-5-4-10-11-11z'/><path d='M0 0h24v24H0z' fill='none'/></svg>
+    <span>Reply</span>
+</div>
+    <div class="wpd-space"></div>
+    
+    <div class="wpd-toggle wpd-hidden wpd_not_clicked" wpd-tooltip="Hide Replies">
+    <i class='fas fa-chevron-up'></i>
+</div>
+</div>
+</div>
+</div><div id='wpdiscuz_form_anchor-502_0'></div><div id='wpd-comm-503_502' class='comment byuser comment-author-haiderm bypostauthor odd alt depth-2 wpd-comment wpd-reply wpd_comment_level-2'><div class="wpd-comment-wrap wpd-blog-user wpd-blog-administrator wpd-blog-user wpd-blog-post_author">
+    <div id="comment-503" class="wpd-comment-right">
+    <div class="wpd-comment-header">
+    <div class="wpd-avatar ">
+    <a href='https://haiderm.com/author/haiderm/' target='_blank' rel='noreferrer ugc'><img alt='Haider Mahmood' src='https://secure.gravatar.com/avatar/0a5337b319af53314a221a90d7ec70b7?s=64&#038;d=wavatar&#038;r=g' srcset='https://secure.gravatar.com/avatar/0a5337b319af53314a221a90d7ec70b7?s=128&#038;d=wavatar&#038;r=g 2x' class='avatar avatar-64 photo' height='64' width='64' loading='lazy' decoding='async'/></a>
+</div>
+    <div class="wpd-user-info">
+    <div class="wpd-uinfo-top">
+    <div class="wpd-comment-author ">
+    <a href='https://haiderm.com/author/haiderm/' rel='noreferrer ugc' target='_blank'>Haider Mahmood</a>
+</div>
+    <div class="wpd-comment-label" wpd-tooltip="Author" wpd-tooltip-position="top">
+    <span>Author</span>
+</div>
+    
+    <div class="wpd-comment-share wpd-hidden wpd-tooltip wpd-top">
+    <i class='fas fa-share-alt' aria-hidden='true'></i>
+    <div class="wpd-tooltip-content">
+        <a class='wc_tw' rel='noreferrer' target='_blank' href='https://twitter.com/intent/tweet?text=No, Microsoft only offers hall of fame.
+&url=https%3A%2F%2Fhaiderm.com%2Fhow-i-was-able-to-delete-13k-microsoft-translator-projects%2F%23comment-503' title='Share On Twitter'><i class='fab fa-twitter wpf-cta' aria-hidden='true'></i></a><a class='wc_vk' rel='noreferrer' target='_blank' href='https://vk.com/share.php?url=https://haiderm.com/how-i-was-able-to-delete-13k-microsoft-translator-projects/' title='Share On VKontakte'><i class='fab fa-vk wpf-cta' aria-hidden='true'></i></a><a class='wc_ok' rel='noreferrer' target='_blank' href='https://connect.ok.ru/offer?url=https://haiderm.com/how-i-was-able-to-delete-13k-microsoft-translator-projects/' title='Share On Odnoklassniki'><i class='fab fa-odnoklassniki wpf-cta' aria-hidden='true'></i></a>
+    </div>
+</div>
+    <div class="wpd-space"></div>
+</div>
+    <div class="wpd-uinfo-bottom">
+    
+    <div class="wpd-reply-to">
+    <i class='far fa-comments'></i>
+    Reply to&nbsp;
+    <a href="#comment-502">
+        routetehpacketz
+    </a>
+</div>
+    <div class="wpd-comment-date" title="July 19, 2018 6:47 pm">
+    <i class='far fa-clock' aria-hidden='true'></i>
+    6 years ago
+</div>
+</div>
+</div>
+    <div class="wpd-comment-link wpd-hidden">
+    <span wpd-tooltip='Comment Link' wpd-tooltip-position='left'><i class='fas fa-link' aria-hidden='true' data-wpd-clipboard='https://haiderm.com/how-i-was-able-to-delete-13k-microsoft-translator-projects/#comment-503'></i></span>
+</div>
+</div>
+    <div class="wpd-comment-text">
+    <p>No, Microsoft only offers hall of fame.</p>
+
+</div>
+    <div class="wpd-comment-footer">
+    <div class="wpd-vote">
+    <div class="wpd-vote-up wpd_not_clicked">
+        <svg aria-hidden='true' focusable='false' data-prefix='fas' data-icon='plus' class='svg-inline--fa fa-plus fa-w-14' role='img' xmlns='https://www.w3.org/2000/svg' viewBox='0 0 448 512'><path d='M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z'></path></svg>
+    </div>
+    <div class='wpd-vote-result' title='0'>0</div>
+    <div class="wpd-vote-down wpd_not_clicked">
+        <svg aria-hidden='true' focusable='false' data-prefix='fas' data-icon='minus' class='svg-inline--fa fa-minus fa-w-14' role='img' xmlns='https://www.w3.org/2000/svg' viewBox='0 0 448 512'><path d='M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z'></path></svg>
+    </div>
+</div>
+    <div class="wpd-reply-button">
+    <svg xmlns='https://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M10 9V5l-7 7 7 7v-4.1c5 0 8.5 1.6 11 5.1-1-5-4-10-11-11z'/><path d='M0 0h24v24H0z' fill='none'/></svg>
+    <span>Reply</span>
+</div>
+    <div class="wpd-space"></div>
+    
+    
+</div>
+</div>
+</div><div id='wpdiscuz_form_anchor-503_502'></div></div></div><!-- // From wpDiscuz's Caches // -->                    <div class="wpdiscuz-comment-pagination">
+                                            </div>
+                </div>
+            </div>
+                </div>
+        </div>
+    <div id="wpdiscuz-loading-bar"
+         class="wpdiscuz-loading-bar-unauth"></div>
+    <div id="wpdiscuz-comment-message"
+         class="wpdiscuz-comment-message-unauth"></div>
+      </div>
+            </div><!-- .column-content-wrapper -->
+
+            
+
+          </div><!-- .container -->
+
+          <div id="czr-push-footer" ></div>
+    </div><!-- #main-wrapper -->
+
+    
+          <div class="container-fluid">
+        <div class="post-navigation row " >
+  <nav id="nav-below" class="col-12">
+    <h2 class="sr-only">Post navigation</h2>
+    <ul class="czr_pager row flex-row flex-no-wrap">
+      <li class="previous col-5 text-left">
+              <span class="sr-only">Previous post</span>
+        <span class="nav-previous nav-dir"><a href="https://haiderm.com/second-order-sql-injection-explained-with-example/" rel="prev"><span class="meta-nav"><i class="arrow icn-left-open-big"></i><span class="meta-nav-title">Second Order SQL Injection Explained with Example</span></span></a></span>
+            </li>
+      <li class="nav-back col-2 text-center">
+                <a href="https://haiderm.com/" title="Back to post list">
+          <span><i class="icn-grid-empty"></i></span>
+          <span class="sr-only">Back to post list</span>
+        </a>
+              </li>
+      <li class="next col-5 text-right">
+              <span class="sr-only">Next post</span>
+        <span class="nav-next nav-dir"><a href="https://haiderm.com/my-interview-experience-with-ey-as-senior-penetration-tester/" rel="next"><span class="meta-nav"><span class="meta-nav-title">My Interview experience with EY as Senior Penetration Tester</span><i class="arrow icn-right-open-big"></i></span></a></span>
+            </li>
+  </ul>
+  </nav>
+</div>
+      </div>
+    
+<footer id="footer" class="footer__wrapper" >
+  <div id="footer-widget-area" class="widget__wrapper" role="complementary" >
+  <div class="container widget__container">
+    <div class="row">
+                      <div id="footer_one" class="col-md-4 col-12">
+            <aside id="block-11" class="widget widget_block widget_recent_entries"><ul class="wp-block-latest-posts__list wp-block-latest-posts"><li><a class="wp-block-latest-posts__post-title" href="https://haiderm.com/aws-lambda-security-threats-and-mitigations/">AWS Lambda Security Threats and Mitigations</a></li>
+<li><a class="wp-block-latest-posts__post-title" href="https://haiderm.com/securing-aws-simple-notification-service-sns/">Securing AWS Simple Notification Service (SNS)</a></li>
+<li><a class="wp-block-latest-posts__post-title" href="https://haiderm.com/bug-bounty-platform-comparison-beyond-the-buzzwords/">Bug Bounty Platform Comparison Beyond The Buzzwords</a></li>
+<li><a class="wp-block-latest-posts__post-title" href="https://haiderm.com/http-header-blind-sql-injection-example/">HTTP header Blind SQL injection Example</a></li>
+<li><a class="wp-block-latest-posts__post-title" href="https://haiderm.com/information-security-checklist-for-small-to-medium-organizations/">Information Security Checklist for Small to Medium Organizations</a></li>
+</ul></aside>          </div>
+                  <div id="footer_two" class="col-md-4 col-12">
+            <aside id="block-15" class="widget widget_block widget_tag_cloud"><p class="wp-block-tag-cloud"><a href="https://haiderm.com/tag/etcexports/" class="tag-cloud-link tag-link-22 btn btn-skin-dark-oh inverted tag-link-position-1" style="font-size: 8pt;" aria-label="/etc/exports (1 item)">/etc/exports</a>
+<a href="https://haiderm.com/tag/application-security/" class="tag-cloud-link tag-link-18 btn btn-skin-dark-oh inverted tag-link-position-2" style="font-size: 8pt;" aria-label="Application security (1 item)">Application security</a>
+<a href="https://haiderm.com/tag/appsec/" class="tag-cloud-link tag-link-42 btn btn-skin-dark-oh inverted tag-link-position-3" style="font-size: 8pt;" aria-label="appsec (1 item)">appsec</a>
+<a href="https://haiderm.com/tag/assembly/" class="tag-cloud-link tag-link-26 btn btn-skin-dark-oh inverted tag-link-position-4" style="font-size: 8pt;" aria-label="assembly (1 item)">assembly</a>
+<a href="https://haiderm.com/tag/aws/" class="tag-cloud-link tag-link-77 btn btn-skin-dark-oh inverted tag-link-position-5" style="font-size: 22pt;" aria-label="AWS (2 items)">AWS</a>
+<a href="https://haiderm.com/tag/backdoor/" class="tag-cloud-link tag-link-33 btn btn-skin-dark-oh inverted tag-link-position-6" style="font-size: 8pt;" aria-label="backdoor (1 item)">backdoor</a>
+<a href="https://haiderm.com/tag/best-practices/" class="tag-cloud-link tag-link-21 btn btn-skin-dark-oh inverted tag-link-position-7" style="font-size: 8pt;" aria-label="best practices (1 item)">best practices</a>
+<a href="https://haiderm.com/tag/binary/" class="tag-cloud-link tag-link-32 btn btn-skin-dark-oh inverted tag-link-position-8" style="font-size: 8pt;" aria-label="binary (1 item)">binary</a>
+<a href="https://haiderm.com/tag/bugbounty/" class="tag-cloud-link tag-link-41 btn btn-skin-dark-oh inverted tag-link-position-9" style="font-size: 8pt;" aria-label="bugbounty (1 item)">bugbounty</a>
+<a href="https://haiderm.com/tag/bugcrowd/" class="tag-cloud-link tag-link-67 btn btn-skin-dark-oh inverted tag-link-position-10" style="font-size: 8pt;" aria-label="bugcrowd (1 item)">bugcrowd</a>
+<a href="https://haiderm.com/tag/bypass-csrf/" class="tag-cloud-link tag-link-11 btn btn-skin-dark-oh inverted tag-link-position-11" style="font-size: 8pt;" aria-label="Bypass CSRF (1 item)">Bypass CSRF</a>
+<a href="https://haiderm.com/tag/cissp/" class="tag-cloud-link tag-link-46 btn btn-skin-dark-oh inverted tag-link-position-12" style="font-size: 8pt;" aria-label="CISSP (1 item)">CISSP</a>
+<a href="https://haiderm.com/tag/client-penetration-testing-questions/" class="tag-cloud-link tag-link-71 btn btn-skin-dark-oh inverted tag-link-position-13" style="font-size: 8pt;" aria-label="Client penetration testing questions (1 item)">Client penetration testing questions</a>
+<a href="https://haiderm.com/tag/cloudsecurity/" class="tag-cloud-link tag-link-80 btn btn-skin-dark-oh inverted tag-link-position-14" style="font-size: 8pt;" aria-label="cloudsecurity (1 item)">cloudsecurity</a>
+<a href="https://haiderm.com/tag/csrf/" class="tag-cloud-link tag-link-9 btn btn-skin-dark-oh inverted tag-link-position-15" style="font-size: 22pt;" aria-label="CSRF (2 items)">CSRF</a>
+<a href="https://haiderm.com/tag/csrf-token/" class="tag-cloud-link tag-link-10 btn btn-skin-dark-oh inverted tag-link-position-16" style="font-size: 8pt;" aria-label="CSRF token (1 item)">CSRF token</a>
+<a href="https://haiderm.com/tag/cyber-security-checklist/" class="tag-cloud-link tag-link-55 btn btn-skin-dark-oh inverted tag-link-position-17" style="font-size: 8pt;" aria-label="cyber security checklist (1 item)">cyber security checklist</a>
+<a href="https://haiderm.com/tag/cyber-security-guidelines/" class="tag-cloud-link tag-link-57 btn btn-skin-dark-oh inverted tag-link-position-18" style="font-size: 8pt;" aria-label="cyber security guidelines (1 item)">cyber security guidelines</a>
+<a href="https://haiderm.com/tag/dread/" class="tag-cloud-link tag-link-16 btn btn-skin-dark-oh inverted tag-link-position-19" style="font-size: 22pt;" aria-label="DREAD (2 items)">DREAD</a>
+<a href="https://haiderm.com/tag/ey/" class="tag-cloud-link tag-link-43 btn btn-skin-dark-oh inverted tag-link-position-20" style="font-size: 8pt;" aria-label="ey (1 item)">ey</a>
+<a href="https://haiderm.com/tag/fud/" class="tag-cloud-link tag-link-31 btn btn-skin-dark-oh inverted tag-link-position-21" style="font-size: 8pt;" aria-label="fud (1 item)">fud</a>
+<a href="https://haiderm.com/tag/hackerone/" class="tag-cloud-link tag-link-65 btn btn-skin-dark-oh inverted tag-link-position-22" style="font-size: 8pt;" aria-label="hackerone (1 item)">hackerone</a>
+<a href="https://haiderm.com/tag/hex/" class="tag-cloud-link tag-link-27 btn btn-skin-dark-oh inverted tag-link-position-23" style="font-size: 8pt;" aria-label="hex (1 item)">hex</a>
+<a href="https://haiderm.com/tag/information-security-checklist/" class="tag-cloud-link tag-link-56 btn btn-skin-dark-oh inverted tag-link-position-24" style="font-size: 8pt;" aria-label="information security checklist (1 item)">information security checklist</a>
+<a href="https://haiderm.com/tag/interview/" class="tag-cloud-link tag-link-38 btn btn-skin-dark-oh inverted tag-link-position-25" style="font-size: 22pt;" aria-label="interview (2 items)">interview</a>
+<a href="https://haiderm.com/tag/intigriti/" class="tag-cloud-link tag-link-69 btn btn-skin-dark-oh inverted tag-link-position-26" style="font-size: 8pt;" aria-label="Intigriti (1 item)">Intigriti</a>
+<a href="https://haiderm.com/tag/issap/" class="tag-cloud-link tag-link-47 btn btn-skin-dark-oh inverted tag-link-position-27" style="font-size: 8pt;" aria-label="ISSAP (1 item)">ISSAP</a>
+<a href="https://haiderm.com/tag/lambda/" class="tag-cloud-link tag-link-79 btn btn-skin-dark-oh inverted tag-link-position-28" style="font-size: 8pt;" aria-label="lambda (1 item)">lambda</a>
+<a href="https://haiderm.com/tag/linux/" class="tag-cloud-link tag-link-12 btn btn-skin-dark-oh inverted tag-link-position-29" style="font-size: 8pt;" aria-label="linux (1 item)">linux</a>
+<a href="https://haiderm.com/tag/madrid/" class="tag-cloud-link tag-link-44 btn btn-skin-dark-oh inverted tag-link-position-30" style="font-size: 8pt;" aria-label="madrid (1 item)">madrid</a>
+<a href="https://haiderm.com/tag/nfs/" class="tag-cloud-link tag-link-15 btn btn-skin-dark-oh inverted tag-link-position-31" style="font-size: 8pt;" aria-label="nfs (1 item)">nfs</a>
+<a href="https://haiderm.com/tag/penetration-tester/" class="tag-cloud-link tag-link-45 btn btn-skin-dark-oh inverted tag-link-position-32" style="font-size: 8pt;" aria-label="penetration tester (1 item)">penetration tester</a>
+<a href="https://haiderm.com/tag/penetration-testing-engagments/" class="tag-cloud-link tag-link-20 btn btn-skin-dark-oh inverted tag-link-position-33" style="font-size: 8pt;" aria-label="penetration testing engagments (1 item)">penetration testing engagments</a>
+<a href="https://haiderm.com/tag/privilege-escalation/" class="tag-cloud-link tag-link-13 btn btn-skin-dark-oh inverted tag-link-position-34" style="font-size: 8pt;" aria-label="privilege escalation (1 item)">privilege escalation</a>
+<a href="https://haiderm.com/tag/python/" class="tag-cloud-link tag-link-24 btn btn-skin-dark-oh inverted tag-link-position-35" style="font-size: 8pt;" aria-label="python (1 item)">python</a>
+<a href="https://haiderm.com/tag/root/" class="tag-cloud-link tag-link-14 btn btn-skin-dark-oh inverted tag-link-position-36" style="font-size: 8pt;" aria-label="root (1 item)">root</a>
+<a href="https://haiderm.com/tag/shellcode/" class="tag-cloud-link tag-link-25 btn btn-skin-dark-oh inverted tag-link-position-37" style="font-size: 22pt;" aria-label="shellcode (2 items)">shellcode</a>
+<a href="https://haiderm.com/tag/sns/" class="tag-cloud-link tag-link-78 btn btn-skin-dark-oh inverted tag-link-position-38" style="font-size: 8pt;" aria-label="SNS (1 item)">SNS</a>
+<a href="https://haiderm.com/tag/stride/" class="tag-cloud-link tag-link-17 btn btn-skin-dark-oh inverted tag-link-position-39" style="font-size: 22pt;" aria-label="STRIDE (2 items)">STRIDE</a>
+<a href="https://haiderm.com/tag/stride-threat-modelling/" class="tag-cloud-link tag-link-61 btn btn-skin-dark-oh inverted tag-link-position-40" style="font-size: 8pt;" aria-label="stride threat modelling (1 item)">stride threat modelling</a>
+<a href="https://haiderm.com/tag/synack/" class="tag-cloud-link tag-link-66 btn btn-skin-dark-oh inverted tag-link-position-41" style="font-size: 8pt;" aria-label="synack (1 item)">synack</a>
+<a href="https://haiderm.com/tag/threat-modeling/" class="tag-cloud-link tag-link-19 btn btn-skin-dark-oh inverted tag-link-position-42" style="font-size: 8pt;" aria-label="threat modeling (1 item)">threat modeling</a>
+<a href="https://haiderm.com/tag/threat-modelling/" class="tag-cloud-link tag-link-54 btn btn-skin-dark-oh inverted tag-link-position-43" style="font-size: 22pt;" aria-label="Threat modelling (2 items)">Threat modelling</a>
+<a href="https://haiderm.com/tag/websec/" class="tag-cloud-link tag-link-40 btn btn-skin-dark-oh inverted tag-link-position-44" style="font-size: 8pt;" aria-label="websec (1 item)">websec</a>
+<a href="https://haiderm.com/tag/yeswehack/" class="tag-cloud-link tag-link-68 btn btn-skin-dark-oh inverted tag-link-position-45" style="font-size: 8pt;" aria-label="YesWeHack (1 item)">YesWeHack</a></p></aside>          </div>
+                  <div id="footer_three" class="col-md-4 col-12">
+            <aside id="block-16" class="widget widget_block widget_recent_comments"><ol class="has-avatars has-dates has-excerpts wp-block-latest-comments"><li class="wp-block-latest-comments__comment"><img alt='' src='https://secure.gravatar.com/avatar/57c6e069a5feb8d250150baa3c2bb87f?s=48&#038;d=wavatar&#038;r=g' srcset='https://secure.gravatar.com/avatar/57c6e069a5feb8d250150baa3c2bb87f?s=96&#038;d=wavatar&#038;r=g 2x' class='avatar avatar-48 photo wp-block-latest-comments__comment-avatar' height='48' width='48' loading='lazy' decoding='async'/><article><footer class="wp-block-latest-comments__comment-meta"><a class="wp-block-latest-comments__comment-author" href="https://www.linkedin.com/in/arpan-dasgupta-b9099a188/">arpan Dasgupta</a> on <a class="wp-block-latest-comments__comment-link" href="https://haiderm.com/my-interview-experience-with-ey-as-senior-penetration-tester/#comment-9143">My Interview experience with EY as Senior Penetration Tester</a><time datetime="2023-01-24T21:01:58+00:00" class="wp-block-latest-comments__comment-date">January 24, 2023</time></footer><div class="wp-block-latest-comments__comment-excerpt"><p>I have applied for the exact same post in EY can you please help me with the interview QA</p>
+</div></article></li><li class="wp-block-latest-comments__comment"><article><footer class="wp-block-latest-comments__comment-meta"><a class="wp-block-latest-comments__comment-author" href="https://onlinetechexplore.com/awesome-privilege-escalation/">awesome privilege escalation: GitHub File Free Download</a> on <a class="wp-block-latest-comments__comment-link" href="https://haiderm.com/linux-privilege-escalation-using-weak-nfs-permissions/#comment-9137">Linux Privilege Escalation using weak NFS permissions</a><time datetime="2022-12-13T11:20:19+00:00" class="wp-block-latest-comments__comment-date">December 13, 2022</time></footer><div class="wp-block-latest-comments__comment-excerpt"><p>[&#8230;] Linux Privilege Escalation using weak NFS permissions: t Linux Privilege Escalation using weak NFS permissions in “/etc/exports”. by Haider&hellip;</p>
+</div></article></li><li class="wp-block-latest-comments__comment"><article><footer class="wp-block-latest-comments__comment-meta"><a class="wp-block-latest-comments__comment-author" href="https://simpleenews.qblnet.us/2022/12/11/threats-and-mitigations-for-aws-lambda/">Threats and Mitigations for AWS Lambda - My Blog</a> on <a class="wp-block-latest-comments__comment-link" href="https://haiderm.com/aws-lambda-security-threats-and-mitigations/#comment-9136">AWS Lambda Security Threats and Mitigations</a><time datetime="2022-12-11T10:33:04+00:00" class="wp-block-latest-comments__comment-date">December 11, 2022</time></footer><div class="wp-block-latest-comments__comment-excerpt"><p>[&#8230;] Read More [&#8230;]</p>
+</div></article></li><li class="wp-block-latest-comments__comment"><article><footer class="wp-block-latest-comments__comment-meta"><a class="wp-block-latest-comments__comment-author" href="https://haiderm.com/securing-aws-simple-notification-service-sns/">Securing AWS Simple Notification Service (SNS)</a> on <a class="wp-block-latest-comments__comment-link" href="https://haiderm.com/stride-threat-modelling-vs-dread-threat-modelling/#comment-9135">STRIDE Threat Modelling vs DREAD Threat Modelling</a><time datetime="2022-12-09T13:33:26+00:00" class="wp-block-latest-comments__comment-date">December 9, 2022</time></footer><div class="wp-block-latest-comments__comment-excerpt"><p>[&#8230;] Threat modelling is the process of identifying, analyzing, and mitigating potential security threats to a system or application. In&hellip;</p>
+</div></article></li><li class="wp-block-latest-comments__comment"><img alt='' src='https://secure.gravatar.com/avatar/0a5337b319af53314a221a90d7ec70b7?s=48&#038;d=wavatar&#038;r=g' srcset='https://secure.gravatar.com/avatar/0a5337b319af53314a221a90d7ec70b7?s=96&#038;d=wavatar&#038;r=g 2x' class='avatar avatar-48 photo wp-block-latest-comments__comment-avatar' height='48' width='48' loading='lazy' decoding='async'/><article><footer class="wp-block-latest-comments__comment-meta"><a class="wp-block-latest-comments__comment-author" href="https://haiderm.com/author/haiderm/">Haider Mahmood</a> on <a class="wp-block-latest-comments__comment-link" href="https://haiderm.com/bug-bounty-platform-comparison-beyond-the-buzzwords/#comment-9134">Bug Bounty Platform Comparison Beyond The Buzzwords</a><time datetime="2022-11-06T07:53:01+00:00" class="wp-block-latest-comments__comment-date">November 6, 2022</time></footer><div class="wp-block-latest-comments__comment-excerpt"><p>Hi H4ck3rM4n, I was pointing out that their sales pitch of being the biggest platform in Europe is actually not&hellip;</p>
+</div></article></li></ol></aside>          </div>
+                  </div>
+  </div>
+</div>
+<div id="colophon" class="colophon " >
+  <div class="container-fluid">
+    <div class="colophon__row row flex-row justify-content-between">
+      <div class="col-12 col-sm-auto">
+        <div id="footer__credits" class="footer__credits" >
+  <p class="czr-copyright">
+    <span class="czr-copyright-text">&copy;&nbsp;2025&nbsp;</span><a class="czr-copyright-link" href="https://haiderm.com" title="Haider&#039;s Infosec Blog">Haider&#039;s Infosec Blog</a><span class="czr-rights-text">&nbsp;&ndash;&nbsp;All rights reserved</span>
+  </p>
+  <p class="czr-credits">
+    <span class="czr-designer">
+      <span class="czr-wp-powered"><span class="czr-wp-powered-text">Powered by&nbsp;</span><a class="czr-wp-powered-link" title="Powered by WordPress" href="https://wordpress.org/" target="_blank" rel="noopener noreferrer">WP</a></span><span class="czr-designer-text">&nbsp;&ndash;&nbsp;Designed with the <a class="czr-designer-link" href="https://presscustomizr.com/customizr" title="Customizr theme">Customizr theme</a></span>
+    </span>
+  </p>
+</div>
+      </div>
+            <div class="col-12 col-sm-auto">
+        <div class="social-links">
+          <ul class="socials " >
+  <li ><a rel="nofollow noopener noreferrer" class="social-icon icon-feed"  title="Subscribe to my rss feed" aria-label="Subscribe to my rss feed" href="https://haiderm.com/feed/rss/"  target="_blank" ><i class="fas fa-rss"></i></a></li> <li ><a rel="nofollow noopener noreferrer" class="social-icon icon-linkedin"  title="Follow me on Linkedin" aria-label="Follow me on Linkedin" href="https://www.linkedin.com/in/haider-mahmood-5b755873/"  target="_blank" ><i class="fab fa-linkedin"></i></a></li> <li ><a rel="nofollow noopener noreferrer" class="social-icon icon-twitter"  title="Follow us on Twitter" aria-label="Follow us on Twitter" href="https://twitter.com/haiderinfosec"  target="_blank" ><i class="fab fa-twitter"></i></a></li></ul>
+        </div>
+      </div>
+          </div>
+  </div>
+</div>
+</footer>
+    </div><!-- end #tc-page-wrap -->
+
+    <button class="btn czr-btt czr-btta right" ><i class="icn-up-small"></i></button>
+<span id='wpdUserContentInfoAnchor' style='display:none;' rel='#wpdUserContentInfo' data-wpd-lity>wpDiscuz</span><div id='wpdUserContentInfo' style='overflow:auto;background:#FDFDF6;padding:20px;width:600px;max-width:100%;border-radius:6px;' class='lity-hide'></div><div id='wpd-bubble-wrapper'><span id='wpd-bubble-all-comments-count' title='2'>2</span><div id='wpd-bubble-count'><svg xmlns='https://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><path class='wpd-bubble-count-first' d='M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z'/><path class='wpd-bubble-count-second' d='M0 0h24v24H0z' /></svg><span class='wpd-new-comments-count'>0</span></div><div id='wpd-bubble'><svg xmlns='https://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><path class='wpd-bubble-plus-first' d='M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z'/><path class='wpd-bubble-plus-second' d='M0 0h24v24H0z' /></svg><div id='wpd-bubble-add-message'>Would love your thoughts, please comment.<span id='wpd-bubble-add-message-close'><a href='#'>x</a></span></div></div><div id='wpd-bubble-notification'><svg xmlns='https://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><path class='wpd-bubble-notification-first' d='M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z'/><path class='wpd-bubble-notification-second' d='M0 0h24v24H0z' /></svg><div id='wpd-bubble-notification-message'><div id='wpd-bubble-author'><div><span id='wpd-bubble-author-avatar'></span><span id='wpd-bubble-author-name'></span><span id='wpd-bubble-comment-date'>(<span class='wpd-bubble-spans'></span>)</span></div><span id='wpd-bubble-comment-close'><a href='#'>x</a></span></div><div id='wpd-bubble-comment'><span id='wpd-bubble-comment-text'></span><span id='wpd-bubble-comment-reply-link'>| <a href='#'>Reply</a></span></div></div></div></div><div id='wpd-editor-source-code-wrapper-bg'></div><div id='wpd-editor-source-code-wrapper'><textarea id='wpd-editor-source-code'></textarea><button id='wpd-insert-source-code'>Insert</button><input type='hidden' id='wpd-editor-uid' /></div><script id='wpdiscuz-combo-js-js-extra'>
+var wpdiscuzAjaxObj = {"wc_hide_replies_text":"Hide Replies","wc_show_replies_text":"View Replies","wc_msg_required_fields":"Please fill out required fields","wc_invalid_field":"Some of field value is invalid","wc_error_empty_text":"please fill out this field to comment","wc_error_url_text":"url is invalid","wc_error_email_text":"email address is invalid","wc_invalid_captcha":"Invalid Captcha Code","wc_login_to_vote":"You Must Be Logged In To Vote","wc_deny_voting_from_same_ip":"You are not allowed to vote for this comment","wc_self_vote":"You cannot vote for your comment","wc_vote_only_one_time":"You've already voted for this comment","wc_voting_error":"Voting Error","wc_comment_edit_not_possible":"Sorry, this comment is no longer possible to edit","wc_comment_not_updated":"Sorry, the comment was not updated","wc_comment_not_edited":"You've not made any changes","wc_msg_input_min_length":"Input is too short","wc_msg_input_max_length":"Input is too long","wc_spoiler_title":"Spoiler Title","wc_cannot_rate_again":"You cannot rate again","wc_not_allowed_to_rate":"You're not allowed to rate here","wc_follow_user":"Follow this user","wc_unfollow_user":"Unfollow this user","wc_follow_success":"You started following this comment author","wc_follow_canceled":"You stopped following this comment author.","wc_follow_email_confirm":"Please check your email and confirm the user following request.","wc_follow_email_confirm_fail":"Sorry, we couldn't send confirmation email.","wc_follow_login_to_follow":"Please login to follow users.","wc_follow_impossible":"We are sorry, but you can't follow this user.","wc_follow_not_added":"Following failed. Please try again later.","is_user_logged_in":"","commentListLoadType":"0","commentListUpdateType":"0","commentListUpdateTimer":"60","liveUpdateGuests":"0","wordpressThreadCommentsDepth":"5","wordpressIsPaginate":"","commentTextMaxLength":"0","replyTextMaxLength":"0","commentTextMinLength":"1","replyTextMinLength":"1","storeCommenterData":"100000","socialLoginAgreementCheckbox":"1","enableFbLogin":"0","fbUseOAuth2":"0","enableFbShare":"0","facebookAppID":"","facebookUseOAuth2":"0","enableGoogleLogin":"0","googleClientID":"","googleClientSecret":"","cookiehash":"7901608eeac3623ecafd72a5990983aa","isLoadOnlyParentComments":"0","scrollToComment":"1","commentFormView":"collapsed","enableDropAnimation":"1","isNativeAjaxEnabled":"1","enableBubble":"1","bubbleLiveUpdate":"0","bubbleHintTimeout":"45","bubbleHintHideTimeout":"10","cookieHideBubbleHint":"wpdiscuz_hide_bubble_hint","bubbleHintShowOnce":"1","bubbleHintCookieExpires":"7","bubbleShowNewCommentMessage":"1","bubbleLocation":"content_left","firstLoadWithAjax":"0","wc_copied_to_clipboard":"Copied to clipboard!","inlineFeedbackAttractionType":"blink","loadRichEditor":"1","wpDiscuzReCaptchaSK":"","wpDiscuzReCaptchaTheme":"light","wpDiscuzReCaptchaVersion":"2.0","wc_captcha_show_for_guest":"0","wc_captcha_show_for_members":"0","wpDiscuzIsShowOnSubscribeForm":"0","wmuEnabled":"1","wmuInput":"wmu_files","wmuMaxFileCount":"1","wmuMaxFileSize":"2097152","wmuPostMaxSize":"8388608","wmuIsLightbox":"1","wmuMimeTypes":{"jpg":"image\/jpeg","jpeg":"image\/jpeg","jpe":"image\/jpeg","gif":"image\/gif","png":"image\/png","bmp":"image\/bmp","tiff":"image\/tiff","tif":"image\/tiff","ico":"image\/x-icon"},"wmuPhraseConfirmDelete":"Are you sure you want to delete this attachment?","wmuPhraseNotAllowedFile":"Not allowed file type","wmuPhraseMaxFileCount":"Maximum number of uploaded files is 1","wmuPhraseMaxFileSize":"Maximum upload file size is 2MB","wmuPhrasePostMaxSize":"Maximum post size is 8MB","wmuPhraseDoingUpload":"Uploading in progress! Please wait.","msgEmptyFile":"File is empty. Please upload something more substantial. This error could also be caused by uploads being disabled in your php.ini or by post_max_size being defined as smaller than upload_max_filesize in php.ini.","msgPostIdNotExists":"Post ID not exists","msgUploadingNotAllowed":"Sorry, uploading not allowed for this post","msgPermissionDenied":"You do not have sufficient permissions to perform this action","wmuKeyImages":"images","wmuSingleImageWidth":"auto","wmuSingleImageHeight":"200","version":"7.6.15","wc_post_id":"399","isCookiesEnabled":"1","loadLastCommentId":"0","dataFilterCallbacks":[],"phraseFilters":[],"scrollSize":"32","is_email_field_required":"1","url":"https:\/\/haiderm.com\/wp-admin\/admin-ajax.php","customAjaxUrl":"https:\/\/haiderm.com\/wp-content\/plugins\/wpdiscuz\/utils\/ajax\/wpdiscuz-ajax.php","bubbleUpdateUrl":"https:\/\/haiderm.com\/wp-json\/wpdiscuz\/v1\/update","restNonce":"63a1bec919"};
+var wpdiscuzUCObj = {"msgConfirmDeleteComment":"Are you sure you want to delete this comment?","msgConfirmCancelSubscription":"Are you sure you want to cancel this subscription?","msgConfirmCancelFollow":"Are you sure you want to cancel this follow?","additionalTab":"0"};
+</script>
+<script id='wpdiscuz-combo-js-js-before'>
+        var wpdiscuzEditorOptions = {
+        modules: {
+        toolbar: "",
+        counter: {
+        uniqueID: "",
+        commentmaxcount : 0,
+        replymaxcount : 0,
+        commentmincount : 1,
+        replymincount : 1,
+        },
+                },
+        wc_be_the_first_text: "Be the First to Comment!",
+        wc_comment_join_text: "Join the discussion",
+        theme: 'snow',
+        debug: 'error'
+        };
+        
+</script>
+<script src='https://haiderm.com/wp-content/plugins/wpdiscuz/assets/js/wpdiscuz-combo.min.js?ver=7.6.15' id='wpdiscuz-combo-js-js'></script>
+<script src='https://haiderm.com/wp-includes/js/comment-reply.min.js?ver=6.1.7' id='comment-reply-js'></script>
+<script src='https://haiderm.com/wp-includes/js/jquery/ui/core.min.js?ver=1.13.2' id='jquery-ui-core-js'></script>
+<script src='https://haiderm.com/wp-content/themes/customizr/assets/front/js/libs/retina.min.js?ver=4.4.21' id='retinajs-js'></script>
+<script src='https://haiderm.com/wp-content/plugins/enlighter/cache/enlighterjs.min.js?ver=nLJ2PlCj61Q+xZO' id='enlighterjs-js'></script>
+<script id='enlighterjs-js-after'>
+!function(e,n){if("undefined"!=typeof EnlighterJS){var o={"selectors":{"block":"pre.EnlighterJSRAW","inline":"code.EnlighterJSRAW"},"options":{"indent":3,"ampersandCleanup":true,"linehover":true,"rawcodeDbclick":false,"textOverflow":"break","linenumbers":true,"theme":"eclipse","language":"html","retainCssClasses":false,"collapse":false,"toolbarOuter":"","toolbarTop":"{BTN_RAW}{BTN_COPY}{BTN_WINDOW}{BTN_WEBSITE}","toolbarBottom":""}};(e.EnlighterJSINIT=function(){EnlighterJS.init(o.selectors.block,o.selectors.inline,o.options)})()}else{(n&&(n.error||n.log)||function(){})("Error: EnlighterJS resources not loaded yet!")}}(window,console);
+</script>
+  </body>
+  </html>

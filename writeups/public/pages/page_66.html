@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en-US" class="no-js">
+  <head> 
+      <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!--  -->
+    <title>Exposing 185M+ Indians&#39; Personal Information and much more</title>
+    <meta name="description" content="How I helped the Indian Government identify multiple critical flaws in &quot;Sarathi Parivahan&quot; - the official website responsible for issuing Driver&#39;s Licenses">
+    <link rel="canonical" href="https://blog.robinjust.in/gov-in/2023/02/Exposing-Indian-Citizens-Sensitive-PII-and-more/">
+  <!--  -->
+
+  <script>
+    /* Cut the mustard */
+    if ( 'querySelector' in document && 'addEventListener' in window ) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/assets/stylesheets/main.css">
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Sans:400,400i,600,600i">
+  
+
+
+    <!-- Open Graph metadata -->
+    <meta name="title" property="og:title" content="Exposing 185M+ Indians' Personal Information and much more" />
+    <meta name="image" property="og:image" content="https://blog.robinjust.in/assets/posts/2023-02-20-Exposing-Indian-Citizens-Sensitive-PII-and-more/preview_image.png" />
+    <meta name="author" content="Robin Justin" />
+    <meta property="og:locale" content="en_US" />
+    <meta name="description" property="og:description" content="How I helped the Indian Government identify multiple critical flaws in "Sarathi Parivahan" - the official website responsible for issuing Driver's Licenses">
+    <meta property="og:url" content="https://blog.robinjust.in/gov-in/2023/02/Exposing-Indian-Citizens-Sensitive-PII-and-more/" />
+    <meta property="og:site_name" content="blog.robinjust.in" />
+    <meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2023-02-20 00:00:00 -0530" />
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Exposing 185M+ Indians' Personal Information and much more" />
+    <meta name="twitter:image" content="https://blog.robinjust.in/assets/posts/2023-02-20-Exposing-Indian-Citizens-Sensitive-PII-and-more/preview_image.png" />
+    <meta name="twitter:description" content="How I helped the Indian Government identify multiple critical flaws in "Sarathi Parivahan" - the official website responsible for issuing Driver's Licenses">
+    <meta name="twitter:creator" content="@-RobinJustin_" />
+    
+  </head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PVY96HESFN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PVY96HESFN');
+</script>
+
+  <body class="layout--post exposing-185m-indians-personal-information-and-much-more">
+
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+
+    <div class="sidebar-toggle-wrapper">
+      
+        <button class="search-toggle" type="button">
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <title>Search</title>
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+      
+
+      <button class="toggle navicon-button larr" type="button">
+        <span class="toggle-inner">
+          <span class="sidebar-toggle-label visually-hidden">Menu</span>
+          <span class="navicon"></span>
+        </span>
+      </button>
+    </div>
+
+    <div id="sidebar" class="sidebar">
+      <div class="inner">
+        <nav id="primary-nav" class="site-nav" itemscope itemtype="http://schema.org/SiteNavigationElement" aria-label="Main navigation">
+  <ul id="menu-main-navigation" class="menu">
+    <!-- Home link -->
+    <li class="menu-item">
+      <a href="/" itemprop="url">
+        <span itemprop="name">Home</span>
+      </a>
+    </li>
+
+    <!-- site.pages links -->
+    
+    
+
+    
+      
+      
+        <li class="menu-item">
+          <a href="/about/" itemprop="url">
+            <span itemprop="name">About</span>
+          </a>
+        </li>
+      
+    
+  </ul>
+</nav>
+
+        <ul class="contact-list">
+  
+    <li>
+      <a href="mailto:admin@robinjust.in">
+        <span class="icon icon--email"><svg xmlns="http://www.w3.org/2000/svg" viewBox="313.1 3.7 16 16"><path d="M318.5 8.9c0-.2.2-.4.4-.4h4.5c.2 0 .4.2.4.4s-.2.4-.4.4h-4.5c-.3 0-.4-.2-.4-.4zm.4 2.1h4.5c.2 0 .4-.2.4-.4s-.2-.4-.4-.4h-4.5c-.2 0-.4.2-.4.4s.1.4.4.4zm3.5 1.2c0-.2-.2-.4-.4-.4h-3.1c-.2 0-.4.2-.4.4s.2.4.4.4h3.1c.2.1.4-.1.4-.4zm-1.5-8.4l-1.7 1.4c-.2.1-.2.4 0 .6s.4.2.6 0l1.4-1.2 1.4 1.2c.2.1.4.1.6 0s.1-.4 0-.6l-1.7-1.4c-.3-.1-.5-.1-.6 0zm7.8 6.2c.1.1.1.2.1.3v7.9c0 .8-.7 1.5-1.5 1.5h-12.5c-.8 0-1.5-.7-1.5-1.5v-7.9c0-.1.1-.2.1-.3l1.6-1.3c.2-.1.4-.1.6 0s.1.4 0 .6l-1.2 1 1.8 1.3v-4c0-.6.5-1.1 1.1-1.1h7.5c.6 0 1.1.5 1.1 1.1v4l1.8-1.3-1.2-1c-.2-.1-.2-.4 0-.6s.4-.2.6 0l1.6 1.3zm-11.6 2.2l4 2.8 4-2.8V7.6c0-.1-.1-.2-.2-.2h-7.5c-.1 0-.2.1-.2.2v4.6zm10.9-1l-4.7 3.4 3.4 2.6c.2.1.2.4.1.6-.1.2-.4.2-.6.1l-3.6-2.8-1.2.8c-.1.1-.3.1-.5 0l-1.2-.8-3.6 2.8c-.2.1-.4.1-.6-.1-.1-.2-.1-.4.1-.6l3.4-2.6-4.7-3.4v7.1c0 .4.3.6.6.6h12.5c.4 0 .6-.3.6-.6v-7.1z"/></svg></span>
+        <span class="label">Email</span>
+      </a>
+    </li>
+  
+
+  
+    <li><a href="https://www.linkedin.com/in/robinjustin">
+  <span class="icon icon--linkedin"><svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.414"><path d="M13.632 13.635h-2.37V9.922c0-.886-.018-2.025-1.234-2.025-1.235 0-1.424.964-1.424 1.96v3.778h-2.37V6H8.51v1.04h.03c.318-.6 1.092-1.233 2.247-1.233 2.4 0 2.845 1.58 2.845 3.637v4.188zM3.558 4.955c-.762 0-1.376-.617-1.376-1.377 0-.758.614-1.375 1.376-1.375.76 0 1.376.617 1.376 1.375 0 .76-.617 1.377-1.376 1.377zm1.188 8.68H2.37V6h2.376v7.635zM14.816 0H1.18C.528 0 0 .516 0 1.153v13.694C0 15.484.528 16 1.18 16h13.635c.652 0 1.185-.516 1.185-1.153V1.153C16 .516 15.467 0 14.815 0z" fill-rule="nonzero"/></svg></span>
+  <span class="label">Linkedin</span>
+</a>
+</li>
+  
+
+  
+    <li><a href="https://twitter.com/_robinjustin_">
+  <span class="icon icon--twitter"><svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.414"><path d="M16 3.038c-.59.26-1.22.437-1.885.517.677-.407 1.198-1.05 1.443-1.816-.634.37-1.337.64-2.085.79-.598-.64-1.45-1.04-2.396-1.04-1.812 0-3.282 1.47-3.282 3.28 0 .26.03.51.085.75-2.728-.13-5.147-1.44-6.766-3.42C.83 2.58.67 3.14.67 3.75c0 1.14.58 2.143 1.46 2.732-.538-.017-1.045-.165-1.487-.41v.04c0 1.59 1.13 2.918 2.633 3.22-.276.074-.566.114-.865.114-.21 0-.41-.02-.61-.058.42 1.304 1.63 2.253 3.07 2.28-1.12.88-2.54 1.404-4.07 1.404-.26 0-.52-.015-.78-.045 1.46.93 3.18 1.474 5.04 1.474 6.04 0 9.34-5 9.34-9.33 0-.14 0-.28-.01-.42.64-.46 1.2-1.04 1.64-1.7z" fill-rule="nonzero"/></svg></span>
+  <span class="label">Twitter</span>
+</a>
+</li>
+  
+
+  
+    <li><a href="https://instagram.com/_robinjustin_">
+  <span class="icon icon--instagram"><svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.414"><path d="M8 0C5.827 0 5.555.01 4.702.048 3.85.088 3.27.222 2.76.42c-.526.204-.973.478-1.417.923-.445.444-.72.89-.923 1.417-.198.51-.333 1.09-.372 1.942C.008 5.555 0 5.827 0 8s.01 2.445.048 3.298c.04.852.174 1.433.372 1.942.204.526.478.973.923 1.417.444.445.89.72 1.417.923.51.198 1.09.333 1.942.372.853.04 1.125.048 3.298.048s2.445-.01 3.298-.048c.852-.04 1.433-.174 1.942-.372.526-.204.973-.478 1.417-.923.445-.444.72-.89.923-1.417.198-.51.333-1.09.372-1.942.04-.853.048-1.125.048-3.298s-.01-2.445-.048-3.298c-.04-.852-.174-1.433-.372-1.942-.204-.526-.478-.973-.923-1.417-.444-.445-.89-.72-1.417-.923-.51-.198-1.09-.333-1.942-.372C10.445.008 10.173 0 8 0zm0 1.44c2.136 0 2.39.01 3.233.048.78.036 1.203.166 1.485.276.374.145.64.318.92.598.28.28.453.546.598.92.11.282.24.705.276 1.485.038.844.047 1.097.047 3.233s-.01 2.39-.05 3.233c-.04.78-.17 1.203-.28 1.485-.15.374-.32.64-.6.92-.28.28-.55.453-.92.598-.28.11-.71.24-1.49.276-.85.038-1.1.047-3.24.047s-2.39-.01-3.24-.05c-.78-.04-1.21-.17-1.49-.28-.38-.15-.64-.32-.92-.6-.28-.28-.46-.55-.6-.92-.11-.28-.24-.71-.28-1.49-.03-.84-.04-1.1-.04-3.23s.01-2.39.04-3.24c.04-.78.17-1.21.28-1.49.14-.38.32-.64.6-.92.28-.28.54-.46.92-.6.28-.11.7-.24 1.48-.28.85-.03 1.1-.04 3.24-.04zm0 2.452c-2.27 0-4.108 1.84-4.108 4.108 0 2.27 1.84 4.108 4.108 4.108 2.27 0 4.108-1.84 4.108-4.108 0-2.27-1.84-4.108-4.108-4.108zm0 6.775c-1.473 0-2.667-1.194-2.667-2.667 0-1.473 1.194-2.667 2.667-2.667 1.473 0 2.667 1.194 2.667 2.667 0 1.473-1.194 2.667-2.667 2.667zm5.23-6.937c0 .53-.43.96-.96.96s-.96-.43-.96-.96.43-.96.96-.96.96.43.96.96z"/></svg></span>
+  <span class="label">Instagram</span>
+</a>
+</li>
+  
+</ul>
+
+      </div>
+    </div>
+
+    <div class="canvas">
+      <div class="wrapper">
+        
+
+<header id="masthead">
+  <div class="inner">
+    <div class="title-area">
+      
+        <p class="site-title">
+          <a href="/">
+            
+            <span>blog.robinjust.in</span>
+          </a>
+        </p>
+      
+    </div>
+  </div>
+</header>
+
+        <div class="initial-content">
+          <header class="intro">
+  
+
+  <div class="inner">
+    <div class="intro-text">
+      <h1 id="page-title" class="intro-title">Exposing 185M+ Indians’ Personal Information and much more
+</h1>
+      
+
+      
+        
+
+
+        <p class="entry-meta">
+          <span class="byline-item">by Robin Justin</span><span class="byline-item"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="379 72 16 16"><g><g><path fill="none" d="M380.8,86.7h12.3v-8.8h-12.3V86.7z M389.5,78.8h1.7v1.4h-1.7V78.8z M389.5,81.3h1.7v1.4h-1.7V81.3z M389.5,83.8h1.7v1.4h-1.7V83.8z M386.1,78.8h1.7v1.4h-1.7V78.8z M386.1,81.3h1.7v1.4h-1.7V81.3z M386.1,83.8h1.7v1.4h-1.7V83.8z M382.8,78.8h1.7v1.4h-1.7V78.8z M382.8,81.3h1.7v1.4h-1.7V81.3z M382.8,83.8h1.7v1.4h-1.7V83.8z"/><polygon fill="none" points="384.7 75.1 383.4 75.1 383.4 74.3 380.8 74.3 380.8 76.6 393.2 76.6 393.2 74.3 390.6 74.3 390.6 75.1 389.3 75.1 389.3 74.3 384.7 74.3"/><rect x="382.8" y="78.8" width="1.7" height="1.4"/><rect x="386.1" y="78.8" width="1.7" height="1.4"/><rect x="389.5" y="78.8" width="1.7" height="1.4"/><rect x="382.8" y="81.3" width="1.7" height="1.4"/><rect x="386.1" y="81.3" width="1.7" height="1.4"/><rect x="389.5" y="81.3" width="1.7" height="1.4"/><rect x="382.8" y="83.8" width="1.7" height="1.4"/><rect x="386.1" y="83.8" width="1.7" height="1.4"/><rect x="389.5" y="83.8" width="1.7" height="1.4"/><path d="M383.4,72v1.1h-3.8V88h14.9V73.1h-3.8V72h-1.3v1.1h-4.7V72H383.4z M393.2,86.7h-12.3v-8.8h12.3L393.2,86.7L393.2,86.7z M389.3,74.3v0.8h1.3v-0.8h2.5v2.3h-12.3v-2.3h2.5v0.8h1.3v-0.8H389.3z"/></g></g></svg></span><time datetime="2023-02-20T00:00:00+05:30">February 20, 2023</time></span>
+        </p>
+      
+
+      
+
+      
+    </div>
+  </div>
+</header>
+
+
+<main id="main" class="page-content" aria-label="Content">
+  <div class="inner">
+    <article class="entry-wrap">
+      <div class="entry-content">
+        <p>What if I told you that with just your phone number, or even better, with just your name, I could tell you everything there is to know about you?</p>
+
+<p>Hi! My name is <a href="https://blog.robinjust.in/about/" target="_blank"><strong>Robin Justin</strong></a> and I am a 20 year old student who’s a musician and a security researcher. I do bug bounties (mostly on Meta) to help make the internet secure just a <em>little</em> bit more each day :)</p>
+
+<h2 id="summary">Summary</h2>
+
+<p>In a nutshell, I had direct access to critical documents like <a href="https://en.wikipedia.org/wiki/Aadhaar" target="_blank">Aadhaar Cards</a> and Passports of all 185 million+ Indians that holds a drivers license, and all I needed to access your documents was either your full name or your phone number. I could’ve also generated as many valid government approved drivers licenses as I wanted to for anyone of my choosing. This is only the tip of the iceberg and there was a lot more that was possible. Oh and also, the entire process of finding and exploiting these vulnerabilities took me just about <strong>three hours</strong> in total. <em>*Sigh…</em>*</p>
+
+<blockquote>
+  <p><em>Note: The vulnerabilities disclosed here have already been reported to <a href="https://www.cert-in.org.in/RVDCP.jsp" target="_blank">CERT-IN : Indian Computer Emergency Response Team</a>, tracked under reference ID’s CERTIn-53609122 and CERTIn-79067922. This blog is published only after the explicit confirmation from CERT-IN stating that these vulnerabilities are remediated and are no longer reproducible</em></p>
+
+  <p>This blog is written with the goal of being very beginner friendly, with simplification of technical terms wherever possible to encourage learning about fundamental security measures that are a bare minimum in critical environments. So yes, feel free to go ahead and give this a read regardless of your technical skill level ;)</p>
+</blockquote>
+
+<p>It was possible for a threat actor to disclose <a href="https://www.investopedia.com/terms/p/personally-identifiable-information-pii.asp#toc-sensitive-vs-non-sensitive-personally-identifiable-information" target="_blank">Sensitive PII</a> of Million’s of Indian Citizen’s that hold a Driver’s License, Learner’s License, or even people that merely just started the process to apply for a license on <a href="https://sarathi.parivahan.gov.in/sarathiservice/" target="_blank">Sarathi Parivahan</a>.</p>
+
+<p>It was also possible for a threat actor to log in as <strong>Administrator</strong> into the portal. This allowed a TON of sensitive actions such as approving or denying all pending driver license applications, disclosing the list of ALL government employees that work in the department and SO MUCH more (Click <a href="https://blog.robinjust.in/gov-in/2023/02/Exposing-Indian-Citizens-Sensitive-PII-and-more/#what-were-my-super-powers-as-admin">here</a> to jump to a more comprehensive list of actions)</p>
+
+<h4 id="so-wait-what-is-sarathi-parivahan-even">So wait, what is Sarathi Parivahan even?</h4>
+
+<p><a href="https://sarathi.parivahan.gov.in/sarathiservice/" target="_blank"><strong>Sarathi Parivahan</strong></a> is the Indian government’s official website responsible for issuing Driver’s Licenses to Indian citizens accross the nation. It’s managed by the <a href="https://en.wikipedia.org/wiki/National_Informatics_Centre" target="_blank">National Informatics Centre (NIC)</a>. If you are an Indian Citizen and are hoping to drive on Indian Roads, you inevitably have to go through this website atleast once to get your Learner’s/Driver’s License.</p>
+
+<p>As of Feb 2023, there are about 185 Million unique people holding active/valid driver’s Licenses (which explains the number on the title :D), and about 163 Million Learner’s License holders (a few probably overlaps with the Driver’s License data, so I didn’t add that number to the 185M) according to the Indian Government (Refer
+<a href="https://sarathi.parivahan.gov.in/SarathiReport/DashBoardGr.do" target="_blank">Stats of Driver’s Licenses</a>)</p>
+
+<h2 id="the-journey">The Journey</h2>
+
+<p>It all began when I had to apply for a Driver’s License for my dad since his previous one expired, probably even disintegrated at this point (He’s held onto it for the last 20 years :P)</p>
+
+<p>The process seemed quite straightforward. I had to</p>
+<ul>
+  <li>Create an application on the portal, apply for a Learner’s License under the <em>Contactless</em> category (which was an option available in my state “<a href="https://en.wikipedia.org/wiki/Tamil_Nadu" target="_blank">Tamil Nadu</a>”, which meant that I didn’t have to visit the <a href="https://en.wikipedia.org/wiki/Regional_Transport_Office" target="_blank">RTO</a> - Regional Transport Office in person),</li>
+  <li>Appear for an online test to show that I understand the basic rules of the road,</li>
+  <li>Get the Learner’s License and then,</li>
+  <li>Apply for the Driver’s License.</li>
+</ul>
+
+<p>Sadly, it wasn’t all that straightforward afterall.</p>
+
+<p>After successfully applying for a Learner’s License, I tried to set up the online test for dad, but the link for the test was simply inaccessible. We headed straight out to the RTO to find what’s going on. It was a Friday at around 3 PM then and the Government official told us that this happens every now and then to reasons unknown, and asked us to come back on Monday to fix this. However, the website says this:</p>
+
+<blockquote>
+  <p>Citizens would be able to apply for these services online and without needing to visit RTO offices multiple times. Only for picking up modified or renewed Driving licence would citizens need to go to the RTO office after getting an intimation that their “Driving Licence has been activated and is ready for pick up”.</p>
+</blockquote>
+
+<p>The whole experience just seemed quite illogical and I honestly wanted a license as quick as possible. So as your friendly neighbourhood “tech enthusiast”, I dug in a little deeper to try and reverse engineer the problem and make things work. (Spoiler alert, the security geeky head of mine ended up finding some pretty cool vulnerabilities instead xD )</p>
+
+<h2 id="the-first-couple-of-finds">The first couple of finds</h2>
+
+<blockquote>
+  <p>It took me a GRAND TOTAL of just about <strong>10 minutes</strong> of using the website to spot these vulnerabilities. <em>*Deep Sighs…</em>* well, moving on,</p>
+</blockquote>
+
+<p>Going through the flow of creating a driver’s license application, most of the sensitive actions initially seemed well protected, which seemingly required an application number (can be anywhere between 1-10 digits) with the applicant’s date of birth to proceed further. I dug in just a little deeper to only find out that the application had a couple of endpoints with <a href="https://owasp.org/Top10/A01_2021-Broken_Access_Control/" target="_blank">Broken Access Control</a> flaws. More specifically, missing authorization checks one level down.</p>
+
+<p>A <strong>non-technical</strong> example to explain what’s happening here is: Imagine you managed to get a “visitor” pass to enter the <a href="https://en.wikipedia.org/wiki/The_Pentagon" target="_blank">Pentagon</a>, and let’s say that you are only allowed to be in the “visitor’s lounge” and nowhere else. However, what actually happens is, once you pass the super rigorous checks of your visitor pass by the security at the entrance to prove that you are indeed a legitimate visitor and not an adversary by any means, you are able to just casually walk about anywhere you want, like for instance, into high-security military-guarded rooms, happily steal military secrets and walk right out, with absolutely no one to stop and check you anywhere along the way.</p>
+
+<p>That in summary is pretty much exactly what was happening here. Once authenticated through what seems to be a secure endpoint, other endpoints with sensitive actions were available to use with the previously authenticated JSESSIONID cookie. This gave us a LOT of vulnerable endpoints to play with.</p>
+
+<p>1) One such endpoint found was responsible for fetching the “state” of a Learner’s/Driver’s License application. This gave us an interesting response</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">An</span><span class="w"> </span><span class="err">except</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">json</span><span class="w"> </span><span class="err">response:</span><span class="w">
+</span><span class="p">[</span><span class="s2">"30-06-2001"</span><span class="p">,</span><span class="s2">"TN01"</span><span class="p">,</span><span class="kc">null</span><span class="p">,</span><span class="kc">null</span><span class="p">,</span><span class="s2">"completeFlow"</span><span class="p">,</span><span class="s2">"data:image</span><span class="se">\/</span><span class="s2">jpeg;base64,</span><span class="se">\/</span><span class="s2">9j</span><span class="se">\/</span><span class="s2">4AAQSkZJRgAB...]
+</span></code></pre></div></div>
+
+<p>It was therefore possible to supply a random application number to this endpoint to get the date of birth associated with the application along with the picture of the applicant in <a href="https://developer.mozilla.org/en-US/docs/Glossary/Base64" target="_blank">base64</a> format.</p>
+
+<p>This was impactful as most actions (when it comes to proceeding further with an application’s flow as an applicant) simply required the ten-digit application number with the associated date of birth to authenticate. To top it off, there was no visible <a href="https://en.wikipedia.org/wiki/Rate_limiting" target="_blank">rate limiting</a> enforced anywhere on the website.</p>
+
+<p>At this point, the most I could get out of this (post-exploitation of the endpoint) was very basic information associated with a particular application number such as the Name, Address, Driver License “number” and a picture of the applicant. It also allowed me to proceed with the application flow (which isn’t all that exciting, i mean like, why would I ever want to sit and fill up a driver’s license application for someone else xD)</p>
+
+<p>Now comes the catch. The application numbers weren’t exactly issued sequentially. So, despite the fact that I could theoretically sit and brute-force all existing application numbers, that’s still a LOT of requests! atleast that’s what i’d assume according to <a href="https://sarathi.parivahan.gov.in/SarathiReport/DashBoardGr.do" target="_blank">the government statistics</a>, which suggests that I’d have to send out about 10 BILLION requests (i.e. 10^10: 10 digits, with 10 options for each digit 0-9) to identify about 185+163 Million valid records.</p>
+
+<p>This would make the attack unnecessarily noisy and result in a huge waste of requests (and time) to begin with; and for the basic PII at stake here, while it may bear some impact in the real world, it really didn’t seem all that appealing to me because there was an obvious lack of ability to target people, and it seemed like I was going through a million deck of cards blindfolded trying to find the right card.</p>
+
+<p>2) Fast forward to a few minutes later and I am introduced to another endpoint who’s sole purpose is to fetch the corresponding application number when an applicant’s phone number and Date of Birth is supplied. Targetting individual people finally seems possible afterall :)</p>
+
+<p>But before proceeding further, I think it’s worth taking a step back to try and understand “WHY” these super vulnerable endpoints came into existance in the first place. It could be due of a lot of factors but the obvious explanation is the fact that the developers did a lousy job organizing the flow of these processes in the first place, which ultimately created dependancies on such endpoints which have to make explicit calls like this to the backend, all to simply just make the application “work”.</p>
+
+<p>Coming back to the second vulnerable endpoint, this would now mean that all that an adversary needed was the mobile number of an Indian citizen, along with their date of birth to potentially get access to basic information such as their Name, Address, Driver License number and a picture of themselves. However, this still didn’t seem like enough impact to me simply due to the lack of information disclosed.</p>
+
+<h4 id="it-couldnt-get-any-funnier-than-this-i-promise">It couldn’t get any funnier than this i promise:</h4>
+
+<p>At this point, I was just going through random features available on the portal. As I was hovering over the nav bar of the website, I noticed an option which was quite literally named “View Documents” :D</p>
+
+<figure class="align-center">
+  <a href="/assets/posts/2023-02-20-Exposing-Indian-Citizens-Sensitive-PII-and-more/view-documents-public.jpg"><img src="/assets/posts/2023-02-20-Exposing-Indian-Citizens-Sensitive-PII-and-more/view-documents-public.jpg" alt="" /></a>
+  <figcaption></figcaption>
+</figure>
+
+<p>Which when clicked on, gives us this:</p>
+
+<figure class="align-center">
+  <a href="/assets/posts/2023-02-20-Exposing-Indian-Citizens-Sensitive-PII-and-more/view-documents-fields-public.jpg"><img src="/assets/posts/2023-02-20-Exposing-Indian-Citizens-Sensitive-PII-and-more/view-documents-fields-public.jpg" alt="" /></a>
+  <figcaption></figcaption>
+</figure>
+
+<p>Options available:</p>
+<ul>
+  <li>  Application Number,</li>
+  <li>  Learner’s License number, or</li>
+  <li>  Driver’s License number.</li>
+</ul>
+
+<p>Let’s just take a random application number for instance, enter it and click on submit like any normal user would. What would you expect the portal to ask us at this point? An OTP to authenticate? Atleast the date of birth that corresponds with the application number?</p>
+
+<p>Surprise surprise, it asks for neither! It goes out of the way for me and automatically fetches the Date of Birth associated with the application, and proceeds to do something that I could only assume is the portal automatically self-authorizing itself somehow?</p>
+
+<p>From there it’s as easy as just clicking on Submit again to be welcomed into a page full of hyperlinks, linking to all the documents the applicant used while applying for their license. Go ahead, click on the picture below and take a closer look into what it actually looked like.</p>
+
+<figure class="align-center">
+  <a href="/assets/posts/2023-02-20-Exposing-Indian-Citizens-Sensitive-PII-and-more/view-documents-sample-blurred.jpg"><img src="/assets/posts/2023-02-20-Exposing-Indian-Citizens-Sensitive-PII-and-more/view-documents-sample-blurred.jpg" alt="" /></a>
+  <figcaption>The above picture is a screenshot of my very own application (with all the details blurred out ofcourse ;) </figcaption>
+</figure>
+
+<p>It’s funny to see that such a critically vulnerable endpoint has been hiding quite literally in plain sight for all to use! At this point, I am convinced that this must have been extensively exploited at scale by threat actors. I mean, it took me about 10 minutes to find the previous vulnerabilities and about 4 minutes for this one. How is it not already being actively exploited?</p>
+
+<p>(Oh and I later deduced that this endpoint was originally supposed to be an “admin-only” feature, but somehow ended up on the public portal by accident ; More on this in just a bit, keep reading! :)</p>
+
+<p>Anyways, to attain maximum impact here, we ought to chain this vulnerable endpoint with the one we found earlier which gave us the application number of an indian user with just their phone number and date of birth. This ultimately gives us the ability to access sensitive personal documents of any Indian that we know the phone number and date of birth of.</p>
+
+<p>This was when I decided that it’s time to report this to <a href="https://www.cert-in.org.in/RVDCP.jsp" target="_blank">CERT-IN</a> to prevent any further abuse. I made the initial report on the 7th of November, 2022 and was under the assumption that it would atleast be partialy remediated asap. But after the initial acknowledgement, there were no updates from CERT-IN for over a month, and neither was the vulnerability remidiated.</p>
+
+<p>The goal was clear to me now; Find a vulnerability with more impact than this one to force a quick fix and to further strengthen the government website.</p>
+
+<p>Amidst all of this, there was one recurring thought running laps in my mind. It was the question of “What if I don’t know their phone number? Why do I need to have a person’s phone number to be able to exploit this? Could there be a better way?”</p>
+
+<h2 id="administrator-is-god">Administrator is god</h2>
+
+<blockquote>
+  <p>Yet again, this one took me about half an hour to find and another hour and a half to exploit. <em>*A HUGE Deep Sigh again…</em>* let’s get into it now,</p>
+</blockquote>
+
+<p>All through this process, there was this one thing lurking at me from the top-right corner of the screen, which was the “Login” feature of the portal. You see, normal applicants don’t get any credentials to login there. So it was fair to assume that it was used to authenticate actual government employees/administrators to manage the portal, make entries, approve applications and the likes.</p>
+
+<figure class="align-center">
+  <a href="/assets/posts/2023-02-20-Exposing-Indian-Citizens-Sensitive-PII-and-more/login-form.jpg"><img src="/assets/posts/2023-02-20-Exposing-Indian-Citizens-Sensitive-PII-and-more/login-form.jpg" alt="" /></a>
+  <figcaption></figcaption>
+</figure>
+
+<p>Seems pretty straightforward, except the fact that I don’t have any username to login with. So I did the next best thing and clicked on the “Forgot your password” button. This endpoint will take in a valid username and proceed to the password reset login flow. Turns out, the infamous <strong>“SYSADMIN”</strong> user (short for System Administrator) was valid.</p>
+
+<p>When we submit a valid username to the Forgot Password endpoint, an OTP is generated and sent to the user’s phone as a text message. During the verification of said OTP, a POST request (to the “/cas/login” endpoint) is sent with the parameters below:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>passCode=83ef0dbd05929cb12718589d63e8eb1a6a4720490e82a83b0fc22f08d429ce20
+logmode=1az6om
+submit=NEXT
+execution=3112c9d9-841f-44ba-ca75-895f2de26053_ZXlOaGJHY2lPaUpJVXpVeE1pSjkuQ1pMdk1yRUQ5K0xOM29uWDdjR3lJRUJGaFFONno0UmZsSkk3UGNma3l1Myt3dk9jN0Y3UVREbHltTkF2dm2sR2xtTTIzUnhKa085bkFxdUpkZFRWdDV5MutNUEdLWVlxUEdJYldwekVQY25GQ2wxamlhd0Y2RlBBNGgwVjEyRDF5S3MxQzlJSjdKYVBnN3k3SlBETVZuZW9hTERKQnpjdUdtaEliTzZLaXZYU080a0taNWVjR00wSVowSTcweXZKamNyYU5rMEpONGVmRTBGcWtkbXJMNXFmWVRLOUVxREgrQzM2OGRDWWhyS1Z5NENIcXpLQm11dGxlbHpuTFVFTE15RU94MHoxUDdwaUg0Q3hnVG84VEJrVFhwT2lIT3Z3NHBQWlRrSHRRWHJsUkh0REFSQTFUeiswRDJKczRqUDJqcjRTUEFvb0RqeE9JTWJrdlVtSlVOSmRDc29NbHFIQ2dNT1NDNmdSSlU3bVZ6T1JqNm9ubWVObzVwUER4QVZhQWNkcHcxdVczMnFTVzV5UWhBIjZVeklHTXp0OHJxUm9hL2FObElkeUE1dkc3eGIvVnlOR0ZGN09ncmN6UXJZcFNEV1NFaU5XVVdIRmxTbWl6UnQvVUN3M1BRY2ZOc0UwUhgxZFBVQkptaDNBcVY5Z29CcW5KQmhUcDQwcExpSGxSK1ZZQ3ZsZ1dwQzdlSlJWdVdVT1hJSnV3KytLbm50UW9STGNuTkZMSDVIWkFPSXJhVXNoMUxQbVJmam1MczhGOFZ4QjNreHA0OHNJRDdHejFjWERZNS9Xc1pOVnJxb21ucDZ4QnZGY245QlF4dGVuRzB2c3pLcHVDZ3JQZXg2MCtKNEFPUzFDSUlVZmdlZE1KejVmYlllS29CREhpNVpIV013ZlMxWVpaa3AvOEFjMlNrMXpJN1Y2NTI5VXZERFdFQzFYY0xGTUEybkFXL1FCTnJnSWtydkZEd0NYNVpTaHJxYkt2cndRbktHWHk1UVJmRmVmUVFIc1BnTXJjQ2V1WTdyb1M4UDFRRjlGYWJaNkVOSHlnbFNtMnlEUzJmQVpxZ2NHbnN2ajFmampIV3FSeFY2RlAzR25iVWgwUUpoQWdLOFRoZFNQWkdDclh3WGtEd2NLT0hsOENET1JiQm1rRTcwb2ZBMzh0N3pEd2VXLytmQ3lwdmhVajErOG1oaGUwSGtLSHFET2thWDNWT3g0ZmhHRyt1ekI5REIvM1VIVmZPRTdIOVdiTjlpK29tYmluZU8rdEx4eFZhU1Vpa2FzYTR2dU9CN0o2OSsxbk92dFZIVnR1M1pLQWkyOVBzeDd0VzVmZjBDbjJOeWcvV0JhK1J0cEgrck1JSVZPZ0orUmt4QXJzalU3VUNVbVFHWUlwaHZsbXRnZzl2dW9yUlpDSmI0alZMeEpiWC9raks2eUNrT0hwYkRXalF2OVpZNTlEcDFWc2p0SWpaMU1TaTU5dFF4QVhwbUF4Um1HZEdzVnkvUWQwT3liYnVdSE9WNDZza0wwcWs0dzNreVk2eG5BVE9IQm5KajZKdFZIU0FnZksvUWlOQXJFeVkzZWJqSmw1VlRuU3hoUzVmemZKRW4vQS9lcDZFbGNvNEgxZktuUjdDQm9pcE5ZWjk3K3hYc010dW1KeXo4eWtwWTcyY295SmZSL201WGFwZGdlSElHMjFvcEU5bmxVQ09CNW1KRm4rY3F6YlRmcXdldHltSVFhSHZLNHpkVU0ycm13TWh2SXpkKzVVVy9RNXBNUm1GR3lYalNxbVZjVEUzNjgzbzAzRi9DMkl2UmNZbTZwa3VTS2VOaVVHb1dXaVArUi9BYlhmeXY0ZEMzSU5PQ1VTGjJIM3hPdDZKZzNxQTNWeHk5c1RRZjBBRk1uazVZNDRUekZOc0t6OXk5TzJuNXRIWnNTNWYvS3NqNTMwbHpTVEdLQmlRU1paV09LaHM5WWkxcmxIZjl1SURVZGVqZkRRcVovZVFPQXlraysvMTAzbzV4UXBOZ0NMYUFpM3hhNGRJY2F5Y0V5WjZPWWVnczQvZmJrU2xBMy9hZEFWThRmcHFxMmkrQndQWmlLLzBJYTdZVFArNFRnZk1rZ1JOaEJYbUdWYUZCTnk1OEtKTUE0MXhQTit2Ui9jOHswc2xTbXRwSE1mTG1NM29sZnpyN2lvNUkyS1c2UmRvSVNXODA0M21LQVNzOVZSVitOc00rL1l6ME9HRnYxV3h3d0swd0t2dTFrbnpmNXF6N1JZd08rRWVrVzZBd3BoT2VEQlVJR20zbU8rWUo4NDAxRmpuN3hWZ2dwSzU5dmJmQXp1ZkNraE5COUlCczZqV1ErVWlzSWwvazN1NVVzMVZlSUZTRWtLemtoV0xLWmlxcUR0MnRZWW9ub3hIcnJ6dWZOMVU4d3Y3QmxmZkUwRktoV2k3MHVzSWZyaWZHSC9oTWcrR2NTN3AwS3AzNkdkS0Q2dnZGeXpzVEZId2NOd2Zab1ZzTGlFYmRXSWl0VlQybGFlMkFKNXZXbWdic3RNZ3dQcVNtS2haUFk3dHNaM3RjbnZ4TTVHcXR5Mm15WWRBYzhsekYrUkVmNXZkcC84WXVYWDdFTEw0SGdlMVZheCt4Z1ZBaEpleU5MTXpYckZDTXMvMUxZR2NpOHdpcHhNOHVPWFQ5cTYyQk8zdThzZUNHRnA4cGI3cTJ2UFBUam5BU05US25oVFBLVW13RXJ3M2J4dmcxR3g0QW4zMXB5VjlibE1qd2cyVFlhUjBra3pGV3pJSlRQWFAyVzdtclNxbnZNMnkrdGVpSm1TdDFRb3dmMS93NTVDd0t4NFcwVS8yMGxZV3BKSWhaRm1KWHZGS2ZTeTZDcG9abEpQN1pJR0d0Y0xUVHVBUkZEb3NjazJ3RE9PUjZlQnBYRUxldFl5ZjNoRC9Bb2NJdG5RbGVvZ3dEcmdtUlQ5NDUzODRuWGZ1bEFUbHpJbmI5MmczcTBadTRmWTVVWEp3dXluOUhzL0lTTnF1cDFjZVpHR2c2dzhYWWRZdzJmVFJKRnNmVFBXRFlMM1JYRkNXbjhnYUUwN3NER01LT3M1c2p1VGtEQnBZSzBuUkpvUlluN0h1RW84YUhvOTdTd3Vxa0lGZHEyL3BvOERRT09aYTkwcVVCRWhLZDd3MWZ1Wm5wWEgyWXRJcmVoTGpVakZKaStRcGZxaTBUM05CZEdpUVpYcjZOZ0dOZUFPMUVCY3ZMU2NXeFdlNUFObGl0ZVl6bDUzMUJbT0lRVmpmYVIxZGwrV3ZOZm5sanh1NWE1YkZYSlNWdkloRDRJNkJ6bHFCcFRnM2xVd2dtYzFPOElYUHk1ODI3R3VXVjY4VVdlK0ExaVFSY25tTW43cGdGazF6R083L0k3T1FrVUFJQ09vc3dlYzNuZ0FKWm1jGmZCSUllMWQwU2ZTUjRRRlkyMkQycGh6bEx5Q0E0eC9FaFVaREJGaVlsb3FnTml4ZEhjZm5EWjhpblqSQnJBc2daaEtDZTQ2d3BKSU9BdkZRQ0dvU2JzalhvWFArZHlBbXRxQXZyWGlKYXNNdEhDVmRJYUdnTDM5Z1Y0T2tJd2M0bVdaNHE4VXJlSmUwaGpsTUN2bjUzckRYRFVudWFndWQ4azZ3cWhsaDJzdDJpbm85SmNiOGIvVmYwUlRwdEtQT2trOEdmM0RSVW52eVdFUzNVRFBnM01jRGpaQzJFGGQyLzAvY0M0VVdVNzNGQ05WVVJ2cmU1Uk9hbXNOTkpRZE5hRE14cTJNQk9lbnh4bURTZUpWUFU3d2VEUDJtK1FNd0FScXpCTGNPMUlRRU5VZUNpaHFlQWI3V3NLWWRuMURDWVBPcGVkYlRVakh3KzkyT3I1bDY1OGxsZm1Mb0dHNDd0OVFRSWEreS9aYkRlMVlSRnJ3d21CUFRFWDdiWlpLeDZJdTc5Q0pjeEw4NGRVcE1rd2tWMkE1Rk1RZHRHNlUwamFwcEZRaldMOHNQQU9mbE92dm9jeHprQU5aS0UyYTlhUVk1ZkJUTm9pUElZYWxPMElxZ09id2pzWVN6Ymo3Qkw5QTBuRHppNzN2ZUh0UFVUMktlZEJlYk13U2h6cGRiR2FUZm1MbkREeGkzY0g1SFg1w1dQMmdLSkNyQ0xUNzhsS3c1T1hvTGloSmwzTURDNmFYeXZwMkF2OC9HbG96ak9uWFJLZ1NIVWtxMWVab2pOS1NFQmxxU0FSWVd1MDFwbDFOdFhobFFYWmhoeGU4ZVdQeStyVzl6aUhPMUsyV2FwQTVZMjR3UnhqcDE0bmJERlVzN0Q2S015SmtxNVpxd3dBYkRNWEtkd3NCTnhNbk43OFMwQ0M5N2o2MkFYSHpkNVYyQ1lRLmR5RRZCWnVVS0NfeUEtbWE1aVBQaU9DbnNzNWR0OVFNLWFYZEVLZjVSajZWX3hOQW1hY29lakkzZGhKcXp3Nlh6MzV0Y0IzXzdyYzh3ojlpUmRVb0p8
+_eventId=vpassword
+randamGenNum=1983
+param=validatePassword
+as_sfid=AAAAAAWoPv8x9y44VWn0m8_ilwUaKyOFQ2c8BBFgzasgoSq2glmYVaoJ5emHYVQP0GvvvzE8jS2Awz4csOXOV1D3ZUsQdn-l-5qnMMfrx9Q4D1viPmYdLk039IQubj-81qURESc%3D
+as_fid=38b97fc7634d50ae854b42a9a2dbd76b8ff16b9d
+</code></pre></div></div>
+
+<p>Let’s try to break down what all these parameters are about. At first sight, the “passCode” seems to be an encrypted hash of the numerical OTP that is supplied, and “logmode” contains the captcha that is used for “each” login attempt.</p>
+
+<p>To get a better sense of what the other parameters meant, the “fgauthentication.js?v=5.3” script could help us as it contained the code to perform basic front-end validation before supplying the OTP to the server. This excerpt from the script has exactly what we are looking for:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">randomnumber</span><span class="o">=</span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span><span class="o">*</span><span class="mi">10000</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">plainSec</span><span class="o">=</span><span class="nx">$</span><span class="p">(</span><span class="dl">'</span><span class="s1">#securityCode</span><span class="dl">'</span><span class="p">).</span><span class="nx">val</span><span class="p">();</span>
+<span class="k">if</span><span class="p">(</span><span class="nx">plainSec</span> <span class="o">!=</span> <span class="dl">""</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">$</span><span class="p">(</span><span class="dl">'</span><span class="s1">#securityCode</span><span class="dl">'</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="nx">sha256</span><span class="p">(</span><span class="nx">sha256</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="dl">'</span><span class="s1">#securityCode</span><span class="dl">'</span><span class="p">).</span><span class="nx">val</span><span class="p">())</span> <span class="o">+</span> <span class="nx">randomnumber</span><span class="p">));</span>
+    <span class="nx">$</span><span class="p">(</span><span class="dl">'</span><span class="s1">#randamGenNum</span><span class="dl">'</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="nx">randomnumber</span><span class="p">);</span> <span class="p">}</span>         
+</code></pre></div></div>
+
+<p>This tells us that the OTP (referenced by #securityCode) is SHA-256 encoded twice over (of its concatenation) before being sent to the server. We can also see that a random four digit number is generated every time by the application on the front-end and it essentially acts as the “<a href="https://auth0.com/blog/adding-salt-to-hashing-a-better-way-to-store-passwords/" target="_blank">salt</a>” (No, NOT the ingredient!) to the encryption. The randomly generated salt is then passed onto the “randamGenNum” (in love with their spelling :D) parameter of the request that’s sent to the server, while the encrypted hash is passed on to the “passCode” parameter.</p>
+
+<p>Oh and if you were wondering how many digits the OTP should be, this html excerpt tells us that it’s exactly 6 digits long:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;h5&gt;</span>OTP Authentication<span class="nt">&lt;/h5&gt;</span>
+  <span class="nt">&lt;section</span> <span class="na">class=</span><span class="s">"form-group row"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"logmode"</span> <span class="na">class=</span><span class="s">"col-sm-4 col-form-label"</span><span class="nt">&gt;&lt;span</span> <span class="na">class=</span><span class="s">"accesskey"</span><span class="nt">&gt;</span>OTP<span class="nt">&lt;/span&gt;</span>:<span class="nt">&lt;/label&gt;</span>	
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-sm-8"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;input</span> <span class="na">class=</span><span class="s">"form-control required"</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">id=</span><span class="s">"securityCode"</span> <span class="na">name=</span><span class="s">"passCode"</span> <span class="na">size=</span><span class="s">"6"</span> <span class="na">tabindex=</span><span class="s">"1"</span> <span class="na">maxlength=</span><span class="s">"6"</span> <span class="na">accesskey=</span><span class="s">"otp"</span> <span class="na">placeholder=</span><span class="s">"OTP"</span> <span class="na">autocomplete=</span><span class="s">"off"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<p>I also noticed that the captcha is very poorly implemented. I tried making two consecutive OTP verification attempts with the same captcha, and it goes through just fine, which meant that the captcha isn’t tied to every request, which by extention meant that I could use the same “essentially redundant” captcha for multiple requests of OTP validation. The same goes with the random salt value.</p>
+
+<p>Considering all these factors, I went ahead and typed out a simple python script to generate all possible encrypted hashes, by supplying a random salt value:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">hashlib</span>
+
+<span class="n">randnum</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="mi">1983</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">'6digitcodes_hash.txt'</span><span class="p">,</span> <span class="s">'a'</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s">''</span><span class="p">)</span> <span class="k">as</span> <span class="n">shacodelist</span><span class="p">:</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">'6digitcodes_plain.txt'</span><span class="p">)</span> <span class="k">as</span> <span class="n">codelist</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">code</span> <span class="ow">in</span> <span class="n">codelist</span><span class="p">:</span>
+            <span class="n">code</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">code</span><span class="p">)[</span><span class="mi">0</span><span class="p">:</span><span class="mi">6</span><span class="p">]</span>
+            <span class="n">hashed</span> <span class="o">=</span> <span class="n">hashlib</span><span class="p">.</span><span class="n">sha256</span><span class="p">(((</span><span class="n">hashlib</span><span class="p">.</span><span class="n">sha256</span><span class="p">(</span><span class="n">code</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="s">'utf-8'</span><span class="p">)).</span><span class="n">hexdigest</span><span class="p">())</span> <span class="o">+</span> <span class="n">randnum</span><span class="p">).</span><span class="n">encode</span><span class="p">(</span><span class="s">'utf-8'</span><span class="p">)).</span><span class="n">hexdigest</span><span class="p">()</span>
+            <span class="n">shacodelist</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">hashed</span><span class="o">+</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>With these hashes at hand, all that was left to do was brute-force all possible hashes to find the one that’s right. Note that we have to supply the salt we used in the python script to the requests under the “randamGenNum” parameter. The rate of requests sent seemed pretty decent consistantly at five hundred per second on average and does the job relatively quickly. Nevertheless, slightly higher speeds are possible for when the servers feel happy, joyful and gracious :D (extremely rare, albeit possible)</p>
+
+<p>If you were wondering how long the generated OTP was valid for, I tested it later to find that it was valid for around 2 hours (which is a REALLY LONG time) after generation, after which another OTP has to be requested.</p>
+
+<figure class="align-center">
+  <a href="/assets/posts/2023-02-20-Exposing-Indian-Citizens-Sensitive-PII-and-more/password-changed.png"><img src="/assets/posts/2023-02-20-Exposing-Indian-Citizens-Sensitive-PII-and-more/password-changed.png" alt="" /></a>
+  <figcaption></figcaption>
+</figure>
+
+<p>Once I found the right hash, I was automatically directed to change the password of the SYSADMIN account, and so I did (and took a note of it too, to include it in the report to CERT-IN). After the reset, I logged into the portal with ease as the SYSADMIN :)</p>
+
+<figure class="align-center">
+  <a href="/assets/posts/2023-02-20-Exposing-Indian-Citizens-Sensitive-PII-and-more/logged-in.png"><img src="/assets/posts/2023-02-20-Exposing-Indian-Citizens-Sensitive-PII-and-more/logged-in.png" alt="" /></a>
+  <figcaption></figcaption>
+</figure>
+
+<p>I wanted to make my report to CERT-IN the very second I was able to log in, but at the same time, I needed to make sure that there was atleast some impact to having logged in as SYSADMIN. Boy oh boy was I not disappointed.</p>
+
+<h3 id="what-were-my-super-powers-as-admin">What were my super powers as admin?</h3>
+
+<p>The amount of functionality the administrator has is just purely insane. I will try and highlight the most critical ones that caught my eye before I rushed in to send the report to CERT-IN:</p>
+
+<p>1) <strong>Search for an applicant</strong>: There was a feature in the administrative panel that served as a search tool to find applicants with just their name and Date of Birth. Note that there exists a search tool with similar looking UI available in the public version of the application as well, but it does not work functionally anywhere close to this. This one is much more powerful in accurately finding records.</p>
+
+<figure class="align-center">
+  <a href="/assets/posts/2023-02-20-Exposing-Indian-Citizens-Sensitive-PII-and-more/advanced-search.png"><img src="/assets/posts/2023-02-20-Exposing-Indian-Citizens-Sensitive-PII-and-more/advanced-search.png" alt="" /></a>
+  <figcaption></figcaption>
+</figure>
+
+<p>All you needed was the full name of the applicant. The approximate range of the date of birth could be guessed and brute-forced with to find the correct record. Or we could go with the name and phone number combo if we know even a part of the phone number (4 digits, which is often shown ciphered out in many recovery forms). Once we find the record, we can use that number with the earlier “View Documents” endpoint to directly extract their Sensitive Documents and more.</p>
+
+<p>2) Application bypasses:</p>
+
+<ul>
+  <li><strong>Skip Bio Verification Flow</strong>: The administrator was able to access any application by entering it’s number. Once entered, the administrator gets all info related to the application, and can decide to click on the “<strong>Skip Flow</strong>” option to skip the in-person Bio Verification checks.</li>
+</ul>
+
+<figure class="align-center">
+  <a href="/assets/posts/2023-02-20-Exposing-Indian-Citizens-Sensitive-PII-and-more/skipflow.png"><img src="/assets/posts/2023-02-20-Exposing-Indian-Citizens-Sensitive-PII-and-more/skipflow.png" alt="" /></a>
+  <figcaption></figcaption>
+</figure>
+
+<ul>
+  <li>
+    <p><strong>View all pending and approved applications</strong>: The administrator was able to view all applications which were in the “pending” and “approved” status, along with all the information associated with the application.</p>
+  </li>
+  <li>
+    <p><strong>DL edit Approval</strong>: If an Indian wants to change the address or anything else on their license, they must apply online and appear at the RTO with all necessary proofs. The administrator was able to approve any such requests to edit the drivers license in an instant, therby completely bypassing verification of the changes made to the license.</p>
+  </li>
+</ul>
+
+<p>Usually, application verification is done “in-person” at the RTO, where a government employee takes a look at you and your original documents and approves you. The fact that I can skip that gives a lot of scope for malicious actors to carry out <strong>unlawful</strong> things.</p>
+
+<p>3) <strong>Access to government employee list</strong>: The administrator had unrestricted access over the Personal Information of all the government staff working at RTO’s accross India.</p>
+
+<figure class="align-center">
+  <a href="/assets/posts/2023-02-20-Exposing-Indian-Citizens-Sensitive-PII-and-more/govstaff-pii.png"><img src="/assets/posts/2023-02-20-Exposing-Indian-Citizens-Sensitive-PII-and-more/govstaff-pii.png" alt="" /></a>
+  <figcaption></figcaption>
+</figure>
+
+<p>4) <strong>Bypass application fee</strong>: As an administrator, it was possible to mark an application as paid and directly bypass the application fee that is to be paid by the applicant.</p>
+
+<p>Oh and if you remember, I told you that the “View Documents” endpoint was an admin feature? I figured that out because the same endpoint existed in the administrator panel under a category called “Master”. My best guess is that it was obviously never intended to make it to the public website, but an overenthusiastic developer might’ve done the deed :)</p>
+
+<figure class="align-center">
+  <a href="/assets/posts/2023-02-20-Exposing-Indian-Citizens-Sensitive-PII-and-more/view-documents-internal.png"><img src="/assets/posts/2023-02-20-Exposing-Indian-Citizens-Sensitive-PII-and-more/view-documents-internal.png" alt="" /></a>
+  <figcaption></figcaption>
+</figure>
+
+<p>There were a LOT more things that was possible as an administrator, but I did not go any further than this as the impact of this could potentially harm millions, and so I prioritized responsibly reporting this to CERT-IN as soon as possible (<em>insert spiderman quote on great power and great responsibility XD</em>)</p>
+
+<h3 id="timeline">Timeline:</h3>
+<p>Submission of Initial Report:<br /> 
+Nov 7, 2022 - Report Sent to CERT-IN<br />
+Nov 10, 2022 - Acknowledged by CERT-IN<br />
+Dec 2, 2022 - Re-tested to see the vulnerabilities not remidiated</p>
+
+<p>Submission of Second Report:<br />
+Dec 5, 2022 — Report Sent to CERT-IN<br />
+Dec 5, 2022 — Acknowledged by CERT-IN<br />
+Dec 9, 2022 — Asked for an update on both the reports, no response<br />
+Jan 25, 2023 — Both reports marked as fixed</p>
+
+<p>Here is CERT-IN’s fix confirmation:</p>
+
+<figure class="align-center">
+  <a href="/assets/posts/2023-02-20-Exposing-Indian-Citizens-Sensitive-PII-and-more/cert-in-fix.png"><img src="/assets/posts/2023-02-20-Exposing-Indian-Citizens-Sensitive-PII-and-more/cert-in-fix.png" alt="" /></a>
+  <figcaption></figcaption>
+</figure>
+
+<p>Yep, they ended up removing the entire admin user :) The fact that most of these bugs are laughably easy to exploit, yet severely critical in nature only means that we have to take security as priority and work towards developing more secure websites!</p>
+
+<p>The fix was confirmed on January 25th, 2023, however, I waited for about a month before disclosing because of that last line in their fix confirmation. Either way, according to CERT-IN, none of these vulnerabilities should be reproducible anymore.</p>
+
+<p>Anyways, If you are reading this, congratulations! you’ve made it to the end ^_^ I really hope that this writeup provided some value. I tried to write this blog with the goal of it being as beginner friendly as possible. Now that I finished writing this, It seems like I might’ve over simplified in a few places and left the technical jargon untouched in some. I sincerely apologise for this imbalance. This is my first blog, and I hopefully get to do it a little better next time around :D</p>
+
+<hr />
+<p><a href="https://www.linkedin.com/in/robinjustin">
+  <span class="icon icon--linkedin"><svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.414"><path d="M13.632 13.635h-2.37V9.922c0-.886-.018-2.025-1.234-2.025-1.235 0-1.424.964-1.424 1.96v3.778h-2.37V6H8.51v1.04h.03c.318-.6 1.092-1.233 2.247-1.233 2.4 0 2.845 1.58 2.845 3.637v4.188zM3.558 4.955c-.762 0-1.376-.617-1.376-1.377 0-.758.614-1.375 1.376-1.375.76 0 1.376.617 1.376 1.375 0 .76-.617 1.377-1.376 1.377zm1.188 8.68H2.37V6h2.376v7.635zM14.816 0H1.18C.528 0 0 .516 0 1.153v13.694C0 15.484.528 16 1.18 16h13.635c.652 0 1.185-.516 1.185-1.153V1.153C16 .516 15.467 0 14.815 0z" fill-rule="nonzero"></path></svg></span>
+  <span class="label">robinjustin</span>
+</a>
+ <br />
+<a href="https://twitter.com/_robinjustin_">
+  <span class="icon icon--twitter"><svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.414"><path d="M16 3.038c-.59.26-1.22.437-1.885.517.677-.407 1.198-1.05 1.443-1.816-.634.37-1.337.64-2.085.79-.598-.64-1.45-1.04-2.396-1.04-1.812 0-3.282 1.47-3.282 3.28 0 .26.03.51.085.75-2.728-.13-5.147-1.44-6.766-3.42C.83 2.58.67 3.14.67 3.75c0 1.14.58 2.143 1.46 2.732-.538-.017-1.045-.165-1.487-.41v.04c0 1.59 1.13 2.918 2.633 3.22-.276.074-.566.114-.865.114-.21 0-.41-.02-.61-.058.42 1.304 1.63 2.253 3.07 2.28-1.12.88-2.54 1.404-4.07 1.404-.26 0-.52-.015-.78-.045 1.46.93 3.18 1.474 5.04 1.474 6.04 0 9.34-5 9.34-9.33 0-.14 0-.28-.01-.42.64-.46 1.2-1.04 1.64-1.7z" fill-rule="nonzero"></path></svg></span>
+  <span class="label"><em>robinjustin</em></span>
+</a>
+ <br />
+<a href="https://instagram.com/_robinjustin_">
+  <span class="icon icon--instagram"><svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.414"><path d="M8 0C5.827 0 5.555.01 4.702.048 3.85.088 3.27.222 2.76.42c-.526.204-.973.478-1.417.923-.445.444-.72.89-.923 1.417-.198.51-.333 1.09-.372 1.942C.008 5.555 0 5.827 0 8s.01 2.445.048 3.298c.04.852.174 1.433.372 1.942.204.526.478.973.923 1.417.444.445.89.72 1.417.923.51.198 1.09.333 1.942.372.853.04 1.125.048 3.298.048s2.445-.01 3.298-.048c.852-.04 1.433-.174 1.942-.372.526-.204.973-.478 1.417-.923.445-.444.72-.89.923-1.417.198-.51.333-1.09.372-1.942.04-.853.048-1.125.048-3.298s-.01-2.445-.048-3.298c-.04-.852-.174-1.433-.372-1.942-.204-.526-.478-.973-.923-1.417-.444-.445-.89-.72-1.417-.923-.51-.198-1.09-.333-1.942-.372C10.445.008 10.173 0 8 0zm0 1.44c2.136 0 2.39.01 3.233.048.78.036 1.203.166 1.485.276.374.145.64.318.92.598.28.28.453.546.598.92.11.282.24.705.276 1.485.038.844.047 1.097.047 3.233s-.01 2.39-.05 3.233c-.04.78-.17 1.203-.28 1.485-.15.374-.32.64-.6.92-.28.28-.55.453-.92.598-.28.11-.71.24-1.49.276-.85.038-1.1.047-3.24.047s-2.39-.01-3.24-.05c-.78-.04-1.21-.17-1.49-.28-.38-.15-.64-.32-.92-.6-.28-.28-.46-.55-.6-.92-.11-.28-.24-.71-.28-1.49-.03-.84-.04-1.1-.04-3.23s.01-2.39.04-3.24c.04-.78.17-1.21.28-1.49.14-.38.32-.64.6-.92.28-.28.54-.46.92-.6.28-.11.7-.24 1.48-.28.85-.03 1.1-.04 3.24-.04zm0 2.452c-2.27 0-4.108 1.84-4.108 4.108 0 2.27 1.84 4.108 4.108 4.108 2.27 0 4.108-1.84 4.108-4.108 0-2.27-1.84-4.108-4.108-4.108zm0 6.775c-1.473 0-2.667-1.194-2.667-2.667 0-1.473 1.194-2.667 2.667-2.667 1.473 0 2.667 1.194 2.667 2.667 0 1.473-1.194 2.667-2.667 2.667zm5.23-6.937c0 .53-.43.96-.96.96s-.96-.43-.96-.96.43-.96.96-.96.96.43.96.96z"></path></svg></span>
+  <span class="label"><em>robinjustin</em></span>
+</a></p>
+
+
+      </div>
+      <div style="margin: 1em 0;">
+      <ins class="adsbygoogle"
+            style="display:block; border-bottom: initial;"
+            data-ad-client="ca-pub-7328585512091257"
+            data-ad-slot="3049671934"
+            data-ad-format="auto"></ins>
+      </div>
+      
+    </article>
+  </div>
+</main>
+
+        </div>
+
+        <div class="search-content">
+          <div class="inner">
+  <label class="visually-hidden" for="search">Site Search</label>
+        <input type="text" id="search" class="search-input" aria-describedby="results-count" tabindex="-1" placeholder="What are you looking for?" />
+        <div id="results" class="results"></div>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    <footer id="footer" class="site-footer">
+  <div class="inner">
+    <div class="copyright">
+      
+        <p>&copy; 2024 blog.robinjust.in.</p>
+      
+    </div>
+  </div>
+</footer>
+
+    
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-2011187-6', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+<script async src="/assets/javascripts/main.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="https://blog.robinjust.in/assets/javascripts/lunr/lunr.min.js"></script>
+  <script src="https://blog.robinjust.in/assets/javascripts/lunr/lunr.store.js"></script>
+  <script>
+    var idx = lunr(function () {
+      
+      // the, the normal lunr index initialization
+      this.field('title')
+      this.field('excerpt')
+      this.field('categories')
+      this.field('tags')
+      this.ref('id')
+
+      this.pipeline.remove(lunr.trimmer)
+
+      // add documents to index
+      for (var item in store) {
+        this.add({
+          title: store[item].title,
+          excerpt: store[item].excerpt,
+          categories: store[item].categories,
+          tags: store[item].tags,
+          id: item
+        })
+      }
+    });
+
+    $(document).ready(function () {
+      $('input#search').on('keyup', function () {
+        var resultdiv = $('#results');
+        var query = $(this).val().toLowerCase();
+        var result =
+          idx.query(function (q) {
+            query.split(lunr.tokenizer.separator).forEach(function (term) {
+              q.term(term, { boost: 100 })
+              if (query.lastIndexOf(" ") != query.length - 1) {
+                q.term(term, { usePipeline: false, wildcard: lunr.Query.wildcard.TRAILING, boost: 10 })
+              }
+              if (term != "") {
+                q.term(term, { usePipeline: false, editDistance: 1, boost: 1 })
+              }
+            })
+          });
+        resultdiv.empty();
+        resultdiv.prepend('<p id="results-count" class="results-found">' + result.length + ' Result(s) found</p>');
+        for (var item in result) {
+          var ref = result[item].ref;
+          var searchitem =
+            '<article class="entry">' +
+              '<h3 class="entry-title">' +
+                '<a href="' + store[ref].url + '">' + store[ref].title + '</a>' +
+              '</h3>' +
+              '<div class="entry-excerpt">' +
+                '<p>' + store[ref].excerpt.split(" ").splice(0, 20).join(" ") + '...</p>' +
+              '</div>' +
+            '</article>';
+          resultdiv.append(searchitem);
+        }
+      });
+    });
+  </script>
+
+
+
+  </body>
+
+</html>

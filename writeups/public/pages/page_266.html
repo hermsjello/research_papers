@@ -1,0 +1,776 @@
+<!doctype html>
+<html lang="ko">
+
+                                                                                <head>
+                <script type="text/javascript">if (!window.T) { window.T = {} }
+window.T.config = {"TOP_SSL_URL":"https://www.tistory.com","PREVIEW":false,"ROLE":"guest","PREV_PAGE":"","NEXT_PAGE":"","BLOG":{"id":3941774,"name":"elmahdi","title":"ElMahdi - マハディ","isDormancy":true,"nickName":"elmahdi","status":"open","profileStatus":"normal"},"NEED_COMMENT_LOGIN":false,"COMMENT_LOGIN_CONFIRM_MESSAGE":"","LOGIN_URL":"https://www.tistory.com/auth/login/?redirectUrl=https://elmahdi.tistory.com/3","DEFAULT_URL":"https://elmahdi.tistory.com","USER":{"name":null,"homepage":null,"id":0,"profileImage":null},"SUBSCRIPTION":{"status":"none","isConnected":false,"isPending":false,"isWait":false,"isProcessing":false,"isNone":true},"IS_LOGIN":false,"HAS_BLOG":false,"IS_SUPPORT":false,"IS_SCRAPABLE":false,"TOP_URL":"http://www.tistory.com","JOIN_URL":"https://www.tistory.com/member/join","PHASE":"prod","ROLE_GROUP":"visitor"};
+window.T.entryInfo = {"entryId":3,"isAuthor":false,"categoryId":0,"categoryLabel":null};
+window.appInfo = {"domain":"tistory.com","topUrl":"https://www.tistory.com","loginUrl":"https://www.tistory.com/auth/login","logoutUrl":"https://www.tistory.com/auth/logout"};
+window.initData = {};
+
+window.TistoryBlog = {
+    basePath: "",
+    url: "https://elmahdi.tistory.com",
+    tistoryUrl: "https://elmahdi.tistory.com",
+    manageUrl: "https://elmahdi.tistory.com/manage",
+    token: "4l8eC/fs37hnvff9IFJ7Qquw+8HuXgi0uljgAVtDEaBv1gcMRPorwRb2P+nDEjg6"
+};
+var servicePath = "";
+var blogURL = "";</script>
+
+                
+                
+                
+                        <!-- BusinessLicenseInfo - START -->
+        
+            <link href="https://tistory1.daumcdn.net/tistory_admin/userblog/userblog-b6d1f83d4f149775488b18445c7e8e023edb84b4/static/plugin/BusinessLicenseInfo/style.css" rel="stylesheet" type="text/css"/>
+
+            <script>function switchFold(entryId) {
+    var businessLayer = document.getElementById("businessInfoLayer_" + entryId);
+
+    if (businessLayer) {
+        if (businessLayer.className.indexOf("unfold_license") > 0) {
+            businessLayer.className = "business_license_layer";
+        } else {
+            businessLayer.className = "business_license_layer unfold_license";
+        }
+    }
+}
+</script>
+
+        
+        <!-- BusinessLicenseInfo - END -->
+        <!-- DaumShow - START -->
+        <style type="text/css">#daumSearchBox {
+    height: 21px;
+    background-image: url(//i1.daumcdn.net/imgsrc.search/search_all/show/tistory/plugin/bg_search2_2.gif);
+    margin: 5px auto;
+    padding: 0;
+}
+
+#daumSearchBox input {
+    background: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+#daumSearchBox #daumLogo {
+    width: 34px;
+    height: 21px;
+    float: left;
+    margin-right: 5px;
+    background-image: url(//i1.daumcdn.net/img-media/tistory/img/bg_search1_2_2010ci.gif);
+}
+
+#daumSearchBox #show_q {
+    background-color: transparent;
+    border: none;
+    font: 12px Gulim, Sans-serif;
+    color: #555;
+    margin-top: 4px;
+    margin-right: 15px;
+    float: left;
+}
+
+#daumSearchBox #show_btn {
+    background-image: url(//i1.daumcdn.net/imgsrc.search/search_all/show/tistory/plugin/bt_search_2.gif);
+    width: 37px;
+    height: 21px;
+    float: left;
+    margin: 0;
+    cursor: pointer;
+    text-indent: -1000em;
+}
+</style>
+
+        <!-- DaumShow - END -->
+
+<!-- System - START -->
+
+<!-- System - END -->
+
+        <!-- TistoryProfileLayer - START -->
+        <link href="https://tistory1.daumcdn.net/tistory_admin/userblog/userblog-b6d1f83d4f149775488b18445c7e8e023edb84b4/static/plugin/TistoryProfileLayer/style.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="https://tistory1.daumcdn.net/tistory_admin/userblog/userblog-b6d1f83d4f149775488b18445c7e8e023edb84b4/static/plugin/TistoryProfileLayer/script.js"></script>
+
+        <!-- TistoryProfileLayer - END -->
+
+                
+                <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="format-detection" content="telephone=no">
+<script src="//t1.daumcdn.net/tistory_admin/lib/jquery/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="//t1.daumcdn.net/tiara/js/v1/tiara.min.js"></script><meta name="referrer" content="always"/>
+<meta name="google-adsense-platform-account" content="ca-host-pub-9691043933427338"/>
+<meta name="google-adsense-platform-domain" content="tistory.com"/>
+<meta name="description" content="Hi, I wanna share with you how i found a P1 Vulnerabilities in a private program. At first i grabbed subdomains and titles via assetfinder and, then resolved them using httprobe and extracted the the title of the responsive ones with get-title. I started looking at the titles and i saw that there is a title that had &quot;LOGIN&quot; in it, i opened that page in my browser and i found that the website is .."/>
+<meta property="og:type" content="article"/>
+<meta property="og:url" content="https://elmahdi.tistory.com/3"/>
+<meta property="og.article.author" content="elmahdi"/>
+<meta property="og:site_name" content="ElMahdi - マハディ"/>
+<meta property="og:title" content="Hunting on ASPX Application For P1's [Unauthenticated SOAP,RCE, Info Disclosure]"/>
+<meta name="by" content="elmahdi"/>
+<meta property="og:description" content="Hi, I wanna share with you how i found a P1 Vulnerabilities in a private program. At first i grabbed subdomains and titles via assetfinder and, then resolved them using httprobe and extracted the the title of the responsive ones with get-title. I started looking at the titles and i saw that there is a title that had &quot;LOGIN&quot; in it, i opened that page in my browser and i found that the website is .."/>
+<meta property="og:image" content="https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcYAlkL%2FbtqExtClMd6%2F6xIRKwKjeZCDkcNaF3RJa1%2Fimg.jpg"/>
+<meta property="article:section" content="'IT 인터넷'"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:site" content="@TISTORY"/>
+<meta name="twitter:title" content="Hunting on ASPX Application For P1's [Unauthenticated SOAP,RCE, Info Disclosure]"/>
+<meta name="twitter:description" content="Hi, I wanna share with you how i found a P1 Vulnerabilities in a private program. At first i grabbed subdomains and titles via assetfinder and, then resolved them using httprobe and extracted the the title of the responsive ones with get-title. I started looking at the titles and i saw that there is a title that had &quot;LOGIN&quot; in it, i opened that page in my browser and i found that the website is .."/>
+<meta property="twitter:image" content="https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcYAlkL%2FbtqExtClMd6%2F6xIRKwKjeZCDkcNaF3RJa1%2Fimg.jpg"/>
+<meta content="https://elmahdi.tistory.com/3" property="dg:plink" content="https://elmahdi.tistory.com/3"/>
+<meta name="plink"/>
+<meta name="title" content="Hunting on ASPX Application For P1's [Unauthenticated SOAP,RCE, Info Disclosure]"/>
+<meta name="article:media_name" content="ElMahdi - マハディ"/>
+<meta property="article:mobile_url" content="https://elmahdi.tistory.com/m/3"/>
+<meta property="article:pc_url" content="https://elmahdi.tistory.com/3"/>
+<meta property="article:mobile_view_url" content="https://elmahdi.tistory.com/m/3"/>
+<meta property="article:pc_view_url" content="https://elmahdi.tistory.com/3"/>
+<meta property="article:talk_channel_view_url" content="https://elmahdi.tistory.com/m/3"/>
+<meta property="article:pc_service_home" content="https://www.tistory.com"/>
+<meta property="article:mobile_service_home" content="https://www.tistory.com/m"/>
+<meta property="article:txid" content="3941774_3"/>
+<meta property="article:published_time" content="2020-05-31T18:52:45+09:00"/>
+<meta property="og:regDate" content="20200530085408"/>
+<meta property="article:modified_time" content="2020-05-31T18:52:45+09:00"/>
+<script type="module" src="https://tistory1.daumcdn.net/tistory_admin/userblog/userblog-b6d1f83d4f149775488b18445c7e8e023edb84b4/static/pc/dist/index.js" defer=""></script>
+<script type="text/javascript" src="https://tistory1.daumcdn.net/tistory_admin/userblog/userblog-b6d1f83d4f149775488b18445c7e8e023edb84b4/static/pc/dist/index-legacy.js" defer="" nomodule="true"></script>
+<script type="text/javascript" src="https://tistory1.daumcdn.net/tistory_admin/userblog/userblog-b6d1f83d4f149775488b18445c7e8e023edb84b4/static/pc/dist/polyfills-legacy.js" defer="" nomodule="true"></script>
+<link rel="icon" sizes="any" href="https://t1.daumcdn.net/tistory_admin/favicon/tistory_favicon_32x32.ico"/>
+<link rel="icon" type="image/svg+xml" href="https://t1.daumcdn.net/tistory_admin/top_v2/bi-tistory-favicon.svg"/>
+<link rel="apple-touch-icon" href="https://t1.daumcdn.net/tistory_admin/top_v2/tistory-apple-touch-favicon.png"/>
+<link rel="stylesheet" type="text/css" href="https://t1.daumcdn.net/tistory_admin/www/style/font.css"/>
+<link rel="stylesheet" type="text/css" href="https://tistory1.daumcdn.net/tistory_admin/userblog/userblog-b6d1f83d4f149775488b18445c7e8e023edb84b4/static/style/content.css"/>
+<link rel="stylesheet" type="text/css" href="https://tistory1.daumcdn.net/tistory_admin/userblog/userblog-b6d1f83d4f149775488b18445c7e8e023edb84b4/static/pc/dist/index.css"/>
+<link rel="stylesheet" type="text/css" href="https://tistory1.daumcdn.net/tistory_admin/userblog/userblog-b6d1f83d4f149775488b18445c7e8e023edb84b4/static/style/uselessPMargin.css"/>
+<script type="text/javascript">(function() {
+    var tjQuery = jQuery.noConflict(true);
+    window.tjQuery = tjQuery;
+    window.orgjQuery = window.jQuery; window.jQuery = tjQuery;
+    window.jQuery = window.orgjQuery; delete window.orgjQuery;
+})()</script>
+<script type="text/javascript" src="https://tistory1.daumcdn.net/tistory_admin/userblog/userblog-b6d1f83d4f149775488b18445c7e8e023edb84b4/static/script/base.js"></script>
+<script type="text/javascript" src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+
+                
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width">
+  <title>Hunting on ASPX Application For P1's [Unauthenticated SOAP,RCE, Info Disclosure]</title>
+  <link rel="alternate" type="application/rss+xml" title="ElMahdi - マハディ" href="https://elmahdi.tistory.com/rss" />
+
+  <link rel="stylesheet" href="https://tistory1.daumcdn.net/tistory/0/Ray/style.css">
+
+  <!--[if lt IE 9]>
+	<script src="//t1.daumcdn.net/tistory_admin/lib/jquery/jquery-1.12.4.min.js"></script>
+	<![endif]-->
+  <!--[if gte IE 9]><!-->
+  <script src="//t1.daumcdn.net/tistory_admin/lib/jquery/jquery-3.5.1.min.js"
+    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+  <!--<![endif]-->
+
+                
+                
+                <style type="text/css">.another_category {
+    border: 1px solid #E5E5E5;
+    padding: 10px 10px 5px;
+    margin: 10px 0;
+    clear: both;
+}
+
+.another_category h4 {
+    font-size: 12px !important;
+    margin: 0 !important;
+    border-bottom: 1px solid #E5E5E5 !important;
+    padding: 2px 0 6px !important;
+}
+
+.another_category h4 a {
+    font-weight: bold !important;
+}
+
+.another_category table {
+    table-layout: fixed;
+    border-collapse: collapse;
+    width: 100% !important;
+    margin-top: 10px !important;
+}
+
+* html .another_category table {
+    width: auto !important;
+}
+
+*:first-child + html .another_category table {
+    width: auto !important;
+}
+
+.another_category th, .another_category td {
+    padding: 0 0 4px !important;
+}
+
+.another_category th {
+    text-align: left;
+    font-size: 12px !important;
+    font-weight: normal;
+    word-break: break-all;
+    overflow: hidden;
+    line-height: 1.5;
+}
+
+.another_category td {
+    text-align: right;
+    width: 80px;
+    font-size: 11px;
+}
+
+.another_category th a {
+    font-weight: normal;
+    text-decoration: none;
+    border: none !important;
+}
+
+.another_category th a.current {
+    font-weight: bold;
+    text-decoration: none !important;
+    border-bottom: 1px solid !important;
+}
+
+.another_category th span {
+    font-weight: normal;
+    text-decoration: none;
+    font: 10px Tahoma, Sans-serif;
+    border: none !important;
+}
+
+.another_category_color_gray, .another_category_color_gray h4 {
+    border-color: #E5E5E5 !important;
+}
+
+.another_category_color_gray * {
+    color: #909090 !important;
+}
+
+.another_category_color_gray th a.current {
+    border-color: #909090 !important;
+}
+
+.another_category_color_gray h4, .another_category_color_gray h4 a {
+    color: #737373 !important;
+}
+
+.another_category_color_red, .another_category_color_red h4 {
+    border-color: #F6D4D3 !important;
+}
+
+.another_category_color_red * {
+    color: #E86869 !important;
+}
+
+.another_category_color_red th a.current {
+    border-color: #E86869 !important;
+}
+
+.another_category_color_red h4, .another_category_color_red h4 a {
+    color: #ED0908 !important;
+}
+
+.another_category_color_green, .another_category_color_green h4 {
+    border-color: #CCE7C8 !important;
+}
+
+.another_category_color_green * {
+    color: #64C05B !important;
+}
+
+.another_category_color_green th a.current {
+    border-color: #64C05B !important;
+}
+
+.another_category_color_green h4, .another_category_color_green h4 a {
+    color: #3EA731 !important;
+}
+
+.another_category_color_blue, .another_category_color_blue h4 {
+    border-color: #C8DAF2 !important;
+}
+
+.another_category_color_blue * {
+    color: #477FD6 !important;
+}
+
+.another_category_color_blue th a.current {
+    border-color: #477FD6 !important;
+}
+
+.another_category_color_blue h4, .another_category_color_blue h4 a {
+    color: #1960CA !important;
+}
+
+.another_category_color_violet, .another_category_color_violet h4 {
+    border-color: #E1CEEC !important;
+}
+
+.another_category_color_violet * {
+    color: #9D64C5 !important;
+}
+
+.another_category_color_violet th a.current {
+    border-color: #9D64C5 !important;
+}
+
+.another_category_color_violet h4, .another_category_color_violet h4 a {
+    color: #7E2CB5 !important;
+}
+</style>
+
+                
+                <link rel="stylesheet" type="text/css" href="https://tistory1.daumcdn.net/tistory_admin/userblog/userblog-b6d1f83d4f149775488b18445c7e8e023edb84b4/static/style/revenue.css"/>
+<link rel="canonical" href="https://elmahdi.tistory.com/3"/>
+
+<!-- BEGIN STRUCTURED_DATA -->
+<script type="application/ld+json">
+    {"@context":"http://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@id":"https://elmahdi.tistory.com/3","name":null},"url":"https://elmahdi.tistory.com/3","headline":"Hunting on ASPX Application For P1's [Unauthenticated SOAP,RCE, Info Disclosure]","description":"Hi, I wanna share with you how i found a P1 Vulnerabilities in a private program. At first i grabbed subdomains and titles via assetfinder and, then resolved them using httprobe and extracted the the title of the responsive ones with get-title. I started looking at the titles and i saw that there is a title that had &quot;LOGIN&quot; in it, i opened that page in my browser and i found that the website is ..","author":{"@type":"Person","name":"elmahdi","logo":null},"image":{"@type":"ImageObject","url":"https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcYAlkL%2FbtqExtClMd6%2F6xIRKwKjeZCDkcNaF3RJa1%2Fimg.jpg","width":"800px","height":"800px"},"datePublished":"2020-05-31T18:52:45+09:00","dateModified":"2020-05-31T18:52:45+09:00","publisher":{"@type":"Organization","name":"TISTORY","logo":{"@type":"ImageObject","url":"https://t1.daumcdn.net/tistory_admin/static/images/openGraph/opengraph.png","width":"800px","height":"800px"}}}
+</script>
+<!-- END STRUCTURED_DATA -->
+<link rel="stylesheet" type="text/css" href="https://tistory1.daumcdn.net/tistory_admin/userblog/userblog-b6d1f83d4f149775488b18445c7e8e023edb84b4/static/style/dialog.css"/>
+<link rel="stylesheet" type="text/css" href="//t1.daumcdn.net/tistory_admin/www/style/top/font.css"/>
+<link rel="stylesheet" type="text/css" href="https://tistory1.daumcdn.net/tistory_admin/userblog/userblog-b6d1f83d4f149775488b18445c7e8e023edb84b4/static/style/postBtn.css"/>
+<link rel="stylesheet" type="text/css" href="https://tistory1.daumcdn.net/tistory_admin/userblog/userblog-b6d1f83d4f149775488b18445c7e8e023edb84b4/static/style/tistory.css"/>
+<script type="text/javascript" src="https://tistory1.daumcdn.net/tistory_admin/userblog/userblog-b6d1f83d4f149775488b18445c7e8e023edb84b4/static/script/common.js"></script>
+
+                
+                </head>
+
+                                                <body id="tt-body-page">
+                
+                
+                
+  
+    <div id="dkIndex">
+      <a href="#dkBody">본문 바로가기</a>
+      <a href="#dkGnb">메뉴 바로가기</a>
+    </div>
+
+    <div id="dkWrap" class="wrap_skin ">
+      <div id="dkHead" role="banner" class="area_head ">
+        <h1 class="screen_out">ElMahdi - マハディ</h1>
+        <div class="area_profile ">
+          <a class="link_profile" href="/"><img src="https://tistory1.daumcdn.net/tistory/3941774/attach/8a77c66aa346483f83645ae916bb58f7" width="50" height="50" class="img_profile"
+              alt="프로필사진"></a>
+          <div class="info_profile">
+            <button type="button" class="btn_name">elmahdi
+              <span class="ico_skin ico_name"></span>
+            </button>
+            <ul class="list_name">
+              <li><a href="https://elmahdi.tistory.com/manage/entry/post" class="link_name">글쓰기</a></li>
+              <li><a href="https://elmahdi.tistory.com/manage" class="link_name">관리</a></li>
+              <li class="box_division"><a href="https://elmahdi.tistory.com/tag" class="link_name">태그</a></li>
+              <li><a href="https://elmahdi.tistory.com/guestbook" class="link_name">방명록</a></li>
+              <li><a href="https://elmahdi.tistory.com/rss" class="link_name">RSS</a></li>
+            </ul>
+            <p class="txt_condition">ElMahdi - マハディ</p>
+          </div>
+        </div>
+
+        <button type="button" class="btn_menu">
+          <span class="ico_skin ico_menu">카테고리 메뉴열기</span>
+        </button>
+      </div>
+
+      <div class="dimmed_layer"></div>
+
+      <button type="button" class="btn_close">
+        <span class="ico_skin ico_close">닫기</span>
+      </button>
+
+      <div class="area_menu">
+        
+          <div class="area_search">
+            <button type="button" class="btn_search">
+              <span class="ico_skin ico_search">검색하기</span>
+            </button>
+            <form action="#" method="get" class="frm_search" onsubmit="try {
+    window.location.href = '/search' + '/' + looseURIEncode(document.getElementsByName('search')[0].value);
+    document.getElementsByName('search')[0].value = '';
+    return false;
+} catch (e) {}">
+              <fieldset>
+                <legend class="screen_out">검색하기 폼</legend>
+                <label for="tfSearch" class="ico_skin lab_search">블로그 내 검색</label>
+                <input id="tfSearch" type="text" name="search" value=""
+                  class="tf_search">
+              </fieldset>
+            </form>
+          </div>
+        
+
+        <div role="navigation" class="area_navi">
+          <button type="button" class="btn_cate">CATEGORY <span class="ico_skin ico_cate"></span></button>
+
+          <div class="list_cate">
+            <ul class="tt_category"><li class=""><a href="/category" class="link_tit"> 분류 전체보기 <span class="c_cnt">(4)</span> </a></li>
+</ul>
+
+
+            <ul class="menu_profile">
+              <li><a href="https://elmahdi.tistory.com/guestbook">방명록</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <hr class="hide">
+
+      
+
+      <div id="dkContent" class="cont_skin" role="main">
+        <div id="cMain">
+
+          
+
+          
+
+          
+
+                
+          
+  <div id="mArticle" class="article_skin">
+
+    
+
+    
+      <div class="skin_view">
+        <h2 id="dkBody" class="screen_out">티스토리 뷰</h2>
+        <div class="area_title">
+          <strong class="tit_category"><a
+              href="/category">카테고리 없음</a></strong>
+          <h3 class="tit_post"><a href="/3">Hunting on ASPX Application For P1's [Unauthenticated SOAP,RCE, Info Disclosure]</a></h3>
+          <span class="txt_detail my_post">elmahdi
+            <span class="txt_bar"></span>2020. 5. 31. 18:52
+            
+          </span>
+        </div>
+        <div class="area_view" id="article-view">
+                      <!-- System - START -->
+
+<!-- System - END -->
+
+            <div class="tt_article_useless_p_margin contents_style"><p>Hi, I wanna share with you how i found a P1 Vulnerabilities in a private program.<br /><br />At&nbsp;first&nbsp;i&nbsp;grabbed&nbsp;subdomains&nbsp;and&nbsp;titles&nbsp;via&nbsp;assetfinder&nbsp;and,&nbsp;then&nbsp;resolved&nbsp;them&nbsp;using&nbsp;httprobe&nbsp;and&nbsp;extracted&nbsp;the&nbsp;the&nbsp;title&nbsp;of&nbsp;the&nbsp;responsive&nbsp;ones&nbsp;with&nbsp;get-title.<br /><br />I&nbsp;started&nbsp;looking&nbsp;at&nbsp;the&nbsp;titles&nbsp;and&nbsp;i&nbsp;saw&nbsp;that&nbsp;there&nbsp;is&nbsp;a&nbsp;title&nbsp;that&nbsp;had&nbsp;"LOGIN"&nbsp;in&nbsp;it,&nbsp;i&nbsp;opened&nbsp;that&nbsp;page&nbsp;in&nbsp;my&nbsp;browser&nbsp;and&nbsp;i&nbsp;found&nbsp;that&nbsp;the&nbsp;website&nbsp;is&nbsp;an&nbsp;ASPX&nbsp;Application,&nbsp;the&nbsp;page&nbsp;didn't&nbsp;have&nbsp;any&nbsp;link&nbsp;for&nbsp;me&nbsp;to&nbsp;register,&nbsp;so&nbsp;i&nbsp;tried&nbsp;directories&nbsp;discovery&nbsp;with&nbsp;ffuf&nbsp;in&nbsp;orded&nbsp;find&nbsp;pages&nbsp;and&nbsp;sensitive&nbsp;files&nbsp;but&nbsp;i&nbsp;didn't&nbsp;find&nbsp;anything&nbsp;interesting&nbsp;so&nbsp;i&nbsp;moved&nbsp;to&nbsp;the&nbsp;next&nbsp;strep&nbsp;wich&nbsp;&nbsp;is&nbsp;Google&nbsp;search&nbsp;engine,&nbsp;i&nbsp;just&nbsp;made&nbsp;a&nbsp;basic&nbsp;dork&nbsp;search&nbsp;:</p>
+<pre id="code_1590834407469" class="html xml" data-ke-language="html" data-ke-type="codeblock"><code>site: care.redacted.com</code></pre>
+<p><figure class="imageblock alignCenter" data-origin-width="1236" data-origin-height="156" data-filename="a (1).jpg" data-ke-mobilestyle="widthContent"><span data-url="https://blog.kakaocdn.net/dn/rsFgZ/btqEu6oTNmp/pli4heKv1peIylkgFmLcKk/img.jpg" data-phocus="https://blog.kakaocdn.net/dn/rsFgZ/btqEu6oTNmp/pli4heKv1peIylkgFmLcKk/img.jpg"><img src="https://blog.kakaocdn.net/dn/rsFgZ/btqEu6oTNmp/pli4heKv1peIylkgFmLcKk/img.jpg" srcset="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FrsFgZ%2FbtqEu6oTNmp%2Fpli4heKv1peIylkgFmLcKk%2Fimg.jpg" data-origin-width="1236" data-origin-height="156" data-filename="a (1).jpg" data-ke-mobilestyle="widthContent" onerror="this.onerror=null; this.src='//t1.daumcdn.net/tistory_admin/static/images/no-image-v1.png'; this.srcset='//t1.daumcdn.net/tistory_admin/static/images/no-image-v1.png';"/></span></figure>
+</p>
+<p>I opened all the pages and i noticed that there's a page for registeration but i didn't have the informations needed to do register myself :( , I clicked on CTRL+U to see if there are any JS Files that are included in the page and i found&nbsp;&nbsp;these two Files</p>
+<p><figure class="imageblock alignCenter" data-filename="ezgif.com-crop.jpg" data-origin-width="972" data-origin-height="14" data-ke-mobilestyle="widthContent"><span data-url="https://blog.kakaocdn.net/dn/7Owyh/btqEwhQlvDE/dBNxS86wA4jPHtU4LiTjm1/img.jpg" data-phocus="https://blog.kakaocdn.net/dn/7Owyh/btqEwhQlvDE/dBNxS86wA4jPHtU4LiTjm1/img.jpg"><img src="https://blog.kakaocdn.net/dn/7Owyh/btqEwhQlvDE/dBNxS86wA4jPHtU4LiTjm1/img.jpg" srcset="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2F7Owyh%2FbtqEwhQlvDE%2FdBNxS86wA4jPHtU4LiTjm1%2Fimg.jpg" data-filename="ezgif.com-crop.jpg" data-origin-width="972" data-origin-height="14" data-ke-mobilestyle="widthContent" onerror="this.onerror=null; this.src='//t1.daumcdn.net/tistory_admin/static/images/no-image-v1.png'; this.srcset='//t1.daumcdn.net/tistory_admin/static/images/no-image-v1.png';"/></span></figure>
+</p>
+<h4 data-ke-size="size20">Unauthenticated SOAP To [ Delete Documents, Get Informations Of Users, Access To Messages Of User , And Information Of Any Configuration of System, Other Functions ] :&nbsp;</h4>
+<p>I opened the config.js file and i found a SOAP File.</p>
+<pre id="code_1590837006269" class="html xml" data-ke-language="html" data-ke-type="codeblock"><code>/services/CareRedactedredacted.asmx/&nbsp;</code></pre>
+<p><figure class="imageblock alignCenter" data-filename="ezgif.com-crop.png" data-origin-width="1184" data-origin-height="68" data-ke-mobilestyle="widthContent"><span data-url="https://blog.kakaocdn.net/dn/m6wn9/btqEw3KCs0X/PcXLeIpGOAzGKu5VskxjBk/img.png" data-phocus="https://blog.kakaocdn.net/dn/m6wn9/btqEw3KCs0X/PcXLeIpGOAzGKu5VskxjBk/img.png"><img src="https://blog.kakaocdn.net/dn/m6wn9/btqEw3KCs0X/PcXLeIpGOAzGKu5VskxjBk/img.png" srcset="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fm6wn9%2FbtqEw3KCs0X%2FPcXLeIpGOAzGKu5VskxjBk%2Fimg.png" data-filename="ezgif.com-crop.png" data-origin-width="1184" data-origin-height="68" data-ke-mobilestyle="widthContent" onerror="this.onerror=null; this.src='//t1.daumcdn.net/tistory_admin/static/images/no-image-v1.png'; this.srcset='//t1.daumcdn.net/tistory_admin/static/images/no-image-v1.png';"/></span></figure>
+</p>
+<p>I<span>&nbsp;opened the SOAP file and i found many user and system functions, i thought these function will surely require credentials, i coppied one of the urls that had a parameter id wich i gave it a radom value : 328915 and made the request.</span></p>
+<pre id="code_1590837259180" class="html xml" data-ke-language="html" data-ke-type="codeblock"><code>https://care.redacted.com/services/CareRedactedredacted.asmx/GetCustomerinfobydoc?Redacted=string&amp;id=328915</code></pre>
+<p><span>Surprise, the website returned all the user sensitive informations without any authentication !!</span></p>
+<h4 data-ke-size="size20">Remote Command Execution in Telerik UI via CVE 2017-9248 And Critical IDOR thats Leak all Users PII :&nbsp;</h4>
+<p><span>After i reported the SOAP bug, i opened the second JS File , i found that theres an URL For an ASPX page wich had an upload functionality( Ohh !!) I tried to upload malicious files such as [ aspx , asp , html ] but it didnt work, and even uploading a valid file ( PDF ) the website would not return the URL for the document or the id for it ( Oh shit ) but i noticed thats the website uses Telerik for uploading the files and managing them ( Amm ) I searched for Telerik Exploits in Google and i found a blog that showed how to Pwn Telerik.</span></p>
+<p>&nbsp;</p>
+<pre id="code_1590838043563" class="html xml" data-ke-language="html" data-ke-type="codeblock"><code>https://captmeelo.com/pentest/2018/08/03/pwning-with-telerik.html</code></pre>
+<p><span style="color: #333333;"><span>&nbsp;</span>i</span><span>&nbsp;read it and understood and tried exploiting it, and It worked, I got access to Telerik Filemanager and uploaded a TXT file to confirm the vulnerability.</span></p>
+<p><iframe src="https://giphy.com/embed/3knKct3fGqxhK" width="480" height="281" frameborder="0" allowfullscreen=""></iframe></p>
+<p><a href="https://giphy.com/gifs/kung-fury-hackerman-3knKct3fGqxhK">via GIPHY</a></p>
+<p>&nbsp;</p>
+<p><span>After reporting the RCE, I returned to the page and i clicked cheked the source code of the page, and i found that there is an aspx File inside the JS Code (Oh) that was for reading Documents !!</span></p>
+<pre id="code_1590838755589" class="html xml" data-ke-language="html" data-ke-type="codeblock"><code>var url = '/DocumentManagement/' + 'ViewDocumentImage.aspx?id=' + docid;</code></pre>
+<p><span>I Copied the URL And gave the id parameter a random number 15, the website returned PDF document wich had sensitive informations about a user without any authentication !!</span></p>
+<p>&nbsp;</p>
+<h4 data-ke-size="size20">Tomnomnom Tools :&nbsp;</h4>
+<p><a href="https://github.com/tomnomnom/hacks/tree/master/assetfinder" target="_blank" rel="noopener">github.com/tomnomnom/hacks/tree/master/assetfinder</a></p>
+<p>&nbsp;</p>
+<p><a href="https://github.com/tomnomnom/hacks/tree/master/assetfinder" target="_blank" rel="noopener">github.com/tomnomnom/hacks/tree/master/get-title</a></p>
+<p><a href="https://github.com/tomnomnom/hacks/tree/master/assetfinder" target="_blank" rel="noopener">github.com/tomnomnom/httprobe</a></p>
+<figure id="og_1590839976062" contenteditable="false" data-ke-type="opengraph" data-og-type="object" data-og-title="tomnomnom/hacks" data-og-description="A collection of hacks and one-off scripts. Contribute to tomnomnom/hacks development by creating an account on GitHub." data-og-host="github.com" data-og-source-url="https://github.com/tomnomnom/hacks/tree/master/assetfinder" data-og-url="https://github.com/tomnomnom/hacks" data-og-image="https://scrap.kakaocdn.net/dn/G57rU/hyGdOk5aTW/ueTkGgmWdSUuQ1jo8RLHA1/img.jpg?width=400&amp;height=400&amp;face=0_0_400_400"><a href="https://github.com/tomnomnom/hacks/tree/master/assetfinder" target="_blank" rel="noopener" data-source-url="https://github.com/tomnomnom/hacks/tree/master/assetfinder">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/G57rU/hyGdOk5aTW/ueTkGgmWdSUuQ1jo8RLHA1/img.jpg?width=400&amp;height=400&amp;face=0_0_400_400');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title">tomnomnom/hacks</p>
+<p class="og-desc">A collection of hacks and one-off scripts. Contribute to tomnomnom/hacks development by creating an account on GitHub.</p>
+<p class="og-host">github.com</p>
+</div>
+</a></figure>
+<p data-ke-size="size18">Special Thanks to Anass Sbai <span>@Flashy911 for rewrite this post And thanks to </span><span></span><span><span><span>之𝛜𝓭 ン挨ぁ <span style="color: #333333;">@zedsec009 <span><span>&hearts;️</span></span><span><span>&hearts;️</span></span></span></span></span></span></p></div>
+            <!-- System - START -->
+
+<!-- System - END -->
+
+                    <div class="container_postbtn #post_button_group">
+  <div class="postbtn_like"><script>window.ReactionButtonType = 'reaction';
+window.ReactionApiUrl = '//elmahdi.tistory.com/reaction';
+window.ReactionReqBody = {
+    entryId: 3
+}</script>
+<div class="wrap_btn" id="reaction-3" data-tistory-react-app="Reaction"></div><div class="wrap_btn wrap_btn_share"><button type="button" class="btn_post sns_btn btn_share" aria-expanded="false" data-thumbnail-url="https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&amp;fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcYAlkL%2FbtqExtClMd6%2F6xIRKwKjeZCDkcNaF3RJa1%2Fimg.jpg" data-title="Hunting on ASPX Application For P1's [Unauthenticated SOAP,RCE, Info Disclosure]" data-description="Hi, I wanna share with you how i found a P1 Vulnerabilities in a private program. At first i grabbed subdomains and titles via assetfinder and, then resolved them using httprobe and extracted the the title of the responsive ones with get-title. I started looking at the titles and i saw that there is a title that had &quot;LOGIN&quot; in it, i opened that page in my browser and i found that the website is .." data-profile-image="https://tistory1.daumcdn.net/tistory/3941774/attach/8a77c66aa346483f83645ae916bb58f7" data-profile-name="elmahdi" data-pc-url="https://elmahdi.tistory.com/3" data-relative-pc-url="/3" data-blog-title="ElMahdi - マハディ"><span class="ico_postbtn ico_share">공유하기</span></button>
+  <div class="layer_post" id="tistorySnsLayer"></div>
+</div><div class="wrap_btn wrap_btn_etc" data-entry-id="3" data-entry-visibility="public" data-category-visibility="public"><button type="button" class="btn_post btn_etc2" aria-expanded="false"><span class="ico_postbtn ico_etc">게시글 관리</span></button>
+  <div class="layer_post" id="tistoryEtcLayer"></div>
+</div></div>
+<button type="button" class="btn_menu_toolbar btn_subscription #subscribe" data-blog-id="3941774" data-url="https://elmahdi.tistory.com/3" data-device="web_pc" data-tiara-action-name="구독 버튼_클릭"><em class="txt_state"></em><strong class="txt_tool_id">ElMahdi - マハディ</strong><span class="img_common_tistory ico_check_type1"></span></button>  <div data-tistory-react-app="SupportButton"></div>
+</div>
+
+                    <!-- PostListinCategory - START -->
+
+<!-- PostListinCategory - END -->
+
+        </div>
+        <div class="area_etc">
+          
+        </div>
+        <div class="area_reply">
+          <div data-tistory-react-app="Namecard"></div><div id="lv-container" data-id="city" data-uid="4">
+  <script type="text/javascript">                            (function () {
+                                var entryLink = 'https://elmahdi.tistory.com/3';
+                                window.livereOptions = {
+    refer: entryLink
+};
+(function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+
+    if (typeof LivereTower === 'function') { return; }
+
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+
+    e.parentNode.insertBefore(j, e);
+})(document, 'script');
+
+                            })()</script>
+  <noscript>라이브리 댓글 작성을 위해 JavaScript를 활성화 해주세요</noscript>
+</div>
+
+        </div>
+      </div>
+    
+  </div>
+
+          
+      
+
+          
+
+          
+
+          
+
+
+          <div id="mEtc" class="wrap_etc">
+            <div class="inner_aside">
+              
+                  <!-- 공지사항 -->
+                  
+                    <div class="box_aside">
+                      <strong>공지사항</strong>
+                      <ul class="list_board">
+                        
+                      </ul>
+                    </div>
+                  
+                
+                  <!-- 최근에 올라온 글 -->
+                  <div class="box_aside">
+                    <strong>최근에 올라온 글</strong>
+                    <ul class="list_board">
+                      
+                        <li><a href="/5" class="link_board">Cache Poisoning via SelfXSS⋯</a></li>
+                      
+                        <li><a href="/4" class="link_board">Bypassing the Redirect filt⋯</a></li>
+                      
+                        <li><a href="/3" class="link_board">Hunting on ASPX Application⋯</a></li>
+                      
+                        <li><a href="/2" class="link_board">XSS Stored On Messages In [⋯</a></li>
+                      
+                    </ul>
+                  </div>
+                
+                  <!-- 최근에 달린 댓글 -->
+                  <div class="box_aside">
+                    <strong>최근에 달린 댓글</strong>
+                    <ul class="list_board">
+                      
+                    </ul>
+                  </div>
+                
+                  <!-- 방문자수 -->
+                  <div class="box_aside lst">
+                    <dl class="list_total">
+                      <dt>Total</dt>
+                      <dd>12,193</dd>
+                    </dl>
+                    <dl class="list_visitor">
+                      <dt>Today</dt>
+                      <dd>4</dd>
+                    </dl>
+                    <dl class="list_visitor">
+                      <dt>Yesterday</dt>
+                      <dd>6</dd>
+                    </dl>
+                  </div>
+                
+                  <!-- 링크 -->
+                  <div class="box_aside">
+                    <strong>링크</strong>
+                    <ul class="list_board">
+                      
+                        <li><a href="https://twitter.com/elmyuyu" class="link_board" target="_blank">Twitter</a></li>
+                      
+                        <li><a href="https://bugcrowd.com/elmahdi" class="link_board" target="_blank">Bugcrowd</a></li>
+                      
+                        <li><a href="https://hackerone.com/elmahdi" class="link_board" target="_blank">Hackerone</a></li>
+                      
+                    </ul>
+                  </div>
+                
+                  <!-- 태그 클라우드 -->
+                  <div class="box_aside">
+                    <strong>TAG</strong>
+                    <ul class="list_tag">
+                      
+                        <li><a href="/tag/cross%20site%20scripting" class="link_tag cloud5">cross site scripting</a></li>
+                      
+                        <li><a href="/tag/xss" class="link_tag cloud5">xss</a></li>
+                      
+                    </ul>
+                    <a href="https://elmahdi.tistory.com/tag" class="link_more">more</a>
+                  </div>
+                
+                  <!-- 달력 -->
+                  <div class="box_aside">
+                    <table class="tt-calendar" cellpadding="0" cellspacing="1" style="width: 100%; table-layout: fixed">
+  <caption class="cal_month"><a href="/archive/202412" title="1개월 앞의 달력을 보여줍니다.">«</a> &nbsp; <a href="/archive/202501" title="현재 달의 달력을 보여줍니다.">2025/01</a> &nbsp; <a href="/archive/202502" title="1개월 뒤의 달력을 보여줍니다.">»</a></caption>
+  <thead>
+    <tr>
+      <th class="cal_week2">일</th>
+      <th class="cal_week1">월</th>
+      <th class="cal_week1">화</th>
+      <th class="cal_week1">수</th>
+      <th class="cal_week1">목</th>
+      <th class="cal_week1">금</th>
+      <th class="cal_week1">토</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="cal_week cal_current_week">
+      <td class="cal_day1 cal_day2"> </td>
+      <td class="cal_day1 cal_day2"> </td>
+      <td class="cal_day1 cal_day2"> </td>
+      <td class="cal_day cal_day3">1</td>
+      <td class="cal_day cal_day3">2</td>
+      <td class="cal_day cal_day3">3</td>
+      <td class="cal_day cal_day3">4</td>
+    </tr>
+    <tr class="cal_week">
+      <td class="cal_day cal_day3 cal_day_sunday">5</td>
+      <td class="cal_day cal_day3">6</td>
+      <td class="cal_day cal_day3">7</td>
+      <td class="cal_day cal_day3">8</td>
+      <td class="cal_day cal_day3">9</td>
+      <td class="cal_day cal_day3">10</td>
+      <td class="cal_day cal_day4">11</td>
+    </tr>
+    <tr class="cal_week">
+      <td class="cal_day cal_day3 cal_day_sunday">12</td>
+      <td class="cal_day cal_day3">13</td>
+      <td class="cal_day cal_day3">14</td>
+      <td class="cal_day cal_day3">15</td>
+      <td class="cal_day cal_day3">16</td>
+      <td class="cal_day cal_day3">17</td>
+      <td class="cal_day cal_day3">18</td>
+    </tr>
+    <tr class="cal_week">
+      <td class="cal_day cal_day3 cal_day_sunday">19</td>
+      <td class="cal_day cal_day3">20</td>
+      <td class="cal_day cal_day3">21</td>
+      <td class="cal_day cal_day3">22</td>
+      <td class="cal_day cal_day3">23</td>
+      <td class="cal_day cal_day3">24</td>
+      <td class="cal_day cal_day3">25</td>
+    </tr>
+    <tr class="cal_week">
+      <td class="cal_day cal_day3 cal_day_sunday">26</td>
+      <td class="cal_day cal_day3">27</td>
+      <td class="cal_day cal_day3">28</td>
+      <td class="cal_day cal_day3">29</td>
+      <td class="cal_day cal_day3">30</td>
+      <td class="cal_day cal_day3">31</td>
+      <td class="cal_day1 cal_day2"> </td>
+    </tr>
+  </tbody>
+</table>
+                  </div>
+                
+                  <!-- 글 보관함 -->
+                  <div class="box_aside lst">
+                    <strong>글 보관함</strong>
+                    <ul class="list_keep">
+                      
+                        <li><a href="/archive/202108" class="link_keep">2021/08</a>
+                          (1)</li>
+                      
+                        <li><a href="/archive/202011" class="link_keep">2020/11</a>
+                          (1)</li>
+                      
+                        <li><a href="/archive/202005" class="link_keep">2020/05</a>
+                          (2)</li>
+                      
+                    </ul>
+                  </div>
+                
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr class="hide">
+      <div id="dkFoot" role="contentinfo" class="area_foot">
+        Blog is powered by
+        <em class="emph_t">Tistory</em> / Designed by
+        <em class="emph_t">Tistory</em>
+      </div>
+    </div>
+  
+
+  <script src="https://tistory1.daumcdn.net/tistory/0/Ray/images/script.js"></script>
+  <script>
+    (function ($) {
+      $.Area.init();
+    })(jQuery);
+  </script>
+
+<div class="#menubar menu_toolbar toolbar_rb">
+  <h2 class="screen_out">티스토리툴바</h2>
+</div>
+<div class="#menubar menu_toolbar "></div>
+<div class="layer_tooltip">
+  <div class="inner_layer_tooltip">
+    <p class="desc_g"></p>
+  </div>
+</div>
+<div id="editEntry" style="position:absolute;width:1px;height:1px;left:-100px;top:-100px"></div>
+
+
+                <!-- DragSearchHandler - START -->
+<script src="//search1.daumcdn.net/search/statics/common/js/g/search_dragselection.min.js"></script>
+
+<!-- DragSearchHandler - END -->
+
+                
+                <div style="margin:0; padding:0; border:none; background:none; float:none; clear:none; z-index:0"></div>
+<script type="text/javascript" src="https://tistory1.daumcdn.net/tistory_admin/userblog/userblog-b6d1f83d4f149775488b18445c7e8e023edb84b4/static/script/common.js"></script>
+<script type="text/javascript">window.roosevelt_params_queue = window.roosevelt_params_queue || [{channel_id: 'dk', channel_label: '{tistory}'}]</script>
+<script type="text/javascript" src="//t1.daumcdn.net/midas/rt/dk_bt/roosevelt_dk_bt.js" async="async"></script>
+
+                
+                <script>window.tiara = {"svcDomain":"user.tistory.com","section":"글뷰","trackPage":"글뷰_보기","page":"글뷰","key":"3941774-3","customProps":{"userId":"0","blogId":"3941774","entryId":"3","role":"guest","trackPage":"글뷰_보기","filterTarget":false},"entry":{"entryId":"3","entryTitle":"Hunting on ASPX Application For P1's [Unauthenticated SOAP,RCE, Info Disclosure]","entryType":"POST","categoryName":"카테고리 없음","categoryId":"0","serviceCategoryName":"IT 인터넷","serviceCategoryId":401,"author":"4403080","authorNickname":"elmahdi","blogNmae":"ElMahdi - マハディ","image":"kage@cYAlkL/btqExtClMd6/6xIRKwKjeZCDkcNaF3RJa1","plink":"/3","tags":[]},"kakaoAppKey":"3e6ddd834b023f24221217e370daed18","appUserId":"null"}</script>
+<script type="module" src="https://t1.daumcdn.net/tistory_admin/frontend/tiara/v1.0.5/index.js"></script>
+<script src="https://t1.daumcdn.net/tistory_admin/frontend/tiara/v1.0.5/polyfills-legacy.js" nomodule="true" defer="true"></script>
+<script src="https://t1.daumcdn.net/tistory_admin/frontend/tiara/v1.0.5/index-legacy.js" nomodule="true" defer="true"></script>
+
+                </body>
+
+</html>

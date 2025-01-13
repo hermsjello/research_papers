@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+  <head><script type="text/javascript" src="/_static/js/bundle-playback.js?v=HxkREWBo" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=txqj7nKC" charset="utf-8"></script>
+<script>window.RufflePlayer=window.RufflePlayer||{};window.RufflePlayer.config={"autoplay":"on","unmuteOverlay":"hidden"};</script>
+<script type="text/javascript" src="/_static/js/ruffle/ruffle.js"></script>
+<script type="text/javascript">
+    __wm.init("https://web.archive.org/web");
+  __wm.wombat("https://savirsuda.github.io/IDOR-to-view-personal-email-addresses-of-more-than-50k-users/","20210226210519","https://web.archive.org/","web","/_static/",
+	      "1614373519");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=3PDvdIFv" />
+<!-- End Wayback Rewrite JS Include -->
+
+    <title>IDOR which allowed me to view Personal Email Addresses of More than 50K Users! – Savir Suda – Live, Learn, Hack!</title>
+
+        <meta charset="utf-8"/>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+    
+    <meta name="description" content="This is My First Blog and I am really excited about it at the time of writing this. I have been trying to take out time to write this finding up for a while now but haven’t been able to do so because of other important things, anyways finally here we are. Without wasting any more of your time, lets get into the bug :)
+
+"/>
+    <meta property="og:description" content="This is My First Blog and I am really excited about it at the time of writing this. I have been trying to take out time to write this finding up for a while now but haven’t been able to do so because of other important things, anyways finally here we are. Without wasting any more of your time, lets get into the bug :)
+
+"/>
+    
+    <meta name="author" content="Savir Suda"/>
+
+    
+    <meta property="og:title" content="IDOR which allowed me to view Personal Email Addresses of More than 50K Users!"/>
+    <meta property="twitter:title" content="IDOR which allowed me to view Personal Email Addresses of More than 50K Users!"/>
+    
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" type="text/css" href="/web/20210226210519cs_/https://savirsuda.github.io/style.css"/>
+    <link rel="alternate" type="application/rss+xml" title="Savir Suda - Live, Learn, Hack!" href="/web/20210226210519/https://savirsuda.github.io/feed.xml"/>
+
+    <!-- Created with Jekyll Now - http://github.com/barryclark/jekyll-now -->
+  </head>
+
+  <body>
+    <div class="wrapper-masthead">
+      <div class="container">
+        <header class="masthead clearfix">
+          <a href="/web/20210226210519/https://savirsuda.github.io/" class="site-avatar"><img src="/web/20210226210519im_/https://savirsuda.github.io/images/savir.PNG"/></a>
+
+          <div class="site-info">
+            <h1 class="site-name"><a href="/web/20210226210519/https://savirsuda.github.io/">Savir Suda</a></h1>
+            <p class="site-description">Live, Learn, Hack!</p>
+          </div>
+
+          <nav>
+            <a href="/web/20210226210519/https://savirsuda.github.io/">Blog</a>
+            <a href="/web/20210226210519/https://savirsuda.github.io/about">About</a>
+          </nav>
+        </header>
+      </div>
+    </div>
+
+    <div id="main" role="main" class="container">
+      <article class="post">
+  <h1>IDOR which allowed me to view Personal Email Addresses of More than 50K Users!</h1>
+
+  <div class="entry">
+    <p>This is My First Blog and I am really excited about it at the time of writing this. I have been trying to take out time to write this finding up for a while now but haven’t been able to do so because of other important things, anyways finally here we are. Without wasting any more of your time, lets get into the bug :)</p>
+
+<p><strong>Summary</strong></p>
+
+<p>Lets call the target website as <strong>example.com</strong> and the domain on which this vulnerability was found as <strong>subdomain.example.com</strong> for the Privacy of the company. The Vulnerability exists in the Forgot-Password Page of <strong>subdomain.example.com</strong>. Basically, while requesting a password change for a user,  a <strong>GET</strong> parameter was sent. I was able to manipulate this parameter and was able to view the Personal Email addresses of probably all of the registered users on the website. This was a pretty simple bug and a typical case of an <a href="https://web.archive.org/web/20210226210519/https://portswigger.net/web-security/access-control/idor">IDOR</a> .</p>
+
+<p><img src="/web/20210226210519im_/https://savirsuda.github.io/images/idor-img.PNG" alt="_config.yml"/></p>
+
+<p><strong>Description</strong></p>
+
+<p>One day, I was checking the results of my Recon which was done using my custom bash script and while going through the subdomains it had found, I noticed an interesting subdomain. Lets call the subdomain as <code class="language-plaintext highlighter-rouge">subdomain.example.com</code>. I started crawling the subdomain to find all of its <a href="https://web.archive.org/web/20210226210519/https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_is_a_URL">URLS</a> using an awesome tool made by <a href="https://web.archive.org/web/20210226210519/https://twitter.com/tomnomnom">@TomNomNom</a> called <code class="language-plaintext highlighter-rouge">waybackurls</code>. I am not going to explain how this tool works or what it is, you can find the Link to it’s public Github Repository at the end of this Blog post. Basically I found an Interesting URL with <code class="language-plaintext highlighter-rouge">waybackurls</code> which is:
+<code class="language-plaintext highlighter-rouge">https://subdomain.example.com/accounts/Directory/XYZ/Form.aspx</code>. This endpoint was actually a Forgot Password Page and it allowed users to request a password reset. Nothing fancy or alerting right now but lets see what happens later ;) The extension of this page was <code class="language-plaintext highlighter-rouge">.aspx</code> which made me Directory Brute force for other <code class="language-plaintext highlighter-rouge">.aspx</code> files. Unfortunately I did not find anything and eventually gave up on Directory brute forcing. Now I thought of using Google Dorks on this subdomain. I used the following Google Dork:</p>
+
+<p><code class="language-plaintext highlighter-rouge">site:subdomain.example.com inurl:id</code></p>
+
+<p>When I did this, I got an endpoint as a result of the search. This endpoint contained <code class="language-plaintext highlighter-rouge">ID</code> as a <code class="language-plaintext highlighter-rouge">GET</code> parameter in the URL with some other irrelevant parameters. The final URL looked like this:</p>
+
+<p><code class="language-plaintext highlighter-rouge">https://subdomain.example.com/accounts/Directory/XYZ/Form.aspx?ID=1&amp;ContentTypeId=123</code></p>
+
+<p>The interesting part was that in the response, when I scrolled down, I could see a random user’s personal email address. I got the following response:</p>
+
+<p><code class="language-plaintext highlighter-rouge">Email Sent successfully to redacted@gmail.com</code></p>
+
+<p>The HTTP Response looked like this:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">HTTP</span><span class="o">/</span><span class="mf">1.1</span> <span class="mi">200</span> <span class="no">OK</span>
+<span class="nc">Date</span><span class="o">:</span> <span class="o">&lt;</span><span class="no">SOME</span><span class="o">-</span><span class="no">RANDOM</span><span class="o">-</span><span class="no">DATE</span><span class="o">&gt;</span>
+<span class="nc">Content</span><span class="o">-</span><span class="nc">Type</span><span class="o">:</span> <span class="n">text</span><span class="o">/</span><span class="n">html</span><span class="p">;</span> <span class="n">charset</span><span class="o">=</span><span class="n">utf</span><span class="o">-</span><span class="mi">8</span>
+<span class="nc">Content</span><span class="o">-</span><span class="nc">Length</span><span class="o">:</span> <span class="o">&lt;</span><span class="no">CONTENT</span><span class="o">-</span><span class="no">LENGTH</span><span class="o">&gt;</span>
+<span class="nc">Connection</span><span class="o">:</span> <span class="n">close</span>
+<span class="nc">Cache</span><span class="o">-</span><span class="nc">Control</span><span class="o">:</span> <span class="k">private</span><span class="p">,</span> <span class="n">s</span><span class="o">-</span><span class="n">maxage</span><span class="o">=</span><span class="mi">0</span>
+<span class="nc">Vary</span><span class="o">:</span> <span class="nc">Accept</span><span class="o">-</span><span class="nc">Encoding</span>
+<span class="nc">X</span><span class="o">-</span><span class="nc">Frame</span><span class="o">-</span><span class="nc">Options</span><span class="o">:</span> <span class="no">SAMEORIGIN</span>
+<span class="nc">X</span><span class="o">-</span><span class="no">XSS</span><span class="o">-</span><span class="nc">Protection</span><span class="o">:</span> <span class="mi">1</span><span class="p">;</span> <span class="n">mode</span><span class="o">=</span><span class="n">block</span>
+<span class="nc">X</span><span class="o">-</span><span class="nc">Content</span><span class="o">-</span><span class="nc">Type</span><span class="o">-</span><span class="nc">Options</span><span class="o">:</span> <span class="n">nosniff</span>
+<span class="nc">Content</span><span class="o">-</span><span class="nc">Security</span><span class="o">-</span><span class="nc">Policy</span><span class="o">:</span> <span class="k">default</span><span class="o">-</span><span class="n">src</span> <span class="s1">'self'</span> <span class="s1">'unsafe-inline'</span>
+<span class="nc">Referrer</span><span class="o">-</span><span class="nc">Policy</span><span class="o">:</span> <span class="n">same</span><span class="o">-</span><span class="n">origin</span>
+
+<span class="nc">Email</span> <span class="nc">Sent</span> <span class="n">successfully</span> <span class="n">to</span> <span class="n">redacted</span><span class="o">@</span><span class="n">gmail</span><span class="mf">.</span><span class="n">com</span>
+</code></pre></div></div>
+<p>I found this very interesting and as a result I got excited. I knew exactly what to do, I changed the value of the <code class="language-plaintext highlighter-rouge">ID</code> parameter to another random numeric ID and yes, I got another private email address of a user! This time I had changed the ID from <code class="language-plaintext highlighter-rouge">1</code> to <code class="language-plaintext highlighter-rouge">2</code>. I noticed that even 4 digit long numeric IDs were tied to a user’s account. Now, it was time of a nice Proof Of Concept to increase the impact. I fired up an Intruder Window in BurpSuite, configured it to Brute-Force the value of the <code class="language-plaintext highlighter-rouge">id</code> parameter that was found earlier in the URL, and started the Attack. I looked at the Intruder again after letting it run for a few minutes and was surprised by being presented to more than 50,000 private email addresses of the users!</p>
+
+<p><img src="/web/20210226210519im_/https://savirsuda.github.io/images/what.gif" alt="_config.yml"/></p>
+
+<p>This means that with the change of the ID parameter I can leak the private emails of users of this web application. Basically, this means that the ID’s value 1 is linked with an email that is <code class="language-plaintext highlighter-rouge">redacted@gmail.com</code> and the ID’s value of 2 is linked with the email <code class="language-plaintext highlighter-rouge">redacted2@gmail.com</code>.</p>
+
+<p>Basically this Attack worked because the application assigned every user’s account with a numeric <strong>ID</strong> from <code class="language-plaintext highlighter-rouge">1</code> till <code class="language-plaintext highlighter-rouge">50,000</code>. The <code class="language-plaintext highlighter-rouge">ID</code> of a user could have been guessed easily as this application kept the IDs sequential meaning that if two users sign up, User A and User B, User A signs up a minute before than User B, then User A will be asigned with an ID of <code class="language-plaintext highlighter-rouge">1</code> and User B would be assigned with an ID of <code class="language-plaintext highlighter-rouge">2</code>. Intruder Brute-forced all the IDs till 50,000 and since these IDs were sequential, this meant there were 50K users signed up on the web application but more importantly, an attacker would be able to view the <strong>Private Email Addresses of More than 50K Users!</strong></p>
+
+<p><strong>Impact</strong></p>
+
+<p>By exploiting this IDOR vulnerability an attacker is able to leak private email addresses of about 50,000 users which is a clear privacy violation for the users. The attacker can store these email addresses in a database and plan future attacks on them.</p>
+
+<ul>
+  <li>To Leak the Private Email Address of a User, no user interaction was required at all.</li>
+  <li>The ID parameter was vulnerable to IDOR attacks.</li>
+  <li>The ID parameter had a numeric ID to which objects(emails) were referenced.</li>
+  <li>The value of the ID parameter was predictable and an object is linked to a user’s account in a sequential pattern. In this case, these IDs with values from 1,2,3,4,5,6,7 and so on were referred to as Private Email Addresses of the users.</li>
+</ul>
+
+<p>Due to these points, the severity of this vulnerability was <strong>High</strong>.</p>
+
+<p><img src="/web/20210226210519im_/https://savirsuda.github.io/images/dab.gif" alt="_config.yml"/></p>
+
+<p><strong>Resources, Credits and Shoutouts</strong></p>
+
+<ul>
+  <li><a href="https://web.archive.org/web/20210226210519/https://twitter.com/tomnomnom">@TomNomNom’s</a> Github Repository: https://github.com/tomnomnom</li>
+  <li>Waybackurls’ Public Github Repository: https://github.com/tomnomnom/waybackurls</li>
+  <li>Thanks to <a href="https://web.archive.org/web/20210226210519/https://twitter.com/bugcrowd">@Bugcrowd</a> for the <a href="https://web.archive.org/web/20210226210519/https://github.com/savirsuda/savirsuda.github.io/blob/master/images/idor-img.PNG">Diagram</a> that I used.</li>
+  <li>Checkout <a href="https://web.archive.org/web/20210226210519/https://twitter.com/pdiscoveryio">@ProjectDiscovery’s</a> Github Repository for some cool Stuff that they publish: https://github.com/projectdiscovery</li>
+  <li>Follow <a href="https://web.archive.org/web/20210226210519/https://twitter.com/intigriti">@Intigriti</a> on Twitter and Sign up for Weekly BugBytes that they release every week, to stay up to date with the best resources!</li>
+  <li>Intigriti has archived all of the BugBytes that they have released till date <a href="https://web.archive.org/web/20210226210519/https://blog.intigriti.com/category/bugbytes/">here</a> .</li>
+</ul>
+
+<p>Thanks for Reading this, hope you enjoyed my first blog :)</p>
+
+<p>Many more to come xD</p>
+
+<p>Until next time!</p>
+
+<p>-savxiety</p>
+
+  </div>
+
+  <div class="date">
+    Written on February 26, 2021
+  </div>
+
+  
+</article>
+
+    </div>
+
+    <div class="wrapper-footer">
+      <div class="container">
+        <footer class="footer">
+          
+
+
+
+<a href="https://web.archive.org/web/20210226210519/https://github.com/savirsuda"><i class="svg-icon github"></i></a>
+
+
+
+
+<a href="https://web.archive.org/web/20210226210519/https://www.twitter.com/savxiety"><i class="svg-icon twitter"></i></a>
+
+
+
+
+
+        </footer>
+      </div>
+    </div>
+
+    
+
+  </body>
+</html>
+<!--
+     FILE ARCHIVED ON 21:05:19 Feb 26, 2021 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 07:37:17 Jan 11, 2025.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 0.5
+  exclusion.robots: 0.025
+  exclusion.robots.policy: 0.016
+  esindex: 0.011
+  cdx.remote: 15.905
+  LoadShardBlock: 219.871 (3)
+  PetaboxLoader3.datanode: 209.466 (5)
+  PetaboxLoader3.resolve: 97.418 (2)
+  load_resource: 197.881
+  loaddict: 101.041
+-->

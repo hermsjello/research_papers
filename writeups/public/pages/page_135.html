@@ -1,0 +1,93 @@
+<!DOCTYPE HTML>
+<html>
+        <head>
+                <title>Account Takeover by Chaingin Two IDORs</title>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <link rel="stylesheet" type="text/css" href="./assets/css/main.css">
+
+        <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/styles/default.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+
+  <style>
+                p{      line-height:2.0em;
+                         
+
+
+                }
+
+  </style>
+
+        </head>
+
+        <body style="font-family:'Courier New'">
+                <img src="./assets/images/idors//title.png" class="responsive" alt="some-image here">
+
+        <main class="container">
+			
+		<h3 style="text-align: center;">Account Takeover by Chaining Two IDORs</h3>
+		<p>
+		Welcome back to another writeup. In this write-up i am going to tell you how i chained two IDORs together to achieve an Account Takeover of any user
+		with no interaction. In 2021 i only hacked on two programs. Both were similar in nature. I submitted 99 bugs on one program where i hacked for 4-5 
+		months and its where i found this bug. The program is about helpdesk with different users roles. There were three different roles which were
+		Admin, Manager and user. Admin manages all the stuff, manager have all the access except the organizations settings and the user can only
+		do what he was assigned to do.</p>
+		<br>
+		<p>
+		An admin can creates different departments and assign them to different managers. Deparments have different characteristics like new hire, salaries,
+		projects etc. An admin can add new users to organization and also can edit those users. He can changes their email addresses, change passwords and 
+		lockout their accounts. These are the two places where i found two IDORs. </p>
+		<br>
+		<p>
+		The first IDOR i got when assigning a department to any manager. The flow was something like that, first you will create a new depmartment. Then you
+		will add a manager into it. When you add a manager into it and click on save, the manager ID will be passed in the request. So simply changing
+		my manager ID to another organziation manager's ID will add that manager into my department. It was a simple easy IDOR with no much impact. This 
+		will add manager of another organziation into my organization's department. why someone would give access of his own deparment to someone else.
+		I tried to add myself into another organization's department by chainging the depmartment ID but unfortunately it didnt work.</p>
+		<br><p>
+		I thought i will submit it if i couldnt find anything else today because you can spam user by adding them to alot of departments, still better
+		then not finding anything. I wrote it down and moved onto testing other parts of the website. I went to user edit settings where an admin
+		can change users email and password. I tried to change password of my manager and captured the request in Burp. I saw its ID in the request which
+		i changed with manager of my second account and the response was 200. I was able to login into that manager account with the new password. I was 
+		happy but the IDOR was pretty simple and i thought it will be a dup. But dup or not it was a p1 so i was going to submit it asap.</p>
+		<br><p>
+		I turned on my screen recording and started reproducing the bug but when i tried to change the password of another org's manager it gave me 403.
+		I tried it multiple times but it was giving me 403 instead of 200. I turned off the screen recording and started figuring out why it worked before.
+		When i first changed the password of a manager i used the ID of a manager which i added into my deparmtent. But during video PoC i tried to change
+		the password of a manager which wasnt added into any of my deparment.</p>
+		<br>
+		<p>
+		In order to change password of any user first i have to add him into my own department using the first IDOR. Then i will be able to change
+		his password by going into my user settings and replacing its ID with one of my own manager. I quicky wrote a nice report and submitted it with
+		video PoC. After few days it got triagged and accpeted as P1. The first IDOR was pretty simple so is the second but for second IDOR to work you
+		have to perform first IDOR.</p>
+		<p><br>
+		<p>
+		
+		If you have any feedback or any question feel free to dm me on twitter <a href="https://twitter.com/R29k_" style="color:Red" alt="" target="_blank">R29k</a>.Thank you
+		for reading this, i will see you in the next write up.<br><br></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </main>
+        <footer>
+                <button onclick="document.location='../../index.html'">Home</button>
+
+        </footer>
+
+        </body>
+
+</html>
+

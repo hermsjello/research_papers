@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="Julien Cretel ">
+<meta name="description" content="I recently stumbled upon a critical instance of broken-access control, and I thought its story would make for an interesting blogpost. I&amp;rsquo;ve deliberately omitted some details (e.g. irrelevant HTTP headers) in the interest of simplicity and concision. Morever, all clues to the identity of the organisation I was hacking have been expunged from this post, for obvious reasons.
+A bit about the target ¶ The target consists in a service that allows users to create server-side apps via a Web-based dashboard." />
+<meta name="keywords" content=", broken access control, IDOR, mass assignment, business-logic error" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="//jub0bs.com/posts/2020-05-26-idor/" />
+
+
+    <title>
+        
+            Chaining an IDOR with a business-logic error to achieve critical impact :: jub0bs.com 
+        
+    </title>
+
+
+
+
+
+<link rel="stylesheet" href="/main.dede02da9537a98158079c023e83573e18127834838ef08172acce888341a797.css">
+
+
+
+
+
+
+<meta itemprop="name" content="Chaining an IDOR with a business-logic error to achieve critical impact">
+<meta itemprop="description" content="I recently stumbled upon a critical instance of broken-access control, and I thought its story would make for an interesting blogpost. I&rsquo;ve deliberately omitted some details (e.g. irrelevant HTTP headers) in the interest of simplicity and concision. Morever, all clues to the identity of the organisation I was hacking have been expunged from this post, for obvious reasons.
+A bit about the target ¶ The target consists in a service that allows users to create server-side apps via a Web-based dashboard."><meta itemprop="datePublished" content="2020-05-26T16:00:00+00:00" />
+<meta itemprop="dateModified" content="2020-05-26T16:00:00+00:00" />
+<meta itemprop="wordCount" content="1559">
+<meta itemprop="keywords" content="broken access control,IDOR,mass assignment,business-logic error," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Chaining an IDOR with a business-logic error to achieve critical impact"/>
+<meta name="twitter:description" content="I recently stumbled upon a critical instance of broken-access control, and I thought its story would make for an interesting blogpost. I&rsquo;ve deliberately omitted some details (e.g. irrelevant HTTP headers) in the interest of simplicity and concision. Morever, all clues to the identity of the organisation I was hacking have been expunged from this post, for obvious reasons.
+A bit about the target ¶ The target consists in a service that allows users to create server-side apps via a Web-based dashboard."/>
+
+
+
+
+
+
+
+    <meta property="article:published_time" content="2020-05-26 16:00:00 &#43;0000 UTC" />
+
+
+
+
+
+
+
+
+    </head>
+
+    <body class="dark-theme">
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="//jub0bs.com/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">hello</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="//jub0bs.com/about/">About</a></li><li><a href="//jub0bs.com/posts/">Blog</a></li><li><a href="//jub0bs.com/testimonials/">Testimonials</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+
+            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+</span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+    <main class="post">
+
+        <div class="post-info">
+            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>8 minutes
+
+            
+
+            </p>
+        </div>
+
+        <article>
+            <h1 class="post-title">
+                <a href="//jub0bs.com/posts/2020-05-26-idor/">Chaining an IDOR with a business-logic error to achieve critical impact</a>
+            </h1>
+
+            
+
+            <div class="post-content">
+                <p>I recently stumbled upon a critical instance of
+<a href="https://owasp.org/www-community/Broken_Access_Control" target="_blank" rel="noopener">broken-access control</a>,
+and I thought its story would make for an interesting blogpost.
+I&rsquo;ve deliberately omitted some details (e.g. irrelevant HTTP headers)
+in the interest of simplicity and concision.
+Morever, all clues to the identity of the organisation I was hacking
+have been expunged from this post, for obvious reasons.</p>
+<h2 id="a-bit-about-the-target">A bit about the target <a href="#a-bit-about-the-target">¶</a></h2>
+<p>The target consists in a service that allows users
+to create server-side apps via a Web-based dashboard.
+Each app is owned by one and only one account,
+and accounts are meant to be completely isolated from one another.</p>
+<p>Creating an app requires you to choose a title and a URL for it.
+Each app is attributed a UUID upon creation.
+An app&rsquo;s UUID is public,
+as it&rsquo;s meant to be explicitly referenced in its frontend counterpart.</p>
+<p>An account can</p>
+<ul>
+<li>create new apps;</li>
+<li>modify the title and URL of an app it owns;</li>
+<li>delete an app it owns (an action that cannot be undone).</li>
+</ul>
+<h2 id="shifting-my-focus-to-access-control">Shifting my focus to access control <a href="#shifting-my-focus-to-access-control">¶</a></h2>
+<p>I quickly came across some <em>Low</em> to <em>Medium</em> vulnerabilities,
+which I promptly reported.
+Nothing to write home about, really.</p>
+<p>Because the UI looked sleek and the system well factured overall,
+I wasn&rsquo;t sure I would be able to find anything above <em>Medium</em> severity.
+That&rsquo;s when I decided to shift my focus to access control.
+Perhaps some <a href="https://cheatsheetseries.owasp.org/cheatsheets/Insecure_Direct_Object_Reference_Prevention_Cheat_Sheet.html" target="_blank" rel="noopener">Insecure Direct Object Reference (IDOR)</a>
+had so far eluded me&hellip;</p>
+<h2 id="gearing-up-for-idor-hunting">Gearing up for IDOR hunting <a href="#gearing-up-for-idor-hunting">¶</a></h2>
+<p>For Web hacking,
+I typically exercise the Web app in Firefox
+and I proxy all the associated traffic through <a href="https://portswigger.net/burp" target="_blank" rel="noopener">Burp</a>.
+I recently added <a href="https://addons.mozilla.org/en-US/firefox/addon/multi-account-containers/" target="_blank" rel="noopener">Firefox Multi-Account Containers</a>
+to my bag of tricks for testing access control.
+This Firefox add-on is a bit like private windows on steroids:
+it allows you to easily switch between sessions
+but obviates the need to repeatedly log out as one user and log in as another.
+This tool therefore eliminates some of the tedium of manual IDOR hunting,
+and I wish I had known about it sooner.
+For a good introduction to Firefox Multi-Account Containers,
+check out <a href="https://www.youtube.com/watch?v=zeDb9ugIGYs" target="_blank" rel="noopener">Katie&rsquo;s video on the topic</a> (thanks, Katie!).</p>
+<p>Like many other security researchers,
+I usually create at least two dummy accounts, if possible.
+I can then safely check whether poking at the resources owned by one account
+while logged in as the other has any effect;
+that way, I don&rsquo;t run the risk of interferring with resources owned by
+legitimate users of the system.</p>
+<p>This engagement was no exception: I created two dummy accounts,
+which got attributed IDs 101 and 102.
+I decided to use account 101 to play the part of the attacker
+and account 102 to play the part of the victim.</p>
+<p>I proceeded to create one app in each account,
+which got attributed the following UUIDs (simplified for this post):</p>
+<ul>
+<li><code>10110110-1101-1011-0110-110110110110</code> (owned by account 101, the attacker)</li>
+<li><code>10210210-2102-1021-0210-210210210210</code> (owned by account 102, the victim)</li>
+</ul>
+<h2 id="sequential-account-ids-in-the-url-but-no-idor-there">Sequential account IDs in the URL, but no IDOR there <a href="#sequential-account-ids-in-the-url-but-no-idor-there">¶</a></h2>
+<p>In my proxy&rsquo;s history, I noticed that, whenever I would view the app I created
+under the attacker&rsquo;s account, the following request would be issued:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">GET /accounts/101/apps/10110110-1101-1011-0110-110110110110
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">Host: api.example.org
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">Authorization: Bearer &lt;token-valid-for-account-101&gt;
+</span></span></span></code></pre></div><p>Something interesting jumped at me straight away:
+accounts were identified by sequential integers.
+Resources publicly identified by sequential integers
+are always of interest to an attacker.
+Because sequential IDs are trivial to enumerate,
+they can, at the very least,
+be exploited to <a href="https://www.youtube.com/watch?v=KDo68Laayh8&amp;t=17m43s" target="_blank" rel="noopener">reveal more business intelligence</a>
+than the organisation realises:
+external observers can indeed monitor the rate at which new IDs are issued
+in order to gauge how much the system is getting exercised
+and infer how well the business is doing.</p>
+<p>More to the point, finding a vulnerable injection point where sequential IDs
+are being used is quite common.
+Therefore, I initially attempted to access app resources owned by the victim
+while logged in as the attacker:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">GET /accounts/102/apps/10210210-2102-1021-0210-210210210210
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">Host: api.example.org
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">Authorization: Bearer &lt;token-valid-for-account-101&gt;
+</span></span></span></code></pre></div><p>But the response was as you would expect from a secure system:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="color:#66d9ef">HTTP</span><span style="color:#f92672">/</span><span style="color:#ae81ff">1.1</span> <span style="color:#ae81ff">403</span> <span style="color:#a6e22e">Forbidden</span>
+</span></span><span style="display:flex;"><span>Content-Type<span style="color:#f92672">:</span> <span style="color:#ae81ff">application/json; charset=utf-8</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;statusCode&#34;</span>: <span style="color:#ae81ff">403</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;message&#34;</span>: <span style="color:#e6db74">&#34;You do not have permission to perform this request.&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>In other words:</p>
+<blockquote>
+<p>You shall not pass!</p>
+</blockquote>
+<p>My hopes to find an IDOR were somewhat dashed,
+but I decided to continue my investigation undeterred.</p>
+<h2 id="a-suspicious-but-inconclusive-get-response">A suspicious but inconclusive GET response&hellip; <a href="#a-suspicious-but-inconclusive-get-response">¶</a></h2>
+<p>After some thinking, I got another idea:
+what would happen if I substituted the UUID of the attacker&rsquo;s app
+for the UUID of the victim&rsquo;s app in the URL path?
+So I tried that:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">GET /accounts/101/apps/10210210-2102-1021-0210-210210210210
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">Host: api.example.org
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">Authorization: Bearer &lt;token-valid-for-account-101&gt;
+</span></span></span></code></pre></div><p>The response puzzled me:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="color:#66d9ef">HTTP</span><span style="color:#f92672">/</span><span style="color:#ae81ff">1.1</span> <span style="color:#ae81ff">200</span> <span style="color:#a6e22e">OK</span>
+</span></span><span style="display:flex;"><span>Content-Type<span style="color:#f92672">:</span> <span style="color:#ae81ff">text/html; charset=utf-8</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>null
+</span></span></code></pre></div><p>Why use <code>text/html</code> as content type rather than <code>application/json</code>?
+More importantly, why use <code>200</code> as response status code rather than <code>404</code>?
+The latter would have been more appropriate than the former:
+no app with that UUID existed under account 101, after all.
+Perhaps this was just an implementation quirk,
+or perhaps I was onto something.</p>
+<h2 id="put-me-on-the-right-track">&hellip;PUT me on the right track <a href="#put-me-on-the-right-track">¶</a></h2>
+<p>After inspecting my proxy&rsquo;s history, I noticed that modifying the settings
+of the attacker&rsquo;s app would issue a request like the following:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="color:#a6e22e">PUT</span> /accounts/101/apps/10110110-1101-1011-0110-110110110110 <span style="color:#66d9ef">HTTP</span><span style="color:#f92672">/</span><span style="color:#ae81ff">1.1</span>
+</span></span><span style="display:flex;"><span>Host<span style="color:#f92672">:</span> <span style="color:#ae81ff">api.example.org</span>
+</span></span><span style="display:flex;"><span>Authorization<span style="color:#f92672">:</span> <span style="color:#ae81ff">Bearer &lt;token-valid-for-account-101&gt;</span>
+</span></span><span style="display:flex;"><span>Content-Type<span style="color:#f92672">:</span> <span style="color:#ae81ff">application/json</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;title&#34;</span>: <span style="color:#e6db74">&#34;dummy app in account 101&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;url&#34;</span>: <span style="color:#e6db74">&#34;https://jub0bs.com&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Although I couldn&rsquo;t access another account&rsquo;s app, perhaps I could modify it.
+I issued the following <code>PUT</code> request in an attempt to modify the victim&rsquo;s app
+while logged in as the attacker:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="color:#a6e22e">PUT</span> /accounts/101/apps/10210210-2102-1021-0210-210210210210 <span style="color:#66d9ef">HTTP</span><span style="color:#f92672">/</span><span style="color:#ae81ff">1.1</span>
+</span></span><span style="display:flex;"><span>Host<span style="color:#f92672">:</span> <span style="color:#ae81ff">api.example.org</span>
+</span></span><span style="display:flex;"><span>Authorization<span style="color:#f92672">:</span> <span style="color:#ae81ff">Bearer &lt;token-valid-for-account-101&gt;</span>
+</span></span><span style="display:flex;"><span>Content-Type<span style="color:#f92672">:</span> <span style="color:#ae81ff">application/json</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;title&#34;</span>: <span style="color:#e6db74">&#34;pwned by account 101!&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;url&#34;</span>: <span style="color:#e6db74">&#34;https://evilzone.org&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The response looked promising:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="color:#66d9ef">HTTP</span><span style="color:#f92672">/</span><span style="color:#ae81ff">1.1</span> <span style="color:#ae81ff">200</span> <span style="color:#a6e22e">OK</span>
+</span></span><span style="display:flex;"><span>Content-Type<span style="color:#f92672">:</span> <span style="color:#ae81ff">application/json; charset=utf-8</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;uuid&#34;</span>: <span style="color:#e6db74">&#34;10210210-2102-1021-0210-210210210210&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;title&#34;</span>: <span style="color:#e6db74">&#34;pwned by account 101!&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;url&#34;</span>: <span style="color:#e6db74">&#34;https://evilzone.org&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;isLive&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;accountId&#34;</span>: <span style="color:#ae81ff">102</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>I had apparently just changed the title and URL of the victim&rsquo;s app while
+logged in as the attacker.
+I switched to the victim&rsquo;s session to double-check:
+sure enough, after a page refresh,
+the attacker&rsquo;s changes were reflected on the victim&rsquo;s dashboard.</p>
+<p>The IDOR I so coveted had finally materialised in front of my eyes!
+I had just discovered that
+any account could change the title and URL of any app in the system.
+As such, this vulnerability would already have rated as a <em>High</em>,
+but I&rsquo;m glad I didn&rsquo;t stop there.</p>
+<h2 id="stealing-the-victims-app">Stealing the victim&rsquo;s app <a href="#stealing-the-victims-app">¶</a></h2>
+<p>I was about to report the IDOR I had just found,
+when something in the body of the <code>PUT</code> response caught my attention:
+the suspicious presence of an <code>accoundId</code> field.
+This repetition seemed superfluous:
+why specify the ID of the account owning the app in the response body,
+since that ID was already specified in the URL path?</p>
+<p>This suggested another attack to me:
+even though the only attributes of an app
+meant to be modifiable were its title and its URL,
+perhaps some business-logic error would allow me to change other app attributes
+simply by specifying the relevant fields in the JSON body of the <code>PUT</code> request.
+Because modifying an app&rsquo;s account ID was of particular interest to me,
+I issued the following request:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="color:#a6e22e">PUT</span> /accounts/101/apps/10210210-2102-1021-0210-210210210210 <span style="color:#66d9ef">HTTP</span><span style="color:#f92672">/</span><span style="color:#ae81ff">1.1</span>
+</span></span><span style="display:flex;"><span>Host<span style="color:#f92672">:</span> <span style="color:#ae81ff">api.example.org</span>
+</span></span><span style="display:flex;"><span>Authorization<span style="color:#f92672">:</span> <span style="color:#ae81ff">Bearer &lt;token-valid-for-account-101&gt;</span>
+</span></span><span style="display:flex;"><span>Content-Type<span style="color:#f92672">:</span> <span style="color:#ae81ff">application/json</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;accountId&#34;</span>: <span style="color:#ae81ff">101</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Here is the response I got:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="color:#66d9ef">HTTP</span><span style="color:#f92672">/</span><span style="color:#ae81ff">1.1</span> <span style="color:#ae81ff">200</span> <span style="color:#a6e22e">OK</span>
+</span></span><span style="display:flex;"><span>Content-Type<span style="color:#f92672">:</span> <span style="color:#ae81ff">application/json; charset=utf-8</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;uuid&#34;</span>: <span style="color:#e6db74">&#34;10210210-2102-1021-0210-210210210210&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;title&#34;</span>: <span style="color:#e6db74">&#34;pwned by account 101!&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;url&#34;</span>: <span style="color:#e6db74">&#34;https://evilzone.org&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;isLive&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;accountId&#34;</span>: <span style="color:#ae81ff">101</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Shocking! I had seemingly just transferred ownership of the victim&rsquo;s app
+to the attacker&rsquo;s account,
+simply by issuing a <code>PUT</code> request from the attacker&rsquo;s session.
+With uncontained excitement,
+I quickly double-checked in the UI that the attack had been successful.
+Yes! The attacker&rsquo;s dashboard now listed both apps
+(the app created by the attacker and the one created by the victim),
+whereas the victim&rsquo;s dashboard listed none.</p>
+<h2 id="total-compromise-of-the-system">Total compromise of the system <a href="#total-compromise-of-the-system">¶</a></h2>
+<p>Of course, this attack wasn&rsquo;t restricted to my two dummy accounts:
+just by knowing an app&rsquo;s UUID (remember: they&rsquo;re public), I could
+transfer ownership of the app from any account to an account I controlled.</p>
+<p>I subsequently realised that I could modify more app attributes that way:
+the <code>PUT</code> request more or less blindly accepted any known field that I would
+specify in the body and effect the required changes.
+This particular business-logic error falls under
+<a href="https://cwe.mitre.org/data/definitions/915.html" target="_blank" rel="noopener"><em>CWE-915: Improperly Controlled Modification
+of Dynamically-Determined Object Attributes</em></a>.
+It&rsquo;s similar in nature to the <a href="https://cheatsheetseries.owasp.org/cheatsheets/Mass_Assignment_Cheat_Sheet.html" target="_blank" rel="noopener">mass-assignment vulnerability</a>
+that <a href="https://twitter.com/homakov" target="_blank" rel="noopener">Egor Homakov</a> <a href="https://github.com/rails/rails/issues/5228" target="_blank" rel="noopener">reported to GitHub</a> back in 2012.
+Moreover, app creation and deletion
+(via <code>POST</code> and <code>DELETE</code> requests, respectively),
+also suffered from the same IDOR vulnerability.</p>
+<p>At that stage, I could literally own any app in the system.
+Needless to say, my findings totally violated the system&rsquo;s permission model.
+What compounded the problem is that
+the organisation behind this system was dogfooding it,
+and their app&rsquo;s UUID could trivially be discovered on their website!
+I resisted (with some difficulty) the temptation to mess with their main app;
+after all, I had already gathered all the evidence I needed,
+and facetiousness could only have compromised my relationship with the
+organisation.
+I reported the issue with a <em>Critical</em> severity rating.</p>
+<h2 id="conclusion">Conclusion <a href="#conclusion">¶</a></h2>
+<p>Hunting for IDORs can be tedious, but finding one is exhilarating.
+Many IDORs are right for the taking—insofar as detecting and exploiting them
+doesn&rsquo;t require any advanced technical skills—and
+they often have a significant impact on the target&rsquo;s security,
+especially when you can chain them with some other vulnerability.
+I know I will keep my eyes peeled for overtrusting <code>PUT</code> requests from now on.</p>
+
+            </div>
+        </article>
+
+        <hr />
+
+        <div class="post-info">
+                <p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="//jub0bs.com/tags/broken-access-control">broken access control</a></span><span class="tag"><a href="//jub0bs.com/tags/idor">IDOR</a></span><span class="tag"><a href="//jub0bs.com/tags/mass-assignment">mass assignment</a></span><span class="tag"><a href="//jub0bs.com/tags/business-logic-error">business-logic error</a></span>
+                </p>
+
+            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1559 Words</p>
+
+            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2020-05-26 16:00 &#43;0000</p>
+        </div>
+
+        
+            <div class="pagination">
+                <div class="pagination__title">
+                    <span class="pagination__title-h"></span>
+                    <hr />
+                </div>
+
+                <div class="pagination__buttons">
+                    
+                        <span class="button previous">
+                            <a href="//jub0bs.com/posts/2020-06-23-ssrf/">
+                                <span class="button__icon">←</span>
+                                <span class="button__text">Leveraging an SSRF to leak a secret API key</span>
+                            </a>
+                        </span>
+                    
+
+                    
+                        <span class="button next">
+                            <a href="//jub0bs.com/posts/2020-02-26-plugging-git-leaks/">
+                                <span class="button__text">Plugging Git leaks: preventing and fixing information exposure in repositories</span>
+                                <span class="button__icon">→</span>
+                            </a>
+                        </span>
+                    
+                </div>
+            </div>
+        
+    </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    
+    <div class="footer__inner">
+        <div class="footer__content">
+            
+            <span><a href="//jub0bs.com/">Julien Cretel</a></span>
+            <span><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></span>
+            <span><a href="//jub0bs.com/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
+            
+        </div>
+    </div>
+    
+    
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+
+<script type="text/javascript" src="/bundle.min.8cc3758efe48ef82e2eb9a5f317b44c0805353a43762207be6fe8ffb05815cce7a19d37f6bf387c378a3bdfc3029981668d645374a33db4ee3480e15a4bfdc7c.js" integrity="sha512-jMN1jv5I74Li65pfMXtEwIBTU6Q3YiB75v6P&#43;wWBXM56GdN/a/OHw3ijvfwwKZgWaNZFN0oz207jSA4VpL/cfA=="></script>
+
+
+
+    </body>
+</html>

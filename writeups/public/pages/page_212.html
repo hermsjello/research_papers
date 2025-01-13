@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+      
+      <title>Stealing Your Private YouTube Videos, One Frame at a Time - bugs.xdavidhu.me</title>
+      
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <meta http-equiv="content-language" content="en-gb" />
+      <meta name="description" content="David Schütz's bug bounty writeups">
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+      <link href="//fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,700|Lora:400,700,400italic|Overpass+Mono" rel="stylesheet" type="text/css">
+      <link rel="stylesheet" type="text/css" href="/css/main.css" />
+      <link rel="alternate" type="application/atom+xml" title="bugs.xdavidhu.me" href="/feed.xml">
+      <base target="_blank">
+      
+      <meta name="twitter:card" content="summary_large_image">
+      <meta name="twitter:site" content="@xdavidhu" />
+      <meta name="twitter:creator" content="@xdavidhu" />
+      <meta name="author" content="David Schütz">
+      <meta name="twitter:title" content="Stealing Your Private YouTube Videos, One Frame at a Time" />
+      <meta name="title" property="og:title" content="Stealing Your Private YouTube Videos, One Frame at a Time" />
+      <meta name="twitter:image" content="https://bugs.xdavidhu.me/assets/posts/2021-01-11-stealing-your-private-videos-one-frame-at-a-time/twitter-card.png" />
+      <meta name="image" property="og:image" content="https://bugs.xdavidhu.me/assets/posts/2021-01-11-stealing-your-private-videos-one-frame-at-a-time/twitter-card.png" />
+      <meta name="twitter:image:alt" content="Preview image of the blog post." />
+      
+  </head>
+
+  <body>
+    <!--[if lt IE 7]>
+        <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+    <![endif]-->
+
+
+    <div class="site-wrapper">
+
+      <header >
+        <div class="h-wrap">
+          <h1 class="title"><a href="/" title="Back to Homepage" target="_self"><span class="title-normal">bugs.xdavidhu.me</span><span class="title-small">bugs</span></a></h1>
+          <div class="menu-icon"><a class="back" title="back to xdavidhu.me" href="https://xdavidhu.me" target="_self"></a></div>
+        </div>
+      </header>
+
+      <main>
+        <section class="single-wrap">
+  <article class="single-content" itemscope itemtype="http://schema.org/BlogPosting">
+    <div class="feat">
+      <h5 class="page-date">
+        <time datetime="2021-01-11T11:00:00+00:00" itemprop="datePublished">
+          11 January 2021
+        </time>
+      </h5>
+    </div>
+    <h1 class="page-title" itemprop="name headline">Stealing Your Private YouTube Videos, One Frame at a Time</h1>
+    <div itemprop="articleBody">
+      <p>Back in December 2019, a few months after I started hacking on Google VRP, I was looking at YouTube. I wanted to find a way to get access to a <code class="language-plaintext highlighter-rouge">Private</code> video which I did not own.</p>
+
+<p>When you upload a video to YouTube, you can select between 3 privacy settings. <code class="language-plaintext highlighter-rouge">Public</code>, which means that anyone can find and watch your video, <code class="language-plaintext highlighter-rouge">Unlisted</code>, which only allows users who know the video ID (the URL) to watch the video, and <code class="language-plaintext highlighter-rouge">Private</code>, where only you can watch the video, or other accounts you’ve explicitly given permission to do so.</p>
+
+<p>First thing I did was to upload a video to my second testing account’s YouTube channel, and set the video’s privacy to <code class="language-plaintext highlighter-rouge">Private</code>, so I can use that video for testing. <em>(Remember, always only test against resources/accounts you own!)</em> If I can find a way to access that video with my first testing account, we have a bug.</p>
+
+<p>With my first account, I started using YouTube, trying every feature, pressing every button I could find, and whenever I saw an HTTP request with a video ID in it, I changed it to the target <code class="language-plaintext highlighter-rouge">Private</code> video, hoping that I can leak some information about it, but I wasn’t really getting any success. The main YouTube site (at least the endpoints I have tested), seems to always check if the video was <code class="language-plaintext highlighter-rouge">Private</code> or not, and when trying to request info about the target <code class="language-plaintext highlighter-rouge">Private</code> video, they always returned errors such as <code class="language-plaintext highlighter-rouge">This video is private!</code>.</p>
+
+<p>I needed to find another way.</p>
+
+<p>A great thing to do in a situation like this, is to try to look for other products/services which are not your main target, but are somehow interacting with its resources internally. If they have access to its resources, it might be possible that they don’t have every level of protection that the main product has.</p>
+
+<p>An interesting target which matched these requirements was Google Ads. This is the product which advertisers use to create ads across all Google services, <em>including YouTube</em>. So, the ads you get before YouTube videos are set up by advertisers here, on the Google Ads platform.</p>
+
+<p>So I created a Google Ads account, and created a new advertisement, which would play a video of mine as a skippable ad for YouTube users. During the ad creation process, I also tried to use the target <code class="language-plaintext highlighter-rouge">Private</code> video’s ID wherever I could, but no success.</p>
+
+<p>After creating the ad, I started looking at all of the different Google Ads features. The thing was huge, it had a bunch of different settings/tools. I was trying to find anything that could be YouTube-related.</p>
+
+<p>There was a page called <code class="language-plaintext highlighter-rouge">Videos</code>, where I could see a list of videos used by my advertisements. Clicking on a video opened up an <code class="language-plaintext highlighter-rouge">Analytics</code> section for that specific video. It had an embedded player, some statistics, and an interesting feature called <code class="language-plaintext highlighter-rouge">Moments</code>. It allowed advertisers to “mark” specific moments of the video, to see when different things happen (such as the timestamp of when the company logo appears). To be honest I am not quite sure what advertisers use this feature for, nevertheless, it seemed interesting:</p>
+
+<p><img src="/assets/posts/2021-01-11-stealing-your-private-videos-one-frame-at-a-time/ads-moments.gif" alt="The Moments feature on the Ads console" /></p>
+
+<p>Looking at the proxy logs, every time I “marked a moment”, a <code class="language-plaintext highlighter-rouge">POST</code> request was made to a <code class="language-plaintext highlighter-rouge">/GetThumbnails</code> endpoint, with a body which included a video ID:</p>
+
+<div class="language-http highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">POST</span> <span class="nn">/aw_video/_/rpc/VideoMomentService/GetThumbnails</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">ads.google.com</span>
+<span class="na">User-Agent</span><span class="p">:</span> <span class="s">Internet-Explorer-6</span>
+<span class="na">Cookie</span><span class="p">:</span> <span class="s">[redacted]</span>
+
+__ar={"1":"kCTeqs1F4ME","2":"12240","3":"387719230"}
+</code></pre></div></div>
+
+<p>Where in the <code class="language-plaintext highlighter-rouge">__ar</code> parameter, <code class="language-plaintext highlighter-rouge">1</code> was the ID of the video and <code class="language-plaintext highlighter-rouge">2</code> was the time of the moment in milliseconds. The response was a base64 encoded image, which was the thumbnail displayed by Ads.</p>
+
+<p>I did what I did a bunch of times already, and replaced the ID to my second account’s <code class="language-plaintext highlighter-rouge">Private</code> video in the request, and to my surprise, <strong>it returned a base64 response</strong>!</p>
+
+<p>I quickly Googled “base64 to image”, and pasted the base64 into the first decoder I found, and it <strong>displayed a thumbnail from the target <code class="language-plaintext highlighter-rouge">Private</code> video</strong>! It worked! I have found a working IDOR <em>(Insecure Direct Object Reference)</em> bug, where I could get a frame from any private video on YouTube!</p>
+
+<p>But I was like “hm, that is just one frame”. We can do better.</p>
+
+<p>I wanted to make a proof of concept Python script which generates an actual, moving “video”. I searched for some calculations, and figured out that if the video is in 24 FPS, one frame stays on the screen for <code class="language-plaintext highlighter-rouge">33</code> milliseconds. So I just have to download every image starting from <code class="language-plaintext highlighter-rouge">0</code> milliseconds, incrementing by <code class="language-plaintext highlighter-rouge">33</code> milliseconds every time, and then construct some kind of video using all of the images I have acquired.</p>
+
+<p>I wrote a quick and dirty POC which downloaded the frames for the first 3 seconds of a video, decoded them, and then generated a GIF. To test it, I have ran it against an old video of mine, which I had previously privated due to, of course, the <em>high level of cringe</em>:</p>
+
+<iframe src="https://www.youtube.com/embed/G3bNbYRTxZM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+
+<p>And there you have it, using this bug, any private YouTube video could have been downloaded by a malicious attacker, which to me feels like a pretty cool impact. But of course, it had a few limitations I couldn’t overcome:</p>
+
+<ul>
+  <li>In the real world you would have to know the ID of the target video. Mass-leaking those would be considered a bug on its own.</li>
+  <li>Since these are just images, you can’t access audio.</li>
+  <li>The resolution is very low. (but it’s high enough to see what is happening)</li>
+</ul>
+
+<p>The takeaway from this bug is that situations where two different products interact with each other under the hood are always a good area to focus on, since both product teams probably only know their own systems best, and might miss important details when working with a different product’s resources.</p>
+
+<p>Looking for an IDOR like this can be a very repetitive and manual task, and nowadays I try to avoid just blindly changing IDs everywhere and hoping for the best. After you test a product for a while and get a feel of how it works internally, it might be more effective (and more fun) to try to think about different unexpected actions that the developers maybe didn’t think about based on what you saw already, or focus on features that just got released, or to just do any other non-mindless task. You will probably enjoy it more in the long term. In my opinion, the more you understand a system, the more ideas about how to break it will just naturally come to mind.</p>
+
+<p>But again, even in the most robust and well tested systems, there is the chance that just swapping an ID in a request will get you a critical bug.</p>
+
+<p>Thank you for reading! See you <a href="https://twitter.com/xdavidhu" target="_blank">next Monday</a> ;)</p>
+
+<h3 id="timeline">Timeline:</h3>
+<p>[Dec 11, 2019] - Bug reported <br />
+[Dec 12, 2019] - Initial triage <br />
+[Dec 20, 2019] - Bug accepted (P4 -&gt; P1) <br />
+[Jan 08, 2020] - Bug mitigated by temporarily disabling the <code class="language-plaintext highlighter-rouge">Moments</code> feature <br />
+[Jan 17, 2020] - Reward of <a href="https://www.google.com/about/appsecurity/reward-program/" target="_blank">$5000</a> issued <br />
+[??? ??, 2020] - <code class="language-plaintext highlighter-rouge">Moments</code> re-enabled, now it checks if you have access to the video</p>
+
+    </div>
+    <div class="feat share">
+      <a href="https://twitter.com/xdavidhu" class="popup">
+        <span class="icon-twitter"></span>
+      </a>
+    </div>
+    <!-- 
+      <a rel="next" href="/google/2021/01/18/the-embedded-youtube-player-told-me-what-you-were-watching-and-more/" id="next">
+        <span class="nav-title nav-title-next">newer</span> &rarr;
+      </a>
+    
+    
+      <a rel="prev" href="/google/2020/03/08/the-unexpected-google-wide-domain-check-bypass/" id="prev">
+        &larr; <span class="nav-title nav-title-prev">older</span>
+      </a>
+     -->
+  </article>
+</section>
+
+      </main>
+
+      <footer>
+        <small></small>
+      </footer>
+
+    </div>
+    
+
+    <script src="/js/main.js"></script>
+
+  </body>
+</html>

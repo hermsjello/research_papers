@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" type="image/png" href="/i/shield.png" />
+        <meta name="author" content="Bassem Bazzoun">
+
+    <title>Delete any Video or Reel on Facebook (11,250$) | Bugreader</title>
+    <meta property="og:title" content="Delete any Video or Reel on Facebook (11,250$)"/>
+    <meta name="twitter:title" content="Delete any Video or Reel on Facebook (11,250$)"/>
+
+    <meta property="og:type" content="Article"/>
+    <meta property="og:url" content="https://bugreader.com/social/100965"/>
+    <meta property="fb:app:id" content="26875602081742665785298"/>
+
+    <meta property="og:image" content="https://i.imgur.com/DlYk8nM.gif">
+    <meta name="twitter:image:src" content="https://i.imgur.com/DlYk8nM.gif">
+    <meta name="description" content="
+
+Setting my goal
+
+  
+
+While I was attempting to discover more vulnerabilities as part of Facebook's bug bounty program, I spent about two weeks witho...">
+    <meta property="og:description" content="
+
+Setting my goal
+
+  
+
+While I was attempting to discover more vulnerabilities as part of Facebook's bug bounty program, I spent about two weeks witho..."/>
+    <meta name="twitter:description" content="
+
+Setting my goal
+
+  
+
+While I was attempting to discover more vulnerabilities as part of Facebook's bug bounty program, I spent about two weeks witho..."/>
+
+
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+
+    <meta property="og:site_name" content="Bugreader"/>
+    <meta name="twitter:site" content="Bugreader"/>
+
+    
+        <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet">
+    
+    <script src="./index_files/jq.js"></script>
+
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" href="/social/index_files/animate.css">
+    <link rel="stylesheet" href="/a/fontawesome/css/all.min.css">
+    <link href="index_files/editor/css/penplate.css" rel="stylesheet" type="text/css">
+    <link href="index_files/bootstrap.css" rel="stylesheet">
+    <link href="index_files/style.css?t=48548548545" rel="stylesheet">
+    <link href="index_files/cardstyle.css?t=48548548545" rel="stylesheet">
+        <link href="index_files/h.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js" integrity="sha256-eOgo0OtLL4cdq7RdwRUiGKLX9XsIJ7nGhWEKbohmVAQ=" crossorigin="anonymous"></script>
+
+    
+
+    <script>
+    /* funcs */
+    function brmessage(title, bg, timeout){
+    if(bg=='error'){ bg='#fd4431'; icon='fa fa-times-circle'; color='white'; }
+    if(bg=='success'){ bg='#a7ff88'; icon='fa fa-check-circle'; color='black'; }
+    var html = `
+    <div style="position:fixed;bottom:20px;left:20px;z-index:99999">
+    <div 
+    style="display:block;background:${bg};padding:5px;min-width:107px;border-radius:25px;line-height:25px;padding-bottom:6px;padding-left:10px;padding-right:14px;font-size: 14px; font-weight: 600;color:${color}"
+    class="animated slideInUp"><i class="${icon}"></i>  ${title}</div>
+    </div>
+    `;
+    var toremove = $(html);
+    $('body').append(toremove);
+    setTimeout(() => {
+    $(toremove).remove();
+      }, timeout);
+    }
+    /* funcs */
+    var _photoPlaceHolder = '/social/index_files/photo1.png';
+    var _category = '0';
+    var _subcategory = '0';
+    var globalCompany = '0';
+    var image_upload_html = '<div class="col-md-12 text-center each-item each-img col-xs-3"><label class="image_upload_div cp">\
+    <img class="mb10 w100" src="/social/index_files/photo1.png" style="">\
+    <input style="" type="file" class="image_upload">\
+    <input style="display:none" class="_image">\
+    <div class="delete_image hideit"><i class="fa fa-trash"></i></div>\
+    </label></div>';
+    var video_link_html = '<div class="col-12 mb-0">\
+    <input placeholder="Paste Youtube Link" class="form-control each_video_input">\
+    </div>';
+    var any_link_html = '';
+        var loginorreg = `<div style="display:block" class="col-md-12 mb-3 each_post card p-3">Want to add comments and replies? <a href="./?register">Register</a> or <a href="./?login">Login</a> to contribute.</div>`;
+    var isnewpost = 0;
+    var ismain = 1;
+    var ispost = 100965;
+    var postlink = 'https://bugreader.com/social/100965';
+    var editpost = 0;
+    var isuser = 0;
+    var profileuser = 0;
+    var profileusername = '';
+    var ismanage = 0;
+    var commentBox = `<div class="w100 mb-2" style="position:relative" id="add_comment_here">
+<textarea class="form-control w100 comment-now" spellcheck="false" placeholder="Comment"></textarea>
+<button class="btn btn-primary btn-sm send-comment"><i class="fa fa-paper-plane"></i></button>
+</div>`;
+    var replyCommentId = false;
+    var replyOneTimeScroll = false;
+    var resCommentType = null;
+    var excludeComment = null;
+    var postLink = 'https://bugreader.com/social/100965';
+    var currentPostStatus = false;
+    var ___L1 = '<div class="card loading w100 " style="padding:10px">Getting Comments Please Wait ...</div>';
+    var ___L2 = '<div class="card loading w100 " style="padding:10px">Loading Posts ...</div>';
+        var _cats = [{"id":"11","_title":"Write ups","subcats":[{"id":"11","_title":"General"}]},{"id":"10","_title":"Tutorials","subcats":[{"id":"9","_title":"General"},{"id":"5","_title":"Setup"},{"id":"10","_title":"Reverse Engineering"}]},{"id":"12","_title":"Hackers Spotlight ","subcats":[{"id":"12","_title":"General"}]},{"id":"13","_title":"Challenges ","subcats":[{"id":"13","_title":"General"}]},{"id":"9","_title":"Bug Validity","subcats":[{"id":"6","_title":"General"},{"id":"8","_title":"Best Practices"}]}];
+
+    var _switch = `<div class="dropdown mo-editor-switch">
+    <i class="fa fa-align-left cp mo-editor-opt" data-toggle="dropdown"></i>
+    <div class="dropdown-menu each-control">
+    <a style="pointer-events:none" class="dropdown-item"><b>Change Type</b><hr style="margin-top: 12px;margin-bottom: 5px;"></a>
+    <a class="dropdown-item _control" href="#!" data-type="0" data-icon="fa-align-left"><i class="fa fa-align-left"></i> Text</a>
+    <a class="dropdown-item _control" href="#!" data-type="1" data-icon="fa-code"><i class="fa fa-code"></i> Code</a>
+    <a class="dropdown-item _control" href="#!" data-type="2" data-icon="fa-image"><i class="fa fa-image"></i> Image</a>
+    <a class="dropdown-item _control" href="#!" data-type="3" data-icon="fa-video"><i class="fa fa-video"></i> Video</a>
+    <a class="dropdown-item delete_block" href="#!" data-type="" data-icon=""><i class="fa fa-trash"></i> DELETE</a>
+    </div>
+    </div>`;
+
+    var _switch_plus = `<div class="dropdown mo-editor-switch-plus">
+    <i class="fa fa-arrow-down cp foraddi" 
+    data-toggle="dropdown"></i>
+    <div class="dropdown-menu add_more each-control-plus">
+    <a style="pointer-events:none" class="dropdown-item"><b>Insert After</b><hr style="margin-top: 12px;margin-bottom: 5px;"></a>
+    <a class="dropdown-item" href="#!" data-type="0" data-icon="fa-align-left"><i class="fa fa-align-left"></i> Text</a>
+    <a class="dropdown-item" href="#!" data-type="1" data-icon="fa-code"><i class="fa fa-code"></i> Code</a>
+    <a class="dropdown-item" href="#!" data-type="2" data-icon="fa-image"><i class="fa fa-image"></i> Image</a>
+    <a class="dropdown-item" href="#!" data-type="3" data-icon="fa-video"><i class="fa fa-video"></i> Video</a>
+    </div>
+    </div>`;
+
+  var _each_type_handle = `<div class="each_type_handle"></div>`;
+
+  var _plctext = `<span class="text-placeholder">Inform the world ...</span>`;
+  var _plctext2 = `<p>Inform the world ...</p>`;
+  var _plctext3 = `<p><span class="text-placeholder">Inform the world ...</span></p>`;
+  var firstPageLoad = true;
+  </script>
+
+  
+  </head>
+
+<body style="height:auto;background:white">
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top-" id="main-nav"
+style="height: 60px;">
+  <a class="navbar-brand pt-0" href="./">Bugreader <small style="font-size: 13px;color: #eee;letter-spacing: 2px;">Social</small></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item _active">
+        <a class="nav-link _specialNav" href="./"><span class="___menu">All Posts</span></a>
+      </li>
+      
+      <li class="nav-item dropdown __isnav ">
+      <a class="nav-link dropdown-toggle" href="" data-toggle="dropdown">
+      <span class="___menu">Write ups</span>
+      </a>
+      <div class="dropdown-menu">
+      <a class="dropdown-item" href="./write-ups">All</a><a class="dropdown-item" href="./write-ups:general">General</a>
+      </div>
+    </li>
+     
+      <li class="nav-item dropdown __isnav ">
+      <a class="nav-link dropdown-toggle" href="" data-toggle="dropdown">
+      <span class="___menu">Tutorials</span>
+      </a>
+      <div class="dropdown-menu">
+      <a class="dropdown-item" href="./tutorials">All</a><a class="dropdown-item" href="./tutorials:general">General</a><a class="dropdown-item" href="./tutorials:setup">Setup</a><a class="dropdown-item" href="./tutorials:reverse-engineering">Reverse Engineering</a>
+      </div>
+    </li>
+     
+      <li class="nav-item dropdown __isnav ">
+      <a class="nav-link dropdown-toggle" href="" data-toggle="dropdown">
+      <span class="___menu">Hackers Spotlight </span>
+      </a>
+      <div class="dropdown-menu">
+      <a class="dropdown-item" href="./hackers-spotlight-">All</a><a class="dropdown-item" href="./hackers-spotlight-:general">General</a>
+      </div>
+    </li>
+     
+      <li class="nav-item dropdown __isnav ">
+      <a class="nav-link dropdown-toggle" href="" data-toggle="dropdown">
+      <span class="___menu">Challenges </span>
+      </a>
+      <div class="dropdown-menu">
+      <a class="dropdown-item" href="./challenges-">All</a><a class="dropdown-item" href="./challenges-:general">General</a>
+      </div>
+    </li>
+     
+      <li class="nav-item dropdown __isnav ">
+      <a class="nav-link dropdown-toggle" href="" data-toggle="dropdown">
+      <span class="___menu">Bug Validity</span>
+      </a>
+      <div class="dropdown-menu">
+      <a class="dropdown-item" href="./bug-validity">All</a><a class="dropdown-item" href="./bug-validity:general">General</a><a class="dropdown-item" href="./bug-validity:best-practices">Best Practices</a>
+      </div>
+    </li>
+         </ul>
+    <div class="form-inline my-2 my-lg-0">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+
+
+    <li class="nav-item" data-nav="/">
+        <a class="nav-link" data-nav="" href="/">
+          <i class="fa fa-home"></i>
+          Home
+          </a>
+      </li>
+
+      <li class="nav-item" data-nav="">
+        <a class="nav-link" data-nav="" href="/reports">
+          <i class="fa fa-archive"></i>
+          Reports
+          </a>
+      </li>
+
+      <li class="nav-item active ___HIDE" data-nav="">
+        <a class="nav-link" data-nav="" href="/social/">
+          <i class="fa fa-users"></i>
+          Social          </a>
+      </li>
+
+      
+      <li class="nav-item" data-nav="researchers">
+        <a class="nav-link" href="/researchers">
+          <i class="fa fa-user-shield"></i>
+          Researchers
+          </a>
+      </li>
+
+          <li class="nav-item">
+        <a class="nav-link" href="/secure/?redirect=social">
+        <i class="fa fa-sign-in-alt"></i>
+        Login</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="/secure/register.php">
+        <i class="fa fa-user-plus"></i>
+        Register</a>
+      </li>
+    
+    
+      
+    </ul>
+    </div>
+  </div>
+
+</nav>
+
+
+
+
+<style>
+#post_loading {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: fixed;
+  display: block;
+  opacity: 1;
+  background-color: #34495e;
+  z-index: 999999;
+  text-align: center;
+}
+</style>
+
+<div id="post_loading">
+<div style="transform: translateY(-50%);top: 50%;position: absolute;left: 0px;width: 100%;text-align: center;">
+<img src="/a/logosimple.png" alt="Bugreader">
+<br>
+<span style="color:white">Loading post ...<span id="posrloadcount"></span></span>
+</div>
+</div>
+
+
+<script>
+/* post loading */
+if(ispost){
+// var postLoadCount = setInterval(() => {
+// postCount();
+// }, 100);
+// postCount();
+$(window).on('load', function(){
+if($(window).width() < 768) { $('#mobileRem').attr('style', ''); }
+$('#post_loading').remove();
+clearInterval(postLoadCount);
+});
+function postCount(){
+if(parseInt(document.getElementById('posrloadcount').innerHTML) < 100){
+document.getElementById('posrloadcount').innerHTML = (parseInt(document.getElementById('posrloadcount').innerHTML) + 1) + '%';
+  }
+if(parseInt(document.getElementById('posrloadcount').innerHTML) >= 100){
+clearInterval(postLoadCount);
+document.getElementById('posrloadcount').innerHTML = 'Please wait ...';
+  }
+ }
+}
+</script>
+
+<div class="col-md-12">
+<div class="row">
+<div class="col-md-6 offset-md-3 mt-3 _2">
+
+
+<div class="row">
+<div class="col-md-12">
+<div class="row card-c pt-2 pb-3 mb-0"  id="mobileRem"
+style="padding-top:3px!important;padding-bottom:1px !important;margin-bottom: 24px !important;border:none;"
+>
+<div class="w100">
+<h3 id="post_title" class="ml-0 mb-3" style="position:relative;padding-right:6px">
+<a style="color:black" class="_postLink" 
+href="https://bugreader.com/social/100965">Delete any Video or Reel on Facebook (11,250$)</a>
+</h3>
+</div>
+<div class="col-md-1 text-center d-md-block d-sm-none d-none" style="padding-left:0px"> 
+<div class="profile-image float-md-right-"><img class="rounded-circle img-thumbnail __postPic" src="https://bugreader.com/data/profile/63a311d988ab5167163132163a311d988f5b1671631321239131.jpeg"> </div>
+</div>
+<div class="col-md-11" style="margin-top:-5px">
+<p class="postinfo" style="margin-top:1px;margin-bottom: 5px;">
+<b><a 
+style="font-size: 19px;color: #333;"
+href="/bassembazzoun_">Bassem Bazzoun</a></b>
+<br>
+Last Update: <b>21 Dec 2022 . 14:29 PM</b>
+in <b>
+<a 
+style="color: #333;"
+href="./write-ups">Write ups</a>
+</b> . <b>
+<a 
+style="color: #333;"
+href="./write-ups:general">General</a></b> in <b>Facebook</b></p>
+
+<div class="s1-control w100">
+<span class="cp copy-now control-single" data-text="https://bugreader.com/social/100965"><i class="fa fa-link ico-x"></i> Copy Link</span>
+ 
+<div class="btn-group">
+<span class="cp control-single" data-toggle="dropdown"><i class="fa fa-share-square ico-x"></i> Share</span>
+<div class="dropdown-menu _nostyle">
+<a class="dropdown-item" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://bugreader.com/social/100965"><i class="fab fa-facebook"></i> Facebook</a>
+<a class="dropdown-item" target="_blank" href="https://twitter.com/intent/tweet?url=https://bugreader.com/social/100965"><i class="fab fa-twitter"></i> Twitter</a>
+<a class="dropdown-item" target="_blank" href="https://wa.me/?text=https://bugreader.com/social/100965"><i class="fab fa-whatsapp"></i> Whatsapp</a>
+<a class="dropdown-item" target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://bugreader.com/social/100965"><i class="fab fa-linkedin"></i> LinkedIn</a>
+</div>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+
+</div>
+
+<div class="col-md-6 offset-md-3 _3">
+<div class="row" id="thePost">
+<div class="col-md-12- w100">
+<div class="col-md-12 card __text" style="">
+<h3>
+
+Setting my goal
+
+</h3>  <p>
+
+While I was attempting to discover more vulnerabilities as part of Facebook's bug bounty program, I spent about two weeks without success. I began to feel like there were no more bugs on Facebook, but I continued to try and eventually realized that the issue was with my approach and not necessarily the lack of vulnerabilities on the platform. I understood that <b>vulnerabilities never truly end</b> and that in order to find a bug, I needed to change my way of thinking. With this new perspective, I was confident that I would eventually discover a bug.
+
+</p>
+</div>
+</div><div class="col-md-12- w100">
+<div class="col-md-12 card __text" style="">
+<p>The first thing I did was to start testing every endpoint in Facebook, believing that every endpoint was potentially vulnerable. My goal was to focus on finding critical bugs, as I believed that by determining my focus and sticking to it, I would be more likely to achieve my goal. With this mindset, I began testing for IDOR vulnerabilities, specifically focusing on the ability to delete photos, videos, or disclose sensitive information.  </p>
+</div>
+</div><div class="col-md-12- w100">
+<div class="col-md-12 card __image">
+<a href="https://i.imgur.com/DlYk8nM.gif" 
+data-lightbox="image-76bbc2ada2887b6fee1e1996385ef3ea6b5c63f8"
+target="_blank"><img src="https://i.imgur.com/DlYk8nM.gif" class="img-fluid img-thumbnail w100 eachpostimage"></a>
+</div>
+</div><div class="col-md-12- w100">
+<div class="col-md-12 card __text" style="">
+<p><span class="__break"></span></p>
+</div>
+</div><div class="col-md-12- w100">
+<div class="col-md-12 card __text" style="">
+<h3>The Full story</h3>  <p>I began searching for critical bugs and thoroughly testing various endpoints, not underestimating any of them. Eventually, I came across a feature in the Meta business suite that allowed me to upload a "Reel" to my page. When uploading a video, I noticed that I had the option to "Crop" and "Trim" it.  </p>
+</div>
+</div><div class="col-md-12- w100">
+<div class="col-md-12 card __image">
+<a href="https://i.imgur.com/SN7vM7i.png" 
+data-lightbox="image-b47ee53abf9515d39acb3d06536ef1c2796f4c48"
+target="_blank"><img src="https://i.imgur.com/SN7vM7i.png" class="img-fluid img-thumbnail w100 eachpostimage"></a>
+</div>
+</div><div class="col-md-12- w100">
+<div class="col-md-12 card __text" style="">
+<p><span class="__break"></span></p>
+</div>
+</div><div class="col-md-12- w100">
+<div class="col-md-12 card __text" style="">
+<p>The first thing that came to mind was to examine the request for <b>trimming</b> and attempt to trim other people's videos. For example, if someone uploaded a video on Facebook with a length of 10 minutes, I would try to trim the video from the start to the 1-second mark, which would make it appear as though the video had been deleted due to its shortened length. </p>
+</div>
+</div><div class="col-md-12- w100">
+<div class="col-md-12 card __text" style="">
+<p><span class="__break"></span></p>
+</div>
+</div><div class="col-md-12- w100">
+<div class="col-md-12 card __image">
+<a href="https://i.imgur.com/vrYlnN3.png" 
+data-lightbox="image-23301faa2f8e1f90a831d6f42e3285758020ec7b"
+target="_blank"><img src="https://i.imgur.com/vrYlnN3.png" class="img-fluid img-thumbnail w100 eachpostimage"></a>
+</div>
+</div><div class="col-md-12- w100">
+<div class="col-md-12 card __text" style="">
+<p>Unfortunately, the trim function did not work. As a result, I shifted my focus to the second option, <b>"Cropping."</b> I had the idea to try cropping other people's videos and discovered that if I was able to crop them to a size of 1x1 pixel, it would make the videos appear as though they had been deleted or looks like distorted. Below is an image that explain the aspect ratio of the cropping option.</p>
+</div>
+</div><div class="col-md-12- w100">
+<div class="col-md-12 card __text" style="">
+<p><span class="__break"></span></p>
+</div>
+</div><div class="col-md-12- w100">
+<div class="col-md-12 card __image">
+<a href="https://i.imgur.com/MfZYX0z.png" 
+data-lightbox="image-76a8cfbc72ba68433f524c9a0d5a7a7f0bbd5a08"
+target="_blank"><img src="https://i.imgur.com/MfZYX0z.png" class="img-fluid img-thumbnail w100 eachpostimage"></a>
+</div>
+</div><div class="col-md-12- w100">
+<div class="col-md-12 card __text" style="">
+<p>Again! No success! After hours in trying to find a vulnerability in this feature, I wasn't able to find anything then I moved to another feature to test. The second day I wanted to start hunting again and I was trying to find a new feature in Meta business suite to test on and since I like the actions where there is cropping and trimming video I was like maybe should I give it a second try? (<b>Their is a daily updates and maybe now it's vulnerable</b>). So, I turned in Burp suite and started to dig into this features again :)</p>
+</div>
+</div><div class="col-md-12- w100">
+<div class="col-md-12 card __text" style="">
+<p><span class="__break"></span></p>
+</div>
+</div><div class="col-md-12- w100">
+<div class="col-md-12 card __text" style="">
+<p>I started manipulating the requests in this features trying to delete the videos of my test account! And guess what? I noticed that one of my test account videos just disappeared! (A video of 54 mins length) I was like:</p>
+</div>
+</div><div class="col-md-12- w100">
+<div class="col-md-12 card __image">
+<a href="https://i.imgur.com/DDbhJl9.gif" 
+data-lightbox="image-0a0dd877259c930354177ea1e5bebab380c16915"
+target="_blank"><img src="https://i.imgur.com/DDbhJl9.gif" class="img-fluid img-thumbnail w100 eachpostimage"></a>
+</div>
+</div><div class="col-md-12- w100">
+<div class="col-md-12 card __text" style="">
+<p><span class="__break"></span></p>
+</div>
+</div><div class="col-md-12- w100">
+<div class="col-md-12 card __text" style="">
+
+
+I was 100% confident that there was a vulnerable endpoint among the ones I was testing. I quickly looked back at my Burp history and focused on the crop and trim request, <b>manipulating the crop parameters</b> again and sending a request to delete a video that I had uploaded to my test account! and again guess what?! <p>
+
+BOOOM! The video was deleted and it took about 5 minutes for the deletion to be fully completed, which was why I hadn't noticed the vulnerability the previous day. Which indicates that the issue was with the crop parameters.</p>
+</div>
+</div><div class="col-md-12- w100">
+<div class="col-md-12 card __image">
+<a href="https://i.imgur.com/z221atv.gif" 
+data-lightbox="image-50eda7263db5b90828a14fcc8ef5f60c288d8f52"
+target="_blank"><img src="https://i.imgur.com/z221atv.gif" class="img-fluid img-thumbnail w100 eachpostimage"></a>
+</div>
+</div><div class="col-md-12- w100">
+<div class="col-md-12 card __text" style="">
+<p><span class="__break"></span></p>
+</div>
+</div><div class="col-md-12- w100">
+<div class="col-md-12 card __text" style="">
+<p>I quickly began creating a report to send it to Facebook, knowing that the ability to delete any video on the platform would be rewarded with a <b>$10,000 bounty.
+
+</b></p>
+</div>
+</div><div class="col-md-12- w100">
+<div class="col-md-12 card __image">
+<a href="https://i.imgur.com/CJEKsQ1.gif" 
+data-lightbox="image-a5b7b25ee07637dc4812952744d484488cfec652"
+target="_blank"><img src="https://i.imgur.com/CJEKsQ1.gif" class="img-fluid img-thumbnail w100 eachpostimage"></a>
+</div>
+</div><div class="col-md-12- w100">
+<div class="col-md-12 card __text" style="">
+<h3>Impact:</h3> 
+</div>
+</div><div class="col-md-12- w100">
+<div class="col-md-12 card __text" style="">
+I was able to delete any video, live video and reels uploaded on Facebook. 
+
+For example, I could have potentially deleted videos belonging to Leo Messi that have millions of views after he won the World Cup!<p><b><i>It is important to note that it is never acceptable to exploit a bug on a real user's account and that ethical hackers should always use a test account to avoid getting into trouble. It is crucial to remember that we have a responsibility to use our skills and knowledge for the greater good and not to cause harm or disruption.</i></b></p>
+</div>
+</div><div class="col-md-12- w100">
+<div class="col-md-12 card __text" style="">
+<p><span class="__break"></span></p>
+</div>
+</div><div class="col-md-12- w100">
+<div class="col-md-12 card __image">
+<a href="https://i.imgur.com/Zc6MK5a.jpg" 
+data-lightbox="image-bd112f5424d86f54c8c74e33aa77f3c08ff1e7b4"
+target="_blank"><img src="https://i.imgur.com/Zc6MK5a.jpg" class="img-fluid img-thumbnail w100 eachpostimage"></a>
+</div>
+</div><div class="col-md-12- w100">
+<div class="col-md-12 card __text" style="">
+<p><span class="__break"></span></p>
+</div>
+</div><div class="col-md-12- w100">
+<div class="col-md-12 card __text" style="">
+<h3>Reproduction steps:</h3> 
+</div>
+</div><div class="col-md-12- w100">
+<div class="col-md-12 card __text" style="">
+<p>Users setup:</p>
+</div>
+</div><div class="col-md-12- w100">
+<div class="col-md-12 card __text" style="">
+ - UserAttacker<p> - PageAttacker</p><p> - UserVictim    </p>
+</div>
+</div><div class="col-md-12- w100">
+<div class="col-md-12 card __text" style="">
+<p><span class="__break"></span></p>
+</div>
+</div><div class="col-md-12- w100">
+<div class="col-md-12 card __text" style="">
+1. From UserVictim upload any video on your Facebook profile.<p>2. From UserAttacker get your Facebook android app access token to use it later.</p><p>3. Perform the below graphql POST request using 
+
+UserAttacker access token and 
+
+manipulate the video_id to the video id of step 1  
+
+:  </p>
+</div>
+</div><div class="col-md-12- w100">
+<div class="col-md-12 card __code">
+<pre class="img-thumbnail hljs">{
+  &quot;variables&quot;: {
+    &quot;videoClipsTimestamps&quot;: {
+      &quot;start_time_in_sec&quot;: 0.706,
+      &quot;end_time_in_sec&quot;: 7.721354166666667
+    },
+    &quot;videoID&quot;: &quot;VIDEO_ID_HERE&quot;,
+    &quot;reframeAspectRatios&quot;: [
+      {
+        &quot;aspect_ratio_denominator&quot;: 11,
+        &quot;aspect_ratio_numerator&quot;: 1
+      }
+    ],
+    &quot;aggressiveness&quot;: 0
+  },
+  &quot;doc_id&quot;: &quot;8426940007331645&quot;
+}</pre>
+</div>
+</div><div class="col-md-12- w100">
+<div class="col-md-12 card __text" style="">
+<p>4. 
+
+Wait for 5 mins and BOOMMM! The video will be deleted :)</p>
+</div>
+</div><div class="col-md-12- w100">
+<div class="col-md-12 card __image">
+<a href="https://i.imgur.com/lkV87Nn.png" 
+data-lightbox="image-d76e7231f4ddd8c36f396443afe67b7a10698f78"
+target="_blank"><img src="https://i.imgur.com/lkV87Nn.png" class="img-fluid img-thumbnail w100 eachpostimage"></a>
+</div>
+</div><div class="col-md-12- w100">
+<div class="col-md-12 card __text" style="">
+<p><span class="__break"></span></p>
+</div>
+</div><div class="col-md-12- w100">
+<div class="col-md-12 card __text" style="">
+<p>The issue here was that the request was accepting any video ID and, when the aspect ratio parameters (<b>aspect_ratio_denominator </b>and<b> aspect_ratio_numerator</b>) were manipulated to unexpected values, the library responsible for reframing the videos would reframe the submitted video ID and return a broken video that was no longer loadable or accessible on the user's profile.  </p>
+</div>
+</div><div class="col-md-12- w100">
+<div class="col-md-12 card __text" style="">
+<p><span class="__break"></span></p>
+</div>
+</div><div class="col-md-12- w100">
+<div class="col-md-12 card __video">
+<iframe style="height:344px" src="https://youtube.com/embed/yR8GMMMHUQo" class="img-fluid img-thumbnail w100"></iframe>
+</div>
+</div><div class="col-md-12- w100">
+<div class="col-md-12 card __text" style="">
+<p><span class="__break"></span></p>
+</div>
+</div><div class="col-md-12- w100">
+<div class="col-md-12 card __text" style="">
+<blockquote>Timeline:</blockquote>
+</div>
+</div><div class="col-md-12- w100">
+<div class="col-md-12 card __text" style="">
+
+
+
+
+October 24, 2022- Report sent<p>
+
+October 25, 2022 — Triaged</p><p>
+
+November 30, 2022 — Bug Fixed (<i>The issue was fixed the next day after I reported it,
+
+but the confirmation fix message was sent in this day</i>)</p><p>December 13, 2022 - Bounty rewarded 
+
+<b>(11,250$)</b>  (10,000$ + 750$ Hacker Plus program bonus + 500$ bonus for delay) </p>
+</div>
+</div><div class="col-md-12- w100">
+<div class="col-md-12 card __image">
+<a href="https://i.imgur.com/haszHh1.png" 
+data-lightbox="image-91e4a5e3213c108b0f888ff35708fedb41ed95a1"
+target="_blank"><img src="https://i.imgur.com/haszHh1.png" class="img-fluid img-thumbnail w100 eachpostimage"></a>
+</div>
+</div><div class="col-md-12- w100">
+<div class="col-md-12 card __image">
+<a href="https://i.imgur.com/tTKUHwf.png" 
+data-lightbox="image-eb6cef17bf9588af40f8aa9aafd90648da1b8b0c"
+target="_blank"><img src="https://i.imgur.com/tTKUHwf.png" class="img-fluid img-thumbnail w100 eachpostimage"></a>
+</div>
+</div></div>
+
+
+</div>
+
+<div class="col-md-6 offset-md-3 mt-2 mb-5 _1">
+
+<div class="row">
+
+<div class="col-md-12- w100 hideit"><hr style="margin-top:0px;margin-bottom:19px"></div>
+<div class="col-md-12- w100 mt-4" id="post_discussion">
+<div class="row p-3 pt2" id="discussions"><script>document.write(___L1)</script></div>
+<br>
+<br>
+<br>
+<br>
+<br>
+</div>
+
+
+
+</div>
+
+</div>
+</div>
+
+</div>
+</div>
+
+
+      
+      <footer class="my-5 pt-5 text-muted text-center text-small hideit">
+      <p class="mb-1"><small>Developed by Mohammad Atwi - bugreader.com/mo</small></p>
+      </footer>
+
+      
+<div class="modal fade" id="allnotfs">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Notifications</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+      <div class="row p-3" id="notfshtml"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="post_discussion">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title"><span>Discussion</span>: <span id="post_dis_title"></span></h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+      <div class="row p-3 pt2" id="discussions-none"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <script>
+    /**** antiCSRF v1.0 by Mohammad Atwi ****/
+    function antiCSRF(data, option = { target: 'form'}){ function addInputs(target){ $.each(data, function(name, val){ $('[name="'+name+'"]', target).remove(); $('<input/>').attr('type', 'hidden').attr('name', name).attr('value', val).appendTo(target); }); } $.ajaxSetup({ data: data }); addInputs(option.target); $(document).on('submit', option.target, function(){ addInputs(this); return true; }); }
+    var delay = (function(){ var timer = 0; return function(callback, ms){ clearTimeout (timer); timer = setTimeout(callback, ms) }; })();
+    </script>
+    <script src="index_files/global.js?t=48548548545"></script>
+    <script src="./index_files/popper.js"></script>
+    <script src="./index_files/bootstrap.js"></script>
+    <script src="./index_files/z.js?t=48548548545"></script>
+    <script src="index_files/editor/js/min/penplate.min.js?t=48548548545"></script>
+        <script src="./index_files/x.js?t=48548548545"></script>
+    <!-- <script src="./index_files/y.js?t=48548548545"></script> -->
+    <script src="./index_files/post.js?t=48548548545"></script>
+    
+    <script src="https://bugreader.com/a/core.js"></script>
+    <script src="./index_files/app.js?t=48548548545"></script>    
+
+    
+    
+    <script>
+    antiCSRF({'t' : ''});
+                if(typeof startComments !== 'undefined') startComments();
+        
+        </script>
+
+<div class="modal fade" id="brEditorInfo">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">About Bugreader Editor</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+      <div class="row">
+      <div class="col-md-12">
+      <h5>General Features:</h5>
+      <h6>
+      <ol style="padding-left: 25px;">
+      <li>Press "Enter" to insert new text block.
+      <img class="w100 img-thumbnail _imgInfo" src="./index_files/edoc/3.jpg">
+      </li>
+      <li>Press "Enter + Shift" so you can add multi-line text content in the same block.
+      <img class="w100 img-thumbnail _imgInfo" src="./index_files/edoc/3.jpg">
+      </li>
+      <li>Drag and drop content reorder, so you can change any content position <b>using the gray right border</b>.
+      <img class="w100 img-thumbnail _imgInfo" src="./index_files/edoc/1.jpg">
+      </li>
+      <li>Change content type, so you can replace the current content type with another.
+      <img class="w100 img-thumbnail _imgInfo" src="./index_files/edoc/4.jpg">
+      </li>
+      <li>Add new content anywhere, so you can add any content after any block. The link/embed feature is coming soon.
+      <img class="w100 img-thumbnail _imgInfo" src="./index_files/edoc/5.jpg">
+      </li>
+      <li>Inline text format: Headings, Bold, Italic and Links.
+      <img class="w100 img-thumbnail _imgInfo" src="./index_files/edoc/2.jpg">
+      </li>
+      <li>You can also add Codes and embeded YouTube videos.</li>
+      <li>Add images, with drag and drop support.</li>
+      <li>Auto save feature.</li>
+      <li>Draft / Published status for posts, you can change it anytime.</li>
+
+      </ol>
+      </h6>
+      <hr>
+      <h6
+      style="font-size: 12px;color: black;text-align: center;">Developer's note: This's the version 1.0, I'll be happy to know your feedback about my editor, contact me at <a href="/cdn-cgi/l/email-protection#bbd6d4fbcecbd7d4dfc295d8d4d6"><span class="__cf_email__" data-cfemail="e88587a89d9884878c91c68b8785">[email&#160;protected]</span></a></h6>
+      </div>
+      </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// auto choose subcat
+$(function(){
+setTimeout(() => {
+$("#post_cat").trigger("change");
+}, 500);
+});
+</script>
+
+<link href="/social/index_files/plugins/image/css/lightbox.min.css" rel="stylesheet">
+<script src="/social/index_files/plugins/image/js/lightbox.min.js"></script>
+<script>
+lightbox.option({
+'resizeDuration': 200,
+'fitImagesInViewport': true
+});
+</script>
+
+</body>
+</html>

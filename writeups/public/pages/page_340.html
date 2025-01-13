@@ -1,0 +1,686 @@
+<!DOCTYPE html> 
+<html class="no-js" lang="en-US">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="profile" href="https://gmpg.org/xfn/11">
+		
+	<title>IDOR (at Private Bug Bounty Program) that could Leads to Personal Data Leaks &#8211; Just Another Simple Write-Up</title>
+<meta name='robots' content='max-image-preview:large' />
+<script>document.documentElement.className = document.documentElement.className.replace("no-js","js");</script>
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel="alternate" type="application/rss+xml" title="Just Another Simple Write-Up &raquo; Feed" href="http://firstsight.me/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Just Another Simple Write-Up &raquo; Comments Feed" href="http://firstsight.me/comments/feed/" />
+<script type="text/javascript">
+/* <![CDATA[ */
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15.0.3\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15.0.3\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/firstsight.me\/wp-includes\/js\/wp-emoji-release.min.js?ver=6.7"}};
+/*! This file is auto-generated */
+!function(i,n){var o,s,e;function c(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(o,JSON.stringify(t))}catch(e){}}function p(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data),r=(e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0),new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data));return t.every(function(e,t){return e===r[t]})}function u(e,t,n){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\uddfa\ud83c\uddf3","\ud83c\uddfa\u200b\ud83c\uddf3")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!n(e,"\ud83d\udc26\u200d\u2b1b","\ud83d\udc26\u200b\u2b1b")}return!1}function f(e,t,n){var r="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):i.createElement("canvas"),a=r.getContext("2d",{willReadFrequently:!0}),o=(a.textBaseline="top",a.font="600 32px Arial",{});return e.forEach(function(e){o[e]=t(a,e,n)}),o}function t(e){var t=i.createElement("script");t.src=e,t.defer=!0,i.head.appendChild(t)}"undefined"!=typeof Promise&&(o="wpEmojiSettingsSupports",s=["flag","emoji"],n.supports={everything:!0,everythingExceptFlag:!0},e=new Promise(function(e){i.addEventListener("DOMContentLoaded",e,{once:!0})}),new Promise(function(t){var n=function(){try{var e=JSON.parse(sessionStorage.getItem(o));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(s),u.toString(),p.toString()].join(",")+"));",r=new Blob([e],{type:"text/javascript"}),a=new Worker(URL.createObjectURL(r),{name:"wpTestEmojiSupports"});return void(a.onmessage=function(e){c(n=e.data),a.terminate(),t(n)})}catch(e){}c(n=f(s,u,p))}t(n)}).then(function(e){for(var t in e)n.supports[t]=e[t],n.supports.everything=n.supports.everything&&n.supports[t],"flag"!==t&&(n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&n.supports[t]);n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&!n.supports.flag,n.DOMReady=!1,n.readyCallback=function(){n.DOMReady=!0}}).then(function(){return e}).then(function(){var e;n.supports.everything||(n.readyCallback(),(e=n.source||{}).concatemoji?t(e.concatemoji):e.wpemoji&&e.twemoji&&(t(e.twemoji),t(e.wpemoji)))}))}((window,document),window._wpemojiSettings);
+/* ]]> */
+</script>
+<style id='wp-emoji-styles-inline-css' type='text/css'>
+
+	img.wp-smiley, img.emoji {
+		display: inline !important;
+		border: none !important;
+		box-shadow: none !important;
+		height: 1em !important;
+		width: 1em !important;
+		margin: 0 0.07em !important;
+		vertical-align: -0.1em !important;
+		background: none !important;
+		padding: 0 !important;
+	}
+</style>
+<link rel='stylesheet' id='wp-block-library-css' href='http://firstsight.me/wp-includes/css/dist/block-library/style.min.css?ver=6.7' type='text/css' media='all' />
+<link rel='stylesheet' id='coblocks-frontend-css' href='http://firstsight.me/wp-content/plugins/coblocks/dist/style-coblocks-1.css?ver=3.1.13' type='text/css' media='all' />
+<link rel='stylesheet' id='coblocks-extensions-css' href='http://firstsight.me/wp-content/plugins/coblocks/dist/style-coblocks-extensions.css?ver=3.1.13' type='text/css' media='all' />
+<link rel='stylesheet' id='coblocks-animation-css' href='http://firstsight.me/wp-content/plugins/coblocks/dist/style-coblocks-animation.css?ver=2677611078ee87eb3b1c' type='text/css' media='all' />
+<link rel='stylesheet' id='font-awesome-css' href='http://firstsight.me/wp-content/plugins/contact-widgets/assets/css/font-awesome.min.css?ver=4.7.0' type='text/css' media='all' />
+<style id='classic-theme-styles-inline-css' type='text/css'>
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+</style>
+<style id='global-styles-inline-css' type='text/css'>
+:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);--wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);}:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}
+:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}
+:root :where(.wp-block-pullquote){font-size: 1.5em;line-height: 1.6;}
+</style>
+<link rel='stylesheet' id='wp-components-css' href='http://firstsight.me/wp-includes/css/dist/components/style.min.css?ver=6.7' type='text/css' media='all' />
+<link rel='stylesheet' id='godaddy-styles-css' href='http://firstsight.me/wp-content/plugins/coblocks/includes/Dependencies/GoDaddy/Styles/build/latest.css?ver=2.0.2' type='text/css' media='all' />
+<link rel='stylesheet' id='curver-style-css' href='http://firstsight.me/wp-content/themes/curver/style.css?ver=6.7' type='text/css' media='all' />
+<style id='curver-style-inline-css' type='text/css'>
+body { font-family: "Roboto", Arial, sans-serif; }
+
+::selection { background-color: #2db1e1; }
+::-moz-selection { background-color: #2db1e1; }
+
+a,
+.themeform label .required,
+.post-hover:hover .post-title a,
+.post-comments:hover,
+.post-title a:hover,
+.post-nav li a:hover span,
+.post-nav li a:hover i,
+.widget > h3:after,
+.widget_rss ul li a,
+.widget_calendar a,
+.alx-tabs-nav li.active a,
+.alx-tab .tab-item-category a,
+.alx-posts .post-item-category a,
+.alx-tab li:hover .tab-item-title a,
+.alx-tab li:hover .tab-item-comment a,
+.alx-posts li:hover .post-item-title a,
+.comment-tabs li.active a,
+.comment-awaiting-moderation,
+.child-menu a:hover,
+.child-menu .current_page_item > a,
+.wp-pagenavi a { color: #2db1e1; }
+
+.themeform input[type="button"],
+.themeform input[type="reset"],
+.themeform input[type="submit"],
+.themeform button[type="button"],
+.themeform button[type="reset"],
+.themeform button[type="submit"],
+#header-inner,
+#flexslider-featured .flex-control-nav li a.flex-active,
+.post-tags a:hover,
+.author-bio .bio-avatar:after,
+.widget_calendar caption,
+.commentlist li.bypostauthor > .comment-body:after,
+.commentlist li.comment-author-admin > .comment-body:after { background-color: #2db1e1; }
+
+.alx-tabs-nav li.active a,
+.comment-tabs li.active a,
+.wp-pagenavi a:hover,
+.wp-pagenavi a:active,
+.wp-pagenavi span.current { border-bottom-color: #2db1e1;  }
+
+				
+
+#header-inner {
+background-image: -webkit-gradient(linear,right bottom,left top,from(#2db1e1),to(#ae2de1));
+background-image: linear-gradient(to top left,#2db1e1,#ae2de1); }
+				
+
+#header-inner {
+background-image: -webkit-gradient(linear,right bottom,left top,from(#2db1e1),to(#ae2de1));
+background-image: linear-gradient(to top left,#2db1e1,#ae2de1); }			
+				
+
+</style>
+<link rel='stylesheet' id='curver-responsive-css' href='http://firstsight.me/wp-content/themes/curver/responsive.css?ver=6.7' type='text/css' media='all' />
+<link rel='stylesheet' id='curver-font-awesome-css' href='http://firstsight.me/wp-content/themes/curver/fonts/all.min.css?ver=6.7' type='text/css' media='all' />
+<link rel='stylesheet' id='roboto-css' href='//fonts.googleapis.com/css?family=Roboto%3A400%2C300italic%2C300%2C400italic%2C700&#038;subset=latin%2Clatin-ext&#038;ver=6.7' type='text/css' media='all' />
+<script type="text/javascript" src="http://firstsight.me/wp-includes/js/jquery/jquery.min.js?ver=3.7.1" id="jquery-core-js"></script>
+<script type="text/javascript" src="http://firstsight.me/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1" id="jquery-migrate-js"></script>
+<script type="text/javascript" src="http://firstsight.me/wp-content/themes/curver/js/jquery.flexslider.min.js?ver=6.7" id="curver-flexslider-js"></script>
+<link rel="https://api.w.org/" href="http://firstsight.me/wp-json/" /><link rel="alternate" title="JSON" type="application/json" href="http://firstsight.me/wp-json/wp/v2/posts/115" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://firstsight.me/xmlrpc.php?rsd" />
+<meta name="generator" content="WordPress 6.7" />
+<link rel="canonical" href="http://firstsight.me/2018/04/idor-at-private-bug-bounty-program-that-could-leads-to-personal-data-leaks/" />
+<link rel='shortlink' href='http://firstsight.me/?p=115' />
+<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="http://firstsight.me/wp-json/oembed/1.0/embed?url=http%3A%2F%2Ffirstsight.me%2F2018%2F04%2Fidor-at-private-bug-bounty-program-that-could-leads-to-personal-data-leaks%2F" />
+<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="http://firstsight.me/wp-json/oembed/1.0/embed?url=http%3A%2F%2Ffirstsight.me%2F2018%2F04%2Fidor-at-private-bug-bounty-program-that-could-leads-to-personal-data-leaks%2F&#038;format=xml" />
+<style id="kirki-inline-styles"></style></head>
+
+<body class="post-template-default single single-post postid-115 single-format-standard col-2cl full-width logged-out">
+
+
+<a class="skip-link screen-reader-text" href="#page">Skip to content</a>
+
+<div id="wrapper">
+
+	<header id="header">
+	
+		<div id="header-inner">
+			<div id="header-inner-inner">
+				<div id="header-inner-inner-inner">
+				
+					<div id="header-top" class="container-inner">
+
+													<div class="group pad">
+								<p class="site-title"><a href="http://firstsight.me/" rel="home">Just Another Simple Write-Up</a></p>
+																	<p class="site-description"></p>
+																
+																	<ul class="social-links"><li><a rel="nofollow" class="social-tooltip" title="Twitter" href="https://twitter.com/YoKoAcc" target="_blank"><i class="fab fa-twitter-square" ></i></a></li><li><a rel="nofollow" class="social-tooltip" title="Medium" href="https://medium.com/@YoKoKho" target="_blank"><i class="fab fa-medium" ></i></a></li><li><a rel="nofollow" class="social-tooltip" title="Youtube" href="https://www.youtube.com/channel/UCRd846B8EyUROUSeA9da_xg/videos" target="_blank"><i class="fab fa-youtube" ></i></a></li><li><a rel="nofollow" class="social-tooltip" title="Linkedin" href="https://id.linkedin.com/in/config" target="_blank"><i class="fab fa-linkedin-square" ></i></a></li><li><a rel="nofollow" class="social-tooltip" title="Leanpub" href="https://leanpub.com/bughunting101" target="_blank"><i class="fab fa-leanpub" ></i></a></li></ul>															</div>
+												
+						
+					</div><!--/#header-top-->
+		
+				</div><!--/#header-inner-inner-inner-->
+
+				<div id="header-middle" class="container-inner">
+
+										
+											<div id="wrap-nav-header" class="wrap-nav">
+									<nav id="nav-header-nav" class="main-navigation nav-menu">
+			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
+				<span class="screen-reader-text">Expand Menu</span><div class="menu-toggle-icon"><span></span><span></span><span></span></div>			</button>
+			<div class="menu-primary-menu-container"><ul id="nav-header" class="menu"><li id="menu-item-105" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-105"><span class="menu-item-wrapper"><a href="http://firstsight.me">Home</a></span></li>
+<li id="menu-item-99" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-has-children menu-item-99"><span class="menu-item-wrapper has-arrow"><a href="http://firstsight.me/category/write-up/"><span class="screen-reader-text">Current Page Parent </span>Write-Up</a><button onClick="alxMediaMenu.toggleItem(this)"><span class="screen-reader-text">Toggle Child Menu</span><svg class="svg-icon" aria-hidden="true" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" width="14" height="8" viewBox="0 0 20 12"><polygon fill="" fill-rule="evenodd" points="1319.899 365.778 1327.678 358 1329.799 360.121 1319.899 370.021 1310 360.121 1312.121 358" transform="translate(-1310 -358)"></polygon></svg></button></span>
+<ul class="sub-menu">
+	<li id="menu-item-100" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-100"><span class="menu-item-wrapper"><a href="http://firstsight.me/category/write-up/"><span class="screen-reader-text">Current Page Parent </span>All Write-Up</a></span></li>
+	<li id="menu-item-106" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-106"><span class="menu-item-wrapper"><a href="http://firstsight.me/category/web-apps/"><span class="screen-reader-text">Current Page Parent </span>Web Apps</a></span></li>
+	<li id="menu-item-97" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-97"><span class="menu-item-wrapper"><a href="http://firstsight.me/category/mobile-apps/">Mobile Apps</a></span></li>
+	<li id="menu-item-107" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-107"><span class="menu-item-wrapper"><a href="http://firstsight.me/category/desktop-apps/">Desktop Apps</a></span></li>
+</ul>
+</li>
+<li id="menu-item-108" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-108"><span class="menu-item-wrapper"><a href="http://firstsight.me/category/write-up-in-bahasa/">Write-Up in Bahasa</a></span></li>
+<li id="menu-item-366" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-366"><span class="menu-item-wrapper"><a href="http://firstsight.me/category/random-things/">Unwritten PoC</a></span></li>
+<li id="menu-item-114" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-114"><span class="menu-item-wrapper"><a href="http://firstsight.me/2014/07/about-me/">About Me</a></span></li>
+<li id="menu-item-206" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-206"><span class="menu-item-wrapper"><a href="http://firstsight.me/2016/04/cve-ids-achievements/">CVE-IDs</a></span></li>
+<li id="menu-item-216" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-216"><span class="menu-item-wrapper"><a href="http://firstsight.me/2015/06/honors-awards/">Honors / Awards</a></span></li>
+<li id="menu-item-591" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-591"><span class="menu-item-wrapper"><a href="http://firstsight.me/2014/07/terms-of-use/">Terms of Use</a></span></li>
+</ul></div>		</nav>
+									
+															<div class="search-trap-focus">
+									<button class="toggle-search" data-target=".search-trap-focus">
+										<svg class="svg-icon" id="svg-search" aria-hidden="true" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 23 23"><path d="M38.710696,48.0601792 L43,52.3494831 L41.3494831,54 L37.0601792,49.710696 C35.2632422,51.1481185 32.9839107,52.0076499 30.5038249,52.0076499 C24.7027226,52.0076499 20,47.3049272 20,41.5038249 C20,35.7027226 24.7027226,31 30.5038249,31 C36.3049272,31 41.0076499,35.7027226 41.0076499,41.5038249 C41.0076499,43.9839107 40.1481185,46.2632422 38.710696,48.0601792 Z M36.3875844,47.1716785 C37.8030221,45.7026647 38.6734666,43.7048964 38.6734666,41.5038249 C38.6734666,36.9918565 35.0157934,33.3341833 30.5038249,33.3341833 C25.9918565,33.3341833 22.3341833,36.9918565 22.3341833,41.5038249 C22.3341833,46.0157934 25.9918565,49.6734666 30.5038249,49.6734666 C32.7048964,49.6734666 34.7026647,48.8030221 36.1716785,47.3875844 C36.2023931,47.347638 36.2360451,47.3092237 36.2726343,47.2726343 C36.3092237,47.2360451 36.347638,47.2023931 36.3875844,47.1716785 Z" transform="translate(-20 -31)"></path></svg>
+										<svg class="svg-icon" id="svg-close" aria-hidden="true" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 16 16"><polygon fill="" fill-rule="evenodd" points="6.852 7.649 .399 1.195 1.445 .149 7.899 6.602 14.352 .149 15.399 1.195 8.945 7.649 15.399 14.102 14.352 15.149 7.899 8.695 1.445 15.149 .399 14.102"></polygon></svg>
+									</button>
+									<div class="search-expand">
+										<div class="search-expand-inner">
+											<form method="get" class="searchform themeform" action="http://firstsight.me/">
+	<div>
+		<input type="text" class="search" name="s" onblur="if(this.value=='')this.value='To search type and hit enter';" onfocus="if(this.value=='To search type and hit enter')this.value='';" value="To search type and hit enter" />
+	</div>
+</form>										</div>
+									</div>
+								</div>
+													</div>
+										
+				</div><!--/#header-middle-->
+
+			</div><!--/#header-inner-inner-->
+		
+			<div id="header-bottom" class="container-inner">
+									<div id="profile" class="pad group">
+						<div id="profile-inner">
+															<div id="profile-image"><img src="http://www.firstsight.me/wp-content/uploads/2019/12/Ilmu-adalah-Cahaya.png" alt="" /></div>
+																						<div id="profile-name">YoKo Kho</div>
+																						<div id="profile-description">Independent | Part Time Bug Hunter | OSCP, CRTO, eWPTXv2, eCPTX | Top 50, 2018, (Q3, Q4) 2019, (Q1, Q3, Q4) 2020, (Q1, Q2, Q3, Q4) 2021, and (Q1) 2022 Bugcrowd MVP | https://bugcrowd.com/YoKoKho  | https://leanpub.com/bughunting101 - Bug Hunting 101 eBook - (Bahasa) Free! </div>
+													</div>
+					</div>
+							</div><!--/#header-bottom-->
+		
+		</div><!--/#header-inner-->
+		
+	</header><!--/#header-->
+
+	<div class="container" id="page">
+		<div class="container-inner">			
+			<div class="main">
+				<div class="main-inner group">
+
+<div class="content">
+	<div class="pad group">
+		
+					<article class="post-115 post type-post status-publish format-standard has-post-thumbnail hentry category-bug-report category-web-apps category-write-up tag-data-leakage tag-hackerone tag-idor">
+
+				<div class="post-category">
+					<a href="http://firstsight.me/category/bug-report/" rel="category tag">Bug Report</a> / <a href="http://firstsight.me/category/web-apps/" rel="category tag">Web Apps</a> / <a href="http://firstsight.me/category/write-up/" rel="category tag">Write-Up</a>				</div><!--/.post-category-->
+				
+				<h1 class="post-title">IDOR (at Private Bug Bounty Program) that could Leads to Personal Data Leaks</h1>
+
+				<div class="post-date">
+					April 17, 2018				</div><!--/.post-date-->
+				
+									<div class="format-circle"><a href=""><i class="fa"></i></a></div>
+								
+								
+				<div class="clear"></div>
+				
+				<div class="entry">	
+					
+<p><strong>In the name of Allah, the Most Gracious, the Most Merciful.</strong></p>
+
+
+
+<p>Please kindly visit this simple paper directly to looking this release in simple:<br><a href="http://firstsight.me/fia07a53c4ec63d2b0d47fe27ea2645d82f8c98648/[ENG]%20IDOR%20(at%20Private%20Bug%20Bounty%20Program)%20that%20could%20Result%20of%20Information%20Leakage.pdf">[English Version] IDOR (at Private Bug Bounty Program) that could Leads to Personal Data Leaks</a></p>
+
+
+
+<hr class="wp-block-separator"/>
+
+
+
+<h3 class="wp-block-heading">I. PRE-INTRODUCTION</h3>
+
+
+
+<p>Few months ago, I got an invitation to private bug bounty program at  Hackerone. To be honest, when I see that the program has been launch  since&nbsp;<strong>September 2015</strong>, I really lost the interest to  participate. But when I see the resolved report are only 29, then I  think: “<em>Why we not give it a try for a while?</em>”</p>
+
+
+
+<p>In short, after few hours of testing, finally I found 2 subdomain takeover issue and one of the good one is finally found an IDOR that could result of&nbsp;<strong>Personal Data Leak</strong>. And yes, the detailed about IDOR could be seen at this simple report.</p>
+
+
+
+<hr class="wp-block-separator"/>
+
+
+
+<h3 class="wp-block-heading">II. INTRODUCTION</h3>
+
+
+
+<h4 class="wp-block-heading">2.1. Flow of the Application</h4>
+
+
+
+<p>Just like a common site that has an online shopping feature for their customer, this private program also provides the various payment method that could be choose by customer to pay their bill. To be honest, since its already around 3 months from the issue has been closed, then we didn’t remember exactly the list of payment choice except accepted the various international credit card.</p>
+
+
+
+<p>When we learn how the application works, the flow to pay the bill itself need several steps to be conduct by the customer before the payment was proceed into the 3<sup>rd</sup>&nbsp;party service. Here are the general flows that we learn.</p>
+
+
+
+<figure class="wp-block-image size-large"><img fetchpriority="high" decoding="async" width="640" height="154" src="http://www.firstsight.me/wp-content/uploads/2019/12/Flow-of-the-Application.png" alt="" class="wp-image-127" srcset="http://firstsight.me/wp-content/uploads/2019/12/Flow-of-the-Application.png 640w, http://firstsight.me/wp-content/uploads/2019/12/Flow-of-the-Application-300x72.png 300w" sizes="(max-width: 640px) 100vw, 640px" /><figcaption><em>Figure 1. Flow of the Application</em></figcaption></figure>
+
+
+
+<p>As could be seen from the flow above:<br><strong>2.1.1.</strong>&nbsp;User should choose the destination that they would like to choose. After the choice is decided and submitted, then the application will generate the temporary URL that saving our session that contains our choice (its normal and common at the shopping application) and send the POST Request that contains our personal data (that saved at our profile).</p>
+
+
+
+<pre class="wp-block-code"><code>POST /booking2/numbers_here/save_session/unique_sessions_over_here HTTP/1.1
+Host: target.com
+
+POST Value: the detail that has been saved into our profile</code></pre>
+
+
+
+<p><strong>2.1.2.</strong>&nbsp;In this part, the user should fill the personal detail including choosing the payment method. When the payment detail has been submitted, then the application will changes the URL from “save_session” into “order” request.</p>
+
+
+
+<pre class="wp-block-code"><code>POST /booking2/numbers_here/order/unique_sessions_over_here HTTP/1.1
+Host: target.com
+
+POST Value: the detail that has been saved into our profile including the chosen payment method</code></pre>
+
+
+
+<p><strong>2.1.3.</strong>&nbsp;When the POST request has check correctly by the server (in other words, there is no needed data anymore), then the application will automatically send the request to the function (including the unique hash and payment numbers) that proceed the payment to communicate with the 3<sup>rd</sup>&nbsp;party service (we guess it because the name of the function is very similar with the company that provides this kind of service). To censored the name, then we will name it “<strong>xyzabc</strong>”.</p>
+
+
+
+<pre class="wp-block-code"><code>GET /xyzabc/unique_hash_over_here/payment_numbers_over_here/payment HTTP/1.1
+Host: target.com</code></pre>
+
+
+
+<p><strong>2.1.4.</strong>&nbsp;After the unique hash and payment numbers are generated at the URL, then the application send this request to the POST Method to checkout the payment process to the 3<sup>rd</sup>&nbsp;party service. Here are a sample requests that sent by the application.</p>
+
+
+
+<pre class="wp-block-code"><code>POST /xyzabc/checkout/ HTTP/1.1
+Host: target.com
+
+csrfmiddlewaretoken=random_value_over_here&amp;payment_id=means_payment_numbers&amp;payment_product=card&amp;card=unique_hash_of_the_card</code></pre>
+
+
+
+<p><strong>2.1.5.</strong>&nbsp;It doesn’t matter if the detail is correct or not, the application will automatically generate the booking number. In this case, if the payment was failed, then the booking number (transaction ID) will contain the failed payment process information at the page.</p>
+
+
+
+<pre class="wp-block-code"><code>GET /order/X-12312312/instalment/resolve/?NTO=random_character_here HTTP/1.1
+Host: target.com</code></pre>
+
+
+
+<p>After few analysis, then we found out if there is a problem at the point 2.1.4, which is when the application was try to proceed the payment by send the “<strong>payment_id</strong>” parameter to the server. In other words, by manipulating this parameter, then we could enumerate the success or failed booking that made by the other user.</p>
+
+
+
+<hr class="wp-block-separator"/>
+
+
+
+<h4 class="wp-block-heading">2.2. Few words about Insecure Direct Object Reference</h4>
+
+
+
+<p>This kind of vulnerability could allow the Attacker to gain the access into some purposes without the need to has a valid authorization. Basically, this execution is conduct by manipulate a value of the parameter that exist at the application. In its “implementation”, the purposes of this execution are to see or changing the (sensitive) information that just could be access by the user that has a valid authorization into that information.</p>
+
+
+
+<p>In this situation, the problem related IDOR appears at the “<strong>payment_id</strong>” parameter because the application didn’t validate the session yet in the checkout request.</p>
+
+
+
+<hr class="wp-block-separator"/>
+
+
+
+<h3 class="wp-block-heading">III. SUMMARY OF ISSUE</h3>
+
+
+
+<p>As described above, the site didn’t validate the session yet in the “<strong>payment_id</strong>” request. This vulnerability could allow the Attacker to&nbsp;<strong>get the failed or succeed booking</strong>&nbsp;that created by other user at this site without the knowledge of their account and password.</p>
+
+
+
+<p>As an information,&nbsp;<strong>the best part of this issue</strong>&nbsp;is we could enumerate those data automatically by brute forcing the “<strong>payment_id</strong>” value.</p>
+
+
+
+<hr class="wp-block-separator"/>
+
+
+
+<h3 class="wp-block-heading">IV. PROOF OF CONCEPT</h3>
+
+
+
+<p>Previously, I try to enumerate directly the Booking Number (Transaction ID that explained at point 2.1.5) since the number looks so easy to be guessed. But the result of this is activity is failed (doesn’t show anything even at the browser or by viewing the frond-end source).</p>
+
+
+
+<p>But, the good result has appeared when we try to change the “payment_id” parameter. By changing this parameter, then automatically the system will generate the other user’s booking number that could be used to enumerate the data that has the relation with those booking number. But please kindly note, this data can’t be seen without viewing the source.</p>
+
+
+
+<p>For clearing the explanation, here is the simple step that should be conduct: For example, if we change into another ID (at this case, we change from&nbsp;<strong>4055809</strong>&nbsp;to&nbsp;<strong>4055311</strong>), we will get redirected into another user Booking Number (B-213xxxxx). At this part, we will get the information that someone with&nbsp;<strong>cencored@cencored.com</strong>&nbsp;as their email address was ordered the Hotel with 1 day trip duration. We also could get the other information such as total transaction, departure month, group size, location, and other.</p>
+
+
+
+<p>Here is the sample request of sent “payment_id” parameter:</p>
+
+
+
+<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="343" src="http://www.firstsight.me/wp-content/uploads/2019/12/Sample-Request-of-sent-Payment_id.png" alt="" class="wp-image-128" srcset="http://firstsight.me/wp-content/uploads/2019/12/Sample-Request-of-sent-Payment_id.png 1024w, http://firstsight.me/wp-content/uploads/2019/12/Sample-Request-of-sent-Payment_id-300x100.png 300w, http://firstsight.me/wp-content/uploads/2019/12/Sample-Request-of-sent-Payment_id-768x257.png 768w" sizes="(max-width: 1024px) 100vw, 1024px" /><figcaption><em>Figure 2. Sample Request of sent “Payment_id”</em></figcaption></figure>
+
+
+
+<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="553" src="http://www.firstsight.me/wp-content/uploads/2019/12/Sample-Response-–-Enumerating-Other-Users’-Booked.png" alt="" class="wp-image-129" srcset="http://firstsight.me/wp-content/uploads/2019/12/Sample-Response-–-Enumerating-Other-Users’-Booked.png 1024w, http://firstsight.me/wp-content/uploads/2019/12/Sample-Response-–-Enumerating-Other-Users’-Booked-300x162.png 300w, http://firstsight.me/wp-content/uploads/2019/12/Sample-Response-–-Enumerating-Other-Users’-Booked-768x415.png 768w" sizes="(max-width: 1024px) 100vw, 1024px" /><figcaption><em>Figure 3. Sample Response – Enumerating Other Users’ Booked</em></figcaption></figure>
+
+
+
+<p>And yes,&nbsp;<strong>one of the best part, we also could enumerate this data automatically</strong>. By using the intruder mode and setting the redirect to always, then we could enumerate all of other user’s data.</p>
+
+
+
+<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="701" src="http://www.firstsight.me/wp-content/uploads/2019/12/Enumerate-other-user-Data-Automatically.png" alt="" class="wp-image-130" srcset="http://firstsight.me/wp-content/uploads/2019/12/Enumerate-other-user-Data-Automatically.png 1024w, http://firstsight.me/wp-content/uploads/2019/12/Enumerate-other-user-Data-Automatically-300x205.png 300w, http://firstsight.me/wp-content/uploads/2019/12/Enumerate-other-user-Data-Automatically-768x526.png 768w" sizes="(max-width: 1024px) 100vw, 1024px" /><figcaption><em>Figure 4. Enumerate other user Data Automatically</em></figcaption></figure>
+
+
+
+<p>And for the recap, here is the flow of Attack related this issue:</p>
+
+
+
+<figure class="wp-block-image size-large"><img decoding="async" width="926" height="542" src="http://www.firstsight.me/wp-content/uploads/2019/12/Flow-of-the-Attack.png" alt="" class="wp-image-131" srcset="http://firstsight.me/wp-content/uploads/2019/12/Flow-of-the-Attack.png 926w, http://firstsight.me/wp-content/uploads/2019/12/Flow-of-the-Attack-300x176.png 300w, http://firstsight.me/wp-content/uploads/2019/12/Flow-of-the-Attack-768x450.png 768w" sizes="(max-width: 926px) 100vw, 926px" /><figcaption><em>Figure 5. Flow of the Attack</em></figcaption></figure>
+
+
+
+<hr class="wp-block-separator"/>
+
+
+
+<h3 class="wp-block-heading">V. RESPONSE FROM THE PROGRAM’S OWNER</h3>
+
+
+
+<p>Around Four hours after they received the report (probably read the report), they fixed the issue completely and send the reward around 50 minutes after the fix has been verified.</p>
+
+
+
+<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="578" src="http://www.firstsight.me/wp-content/uploads/2019/12/crop-0-0-1024-578-0-Response-from-the-Program’s-Owner.png" alt="" class="wp-image-134" srcset="http://firstsight.me/wp-content/uploads/2019/12/crop-0-0-1024-578-0-Response-from-the-Program’s-Owner.png 1024w, http://firstsight.me/wp-content/uploads/2019/12/crop-0-0-1024-578-0-Response-from-the-Program’s-Owner-300x169.png 300w, http://firstsight.me/wp-content/uploads/2019/12/crop-0-0-1024-578-0-Response-from-the-Program’s-Owner-768x434.png 768w" sizes="(max-width: 1024px) 100vw, 1024px" /><figcaption><em>Figure 6. Response from the Program’s Owner</em></figcaption></figure>
+
+
+
+<p>To be honest,&nbsp;<strong>this one really break the records that I ever met.</strong></p>
+
+
+
+<hr class="wp-block-separator"/>
+
+
+
+<h3 class="wp-block-heading">VI. REFERENCES</h3>
+
+
+
+<p>     •   OTG-AUTHZ-004 – Testing for Insecure Direct Object References<br>     •   CWE-932: Insecure Direct Object References</p>
+										<div class="clear"></div>				
+				</div><!--/.entry-->
+				
+			</article><!--/.post-->				
+				
+		<div class="clear"></div>
+		
+		<p class="post-tags"><span>Tags:</span> <a href="http://firstsight.me/tag/data-leakage/" rel="tag">Data Leakage</a><a href="http://firstsight.me/tag/hackerone/" rel="tag">Hackerone</a><a href="http://firstsight.me/tag/idor/" rel="tag">IDOR</a></p>		
+		
+	<div class="sharrre-container sharrre-header group">
+		<span>Share</span>
+		<div id="twitter" class="sharrre">
+			<a class="box group" href="https://twitter.com/intent/tweet?url=http://firstsight.me/2018/04/idor-at-private-bug-bounty-program-that-could-leads-to-personal-data-leaks/&text=IDOR (at Private Bug Bounty Program) that could Leads to Personal Data Leaks" title="Share on X">
+				<div class="count"><i class="fas fa-plus"></i></div><div class="share"><i class="fab fa-x-twitter"></i></div>
+			</a>
+		</div>
+		<div id="facebook" class="sharrre">
+			<a class="box group" href="https://www.facebook.com/sharer/sharer.php?u=http://firstsight.me/2018/04/idor-at-private-bug-bounty-program-that-could-leads-to-personal-data-leaks/" title="Share on Facebook">
+				<div class="count"><i class="fas fa-plus"></i></div><div class="share"><i class="fab fa-facebook-square"></i></div>
+			</a>
+		</div>
+		<div id="pinterest" class="sharrre">
+			<a class="box group" href="https://pinterest.com/pin/create/button/?url=http://firstsight.me/2018/04/idor-at-private-bug-bounty-program-that-could-leads-to-personal-data-leaks/&media=&description=IDOR (at Private Bug Bounty Program) that could Leads to Personal Data Leaks" title="Share on Pinterest">
+				<div class="count"><i class="fas fa-plus"></i></div><div class="share"><i class="fab fa-pinterest"></i></div>
+			</a>
+		</div>
+		<div id="linkedin" class="sharrre">
+			<a class="box group" href="https://www.linkedin.com/shareArticle?mini=true&url=http://firstsight.me/2018/04/idor-at-private-bug-bounty-program-that-could-leads-to-personal-data-leaks/" title="Share on LinkedIn">
+				<div class="count"><i class="fas fa-plus"></i></div><div class="share"><i class="fab fa-linkedin"></i></div>
+			</a>
+		</div>
+	</div><!--/.sharrre-container-->
+	
+			
+		<div class="clear"></div>
+		
+				
+				
+		
+
+<h4 class="heading">
+	<i class="fas fa-hand-point-right"></i>You may also like...</h4>
+
+<ul class="related-posts group">
+	
+		<li class="related post-hover">
+		<article class="post-139 post type-post status-publish format-standard has-post-thumbnail hentry category-bug-report category-web-apps category-write-up tag-google-dork tag-information-disclosure tag-paypal-bug-bounty tag-xoom-bug-bounty">
+
+			<div class="post-thumbnail">
+				<a href="http://firstsight.me/2017/12/information-disclosure-at-paypal-and-xoom-paypal-acquisition-via-search-engine/">
+											<img width="520" height="292" src="http://firstsight.me/wp-content/uploads/2019/12/Sample-of-Decoded-Request-at-One-of-Transaction-at-PayPal-520x292.png" class="attachment-curver-medium size-curver-medium wp-post-image" alt="" decoding="async" srcset="http://firstsight.me/wp-content/uploads/2019/12/Sample-of-Decoded-Request-at-One-of-Transaction-at-PayPal-520x292.png 520w, http://firstsight.me/wp-content/uploads/2019/12/Sample-of-Decoded-Request-at-One-of-Transaction-at-PayPal-720x404.png 720w" sizes="(max-width: 520px) 100vw, 520px" loading="eager" />																								</a>
+			</div><!--/.post-thumbnail-->
+			
+			<div class="related-inner">
+				
+				<h4 class="post-title">
+					<a href="http://firstsight.me/2017/12/information-disclosure-at-paypal-and-xoom-paypal-acquisition-via-search-engine/" rel="bookmark">Information Disclosure at PayPal and Xoom (PayPal Acquisition) via Simple Google Dork &#8211; 1,000 USD</a>
+				</h4><!--/.post-title-->
+			
+			</div><!--/.related-inner-->
+
+		</article>
+	</li><!--/.related-->
+		<li class="related post-hover">
+		<article class="post-371 post type-post status-publish format-standard has-post-thumbnail hentry category-bug-report category-desktop-apps category-random-things tag-subscription-bypass">
+
+			<div class="post-thumbnail">
+				<a href="http://firstsight.me/2019/01/adobe-photoshop-cc-2019-v-20-0-0-for-os-x-expired-subscription-bypass-bypass-trial-expired/">
+											<img width="520" height="292" src="http://firstsight.me/wp-content/uploads/2020/02/Expired-Subscription-Bypass-520x292.png" class="attachment-curver-medium size-curver-medium wp-post-image" alt="" decoding="async" srcset="http://firstsight.me/wp-content/uploads/2020/02/Expired-Subscription-Bypass-520x292.png 520w, http://firstsight.me/wp-content/uploads/2020/02/Expired-Subscription-Bypass-300x168.png 300w, http://firstsight.me/wp-content/uploads/2020/02/Expired-Subscription-Bypass-1024x574.png 1024w, http://firstsight.me/wp-content/uploads/2020/02/Expired-Subscription-Bypass-768x431.png 768w, http://firstsight.me/wp-content/uploads/2020/02/Expired-Subscription-Bypass-720x404.png 720w, http://firstsight.me/wp-content/uploads/2020/02/Expired-Subscription-Bypass.png 1298w" sizes="(max-width: 520px) 100vw, 520px" loading="eager" />																								</a>
+			</div><!--/.post-thumbnail-->
+			
+			<div class="related-inner">
+				
+				<h4 class="post-title">
+					<a href="http://firstsight.me/2019/01/adobe-photoshop-cc-2019-v-20-0-0-for-os-x-expired-subscription-bypass-bypass-trial-expired/" rel="bookmark">Adobe Photoshop CC 2019 v. 20.0.0 (for OS X) Expired Subscription Bypass &#8211; Bypass Trial Expired</a>
+				</h4><!--/.post-title-->
+			
+			</div><!--/.related-inner-->
+
+		</article>
+	</li><!--/.related-->
+		<li class="related post-hover">
+		<article class="post-485 post type-post status-publish format-standard has-post-thumbnail hentry category-bug-report category-mobile-apps category-write-up tag-android-application tag-cve-2019-18624 tag-opera-mini tag-rtlo">
+
+			<div class="post-thumbnail">
+				<a href="http://firstsight.me/2019/10/illegal-rendered-at-download-feature-in-several-apps-including-opera-mini-that-lead-to-extension-manipulation-with-rtlo/">
+											<img width="520" height="292" src="http://firstsight.me/wp-content/uploads/2020/03/Download-as-png-left-one-and-Download-as-txt-right-one-520x292.png" class="attachment-curver-medium size-curver-medium wp-post-image" alt="" decoding="async" srcset="http://firstsight.me/wp-content/uploads/2020/03/Download-as-png-left-one-and-Download-as-txt-right-one-520x292.png 520w, http://firstsight.me/wp-content/uploads/2020/03/Download-as-png-left-one-and-Download-as-txt-right-one-720x404.png 720w" sizes="(max-width: 520px) 100vw, 520px" loading="eager" />																								</a>
+			</div><!--/.post-thumbnail-->
+			
+			<div class="related-inner">
+				
+				<h4 class="post-title">
+					<a href="http://firstsight.me/2019/10/illegal-rendered-at-download-feature-in-several-apps-including-opera-mini-that-lead-to-extension-manipulation-with-rtlo/" rel="bookmark">CVE-2019–18624 &#8211; Illegal Rendered at Download Feature in Several Apps (including Opera Mini) that Lead to Extension Manipulation (with RTLO)</a>
+				</h4><!--/.post-title-->
+			
+			</div><!--/.related-inner-->
+
+		</article>
+	</li><!--/.related-->
+		
+</ul><!--/.post-related-->
+
+		
+				
+	</div><!--/.pad-->
+</div><!--/.content-->
+
+
+	<div class="sidebar s1">
+		
+		<div class="sidebar-content">
+			
+				<ul class="post-nav group">
+		<li class="next"><a href="http://firstsight.me/2019/01/adobe-photoshop-cc-2019-v-20-0-0-for-os-x-expired-subscription-bypass-bypass-trial-expired/" rel="next"><i class="fas fa-chevron-right"></i><strong>Next story</strong> <span>Adobe Photoshop CC 2019 v. 20.0.0 (for OS X) Expired Subscription Bypass &#8211; Bypass Trial Expired</span></a></li>
+		<li class="previous"><a href="http://firstsight.me/2018/04/ribose-idor-with-simple-csrf-bypass-unrestricted-deletion-to-other-photo-profile/" rel="prev"><i class="fas fa-chevron-left"></i><strong>Previous story</strong> <span>Ribose – IDOR with Simple CSRF Bypass – Unrestricted Changes and Deletion to other Photo Profile</span></a></li>
+	</ul>
+			
+						
+			<div id="search-2" class="widget widget_search"><h3 class="group"><span>Search</span></h3><form method="get" class="searchform themeform" action="http://firstsight.me/">
+	<div>
+		<input type="text" class="search" name="s" onblur="if(this.value=='')this.value='To search type and hit enter';" onfocus="if(this.value=='To search type and hit enter')this.value='';" value="To search type and hit enter" />
+	</div>
+</form></div>
+		<div id="recent-posts-2" class="widget widget_recent_entries">
+		<h3 class="group"><span>Recent Posts</span></h3>
+		<ul>
+											<li>
+					<a href="http://firstsight.me/2025/01/understanding-stealer-logs-and-their-role-in-security-testing-a-focus-on-asset-discovery-part-2/">Understanding Stealer Logs and Their Role in Security Testing: A Focus on Asset Discovery— Part 2 &#8211; Company Blog</a>
+									</li>
+											<li>
+					<a href="http://firstsight.me/2024/12/bypassing-ios-app-jailbreak-detection-by-patching-the-binary-with-ghidra-write-up-of-no-escape-lab-from-mobilehackinglab/">Bypassing iOS App Jailbreak Detection by Patching the Binary with Ghidra: Write-up of No-Escape Lab from MobileHackingLab &#8211; Company Blog</a>
+									</li>
+											<li>
+					<a href="http://firstsight.me/2024/08/understanding-stealer-logs-and-its-role-in-security-testing-part-1/">Understanding Stealer Logs and Its Role in Security Testing — Part 1 &#8211; Company Blog</a>
+									</li>
+											<li>
+					<a href="http://firstsight.me/2024/05/electron-based-app-security-testing-fundamentals-part-3-2nd-section-extracting-and-analyzing-asar-files-company-blog/">Electron-Based App Security Testing Fundamentals Part 3 (2nd Section) — Extracting and Analyzing .asar Files &#8211; Company Blog</a>
+									</li>
+											<li>
+					<a href="http://firstsight.me/2024/04/electron-based-app-security-testing-fundamentals-part-3-1st-section-extracting-and-analyzing-asar-files-company-blog/">Electron-Based App Security Testing Fundamentals Part 3 (1st Section) — Extracting and Analyzing .asar Files &#8211; Company Blog</a>
+									</li>
+											<li>
+					<a href="http://firstsight.me/2024/04/electron-based-app-security-testing-fundamentals-part-2-installing-and-detecting-electron-based-application-company-blog/">Electron-Based App Security Testing Fundamentals Part 2— Installing and Detecting Electron-Based Application &#8211; Company Blog</a>
+									</li>
+											<li>
+					<a href="http://firstsight.me/2024/03/electron-based-app-security-testing-fundamentals-part-1-introduction-to-electron-framework-company-blog/">Electron-Based App Security Testing Fundamentals Part 1 — Introduction to Electron Framework &#8211; Company Blog</a>
+									</li>
+					</ul>
+
+		</div><div id="categories-3" class="widget widget_categories"><h3 class="group"><span>Categories</span></h3>
+			<ul>
+					<li class="cat-item cat-item-1"><a href="http://firstsight.me/category/about-me/">About Me</a> (3)
+</li>
+	<li class="cat-item cat-item-26"><a href="http://firstsight.me/category/achievements/">Achievements</a> (2)
+</li>
+	<li class="cat-item cat-item-4"><a href="http://firstsight.me/category/bug-report/">Bug Report</a> (30)
+</li>
+	<li class="cat-item cat-item-8"><a href="http://firstsight.me/category/desktop-apps/">Desktop Apps</a> (8)
+</li>
+	<li class="cat-item cat-item-5"><a href="http://firstsight.me/category/mobile-apps/">Mobile Apps</a> (6)
+</li>
+	<li class="cat-item cat-item-52"><a href="http://firstsight.me/category/random-things/">Random Things</a> (8)
+</li>
+	<li class="cat-item cat-item-76"><a href="http://firstsight.me/category/terms-of-use/">Terms of Use</a> (1)
+</li>
+	<li class="cat-item cat-item-7"><a href="http://firstsight.me/category/web-apps/">Web Apps</a> (21)
+</li>
+	<li class="cat-item cat-item-6"><a href="http://firstsight.me/category/write-up/">Write-Up</a> (22)
+</li>
+	<li class="cat-item cat-item-9"><a href="http://firstsight.me/category/write-up-in-bahasa/">Write-Up in Bahasa</a> (4)
+</li>
+			</ul>
+
+			</div>			
+		</div><!--/.sidebar-content-->
+		
+	</div><!--/.sidebar-->
+	
+
+				</div><!--/.main-inner-->
+			</div><!--/.main-->	
+		</div><!--/.container-inner-->
+	</div><!--/.container-->
+
+	<footer id="footer">
+	
+					
+				
+				
+		<div id="footer-bottom">
+			<div class="container-inner">
+				<a id="back-to-top" href="#"><i class="fas fa-angle-up"></i></a>
+					
+				<div class="pad group">
+					
+					<div class="grid one-half">
+						
+												
+						<div id="copyright">
+															<p>Firstsight.me © 2024. All Rights Reserved.</p>
+													</div><!--/#copyright-->
+						
+												<div id="credit">
+							<p>Powered by <a href="http://wordpress.org" rel="nofollow">WordPress</a>. Theme by <a href="http://alx.media" rel="nofollow">Alx</a>.</p>
+						</div><!--/#credit-->
+												
+					</div>
+					
+					<div class="grid one-half last">	
+													<ul class="social-links"><li><a rel="nofollow" class="social-tooltip" title="Twitter" href="https://twitter.com/YoKoAcc" target="_blank"><i class="fab fa-twitter-square" ></i></a></li><li><a rel="nofollow" class="social-tooltip" title="Medium" href="https://medium.com/@YoKoKho" target="_blank"><i class="fab fa-medium" ></i></a></li><li><a rel="nofollow" class="social-tooltip" title="Youtube" href="https://www.youtube.com/channel/UCRd846B8EyUROUSeA9da_xg/videos" target="_blank"><i class="fab fa-youtube" ></i></a></li><li><a rel="nofollow" class="social-tooltip" title="Linkedin" href="https://id.linkedin.com/in/config" target="_blank"><i class="fab fa-linkedin-square" ></i></a></li><li><a rel="nofollow" class="social-tooltip" title="Leanpub" href="https://leanpub.com/bughunting101" target="_blank"><i class="fab fa-leanpub" ></i></a></li></ul>											</div>
+				
+				</div><!--/.pad-->
+			</div>
+		</div><!--/#footer-bottom-->
+	
+	</footer><!--/#footer-->
+
+</div><!--/#wrapper-->
+
+<script type="text/javascript" src="http://firstsight.me/wp-content/plugins/coblocks/dist/js/coblocks-animation.js?ver=3.1.13" id="coblocks-animation-js"></script>
+<script type="text/javascript" src="http://firstsight.me/wp-content/plugins/coblocks/dist/js/vendors/tiny-swiper.js?ver=3.1.13" id="coblocks-tiny-swiper-js"></script>
+<script type="text/javascript" id="coblocks-tinyswiper-initializer-js-extra">
+/* <![CDATA[ */
+var coblocksTinyswiper = {"carouselPrevButtonAriaLabel":"Previous","carouselNextButtonAriaLabel":"Next","sliderImageAriaLabel":"Image"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="http://firstsight.me/wp-content/plugins/coblocks/dist/js/coblocks-tinyswiper-initializer.js?ver=3.1.13" id="coblocks-tinyswiper-initializer-js"></script>
+<script type="text/javascript" src="http://firstsight.me/wp-content/themes/curver/js/jquery.fitvids.js?ver=6.7" id="curver-fitvids-js"></script>
+<script type="text/javascript" src="http://firstsight.me/wp-content/themes/curver/js/jq-sticky-anything.min.js?ver=6.7" id="curver-jq-sticky-anything-js"></script>
+<script type="text/javascript" src="http://firstsight.me/wp-content/themes/curver/js/scripts.js?ver=6.7" id="curver-scripts-js"></script>
+<script type="text/javascript" src="http://firstsight.me/wp-includes/js/comment-reply.min.js?ver=6.7" id="comment-reply-js" async="async" data-wp-strategy="async"></script>
+<script type="text/javascript" src="http://firstsight.me/wp-content/themes/curver/js/nav.js?ver=1710755909" id="curver-nav-script-js"></script>
+	<script>
+	/(trident|msie)/i.test(navigator.userAgent)&&document.getElementById&&window.addEventListener&&window.addEventListener("hashchange",function(){var t,e=location.hash.substring(1);/^[A-z0-9_-]+$/.test(e)&&(t=document.getElementById(e))&&(/^(?:a|select|input|button|textarea)$/i.test(t.tagName)||(t.tabIndex=-1),t.focus())},!1);
+	</script>
+	</body>
+</html>

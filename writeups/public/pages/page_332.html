@@ -1,0 +1,259 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+
+    <title>Taking over Facebook accounts using Free Basics partner portal -  Josip Franjković</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <meta name="keywords" content="security, bug bounties, bug bounty"/>
+    <meta name="description" content="Taking over Facebook accounts using Free Basics partner portal - Josip Franjković" />
+    <meta name="author" content="Josip Franjković" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Taking over Facebook accounts using Free Basics partner portal" />
+    <meta property="og:site_name" content="JosipFranjkovic" />
+    <meta property="og:description" content="I enjoy breaking websites." />
+    <meta property="og:url" content="https://www.josipfranjkovic.com/blog/facebook-partners-portal-account-takeover" />
+    <meta property="og:type" content="article">
+    <meta property="og:image" content="https://www.josipfranjkovic.com/resources/img/partners-bounty.png" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="/resources/css/main.css" />
+
+    <!-- FAVICONS -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/resources/ui/favicons/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/resources/ui/favicons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/resources/ui/favicons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/resources/ui/favicons/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/resources/ui/favicons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/resources/ui/favicons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/resources/ui/favicons/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/resources/ui/favicons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/resources/ui/favicons/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/resources/ui/favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/resources/ui/favicons/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/resources/ui/favicons/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/resources/ui/favicons/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="/resources/ui/favicons/manifest.json">
+    <link rel="mask-icon" href="/resources/ui/favicons/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="/resources/ui/favicons/favicon.ico">
+
+
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-TileImage" content="/resources/ui/favicons/mstile-144x144.png">
+    <meta name="msapplication-config" content="/resources/ui/favicons/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+    <script src="/resources/js/lightbox.min.js"></script>
+
+
+    <script type="text/javascript">
+    var _paq = _paq || [];
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+        var u="//www.josipfranjkovic.com/piwik/";
+        _paq.push(['setTrackerUrl', u+'piwik.php']);
+        _paq.push(['setSiteId', 1]);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+    })();
+    </script>
+</head>
+
+<body class="page-template blog-post-page">
+
+<div class="main-container">
+
+    <header class="global-header">
+
+        <h1 class="global-logo">
+            <a href="/">
+                <span class="name">Josip Franjković</span>
+                <span class="role">web security consultant</span>
+            </a>
+        </h1>
+
+
+    </header>
+
+    <section class="page-content">
+
+
+        <div class="blog-post-wrapper">
+
+            <header class="blog-post-header">
+
+                <a class="cta-icon" href="/">Blog</a>
+
+                <p class="category">Bug bounties</p>
+
+                <h2 class="blog-post-title">
+                    Taking over Facebook accounts using Free Basics partner portal                </h2>
+
+                <p class="blog-post-metadata">
+                    written on <time datetime="2018-02-07">February 7th, 2018</time>
+                </p>
+
+            </header>
+
+                <p class="paragraph">
+
+    There are a couple <a href="https://josipfranjkovic.blogspot.com/2013/11/facebook-bug-bounty-secondary-damage.html">public</a> <a href="https://philippeharewood.com/facebook-bug-bounty-secondary-damage-revisited-why-i-really-like-reporting-to-facebook-too/">examples</a> of Facebook's bug bounty program increasing rewards based on their internal investigation of the report. This is a story of one such report, where a medium-high impact privacy bug turned out to be an <strong>account takeover with no user interaction needed.</strong>
+</p>
+
+
+<h4>
+    Initial report: leaking email address of any Facebook user
+</h4>
+
+<p class="paragraph">
+
+    Sometime late September 2017, one of my websites was approved to participate in the Free Basics project by Facebook and I have gained access to their partners portal. After poking around a bit, I have realised adding a new admin user leaks their address in subsequent notification emails. The bug was quite simple to reproduce (copy-paste from my report):
+</p>
+
+<ol class="list ordered">
+    <li><p class="paragraph">Using your admin account, go to <span class="inline-code">https://partners.facebook.com/fbs/settings/</span></p></li>
+    <li><p class="paragraph">Input anything as the name, and in the email field input an email you control.</p></li>
+    <li><p class="paragraph">Click "Add" and intercept the POST request to <span class="inline-code">/mobile/settings/requirements/save/</span></p></li>
+    <li><p class="paragraph">Change the <span class="inline-code">values[settings.users.userstablecontainer.user_id]</span> GET parameter to an ID of the victim whose email you want to get and forward the request</p></li>
+    <li><p class="paragraph">An email will arrive to your controlled address, which will contain the victim's primary mail as part of <span class="inline-code">&lt;a href link &gt;</span></p></li>
+</ol>
+
+<p class="paragraph">
+    Basically, I have added a new admin, and set its partner notifications email to one I control. The notification email itself would leak the admin's primary Facebook email through a <span class="inline-code">n_m</span> GET parameter in one of the links.
+    <br /> Screenshot:
+    <img src="/resources/img/partners-email.png" alt="Facebook Partners email leak" data-jslghtbx>
+</p>
+
+<h4>Timeline:</h4>
+
+<ul class="list unordered">
+    <li>
+        <p class="paragraph">
+            30th of September, 2017: Report sent
+        </p>
+    </li>
+    <li>
+        <p class="paragraph">
+            2nd of October, 2017: First reply from Facebook's team - triage
+        </p>
+    </li>
+    <li>
+        <p class="paragraph">
+            2nd of October, 2017: Account takeover fixed (<strong>note:</strong> I did not know about the takeover yet - the full timeline was communicated to me at a later time)
+        </p>
+    </li>
+    <li>
+        <p class="paragraph">
+            24th of October, 2017: Facebook's team has fixed the issue
+        </p>
+    </li>
+</ul>
+<p class="paragraph">The email leak issue was not fixed, so I reply telling them the original steps still work.</p>
+<ul class="list unordered">
+    <li>
+        <p class="paragraph">
+            31th of October, 2017: Facebook's team informs me this was actually an account takeover bug, and that the original email leak will be fixed later - it was fixed a couple hours later.
+        </p>
+    </li>
+</ul>
+<p class="paragraph">
+    Turns out it was possible to leak login codes somehow. I am pretty sure I have clicked the link itself, and it did not log me in directly. Facebook's team then explained that another parameter from the email link could potentially be used to login to the user's account (with some restrictions) - my test accounts did not have the feature enabled.
+    <img src="/resources/img/partners-bounty.png" alt="Facebook bounty explanation" data-jslghtbx>
+</p>
+<p class="paragraph">Both of these bugs are fixed.
+    <br />Thank you Facebook's security team for being (more than) fair - they could have awarded only the email leak bug, and I would never know this was an account takeover.
+</p>
+        </div>
+                <div class="read-more">
+
+            <h5>Random blog post</h5>
+            <article class="blog-post-link">
+
+                <p class="category">
+                    Bug bounties
+                </p>
+
+                <h4>
+                    Race conditions on the web                </h4>
+
+                <p class="blog-post-metadata">
+                    written on <time datetime="2016-07-12">July 12th, 2016</time>
+                </p>
+
+                <a href="/blog/race-conditions-on-web" class="blog-post-link-more">
+                    <span>Read more</span>
+                </a>
+
+            </article>
+
+        </div>
+        
+        <div class="content-narrow">
+
+            <div class="about-me footer">
+
+                <header>
+
+                    <img src="/resources/img/josip-franjkovic.jpg" alt="Josip Franjković" />
+
+                    <div class="name-and-role">
+                        <h5>Josip Franjković</h5>
+                        <h6>web security consultant</h6>
+                    </div>
+
+                </header>
+
+                <p class="paragraph-small">
+                    I enjoy breaking websites and participating in various bug bounty programs. 
+                </p>
+
+                <div class="contact-options">
+
+                    <h5>You can contact me using:</h5>
+
+                    <ul class="contact-options-links">
+
+                        <li>
+                            <a class="twitter" href="https://twitter.com/josipfranjkovic" target="_blank">@JosipFranjkovic</a> (DM open to everyone)
+                        </li>
+                        <li>
+                            <a class="email" href="/cdn-cgi/l/email-protection#9ff5f0ecf6efb1f9edfef1f5f4f0e9f6fcdff8f2fef6f3b1fcf0f2" target="_blank"><span class="__cf_email__" data-cfemail="b2d8ddc1dbc29cd4c0d3dcd8d9ddc4dbd1f2d5dfd3dbde9cd1dddf">[email&#160;protected]</span></a>
+                        </li>
+                        <li>
+                            <a class="pgp" href="https://keybase.io/josipfranjkovic" target="_blank">keybase.io/josipfranjkovic</a>
+                        </li>
+                       <!-- I no longer have LinkedIn. <li>
+                            <a class="linkedin" href="https://hr.linkedin.com/in/josipfranjkovic" target="_blank">linkedin.com/in/josipfranjkovic</a>
+                        </li>-->
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <footer class="global-footer">
+
+        <p class="copyright">
+            All rights reserved &copy; 2018.
+            <br/>
+            — Josip Franjković
+        </p>
+
+    </footer>
+</div>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    var lightbox = new Lightbox();
+    lightbox.load();
+</script>
+<noscript><p><img src="//www.josipfranjkovic.com/piwik/piwik.php?idsite=1" style="border:0;" alt="" /></p></noscript>
+</body>
+
+</html>
