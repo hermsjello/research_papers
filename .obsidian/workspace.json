@@ -11,14 +11,10 @@
             "id": "41c25b05cf930d7b",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "IDOR.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "IDOR"
+              "title": "New tab"
             }
           }
         ]
@@ -164,19 +160,29 @@
   },
   "active": "41c25b05cf930d7b",
   "lastOpenFiles": [
-    "Authentication.md",
-    "IDOR.md",
-    "Information Disclosure.md",
-    "XSS.md",
     "SSRF.md",
+    "tools/SSRF.md",
+    "tools/op",
+    "Information_Disclosure.md",
+    "tools/Information_Disclosure.md",
+    "XSS.md",
+    "tools/XSS.md",
     "SQL.md",
+    "tools/SQL.md",
+    "tools/output",
+    "IDOR.md",
+    "tools/IDOR.md",
+    "tools/output.txt",
+    "Authentication.md",
+    "tools/Authentication.md",
+    "tools/output.txt~",
+    "tools/add_line_numbers.py~",
+    "tools/add_line_numbers.py",
+    "tools",
+    "Information Disclosure.md",
     "create a link.md",
     "site/app.js",
     "site/public/links.json~",
-    "site/public/styles.css",
-    "site/public/links.json",
-    "site/public",
-    "site/index.html",
-    "site"
+    "site/public/styles.css"
   ]
 }

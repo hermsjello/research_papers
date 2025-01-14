@@ -1,1266 +1,1266 @@
-https://script.hashnode.dev/self-xss-to-ato-via-site-features
-https://medium.com/@manan_sanghvi/how-100-manual-hacking-without-even-kali-and-burp-led-to-2-medium-vulnerabilities-on-yeswehack-bbda00fcd84e
-https://www.sonarsource.com/blog/government-emails-at-risk-critical-cross-site-scripting-vulnerability-in-roundcube-webmail/
-https://www.sonarsource.com/blog/basic-http-authentication-risk-uncovering-pyspider-vulnerabilities/
-https://infosecwriteups.com/bypassing-csp-via-url-parser-confusions-xss-on-netlifys-image-cdn-755a27065fd9
-https://infosecwriteups.com/a-story-about-how-i-found-xss-in-asus-cb233ce3bb9c
-https://medium.com/@0xold/null-byte-on-steroids-23f8104a25ec
-https://jfrog.com/blog/from-mlops-to-mloops-exposing-the-attack-surface-of-machine-learning-platforms/
-https://infosecwriteups.com/persistent-xss-vulnerability-on-microsoft-bings-video-indexing-system-a46db992ac7b
-https://cyllective.com/blog/posts/atlassian-audit-plugins
-https://blog.syss.com/posts/hacking-a-secure-industrial-remote-access-gateway/
-https://medium.com/@l_s_/self-xss-login-csrf-oauth-account-takeover-6357f3395b49
-https://cyllective.com/blog/posts/cve-2024-29182-collabora
-https://vict0ni.me/taking-over-accounts-in-multiple-ways/
-https://www.sonarsource.com/blog/front-end-frameworks-when-bypassing-built-in-sanitization-might-backfire/
-https://bunny0417.medium.com/stored-xss-in-libreoffice-ed4ad22e0f56
-https://infosecwriteups.com/how-i-got-my-first-13500-bounty-through-parameter-polluting-hpp-179666b8e8bb
-https://blog.orange.tw/posts/2024-08-confusion-attacks-en/
-https://realansgar.dev/writeups/intigriti-xss-0724/
-https://www.secforce.com/blog/cve-2023-26465-breaking-through-xss-filters-in-pega-platform/
-https://thefrogsec.github.io/2024/04/06/How-we-escalated-a-DOM-XSS-to-a-sophisticated-1-click-Account-Takeover-for-8000-Part-1/
-https://thefrogsec.github.io/2024/04/06/How-we-escalated-a-DOM-XSS-to-a-sophisticated-1-click-Account-Takeover-for-8000-Part-2/
-https://salt.security/blog/over-1-million-websites-are-at-risk-of-sensitive-information-leakage---xss-is-dead-long-live-xss
-https://skii.dev/anki-0day/
-https://skerritt.blog/anki-0day/
-https://medium.com/@pyrus369/how-almost-sacrificing-a-university-group-project-led-to-a-microsoft-bug-bounty-9801e0f8f006
-https://doyensec.com/resources/Doyensec_ThinkstCanaryTokensOSS_Report_Q22024_WithRetesting.pdf
-https://pierrekim.github.io/blog/2024-06-27-sharp-mfp-17-vulnerabilities.html
-https://creds.nl/2024-07-27-overlooked-xss-vector
-https://www.sonarsource.com/blog/mxss-the-vulnerability-hiding-in-your-code/
-https://blog.oversecured.com/20-Security-Issues-Found-in-Xiaomi-Devices/
-https://blog.slonser.info/posts/dompurify-node-type-confusion/
-https://laburity.com/file-upload-bypass-waf-xss/
-https://blog.voorivex.team/20300-bounties-from-a-200-hour-hacking-challenge
-https://blog.calif.io/p/type-confusion-attacks-in-prosemirror
-https://mufazmi.medium.com/how-i-found-a-vulnerability-in-paytm-and-received-a-bounty-d580ea14e9a8
-https://www.sonarsource.com/blog/remote-code-execution-in-mailcow-always-sanitize-error-messages/
-https://xss0r.medium.com/discovering-a-crlf-injection-vulnerability-my-journey-into-the-msrc-blog-website-5285169adddb
-https://www.sonarsource.com/blog/encoding-differentials-why-charset-matters/
-https://ssd-disclosure.com/ssd-advisory-sonicwall-sma100-stored-xss-to-rce/
-https://0reg.dev/blog/evernote-rce
-https://www.imperva.com/blog/lessons-learned-from-exposing-unusual-xss-vulnerabilities/
-https://namcoder.com/blog/how-i-found-dom-xss-on-bingcom-microsoft-bug-bounty-write-up/
-https://ltsirkov.medium.com/cross-site-scripting-via-web-cache-poisoning-and-waf-bypass-6cb3412d9e11
-https://www.monke.ie/p/exfiltrating-data-from-sandboxed-documents
-https://www.imperva.com/blog/from-chatbot-to-spybot-chatgpt-post-exploitation/
-https://www.imperva.com/blog/xss-marks-the-spot-digging-up-vulnerabilities-in-chatgpt/
-https://www.imperva.com/blog/hacking-microsoft-and-wix-with-keyboard-shortcuts/
-https://spaceraccoon.dev/universal-code-execution-browser-extensions/
-https://blog.paniago.io/the-dark-side-of-contact-forms-how-i-identified-7-cves-in-wordpress-plugins-30f6111dfebf
-https://security.lauritz-holtmann.de/advisories/tfh-form_post-xss-ato/
-https://blog.xss.am/2021/11/vuejs-script-gadget-intigriti/
-https://skii.dev/rook-to-xss/
-https://blog.ryotak.net/post/dom-based-race-condition/
-https://medium.com/@cavdarbashas/unrestricted-file-upload-lead-to-stored-xss-at-microsoft-main-domain-baa9cadac6bd
-https://www.mdsec.co.uk/2023/09/the-not-so-pleasant-password-manager/
-https://www.nccgroup.com/us/research-blog/technical-advisory-multiple-vulnerabilities-in-nagios-xi/
-https://skii.dev/rook-to-xss/
-https://infosecwriteups.com/exploiting-incorrectly-configured-load-balancer-with-xss-to-steal-cookies-99d7cb6129d7
-https://speakerdeck.com/masatokinugawa/how-i-hacked-microsoft-teams-and-got-150000-dollars-in-pwn2own
-https://doyensec.com/resources/Doyensec_SecurityAdvisory_crewjam_saml_Q32023.pdf
-https://github.com/Sudistark/xss-writeups/blob/main/figma.com-xss.md
-https://infosecwriteups.com/xss-on-the-oauth-callback-url-with-csp-bypass-leading-to-zero-click-account-takeover-c6c870b234bd
-https://hazemhussien99.wordpress.com/2024/01/12/cve-2022-40361-writeup/
-https://medium.com/@zatikyan.sevada/leaked-sql-error-leading-to-xss-and-another-bsqli-cdadde032687
-https://www.synacktiv.com/advisories/multiple-vulnerabilities-on-gestsup-3244
-https://blog.slonser.info/posts/cve-2023-5480/
-https://www.pentagrid.ch/de/blog/stored-cross-site-scripting-vulnerabilities-in-liferay-portal/
-https://blog.voorivex.team/9240-bounty-in-30-days-hunt-challenge
-https://blog.voorivex.team/7000-bounty-on-a-single-web-application
-https://gist.github.com/RenwaX23/0311842bb790ce98fe0cd8f41141fdf0
-https://joaxcar.com/blog/2024/01/26/hunting-for-prototype-pollution-gadgets-in-jquery-intigriti-0124-challenge/
-https://www.sonarsource.com/blog/who-are-you-the-importance-of-verifying-message-origins/
-https://medium.com/@deadoverflow/this-is-arguably-the-dumbest-bug-ive-ever-found-3e451951d727
-https://spaceraccoon.dev/clipboard-microsoft-whiteboard-excalidraw-meta/
-https://medium.com/@nikouei_com/2-xss-on-microsoft-37b6a7efcc84
-https://gergelykalman.com/hacking-isp-cpe-equipment-fiberhome.html
-https://shellbreaker.hashnode.dev/duplicate-csrf-leads-to
-https://medium.com/@mares.viktor/always-test-404-not-found-in-bug-bounties-2be47801b4c0
-https://www.sonarsource.com/blog/pitfalls-of-desanitization-leaking-customer-data-from-osticket/
-https://cupc4k3.medium.com/cve-2023-25365-xss-via-file-upload-bypass-ddf4d2a106a7
-https://rhinosecuritylabs.com/research/cve-2024-23724-ghost-cms-stored-xss/
-https://mizu.re/post/playing-with-dompurify-ce-handling
-https://www.sonarsource.com/blog/joomla-multiple-xss-vulnerabilities/
-https://buer.haus/2024/02/23/go-go-xss-gadgets-chaining-a-dom-clobbering-exploit-in-the-wild/
-https://xelkomy.medium.com/from-crlf-injection-to-xss-elevating-the-stakes-in-apple-itunes-security-597dc435fd82
-https://7odamoo.medium.com/how-i-got-5-000-for-out-of-scope-xss-f96938a8c561
-https://www.assetnote.io/resources/research/continuing-the-citrix-saga-cve-2023-5914-cve-2023-6184
-https://www.sonarsource.com/blog/opennms-vulnerabilities-securing-code-against-attackers-unexpected-ways/
-https://bergee.it/blog/the-story-of-exposed-service-ssrf-csp-bypass-and-credentials-stealing-via-xss/
-https://flatt.tech/research/posts/bypassing-dompurify-with-good-old-xml/
-https://medium.com/@p.ra.dee.p_0xx01/how-i-found-xss-in-another-govt-site-nciipc-vdp-84d78c0319c2
-https://swisskyrepo.github.io/An-XSS-Story/
-https://www.sonarsource.com/blog/reply-to-calc-the-attack-chain-to-compromise-mailspring/
-https://medium.com/@xrypt0/how-did-i-easily-find-stored-xss-at-apple-and-earn-5000-3aadbae054b2
-https://medium.com/@p.ra.dee.p_0xx01/found-multiple-bugs-xss-mitm-sec-misconf-in-an-educational-site-5a3804085da0
-https://security.lauritz-holtmann.de/post/sso-security-redirect-uri-iii/
-https://codeanlabs.com/blog/research/cve-2024-4367-arbitrary-js-execution-in-pdf-js/
-https://modzero.com/en/blog/beyond_the_at_symbol/
-https://modzero.com/static/MZ-24-01_modzero_MailCleaner.pdf
-https://nokline.github.io/bugbounty/2024/06/07/Zoom-ATO.html
-https://bishopfox.com/blog/expressionengine-v-7-3-15-vulnerability-2
-https://mizu.re/post/linux-local-electron-application-script-src-self-bypass#final_bypass
-https://portswigger.net/research/exploiting-xss-in-hidden-inputs-and-meta-tags
-https://research.securitum.com/how-private-cache-can-lead-to-mass-account-takeover-pentest-case/
-https://infosecwriteups.com/the-buffer-curse-3591efb4a724
-https://hazemhussien99.wordpress.com/2023/07/05/recon-only-bugs-are-sweet/
-https://medium.com/@mullangisashank/a-tale-of-og-xss-89af3d4725dc
-https://medium.com/@abhishek.karle92/access-of-android-protected-components-via-embedded-intent-android-app-pentesting-5618ae3cc9b2
-https://medium.com/@ramkumarnadar47/desperate-xss-ce3619343f57
-https://medium.com/@snoopy101/1000-for-a-simple-stored-xss-8be7083a7c2d
-https://ndevtk.github.io/writeups/2023/08/18/extensions/
-https://soroush.me/blog/2023/08/anchor-tag-xss-exploitation-in-firefox-with-target_blank/
-https://www.sonarsource.com/blog/playing-dominos-with-moodles-security-1/
-https://www.synack.com/blog/persisting-through-a-client-side-prototype-pollution/
-https://ar1fshaikh.medium.com/1st-ato-how-i-exploited-security-issue-to-take-over-admin-account-e0ae309dc356
-https://fares7elsadek.medium.com/my-first-bug-how-i-was-able-to-bypass-the-waf-and-uncover-a-reflected-xss-e0534b6f05e4
-https://www.nullpt.rs/hacking-gta-servers-using-web-exploitation
-https://www.sonarsource.com/blog/playing-dominos-with-moodles-security-2/
-https://www.sonarsource.com/blog/code-vulnerabilities-leak-emails-in-proton-mail/
-https://medium.com/@yeyinthtet305/single-xss-with-earn-600-c1199f5c7fce
-https://github.com/Sudistark/xss-writeups/blob/main/oauth-dance.md
-https://orca.security/resources/blog/cross-site-scripting-vulnerabilities-in-apache-services-azure-hd-insight/
-https://www.sonarsource.com/blog/code-vulnerabilities-put-skiff-emails-at-risk/
-https://www.sonarsource.com/blog/remote-code-execution-in-tutanota-desktop-due-to-code-flaw/
-https://medium.com/@anirudhkrishna012/how-2-cute-bugs-offered-me-a-reward-of-650-7f13abf36c65
-https://medium.com/@cavdarbashas/how-i-found-an-stored-xss-on-google-books-732d9eb64e36
-https://asdqw3.medium.com/xss-in-gmail-dynamic-email-amp-for-email-3872d6052a0d
-https://infosecwriteups.com/22-6k-github-stars-note-taking-app-hit-by-critical-xss-vulnerability-842da56ae265
-https://gist.github.com/avlidienbrunn/8db7f692404cdd3c325aa20d09437e13
-https://medium.com/@atomiczsec/one-bug-at-a-time-1-500-worth-of-xss-33455b384b8a
-https://0xm5awy.medium.com/discovering-7-open-redirect-bypasses-and-3-xss-bypasses-within-a-single-program-using-same-8e87581e1a75
-https://medium.com/@snoopy101/you-can-add-extra-zeroes-xss-bypass-on-a-private-bug-bounty-program-77440495e448
-https://blog.pksecurity.io/2023/10/04/microsoft-office.html
-https://medium.com/@remmy9/403-forbidden-no-problem-heres-a-post-xss-eba84020ff70
-https://medium.com/@renwa/you-are-not-where-you-think-you-are-opera-browsers-address-bar-spoofing-vulnerabilities-aa36ad8321d8
-https://medium.com/@jonathanbouman/remote-code-execution-at-ws1-aholdusa-com-compromising-logins-of-ahold-delhaize-usa-employees-c7c9aca7e05d
-https://www.praetorian.com/blog/vulnerabilities-within-listserv/
-https://rhinosecuritylabs.com/research/silverpeas-file-read-cves/
-https://www.sonarsource.com/blog/pfsense-vulnerabilities-sonarcloud/
-https://medium.com/@0xchoudhary/multiple-rxss-f3f796287f34
-https://medium.com/@kerstan/dom-xss-on-hackerone-programs-bug-bounty-tuesday-8973ecf6af95
-https://medium.com/@Nightbloodz/the-power-of-client-side-path-traversal-how-i-found-and-escalated-2-bugs-through-670338afc90f
-https://medium.com/@rodriguezjorgex/self-xss-to-stored-xss-b4b999610c5b
-https://medium.com/@rodriguezjorgex/escalating-dom-xss-to-stored-xss-eb6f3a669af3
-https://0x44.xyz/blog/cve-2023-4369/index.html
-https://www.nccgroup.com/us/research-blog/technical-advisory-multiple-vulnerabilities-in-pandorafms-enterprise/
-https://www.rapid7.com/blog/post/2024/01/03/genie-aladdin-connect-retrofit-garage-door-opener-multiple-vulnerabilities/
-https://infosecwriteups.com/a-successful-prototype-pollution-chained-to-a-dom-xss-9887087b56a4
-https://infosecwriteups.com/uncovering-a-critical-vulnerability-my-journey-of-discovering-cve-2021-31589-a-reflected-xss-in-1e13c0aa41b0
-https://infosecwriteups.com/turning-vulnerability-into-bounty-how-cve-2020-17453-xss-earned-me-a-500-bounty-dcabc737fded
-https://skylightcyber.com/2023/04/18/popping-tags/
-https://www.assetnote.io/resources/research/finding-xss-in-a-million-websites-cpanel-cve-2023-29489
-https://www.sonarsource.com/blog/odoo-get-your-content-type-right-or-else/
-https://abhishekgk.medium.com/how-chatgpt-helped-me-find-a-bug-b5a3795c722
-https://weizmangal.com/2020/02/14/whatsapp-vuln/
-https://fortbridge.co.uk/research/joomla-password-reset-vulnerability-and-stored-xss-for-full-compromise/
-https://www.synacktiv.com/sites/default/files/2023-04/Synacktiv-ZimbraConnect-CVE-2022-41348.pdf
-https://weizmangal.com/2023/04/10/snyk-xss/
-https://infosecwriteups.com/turning-vulnerability-into-bounty-how-cve-2020-17453-xss-earned-me-a-500-bounty-dcabc737fded
-https://lopseg.medium.com/bug-bounty-writeup-stored-xss-vulnerability-waf-bypass-f38aae7ff9eb
-https://jub0bs.com/posts/2023-05-05-smorgasbord-of-a-bug-chain/
-https://medium.com/@ar_hawk/how-a-simple-directory-listing-leads-to-pii-data-leakage-remote-code-execution-and-many-more-104b09e644f4
-https://infosecwriteups.com/discovery-of-an-xss-on-opera-f029f6522ec5
-https://www.secforce.com/blog/size-matters-when-capital-letters-introduce-vulnerabilities/
-https://corben.io/blog/17-06-30-bandcamp-xss
-https://claroty.com/team82/research/triple-threat-breaking-teltonika-routers-three-ways
-https://strike.sh/blog/official-extension-attacks
-https://systemweakness.com/xss-via-qr-code-8022a1a0309f
-https://research.securitum.com/xss-in-wordpress-via-open-embed-auto-discovery/
-https://medium.com/@ajzead660/how-i-found-a-tricky-xss-1adf25850d33
-https://medium.com/@ajzead660/exploit-an-unexploitable-xss-via-an-open-redirect-a-real-life-scenario-from-a-hackers-mindset-32b71041c5fe
-https://medium.com/@mrhavit/breaking-tiktok-our-journey-to-finding-an-account-takeover-vulnerability-b0646aba1c4b
-https://greenhats.medium.com/a-short-white-box-code-audit-of-avo-2083b08f3a95
-https://medium.com/@AlQa3Qa3_M0X0101/how-i-was-able-to-get-account-takeover-via-idor-form-jwt-caaf7ea58aa
-https://www.synacktiv.com/sites/default/files/2023-06/Synacktiv-3DS-Delmia_Apriso_2017_to_2022-Multiple-Vulnerabilities.pdf
-https://ndevtk.github.io/writeups/2023/03/11/ccai/
-https://mizu.re/post/abusing-client-side-desync-on-werkzeug
-https://medium.com/@f3tch/my-first-bug-a-unique-500-xss-eb5caccb628f
-https://orca.security/resources/blog/examining-two-xss-vulnerabilities-in-azure-services/
-https://3bodymo.medium.com/xss-through-image-proxy-using-svg-image-49cdf955cf4f
-https://keerok.github.io/2022/12/22/Flickr-Stored-XSS/
-https://octa-mihail.medium.com/my-first-bounty-on-synack-red-team-4ef53329c960
-https://medium.com/@mydudehello91/how-i-hacked-scopely-and-got-c60772f77d41
-https://medium.com/@pratiky054/account-takeover-unraveling-idor-stored-xss-flaws-in-an-nft-marketplace-158679660fa7
-https://www.assetnote.io/resources/research/reversing-citrix-gateway-for-xss
-https://www.pmnh.site/post/witeup_lhe_graphql_stored_xss/
-https://sudhanshukashyap123.medium.com/chaining-self-blind-xss-with-broken-access-control-to-make-it-non-self-blind-xss-626a70c8bbc7
-https://kuldeep.io/posts/fulldisclosure-dom-based-xss/
-https://obmiblog.blogspot.com/2022/12/gcp-2022-few-bugs-in-google-cloud-shell.html
-https://www.ghostccamm.com/blog/multi_cockpit_vulns/
-https://www.sonarsource.com/blog/openemr-remote-code-execution-in-your-healthcare-system/
-https://ysamm.com/?p=779
-https://akashc99.medium.com/blind-xss-to-ssrf-e2bc579976d
-https://www.assetnote.io/resources/research/rce-in-avaya-aura-device-services
-https://medium.com/@DrakenKun/how-i-was-able-to-find-4-cross-site-scripting-xss-on-vulnerability-disclosure-program-e2f39199ae16
-https://kindergartner.computerhacker.ring0.lol/
-https://security.lauritz-holtmann.de/post/xss-ato-gadgets/
-https://blog.vidocsecurity.com/blog/2022-summary-how-we-made-120k-bug-bounty-in-a-year/
-https://blog.cyberxplore.com/how-we-are-able-to-hack-any-company-by-sending-message-20000-bounty-cve-2021-34506/
-https://medium.com/@rezaduty/play-with-google-twitter-apple-dell-a90777faa779
-https://jowin922.medium.com/reflected-xss-on-target-with-tough-waf-waf-bypass-3b7efd1ef2bc
-https://medium.com/@tarang.parmar/xss-on-most-popular-entertaining-website-2fbf5a88df0f
-https://skylightcyber.com/2021/05/20/13-nagios-vulnerabilities-7-will-shock-you/
-https://medium.com/@niraj1mahajan/hacking-the-search-bar-the-story-of-discovering-and-reporting-an-xss-vulnerability-on-bing-com-cac2f241835
-https://www.praetorian.com/blog/using-crlf-injection-to-bypass-akamai-web-app-firewall/
-https://blog.trailofbits.com/2023/02/21/vscode-extension-escape-vulnerability/
-https://blog.stazot.com/prestashop-csrf-to-rce-article/
-https://read.martiandefense.llc/a-zero-day-for-demo-servers-and-internal-government-networks-96acda9e83ed
-https://jjainam16.medium.com/reflected-cross-site-scripting-awards-3500-bounty-c8a619f129a1
-https://jjainam16.medium.com/reflected-cross-site-scripting-on-reddit-website-bounty-awards-5000-99fa639cdd7
-https://medium.com/@feribytex/blind-xss-fired-on-admin-panel-worth-2000-abe2c83279b5
-https://www.creastery.com/blog/microsoft-azure-ato-via-xss-in-cosmos-db-explorer/
-https://starlabs.sg/blog/2023/02-microsoft-azure-account-takeover-via-dom-based-xss-in-cosmos-db-explorer/
-https://infosecwriteups.com/how-i-found-dom-based-xss-on-microsoft-msrc-and-how-they-fixed-it-8b71a6020c82
-https://hacklido.com/blog/320-how-i-got-a-2000-bounty-with-rxss
-https://p4n7h3rx.medium.com/how-i-got-a-2000-bounty-with-rxss-e6f45f987793
-https://infosecwriteups.com/interesting-stored-xss-in-sandboxed-environment-to-full-account-takeover-32e541062938
-https://cristivlad.medium.com/exfiltrating-aws-credentials-via-pdf-rendering-of-unsanitized-input-63f39d60d963
-https://kirtixs.com/blog/2023/03/01/abusing-hopy-by-hop-header-crlf-injection/
-https://0xkemo.medium.com/the-story-of-my-first-reflected-xss-c24fbfef2dc6
-https://github.blog/security/vulnerability-research/github-security-lab-audited-datahub-heres-what-they-found/
-https://gosecure.ai/blog/2018/04/03/beyond-xss-edge-side-include-injection/
-https://www.aquasec.com/blog/jenkins-server-vulnerabilities/
-https://arben.sh/bugbounty/SelfXSS-To-Stored-Through-IDOR/
-https://marvelmaniac.medium.com/rxss-inside-href-attribute-bypassing-lots-of-weird-checks-to-takeover-accounts-b4c8b4e70877
-https://infosecwriteups.com/bypassing-character-limit-xss-using-spanned-payload-7301ffac226e
-https://infosecwriteups.com/account-takeover-an-epic-bug-bounty-story-dd5468d5773d
-https://ltsirkov.medium.com/netflix-smart-tv-chaining-self-xss-with-session-poisoning-3eb7c78c7914
-https://infosecwriteups.com/cve-2023-1410-stored-xss-in-the-graphite-function-description-tooltip-165bdc32154c
-https://medium.com/@rajdipdeysarkar7/my-journey-to-nokia-hall-of-fame-in-just-10-minutes-4869c78c37e7
-https://www.wiz.io/blog/azure-active-directory-bing-misconfiguration
-https://www.sonarsource.com/blog/it-s-a-snmp-trap-gaining-code-execution-on-librenms/
-https://orca.security/resources/blog/super-fabrixss-azure-vulnerability/
-https://infosecwriteups.com/unveiling-the-secrets-my-journey-of-hacking-googles-oss-cdd9ef3c7aa
-https://infosecwriteups.com/lets-hacking-citizens-bank-9520e9c05cf9
-https://chevonphillip.medium.com/blind-xss-via-sms-support-chat-1100-bug-bounty-779a1e19cc51
-https://dev.to/mikesamuel/2008-silently-securing-jsonparse-5cbb
-https://www.invicti.com/blog/web-security/exploiting-insecure-exception-logging/
-https://starlabs.sg/blog/2022/12-multiple-vulnerabilites-in-proxmox-ve--proxmox-mail-gateway/
-https://medium.com/@haroonhameed_76621/a-775-worth-of-cookies-reflected-dom-based-xss-bug-bounty-poc-3e7720c78fbe
-https://palant.info/2019/08/19/kaspersky-in-the-middle--what-could-possibly-go-wrong/
-https://certitude.consulting/blog/en/citrix-header-injection-2/
-https://palant.info/2021/12/20/yes-fun-browser-extensions-can-have-vulnerabilities-too/
-https://palant.info/2022/04/19/adobe-acrobat-hollowing-out-same-origin-policy/
-https://bhashit.in/?p=117
-https://medium.com/bored-engineer/xss-on-account-leagueoflegends-com-via-easyxdm-2016-75bcf9d582b5
-https://hacklido.com/blog/87-reflected-xss-using-double-encoding
-https://hacklido.com/blog/90-cve-2021-40662-chamilo-lms-11114-rce
-https://web.archive.org/web/20221212095559/https://medium.com/@seeu-inspace/automate-cross-site-scripting-xss-exploitation-with-unusal-events-and-burp-intruder-9dfed4369fff
-https://thegrayarea.tech/how-i-hacked-the-dutch-government-and-got-the-lousy-t-shirt-81fd0a0dd84d
-https://karol-mazurek.medium.com/not-usual-csp-bypass-case-b538263e09d6
-https://bishopfox.com/blog/flowscreencomponents-advisory
-https://salt.security/blog/missing-bricks-finding-security-holes-in-lego-apis
-https://www.lrqa.com/en/cyber-labs/exploiting-onlyoffice-web-sockets-for-unauthenticated-remote-code-execution/
-https://infosecwriteups.com/param-hunting-to-injections-4365da5447cf
-https://infosecwriteups.com/cve-2022-42710-a-journey-through-xxe-to-stored-xss-851d74dfe917
-https://spaceraccoon.dev/analyzing-clipboardevent-listeners-stored-xss/
-https://medium.com/@AlQa3Qa3_M0X0101/how-i-was-able-to-steal-users-credentials-via-swagger-ui-dom-xss-e84255eb8c96
-https://modzero.com/modlog/archives/2022/12/19/better_make_sure_your_password_manager_is_secure/index.html
-https://kingcoolvikas.medium.com/how-i-found-my-first-xss-on-a-bug-bounty-program-c41107617ce1
-https://infosecwriteups.com/zero-click-to-account-takeover-idor-xss-98dd6cce63c4
-https://www.synacktiv.com/publications/pentesting-cisco-sd-wan-part-1-attacking-vmanage.html
-https://infosecwriteups.com/350-xss-in-15-minutes-dcb74ad93d5f
-https://cems.fun/2022/12/26/CVE-2017-8758.html
-https://mtechghost.medium.com/stored-xss-vulnerability-in-microsoft-booking-e593de3344e0
-https://bergee.it/blog/how-i-found-multiple-critical-bugs-in-red-bull/
-https://hamzadzworm.medium.com/how-i-got-a-bug-that-leads-to-takeover-accounts-of-any-user-who-view-my-profile-913c8704f6cd
-https://infosecwriteups.com/microsoft-bug-reports-lead-to-ranking-on-microsoft-msrc-quarterly-leaderboard-q3-2022-c6c9f70e2ccd
-https://infosecwriteups.com/exploring-the-world-of-esi-injection-b86234e66f91
-https://web.archive.org/web/20211016075506/https://insight.claranet.co.uk/technical-blogs/hunting-postmessage-vulnerabilities
-https://medium.com/@nakah_/an-amazing-way-to-turn-a-xss-into-an-ato-40bc92772195
-https://yaseenzubair.medium.com/web-cache-poisoning-worth-it-e7c6d88797b1
-https://kailashbohara.com.np/blog/2023/01/02/exploiting-thousands-of-domains-for-XSS/
-https://medium.com/@sid0krypt/vue-js-reflected-xss-fae04c9872d2
-https://acut3.net/posts/2023-01-03-fetch-diversion/
-https://yaseenzubair.medium.com/blind-xss-in-email-field-1000-bounty-b19b25a23236
-https://web-in-security.blogspot.com/2021/02/security-and-privacy-of-social-logins-part2.html
-https://www.aeth.cc/public/Article-Pass-Culture/mass-assignment-article-en.html
-https://krevetk0.medium.com/hacking-hackers-for-fun-and-profit-784e6c7897e8
-https://dhakalbibek.medium.com/2022-a-year-of-fascinating-discoveries-d3277dfb006f
-https://medium.com/@haroonhameed_76621/dom-based-xss-for-fun-and-profit-bug-bounty-poc-f4b9554e95d
-https://sl4x0.medium.com/how-i-found-xss-on-admin-page-without-login-fe165a5f89c2
-https://infosecwriteups.com/reflected-xss-leads-to-3-000-bug-bounty-rewards-from-microsoft-forms-efe34fc6b261
-https://swarm.ptsecurity.com/mybb-1-8-31-remote-code-execution-chain/
-https://medium.com/@protostar0/self-xss-to-stored-xss-think-out-the-box-44b094f113f9
-https://medium.com/@protostar0/crlf-injection-allow-cookie-injection-in-root-domain-xss-812cd807ba5b
-https://www.pentagrid.ch/de/blog/reflected-xss-vulnerability-in-crealogix-ebics-implementation/
-https://infosecwriteups.com/xss-through-parameter-pollution-9a55da150ab2
-https://infosecwriteups.com/6000-with-microsoft-hall-of-fame-microsoft-firewall-bypass-crlf-to-xss-microsoft-bug-bounty-8f6615c47922
-https://infosecwriteups.com/how-i-got-10-000-from-github-for-bypassing-filtration-of-html-tags-db31173c8b37
-https://blog.securityevaluators.com/tenda-ac1900-vulnerabilities-discovered-and-exploited-e8e26aa0bc68
-https://securityintelligence.com/x-force/analysis-rce-vulnerability-cobalt-strike/
-https://boschko.ca/tenda_ac1200_router/
-https://systemweakness.com/scan-qr-code-and-got-hacked-cve-2021-43530-uxss-on-firefox-android-version-768b24b326fb
-https://orca.security/resources/blog/fabrixss-vulnerability-azure-fabric-explorer/
-https://markus-krell.de/craft-cms-why-case-matters/
-https://websec.nl/blog/dmcacom-hack-full-disclosure-with-proof-of-concept-606ecfec2f798a048269340e
-https://raymondlind.medium.com/how-i-found-a-simple-stored-xss-9a6b1c5e0afa
-https://hamzadzworm.medium.com/5000-for-apple-stored-xss-and-another-blind-xss-still-under-review-e9f6f5a76eb1
-https://github.com/cymtrick/lol/blob/d17ed765129b26a1bf8060757e5aebd4e237c908/_posts/2018-10-20-CVE-2018-17082-PHP-XSS-A-Story-of-Chunked-Requests.md
-https://bugs.php.net/bug.php?id=76582
-https://web.archive.org/web/20221025185418/https://bergee.it/blog/chaining-multiple-vulnerabilities-for-credential-stealing/
-https://boschko.ca/glinet-router/
-https://raymondlind.medium.com/stored-xss-to-cookie-exfiltration-2cbca6a8c7f0
-https://ssd-disclosure.com/ssd-advisory-galaxy-store-applications-installation-launching-without-user-interaction/
-https://blog.doyensec.com/2022/10/27/jupytervscode.html
-https://octagon.net/blog/2022/10/28/juniper-sslvpn-junos-rce-and-multiple-vulnerabilities/
-https://www.assetnote.io/resources/research/exploiting-static-site-generators-when-static-is-not-actually-static
-https://portswigger.net/research/safari-is-hot-linking-images-to-semi-random-websites
-https://medium.com/@0xnaeem/how-i-get-5x-swag-from-sony-102dbefd0c2c
-https://infosecwriteups.com/get-blind-xss-within-5-minutes-100-9718bd056570
-https://medium.com/@armandjasharaj/pentest-tales-exif-data-manipulation-b36beb291229
-https://santoshdbobade.blogspot.com/
-https://santoshdbobade.medium.com/how-i-got-reflected-cross-site-scripting-rxss-on-manchester-metropolitan-university-700b36cb4f53
-https://maordayanofficial.medium.com/look-at-what-i-found-in-comodo-57d62af2f263
-https://raymondlind.medium.com/finding-reflected-xss-in-a-strange-way-289a4f3fa630
-https://medium.com/@haroonhameed_76621/winning-qr-with-dom-based-xss-bug-bounty-poc-4b4048cf285d
-https://infosecwriteups.com/got-another-xss-using-double-encoding-e6493a9f7368
-https://bendtheory.medium.com/remediation-archeology-finding-and-decoding-an-ancient-xss-ea541c1106d1
-https://infosecwriteups.com/russian-roulette-xss-bbba6afd2570
-https://dewcode.medium.com/how-i-found-29-stored-xss-in-modern-framework-1cfe60a107a0
-https://medium.com/pentesternepal/interesting-stored-xss-via-meta-data-eb8fe1de8b33
-https://0xelkot.medium.com/how-i-get-10-sqli-and-30-xss-via-automation-tool-cebbd9104479
-https://labs.guard.io/xss-vulnerability-found-in-connectwise-remote-access-platform-with-great-potential-for-misuse-by-scammers-a0773da2aacf
-https://corben.io/blog/18-1-11-chaining-yahoo-bugs
-https://samcurry.net/hacking-apple
-https://dl.acm.org/doi/fullHtml/10.1145/3427228.3427290
-https://hesec.de/posts/bbh-csrf/
-https://shafouz.medium.com/webview-xss-account-takeover-349c1d69606e
-https://infosecwriteups.com/a-great-weekend-hack-worth-8k-9bfda8ab65b9
-https://offsec.space/posts/airtel-vulnerabilities/
-https://www.synacktiv.com/sites/default/files/2022-11/CodeIgniter3_XSS_2022.pdf
-https://aidilarf.medium.com/stored-xss-at-https-www-tiktok-com-11fed6db0590
-https://mc0wn.blogspot.com/2022/05/2nd-rce-and-xss-in-apache-struts-before-2530.html
-https://swarm.ptsecurity.com/researching-open-source-apps-for-xss-to-rce-flaws/
-https://blog.electrovolt.io/posts/discord-rce/
-https://x.com/S1r1u5_/status/1558689435985752065?mx=2
-https://mohamedtarekq.medium.com/how-i-get-full-account-takeover-via-stealing-actions-login-form-xss-9e50068c2b2d
-https://infosecwriteups.com/stored-xss-to-account-takeover-going-beyond-document-cookie-970e42362f43
-https://www.adico.me/post/xss-in-gmail-s-amp4email
-https://ibraradi.gitbook.io/write-up/came-looking-for-ssrf-and-found-xss
-https://alpinnnnnn13.medium.com/stored-xss-in-app-gitbook-com-6349f42661f7
-https://medium.com/@the_harvester/bypassed-cloudflares-web-application-firewall-waf-44da57f3a1d3
-https://mohamedtarekq.medium.com/defeat-the-httponly-flag-to-achieve-account-takeover-rxss-c16849d3d192
-https://gonzxph.medium.com/my-experience-on-hacking-the-dutch-government-a2c5a5f43d83
-https://medium.com/@fpatrik/how-i-found-an-xss-vulnerability-via-using-emojis-7ad72de49209
-https://doyensec.com/resources/Doyensec_Advisory_AnnounceKit_Q12022.pdf
-https://sagarsajeev.medium.com/escalating-open-redirect-to-xss-d2b9355e5f05
-https://blog.electrovolt.io/posts/element-rce/
-https://x.com/S1r1u5_/status/1559561002349633536
-https://bergee.it/blog/xss-via-angular-template-injection/
-https://bergee.it/blog/url-filter-bypass-rfi-and-xss/
-https://bergee.it/blog/the-forgotten-api-and-xss-filter-bypass/
-https://bergee.it/blog/five-minute-hunting-for-hidden-xss/
-https://thinkloveshare.com/hacking/rce_on_spip_and_root_me_v2/
-https://medium.com/@dirtycoder0124/n-a-to-750-bounty-for-a-blind-xss-dc218c84a340
-https://spaceraccoon.dev/exploiting-icalendar-properties-enterprise-applications/
-https://infosecwriteups.com/my-hall-of-fame-at-united-nations-success-story-97675232aed7
-https://notifybugme.medium.com/how-i-found-reflected-xss-on-idfc-bank-with-burp-suite-intruder-7c53275daf02
-https://moustadif.medium.com/how-i-bypassed-reflected-xss-in-well-known-platform-274c07f97674
-https://infosecwriteups.com/bypassing-amazon-waf-to-pop-an-alert-4646ce35554e
-https://nokline.github.io/bugbounty/2022/09/02/Glassdoor-Cache-Poisoning.html
-https://hackerone.com/reports/1621540
-https://bergee.it/blog/turning-cookie-based-xss-into-account-takeover/
-https://infosecwriteups.com/how-i-found-3-rxss-on-the-lululemon-bug-bounty-program-fa357a0154c2
-https://shinchina.in/blog/2022-09-07/$900-blind-xss.html
-https://medium.com/@cyberali/blind-xss-and-time-based-sql-injection-to-admin-panel-control-and-database-takeover-9b7645a53748
-https://systemweakness.com/how-i-found-moodle-cross-site-scripting-459a1c9ad4d5
-https://medium.com/cloud-security/parameters-in-lambda-functions-that-lead-to-xss-and-injection-1bc8e14fca6f
-https://samcurry.net/universal-xss-on-netlifys-next-js-library
-https://jinone.github.io/bugbounty-a-dom-xss/
-https://rohit443.medium.com/blind-xss-on-admin-portal-leads-to-information-disclosure-121d26b2a35a
-https://sagarsajeev.medium.com/escalating-ssti-to-reflected-xss-using-curly-braces-825685bd93ec
-https://xthemo.medium.com/stored-xss-at-nvidia-via-angular-js-template-injection-3c9793218860
-https://www.trustwave.com/en-us/resources/blogs/spiderlabs-blog/cve-2022-37461-two-reflected-xss-vulnerabilities-in-canon-medicals-vitrea-view/
-https://c0nqr0r.medium.com/reading-robots-txt-got-me-4-xss-reports-9fd2234c635f
-https://www.trenchesofit.com/2022/09/30/zoneminder-web-app-testing/
-https://ahmadaabdulla.medium.com/mr-robot-self-xss-from-informative-to-high-1200-csrf-open-redirect-self-xss-to-stored-92f371ba3da1
-https://rohit443.medium.com/privilege-escalation-to-stored-xss-dff01314bc7e
-https://positive.security/blog/dompdf-rce
-https://flattsecurity.medium.com/finding-bugs-to-trigger-unauthenticated-command-injection-in-a-netgear-router-psv-2022-0044-2b394fb9edc
-https://web.archive.org/web/20220329163747/https://pwnsec.ninja/2022/03/27/stealing-cookies-from-subdomain-leads-to-takeover-user-accounts-at-redacted-com/
-https://mizu.re/post/how-i-was-able-to-rick-roll-every-users-on-root-me.org
-https://abdilahrf.github.io/bugbounty/got-access-to-dota-2-admin-panel-by-exploiting-in-game-feature
-https://medium.com/@terminatorLM/small-bugs-are-more-dangerous-than-you-think-9411618191ab
-https://amitlt2.medium.com/multiple-times-i-hacked-duke-university-with-rxss-vulnerability-7e291aad043a
-https://amitlt2.medium.com/hacked-nokia-with-reflected-cross-site-scripting-vulnerability-327daa8e62fb
-https://tech-blog.cymetrics.io/en/posts/huli/erpnext-ssrf-and-xss-to-account-takeover/
-https://medium.com/@Bishoo97x/xss-html-injection-and-file-upload-bypass-in-huawei-subdomain-64966ba4f4ac
-https://shahjerry33.medium.com/xss-the-localstorage-robbery-d5fbf353c6b0
-https://amitlt2.medium.com/open-redirection-into-bentley-system-d1ee188bfb25
-https://medium.com/@malwarejoe/smashing-the-modern-web-tech-stack-part-1-the-evolving-threat-landscape-in-2022-and-dom-based-324696684239
-https://systemweakness.com/sensitive-data-exfiltration-through-xss-450-409162eced3a
-https://systemweakness.com/chained-bug-xml-file-upload-to-xss-to-csrf-to-full-account-take-over-ato-156409c41b57
-https://web.archive.org/web/20220516024454/https://medium.com/@tobydavenn/how-i-paid-for-my-holiday-with-bug-bounty-668f1f59e6e5
-https://systemweakness.com/resolveuri-rxss-imperva-waf-bypass-c834ca573bd4
-https://medium.com/@renwa/the-underrated-bugs-clickjacking-css-injection-drag-drop-xss-cookie-bomb-login-logout-csrf-84307a98fffa
-https://ysamm.com/?p=763
-https://blog.vidocsecurity.com/blog/hacking-swagger-ui-from-xss-to-account-takeovers/
-https://infosecwriteups.com/bypassing-waf-to-weaponize-a-stored-xss-ff9963c421ee
-https://cyllective.com/blog/posts/wordpress-audit-plugins
-https://vikaran101.medium.com/how-i-made-it-into-the-united-nations-hall-of-fame-as-i-slept-f567c90be227
-https://www.hoyahaxa.com/2022/05/bygone-vulnerabilities-remote-code.html
-https://medium.com/@ao64400225/an-unusual-way-to-find-xss-injection-in-one-minute-9ed2c7e2a848
-https://rotem-bar.com/hacking-65-million-websites-greater-cve-2022-29455-elementor
-https://notifybugme.medium.com/automating-reflected-xss-with-burp-suite-intruder-a39b2f060db7
-https://aidilarf.medium.com/xss-blind-stored-at-asset-domain-android-apps-tiktok-ae2f4c2dbc07
-https://systemweakness.com/every-xss-is-different-c98528fee5e0
-https://gosecure.ai/blog/2022/06/21/xss-vulnerability-in-ibm-content-navigator-cve-2020-4757/
-https://bishopfox.com/blog/filestack-upload-advisory
-https://aidilarf.medium.com/xss-blind-stored-at-2-assets-tiktok-f32829f11e58
-https://portswigger.net/research/bypassing-firefoxs-html-sanitizer-api
-https://blog.electrovolt.io/posts/vscode-rce/
-https://web.archive.org/web/20220716152713/https://snapsec.co/blog/hacking-larksuite/
-https://medium.com/@Bishoo97x/stored-xss-and-stored-html-injection-in-united-nations-website-db87d445e41
-https://spawnzii.github.io/posts/2022/07/how-we-have-pwned-root-me-in-2022/
-https://nirmaldahal.com.np/posts/2022/07/leveraging-the-sql-injection-to-execute-the-xss-by-evading-csp/
-https://medium.com/@numanturle/microsoft-teams-stored-xss-bypass-csp-8b4a7f5fccbf
-https://medium.com/@rodricbr/from-open-redirect-to-reflected-xss-manually-64e633a3d23f
-https://gosecure.ai/blog/2022/07/13/tableau-server-leaks-sensitive-information-from-reflected-xss/
-https://medium.com/@moSec/crlf-to-account-takeover-chaining-bugs-21a25dfa1cdf
-https://medium.com/stolabs/cve-2022-35909-cve-2022-35910-incorrect-access-control-and-xss-stored-to-jellyfin-967359c91058
-https://www.rcesecurity.com/2022/07/WordPress-Transposh-Exploiting-a-Blind-SQL-Injection-via-XSS/
-https://medium.com/techiepedia/the-tale-of-cve-2021-34479-vscode-xss-b336ba6cf3d6
-https://blog.dixitaditya.com/oauth-account-takeover
-https://lethanhphuc-pk.medium.com/bugbounty-xss-with-markdown-exploit-fix-on-opensource-1baecebe9645
-https://zseano.medium.com/finding-xss-on-apple-com-and-building-a-proof-of-concept-to-leak-your-pii-information-d7bc93cff2df
-https://blog.bugbountyhunter.com/xss-on-apple/
-https://infosecwriteups.com/how-i-found-my-first-xss-bug-96fb8e85a24c
-https://sh1yo.art/post/sec-596/
-https://www.sonarsource.com/blog/nodebb-remote-code-execution-with-one-shot/
-https://github.com/l0ggg/VMware_vCenter
-https://omespino.com/write-up-xss-stored-in-files-slack-com-via-xml-svg-file-ios-1000-usd/
-https://www.r29k.com/articles/bb/priv-esc-via-stored-xss
-https://prashantbhatkal2000.medium.com/svg-based-stored-xss-ee6e9b240dee
-https://medium.com/@mohamedtaha_42562/how-i-found-xss-vulnerability-in-amazon-in-5-minutes-using-shodan-50b583655297
-https://motaha22.github.io/bugbounty/bounty/
-https://sharmajijvs.medium.com/xss-via-file-upload-a2bcc1e5d7f7
-https://ndevtk.github.io/writeups/2021/12/30/cloud-shell-xss/
-https://infosecwriteups.com/bug-hunting-journey-of-2021-1fa60b28d949
-https://nmochea.medium.com/xiaomi-arbitrary-javascript-vulnerability-327a6f3a9b0e
-https://systemweakness.com/xss-filter-evasion-idor-3d4624758ff0
-https://kuldeep.io/posts/120-days-of-high-frequency-hunting/
-https://medium.com/@p3rr0x22/critical-xss-in-chrome-extension-b55757a2074
-https://aidilarf.medium.com/first-valid-bug-finding-at-microsoft-and-i-got-the-acknowledgments-page-microsoft-a2c185c53074
-https://www.ryanpickren.com/safari-uxss
-https://infosecwriteups.com/how-i-made-15-000-by-hacking-caching-servers-part-1-5541712a61c3
-https://infosecwriteups.com/how-i-made-16-500-hacking-cdn-caching-servers-part-2-4995ece4c6e6
-https://infosecwriteups.com/how-i-made-16-500-hacking-cdn-caching-servers-part-3-91f9d836e046
-https://medium.com/@abhijeetbiswas_/xss-cross-site-scripting-via-x-forwarded-host-header-20be114d4254
-https://hackerone.com/reports/1392935
-https://machevalia.blog/blog/stored-cross-site-scripting-in-mediawiki
-https://systemweakness.com/a-peculiar-case-of-xss-and-my-first-bug-19f2132390b6
-https://sanyamchawla1999.medium.com/my-experience-of-hacking-the-dutch-government-8c219c61c795
-https://medium.com/@ladecruze/my-first-bounty-idor-self-xss-3000-cde89cbbc1b1
-https://kazet.cc/2022/02/03/fuzzing-wordpress-plugins.html
-https://spaceraccoon.dev/solving-dom-xss-puzzles/
-https://edoverflow.com/2022/bypassing-razers-dom-based-xss-filter/
-https://web.archive.org/web/20220214063345/https://7odamo.medium.com/sql-injection-reflected-xss-and-information-disclosure-in-one-subdomain-in-just-10-minutes-f2ce877b43d4
-https://infosecwriteups.com/my-first-reflected-xss-bug-bounty-google-dork-xxx-92ac1180e0d0
-https://web.archive.org/web/20220220072733/https://bloggerrando.blogspot.com/2022/02/stored-xss-on-messagealibabacom-alibaba.html
-https://medium.com/@friendly_/bypassing-cloudflares-waf-b1b83a50fb2f
-https://f4t7.medium.com/xss-in-hidden-input-field-1b98a5fece26
-https://octagon.net/blog/2022/03/02/apache-jspwiki-preauth-xss-to-ato/
-https://apth3hack3r.medium.com/xss-through-base64-encoded-json-4b0d96e5ccd4
-https://medium.com/@tushar.tilak.sharma/a-tale-of-open-redirection-to-stored-xss-6ad426ae9d43
-https://c4rrilat0r.medium.com/how-i-managed-to-trigger-xss-automatically-to-get-critical-account-takeover-92ea3abcaf9
-https://infosecwriteups.com/how-i-was-able-to-find-50-cross-site-scripting-xss-security-vulnerabilities-on-bugcrowd-public-ba33db2b0ab1
-https://melotover.medium.com/how-i-bypassed-a-tough-waf-to-steal-user-cookies-using-xss-da75f28108e4
-https://web.archive.org/web/20210924032932/https://0xdln.ml/XSS-Through-Fuzzing-Default-IIS/
-https://www.r29k.com/articles/bb/self-xss-to-stored-xss
-https://orwaatyat.medium.com/how-i-found-multiple-bugs-on-facebook-in-1-month-and-a-part-for-my-methodology-tools-58a677a9040c
-https://0x80dotblog.wordpress.com/2021/07/24/ebay-xss-demo-and-guide-to-spear-phishing/
-https://medium.com/pentesternepal/how-i-found-a-bug-in-apple-within-just-in-5min-d7357237d7a0
-https://www.shielder.com/advisories/mattermost-server-reflected-xss-oauth/
-https://hackerone.com/reports/1216203
-https://web.archive.org/web/20210927021132/https://0xdln.ml/XSS-Special-Cases/
-https://rdnzx.medium.com/chaining-open-redirect-with-xss-to-account-takeover-36acf218a6d5
-https://medium.com/@vikramroot/account-takeover-via-stored-xss-b774f7a2a3ab
-https://web.archive.org/web/20210824230504/https://medium.com/@yusifceferov_/how-i-bypassed-website-using-akamai-waf-e4e907aeb161
-https://gonzxph.medium.com/how-i-escalate-my-self-stored-xss-to-account-takeover-with-the-help-of-idor-f20733ecdbe9
-https://sicks3c.medium.com/tale-of-xss-in-angular-c5c057a56156
-https://fortbridge.co.uk/research/multiple-vulnerabilities-in-cpanel-whm/
-https://github.com/justinsteven/advisories/blob/master/2021_vscode_ipynb_xss_arbitrary_file_read.md
-https://nassimchami.medium.com/1st-bug-bounty-writeup-open-redirect-to-xss-on-login-page-313221da2879
-https://infosecwriteups.com/why-u-should-use-burp-to-test-path-traversal-vulnerability-and-also-get-rxss-2743cbb16a3c
-https://zemnmez.medium.com/how-to-hack-apple-id-f3cc9b483a41
-https://web.archive.org/web/20210909040725/https://obsrva.org/2021/08/22/monkeytype-disclosure.html
-https://thecyberneh.medium.com/story-of-unexpected-bugs-75734d51ac57
-https://medium.com/@friendly_/reflective-xss-via-search-box-bypassing-cloudflare-waf-841ed420b7f
-https://web.archive.org/web/20210829191303/https://0u.ma/5
-https://medium.com/codex/hunting-for-xss-with-codeql-57f70763b938
-https://marxchryz.medium.com/how-i-found-multiple-xss-in-hidden-legacy-pages-a57a25d8ff1f
-https://medium.com/@behnam.yazdanpanah/chaining-bugs-from-self-xss-to-account-takeover-82d572136bdf
-https://noob3xploiter.medium.com/sql-injection-in-harvard-subdomain-be67a5dbf664
-https://websecblog.com/vulns/google-threadit/
-https://blogs.opera.com/security/2021/09/bug-bounty-guest-post-local-file-read-via-stored-xss-in-the-opera-browser/
-https://medium.com/@gguzelkokar.mdbf15/xss-via-account-takeover-in-e-signature-feature-worth-2500-435f3f8325bf
-https://codecolor.ist/2021/08/04/mistuned-part-i/
-https://codecolor.ist/2021/08/05/mistuned-part-ii/
-https://codecolor.ist/2021/09/10/mistuned-part-iii/
-https://www.y-security.de/news-en/microsoft-azure-portal-persistent-cross-site-scripting/index.html
-https://mrpentestguy.medium.com/how-i-was-able-to-find-100-xss-in-united-nations-bug-bounty-program-a675573c006d
-https://infosecwriteups.com/weaponizing-reflected-xss-to-account-takeover-ae8aeea7aca3
-https://infosecwriteups.com/chaining-bugs-for-better-bounties-f14d6b2129de
-https://gccybermonks.com/posts/mxss/
-https://blogs.opera.com/security/2021/09/8000-bug-bounty-highlight-xss-to-rce-in-the-opera-browser/
-https://medium.com/@bobbyrsec/zero-day-hijacking-icloud-credentials-with-apple-airtags-stored-xss-6997da43a216
-https://blog.s1r1us.ninja/research/PP
-https://www.aeth.cc/public/Article-Pass-Culture/stored-xss-article-en.html
-https://medium.com/@mfocuz/hacking-netflix-eureka-8e5957b2f539
-https://svennergr.github.io/writeups/google/ads_dom_xss/
-https://mhmdiaa.com/blog/exploiting-html-imports/
-https://r0.haxors.org/posts?id=20
-https://omespino.com/write-up-xss-stored-in-api-media-atlassian-com-via-doc-file-ios/
-https://nassimchami.medium.com/stored-xss-to-account-take-over-45a7e09116a7
-https://omespino.com/write-up-google-vrp-bug-bounty-etc-environment-local-variables-exfiltrated-on-linux-google-earth-pro-desktop-app-1337-usd/
-https://starlabs.sg/blog/2021/11-diving-into-open-source-lms-ccodebases/
-https://shrirangdiwakar.medium.com/encrypted-payload-decrypted-execution-600-stored-xss-3e517cea8f13
-https://thexssrat.medium.com/i-felt-like-there-were-no-more-bugs-left-after-winning-2000-but-an-email-worth-750-changed-my-c7a507649060
-https://infosecwriteups.com/a-weird-xss-77c13d135c9f
-https://security.lauritz-holtmann.de/post/xss-parameter-guessing/
-https://infosecwriteups.com/bragging-rights-lets-head-back-to-bug-bucket-88c94730b6fa
-https://bendtheory.medium.com/journeys-in-quoteless-and-multi-reflection-xss-b1d67bb0c5dd
-https://robertchen.cc/blog/2021/04/03/github-pages-xss
-https://benjamin-mauss.medium.com/critical-blind-storage-xss-my-first-bug-bounty-d318f6ba570c
-https://fernale.blogspot.com/2021/04/how-i-got-9000-usd-by-hacking-into.html
-https://pharish4948.medium.com/how-i-earned-3200-in-4hours-through-stored-xss-38597877d3e1
-https://shahjerry33.medium.com/xss-via-exif-data-the-p2-elevator-d09e7b7fe9b9
-https://infosecwriteups.com/pwning-your-assignments-stored-xss-via-graphql-endpoint-6dd36c8a19d5
-https://n45ht.or.id/blog/reflected-xss-on-microsoft/
-https://n45ht.or.id/blog/exploiting-xss-via-markdown-on-xiaomi/
-https://notifybugme.medium.com/chaining-csrf-with-xss-to-deactivate-mass-user-accounts-by-single-click-b463c0d26587
-https://infosecwriteups.com/xss-through-parameter-pollution-9a55da150ab2
-https://infosecwriteups.com/apple-bug-bounty-xss-2021-78c2f4fc4106
-https://infosecwriteups.com/stored-xss-to-organisation-takeover-6eaaa2fdcd5b
-https://infosecwriteups.com/story-of-my-hacking-dutch-government-46b7a3c8b75a
-https://filipaze.medium.com/how-i-find-my-first-stored-xss-c6f57155cc1a
-https://kailashbohara.com.np/blog/2021/05/13/Google-blind-XSS/
-https://ysamm.com/?p=695
-https://www.pethuraj.com/blog/edmodo-bug-bounty-writeup/
-https://keerok.github.io/2021/05/09/XSS-via-postMessage-in-chat-mozilla-org-CVE-2021-21320/
-https://n1ghtmar3.medium.com/chaining-xss-with-authentication-issues-to-turn-it-into-full-account-takeover-ae886ac696bb
-https://joelmcg1993.medium.com/stored-xss-with-two-different-parameters-d9243cae3e6a
-https://cirius.medium.com/how-i-hacked-a-target-again-and-again-6db2e462221f
-https://master-sec.medium.com/the-beauty-of-chaining-client-side-bugs-759e1091eabf
-https://frichetten.com/blog/xss_in_aws_console/
-https://gccybermonks.com/posts/popups/
-https://infosecwriteups.com/story-of-my-first-cash-bounty-on-hackerone-acad282ae962
-https://cyberxplore.medium.com/how-we-are-able-to-hack-any-company-by-sending-message-including-facebook-google-microsoft-b7773626e447
-https://www.youtube.com/watch?v=XfTN7fPtB1s
-https://0xbadb00da.medium.com/account-takeover-via-stored-xss-with-arbitrary-file-upload-2774ec6cff51
-https://sm4rty.medium.com/stored-xss-via-invite-leading-to-mass-account-takeover-at-opera-a85ed257dd12
-https://research.checkpoint.com/2021/a-supply-chain-breach-taking-over-an-atlassian-account/
-https://www.pethuraj.com/blog/escalating-xss-to-arbitrary-file-read/
-https://portswigger.net/research/finding-dom-polyglot-xss-in-paypal-the-easy-way
-https://hackrzvijay.medium.com/blind-xss-in-apple-school-enrollment-data-disclosure-a94c1da5bf54
-https://www.trustwave.com/en-us/resources/blogs/spiderlabs-blog/solarwinds-serv-u-1523-share-url-xss-cve-2021-32604/
-https://infosecwriteups.com/reflected-xss-through-insecure-dynamic-loading-dbf4d33611e0
-https://aidilarf.medium.com/380-xss-stored-in-bigo-bug-bounty-program-a8b9529adcc4
-https://jasminderpalsingh.info/stored-xss-in-google-doubleclick-studio-google-research-grant/
-https://infosecwriteups.com/how-i-was-able-to-bypass-cloudflare-for-xss-e94cd827a5d6
-https://cirius.medium.com/escalating-xss-to-account-takeover-ffde08624937
-https://infosecwriteups.com/reflected-cross-site-scripting-on-private-program-bounty-750-34cc67a931f1
-https://securitytrooper.com/en/cross-site-scripting-xss-reflected-in-one-of-the-subdomains-of-general-motorsbugbounty
-https://nmochea.medium.com/this-post-is-about-an-reflected-xss-that-i-found-on-opera-browser-application-which-could-have-been-39823a22045d
-https://blog.evanricafort.com/2020/12/cve-2019-17674-wordpress-stored-xss.html
-https://vedanttekale20.medium.com/story-of-the-best-vulnerability-ive-found-so-far-5e3b0e02b47e
-https://github.com/oskarsve/ms-teams-rce
-https://infosecwriteups.com/content-security-policy-bypass-to-perform-xss-3c8dd0d40c2e
-https://ph-hitachi.medium.com/how-i-got-my-first-bug-bounty-in-intersting-target-lfi-to-sxss-58fa5c4f5882
-https://blog.s1r1us.ninja/research/cookie-tossing-to-rce-on-google-cloud-jupyter-notebooks
-https://lutfumertceylan.com.tr/posts/acc-takeover-web-cache-xss/
-https://notifybugme.medium.com/chaining-cors-by-reflected-xss-to-account-takeover-my-first-blog-5b4f12b43c70
-https://ysamm.com/?p=525
-https://emanuel-beni.medium.com/stored-xss-on-product-description-high-400-2f078fd70fd2
-https://ashketchum.medium.com/blind-xss-in-google-analytics-admin-panel-3133-70-2185d1cce82a
-https://levelup.gitconnected.com/stealing-user-information-via-xss-via-parameter-pollution-7d99b3379e7d
-https://web.archive.org/web/20210730144815/https://www.cysek.org/post/sxss-by-cache-poison-attack
-https://slashcrypto.org/2021/01/15/CVE-2020-1456/
-https://kunalkhubchandani.medium.com/how-i-was-rewarded-a-1000-bounty-after-abusing-file-upload-functionality-to-stored-xss-945a40ac6f94
-https://systemweakness.com/story-behind-sweet-ssrf-40c705f13053
-https://github.com/tess-ss/writeups/blob/main/bug.md
-https://infosecwriteups.com/bragging-rights-part-1-short-story-of-a-bug-wave-dbb88f48b604
-https://0xfabiof.github.io/stored-xss-tw/
-https://web.archive.org/web/20210201180254/https://www.cysek.org/post/bac-sxss
-https://infosecwriteups.com/how-i-was-able-to-turn-a-xss-into-a-account-takeover-ae0c478640e7
-https://vict0ni.me/redwood-report2web-xss-and-frame-injection/
-https://thevillagehacker.medium.com/reflected-xss-on-a-public-program-e8c0416daca1
-https://samcurry.net/hacking-chesscom
-https://karansh491.medium.com/my-first-bounty-stored-xss-96dea41fd9cf
-https://vbharad.medium.com/stored-xss-in-icloud-com-5000-998b8c4b2075
-https://infosecwriteups.com/idor-that-allowed-me-to-takeover-any-users-account-129e55871d8
-https://ysamm.com/?p=632
-https://sprocketfox.io/xssfox/2021/02/18/pipeline/
-https://web.archive.org/web/20230726020446/https://galnagli.com/Cache_Poisoning/
-https://infosecwriteups.com/bragging-rights-killing-file-uploads-softly-fba35a4e485a
-https://maordayanofficial.medium.com/stored-xss-at-trello-com-ef2e3d1ed24b
-https://infosecwriteups.com/leveraging-template-injection-to-takeover-an-account-1dba7c4ae315
-https://ashketchum.medium.com/stored-xss-in-google-ads-android-application-3133-70-373f6c361ff3
-https://kleiton0x00.github.io/posts/Exploiting-HTTP-Request-Smuggling-(TE.CL)-XSS-to-website-takeover/
-https://infosecwriteups.com/exploiting-http-request-smuggling-te-cl-xss-to-website-takeover-c0fc634a661b
-https://infosecwriteups.com/chain-of-low-level-bugs-and-misconfigurations-leads-to-account-takeover-de248fc4e481
-https://apapedulimu.click/google-vrp-how-i-get-blind-xss-at-google-with-dork-first-bounty-and-hof/
-https://systemweakness.com/finding-keys-under-the-door-5cea8758ce86
-https://med-mahmoudi26.medium.com/chaining-bugs-for-the-greater-good-664412ae85f8
-https://gccybermonks.com/posts/xss-mozilla/
-https://thexssrat.medium.com/how-i-found-my-first-critical-vulnerability-in-bug-bounties-f890d420764b
-https://melotover.medium.com/how-i-leveraged-xss-to-make-privilege-escalation-to-be-super-admin-e120b6090451
-https://thexssrat.medium.com/poc-the-easiest-125-euros-i-ever-made-4dc87f01e286
-https://medium.com/kminthein/story-of-stealing-mail-conversation-contacts-in-mail-ru-and-mymail-ios-applications-via-xss-1e49c4ed560
-https://lutfumertceylan.com.tr/posts/stored-xss-with-password-recovery-page/
-https://research.securitum.com/art-of-bug-bounty-a-way-from-js-file-analysis-to-xss/
-https://embracethered.com/blog/posts/2020/aws-xss-cross-site-scripting-vulnerability/
-https://medium.com/@noneofyou/how-i-got-hall-of-fame-in-microsoft-9b507dec3860
-https://medium.com/@renwa/copy-drag-paste-drop-2fd4613ad1d1
-https://www.pethuraj.com/blog/bbc-bug-bounty-write-up-xss-vulnerability/
-https://issues.chromium.org/issues/40051189
-https://github.com/google/security-research/security/advisories/GHSA-fpgp-vrmv-v8f2
-https://infosecwriteups.com/dont-stop-at-one-bug-d3c56806b5
-https://bughunter25.medium.com/self-stored-xss-to-full-account-takeover-fe8e71471795
-https://infosecwriteups.com/exploiting-imported-libraries-to-bypass-cloudflare-waf-7aed99186c5a
-https://infosecwriteups.com/the-1-000-worth-cookie-6cf48af08e08
-https://sa1tama0.medium.com/xss-rce-html-file-upload-in-same-endpoint-4a03348445f4
-https://tommysuriel.medium.com/stored-xss-on-slack-bug-bounty-88fe167d75df
-https://medium.com/@jonathanbouman/reflected-xss-at-fotoservice-hema-nl-af344ef63433
-https://infosecwriteups.com/reflected-xss-in-facebooks-mirror-websites-4384b4eb3e11
-https://infosecwriteups.com/cache-poisoning-with-xss-a-peculiar-case-eb5973850814
-https://medium.com/@z.x/how-i-got-450-just-in-one-google-search-sqli-rxss-8c7c28ceba79
-https://infosecwriteups.com/stealing-your-data-using-xss-bf7e4a31e6ee
-https://apapedulimu.click/shopify-com-blind-stored-xss-via-staff-name/
-https://0xnazmul.medium.com/how-i-found-my-first-bug-stored-xss-and-earned-my-first-bounty-1000-33556678d1ed
-https://infosecwriteups.com/the-importance-of-keeping-up-to-date-or-how-i-found-an-interesting-bug-thanks-to-a-tweet-2ec6ba9a5e1e
-https://infosecwriteups.com/stop-scratching-the-surface-and-hack-the-dependencies-fe4c26cd8ea
-https://medium.com/@soufianehabti/my-story-with-xss-ed017bdc44c4
-https://smilehacker.medium.com/xss-that-can-pay-your-bills-9377eff1fd0d
-https://medium.com/@soyelmago/never-give-up-the-story-behind-a-dupe-to-a-triaged-43b72debb6c9
-https://www.ehpus.com/post/xss-fix-bypass-10000-bounty-in-google-maps
-https://alesandroortiz.com/articles/uxss-android-webview-cve-2020-6506/
-https://blog.long.lat/2020/09/16/exploiting-a-useless-cookie-based-xss-and-making-it-useful/
-https://supras.io/reflected-xss-via-a-hidden-parameter-on-dutch-gov-website/
-https://alonnsoandres.medium.com/25k-instagram-almost-xss-filter-link-facebook-bug-bounty-798b10c13b83
-https://medium.com/@masonhck357/chains-on-chains-chaining-multiple-low-level-vulns-into-a-critical-8b88db29738e
-https://thinkloveshare.com/hacking/rce_on_spip_and_root_me/
-https://www.gremwell.com/firefox-xss-302
-https://omespino.com/write-up-google-bug-bounty-xss-to-cloud-shell-instance-takeover-rce-as-root-5000-usd/
-https://vedanttekale20.medium.com/spend-more-time-doing-recon-youll-get-more-bugs-e7ffd5bf9202
-https://parasarora06.medium.com/cve-2018-5230-jira-cross-site-scripting-59ec96b3d75f
-https://blog.dixitaditya.com/xss-to-read-internal-files
-https://medium.com/@merry6607/how-i-find-my-first-p1-level-bug-5a6dd9587203
-https://blog.yappare.com/2020/10/i-had-fun-with-this-xss.html
-https://saadahmedx.medium.com/weaponizing-xss-for-fun-profit-a1414f3fcee9
-https://infosecwriteups.com/automating-xss-identification-with-dalfox-paramspider-e14283bb7916
-https://ysamm.com/?p=493
-https://blog.oversecured.com/Evernote-Universal-XSS-theft-of-all-cookies-from-all-sites-and-more/
-https://www.rcesecurity.com/2020/11/Smuggling-an-un-exploitable-xss/
-https://www.pethuraj.com/blog/microsoft-bug-bounty-writeup-stored-xss-vulnerability/
-https://mostafa-mano.medium.com/2-reflected-xss-in-razer-74783ae5ee53
-https://komradz86.medium.com/weird-im-possible-xss-on-error-page-a0b943ead41
-https://medium.com/@nnez/always-escalate-from-self-xss-to-persistent-xss-on-login-portal-54265b0adfd0
-https://infosecwriteups.com/stored-xss-in-google-nest-a82373bbda68
-https://medium.com/@kr_b/netflix-party-simple-xss-ec92ed1d7e18
-https://web.archive.org/web/20200513210337/https://medium.com/bugbountywriteup/the-secret-sauce-of-bug-bounty-bdcc2e2d45af
-https://medium.com/@mohameddaher/from-p5-to-p5-to-p2-from-nothing-to-1000-bxss-4dd26bc30a82
-https://blog.evanricafort.com/2020/04/xss-in-peerio-2-windows-application.html
-https://medium.com/@amangupta566/fun-with-cors-misconfiguration-ii-927caccfe932
-https://blog.deteact.com/bitrix-waf-bypass/
-https://medium.com/@kunal94/indirect-uxss-issues-on-a-private-integrated-browser-219f6b809b6c
-https://blog.doyensec.com/2020/04/30/polymorphic-images-for-xss.html
-https://infosecwriteups.com/reflected-xss-on-microsoft-com-via-angular-template-injection-2e26d80a7fd8
-https://opnsec.com/2020/05/dom-xss-in-gmail-with-a-little-help-from-chrome/
-https://medium.com/@TnMch/google-acquisition-xss-apigee-5479d7b5dc4
-https://medium.com/@youssefla/dom-xss-walkthrough-4d60c45ffb21
-https://chefsecure.com/blog/i-found-xss-security-flaws-in-rails-heres-what-happened
-https://vinothkumar.me/20000-facebook-dom-xss/
-https://medium.com/@adonkidz7/bypass-xss-filter-using-html-escape-f2e06bebc8c3
-https://bilalmerokhel.medium.com/chained-bugs-account-takeover-ceff67d1d55a
-https://bilalmerokhel.medium.com/one-param-10k-9d80a33f5eb5
-https://www.bad5ect0r.sh/posts/stored-xss-leads-to-plaintext-password-disclosure/
-https://web.archive.org/web/20200616051351/https://hazana.xyz/posts/cors-blimey/
-https://hazanasec.github.io/2021-01-28-CORS-Blimey/
-https://medium.com/@ciph3r7r0ll/parsing-the-dom-elements-of-other-pages-via-xss-bug-bounty-story-46d517e6711d
-https://pallabjyoti218.medium.com/story-about-otp-bypass-to-stored-xss-81bfd735c709
-https://www.cyberark.com/resources/threat-research-blog/bug-hunting-stories-schneider-electric-the-andover-continuum-web-client
-https://medium.com/kminthein/stored-xss-in-yahoo-mail-ios-app-3500-6b40e86358b9
-https://medium.com/kminthein/stored-xss-in-microsoft-outlook-ebce9ff9e45b
-https://medium.com/kminthein/ios-outlook-stored-xss-write-up-ce34d7da192b
-https://infosecwriteups.com/bypassing-waf-to-perform-xss-2d2f5a4367f3
-https://elmahdi.tistory.com/m/2
-https://medium.com/@kassihmouhssine/cross-site-scripting-the-power-of-the-hidden-parameters-259a4d2c4c09
-https://infosecwriteups.com/how-i-leveraged-an-interesting-csrf-vulnerability-to-turn-self-xss-into-a-persistent-attack-b780824042d2
-https://infosecwriteups.com/information-disclosure-and-reflected-xss-on-tokopedia-1b3a00ec64c6
-https://web.archive.org/web/20200807155244/https://vict0ni.me/double-url-encoding-xss/
-https://research.securitum.com/the-curious-case-of-copy-paste/
-https://krevetk0.medium.com/from-crlf-to-account-takeover-a94d7aa0d74e
-https://infosecwriteups.com/xss-to-database-credential-leakage-database-access-story-of-total-luck-77c990be8ab2
-https://prateeksrivastavaa.medium.com/the-frustrating-xss-33607894a071
-https://infosecwriteups.com/reflected-user-input-xss-c3e681710e74
-https://wss.sh/en/blog/how-i-made-more-than-30k-with-jolokia-cves/
-https://medium.com/@win3zz/simple-story-of-some-complicated-xss-on-facebook-8a9c0d80969d
-https://0xffcourse.medium.com/an-attempt-to-escalate-a-low-impact-hidden-input-xss-9f4b9c88f19c
-https://medium.com/@hgreal/how-i-hacked-a-bank-their-application-using-it-for-hacking-another-bank-company-10-k-xss-b9cc801a675
-https://medium.com/@RisingHunter_/privilege-escalation-with-simple-recon-da4e50fea9e5
-https://research.securitum.com/xss-in-amp4email-dom-clobbering/
-https://infosecwriteups.com/million-users-pii-leak-attack-288c5e37b283
-https://medium.com/@mohameddaher/how-i-paid-2-for-1054-xss-bug-20-chars-blind-xss-payloads-12d32760897b
-https://web.archive.org/web/20200511012319/https://medium.com/@xhzeem/the-accounttakeover-killing-chain-6ba23f4c9d4
-https://medium.com/@mashoud1122/cors-misconfiguration-account-takeover-out-of-scope-to-grab-items-in-scope-66d9d18c7a46
-https://ysamm.com/?p=343
-https://medium.com/@abhishekY495/how-i-turned-self-xss-to-stored-via-csrf-d12eaaf59f2e
-https://medium.com/@navne3t/150-xss-at-error-page-of-respository-code-4fc628892742
-https://blog.evanricafort.com/2019/12/html-injection-to-xss-bypass-in.html
-https://medium.com/@dirtycoder0124/blind-xss-a-mind-game-to-win-the-battle-4fc67c524678?
-https://jinone.github.io/bugbounty-a-dom-xss/
-https://leucosite.com/Edge-Chromium-EoP-RCE/
-https://nirmaldahal.com.np/posts/2019/12/xss-is-love/
-https://infosecwriteups.com/effortlessly-finding-cross-site-script-inclusion-xssi-jsonp-for-bug-bounty-38ae0b9e5c8a
-https://sasi2103.blogspot.com/2019/12/drop-mic-no-drop-connection.html
-https://medium.com/monetary/how-did-i-earn-3133-70-from-google-translator-9becf942dbdc
-https://footstep.ninja/posts/exploiting-self-xss/
-https://sudhanshur705.medium.com/bug-hunting-journey-of-2019-95e5190aca7c
-https://medium.com/@gguzelkokar.mdbf15/xss-on-sony-subdomain-feddaea8f5ac
-https://medium.com/@alex.birsan/the-bug-that-exposed-your-paypal-password-539fc2896da9
-https://web.archive.org/web/20200825001615/https://hazana.xyz/posts/escalating-reflected-xss-with-http-smuggling/
-https://web.archive.org/web/20200328011551/https://medium.com/@godofdarkness.msf/tumblr-bug-bounty-200-2051ba54e981
-https://web.archive.org/web/20200515015005/https://m0chan.github.io/2020/02/04/Arbitary-File-Upload-Too-Stored-XSS.html
-https://blog.evanricafort.com/2020/02/popping-alerts-in-mixmax-chrome.html
-https://medium.com/@osamaavvan/exploiting-websocket-application-wide-xss-csrf-66e9e2ac8dfa
-https://www.acunetix.com/blog/web-security-zone/xss-google-acunetix/
-https://medium.com/@adonkidz7/my-first-bounty-from-google-d9f1f3f5787a
-https://web.archive.org/web/20200505142429/https://medium.com/@godofdarkness.msf/reflected-xss-in-at-t-7f1bdd10d8f7
-https://web.archive.org/web/20200513211717/https://mrss4nd0x.000webhostapp.com/Stored-XSS-on-groups-google-com.php
-https://smaranchand.com.np/2020/02/the-tricky-xss/
-https://medium.com/@adonkidz7/google-ads-self-xss-html-injection-5000-52280da76c80
-https://ozguralp.medium.com/using-vulnerability-analytics-feature-like-a-boss-655fc1f1543b
-https://ashketchum.medium.com/how-i-earned-1750-at-shopify-bug-bounty-program-ca7821990d08
-https://medium.com/@aniltom/where-is-my-train-tracking-to-hacking-d388e4b97225
-https://infosecwriteups.com/reflected-xss-on-microsoft-com-subdomains-4bdfc2c716df
-https://www.godaddy.com/forsale/adnanmalik.info?utm_source=TDFS_BINNS2&utm_medium=parkedpages&utm_campaign=x_corp_tdfs-binns2_base&traffic_type=TDFS_BINNS2&traffic_id=binns2&
-https://medium.com/@Ch3ckM4te/self-xss-to-account-takeover-72c89775cf8f
-https://infosecwriteups.com/xss-waf-character-limitation-bypass-like-a-boss-2c788647c229
-https://0x65.dev/blog/2020-03-30/cve-2019-17004-semi-universal-xss-affecting-firefox-for-ios.html
-https://www.pethuraj.com/blog/google-bug-bounty-writeup/
-https://infosecwriteups.com/unicode-vs-waf-xss-waf-bypass-128cd9972a30
-https://web.archive.org/web/20200928091625/https://pwnsec.ninja/2019/06/06/how-i-was-able-to-get-private-ticket-response-panel-and-fortigate-web-panel-via-blind-xss/
-https://websecblog.com/vulns/googleplex-com-blind-xss/
-https://medium.com/@osamaavvan/bypassing-xss-filter-and-stealing-user-credit-card-data-100f247ed5eb
-https://visat.me/security/reflected-xss-in-tokopedia-train-ticket/
-https://hackademic.co.in/how-a-classical-xss-can-lead-to-persistent-ato-vulnerability/
-https://medium.com/@dr.spitfire/a-fight-for-duplicate-marked-bug-story-of-bbc-hall-of-fame-16f9c8215315
-https://saadahmedx.medium.com/self-xss-to-evil-xss-bcf2494a82a4
-https://www.f5.com/labs/articles/threat-intelligence/how-i-hacked-the-microsoft-outlook-android-app-and-found-cve-2019-1105
-https://decode.novr.one/yeah-i-got-p2-in-1-minute-stored-xss-via-markdown-editor-7872dba3f158
-https://bughunter25.medium.com/story-of-a-stored-xss-to-full-account-takeover-vulnerability-n-a-to-accepted-8478aa5e0d8e
-https://thesecurityexperts.wordpress.com/2019/07/11/xss-on-google-custom-search-engine/
-https://samcurry.net/cracking-my-windshield-and-earning-10000-on-the-tesla-bug-bounty-program
-https://infosecwriteups.com/what-do-netcat-smtp-and-self-xss-have-in-common-stored-xss-a05648b72002
-https://medium.com/@ISecMax/%D1%81ookie-based-xss-exploitation-2300-bug-bounty-story-9bc532ffa564
-https://leucosite.com/Microsoft-Office-365-Outlook-XSS/
-https://madguyyy.medium.com/reflected-xss-in-ebay-com-60a9d61e26cd
-https://medium.com/@bywalks/xss-on-twitter-worth-1120-914dcd28ee18
-https://nahoragg.medium.com/chaining-cache-poisoning-to-stored-xss-b910076bda4f
-https://medium.com/@dekeeu/reposted-2017-linkedin-hackers-experience-8465c1848c88
-https://infosecwriteups.com/writing-my-medium-blog-to-complete-account-takeover-e65d455c16b
-https://websecblog.com/vulns/clickjacking-xss-on-google-org/
-https://github.com/sneakerhax/Posts/blob/2454456529ddeedb17237b4e9678f7d58d0ffdca/posts/Amazon_1_click_device_XSS.md
-https://gauravnarwani.com/how-i-xssed-admin-account/
-https://medium.com/@Lekssik/bugbounty-writeup-take-attention-and-get-stored-xss-495dd6eab07e
-https://gauravnarwani.com/cookie-worth-a-fortune/
-https://medium.com/@ratnadip1998/how-i-was-able-to-exploit-the-same-endpoint-2-times-multiple-xss-open-redirection-on-10-5d12886f823d
-https://www.loosebyte.com/google-cloud-vulnerability/
-https://web.archive.org/web/20201222140349/https://www.mohamedharon.com/2019/09/dom-based-xss-in-private-program.html
-https://hateshape.github.io/general/2019/09/06/SuperGlamorousReconwithIntendedFunctionalities.html
-https://www.rcesecurity.com/2019/09/H1-4420-From-Quiz-to-Admin-Chaining-Two-0-Days-to-Compromise-an-Uber-Wordpress/
-https://gauravnarwani.com/admin-hijacked-by-sea-surf-pirates/
-https://hari-haran-s.medium.com/stored-xss-on-zendesk-via-macros-part-2-676cefee4616
-https://web.archive.org/web/20191218184636/https://medium.com/@tech96bot/oneplus-xss-vulnerability-in-customer-support-portal-d5887a7367f4
-https://web.archive.org/web/20191211081434/https://victoni.github.io/bug-hunting-xss-on-cookie-popup-warning/
-https://0x00sec.org/t/xss-on-cookie-pop-up/19580
-https://mehulcodes.medium.com/stealing-login-credentials-with-reflected-xss-7cb450bf5710
-https://master-sec.medium.com/bypass-uppercase-filters-like-a-pro-xss-advanced-methods-daf7a82673ce
-https://medium.com/@pflash0x0punk/how-paypal-helped-me-to-generate-xss-9408c0931add
-https://infosecwriteups.com/5-000-usd-xss-issue-at-avast-desktop-antivirus-for-windows-yes-desktop-1e99375f0968
-https://medium.com/@Lekssik/xss-will-never-die-eb3584081a5f
-https://medium.com/@parthshah14031998/how-i-stumbled-upon-a-stored-xss-my-first-bug-bounty-story-2793300d82bb
-https://hari-haran-s.medium.com/stored-xss-via-alternate-text-at-zendesk-support-8bfee68413e4
-https://medium.com/@thejuskrishnan911/reflected-xss-on-asus-568ce0541171
-https://renaudmarti.net/posts/first-bug-bounty-submission/
-https://hacklad.github.io/blog/2019/01/13/Xss-it.html
-https://medium.com/@friendly_/xss-through-swf-file-4f04af7b0f59
-https://sudhanshur705.medium.com/reflected-xss-in-zomato-f892d6887147
-https://ysamm.com/?p=12
-https://nahoragg.medium.com/chaining-tricky-oauth-exploitation-to-stored-xss-b67eaea4aabd
-https://websecblog.com/vulns/leoexpress-personal-data/
-https://medium.com/@ChandSingh/protonmail-xss-stored-b733031ac3b5
-https://rohanchavan.medium.com/a-unique-xss-scenario-1000-bounty-347f8f92fcc6
-https://medium.com/@futaacmcyber/stored-xss-on-edmodo-11a3fbc6b6d0
-https://apapedulimu.click/multiple-stored-xss-on-tokopedia/
-https://medium.com/@modam3r5/reflected-xss-at-https-photos-shopify-com-ea696db3915c
-https://github.com/setuid0-sec/Swiss_E-Voting_Publications
-https://web.archive.org/web/20200929000850/https://www.mohamedharon.com/2019/02/still-work-redirect-yahoo-subdomain-xss.html
-https://medium.com/@valakeyur/xss-in-edmodo-within-5-minute-my-first-bug-bounty-889e3da6167d
-https://medium.com/@metnew/3-xss-in-protonmail-for-ios-95f8e4b17054
-https://websecblog.com/vulns/google-earth-studio-vulnerability/
-https://medium.com/@newp_th/how-i-find-blind-xss-vulnerability-in-redacted-com-33af18b56869
-https://medium.com/@GeneralEG/hack-your-form-new-vector-for-blind-xss-b7a50b808016
-https://medium.com/@ZishanAdThandar/my-first-stored-xss-on-edmodo-com-540a33349662
-https://medium.com/@kustirama/olx-bug-bounty-reflected-xss-adb3095cd525
-https://omespino.com/write-up-1000-usd-in-5-minutes-xss-stored-in-outlook-com-ios-browsers/
-https://tech.target.com/blog/target-finds-cross-site-scripting-in-microsoft-sharepoint
-https://80vul.medium.com/from-http-domain-to-res-domain-xss-by-using-ie-adobes-pdf-activex-plugin-9f2a72a87aff
-https://medium.com/@paulorcchoupina/a-real-xss-in-olx-7727ae89c640
-https://gauravnarwani.com/a-tale-of-3-xss/
-https://medium.com/@heinthantzin/how-i-was-able-to-turn-self-xss-into-reflected-xss-850e3d5a2beb
-https://medium.com/@daniel.thatcher/obtaining-xss-using-moodle-features-and-minor-bugs-2035665989cc
-https://medium.com/@nuraalamdipu/spokeo-bug-bounty-experience-3f5caba52416
-https://jayateerthag.medium.com/multiple-xss-in-skype-com-81d65919ed24
-https://jayateerthag.medium.com/multiple-xss-in-skype-com-2-18cfed39edbd
-https://medium.com/@ZishanAdThandar/just-5-minute-to-get-my-2nd-stored-xss-on-edmodo-com-fe2ee559e00d
-https://infosecwriteups.com/xss-reflected-xss-bypass-filter-de41d35239a3
-https://infosecwriteups.com/csrf-attack-can-lead-to-stored-xss-f40ba91f1e4f
-http://blog.h4rsh4d.com/2019/04/stealing-local-storage-data-through-xss.html
-https://medium.com/a-bugz-life/from-reflected-xss-to-account-takeover-showing-xss-impact-9bc6dd35d4e6
-https://www.tomanthony.co.uk/blog/xss-attacks-googlebot-index-manipulation/
-https://www.virtuesecurity.com/tale-of-a-wormable-twitter-xss/
-https://medium.com/@kang_ali/stored-xss-on-techprofile-microsoft-d21757588cc1
-https://www.komodosec.com/post/mime-sniffing-xss
-https://medium.com/@momenbasel/from-parameter-pollution-to-xss-d095e13be060
-https://gauravnarwani.com/xssed-my-way-to-1000/
-https://medium.com/@5eren1ty/stored-xss-on-edmodo-67b244824fa5
-https://bughunter25.medium.com/story-of-a-uri-based-xss-with-some-simple-google-dorking-e1999254aa55
-https://web.archive.org/web/20200811013311/https://medium.com/@protector47/persistent-cross-site-scripting-on-redacted-worth-2-000-1e760617ccab
-https://randywestergren.com/xss-vulnerabilities-in-multiple-iframe-busters-affecting-top-tier-sites/
-https://medium.com/@jonathanbouman/reflected-xss-at-philips-com-e48bf8f9cd3c
-https://web.archive.org/web/20190320205543/https://medium.com/@0ktavandi/how-i-bypassed-akamai-kona-waf-xss-in-overstock-com-f205b0e71a0d
-https://blog.bentkowski.info/2018/09/another-xss-in-google-colaboratory.html
-https://nirmaldahal.com.np/posts/2019/11/r-xss-leading-csrf-bypass-to-account-takeover/
-https://medium.com/@efkan162/how-i-xssed-uber-and-bypassed-csp-9ae52404f4c5
-https://infosecwriteups.com/weaponizing-xss-attacking-internal-domains-d8ba1cbd106d
-https://www.kumar.ninja/2018/09/xss-surveydropboxcom.html
-https://blog.securityevaluators.com/collecting-shells-by-the-sea-of-nas-vulnerabilities-155a0bd7c525
-https://rudr4sarkar.blogspot.com/2018/10/how-i-found-stored-xss-on-your.html
-https://medium.com/@saamux/applying-a-small-bypass-to-steal-facebook-session-tokens-in-uber-5b9638b7a18c
-https://medium.com/@jonathanbouman/stored-xss-unvalidated-embed-at-medium-com-528b0d6d4982
-https://alitutuncu.medium.com/my-first-0day-exploit-csp-bypass-reflected-xss-bugbounty-c7efa4bed3d7
-https://medium.com/@jonathanbouman/persistent-xss-unvalidated-open-graph-embed-at-linkedin-com-db6188acedd9
-https://www.vpnmentor.com/blog/dom-xss-bug-affecting-tinder-shopify-yelp/
-https://medium.com/@m4shahab1/magic-xss-with-two-parameters-463559b03949
-https://infosecwriteups.com/bug-bounty-mail-ru-234fa6f5a5a
-https://www.itsecguy.com/xss-with-put-in-ghost-blog/
-https://medium.com/@agrawalsmart7/cookie-based-injection-xss-making-exploitable-with-out-exploiting-other-vulns-81132ca01d67
-https://medium.com/@ariffadhlullah2310/xss-deface-with-html-and-how-to-convert-the-html-into-charcode-f0c62dd5ef3f
-https://infosecwriteups.com/stored-xss-in-bug-bounty-13c08e6f5636
-https://medium.com/@Skylinearafat/how-outdated-jira-instances-suffers-from-multiple-security-vulnerabilities-6a88c45e9ec6
-https://paper.seebug.org/737/
-https://medium.com/tsscyber/xss-in-dynamics-365-25c800aac473
-http://blog.h4rsh4d.com/2018/03/olx-reflected-xss-on-resend-code-link.html
-https://mike-n1.github.io/Chain_XSS
-https://infosecwriteups.com/dom-based-xss-or-why-you-should-not-rely-on-cloudflare-too-much-a1aa9f0ead7d
-https://hackenproof.com/blog/customer-stories/hackenproof-customer-story-uklon
-https://medium.com/@ariffadhlullah2310/poc-cross-site-scripting-on-garuda-indonesia-website-452f4864f615
-https://portswigger.net/research/xss-in-hidden-input-fields
-https://medium.com/@renwa/new-technique-to-find-blind-xss-c2efcd377cc2
-https://web.archive.org/web/20200907110700/https://medium.com/@sameerphad72/edmodo-xss-bug-9c0fc9bdd0bf
-https://infosecwriteups.com/xss-bypass-using-meta-tag-in-realestate-postnl-nl-32db25db7308
-https://www.secjuice.com/google-hall-of-fame/
-https://medium.com/@hossainwalid93/story-of-store-xss-d24c3ab862f0
-https://sudhanshur705.medium.com/story-about-my-first-bug-bounty-9fe710be8241
-https://corben.io/blog/18-12-5-XSS-to-XXE-in-Prince
-https://web.archive.org/web/20191219015356/https://medium.com/@adeshkolte/proof-of-concept-nokia-cross-site-scripting-5bb47c3b9529
-https://medium.com/@sampanna/self-xss-in-indeed-com-e0c99c104cba
-https://websecblog.com/vulns/google-code-in-xss/
-https://nahoragg.github.io/bugbounty/2018/12/15/Self-XSS-to-Interesting-Stored-XSS.html
-https://www.sonarsource.com/blog/wordpress-post-type-privilege-escalation/
-https://blog.compass-security.com/2018/12/xss-worm-a-creative-use-of-web-application-vulnerability/
-https://medium.com/@newp_th/reflected-xss-on-ws-na-amazon-adsystem-com-amazon-f1e55f1d24cf
-https://medium.com/@honcbb/internet-safety-for-kids-families-trend-micro-dom-xss-db34c9bbb120
-https://medium.com/@hacker_eth/xss-in-microsoft-7a70416aee75
-https://ozil-hakim.medium.com/stored-xss-in-yahoo-and-all-subdomains-bbcaa7c3b8d
-https://medium.com/@kongwenbin/fastest-fix-on-open-bug-bounty-platform-4bb03ff846e8
-https://medium.com/@renwa/self-xss-csrf-to-stored-xss-54f9f423a7f1
-https://wesecureapp.com/blog/persistent-xss-to-steal-passwords-paypal/
-https://cybristerboy.blogspot.com/2018/05/how-i-found-5-store-xss-on-private.html
-https://web.archive.org/web/20200929003129/https://www.mohamedharon.com/2018/05/reflected-xss-in-hk-yahoo.html
-https://web.archive.org/web/20200814185643/https://medium.com/@adeshkolte/how-i-earned-750-bounty-reward-from-at-t-bug-bounty-adesh-kolte-ae62dea44083
-https://medium.com/@D0rkerDevil/how-i-convert-ssrf-to-xss-in-a-ssrf-vulnerable-jira-e9f37ad5b158
-https://www.nc-lp.com/blog/searching-for-xss-found-ldap-injection
-https://web.archive.org/web/20210117211538/https://medium.com/@adeshkolte/how-i-found-xss-via-ssrf-vulnerability-adesh-kolte-873b30a6b89f
-https://thehackerblog.com/steam-fire-and-paste-a-story-of-uxss-via-dom-xss-clickjacking-in-steam-inventory-helper/index.html
-https://medium.com/@black_b/vulnerability-netflix-cross-site-scripting-xss-d44010142e2c
-https://medium.com/@khaled.hassan/the-2-5-btc-stored-xss-f2f9393417f2
-https://web.archive.org/web/20191219011308/https://medium.com/@tahasmily2013m/i-have-found-vulnerability-in-360totalsecurity-is-reflected-xss-in-3a6bd602bb5a
-https://medium.com/@jonathanbouman/reflected-client-xss-amazon-com-7b0d3cec787
-https://web.archive.org/web/20191217223802/https://medium.com/@tahasmily2013m/how-i-found-blind-xss-in-apple-c890775e745a
-https://blog.bentkowski.info/2018/06/xss-in-google-colaboratory-csp-bypass.html
-https://kongwenbin.com/fastest-fix-on-open-bug-bounty-platform/
-https://samcurry.net/the-12000-intersection-between-clickjacking-xss-and-denial-of-service
-https://medium.com/@jonathanbouman/persistent-xss-at-ah-nl-198fe7b4c781
-https://sudhanshur705.medium.com/xss-in-microsoft-subdomain-81c4e46d6631
-https://omespino.com/write-up-telegram-bug-bounty-whatsapp-n-a-blind-xss-stored-ios-in-messengers-twins-who-really-care-about-your-security/
-https://medium.com/bug-bounty-hunting/google-assistant-bug-worth-3133-7-830a03724a04
-https://medium.com/@codingkarma/how-i-found-xss-on-amazon-f62b50f1c336
-https://medium.com/@0xHyde/yahoo-two-xssi-vulnerabilities-chained-to-steal-user-information-750-bounty-e9bc6a41a40a
-https://blog.evanricafort.com/2018/08/blind-xss-in-chrome-experiments-google.html
-https://medium.com/@friendly_/stored-xss-in-gameskinny-aa26c6a6ae40
-https://blog.evanricafort.com/2018/08/blind-xss-in-chrome-experiments-google.html
-https://medium.com/@friendly_/reflected-xss-primagames-com-c7a641912626
-https://medium.com/@friendly_/self-xss-leads-to-blind-xss-and-reflected-xss-950b1dc24647
-https://medium.com/@friendly_/xss-at-hubspot-and-xss-in-email-areas-674fa39d5248
-https://infosecwriteups.com/3-minutes-xss-71e3340ad66b
-https://websecblog.com/vulns/stored-xss-in-webcomponents-org/
-https://bughunter25.medium.com/my-first-valid-xss-hackerone-f8ba0a7c647
-https://web.archive.org/web/20200929004149/https://www.mohamedharon.com/2018/08/wordpressXSS.html
-https://web.archive.org/web/20200929012934/https://www.mohamedharon.com/2018/08/mapboxxss.html
-https://rohanchavan.medium.com/100-bounty-in-300-seconds-isnt-bad-4f4112c102ef
-https://dev.to/antogarand/pwned-together-hacking-devto-hkd
-https://omespino.com/write-up-lovestory-from-closed-as-informative-to-xx00-usd-in-yahoo-ios-mail-app/
-https://websecblog.com/vulns/reflected-xss-in-google-code-jam/
-https://blog.securitybreached.org/2018/09/09/zol-zimbabwe-authbypass-sqli-xss/
-https://infosecwriteups.com/reflected-dom-xss-and-clickjacking-on-https-silvergoldbull-de-bt-html-daa36bdf7bf0
-https://medium.com/@Mthirup/hacking-your-own-antivirus-for-fun-and-profit-safe-browsing-gone-wrong-365db9d1d3f7
-https://infosecwriteups.com/how-i-bypassed-practos-firewall-and-triggered-a-xss-b30164a8f1dc
-https://infosecwriteups.com/900-xss-in-yahoo-recon-wins-65ee6d4bfcbd
-https://medium.com/@saamux/filter-bypass-to-reflected-xss-on-https-finance-yahoo-com-mobile-version-22b854327b27
-https://web.archive.org/web/20180704183048/http://stamone-bug-bounty.blogspot.com/2017/10/dom-xss-auth_14.html
-https://web.archive.org/web/20200819161548/https://medium.com/@adeshkolte/non-persistent-xss-at-microsoft-adesh-kolte-ad36b1b4a325
-https://web.archive.org/web/20200825165420/https://medium.com/@adeshkolte/get-your-microsoft-account-hijacked-by-simply-clicking-connect-button-adesh-kolte-cc0b335b0221
-https://www.noob.ninja/2017/11/local-file-read-via-xss-in-dynamically.html
-https://medium.com/@abdelfattahibrahim/from-recon-to-dom-based-xss-f279602a14cf
-https://www.ansariosama.com/2017/11/how-i-pwned-company-using-idor-blind-xss.html
-https://medium.com/@honcbb/vmware-official-vcdx-reflected-xss-90e69a3c35e1
-https://medium.com/@Skylinearafat/xss-protection-bypass-made-my-quickest-bounty-ever-f4fd970c9116
-https://www.fortinet.com/blog/threat-research/multiple-plone-cross-site-scripting-vulnerabilities
-https://web.archive.org/web/20200920204426/https://medium.com/@adeshkolte/microsoft-sharepoints-follow-feature-xss-cve-2017-8514-adesh-kolte-d78d701cd064
-https://infosecwriteups.com/jumping-to-the-hell-with-10-attempts-to-bypass-devils-waf-4275bfe679dd
-https://web.archive.org/web/20201207232241/https://www.mohamedharon.com/2018/01/reflected-xss-possible-server-side.html
-https://web.archive.org/web/20210122102751/https://www.guptashubham.com/how-i-got-22000-worth-ethereum/
-https://blog.securitybreached.org/2018/01/27/how-i-was-able-to-download-any-file-from-web-server/
-https://blog.securitybreached.org/2018/02/02/how-i-was-able-to-bypass-xss-protection-on-hackerones-private-program/
-https://medium.com/@mrityunjoy/stored-xss-on-snapchat-5d704131d8fd
-https://web.archive.org/web/20200818084242/https://medium.com/@adeshkolte/oracle-cross-site-scripting-vulnerability-adesh-kolte-ddc5d9f279be
-https://bugbaba.blogspot.com/2018/02/exploiting-cors-miss-configuration.html
-https://medium.com/bug-bounty-hunting/how-i-found-a-surprising-xss-vulnerability-on-oracle-netsuite-2d48b7fcf0c8
-https://s1gnalcha0s.github.io/dspl/2018/03/07/Stored-XSS-and-SSRF-Google.html
-https://medium.com/@Alra3ees/google-adwords-3133-7-stored-xss-27bb083b8d27
-https://web.archive.org/web/20200929015014/https://www.mohamedharon.com/2018/03/reflected-xss-moogaloop-swf-version-62x.html
-https://krevetk0.medium.com/how-i-hacked-one-cryptocurrency-service-db3cb0f81d6c
-https://web.archive.org/web/20200928235353/https://www.mohamedharon.com/2018/03/xss-in-sportstwcampaignyahoonet.html
-https://web.archive.org/web/20200929004520/https://www.mohamedharon.com/2018/03/xss-in-subdomain-httpsyefgrantsyahoocom.html
-https://bugdisclose.medium.com/how-i-caught-multiple-vulnerabilities-in-udemy-com-14012a8a1421
-https://medium.com/securitywall/exploiting-a-single-parameter-6f4ba2acf523
-https://web.archive.org/web/20200929003337/https://www.mohamedharon.com/2018/04/reflected-xss-on-wwwzomatocom-by.html
-https://medium.com/@yassergersy/xss-to-session-hijack-6039e11e6a81
-https://web.archive.org/web/20191217083137/http://blog.jr0ch17.com/2018/Please-email-me-your-password/
-https://medium.com/@ISecMax/how-i-hacked-companies-related-to-the-crypto-currency-and-earned-60-000-93e9b3299f4e
-https://infosecwriteups.com/bypass-csp-by-abusing-xss-filter-in-edge-43e9106a9754
-https://medium.com/@vis_hacker/how-i-got-stored-xss-using-file-upload-5c33e19df51e
-https://infosecwriteups.com/story-of-a-stored-xss-bypass-26e6659f807b
-https://medium.com/@YoKoKho/turning-self-xss-into-non-self-stored-xss-via-authorization-issue-at-paypal-tech-support-and-brand-3046f52ac16b
-https://blog.mindedsecurity.com/2018/04/dom-based-cross-site-scripting-in.html
-https://medium.com/@nuraalamdipu/xss-403-forbidden-bypass-write-up-e070de52bc06
-https://medium.com/@sivakrishnasamireddi/how-i-earned-60k-from-private-program-71bd51554490
-https://medium.com/@newp_th/reflected-xss-on-stack-overflow-b8366a855472
-https://sysdream.com/news/lab/2018-04-30-multiple-security-vulnerabilities-in-domains-belonging-to-google/
-https://infosecwriteups.com/story-of-a-stored-xss-bypass-26e6659f807b
-https://infosecwriteups.com/story-of-a-stored-xss-bypass-26e6659f807b
-https://tij.me/blog/stealing-passwords-from-mcdonalds-users/
-https://medium.com/@sean.roesner/one-company-262-bugs-100-acceptance-2-57-priority-300million-user-details-saved-dd88ecb10f6f
-https://blog.bugbountyhunter.com/one-company-262-bugs/
-https://buer.haus/2017/03/08/airbnb-when-bypassing-json-encoding-xss-filter-waf-csp-and-auditor-turns-into-eight-vulnerabilities/
-https://medium.com/@marin_m/how-i-found-a-5-000-google-maps-xss-by-fiddling-with-protobuf-963ee0d9caff
-https://www.jonbottarini.com/2017/03/16/penetrating-pornhub-xss-vulns-galore-plus-a-cool-shirt/
-https://medium.com/etticblog/near-universal-xss-in-mcafee-web-gateway-cf8dfcbc8fc3
-http://www.kernelpicnic.net/2017/05/29/Pivoting-from-blind-SSRF-to-RCE-with-Hashicorp-Consul.html
-https://blog.fraktal.fi/comparing-cloud-wafs-in-2024-61b689b1b0e1
-https://www.rafaybaloch.com/2017/06/dom-based-xss-in-microsoft.html
-https://www.rafaybaloch.com/2017/06/stored-xss-csrf-and-clickjacking.html
-https://seekurity.com/blog/2017/06/11/mahmoud-gamal/general/lets-steal-some-tokens
-https://seekurity.com/blog/2017/06/11/admin/poc-gallery/godaddy-xss-affects-parked-domains-redirector-processor
-https://bishopfox.com/blog/how-i-built-an-xss-worm-on-atmail
-https://seekurity.com/blog/2017/06/24/seif-elsallamy/general/stored-xss-in-the-heart-of-the-russian-email-provider-giant-mail-ru
-https://seekurity.com/blog/2017/06/28/admin/advisories/reflected-xss-vulnerability-in-simplerisk
-https://buer.haus/2017/06/29/escalating-xss-in-phantomjs-image-rendering-to-ssrflocal-file-read/
-https://web.archive.org/web/20190718104640/https://medium.com/@tbmnull/making-an-xss-triggered-by-csp-bypass-on-twitter-561f107be3e5
-https://web.archive.org/web/20180827025910/http://www.paulosyibelo.com/2017/07/coinbase-angularjs-dom-xss-via-kiteworks.html
-https://wesecureapp.com/blog/xss-by-tossing-cookies/
-https://wesecureapp.com/blog/red-team-assessment-versus-penetration-testing/
-https://arbazhussain.medium.com/xss-using-dynamically-generated-js-file-a7a10d05ff08
-https://medium.com/@ciph3r7r0ll/that-escalated-quickly-from-partial-csrf-to-reflected-xss-to-complete-csrf-to-stored-xss-6ba8103069c2
-https://arbazhussain.medium.com/self-xss-to-good-xss-clickjacking-6db43b44777e
-https://infosecwriteups.com/how-i-was-able-to-bypass-strong-xss-protection-in-well-known-website-imgur-com-8a247c527975
-https://arbazhussain.medium.com/stored-xss-on-rockstar-game-c008ec18d071
-https://labs.detectify.com/how-to/how-we-invented-the-tesla-dom-doom-xss/
-https://portswigger.net/research/cracking-the-lens-targeting-https-hidden-attack-surface
-https://arbazhussain.medium.com/referer-based-xss-52aeff7b09e7
-https://bugbaba.blogspot.com/2017/08/xss-because-of-wrong-content-type-header.html
-https://medium.com/@saamux/reflected-xss-on-www-yahoo-com-9b1857cecb8c
-https://zhchbin.github.io/2017/08/30/Uber-XSS-via-Cookie/
-https://medium.com/@TheShahzada/reflected-xss-in-yahoo-6e2b6b177448
-https://medium.com/@Alra3ees/my-write-up-about-uber-cross-site-scripting-by-help-of-knoxss-b1b56f8d090
-https://medium.com/@armaanpathan/dont-just-alert-1-because-xss-is-for-fun-f88cfb88d5b9
-https://medium.com/@SyntaxError4/how-i-found-reflective-xss-in-yahoo-subdomain-3ad4831b386e
-https://medium.com/@SyntaxError4/reflective-xss-and-open-redirect-on-indeed-com-subdomain-b4ab40e40c83
-https://arbazhussain.medium.com/stored-xss-with-arbitrary-cookie-installation-567931433c7f
-https://infosecwriteups.com/chaining-self-xss-with-ui-redressing-is-leading-to-session-hijacking-pwn-users-like-a-boss-efb46249cd14
-https://www.ansariosama.com/2017/09/exploiting-single-request-for-multiple.html
-https://blog.shashank.co/2013/11/oracle-xss.html
-https://whitton.io/articles/abusing-cors-for-an-xss-on-flickr/
-https://maustin.net/articles/2013-12/flickr_xss
-https://blog.shashank.co/2013/12/imgur-xss.html
-https://blog.shashank.co/2013/12/waze-arbitrary-file-upload.html
-https://wss.sh/en/blog/a-tale-of-7-vulnerabilities-paypal-bug-bounty/
-https://www.rcesecurity.com/2014/04/magix-bug-bounty-magix-com-rce-sqli-and-xara-com-lfi-xss/
-https://thehackerblog.com/ebay-mobile-reflected-xss-disclosure-writeup/index.html
-https://buer.haus/2014/06/16/facebook-stored-cross-site-scripting-xss-badges/
-https://wss.sh/en/blog/bugbounty-the-5000-google-xss/
-https://wss.sh/en/blog/bugbounty-paypal-dom-xss-main-domain/
-https://wss.sh/en/blog/bugbounty-paypal-stored-xss-security-bypass/
-https://wss.sh/en/blog/bugbounty-reflected-cross-site-scripting-billmelater/
-https://www.rcesecurity.com/2014/11/google-bug-bounty-nice-catch-on-google-cloud-platform-live/
-https://quitten.github.io/Aliexpress/
-https://wss.sh/en/blog/bugbounty-reflected-cross-site-scripting-at-paypal-com/
-https://wss.sh/en/blog/bugbounty-papyal-xml-upload-cross-site-scripting-vulnerability/
-https://buer.haus/2015/01/21/admin-google-com-reflected-cross-site-scripting-xss/
-https://matatall.com/xss/rce/bugbounty/2015/09/08/xss-to-rce.html
-http://mahmoudsec.blogspot.com/2015/09/how-i-found-xss-vulnerability-in-google.html
-https://maustin.net/2015/11/12/hipchat_rce.html
-https://blog.evanricafort.com/2015/12/arbitary-file-upload-vulnerability-in.html
-https://web.archive.org/web/20210511011807/https://blog.evanricafort.com/2015/12/local-file-xss-vulnerability-in.html
-https://whitton.io/articles/xss-on-facebook-via-png-content-types/
-https://portswigger.net/research/xss-without-html-client-side-template-injection-with-angularjs
-https://whitton.io/articles/uber-turning-self-xss-into-good-xss/
-https://thehackerblog.com/poisoning-the-well-compromising-godaddy-customer-support-with-blind-xss/index.html
-https://wss.sh/en/blog/bugbounty-sleeping-stored-google-xss-awakens-a-5000-bounty/
-https://seekurity.com/blog/2016/07/06/admin/general/runkeeper-stores-xss-vulnerability
-https://infosecwriteups.com/two-vulnerabilities-makes-an-exploit-xss-and-csrf-in-bing-cd4269da7b69
-https://mhmdiaa.com/blog/spotify-blind-xss/
-https://httpsonly.blogspot.com/2016/08/turning-self-xss-into-good-xss-v2.html
-https://web.archive.org/web/20220401221504/https://blog.innerht.ml/internet-explorer-has-a-url-problem/
-https://blog.rakeshmane.com/2016/09/bug-bounty-account-takeover.html
-https://blog.zsec.uk/persisting-pornhub/
-https://blog.evanricafort.com/2016/09/xss-vulnerability-in-twitter.html
-https://blog.zsec.uk/gif-time-pornhub/
-https://medium.com/pentesternepal/bypassing-ebay-xss-protection-8cf73466ba0f
-https://tij.me/blog/xss-on-hema-one-of-the-largest-dutch-franchisors/
-https://maustin.net/articles/2010-07/facebook_html5
-https://maustin.net/articles/2010-07/facebook_fbml_xss
-https://josipfranjkovic.blogspot.com/2013/01/googlecom-cross-site-scripting-and.html
-https://whitton.io/archive/persistent-xss-on-myworld-ebay-com/
-http://www.rafayhackingarticles.net/2013/02/dom-based-xss-in-avg.html
-https://www.rcesecurity.com/2013/04/paypal-bug-bounty-paypaltech-com-xss/
-https://josipfranjkovic.blogspot.com/2013/07/how-i-found-my-way-into-instagrams.html
-https://whitton.io/articles/content-types-and-xss-facebook-studio/
-https://blog.shashank.co/2013/10/nokia-email-app-pwnage.html
-
-#Hackerone
-https://hackerone.com/reports/231053
-https://hackerone.com/reports/216453
-https://hackerone.com/reports/406587
-https://hackerone.com/reports/405191
-https://hackerone.com/reports/247246
-https://hackerone.com/reports/241619
-https://hackerone.com/reports/308155
-https://hackerone.com/reports/220494
-https://hackerone.com/reports/240989
-https://hackerone.com/reports/230435
-https://hackerone.com/reports/324303
-https://hackerone.com/reports/341969
-https://hackerone.com/reports/313250
-https://hackerone.com/reports/363845
-https://hackerone.com/reports/386334
-https://hackerone.com/reports/248588
-https://hackerone.com/reports/351275
-https://hackerone.com/reports/882546
-https://hackerone.com/reports/1004833
-https://hackerone.com/reports/922496
-https://hackerone.com/reports/704266
-https://hackerone.com/reports/938683
-https://hackerone.com/reports/603764
-https://hackerone.com/reports/341908
-https://hackerone.com/reports/892289
-https://hackerone.com/reports/979204
-https://hackerone.com/reports/998398
-https://hackerone.com/reports/1219002
-https://hackerone.com/reports/57459
-https://hackerone.com/reports/15125
-https://hackerone.com/reports/4839
-https://hackerone.com/reports/42393
-https://hackerone.com/reports/2926
-https://hackerone.com/reports/150565
-https://hackerone.com/reports/145355
-https://hackerone.com/reports/47235
-https://hackerone.com/reports/83837
-https://hackerone.com/reports/114151
-https://hackerone.com/reports/6409
-https://hackerone.com/reports/75727
-https://hackerone.com/reports/119453
-https://hackerone.com/reports/130889
-https://hackerone.com/reports/140616
-https://hackerone.com/reports/321
-https://hackerone.com/reports/96467
-https://hackerone.com/reports/98012
-https://hackerone.com/reports/7890
-https://hackerone.com/reports/9391
-https://hackerone.com/reports/65324
-https://hackerone.com/reports/61367
-https://hackerone.com/reports/54327
-https://hackerone.com/reports/7898
-https://hackerone.com/reports/84740
-https://hackerone.com/reports/129736
-https://hackerone.com/reports/197337
-https://hackerone.com/reports/341044
-https://hackerone.com/reports/136600
-https://hackerone.com/reports/191909
-https://hackerone.com/reports/4114
-https://hackerone.com/reports/17287
-https://hackerone.com/reports/8862
-https://hackerone.com/reports/47349
-https://hackerone.com/reports/50358
-https://hackerone.com/reports/157958
-https://hackerone.com/reports/7441
-https://hackerone.com/reports/141728
-https://hackerone.com/reports/148853
-https://hackerone.com/reports/189768
-https://hackerone.com/reports/223396
-https://hackerone.com/reports/2735
-https://hackerone.com/reports/42161
-https://hackerone.com/reports/203515
-https://hackerone.com/reports/170156
-https://hackerone.com/reports/21150
-https://hackerone.com/reports/18372
-https://hackerone.com/reports/21034
-https://hackerone.com/reports/49513
-https://hackerone.com/reports/76713
-https://hackerone.com/reports/80694
-https://hackerone.com/reports/127163
-https://hackerone.com/reports/166699
-https://hackerone.com/reports/190247
-https://hackerone.com/reports/18805
-https://hackerone.com/reports/4276
-https://hackerone.com/reports/16330
-https://hackerone.com/reports/38189
-https://hackerone.com/reports/38007
-https://hackerone.com/reports/34188
-https://hackerone.com/reports/93807
-https://hackerone.com/reports/105688
-https://hackerone.com/reports/121461
-https://hackerone.com/reports/149571
-https://hackerone.com/reports/171670
-https://hackerone.com/reports/168165
-https://hackerone.com/reports/177624
-https://hackerone.com/reports/166709
-https://hackerone.com/reports/182160
-https://hackerone.com/reports/192922
-https://hackerone.com/reports/179426
-https://hackerone.com/reports/235866
-https://hackerone.com/reports/31187
-https://hackerone.com/reports/254269
-https://hackerone.com/reports/324548
-https://hackerone.com/reports/153794
-https://hackerone.com/reports/176065
-https://hackerone.com/reports/425200
-https://hackerone.com/reports/463915
-https://hackerone.com/reports/761573
-https://hackerone.com/reports/789689
-https://hackerone.com/reports/1091118
-https://hackerone.com/reports/1321407
-
-#reflected
-https://hackerone.com/reports/214581
-https://hackerone.com/reports/221893
-https://hackerone.com/reports/230119
-https://hackerone.com/reports/253313
-https://hackerone.com/reports/970878
-https://hackerone.com/reports/297203
-https://hackerone.com/reports/781284
-https://hackerone.com/reports/968082
-https://hackerone.com/reports/846338
-https://hackerone.com/reports/218451
-https://hackerone.com/reports/293689
-https://hackerone.com/reports/296377
-https://hackerone.com/reports/386340
-https://hackerone.com/reports/415139
-https://hackerone.com/reports/756697
-https://hackerone.com/reports/216812
-https://hackerone.com/reports/219170
-https://hackerone.com/reports/265528
-https://hackerone.com/reports/361647
-https://hackerone.com/reports/374100
-https://hackerone.com/reports/380354
-https://hackerone.com/reports/876148
-https://hackerone.com/reports/1264805
-https://hackerone.com/reports/1061199
-https://hackerone.com/reports/262852
-https://hackerone.com/reports/258198
-https://hackerone.com/reports/283821
-https://hackerone.com/reports/289330
-https://hackerone.com/reports/259100
-https://hackerone.com/reports/292457
-https://hackerone.com/reports/360797
-https://hackerone.com/reports/353293
-https://hackerone.com/reports/409986
-https://hackerone.com/reports/824433
-https://hackerone.com/reports/323005
-https://hackerone.com/reports/705420
-https://hackerone.com/reports/714521
-https://hackerone.com/reports/1206020
-https://hackerone.com/reports/1216203
-https://hackerone.com/reports/766633
-https://hackerone.com/reports/900619
-
-#stored
-https://hackerone.com/reports/218872
-https://hackerone.com/reports/232174
-https://hackerone.com/reports/311101
-https://hackerone.com/reports/230232
-https://hackerone.com/reports/221380
-https://hackerone.com/reports/231444
-https://hackerone.com/reports/271007
-https://hackerone.com/reports/961046
-https://hackerone.com/reports/157434
-https://hackerone.com/reports/299728
-https://hackerone.com/reports/275518
-https://hackerone.com/reports/915073
-https://hackerone.com/reports/919859
-https://hackerone.com/reports/353334
-https://hackerone.com/reports/779908
-https://hackerone.com/reports/942859
-https://hackerone.com/reports/226203
-https://hackerone.com/reports/218226
-https://hackerone.com/reports/218226
-https://hackerone.com/reports/245172
-https://hackerone.com/reports/275515
-https://hackerone.com/reports/244902
-https://hackerone.com/reports/324194
-https://hackerone.com/reports/333008
-https://hackerone.com/reports/982291
-https://hackerone.com/reports/1173040
-https://hackerone.com/reports/223331
-https://hackerone.com/reports/251224
-https://hackerone.com/reports/216822
-https://hackerone.com/reports/289085
-https://hackerone.com/reports/289313
-https://hackerone.com/reports/314126
-https://hackerone.com/reports/302253
-https://hackerone.com/reports/333507
-https://hackerone.com/reports/267473
-https://hackerone.com/reports/411690
-https://hackerone.com/reports/411690
-https://hackerone.com/reports/534450
-https://hackerone.com/reports/910427
-https://hackerone.com/reports/912865
-https://hackerone.com/reports/413077
-https://hackerone.com/reports/949513
-https://hackerone.com/reports/765679
-https://hackerone.com/reports/681617
-https://hackerone.com/reports/763812
-https://hackerone.com/reports/771882
-https://hackerone.com/reports/949823
-https://hackerone.com/reports/797754
-https://hackerone.com/reports/1010466
-https://hackerone.com/reports/1245787
-https://hackerone.com/reports/827606
-https://hackerone.com/reports/1376672
-https://hackerone.com/reports/1102018
+1. https://script.hashnode.dev/self-xss-to-ato-via-site-features
+2. https://medium.com/@manan_sanghvi/how-100-manual-hacking-without-even-kali-and-burp-led-to-2-medium-vulnerabilities-on-yeswehack-bbda00fcd84e
+3. https://www.sonarsource.com/blog/government-emails-at-risk-critical-cross-site-scripting-vulnerability-in-roundcube-webmail/
+4. https://www.sonarsource.com/blog/basic-http-authentication-risk-uncovering-pyspider-vulnerabilities/
+5. https://infosecwriteups.com/bypassing-csp-via-url-parser-confusions-xss-on-netlifys-image-cdn-755a27065fd9
+6. https://infosecwriteups.com/a-story-about-how-i-found-xss-in-asus-cb233ce3bb9c
+7. https://medium.com/@0xold/null-byte-on-steroids-23f8104a25ec
+8. https://jfrog.com/blog/from-mlops-to-mloops-exposing-the-attack-surface-of-machine-learning-platforms/
+9. https://infosecwriteups.com/persistent-xss-vulnerability-on-microsoft-bings-video-indexing-system-a46db992ac7b
+10. https://cyllective.com/blog/posts/atlassian-audit-plugins
+11. https://blog.syss.com/posts/hacking-a-secure-industrial-remote-access-gateway/
+12. https://medium.com/@l_s_/self-xss-login-csrf-oauth-account-takeover-6357f3395b49
+13. https://cyllective.com/blog/posts/cve-2024-29182-collabora
+14. https://vict0ni.me/taking-over-accounts-in-multiple-ways/
+15. https://www.sonarsource.com/blog/front-end-frameworks-when-bypassing-built-in-sanitization-might-backfire/
+16. https://bunny0417.medium.com/stored-xss-in-libreoffice-ed4ad22e0f56
+17. https://infosecwriteups.com/how-i-got-my-first-13500-bounty-through-parameter-polluting-hpp-179666b8e8bb
+18. https://blog.orange.tw/posts/2024-08-confusion-attacks-en/
+19. https://realansgar.dev/writeups/intigriti-xss-0724/
+20. https://www.secforce.com/blog/cve-2023-26465-breaking-through-xss-filters-in-pega-platform/
+21. https://thefrogsec.github.io/2024/04/06/How-we-escalated-a-DOM-XSS-to-a-sophisticated-1-click-Account-Takeover-for-8000-Part-1/
+22. https://thefrogsec.github.io/2024/04/06/How-we-escalated-a-DOM-XSS-to-a-sophisticated-1-click-Account-Takeover-for-8000-Part-2/
+23. https://salt.security/blog/over-1-million-websites-are-at-risk-of-sensitive-information-leakage---xss-is-dead-long-live-xss
+24. https://skii.dev/anki-0day/
+25. https://skerritt.blog/anki-0day/
+26. https://medium.com/@pyrus369/how-almost-sacrificing-a-university-group-project-led-to-a-microsoft-bug-bounty-9801e0f8f006
+27. https://doyensec.com/resources/Doyensec_ThinkstCanaryTokensOSS_Report_Q22024_WithRetesting.pdf
+28. https://pierrekim.github.io/blog/2024-06-27-sharp-mfp-17-vulnerabilities.html
+29. https://creds.nl/2024-07-27-overlooked-xss-vector
+30. https://www.sonarsource.com/blog/mxss-the-vulnerability-hiding-in-your-code/
+31. https://blog.oversecured.com/20-Security-Issues-Found-in-Xiaomi-Devices/
+32. https://blog.slonser.info/posts/dompurify-node-type-confusion/
+33. https://laburity.com/file-upload-bypass-waf-xss/
+34. https://blog.voorivex.team/20300-bounties-from-a-200-hour-hacking-challenge
+35. https://blog.calif.io/p/type-confusion-attacks-in-prosemirror
+36. https://mufazmi.medium.com/how-i-found-a-vulnerability-in-paytm-and-received-a-bounty-d580ea14e9a8
+37. https://www.sonarsource.com/blog/remote-code-execution-in-mailcow-always-sanitize-error-messages/
+38. https://xss0r.medium.com/discovering-a-crlf-injection-vulnerability-my-journey-into-the-msrc-blog-website-5285169adddb
+39. https://www.sonarsource.com/blog/encoding-differentials-why-charset-matters/
+40. https://ssd-disclosure.com/ssd-advisory-sonicwall-sma100-stored-xss-to-rce/
+41. https://0reg.dev/blog/evernote-rce
+42. https://www.imperva.com/blog/lessons-learned-from-exposing-unusual-xss-vulnerabilities/
+43. https://namcoder.com/blog/how-i-found-dom-xss-on-bingcom-microsoft-bug-bounty-write-up/
+44. https://ltsirkov.medium.com/cross-site-scripting-via-web-cache-poisoning-and-waf-bypass-6cb3412d9e11
+45. https://www.monke.ie/p/exfiltrating-data-from-sandboxed-documents
+46. https://www.imperva.com/blog/from-chatbot-to-spybot-chatgpt-post-exploitation/
+47. https://www.imperva.com/blog/xss-marks-the-spot-digging-up-vulnerabilities-in-chatgpt/
+48. https://www.imperva.com/blog/hacking-microsoft-and-wix-with-keyboard-shortcuts/
+49. https://spaceraccoon.dev/universal-code-execution-browser-extensions/
+50. https://blog.paniago.io/the-dark-side-of-contact-forms-how-i-identified-7-cves-in-wordpress-plugins-30f6111dfebf
+51. https://security.lauritz-holtmann.de/advisories/tfh-form_post-xss-ato/
+52. https://blog.xss.am/2021/11/vuejs-script-gadget-intigriti/
+53. https://skii.dev/rook-to-xss/
+54. https://blog.ryotak.net/post/dom-based-race-condition/
+55. https://medium.com/@cavdarbashas/unrestricted-file-upload-lead-to-stored-xss-at-microsoft-main-domain-baa9cadac6bd
+56. https://www.mdsec.co.uk/2023/09/the-not-so-pleasant-password-manager/
+57. https://www.nccgroup.com/us/research-blog/technical-advisory-multiple-vulnerabilities-in-nagios-xi/
+58. https://skii.dev/rook-to-xss/
+59. https://infosecwriteups.com/exploiting-incorrectly-configured-load-balancer-with-xss-to-steal-cookies-99d7cb6129d7
+60. https://speakerdeck.com/masatokinugawa/how-i-hacked-microsoft-teams-and-got-150000-dollars-in-pwn2own
+61. https://doyensec.com/resources/Doyensec_SecurityAdvisory_crewjam_saml_Q32023.pdf
+62. https://github.com/Sudistark/xss-writeups/blob/main/figma.com-xss.md
+63. https://infosecwriteups.com/xss-on-the-oauth-callback-url-with-csp-bypass-leading-to-zero-click-account-takeover-c6c870b234bd
+64. https://hazemhussien99.wordpress.com/2024/01/12/cve-2022-40361-writeup/
+65. https://medium.com/@zatikyan.sevada/leaked-sql-error-leading-to-xss-and-another-bsqli-cdadde032687
+66. https://www.synacktiv.com/advisories/multiple-vulnerabilities-on-gestsup-3244
+67. https://blog.slonser.info/posts/cve-2023-5480/
+68. https://www.pentagrid.ch/de/blog/stored-cross-site-scripting-vulnerabilities-in-liferay-portal/
+69. https://blog.voorivex.team/9240-bounty-in-30-days-hunt-challenge
+70. https://blog.voorivex.team/7000-bounty-on-a-single-web-application
+71. https://gist.github.com/RenwaX23/0311842bb790ce98fe0cd8f41141fdf0
+72. https://joaxcar.com/blog/2024/01/26/hunting-for-prototype-pollution-gadgets-in-jquery-intigriti-0124-challenge/
+73. https://www.sonarsource.com/blog/who-are-you-the-importance-of-verifying-message-origins/
+74. https://medium.com/@deadoverflow/this-is-arguably-the-dumbest-bug-ive-ever-found-3e451951d727
+75. https://spaceraccoon.dev/clipboard-microsoft-whiteboard-excalidraw-meta/
+76. https://medium.com/@nikouei_com/2-xss-on-microsoft-37b6a7efcc84
+77. https://gergelykalman.com/hacking-isp-cpe-equipment-fiberhome.html
+78. https://shellbreaker.hashnode.dev/duplicate-csrf-leads-to
+79. https://medium.com/@mares.viktor/always-test-404-not-found-in-bug-bounties-2be47801b4c0
+80. https://www.sonarsource.com/blog/pitfalls-of-desanitization-leaking-customer-data-from-osticket/
+81. https://cupc4k3.medium.com/cve-2023-25365-xss-via-file-upload-bypass-ddf4d2a106a7
+82. https://rhinosecuritylabs.com/research/cve-2024-23724-ghost-cms-stored-xss/
+83. https://mizu.re/post/playing-with-dompurify-ce-handling
+84. https://www.sonarsource.com/blog/joomla-multiple-xss-vulnerabilities/
+85. https://buer.haus/2024/02/23/go-go-xss-gadgets-chaining-a-dom-clobbering-exploit-in-the-wild/
+86. https://xelkomy.medium.com/from-crlf-injection-to-xss-elevating-the-stakes-in-apple-itunes-security-597dc435fd82
+87. https://7odamoo.medium.com/how-i-got-5-000-for-out-of-scope-xss-f96938a8c561
+88. https://www.assetnote.io/resources/research/continuing-the-citrix-saga-cve-2023-5914-cve-2023-6184
+89. https://www.sonarsource.com/blog/opennms-vulnerabilities-securing-code-against-attackers-unexpected-ways/
+90. https://bergee.it/blog/the-story-of-exposed-service-ssrf-csp-bypass-and-credentials-stealing-via-xss/
+91. https://flatt.tech/research/posts/bypassing-dompurify-with-good-old-xml/
+92. https://medium.com/@p.ra.dee.p_0xx01/how-i-found-xss-in-another-govt-site-nciipc-vdp-84d78c0319c2
+93. https://swisskyrepo.github.io/An-XSS-Story/
+94. https://www.sonarsource.com/blog/reply-to-calc-the-attack-chain-to-compromise-mailspring/
+95. https://medium.com/@xrypt0/how-did-i-easily-find-stored-xss-at-apple-and-earn-5000-3aadbae054b2
+96. https://medium.com/@p.ra.dee.p_0xx01/found-multiple-bugs-xss-mitm-sec-misconf-in-an-educational-site-5a3804085da0
+97. https://security.lauritz-holtmann.de/post/sso-security-redirect-uri-iii/
+98. https://codeanlabs.com/blog/research/cve-2024-4367-arbitrary-js-execution-in-pdf-js/
+99. https://modzero.com/en/blog/beyond_the_at_symbol/
+100. https://modzero.com/static/MZ-24-01_modzero_MailCleaner.pdf
+101. https://nokline.github.io/bugbounty/2024/06/07/Zoom-ATO.html
+102. https://bishopfox.com/blog/expressionengine-v-7-3-15-vulnerability-2
+103. https://mizu.re/post/linux-local-electron-application-script-src-self-bypass#final_bypass
+104. https://portswigger.net/research/exploiting-xss-in-hidden-inputs-and-meta-tags
+105. https://research.securitum.com/how-private-cache-can-lead-to-mass-account-takeover-pentest-case/
+106. https://infosecwriteups.com/the-buffer-curse-3591efb4a724
+107. https://hazemhussien99.wordpress.com/2023/07/05/recon-only-bugs-are-sweet/
+108. https://medium.com/@mullangisashank/a-tale-of-og-xss-89af3d4725dc
+109. https://medium.com/@abhishek.karle92/access-of-android-protected-components-via-embedded-intent-android-app-pentesting-5618ae3cc9b2
+110. https://medium.com/@ramkumarnadar47/desperate-xss-ce3619343f57
+111. https://medium.com/@snoopy101/1000-for-a-simple-stored-xss-8be7083a7c2d
+112. https://ndevtk.github.io/writeups/2023/08/18/extensions/
+113. https://soroush.me/blog/2023/08/anchor-tag-xss-exploitation-in-firefox-with-target_blank/
+114. https://www.sonarsource.com/blog/playing-dominos-with-moodles-security-1/
+115. https://www.synack.com/blog/persisting-through-a-client-side-prototype-pollution/
+116. https://ar1fshaikh.medium.com/1st-ato-how-i-exploited-security-issue-to-take-over-admin-account-e0ae309dc356
+117. https://fares7elsadek.medium.com/my-first-bug-how-i-was-able-to-bypass-the-waf-and-uncover-a-reflected-xss-e0534b6f05e4
+118. https://www.nullpt.rs/hacking-gta-servers-using-web-exploitation
+119. https://www.sonarsource.com/blog/playing-dominos-with-moodles-security-2/
+120. https://www.sonarsource.com/blog/code-vulnerabilities-leak-emails-in-proton-mail/
+121. https://medium.com/@yeyinthtet305/single-xss-with-earn-600-c1199f5c7fce
+122. https://github.com/Sudistark/xss-writeups/blob/main/oauth-dance.md
+123. https://orca.security/resources/blog/cross-site-scripting-vulnerabilities-in-apache-services-azure-hd-insight/
+124. https://www.sonarsource.com/blog/code-vulnerabilities-put-skiff-emails-at-risk/
+125. https://www.sonarsource.com/blog/remote-code-execution-in-tutanota-desktop-due-to-code-flaw/
+126. https://medium.com/@anirudhkrishna012/how-2-cute-bugs-offered-me-a-reward-of-650-7f13abf36c65
+127. https://medium.com/@cavdarbashas/how-i-found-an-stored-xss-on-google-books-732d9eb64e36
+128. https://asdqw3.medium.com/xss-in-gmail-dynamic-email-amp-for-email-3872d6052a0d
+129. https://infosecwriteups.com/22-6k-github-stars-note-taking-app-hit-by-critical-xss-vulnerability-842da56ae265
+130. https://gist.github.com/avlidienbrunn/8db7f692404cdd3c325aa20d09437e13
+131. https://medium.com/@atomiczsec/one-bug-at-a-time-1-500-worth-of-xss-33455b384b8a
+132. https://0xm5awy.medium.com/discovering-7-open-redirect-bypasses-and-3-xss-bypasses-within-a-single-program-using-same-8e87581e1a75
+133. https://medium.com/@snoopy101/you-can-add-extra-zeroes-xss-bypass-on-a-private-bug-bounty-program-77440495e448
+134. https://blog.pksecurity.io/2023/10/04/microsoft-office.html
+135. https://medium.com/@remmy9/403-forbidden-no-problem-heres-a-post-xss-eba84020ff70
+136. https://medium.com/@renwa/you-are-not-where-you-think-you-are-opera-browsers-address-bar-spoofing-vulnerabilities-aa36ad8321d8
+137. https://medium.com/@jonathanbouman/remote-code-execution-at-ws1-aholdusa-com-compromising-logins-of-ahold-delhaize-usa-employees-c7c9aca7e05d
+138. https://www.praetorian.com/blog/vulnerabilities-within-listserv/
+139. https://rhinosecuritylabs.com/research/silverpeas-file-read-cves/
+140. https://www.sonarsource.com/blog/pfsense-vulnerabilities-sonarcloud/
+141. https://medium.com/@0xchoudhary/multiple-rxss-f3f796287f34
+142. https://medium.com/@kerstan/dom-xss-on-hackerone-programs-bug-bounty-tuesday-8973ecf6af95
+143. https://medium.com/@Nightbloodz/the-power-of-client-side-path-traversal-how-i-found-and-escalated-2-bugs-through-670338afc90f
+144. https://medium.com/@rodriguezjorgex/self-xss-to-stored-xss-b4b999610c5b
+145. https://medium.com/@rodriguezjorgex/escalating-dom-xss-to-stored-xss-eb6f3a669af3
+146. https://0x44.xyz/blog/cve-2023-4369/index.html
+147. https://www.nccgroup.com/us/research-blog/technical-advisory-multiple-vulnerabilities-in-pandorafms-enterprise/
+148. https://www.rapid7.com/blog/post/2024/01/03/genie-aladdin-connect-retrofit-garage-door-opener-multiple-vulnerabilities/
+149. https://infosecwriteups.com/a-successful-prototype-pollution-chained-to-a-dom-xss-9887087b56a4
+150. https://infosecwriteups.com/uncovering-a-critical-vulnerability-my-journey-of-discovering-cve-2021-31589-a-reflected-xss-in-1e13c0aa41b0
+151. https://infosecwriteups.com/turning-vulnerability-into-bounty-how-cve-2020-17453-xss-earned-me-a-500-bounty-dcabc737fded
+152. https://skylightcyber.com/2023/04/18/popping-tags/
+153. https://www.assetnote.io/resources/research/finding-xss-in-a-million-websites-cpanel-cve-2023-29489
+154. https://www.sonarsource.com/blog/odoo-get-your-content-type-right-or-else/
+155. https://abhishekgk.medium.com/how-chatgpt-helped-me-find-a-bug-b5a3795c722
+156. https://weizmangal.com/2020/02/14/whatsapp-vuln/
+157. https://fortbridge.co.uk/research/joomla-password-reset-vulnerability-and-stored-xss-for-full-compromise/
+158. https://www.synacktiv.com/sites/default/files/2023-04/Synacktiv-ZimbraConnect-CVE-2022-41348.pdf
+159. https://weizmangal.com/2023/04/10/snyk-xss/
+160. https://infosecwriteups.com/turning-vulnerability-into-bounty-how-cve-2020-17453-xss-earned-me-a-500-bounty-dcabc737fded
+161. https://lopseg.medium.com/bug-bounty-writeup-stored-xss-vulnerability-waf-bypass-f38aae7ff9eb
+162. https://jub0bs.com/posts/2023-05-05-smorgasbord-of-a-bug-chain/
+163. https://medium.com/@ar_hawk/how-a-simple-directory-listing-leads-to-pii-data-leakage-remote-code-execution-and-many-more-104b09e644f4
+164. https://infosecwriteups.com/discovery-of-an-xss-on-opera-f029f6522ec5
+165. https://www.secforce.com/blog/size-matters-when-capital-letters-introduce-vulnerabilities/
+166. https://corben.io/blog/17-06-30-bandcamp-xss
+167. https://claroty.com/team82/research/triple-threat-breaking-teltonika-routers-three-ways
+168. https://strike.sh/blog/official-extension-attacks
+169. https://systemweakness.com/xss-via-qr-code-8022a1a0309f
+170. https://research.securitum.com/xss-in-wordpress-via-open-embed-auto-discovery/
+171. https://medium.com/@ajzead660/how-i-found-a-tricky-xss-1adf25850d33
+172. https://medium.com/@ajzead660/exploit-an-unexploitable-xss-via-an-open-redirect-a-real-life-scenario-from-a-hackers-mindset-32b71041c5fe
+173. https://medium.com/@mrhavit/breaking-tiktok-our-journey-to-finding-an-account-takeover-vulnerability-b0646aba1c4b
+174. https://greenhats.medium.com/a-short-white-box-code-audit-of-avo-2083b08f3a95
+175. https://medium.com/@AlQa3Qa3_M0X0101/how-i-was-able-to-get-account-takeover-via-idor-form-jwt-caaf7ea58aa
+176. https://www.synacktiv.com/sites/default/files/2023-06/Synacktiv-3DS-Delmia_Apriso_2017_to_2022-Multiple-Vulnerabilities.pdf
+177. https://ndevtk.github.io/writeups/2023/03/11/ccai/
+178. https://mizu.re/post/abusing-client-side-desync-on-werkzeug
+179. https://medium.com/@f3tch/my-first-bug-a-unique-500-xss-eb5caccb628f
+180. https://orca.security/resources/blog/examining-two-xss-vulnerabilities-in-azure-services/
+181. https://3bodymo.medium.com/xss-through-image-proxy-using-svg-image-49cdf955cf4f
+182. https://keerok.github.io/2022/12/22/Flickr-Stored-XSS/
+183. https://octa-mihail.medium.com/my-first-bounty-on-synack-red-team-4ef53329c960
+184. https://medium.com/@mydudehello91/how-i-hacked-scopely-and-got-c60772f77d41
+185. https://medium.com/@pratiky054/account-takeover-unraveling-idor-stored-xss-flaws-in-an-nft-marketplace-158679660fa7
+186. https://www.assetnote.io/resources/research/reversing-citrix-gateway-for-xss
+187. https://www.pmnh.site/post/witeup_lhe_graphql_stored_xss/
+188. https://sudhanshukashyap123.medium.com/chaining-self-blind-xss-with-broken-access-control-to-make-it-non-self-blind-xss-626a70c8bbc7
+189. https://kuldeep.io/posts/fulldisclosure-dom-based-xss/
+190. https://obmiblog.blogspot.com/2022/12/gcp-2022-few-bugs-in-google-cloud-shell.html
+191. https://www.ghostccamm.com/blog/multi_cockpit_vulns/
+192. https://www.sonarsource.com/blog/openemr-remote-code-execution-in-your-healthcare-system/
+193. https://ysamm.com/?p=779
+194. https://akashc99.medium.com/blind-xss-to-ssrf-e2bc579976d
+195. https://www.assetnote.io/resources/research/rce-in-avaya-aura-device-services
+196. https://medium.com/@DrakenKun/how-i-was-able-to-find-4-cross-site-scripting-xss-on-vulnerability-disclosure-program-e2f39199ae16
+197. https://kindergartner.computerhacker.ring0.lol/
+198. https://security.lauritz-holtmann.de/post/xss-ato-gadgets/
+199. https://blog.vidocsecurity.com/blog/2022-summary-how-we-made-120k-bug-bounty-in-a-year/
+200. https://blog.cyberxplore.com/how-we-are-able-to-hack-any-company-by-sending-message-20000-bounty-cve-2021-34506/
+201. https://medium.com/@rezaduty/play-with-google-twitter-apple-dell-a90777faa779
+202. https://jowin922.medium.com/reflected-xss-on-target-with-tough-waf-waf-bypass-3b7efd1ef2bc
+203. https://medium.com/@tarang.parmar/xss-on-most-popular-entertaining-website-2fbf5a88df0f
+204. https://skylightcyber.com/2021/05/20/13-nagios-vulnerabilities-7-will-shock-you/
+205. https://medium.com/@niraj1mahajan/hacking-the-search-bar-the-story-of-discovering-and-reporting-an-xss-vulnerability-on-bing-com-cac2f241835
+206. https://www.praetorian.com/blog/using-crlf-injection-to-bypass-akamai-web-app-firewall/
+207. https://blog.trailofbits.com/2023/02/21/vscode-extension-escape-vulnerability/
+208. https://blog.stazot.com/prestashop-csrf-to-rce-article/
+209. https://read.martiandefense.llc/a-zero-day-for-demo-servers-and-internal-government-networks-96acda9e83ed
+210. https://jjainam16.medium.com/reflected-cross-site-scripting-awards-3500-bounty-c8a619f129a1
+211. https://jjainam16.medium.com/reflected-cross-site-scripting-on-reddit-website-bounty-awards-5000-99fa639cdd7
+212. https://medium.com/@feribytex/blind-xss-fired-on-admin-panel-worth-2000-abe2c83279b5
+213. https://www.creastery.com/blog/microsoft-azure-ato-via-xss-in-cosmos-db-explorer/
+214. https://starlabs.sg/blog/2023/02-microsoft-azure-account-takeover-via-dom-based-xss-in-cosmos-db-explorer/
+215. https://infosecwriteups.com/how-i-found-dom-based-xss-on-microsoft-msrc-and-how-they-fixed-it-8b71a6020c82
+216. https://hacklido.com/blog/320-how-i-got-a-2000-bounty-with-rxss
+217. https://p4n7h3rx.medium.com/how-i-got-a-2000-bounty-with-rxss-e6f45f987793
+218. https://infosecwriteups.com/interesting-stored-xss-in-sandboxed-environment-to-full-account-takeover-32e541062938
+219. https://cristivlad.medium.com/exfiltrating-aws-credentials-via-pdf-rendering-of-unsanitized-input-63f39d60d963
+220. https://kirtixs.com/blog/2023/03/01/abusing-hopy-by-hop-header-crlf-injection/
+221. https://0xkemo.medium.com/the-story-of-my-first-reflected-xss-c24fbfef2dc6
+222. https://github.blog/security/vulnerability-research/github-security-lab-audited-datahub-heres-what-they-found/
+223. https://gosecure.ai/blog/2018/04/03/beyond-xss-edge-side-include-injection/
+224. https://www.aquasec.com/blog/jenkins-server-vulnerabilities/
+225. https://arben.sh/bugbounty/SelfXSS-To-Stored-Through-IDOR/
+226. https://marvelmaniac.medium.com/rxss-inside-href-attribute-bypassing-lots-of-weird-checks-to-takeover-accounts-b4c8b4e70877
+227. https://infosecwriteups.com/bypassing-character-limit-xss-using-spanned-payload-7301ffac226e
+228. https://infosecwriteups.com/account-takeover-an-epic-bug-bounty-story-dd5468d5773d
+229. https://ltsirkov.medium.com/netflix-smart-tv-chaining-self-xss-with-session-poisoning-3eb7c78c7914
+230. https://infosecwriteups.com/cve-2023-1410-stored-xss-in-the-graphite-function-description-tooltip-165bdc32154c
+231. https://medium.com/@rajdipdeysarkar7/my-journey-to-nokia-hall-of-fame-in-just-10-minutes-4869c78c37e7
+232. https://www.wiz.io/blog/azure-active-directory-bing-misconfiguration
+233. https://www.sonarsource.com/blog/it-s-a-snmp-trap-gaining-code-execution-on-librenms/
+234. https://orca.security/resources/blog/super-fabrixss-azure-vulnerability/
+235. https://infosecwriteups.com/unveiling-the-secrets-my-journey-of-hacking-googles-oss-cdd9ef3c7aa
+236. https://infosecwriteups.com/lets-hacking-citizens-bank-9520e9c05cf9
+237. https://chevonphillip.medium.com/blind-xss-via-sms-support-chat-1100-bug-bounty-779a1e19cc51
+238. https://dev.to/mikesamuel/2008-silently-securing-jsonparse-5cbb
+239. https://www.invicti.com/blog/web-security/exploiting-insecure-exception-logging/
+240. https://starlabs.sg/blog/2022/12-multiple-vulnerabilites-in-proxmox-ve--proxmox-mail-gateway/
+241. https://medium.com/@haroonhameed_76621/a-775-worth-of-cookies-reflected-dom-based-xss-bug-bounty-poc-3e7720c78fbe
+242. https://palant.info/2019/08/19/kaspersky-in-the-middle--what-could-possibly-go-wrong/
+243. https://certitude.consulting/blog/en/citrix-header-injection-2/
+244. https://palant.info/2021/12/20/yes-fun-browser-extensions-can-have-vulnerabilities-too/
+245. https://palant.info/2022/04/19/adobe-acrobat-hollowing-out-same-origin-policy/
+246. https://bhashit.in/?p=117
+247. https://medium.com/bored-engineer/xss-on-account-leagueoflegends-com-via-easyxdm-2016-75bcf9d582b5
+248. https://hacklido.com/blog/87-reflected-xss-using-double-encoding
+249. https://hacklido.com/blog/90-cve-2021-40662-chamilo-lms-11114-rce
+250. https://web.archive.org/web/20221212095559/https://medium.com/@seeu-inspace/automate-cross-site-scripting-xss-exploitation-with-unusal-events-and-burp-intruder-9dfed4369fff
+251. https://thegrayarea.tech/how-i-hacked-the-dutch-government-and-got-the-lousy-t-shirt-81fd0a0dd84d
+252. https://karol-mazurek.medium.com/not-usual-csp-bypass-case-b538263e09d6
+253. https://bishopfox.com/blog/flowscreencomponents-advisory
+254. https://salt.security/blog/missing-bricks-finding-security-holes-in-lego-apis
+255. https://www.lrqa.com/en/cyber-labs/exploiting-onlyoffice-web-sockets-for-unauthenticated-remote-code-execution/
+256. https://infosecwriteups.com/param-hunting-to-injections-4365da5447cf
+257. https://infosecwriteups.com/cve-2022-42710-a-journey-through-xxe-to-stored-xss-851d74dfe917
+258. https://spaceraccoon.dev/analyzing-clipboardevent-listeners-stored-xss/
+259. https://medium.com/@AlQa3Qa3_M0X0101/how-i-was-able-to-steal-users-credentials-via-swagger-ui-dom-xss-e84255eb8c96
+260. https://modzero.com/modlog/archives/2022/12/19/better_make_sure_your_password_manager_is_secure/index.html
+261. https://kingcoolvikas.medium.com/how-i-found-my-first-xss-on-a-bug-bounty-program-c41107617ce1
+262. https://infosecwriteups.com/zero-click-to-account-takeover-idor-xss-98dd6cce63c4
+263. https://www.synacktiv.com/publications/pentesting-cisco-sd-wan-part-1-attacking-vmanage.html
+264. https://infosecwriteups.com/350-xss-in-15-minutes-dcb74ad93d5f
+265. https://cems.fun/2022/12/26/CVE-2017-8758.html
+266. https://mtechghost.medium.com/stored-xss-vulnerability-in-microsoft-booking-e593de3344e0
+267. https://bergee.it/blog/how-i-found-multiple-critical-bugs-in-red-bull/
+268. https://hamzadzworm.medium.com/how-i-got-a-bug-that-leads-to-takeover-accounts-of-any-user-who-view-my-profile-913c8704f6cd
+269. https://infosecwriteups.com/microsoft-bug-reports-lead-to-ranking-on-microsoft-msrc-quarterly-leaderboard-q3-2022-c6c9f70e2ccd
+270. https://infosecwriteups.com/exploring-the-world-of-esi-injection-b86234e66f91
+271. https://web.archive.org/web/20211016075506/https://insight.claranet.co.uk/technical-blogs/hunting-postmessage-vulnerabilities
+272. https://medium.com/@nakah_/an-amazing-way-to-turn-a-xss-into-an-ato-40bc92772195
+273. https://yaseenzubair.medium.com/web-cache-poisoning-worth-it-e7c6d88797b1
+274. https://kailashbohara.com.np/blog/2023/01/02/exploiting-thousands-of-domains-for-XSS/
+275. https://medium.com/@sid0krypt/vue-js-reflected-xss-fae04c9872d2
+276. https://acut3.net/posts/2023-01-03-fetch-diversion/
+277. https://yaseenzubair.medium.com/blind-xss-in-email-field-1000-bounty-b19b25a23236
+278. https://web-in-security.blogspot.com/2021/02/security-and-privacy-of-social-logins-part2.html
+279. https://www.aeth.cc/public/Article-Pass-Culture/mass-assignment-article-en.html
+280. https://krevetk0.medium.com/hacking-hackers-for-fun-and-profit-784e6c7897e8
+281. https://dhakalbibek.medium.com/2022-a-year-of-fascinating-discoveries-d3277dfb006f
+282. https://medium.com/@haroonhameed_76621/dom-based-xss-for-fun-and-profit-bug-bounty-poc-f4b9554e95d
+283. https://sl4x0.medium.com/how-i-found-xss-on-admin-page-without-login-fe165a5f89c2
+284. https://infosecwriteups.com/reflected-xss-leads-to-3-000-bug-bounty-rewards-from-microsoft-forms-efe34fc6b261
+285. https://swarm.ptsecurity.com/mybb-1-8-31-remote-code-execution-chain/
+286. https://medium.com/@protostar0/self-xss-to-stored-xss-think-out-the-box-44b094f113f9
+287. https://medium.com/@protostar0/crlf-injection-allow-cookie-injection-in-root-domain-xss-812cd807ba5b
+288. https://www.pentagrid.ch/de/blog/reflected-xss-vulnerability-in-crealogix-ebics-implementation/
+289. https://infosecwriteups.com/xss-through-parameter-pollution-9a55da150ab2
+290. https://infosecwriteups.com/6000-with-microsoft-hall-of-fame-microsoft-firewall-bypass-crlf-to-xss-microsoft-bug-bounty-8f6615c47922
+291. https://infosecwriteups.com/how-i-got-10-000-from-github-for-bypassing-filtration-of-html-tags-db31173c8b37
+292. https://blog.securityevaluators.com/tenda-ac1900-vulnerabilities-discovered-and-exploited-e8e26aa0bc68
+293. https://securityintelligence.com/x-force/analysis-rce-vulnerability-cobalt-strike/
+294. https://boschko.ca/tenda_ac1200_router/
+295. https://systemweakness.com/scan-qr-code-and-got-hacked-cve-2021-43530-uxss-on-firefox-android-version-768b24b326fb
+296. https://orca.security/resources/blog/fabrixss-vulnerability-azure-fabric-explorer/
+297. https://markus-krell.de/craft-cms-why-case-matters/
+298. https://websec.nl/blog/dmcacom-hack-full-disclosure-with-proof-of-concept-606ecfec2f798a048269340e
+299. https://raymondlind.medium.com/how-i-found-a-simple-stored-xss-9a6b1c5e0afa
+300. https://hamzadzworm.medium.com/5000-for-apple-stored-xss-and-another-blind-xss-still-under-review-e9f6f5a76eb1
+301. https://github.com/cymtrick/lol/blob/d17ed765129b26a1bf8060757e5aebd4e237c908/_posts/2018-10-20-CVE-2018-17082-PHP-XSS-A-Story-of-Chunked-Requests.md
+302. https://bugs.php.net/bug.php?id=76582
+303. https://web.archive.org/web/20221025185418/https://bergee.it/blog/chaining-multiple-vulnerabilities-for-credential-stealing/
+304. https://boschko.ca/glinet-router/
+305. https://raymondlind.medium.com/stored-xss-to-cookie-exfiltration-2cbca6a8c7f0
+306. https://ssd-disclosure.com/ssd-advisory-galaxy-store-applications-installation-launching-without-user-interaction/
+307. https://blog.doyensec.com/2022/10/27/jupytervscode.html
+308. https://octagon.net/blog/2022/10/28/juniper-sslvpn-junos-rce-and-multiple-vulnerabilities/
+309. https://www.assetnote.io/resources/research/exploiting-static-site-generators-when-static-is-not-actually-static
+310. https://portswigger.net/research/safari-is-hot-linking-images-to-semi-random-websites
+311. https://medium.com/@0xnaeem/how-i-get-5x-swag-from-sony-102dbefd0c2c
+312. https://infosecwriteups.com/get-blind-xss-within-5-minutes-100-9718bd056570
+313. https://medium.com/@armandjasharaj/pentest-tales-exif-data-manipulation-b36beb291229
+314. https://santoshdbobade.blogspot.com/
+315. https://santoshdbobade.medium.com/how-i-got-reflected-cross-site-scripting-rxss-on-manchester-metropolitan-university-700b36cb4f53
+316. https://maordayanofficial.medium.com/look-at-what-i-found-in-comodo-57d62af2f263
+317. https://raymondlind.medium.com/finding-reflected-xss-in-a-strange-way-289a4f3fa630
+318. https://medium.com/@haroonhameed_76621/winning-qr-with-dom-based-xss-bug-bounty-poc-4b4048cf285d
+319. https://infosecwriteups.com/got-another-xss-using-double-encoding-e6493a9f7368
+320. https://bendtheory.medium.com/remediation-archeology-finding-and-decoding-an-ancient-xss-ea541c1106d1
+321. https://infosecwriteups.com/russian-roulette-xss-bbba6afd2570
+322. https://dewcode.medium.com/how-i-found-29-stored-xss-in-modern-framework-1cfe60a107a0
+323. https://medium.com/pentesternepal/interesting-stored-xss-via-meta-data-eb8fe1de8b33
+324. https://0xelkot.medium.com/how-i-get-10-sqli-and-30-xss-via-automation-tool-cebbd9104479
+325. https://labs.guard.io/xss-vulnerability-found-in-connectwise-remote-access-platform-with-great-potential-for-misuse-by-scammers-a0773da2aacf
+326. https://corben.io/blog/18-1-11-chaining-yahoo-bugs
+327. https://samcurry.net/hacking-apple
+328. https://dl.acm.org/doi/fullHtml/10.1145/3427228.3427290
+329. https://hesec.de/posts/bbh-csrf/
+330. https://shafouz.medium.com/webview-xss-account-takeover-349c1d69606e
+331. https://infosecwriteups.com/a-great-weekend-hack-worth-8k-9bfda8ab65b9
+332. https://offsec.space/posts/airtel-vulnerabilities/
+333. https://www.synacktiv.com/sites/default/files/2022-11/CodeIgniter3_XSS_2022.pdf
+334. https://aidilarf.medium.com/stored-xss-at-https-www-tiktok-com-11fed6db0590
+335. https://mc0wn.blogspot.com/2022/05/2nd-rce-and-xss-in-apache-struts-before-2530.html
+336. https://swarm.ptsecurity.com/researching-open-source-apps-for-xss-to-rce-flaws/
+337. https://blog.electrovolt.io/posts/discord-rce/
+338. https://x.com/S1r1u5_/status/1558689435985752065?mx=2
+339. https://mohamedtarekq.medium.com/how-i-get-full-account-takeover-via-stealing-actions-login-form-xss-9e50068c2b2d
+340. https://infosecwriteups.com/stored-xss-to-account-takeover-going-beyond-document-cookie-970e42362f43
+341. https://www.adico.me/post/xss-in-gmail-s-amp4email
+342. https://ibraradi.gitbook.io/write-up/came-looking-for-ssrf-and-found-xss
+343. https://alpinnnnnn13.medium.com/stored-xss-in-app-gitbook-com-6349f42661f7
+344. https://medium.com/@the_harvester/bypassed-cloudflares-web-application-firewall-waf-44da57f3a1d3
+345. https://mohamedtarekq.medium.com/defeat-the-httponly-flag-to-achieve-account-takeover-rxss-c16849d3d192
+346. https://gonzxph.medium.com/my-experience-on-hacking-the-dutch-government-a2c5a5f43d83
+347. https://medium.com/@fpatrik/how-i-found-an-xss-vulnerability-via-using-emojis-7ad72de49209
+348. https://doyensec.com/resources/Doyensec_Advisory_AnnounceKit_Q12022.pdf
+349. https://sagarsajeev.medium.com/escalating-open-redirect-to-xss-d2b9355e5f05
+350. https://blog.electrovolt.io/posts/element-rce/
+351. https://x.com/S1r1u5_/status/1559561002349633536
+352. https://bergee.it/blog/xss-via-angular-template-injection/
+353. https://bergee.it/blog/url-filter-bypass-rfi-and-xss/
+354. https://bergee.it/blog/the-forgotten-api-and-xss-filter-bypass/
+355. https://bergee.it/blog/five-minute-hunting-for-hidden-xss/
+356. https://thinkloveshare.com/hacking/rce_on_spip_and_root_me_v2/
+357. https://medium.com/@dirtycoder0124/n-a-to-750-bounty-for-a-blind-xss-dc218c84a340
+358. https://spaceraccoon.dev/exploiting-icalendar-properties-enterprise-applications/
+359. https://infosecwriteups.com/my-hall-of-fame-at-united-nations-success-story-97675232aed7
+360. https://notifybugme.medium.com/how-i-found-reflected-xss-on-idfc-bank-with-burp-suite-intruder-7c53275daf02
+361. https://moustadif.medium.com/how-i-bypassed-reflected-xss-in-well-known-platform-274c07f97674
+362. https://infosecwriteups.com/bypassing-amazon-waf-to-pop-an-alert-4646ce35554e
+363. https://nokline.github.io/bugbounty/2022/09/02/Glassdoor-Cache-Poisoning.html
+364. https://hackerone.com/reports/1621540
+365. https://bergee.it/blog/turning-cookie-based-xss-into-account-takeover/
+366. https://infosecwriteups.com/how-i-found-3-rxss-on-the-lululemon-bug-bounty-program-fa357a0154c2
+367. https://shinchina.in/blog/2022-09-07/$900-blind-xss.html
+368. https://medium.com/@cyberali/blind-xss-and-time-based-sql-injection-to-admin-panel-control-and-database-takeover-9b7645a53748
+369. https://systemweakness.com/how-i-found-moodle-cross-site-scripting-459a1c9ad4d5
+370. https://medium.com/cloud-security/parameters-in-lambda-functions-that-lead-to-xss-and-injection-1bc8e14fca6f
+371. https://samcurry.net/universal-xss-on-netlifys-next-js-library
+372. https://jinone.github.io/bugbounty-a-dom-xss/
+373. https://rohit443.medium.com/blind-xss-on-admin-portal-leads-to-information-disclosure-121d26b2a35a
+374. https://sagarsajeev.medium.com/escalating-ssti-to-reflected-xss-using-curly-braces-825685bd93ec
+375. https://xthemo.medium.com/stored-xss-at-nvidia-via-angular-js-template-injection-3c9793218860
+376. https://www.trustwave.com/en-us/resources/blogs/spiderlabs-blog/cve-2022-37461-two-reflected-xss-vulnerabilities-in-canon-medicals-vitrea-view/
+377. https://c0nqr0r.medium.com/reading-robots-txt-got-me-4-xss-reports-9fd2234c635f
+378. https://www.trenchesofit.com/2022/09/30/zoneminder-web-app-testing/
+379. https://ahmadaabdulla.medium.com/mr-robot-self-xss-from-informative-to-high-1200-csrf-open-redirect-self-xss-to-stored-92f371ba3da1
+380. https://rohit443.medium.com/privilege-escalation-to-stored-xss-dff01314bc7e
+381. https://positive.security/blog/dompdf-rce
+382. https://flattsecurity.medium.com/finding-bugs-to-trigger-unauthenticated-command-injection-in-a-netgear-router-psv-2022-0044-2b394fb9edc
+383. https://web.archive.org/web/20220329163747/https://pwnsec.ninja/2022/03/27/stealing-cookies-from-subdomain-leads-to-takeover-user-accounts-at-redacted-com/
+384. https://mizu.re/post/how-i-was-able-to-rick-roll-every-users-on-root-me.org
+385. https://abdilahrf.github.io/bugbounty/got-access-to-dota-2-admin-panel-by-exploiting-in-game-feature
+386. https://medium.com/@terminatorLM/small-bugs-are-more-dangerous-than-you-think-9411618191ab
+387. https://amitlt2.medium.com/multiple-times-i-hacked-duke-university-with-rxss-vulnerability-7e291aad043a
+388. https://amitlt2.medium.com/hacked-nokia-with-reflected-cross-site-scripting-vulnerability-327daa8e62fb
+389. https://tech-blog.cymetrics.io/en/posts/huli/erpnext-ssrf-and-xss-to-account-takeover/
+390. https://medium.com/@Bishoo97x/xss-html-injection-and-file-upload-bypass-in-huawei-subdomain-64966ba4f4ac
+391. https://shahjerry33.medium.com/xss-the-localstorage-robbery-d5fbf353c6b0
+392. https://amitlt2.medium.com/open-redirection-into-bentley-system-d1ee188bfb25
+393. https://medium.com/@malwarejoe/smashing-the-modern-web-tech-stack-part-1-the-evolving-threat-landscape-in-2022-and-dom-based-324696684239
+394. https://systemweakness.com/sensitive-data-exfiltration-through-xss-450-409162eced3a
+395. https://systemweakness.com/chained-bug-xml-file-upload-to-xss-to-csrf-to-full-account-take-over-ato-156409c41b57
+396. https://web.archive.org/web/20220516024454/https://medium.com/@tobydavenn/how-i-paid-for-my-holiday-with-bug-bounty-668f1f59e6e5
+397. https://systemweakness.com/resolveuri-rxss-imperva-waf-bypass-c834ca573bd4
+398. https://medium.com/@renwa/the-underrated-bugs-clickjacking-css-injection-drag-drop-xss-cookie-bomb-login-logout-csrf-84307a98fffa
+399. https://ysamm.com/?p=763
+400. https://blog.vidocsecurity.com/blog/hacking-swagger-ui-from-xss-to-account-takeovers/
+401. https://infosecwriteups.com/bypassing-waf-to-weaponize-a-stored-xss-ff9963c421ee
+402. https://cyllective.com/blog/posts/wordpress-audit-plugins
+403. https://vikaran101.medium.com/how-i-made-it-into-the-united-nations-hall-of-fame-as-i-slept-f567c90be227
+404. https://www.hoyahaxa.com/2022/05/bygone-vulnerabilities-remote-code.html
+405. https://medium.com/@ao64400225/an-unusual-way-to-find-xss-injection-in-one-minute-9ed2c7e2a848
+406. https://rotem-bar.com/hacking-65-million-websites-greater-cve-2022-29455-elementor
+407. https://notifybugme.medium.com/automating-reflected-xss-with-burp-suite-intruder-a39b2f060db7
+408. https://aidilarf.medium.com/xss-blind-stored-at-asset-domain-android-apps-tiktok-ae2f4c2dbc07
+409. https://systemweakness.com/every-xss-is-different-c98528fee5e0
+410. https://gosecure.ai/blog/2022/06/21/xss-vulnerability-in-ibm-content-navigator-cve-2020-4757/
+411. https://bishopfox.com/blog/filestack-upload-advisory
+412. https://aidilarf.medium.com/xss-blind-stored-at-2-assets-tiktok-f32829f11e58
+413. https://portswigger.net/research/bypassing-firefoxs-html-sanitizer-api
+414. https://blog.electrovolt.io/posts/vscode-rce/
+415. https://web.archive.org/web/20220716152713/https://snapsec.co/blog/hacking-larksuite/
+416. https://medium.com/@Bishoo97x/stored-xss-and-stored-html-injection-in-united-nations-website-db87d445e41
+417. https://spawnzii.github.io/posts/2022/07/how-we-have-pwned-root-me-in-2022/
+418. https://nirmaldahal.com.np/posts/2022/07/leveraging-the-sql-injection-to-execute-the-xss-by-evading-csp/
+419. https://medium.com/@numanturle/microsoft-teams-stored-xss-bypass-csp-8b4a7f5fccbf
+420. https://medium.com/@rodricbr/from-open-redirect-to-reflected-xss-manually-64e633a3d23f
+421. https://gosecure.ai/blog/2022/07/13/tableau-server-leaks-sensitive-information-from-reflected-xss/
+422. https://medium.com/@moSec/crlf-to-account-takeover-chaining-bugs-21a25dfa1cdf
+423. https://medium.com/stolabs/cve-2022-35909-cve-2022-35910-incorrect-access-control-and-xss-stored-to-jellyfin-967359c91058
+424. https://www.rcesecurity.com/2022/07/WordPress-Transposh-Exploiting-a-Blind-SQL-Injection-via-XSS/
+425. https://medium.com/techiepedia/the-tale-of-cve-2021-34479-vscode-xss-b336ba6cf3d6
+426. https://blog.dixitaditya.com/oauth-account-takeover
+427. https://lethanhphuc-pk.medium.com/bugbounty-xss-with-markdown-exploit-fix-on-opensource-1baecebe9645
+428. https://zseano.medium.com/finding-xss-on-apple-com-and-building-a-proof-of-concept-to-leak-your-pii-information-d7bc93cff2df
+429. https://blog.bugbountyhunter.com/xss-on-apple/
+430. https://infosecwriteups.com/how-i-found-my-first-xss-bug-96fb8e85a24c
+431. https://sh1yo.art/post/sec-596/
+432. https://www.sonarsource.com/blog/nodebb-remote-code-execution-with-one-shot/
+433. https://github.com/l0ggg/VMware_vCenter
+434. https://omespino.com/write-up-xss-stored-in-files-slack-com-via-xml-svg-file-ios-1000-usd/
+435. https://www.r29k.com/articles/bb/priv-esc-via-stored-xss
+436. https://prashantbhatkal2000.medium.com/svg-based-stored-xss-ee6e9b240dee
+437. https://medium.com/@mohamedtaha_42562/how-i-found-xss-vulnerability-in-amazon-in-5-minutes-using-shodan-50b583655297
+438. https://motaha22.github.io/bugbounty/bounty/
+439. https://sharmajijvs.medium.com/xss-via-file-upload-a2bcc1e5d7f7
+440. https://ndevtk.github.io/writeups/2021/12/30/cloud-shell-xss/
+441. https://infosecwriteups.com/bug-hunting-journey-of-2021-1fa60b28d949
+442. https://nmochea.medium.com/xiaomi-arbitrary-javascript-vulnerability-327a6f3a9b0e
+443. https://systemweakness.com/xss-filter-evasion-idor-3d4624758ff0
+444. https://kuldeep.io/posts/120-days-of-high-frequency-hunting/
+445. https://medium.com/@p3rr0x22/critical-xss-in-chrome-extension-b55757a2074
+446. https://aidilarf.medium.com/first-valid-bug-finding-at-microsoft-and-i-got-the-acknowledgments-page-microsoft-a2c185c53074
+447. https://www.ryanpickren.com/safari-uxss
+448. https://infosecwriteups.com/how-i-made-15-000-by-hacking-caching-servers-part-1-5541712a61c3
+449. https://infosecwriteups.com/how-i-made-16-500-hacking-cdn-caching-servers-part-2-4995ece4c6e6
+450. https://infosecwriteups.com/how-i-made-16-500-hacking-cdn-caching-servers-part-3-91f9d836e046
+451. https://medium.com/@abhijeetbiswas_/xss-cross-site-scripting-via-x-forwarded-host-header-20be114d4254
+452. https://hackerone.com/reports/1392935
+453. https://machevalia.blog/blog/stored-cross-site-scripting-in-mediawiki
+454. https://systemweakness.com/a-peculiar-case-of-xss-and-my-first-bug-19f2132390b6
+455. https://sanyamchawla1999.medium.com/my-experience-of-hacking-the-dutch-government-8c219c61c795
+456. https://medium.com/@ladecruze/my-first-bounty-idor-self-xss-3000-cde89cbbc1b1
+457. https://kazet.cc/2022/02/03/fuzzing-wordpress-plugins.html
+458. https://spaceraccoon.dev/solving-dom-xss-puzzles/
+459. https://edoverflow.com/2022/bypassing-razers-dom-based-xss-filter/
+460. https://web.archive.org/web/20220214063345/https://7odamo.medium.com/sql-injection-reflected-xss-and-information-disclosure-in-one-subdomain-in-just-10-minutes-f2ce877b43d4
+461. https://infosecwriteups.com/my-first-reflected-xss-bug-bounty-google-dork-xxx-92ac1180e0d0
+462. https://web.archive.org/web/20220220072733/https://bloggerrando.blogspot.com/2022/02/stored-xss-on-messagealibabacom-alibaba.html
+463. https://medium.com/@friendly_/bypassing-cloudflares-waf-b1b83a50fb2f
+464. https://f4t7.medium.com/xss-in-hidden-input-field-1b98a5fece26
+465. https://octagon.net/blog/2022/03/02/apache-jspwiki-preauth-xss-to-ato/
+466. https://apth3hack3r.medium.com/xss-through-base64-encoded-json-4b0d96e5ccd4
+467. https://medium.com/@tushar.tilak.sharma/a-tale-of-open-redirection-to-stored-xss-6ad426ae9d43
+468. https://c4rrilat0r.medium.com/how-i-managed-to-trigger-xss-automatically-to-get-critical-account-takeover-92ea3abcaf9
+469. https://infosecwriteups.com/how-i-was-able-to-find-50-cross-site-scripting-xss-security-vulnerabilities-on-bugcrowd-public-ba33db2b0ab1
+470. https://melotover.medium.com/how-i-bypassed-a-tough-waf-to-steal-user-cookies-using-xss-da75f28108e4
+471. https://web.archive.org/web/20210924032932/https://0xdln.ml/XSS-Through-Fuzzing-Default-IIS/
+472. https://www.r29k.com/articles/bb/self-xss-to-stored-xss
+473. https://orwaatyat.medium.com/how-i-found-multiple-bugs-on-facebook-in-1-month-and-a-part-for-my-methodology-tools-58a677a9040c
+474. https://0x80dotblog.wordpress.com/2021/07/24/ebay-xss-demo-and-guide-to-spear-phishing/
+475. https://medium.com/pentesternepal/how-i-found-a-bug-in-apple-within-just-in-5min-d7357237d7a0
+476. https://www.shielder.com/advisories/mattermost-server-reflected-xss-oauth/
+477. https://hackerone.com/reports/1216203
+478. https://web.archive.org/web/20210927021132/https://0xdln.ml/XSS-Special-Cases/
+479. https://rdnzx.medium.com/chaining-open-redirect-with-xss-to-account-takeover-36acf218a6d5
+480. https://medium.com/@vikramroot/account-takeover-via-stored-xss-b774f7a2a3ab
+481. https://web.archive.org/web/20210824230504/https://medium.com/@yusifceferov_/how-i-bypassed-website-using-akamai-waf-e4e907aeb161
+482. https://gonzxph.medium.com/how-i-escalate-my-self-stored-xss-to-account-takeover-with-the-help-of-idor-f20733ecdbe9
+483. https://sicks3c.medium.com/tale-of-xss-in-angular-c5c057a56156
+484. https://fortbridge.co.uk/research/multiple-vulnerabilities-in-cpanel-whm/
+485. https://github.com/justinsteven/advisories/blob/master/2021_vscode_ipynb_xss_arbitrary_file_read.md
+486. https://nassimchami.medium.com/1st-bug-bounty-writeup-open-redirect-to-xss-on-login-page-313221da2879
+487. https://infosecwriteups.com/why-u-should-use-burp-to-test-path-traversal-vulnerability-and-also-get-rxss-2743cbb16a3c
+488. https://zemnmez.medium.com/how-to-hack-apple-id-f3cc9b483a41
+489. https://web.archive.org/web/20210909040725/https://obsrva.org/2021/08/22/monkeytype-disclosure.html
+490. https://thecyberneh.medium.com/story-of-unexpected-bugs-75734d51ac57
+491. https://medium.com/@friendly_/reflective-xss-via-search-box-bypassing-cloudflare-waf-841ed420b7f
+492. https://web.archive.org/web/20210829191303/https://0u.ma/5
+493. https://medium.com/codex/hunting-for-xss-with-codeql-57f70763b938
+494. https://marxchryz.medium.com/how-i-found-multiple-xss-in-hidden-legacy-pages-a57a25d8ff1f
+495. https://medium.com/@behnam.yazdanpanah/chaining-bugs-from-self-xss-to-account-takeover-82d572136bdf
+496. https://noob3xploiter.medium.com/sql-injection-in-harvard-subdomain-be67a5dbf664
+497. https://websecblog.com/vulns/google-threadit/
+498. https://blogs.opera.com/security/2021/09/bug-bounty-guest-post-local-file-read-via-stored-xss-in-the-opera-browser/
+499. https://medium.com/@gguzelkokar.mdbf15/xss-via-account-takeover-in-e-signature-feature-worth-2500-435f3f8325bf
+500. https://codecolor.ist/2021/08/04/mistuned-part-i/
+501. https://codecolor.ist/2021/08/05/mistuned-part-ii/
+502. https://codecolor.ist/2021/09/10/mistuned-part-iii/
+503. https://www.y-security.de/news-en/microsoft-azure-portal-persistent-cross-site-scripting/index.html
+504. https://mrpentestguy.medium.com/how-i-was-able-to-find-100-xss-in-united-nations-bug-bounty-program-a675573c006d
+505. https://infosecwriteups.com/weaponizing-reflected-xss-to-account-takeover-ae8aeea7aca3
+506. https://infosecwriteups.com/chaining-bugs-for-better-bounties-f14d6b2129de
+507. https://gccybermonks.com/posts/mxss/
+508. https://blogs.opera.com/security/2021/09/8000-bug-bounty-highlight-xss-to-rce-in-the-opera-browser/
+509. https://medium.com/@bobbyrsec/zero-day-hijacking-icloud-credentials-with-apple-airtags-stored-xss-6997da43a216
+510. https://blog.s1r1us.ninja/research/PP
+511. https://www.aeth.cc/public/Article-Pass-Culture/stored-xss-article-en.html
+512. https://medium.com/@mfocuz/hacking-netflix-eureka-8e5957b2f539
+513. https://svennergr.github.io/writeups/google/ads_dom_xss/
+514. https://mhmdiaa.com/blog/exploiting-html-imports/
+515. https://r0.haxors.org/posts?id=20
+516. https://omespino.com/write-up-xss-stored-in-api-media-atlassian-com-via-doc-file-ios/
+517. https://nassimchami.medium.com/stored-xss-to-account-take-over-45a7e09116a7
+518. https://omespino.com/write-up-google-vrp-bug-bounty-etc-environment-local-variables-exfiltrated-on-linux-google-earth-pro-desktop-app-1337-usd/
+519. https://starlabs.sg/blog/2021/11-diving-into-open-source-lms-ccodebases/
+520. https://shrirangdiwakar.medium.com/encrypted-payload-decrypted-execution-600-stored-xss-3e517cea8f13
+521. https://thexssrat.medium.com/i-felt-like-there-were-no-more-bugs-left-after-winning-2000-but-an-email-worth-750-changed-my-c7a507649060
+522. https://infosecwriteups.com/a-weird-xss-77c13d135c9f
+523. https://security.lauritz-holtmann.de/post/xss-parameter-guessing/
+524. https://infosecwriteups.com/bragging-rights-lets-head-back-to-bug-bucket-88c94730b6fa
+525. https://bendtheory.medium.com/journeys-in-quoteless-and-multi-reflection-xss-b1d67bb0c5dd
+526. https://robertchen.cc/blog/2021/04/03/github-pages-xss
+527. https://benjamin-mauss.medium.com/critical-blind-storage-xss-my-first-bug-bounty-d318f6ba570c
+528. https://fernale.blogspot.com/2021/04/how-i-got-9000-usd-by-hacking-into.html
+529. https://pharish4948.medium.com/how-i-earned-3200-in-4hours-through-stored-xss-38597877d3e1
+530. https://shahjerry33.medium.com/xss-via-exif-data-the-p2-elevator-d09e7b7fe9b9
+531. https://infosecwriteups.com/pwning-your-assignments-stored-xss-via-graphql-endpoint-6dd36c8a19d5
+532. https://n45ht.or.id/blog/reflected-xss-on-microsoft/
+533. https://n45ht.or.id/blog/exploiting-xss-via-markdown-on-xiaomi/
+534. https://notifybugme.medium.com/chaining-csrf-with-xss-to-deactivate-mass-user-accounts-by-single-click-b463c0d26587
+535. https://infosecwriteups.com/xss-through-parameter-pollution-9a55da150ab2
+536. https://infosecwriteups.com/apple-bug-bounty-xss-2021-78c2f4fc4106
+537. https://infosecwriteups.com/stored-xss-to-organisation-takeover-6eaaa2fdcd5b
+538. https://infosecwriteups.com/story-of-my-hacking-dutch-government-46b7a3c8b75a
+539. https://filipaze.medium.com/how-i-find-my-first-stored-xss-c6f57155cc1a
+540. https://kailashbohara.com.np/blog/2021/05/13/Google-blind-XSS/
+541. https://ysamm.com/?p=695
+542. https://www.pethuraj.com/blog/edmodo-bug-bounty-writeup/
+543. https://keerok.github.io/2021/05/09/XSS-via-postMessage-in-chat-mozilla-org-CVE-2021-21320/
+544. https://n1ghtmar3.medium.com/chaining-xss-with-authentication-issues-to-turn-it-into-full-account-takeover-ae886ac696bb
+545. https://joelmcg1993.medium.com/stored-xss-with-two-different-parameters-d9243cae3e6a
+546. https://cirius.medium.com/how-i-hacked-a-target-again-and-again-6db2e462221f
+547. https://master-sec.medium.com/the-beauty-of-chaining-client-side-bugs-759e1091eabf
+548. https://frichetten.com/blog/xss_in_aws_console/
+549. https://gccybermonks.com/posts/popups/
+550. https://infosecwriteups.com/story-of-my-first-cash-bounty-on-hackerone-acad282ae962
+551. https://cyberxplore.medium.com/how-we-are-able-to-hack-any-company-by-sending-message-including-facebook-google-microsoft-b7773626e447
+552. https://www.youtube.com/watch?v=XfTN7fPtB1s
+553. https://0xbadb00da.medium.com/account-takeover-via-stored-xss-with-arbitrary-file-upload-2774ec6cff51
+554. https://sm4rty.medium.com/stored-xss-via-invite-leading-to-mass-account-takeover-at-opera-a85ed257dd12
+555. https://research.checkpoint.com/2021/a-supply-chain-breach-taking-over-an-atlassian-account/
+556. https://www.pethuraj.com/blog/escalating-xss-to-arbitrary-file-read/
+557. https://portswigger.net/research/finding-dom-polyglot-xss-in-paypal-the-easy-way
+558. https://hackrzvijay.medium.com/blind-xss-in-apple-school-enrollment-data-disclosure-a94c1da5bf54
+559. https://www.trustwave.com/en-us/resources/blogs/spiderlabs-blog/solarwinds-serv-u-1523-share-url-xss-cve-2021-32604/
+560. https://infosecwriteups.com/reflected-xss-through-insecure-dynamic-loading-dbf4d33611e0
+561. https://aidilarf.medium.com/380-xss-stored-in-bigo-bug-bounty-program-a8b9529adcc4
+562. https://jasminderpalsingh.info/stored-xss-in-google-doubleclick-studio-google-research-grant/
+563. https://infosecwriteups.com/how-i-was-able-to-bypass-cloudflare-for-xss-e94cd827a5d6
+564. https://cirius.medium.com/escalating-xss-to-account-takeover-ffde08624937
+565. https://infosecwriteups.com/reflected-cross-site-scripting-on-private-program-bounty-750-34cc67a931f1
+566. https://securitytrooper.com/en/cross-site-scripting-xss-reflected-in-one-of-the-subdomains-of-general-motorsbugbounty
+567. https://nmochea.medium.com/this-post-is-about-an-reflected-xss-that-i-found-on-opera-browser-application-which-could-have-been-39823a22045d
+568. https://blog.evanricafort.com/2020/12/cve-2019-17674-wordpress-stored-xss.html
+569. https://vedanttekale20.medium.com/story-of-the-best-vulnerability-ive-found-so-far-5e3b0e02b47e
+570. https://github.com/oskarsve/ms-teams-rce
+571. https://infosecwriteups.com/content-security-policy-bypass-to-perform-xss-3c8dd0d40c2e
+572. https://ph-hitachi.medium.com/how-i-got-my-first-bug-bounty-in-intersting-target-lfi-to-sxss-58fa5c4f5882
+573. https://blog.s1r1us.ninja/research/cookie-tossing-to-rce-on-google-cloud-jupyter-notebooks
+574. https://lutfumertceylan.com.tr/posts/acc-takeover-web-cache-xss/
+575. https://notifybugme.medium.com/chaining-cors-by-reflected-xss-to-account-takeover-my-first-blog-5b4f12b43c70
+576. https://ysamm.com/?p=525
+577. https://emanuel-beni.medium.com/stored-xss-on-product-description-high-400-2f078fd70fd2
+578. https://ashketchum.medium.com/blind-xss-in-google-analytics-admin-panel-3133-70-2185d1cce82a
+579. https://levelup.gitconnected.com/stealing-user-information-via-xss-via-parameter-pollution-7d99b3379e7d
+580. https://web.archive.org/web/20210730144815/https://www.cysek.org/post/sxss-by-cache-poison-attack
+581. https://slashcrypto.org/2021/01/15/CVE-2020-1456/
+582. https://kunalkhubchandani.medium.com/how-i-was-rewarded-a-1000-bounty-after-abusing-file-upload-functionality-to-stored-xss-945a40ac6f94
+583. https://systemweakness.com/story-behind-sweet-ssrf-40c705f13053
+584. https://github.com/tess-ss/writeups/blob/main/bug.md
+585. https://infosecwriteups.com/bragging-rights-part-1-short-story-of-a-bug-wave-dbb88f48b604
+586. https://0xfabiof.github.io/stored-xss-tw/
+587. https://web.archive.org/web/20210201180254/https://www.cysek.org/post/bac-sxss
+588. https://infosecwriteups.com/how-i-was-able-to-turn-a-xss-into-a-account-takeover-ae0c478640e7
+589. https://vict0ni.me/redwood-report2web-xss-and-frame-injection/
+590. https://thevillagehacker.medium.com/reflected-xss-on-a-public-program-e8c0416daca1
+591. https://samcurry.net/hacking-chesscom
+592. https://karansh491.medium.com/my-first-bounty-stored-xss-96dea41fd9cf
+593. https://vbharad.medium.com/stored-xss-in-icloud-com-5000-998b8c4b2075
+594. https://infosecwriteups.com/idor-that-allowed-me-to-takeover-any-users-account-129e55871d8
+595. https://ysamm.com/?p=632
+596. https://sprocketfox.io/xssfox/2021/02/18/pipeline/
+597. https://web.archive.org/web/20230726020446/https://galnagli.com/Cache_Poisoning/
+598. https://infosecwriteups.com/bragging-rights-killing-file-uploads-softly-fba35a4e485a
+599. https://maordayanofficial.medium.com/stored-xss-at-trello-com-ef2e3d1ed24b
+600. https://infosecwriteups.com/leveraging-template-injection-to-takeover-an-account-1dba7c4ae315
+601. https://ashketchum.medium.com/stored-xss-in-google-ads-android-application-3133-70-373f6c361ff3
+602. https://kleiton0x00.github.io/posts/Exploiting-HTTP-Request-Smuggling-(TE.CL)-XSS-to-website-takeover/
+603. https://infosecwriteups.com/exploiting-http-request-smuggling-te-cl-xss-to-website-takeover-c0fc634a661b
+604. https://infosecwriteups.com/chain-of-low-level-bugs-and-misconfigurations-leads-to-account-takeover-de248fc4e481
+605. https://apapedulimu.click/google-vrp-how-i-get-blind-xss-at-google-with-dork-first-bounty-and-hof/
+606. https://systemweakness.com/finding-keys-under-the-door-5cea8758ce86
+607. https://med-mahmoudi26.medium.com/chaining-bugs-for-the-greater-good-664412ae85f8
+608. https://gccybermonks.com/posts/xss-mozilla/
+609. https://thexssrat.medium.com/how-i-found-my-first-critical-vulnerability-in-bug-bounties-f890d420764b
+610. https://melotover.medium.com/how-i-leveraged-xss-to-make-privilege-escalation-to-be-super-admin-e120b6090451
+611. https://thexssrat.medium.com/poc-the-easiest-125-euros-i-ever-made-4dc87f01e286
+612. https://medium.com/kminthein/story-of-stealing-mail-conversation-contacts-in-mail-ru-and-mymail-ios-applications-via-xss-1e49c4ed560
+613. https://lutfumertceylan.com.tr/posts/stored-xss-with-password-recovery-page/
+614. https://research.securitum.com/art-of-bug-bounty-a-way-from-js-file-analysis-to-xss/
+615. https://embracethered.com/blog/posts/2020/aws-xss-cross-site-scripting-vulnerability/
+616. https://medium.com/@noneofyou/how-i-got-hall-of-fame-in-microsoft-9b507dec3860
+617. https://medium.com/@renwa/copy-drag-paste-drop-2fd4613ad1d1
+618. https://www.pethuraj.com/blog/bbc-bug-bounty-write-up-xss-vulnerability/
+619. https://issues.chromium.org/issues/40051189
+620. https://github.com/google/security-research/security/advisories/GHSA-fpgp-vrmv-v8f2
+621. https://infosecwriteups.com/dont-stop-at-one-bug-d3c56806b5
+622. https://bughunter25.medium.com/self-stored-xss-to-full-account-takeover-fe8e71471795
+623. https://infosecwriteups.com/exploiting-imported-libraries-to-bypass-cloudflare-waf-7aed99186c5a
+624. https://infosecwriteups.com/the-1-000-worth-cookie-6cf48af08e08
+625. https://sa1tama0.medium.com/xss-rce-html-file-upload-in-same-endpoint-4a03348445f4
+626. https://tommysuriel.medium.com/stored-xss-on-slack-bug-bounty-88fe167d75df
+627. https://medium.com/@jonathanbouman/reflected-xss-at-fotoservice-hema-nl-af344ef63433
+628. https://infosecwriteups.com/reflected-xss-in-facebooks-mirror-websites-4384b4eb3e11
+629. https://infosecwriteups.com/cache-poisoning-with-xss-a-peculiar-case-eb5973850814
+630. https://medium.com/@z.x/how-i-got-450-just-in-one-google-search-sqli-rxss-8c7c28ceba79
+631. https://infosecwriteups.com/stealing-your-data-using-xss-bf7e4a31e6ee
+632. https://apapedulimu.click/shopify-com-blind-stored-xss-via-staff-name/
+633. https://0xnazmul.medium.com/how-i-found-my-first-bug-stored-xss-and-earned-my-first-bounty-1000-33556678d1ed
+634. https://infosecwriteups.com/the-importance-of-keeping-up-to-date-or-how-i-found-an-interesting-bug-thanks-to-a-tweet-2ec6ba9a5e1e
+635. https://infosecwriteups.com/stop-scratching-the-surface-and-hack-the-dependencies-fe4c26cd8ea
+636. https://medium.com/@soufianehabti/my-story-with-xss-ed017bdc44c4
+637. https://smilehacker.medium.com/xss-that-can-pay-your-bills-9377eff1fd0d
+638. https://medium.com/@soyelmago/never-give-up-the-story-behind-a-dupe-to-a-triaged-43b72debb6c9
+639. https://www.ehpus.com/post/xss-fix-bypass-10000-bounty-in-google-maps
+640. https://alesandroortiz.com/articles/uxss-android-webview-cve-2020-6506/
+641. https://blog.long.lat/2020/09/16/exploiting-a-useless-cookie-based-xss-and-making-it-useful/
+642. https://supras.io/reflected-xss-via-a-hidden-parameter-on-dutch-gov-website/
+643. https://alonnsoandres.medium.com/25k-instagram-almost-xss-filter-link-facebook-bug-bounty-798b10c13b83
+644. https://medium.com/@masonhck357/chains-on-chains-chaining-multiple-low-level-vulns-into-a-critical-8b88db29738e
+645. https://thinkloveshare.com/hacking/rce_on_spip_and_root_me/
+646. https://www.gremwell.com/firefox-xss-302
+647. https://omespino.com/write-up-google-bug-bounty-xss-to-cloud-shell-instance-takeover-rce-as-root-5000-usd/
+648. https://vedanttekale20.medium.com/spend-more-time-doing-recon-youll-get-more-bugs-e7ffd5bf9202
+649. https://parasarora06.medium.com/cve-2018-5230-jira-cross-site-scripting-59ec96b3d75f
+650. https://blog.dixitaditya.com/xss-to-read-internal-files
+651. https://medium.com/@merry6607/how-i-find-my-first-p1-level-bug-5a6dd9587203
+652. https://blog.yappare.com/2020/10/i-had-fun-with-this-xss.html
+653. https://saadahmedx.medium.com/weaponizing-xss-for-fun-profit-a1414f3fcee9
+654. https://infosecwriteups.com/automating-xss-identification-with-dalfox-paramspider-e14283bb7916
+655. https://ysamm.com/?p=493
+656. https://blog.oversecured.com/Evernote-Universal-XSS-theft-of-all-cookies-from-all-sites-and-more/
+657. https://www.rcesecurity.com/2020/11/Smuggling-an-un-exploitable-xss/
+658. https://www.pethuraj.com/blog/microsoft-bug-bounty-writeup-stored-xss-vulnerability/
+659. https://mostafa-mano.medium.com/2-reflected-xss-in-razer-74783ae5ee53
+660. https://komradz86.medium.com/weird-im-possible-xss-on-error-page-a0b943ead41
+661. https://medium.com/@nnez/always-escalate-from-self-xss-to-persistent-xss-on-login-portal-54265b0adfd0
+662. https://infosecwriteups.com/stored-xss-in-google-nest-a82373bbda68
+663. https://medium.com/@kr_b/netflix-party-simple-xss-ec92ed1d7e18
+664. https://web.archive.org/web/20200513210337/https://medium.com/bugbountywriteup/the-secret-sauce-of-bug-bounty-bdcc2e2d45af
+665. https://medium.com/@mohameddaher/from-p5-to-p5-to-p2-from-nothing-to-1000-bxss-4dd26bc30a82
+666. https://blog.evanricafort.com/2020/04/xss-in-peerio-2-windows-application.html
+667. https://medium.com/@amangupta566/fun-with-cors-misconfiguration-ii-927caccfe932
+668. https://blog.deteact.com/bitrix-waf-bypass/
+669. https://medium.com/@kunal94/indirect-uxss-issues-on-a-private-integrated-browser-219f6b809b6c
+670. https://blog.doyensec.com/2020/04/30/polymorphic-images-for-xss.html
+671. https://infosecwriteups.com/reflected-xss-on-microsoft-com-via-angular-template-injection-2e26d80a7fd8
+672. https://opnsec.com/2020/05/dom-xss-in-gmail-with-a-little-help-from-chrome/
+673. https://medium.com/@TnMch/google-acquisition-xss-apigee-5479d7b5dc4
+674. https://medium.com/@youssefla/dom-xss-walkthrough-4d60c45ffb21
+675. https://chefsecure.com/blog/i-found-xss-security-flaws-in-rails-heres-what-happened
+676. https://vinothkumar.me/20000-facebook-dom-xss/
+677. https://medium.com/@adonkidz7/bypass-xss-filter-using-html-escape-f2e06bebc8c3
+678. https://bilalmerokhel.medium.com/chained-bugs-account-takeover-ceff67d1d55a
+679. https://bilalmerokhel.medium.com/one-param-10k-9d80a33f5eb5
+680. https://www.bad5ect0r.sh/posts/stored-xss-leads-to-plaintext-password-disclosure/
+681. https://web.archive.org/web/20200616051351/https://hazana.xyz/posts/cors-blimey/
+682. https://hazanasec.github.io/2021-01-28-CORS-Blimey/
+683. https://medium.com/@ciph3r7r0ll/parsing-the-dom-elements-of-other-pages-via-xss-bug-bounty-story-46d517e6711d
+684. https://pallabjyoti218.medium.com/story-about-otp-bypass-to-stored-xss-81bfd735c709
+685. https://www.cyberark.com/resources/threat-research-blog/bug-hunting-stories-schneider-electric-the-andover-continuum-web-client
+686. https://medium.com/kminthein/stored-xss-in-yahoo-mail-ios-app-3500-6b40e86358b9
+687. https://medium.com/kminthein/stored-xss-in-microsoft-outlook-ebce9ff9e45b
+688. https://medium.com/kminthein/ios-outlook-stored-xss-write-up-ce34d7da192b
+689. https://infosecwriteups.com/bypassing-waf-to-perform-xss-2d2f5a4367f3
+690. https://elmahdi.tistory.com/m/2
+691. https://medium.com/@kassihmouhssine/cross-site-scripting-the-power-of-the-hidden-parameters-259a4d2c4c09
+692. https://infosecwriteups.com/how-i-leveraged-an-interesting-csrf-vulnerability-to-turn-self-xss-into-a-persistent-attack-b780824042d2
+693. https://infosecwriteups.com/information-disclosure-and-reflected-xss-on-tokopedia-1b3a00ec64c6
+694. https://web.archive.org/web/20200807155244/https://vict0ni.me/double-url-encoding-xss/
+695. https://research.securitum.com/the-curious-case-of-copy-paste/
+696. https://krevetk0.medium.com/from-crlf-to-account-takeover-a94d7aa0d74e
+697. https://infosecwriteups.com/xss-to-database-credential-leakage-database-access-story-of-total-luck-77c990be8ab2
+698. https://prateeksrivastavaa.medium.com/the-frustrating-xss-33607894a071
+699. https://infosecwriteups.com/reflected-user-input-xss-c3e681710e74
+700. https://wss.sh/en/blog/how-i-made-more-than-30k-with-jolokia-cves/
+701. https://medium.com/@win3zz/simple-story-of-some-complicated-xss-on-facebook-8a9c0d80969d
+702. https://0xffcourse.medium.com/an-attempt-to-escalate-a-low-impact-hidden-input-xss-9f4b9c88f19c
+703. https://medium.com/@hgreal/how-i-hacked-a-bank-their-application-using-it-for-hacking-another-bank-company-10-k-xss-b9cc801a675
+704. https://medium.com/@RisingHunter_/privilege-escalation-with-simple-recon-da4e50fea9e5
+705. https://research.securitum.com/xss-in-amp4email-dom-clobbering/
+706. https://infosecwriteups.com/million-users-pii-leak-attack-288c5e37b283
+707. https://medium.com/@mohameddaher/how-i-paid-2-for-1054-xss-bug-20-chars-blind-xss-payloads-12d32760897b
+708. https://web.archive.org/web/20200511012319/https://medium.com/@xhzeem/the-accounttakeover-killing-chain-6ba23f4c9d4
+709. https://medium.com/@mashoud1122/cors-misconfiguration-account-takeover-out-of-scope-to-grab-items-in-scope-66d9d18c7a46
+710. https://ysamm.com/?p=343
+711. https://medium.com/@abhishekY495/how-i-turned-self-xss-to-stored-via-csrf-d12eaaf59f2e
+712. https://medium.com/@navne3t/150-xss-at-error-page-of-respository-code-4fc628892742
+713. https://blog.evanricafort.com/2019/12/html-injection-to-xss-bypass-in.html
+714. https://medium.com/@dirtycoder0124/blind-xss-a-mind-game-to-win-the-battle-4fc67c524678?
+715. https://jinone.github.io/bugbounty-a-dom-xss/
+716. https://leucosite.com/Edge-Chromium-EoP-RCE/
+717. https://nirmaldahal.com.np/posts/2019/12/xss-is-love/
+718. https://infosecwriteups.com/effortlessly-finding-cross-site-script-inclusion-xssi-jsonp-for-bug-bounty-38ae0b9e5c8a
+719. https://sasi2103.blogspot.com/2019/12/drop-mic-no-drop-connection.html
+720. https://medium.com/monetary/how-did-i-earn-3133-70-from-google-translator-9becf942dbdc
+721. https://footstep.ninja/posts/exploiting-self-xss/
+722. https://sudhanshur705.medium.com/bug-hunting-journey-of-2019-95e5190aca7c
+723. https://medium.com/@gguzelkokar.mdbf15/xss-on-sony-subdomain-feddaea8f5ac
+724. https://medium.com/@alex.birsan/the-bug-that-exposed-your-paypal-password-539fc2896da9
+725. https://web.archive.org/web/20200825001615/https://hazana.xyz/posts/escalating-reflected-xss-with-http-smuggling/
+726. https://web.archive.org/web/20200328011551/https://medium.com/@godofdarkness.msf/tumblr-bug-bounty-200-2051ba54e981
+727. https://web.archive.org/web/20200515015005/https://m0chan.github.io/2020/02/04/Arbitary-File-Upload-Too-Stored-XSS.html
+728. https://blog.evanricafort.com/2020/02/popping-alerts-in-mixmax-chrome.html
+729. https://medium.com/@osamaavvan/exploiting-websocket-application-wide-xss-csrf-66e9e2ac8dfa
+730. https://www.acunetix.com/blog/web-security-zone/xss-google-acunetix/
+731. https://medium.com/@adonkidz7/my-first-bounty-from-google-d9f1f3f5787a
+732. https://web.archive.org/web/20200505142429/https://medium.com/@godofdarkness.msf/reflected-xss-in-at-t-7f1bdd10d8f7
+733. https://web.archive.org/web/20200513211717/https://mrss4nd0x.000webhostapp.com/Stored-XSS-on-groups-google-com.php
+734. https://smaranchand.com.np/2020/02/the-tricky-xss/
+735. https://medium.com/@adonkidz7/google-ads-self-xss-html-injection-5000-52280da76c80
+736. https://ozguralp.medium.com/using-vulnerability-analytics-feature-like-a-boss-655fc1f1543b
+737. https://ashketchum.medium.com/how-i-earned-1750-at-shopify-bug-bounty-program-ca7821990d08
+738. https://medium.com/@aniltom/where-is-my-train-tracking-to-hacking-d388e4b97225
+739. https://infosecwriteups.com/reflected-xss-on-microsoft-com-subdomains-4bdfc2c716df
+740. https://www.godaddy.com/forsale/adnanmalik.info?utm_source=TDFS_BINNS2&utm_medium=parkedpages&utm_campaign=x_corp_tdfs-binns2_base&traffic_type=TDFS_BINNS2&traffic_id=binns2&
+741. https://medium.com/@Ch3ckM4te/self-xss-to-account-takeover-72c89775cf8f
+742. https://infosecwriteups.com/xss-waf-character-limitation-bypass-like-a-boss-2c788647c229
+743. https://0x65.dev/blog/2020-03-30/cve-2019-17004-semi-universal-xss-affecting-firefox-for-ios.html
+744. https://www.pethuraj.com/blog/google-bug-bounty-writeup/
+745. https://infosecwriteups.com/unicode-vs-waf-xss-waf-bypass-128cd9972a30
+746. https://web.archive.org/web/20200928091625/https://pwnsec.ninja/2019/06/06/how-i-was-able-to-get-private-ticket-response-panel-and-fortigate-web-panel-via-blind-xss/
+747. https://websecblog.com/vulns/googleplex-com-blind-xss/
+748. https://medium.com/@osamaavvan/bypassing-xss-filter-and-stealing-user-credit-card-data-100f247ed5eb
+749. https://visat.me/security/reflected-xss-in-tokopedia-train-ticket/
+750. https://hackademic.co.in/how-a-classical-xss-can-lead-to-persistent-ato-vulnerability/
+751. https://medium.com/@dr.spitfire/a-fight-for-duplicate-marked-bug-story-of-bbc-hall-of-fame-16f9c8215315
+752. https://saadahmedx.medium.com/self-xss-to-evil-xss-bcf2494a82a4
+753. https://www.f5.com/labs/articles/threat-intelligence/how-i-hacked-the-microsoft-outlook-android-app-and-found-cve-2019-1105
+754. https://decode.novr.one/yeah-i-got-p2-in-1-minute-stored-xss-via-markdown-editor-7872dba3f158
+755. https://bughunter25.medium.com/story-of-a-stored-xss-to-full-account-takeover-vulnerability-n-a-to-accepted-8478aa5e0d8e
+756. https://thesecurityexperts.wordpress.com/2019/07/11/xss-on-google-custom-search-engine/
+757. https://samcurry.net/cracking-my-windshield-and-earning-10000-on-the-tesla-bug-bounty-program
+758. https://infosecwriteups.com/what-do-netcat-smtp-and-self-xss-have-in-common-stored-xss-a05648b72002
+759. https://medium.com/@ISecMax/%D1%81ookie-based-xss-exploitation-2300-bug-bounty-story-9bc532ffa564
+760. https://leucosite.com/Microsoft-Office-365-Outlook-XSS/
+761. https://madguyyy.medium.com/reflected-xss-in-ebay-com-60a9d61e26cd
+762. https://medium.com/@bywalks/xss-on-twitter-worth-1120-914dcd28ee18
+763. https://nahoragg.medium.com/chaining-cache-poisoning-to-stored-xss-b910076bda4f
+764. https://medium.com/@dekeeu/reposted-2017-linkedin-hackers-experience-8465c1848c88
+765. https://infosecwriteups.com/writing-my-medium-blog-to-complete-account-takeover-e65d455c16b
+766. https://websecblog.com/vulns/clickjacking-xss-on-google-org/
+767. https://github.com/sneakerhax/Posts/blob/2454456529ddeedb17237b4e9678f7d58d0ffdca/posts/Amazon_1_click_device_XSS.md
+768. https://gauravnarwani.com/how-i-xssed-admin-account/
+769. https://medium.com/@Lekssik/bugbounty-writeup-take-attention-and-get-stored-xss-495dd6eab07e
+770. https://gauravnarwani.com/cookie-worth-a-fortune/
+771. https://medium.com/@ratnadip1998/how-i-was-able-to-exploit-the-same-endpoint-2-times-multiple-xss-open-redirection-on-10-5d12886f823d
+772. https://www.loosebyte.com/google-cloud-vulnerability/
+773. https://web.archive.org/web/20201222140349/https://www.mohamedharon.com/2019/09/dom-based-xss-in-private-program.html
+774. https://hateshape.github.io/general/2019/09/06/SuperGlamorousReconwithIntendedFunctionalities.html
+775. https://www.rcesecurity.com/2019/09/H1-4420-From-Quiz-to-Admin-Chaining-Two-0-Days-to-Compromise-an-Uber-Wordpress/
+776. https://gauravnarwani.com/admin-hijacked-by-sea-surf-pirates/
+777. https://hari-haran-s.medium.com/stored-xss-on-zendesk-via-macros-part-2-676cefee4616
+778. https://web.archive.org/web/20191218184636/https://medium.com/@tech96bot/oneplus-xss-vulnerability-in-customer-support-portal-d5887a7367f4
+779. https://web.archive.org/web/20191211081434/https://victoni.github.io/bug-hunting-xss-on-cookie-popup-warning/
+780. https://0x00sec.org/t/xss-on-cookie-pop-up/19580
+781. https://mehulcodes.medium.com/stealing-login-credentials-with-reflected-xss-7cb450bf5710
+782. https://master-sec.medium.com/bypass-uppercase-filters-like-a-pro-xss-advanced-methods-daf7a82673ce
+783. https://medium.com/@pflash0x0punk/how-paypal-helped-me-to-generate-xss-9408c0931add
+784. https://infosecwriteups.com/5-000-usd-xss-issue-at-avast-desktop-antivirus-for-windows-yes-desktop-1e99375f0968
+785. https://medium.com/@Lekssik/xss-will-never-die-eb3584081a5f
+786. https://medium.com/@parthshah14031998/how-i-stumbled-upon-a-stored-xss-my-first-bug-bounty-story-2793300d82bb
+787. https://hari-haran-s.medium.com/stored-xss-via-alternate-text-at-zendesk-support-8bfee68413e4
+788. https://medium.com/@thejuskrishnan911/reflected-xss-on-asus-568ce0541171
+789. https://renaudmarti.net/posts/first-bug-bounty-submission/
+790. https://hacklad.github.io/blog/2019/01/13/Xss-it.html
+791. https://medium.com/@friendly_/xss-through-swf-file-4f04af7b0f59
+792. https://sudhanshur705.medium.com/reflected-xss-in-zomato-f892d6887147
+793. https://ysamm.com/?p=12
+794. https://nahoragg.medium.com/chaining-tricky-oauth-exploitation-to-stored-xss-b67eaea4aabd
+795. https://websecblog.com/vulns/leoexpress-personal-data/
+796. https://medium.com/@ChandSingh/protonmail-xss-stored-b733031ac3b5
+797. https://rohanchavan.medium.com/a-unique-xss-scenario-1000-bounty-347f8f92fcc6
+798. https://medium.com/@futaacmcyber/stored-xss-on-edmodo-11a3fbc6b6d0
+799. https://apapedulimu.click/multiple-stored-xss-on-tokopedia/
+800. https://medium.com/@modam3r5/reflected-xss-at-https-photos-shopify-com-ea696db3915c
+801. https://github.com/setuid0-sec/Swiss_E-Voting_Publications
+802. https://web.archive.org/web/20200929000850/https://www.mohamedharon.com/2019/02/still-work-redirect-yahoo-subdomain-xss.html
+803. https://medium.com/@valakeyur/xss-in-edmodo-within-5-minute-my-first-bug-bounty-889e3da6167d
+804. https://medium.com/@metnew/3-xss-in-protonmail-for-ios-95f8e4b17054
+805. https://websecblog.com/vulns/google-earth-studio-vulnerability/
+806. https://medium.com/@newp_th/how-i-find-blind-xss-vulnerability-in-redacted-com-33af18b56869
+807. https://medium.com/@GeneralEG/hack-your-form-new-vector-for-blind-xss-b7a50b808016
+808. https://medium.com/@ZishanAdThandar/my-first-stored-xss-on-edmodo-com-540a33349662
+809. https://medium.com/@kustirama/olx-bug-bounty-reflected-xss-adb3095cd525
+810. https://omespino.com/write-up-1000-usd-in-5-minutes-xss-stored-in-outlook-com-ios-browsers/
+811. https://tech.target.com/blog/target-finds-cross-site-scripting-in-microsoft-sharepoint
+812. https://80vul.medium.com/from-http-domain-to-res-domain-xss-by-using-ie-adobes-pdf-activex-plugin-9f2a72a87aff
+813. https://medium.com/@paulorcchoupina/a-real-xss-in-olx-7727ae89c640
+814. https://gauravnarwani.com/a-tale-of-3-xss/
+815. https://medium.com/@heinthantzin/how-i-was-able-to-turn-self-xss-into-reflected-xss-850e3d5a2beb
+816. https://medium.com/@daniel.thatcher/obtaining-xss-using-moodle-features-and-minor-bugs-2035665989cc
+817. https://medium.com/@nuraalamdipu/spokeo-bug-bounty-experience-3f5caba52416
+818. https://jayateerthag.medium.com/multiple-xss-in-skype-com-81d65919ed24
+819. https://jayateerthag.medium.com/multiple-xss-in-skype-com-2-18cfed39edbd
+820. https://medium.com/@ZishanAdThandar/just-5-minute-to-get-my-2nd-stored-xss-on-edmodo-com-fe2ee559e00d
+821. https://infosecwriteups.com/xss-reflected-xss-bypass-filter-de41d35239a3
+822. https://infosecwriteups.com/csrf-attack-can-lead-to-stored-xss-f40ba91f1e4f
+823. http://blog.h4rsh4d.com/2019/04/stealing-local-storage-data-through-xss.html
+824. https://medium.com/a-bugz-life/from-reflected-xss-to-account-takeover-showing-xss-impact-9bc6dd35d4e6
+825. https://www.tomanthony.co.uk/blog/xss-attacks-googlebot-index-manipulation/
+826. https://www.virtuesecurity.com/tale-of-a-wormable-twitter-xss/
+827. https://medium.com/@kang_ali/stored-xss-on-techprofile-microsoft-d21757588cc1
+828. https://www.komodosec.com/post/mime-sniffing-xss
+829. https://medium.com/@momenbasel/from-parameter-pollution-to-xss-d095e13be060
+830. https://gauravnarwani.com/xssed-my-way-to-1000/
+831. https://medium.com/@5eren1ty/stored-xss-on-edmodo-67b244824fa5
+832. https://bughunter25.medium.com/story-of-a-uri-based-xss-with-some-simple-google-dorking-e1999254aa55
+833. https://web.archive.org/web/20200811013311/https://medium.com/@protector47/persistent-cross-site-scripting-on-redacted-worth-2-000-1e760617ccab
+834. https://randywestergren.com/xss-vulnerabilities-in-multiple-iframe-busters-affecting-top-tier-sites/
+835. https://medium.com/@jonathanbouman/reflected-xss-at-philips-com-e48bf8f9cd3c
+836. https://web.archive.org/web/20190320205543/https://medium.com/@0ktavandi/how-i-bypassed-akamai-kona-waf-xss-in-overstock-com-f205b0e71a0d
+837. https://blog.bentkowski.info/2018/09/another-xss-in-google-colaboratory.html
+838. https://nirmaldahal.com.np/posts/2019/11/r-xss-leading-csrf-bypass-to-account-takeover/
+839. https://medium.com/@efkan162/how-i-xssed-uber-and-bypassed-csp-9ae52404f4c5
+840. https://infosecwriteups.com/weaponizing-xss-attacking-internal-domains-d8ba1cbd106d
+841. https://www.kumar.ninja/2018/09/xss-surveydropboxcom.html
+842. https://blog.securityevaluators.com/collecting-shells-by-the-sea-of-nas-vulnerabilities-155a0bd7c525
+843. https://rudr4sarkar.blogspot.com/2018/10/how-i-found-stored-xss-on-your.html
+844. https://medium.com/@saamux/applying-a-small-bypass-to-steal-facebook-session-tokens-in-uber-5b9638b7a18c
+845. https://medium.com/@jonathanbouman/stored-xss-unvalidated-embed-at-medium-com-528b0d6d4982
+846. https://alitutuncu.medium.com/my-first-0day-exploit-csp-bypass-reflected-xss-bugbounty-c7efa4bed3d7
+847. https://medium.com/@jonathanbouman/persistent-xss-unvalidated-open-graph-embed-at-linkedin-com-db6188acedd9
+848. https://www.vpnmentor.com/blog/dom-xss-bug-affecting-tinder-shopify-yelp/
+849. https://medium.com/@m4shahab1/magic-xss-with-two-parameters-463559b03949
+850. https://infosecwriteups.com/bug-bounty-mail-ru-234fa6f5a5a
+851. https://www.itsecguy.com/xss-with-put-in-ghost-blog/
+852. https://medium.com/@agrawalsmart7/cookie-based-injection-xss-making-exploitable-with-out-exploiting-other-vulns-81132ca01d67
+853. https://medium.com/@ariffadhlullah2310/xss-deface-with-html-and-how-to-convert-the-html-into-charcode-f0c62dd5ef3f
+854. https://infosecwriteups.com/stored-xss-in-bug-bounty-13c08e6f5636
+855. https://medium.com/@Skylinearafat/how-outdated-jira-instances-suffers-from-multiple-security-vulnerabilities-6a88c45e9ec6
+856. https://paper.seebug.org/737/
+857. https://medium.com/tsscyber/xss-in-dynamics-365-25c800aac473
+858. http://blog.h4rsh4d.com/2018/03/olx-reflected-xss-on-resend-code-link.html
+859. https://mike-n1.github.io/Chain_XSS
+860. https://infosecwriteups.com/dom-based-xss-or-why-you-should-not-rely-on-cloudflare-too-much-a1aa9f0ead7d
+861. https://hackenproof.com/blog/customer-stories/hackenproof-customer-story-uklon
+862. https://medium.com/@ariffadhlullah2310/poc-cross-site-scripting-on-garuda-indonesia-website-452f4864f615
+863. https://portswigger.net/research/xss-in-hidden-input-fields
+864. https://medium.com/@renwa/new-technique-to-find-blind-xss-c2efcd377cc2
+865. https://web.archive.org/web/20200907110700/https://medium.com/@sameerphad72/edmodo-xss-bug-9c0fc9bdd0bf
+866. https://infosecwriteups.com/xss-bypass-using-meta-tag-in-realestate-postnl-nl-32db25db7308
+867. https://www.secjuice.com/google-hall-of-fame/
+868. https://medium.com/@hossainwalid93/story-of-store-xss-d24c3ab862f0
+869. https://sudhanshur705.medium.com/story-about-my-first-bug-bounty-9fe710be8241
+870. https://corben.io/blog/18-12-5-XSS-to-XXE-in-Prince
+871. https://web.archive.org/web/20191219015356/https://medium.com/@adeshkolte/proof-of-concept-nokia-cross-site-scripting-5bb47c3b9529
+872. https://medium.com/@sampanna/self-xss-in-indeed-com-e0c99c104cba
+873. https://websecblog.com/vulns/google-code-in-xss/
+874. https://nahoragg.github.io/bugbounty/2018/12/15/Self-XSS-to-Interesting-Stored-XSS.html
+875. https://www.sonarsource.com/blog/wordpress-post-type-privilege-escalation/
+876. https://blog.compass-security.com/2018/12/xss-worm-a-creative-use-of-web-application-vulnerability/
+877. https://medium.com/@newp_th/reflected-xss-on-ws-na-amazon-adsystem-com-amazon-f1e55f1d24cf
+878. https://medium.com/@honcbb/internet-safety-for-kids-families-trend-micro-dom-xss-db34c9bbb120
+879. https://medium.com/@hacker_eth/xss-in-microsoft-7a70416aee75
+880. https://ozil-hakim.medium.com/stored-xss-in-yahoo-and-all-subdomains-bbcaa7c3b8d
+881. https://medium.com/@kongwenbin/fastest-fix-on-open-bug-bounty-platform-4bb03ff846e8
+882. https://medium.com/@renwa/self-xss-csrf-to-stored-xss-54f9f423a7f1
+883. https://wesecureapp.com/blog/persistent-xss-to-steal-passwords-paypal/
+884. https://cybristerboy.blogspot.com/2018/05/how-i-found-5-store-xss-on-private.html
+885. https://web.archive.org/web/20200929003129/https://www.mohamedharon.com/2018/05/reflected-xss-in-hk-yahoo.html
+886. https://web.archive.org/web/20200814185643/https://medium.com/@adeshkolte/how-i-earned-750-bounty-reward-from-at-t-bug-bounty-adesh-kolte-ae62dea44083
+887. https://medium.com/@D0rkerDevil/how-i-convert-ssrf-to-xss-in-a-ssrf-vulnerable-jira-e9f37ad5b158
+888. https://www.nc-lp.com/blog/searching-for-xss-found-ldap-injection
+889. https://web.archive.org/web/20210117211538/https://medium.com/@adeshkolte/how-i-found-xss-via-ssrf-vulnerability-adesh-kolte-873b30a6b89f
+890. https://thehackerblog.com/steam-fire-and-paste-a-story-of-uxss-via-dom-xss-clickjacking-in-steam-inventory-helper/index.html
+891. https://medium.com/@black_b/vulnerability-netflix-cross-site-scripting-xss-d44010142e2c
+892. https://medium.com/@khaled.hassan/the-2-5-btc-stored-xss-f2f9393417f2
+893. https://web.archive.org/web/20191219011308/https://medium.com/@tahasmily2013m/i-have-found-vulnerability-in-360totalsecurity-is-reflected-xss-in-3a6bd602bb5a
+894. https://medium.com/@jonathanbouman/reflected-client-xss-amazon-com-7b0d3cec787
+895. https://web.archive.org/web/20191217223802/https://medium.com/@tahasmily2013m/how-i-found-blind-xss-in-apple-c890775e745a
+896. https://blog.bentkowski.info/2018/06/xss-in-google-colaboratory-csp-bypass.html
+897. https://kongwenbin.com/fastest-fix-on-open-bug-bounty-platform/
+898. https://samcurry.net/the-12000-intersection-between-clickjacking-xss-and-denial-of-service
+899. https://medium.com/@jonathanbouman/persistent-xss-at-ah-nl-198fe7b4c781
+900. https://sudhanshur705.medium.com/xss-in-microsoft-subdomain-81c4e46d6631
+901. https://omespino.com/write-up-telegram-bug-bounty-whatsapp-n-a-blind-xss-stored-ios-in-messengers-twins-who-really-care-about-your-security/
+902. https://medium.com/bug-bounty-hunting/google-assistant-bug-worth-3133-7-830a03724a04
+903. https://medium.com/@codingkarma/how-i-found-xss-on-amazon-f62b50f1c336
+904. https://medium.com/@0xHyde/yahoo-two-xssi-vulnerabilities-chained-to-steal-user-information-750-bounty-e9bc6a41a40a
+905. https://blog.evanricafort.com/2018/08/blind-xss-in-chrome-experiments-google.html
+906. https://medium.com/@friendly_/stored-xss-in-gameskinny-aa26c6a6ae40
+907. https://blog.evanricafort.com/2018/08/blind-xss-in-chrome-experiments-google.html
+908. https://medium.com/@friendly_/reflected-xss-primagames-com-c7a641912626
+909. https://medium.com/@friendly_/self-xss-leads-to-blind-xss-and-reflected-xss-950b1dc24647
+910. https://medium.com/@friendly_/xss-at-hubspot-and-xss-in-email-areas-674fa39d5248
+911. https://infosecwriteups.com/3-minutes-xss-71e3340ad66b
+912. https://websecblog.com/vulns/stored-xss-in-webcomponents-org/
+913. https://bughunter25.medium.com/my-first-valid-xss-hackerone-f8ba0a7c647
+914. https://web.archive.org/web/20200929004149/https://www.mohamedharon.com/2018/08/wordpressXSS.html
+915. https://web.archive.org/web/20200929012934/https://www.mohamedharon.com/2018/08/mapboxxss.html
+916. https://rohanchavan.medium.com/100-bounty-in-300-seconds-isnt-bad-4f4112c102ef
+917. https://dev.to/antogarand/pwned-together-hacking-devto-hkd
+918. https://omespino.com/write-up-lovestory-from-closed-as-informative-to-xx00-usd-in-yahoo-ios-mail-app/
+919. https://websecblog.com/vulns/reflected-xss-in-google-code-jam/
+920. https://blog.securitybreached.org/2018/09/09/zol-zimbabwe-authbypass-sqli-xss/
+921. https://infosecwriteups.com/reflected-dom-xss-and-clickjacking-on-https-silvergoldbull-de-bt-html-daa36bdf7bf0
+922. https://medium.com/@Mthirup/hacking-your-own-antivirus-for-fun-and-profit-safe-browsing-gone-wrong-365db9d1d3f7
+923. https://infosecwriteups.com/how-i-bypassed-practos-firewall-and-triggered-a-xss-b30164a8f1dc
+924. https://infosecwriteups.com/900-xss-in-yahoo-recon-wins-65ee6d4bfcbd
+925. https://medium.com/@saamux/filter-bypass-to-reflected-xss-on-https-finance-yahoo-com-mobile-version-22b854327b27
+926. https://web.archive.org/web/20180704183048/http://stamone-bug-bounty.blogspot.com/2017/10/dom-xss-auth_14.html
+927. https://web.archive.org/web/20200819161548/https://medium.com/@adeshkolte/non-persistent-xss-at-microsoft-adesh-kolte-ad36b1b4a325
+928. https://web.archive.org/web/20200825165420/https://medium.com/@adeshkolte/get-your-microsoft-account-hijacked-by-simply-clicking-connect-button-adesh-kolte-cc0b335b0221
+929. https://www.noob.ninja/2017/11/local-file-read-via-xss-in-dynamically.html
+930. https://medium.com/@abdelfattahibrahim/from-recon-to-dom-based-xss-f279602a14cf
+931. https://www.ansariosama.com/2017/11/how-i-pwned-company-using-idor-blind-xss.html
+932. https://medium.com/@honcbb/vmware-official-vcdx-reflected-xss-90e69a3c35e1
+933. https://medium.com/@Skylinearafat/xss-protection-bypass-made-my-quickest-bounty-ever-f4fd970c9116
+934. https://www.fortinet.com/blog/threat-research/multiple-plone-cross-site-scripting-vulnerabilities
+935. https://web.archive.org/web/20200920204426/https://medium.com/@adeshkolte/microsoft-sharepoints-follow-feature-xss-cve-2017-8514-adesh-kolte-d78d701cd064
+936. https://infosecwriteups.com/jumping-to-the-hell-with-10-attempts-to-bypass-devils-waf-4275bfe679dd
+937. https://web.archive.org/web/20201207232241/https://www.mohamedharon.com/2018/01/reflected-xss-possible-server-side.html
+938. https://web.archive.org/web/20210122102751/https://www.guptashubham.com/how-i-got-22000-worth-ethereum/
+939. https://blog.securitybreached.org/2018/01/27/how-i-was-able-to-download-any-file-from-web-server/
+940. https://blog.securitybreached.org/2018/02/02/how-i-was-able-to-bypass-xss-protection-on-hackerones-private-program/
+941. https://medium.com/@mrityunjoy/stored-xss-on-snapchat-5d704131d8fd
+942. https://web.archive.org/web/20200818084242/https://medium.com/@adeshkolte/oracle-cross-site-scripting-vulnerability-adesh-kolte-ddc5d9f279be
+943. https://bugbaba.blogspot.com/2018/02/exploiting-cors-miss-configuration.html
+944. https://medium.com/bug-bounty-hunting/how-i-found-a-surprising-xss-vulnerability-on-oracle-netsuite-2d48b7fcf0c8
+945. https://s1gnalcha0s.github.io/dspl/2018/03/07/Stored-XSS-and-SSRF-Google.html
+946. https://medium.com/@Alra3ees/google-adwords-3133-7-stored-xss-27bb083b8d27
+947. https://web.archive.org/web/20200929015014/https://www.mohamedharon.com/2018/03/reflected-xss-moogaloop-swf-version-62x.html
+948. https://krevetk0.medium.com/how-i-hacked-one-cryptocurrency-service-db3cb0f81d6c
+949. https://web.archive.org/web/20200928235353/https://www.mohamedharon.com/2018/03/xss-in-sportstwcampaignyahoonet.html
+950. https://web.archive.org/web/20200929004520/https://www.mohamedharon.com/2018/03/xss-in-subdomain-httpsyefgrantsyahoocom.html
+951. https://bugdisclose.medium.com/how-i-caught-multiple-vulnerabilities-in-udemy-com-14012a8a1421
+952. https://medium.com/securitywall/exploiting-a-single-parameter-6f4ba2acf523
+953. https://web.archive.org/web/20200929003337/https://www.mohamedharon.com/2018/04/reflected-xss-on-wwwzomatocom-by.html
+954. https://medium.com/@yassergersy/xss-to-session-hijack-6039e11e6a81
+955. https://web.archive.org/web/20191217083137/http://blog.jr0ch17.com/2018/Please-email-me-your-password/
+956. https://medium.com/@ISecMax/how-i-hacked-companies-related-to-the-crypto-currency-and-earned-60-000-93e9b3299f4e
+957. https://infosecwriteups.com/bypass-csp-by-abusing-xss-filter-in-edge-43e9106a9754
+958. https://medium.com/@vis_hacker/how-i-got-stored-xss-using-file-upload-5c33e19df51e
+959. https://infosecwriteups.com/story-of-a-stored-xss-bypass-26e6659f807b
+960. https://medium.com/@YoKoKho/turning-self-xss-into-non-self-stored-xss-via-authorization-issue-at-paypal-tech-support-and-brand-3046f52ac16b
+961. https://blog.mindedsecurity.com/2018/04/dom-based-cross-site-scripting-in.html
+962. https://medium.com/@nuraalamdipu/xss-403-forbidden-bypass-write-up-e070de52bc06
+963. https://medium.com/@sivakrishnasamireddi/how-i-earned-60k-from-private-program-71bd51554490
+964. https://medium.com/@newp_th/reflected-xss-on-stack-overflow-b8366a855472
+965. https://sysdream.com/news/lab/2018-04-30-multiple-security-vulnerabilities-in-domains-belonging-to-google/
+966. https://infosecwriteups.com/story-of-a-stored-xss-bypass-26e6659f807b
+967. https://infosecwriteups.com/story-of-a-stored-xss-bypass-26e6659f807b
+968. https://tij.me/blog/stealing-passwords-from-mcdonalds-users/
+969. https://medium.com/@sean.roesner/one-company-262-bugs-100-acceptance-2-57-priority-300million-user-details-saved-dd88ecb10f6f
+970. https://blog.bugbountyhunter.com/one-company-262-bugs/
+971. https://buer.haus/2017/03/08/airbnb-when-bypassing-json-encoding-xss-filter-waf-csp-and-auditor-turns-into-eight-vulnerabilities/
+972. https://medium.com/@marin_m/how-i-found-a-5-000-google-maps-xss-by-fiddling-with-protobuf-963ee0d9caff
+973. https://www.jonbottarini.com/2017/03/16/penetrating-pornhub-xss-vulns-galore-plus-a-cool-shirt/
+974. https://medium.com/etticblog/near-universal-xss-in-mcafee-web-gateway-cf8dfcbc8fc3
+975. http://www.kernelpicnic.net/2017/05/29/Pivoting-from-blind-SSRF-to-RCE-with-Hashicorp-Consul.html
+976. https://blog.fraktal.fi/comparing-cloud-wafs-in-2024-61b689b1b0e1
+977. https://www.rafaybaloch.com/2017/06/dom-based-xss-in-microsoft.html
+978. https://www.rafaybaloch.com/2017/06/stored-xss-csrf-and-clickjacking.html
+979. https://seekurity.com/blog/2017/06/11/mahmoud-gamal/general/lets-steal-some-tokens
+980. https://seekurity.com/blog/2017/06/11/admin/poc-gallery/godaddy-xss-affects-parked-domains-redirector-processor
+981. https://bishopfox.com/blog/how-i-built-an-xss-worm-on-atmail
+982. https://seekurity.com/blog/2017/06/24/seif-elsallamy/general/stored-xss-in-the-heart-of-the-russian-email-provider-giant-mail-ru
+983. https://seekurity.com/blog/2017/06/28/admin/advisories/reflected-xss-vulnerability-in-simplerisk
+984. https://buer.haus/2017/06/29/escalating-xss-in-phantomjs-image-rendering-to-ssrflocal-file-read/
+985. https://web.archive.org/web/20190718104640/https://medium.com/@tbmnull/making-an-xss-triggered-by-csp-bypass-on-twitter-561f107be3e5
+986. https://web.archive.org/web/20180827025910/http://www.paulosyibelo.com/2017/07/coinbase-angularjs-dom-xss-via-kiteworks.html
+987. https://wesecureapp.com/blog/xss-by-tossing-cookies/
+988. https://wesecureapp.com/blog/red-team-assessment-versus-penetration-testing/
+989. https://arbazhussain.medium.com/xss-using-dynamically-generated-js-file-a7a10d05ff08
+990. https://medium.com/@ciph3r7r0ll/that-escalated-quickly-from-partial-csrf-to-reflected-xss-to-complete-csrf-to-stored-xss-6ba8103069c2
+991. https://arbazhussain.medium.com/self-xss-to-good-xss-clickjacking-6db43b44777e
+992. https://infosecwriteups.com/how-i-was-able-to-bypass-strong-xss-protection-in-well-known-website-imgur-com-8a247c527975
+993. https://arbazhussain.medium.com/stored-xss-on-rockstar-game-c008ec18d071
+994. https://labs.detectify.com/how-to/how-we-invented-the-tesla-dom-doom-xss/
+995. https://portswigger.net/research/cracking-the-lens-targeting-https-hidden-attack-surface
+996. https://arbazhussain.medium.com/referer-based-xss-52aeff7b09e7
+997. https://bugbaba.blogspot.com/2017/08/xss-because-of-wrong-content-type-header.html
+998. https://medium.com/@saamux/reflected-xss-on-www-yahoo-com-9b1857cecb8c
+999. https://zhchbin.github.io/2017/08/30/Uber-XSS-via-Cookie/
+1000. https://medium.com/@TheShahzada/reflected-xss-in-yahoo-6e2b6b177448
+1001. https://medium.com/@Alra3ees/my-write-up-about-uber-cross-site-scripting-by-help-of-knoxss-b1b56f8d090
+1002. https://medium.com/@armaanpathan/dont-just-alert-1-because-xss-is-for-fun-f88cfb88d5b9
+1003. https://medium.com/@SyntaxError4/how-i-found-reflective-xss-in-yahoo-subdomain-3ad4831b386e
+1004. https://medium.com/@SyntaxError4/reflective-xss-and-open-redirect-on-indeed-com-subdomain-b4ab40e40c83
+1005. https://arbazhussain.medium.com/stored-xss-with-arbitrary-cookie-installation-567931433c7f
+1006. https://infosecwriteups.com/chaining-self-xss-with-ui-redressing-is-leading-to-session-hijacking-pwn-users-like-a-boss-efb46249cd14
+1007. https://www.ansariosama.com/2017/09/exploiting-single-request-for-multiple.html
+1008. https://blog.shashank.co/2013/11/oracle-xss.html
+1009. https://whitton.io/articles/abusing-cors-for-an-xss-on-flickr/
+1010. https://maustin.net/articles/2013-12/flickr_xss
+1011. https://blog.shashank.co/2013/12/imgur-xss.html
+1012. https://blog.shashank.co/2013/12/waze-arbitrary-file-upload.html
+1013. https://wss.sh/en/blog/a-tale-of-7-vulnerabilities-paypal-bug-bounty/
+1014. https://www.rcesecurity.com/2014/04/magix-bug-bounty-magix-com-rce-sqli-and-xara-com-lfi-xss/
+1015. https://thehackerblog.com/ebay-mobile-reflected-xss-disclosure-writeup/index.html
+1016. https://buer.haus/2014/06/16/facebook-stored-cross-site-scripting-xss-badges/
+1017. https://wss.sh/en/blog/bugbounty-the-5000-google-xss/
+1018. https://wss.sh/en/blog/bugbounty-paypal-dom-xss-main-domain/
+1019. https://wss.sh/en/blog/bugbounty-paypal-stored-xss-security-bypass/
+1020. https://wss.sh/en/blog/bugbounty-reflected-cross-site-scripting-billmelater/
+1021. https://www.rcesecurity.com/2014/11/google-bug-bounty-nice-catch-on-google-cloud-platform-live/
+1022. https://quitten.github.io/Aliexpress/
+1023. https://wss.sh/en/blog/bugbounty-reflected-cross-site-scripting-at-paypal-com/
+1024. https://wss.sh/en/blog/bugbounty-papyal-xml-upload-cross-site-scripting-vulnerability/
+1025. https://buer.haus/2015/01/21/admin-google-com-reflected-cross-site-scripting-xss/
+1026. https://matatall.com/xss/rce/bugbounty/2015/09/08/xss-to-rce.html
+1027. http://mahmoudsec.blogspot.com/2015/09/how-i-found-xss-vulnerability-in-google.html
+1028. https://maustin.net/2015/11/12/hipchat_rce.html
+1029. https://blog.evanricafort.com/2015/12/arbitary-file-upload-vulnerability-in.html
+1030. https://web.archive.org/web/20210511011807/https://blog.evanricafort.com/2015/12/local-file-xss-vulnerability-in.html
+1031. https://whitton.io/articles/xss-on-facebook-via-png-content-types/
+1032. https://portswigger.net/research/xss-without-html-client-side-template-injection-with-angularjs
+1033. https://whitton.io/articles/uber-turning-self-xss-into-good-xss/
+1034. https://thehackerblog.com/poisoning-the-well-compromising-godaddy-customer-support-with-blind-xss/index.html
+1035. https://wss.sh/en/blog/bugbounty-sleeping-stored-google-xss-awakens-a-5000-bounty/
+1036. https://seekurity.com/blog/2016/07/06/admin/general/runkeeper-stores-xss-vulnerability
+1037. https://infosecwriteups.com/two-vulnerabilities-makes-an-exploit-xss-and-csrf-in-bing-cd4269da7b69
+1038. https://mhmdiaa.com/blog/spotify-blind-xss/
+1039. https://httpsonly.blogspot.com/2016/08/turning-self-xss-into-good-xss-v2.html
+1040. https://web.archive.org/web/20220401221504/https://blog.innerht.ml/internet-explorer-has-a-url-problem/
+1041. https://blog.rakeshmane.com/2016/09/bug-bounty-account-takeover.html
+1042. https://blog.zsec.uk/persisting-pornhub/
+1043. https://blog.evanricafort.com/2016/09/xss-vulnerability-in-twitter.html
+1044. https://blog.zsec.uk/gif-time-pornhub/
+1045. https://medium.com/pentesternepal/bypassing-ebay-xss-protection-8cf73466ba0f
+1046. https://tij.me/blog/xss-on-hema-one-of-the-largest-dutch-franchisors/
+1047. https://maustin.net/articles/2010-07/facebook_html5
+1048. https://maustin.net/articles/2010-07/facebook_fbml_xss
+1049. https://josipfranjkovic.blogspot.com/2013/01/googlecom-cross-site-scripting-and.html
+1050. https://whitton.io/archive/persistent-xss-on-myworld-ebay-com/
+1051. http://www.rafayhackingarticles.net/2013/02/dom-based-xss-in-avg.html
+1052. https://www.rcesecurity.com/2013/04/paypal-bug-bounty-paypaltech-com-xss/
+1053. https://josipfranjkovic.blogspot.com/2013/07/how-i-found-my-way-into-instagrams.html
+1054. https://whitton.io/articles/content-types-and-xss-facebook-studio/
+1055. https://blog.shashank.co/2013/10/nokia-email-app-pwnage.html
+1056. 
+1057. #Hackerone
+1058. https://hackerone.com/reports/231053
+1059. https://hackerone.com/reports/216453
+1060. https://hackerone.com/reports/406587
+1061. https://hackerone.com/reports/405191
+1062. https://hackerone.com/reports/247246
+1063. https://hackerone.com/reports/241619
+1064. https://hackerone.com/reports/308155
+1065. https://hackerone.com/reports/220494
+1066. https://hackerone.com/reports/240989
+1067. https://hackerone.com/reports/230435
+1068. https://hackerone.com/reports/324303
+1069. https://hackerone.com/reports/341969
+1070. https://hackerone.com/reports/313250
+1071. https://hackerone.com/reports/363845
+1072. https://hackerone.com/reports/386334
+1073. https://hackerone.com/reports/248588
+1074. https://hackerone.com/reports/351275
+1075. https://hackerone.com/reports/882546
+1076. https://hackerone.com/reports/1004833
+1077. https://hackerone.com/reports/922496
+1078. https://hackerone.com/reports/704266
+1079. https://hackerone.com/reports/938683
+1080. https://hackerone.com/reports/603764
+1081. https://hackerone.com/reports/341908
+1082. https://hackerone.com/reports/892289
+1083. https://hackerone.com/reports/979204
+1084. https://hackerone.com/reports/998398
+1085. https://hackerone.com/reports/1219002
+1086. https://hackerone.com/reports/57459
+1087. https://hackerone.com/reports/15125
+1088. https://hackerone.com/reports/4839
+1089. https://hackerone.com/reports/42393
+1090. https://hackerone.com/reports/2926
+1091. https://hackerone.com/reports/150565
+1092. https://hackerone.com/reports/145355
+1093. https://hackerone.com/reports/47235
+1094. https://hackerone.com/reports/83837
+1095. https://hackerone.com/reports/114151
+1096. https://hackerone.com/reports/6409
+1097. https://hackerone.com/reports/75727
+1098. https://hackerone.com/reports/119453
+1099. https://hackerone.com/reports/130889
+1100. https://hackerone.com/reports/140616
+1101. https://hackerone.com/reports/321
+1102. https://hackerone.com/reports/96467
+1103. https://hackerone.com/reports/98012
+1104. https://hackerone.com/reports/7890
+1105. https://hackerone.com/reports/9391
+1106. https://hackerone.com/reports/65324
+1107. https://hackerone.com/reports/61367
+1108. https://hackerone.com/reports/54327
+1109. https://hackerone.com/reports/7898
+1110. https://hackerone.com/reports/84740
+1111. https://hackerone.com/reports/129736
+1112. https://hackerone.com/reports/197337
+1113. https://hackerone.com/reports/341044
+1114. https://hackerone.com/reports/136600
+1115. https://hackerone.com/reports/191909
+1116. https://hackerone.com/reports/4114
+1117. https://hackerone.com/reports/17287
+1118. https://hackerone.com/reports/8862
+1119. https://hackerone.com/reports/47349
+1120. https://hackerone.com/reports/50358
+1121. https://hackerone.com/reports/157958
+1122. https://hackerone.com/reports/7441
+1123. https://hackerone.com/reports/141728
+1124. https://hackerone.com/reports/148853
+1125. https://hackerone.com/reports/189768
+1126. https://hackerone.com/reports/223396
+1127. https://hackerone.com/reports/2735
+1128. https://hackerone.com/reports/42161
+1129. https://hackerone.com/reports/203515
+1130. https://hackerone.com/reports/170156
+1131. https://hackerone.com/reports/21150
+1132. https://hackerone.com/reports/18372
+1133. https://hackerone.com/reports/21034
+1134. https://hackerone.com/reports/49513
+1135. https://hackerone.com/reports/76713
+1136. https://hackerone.com/reports/80694
+1137. https://hackerone.com/reports/127163
+1138. https://hackerone.com/reports/166699
+1139. https://hackerone.com/reports/190247
+1140. https://hackerone.com/reports/18805
+1141. https://hackerone.com/reports/4276
+1142. https://hackerone.com/reports/16330
+1143. https://hackerone.com/reports/38189
+1144. https://hackerone.com/reports/38007
+1145. https://hackerone.com/reports/34188
+1146. https://hackerone.com/reports/93807
+1147. https://hackerone.com/reports/105688
+1148. https://hackerone.com/reports/121461
+1149. https://hackerone.com/reports/149571
+1150. https://hackerone.com/reports/171670
+1151. https://hackerone.com/reports/168165
+1152. https://hackerone.com/reports/177624
+1153. https://hackerone.com/reports/166709
+1154. https://hackerone.com/reports/182160
+1155. https://hackerone.com/reports/192922
+1156. https://hackerone.com/reports/179426
+1157. https://hackerone.com/reports/235866
+1158. https://hackerone.com/reports/31187
+1159. https://hackerone.com/reports/254269
+1160. https://hackerone.com/reports/324548
+1161. https://hackerone.com/reports/153794
+1162. https://hackerone.com/reports/176065
+1163. https://hackerone.com/reports/425200
+1164. https://hackerone.com/reports/463915
+1165. https://hackerone.com/reports/761573
+1166. https://hackerone.com/reports/789689
+1167. https://hackerone.com/reports/1091118
+1168. https://hackerone.com/reports/1321407
+1169. 
+1170. #reflected
+1171. https://hackerone.com/reports/214581
+1172. https://hackerone.com/reports/221893
+1173. https://hackerone.com/reports/230119
+1174. https://hackerone.com/reports/253313
+1175. https://hackerone.com/reports/970878
+1176. https://hackerone.com/reports/297203
+1177. https://hackerone.com/reports/781284
+1178. https://hackerone.com/reports/968082
+1179. https://hackerone.com/reports/846338
+1180. https://hackerone.com/reports/218451
+1181. https://hackerone.com/reports/293689
+1182. https://hackerone.com/reports/296377
+1183. https://hackerone.com/reports/386340
+1184. https://hackerone.com/reports/415139
+1185. https://hackerone.com/reports/756697
+1186. https://hackerone.com/reports/216812
+1187. https://hackerone.com/reports/219170
+1188. https://hackerone.com/reports/265528
+1189. https://hackerone.com/reports/361647
+1190. https://hackerone.com/reports/374100
+1191. https://hackerone.com/reports/380354
+1192. https://hackerone.com/reports/876148
+1193. https://hackerone.com/reports/1264805
+1194. https://hackerone.com/reports/1061199
+1195. https://hackerone.com/reports/262852
+1196. https://hackerone.com/reports/258198
+1197. https://hackerone.com/reports/283821
+1198. https://hackerone.com/reports/289330
+1199. https://hackerone.com/reports/259100
+1200. https://hackerone.com/reports/292457
+1201. https://hackerone.com/reports/360797
+1202. https://hackerone.com/reports/353293
+1203. https://hackerone.com/reports/409986
+1204. https://hackerone.com/reports/824433
+1205. https://hackerone.com/reports/323005
+1206. https://hackerone.com/reports/705420
+1207. https://hackerone.com/reports/714521
+1208. https://hackerone.com/reports/1206020
+1209. https://hackerone.com/reports/1216203
+1210. https://hackerone.com/reports/766633
+1211. https://hackerone.com/reports/900619
+1212. 
+1213. #stored
+1214. https://hackerone.com/reports/218872
+1215. https://hackerone.com/reports/232174
+1216. https://hackerone.com/reports/311101
+1217. https://hackerone.com/reports/230232
+1218. https://hackerone.com/reports/221380
+1219. https://hackerone.com/reports/231444
+1220. https://hackerone.com/reports/271007
+1221. https://hackerone.com/reports/961046
+1222. https://hackerone.com/reports/157434
+1223. https://hackerone.com/reports/299728
+1224. https://hackerone.com/reports/275518
+1225. https://hackerone.com/reports/915073
+1226. https://hackerone.com/reports/919859
+1227. https://hackerone.com/reports/353334
+1228. https://hackerone.com/reports/779908
+1229. https://hackerone.com/reports/942859
+1230. https://hackerone.com/reports/226203
+1231. https://hackerone.com/reports/218226
+1232. https://hackerone.com/reports/218226
+1233. https://hackerone.com/reports/245172
+1234. https://hackerone.com/reports/275515
+1235. https://hackerone.com/reports/244902
+1236. https://hackerone.com/reports/324194
+1237. https://hackerone.com/reports/333008
+1238. https://hackerone.com/reports/982291
+1239. https://hackerone.com/reports/1173040
+1240. https://hackerone.com/reports/223331
+1241. https://hackerone.com/reports/251224
+1242. https://hackerone.com/reports/216822
+1243. https://hackerone.com/reports/289085
+1244. https://hackerone.com/reports/289313
+1245. https://hackerone.com/reports/314126
+1246. https://hackerone.com/reports/302253
+1247. https://hackerone.com/reports/333507
+1248. https://hackerone.com/reports/267473
+1249. https://hackerone.com/reports/411690
+1250. https://hackerone.com/reports/411690
+1251. https://hackerone.com/reports/534450
+1252. https://hackerone.com/reports/910427
+1253. https://hackerone.com/reports/912865
+1254. https://hackerone.com/reports/413077
+1255. https://hackerone.com/reports/949513
+1256. https://hackerone.com/reports/765679
+1257. https://hackerone.com/reports/681617
+1258. https://hackerone.com/reports/763812
+1259. https://hackerone.com/reports/771882
+1260. https://hackerone.com/reports/949823
+1261. https://hackerone.com/reports/797754
+1262. https://hackerone.com/reports/1010466
+1263. https://hackerone.com/reports/1245787
+1264. https://hackerone.com/reports/827606
+1265. https://hackerone.com/reports/1376672
+1266. https://hackerone.com/reports/1102018

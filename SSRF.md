@@ -1,317 +1,317 @@
-https://research.aurainfosec.io/disclosure/sagecrm2/
-https://medium.com/@omarahmed_13016/iis-welcome-page-to-source-code-review-to-lfi-23ec581049f5
-https://www.horizon3.ai/attack-research/disclosures/ntlm-credential-theft-in-python-windows-applications/
-https://www.anvilsecure.com/blog/vulnerabilities-in-homepage-dashboard.html
-https://www.tenable.com/blog/ssrfing-the-web-with-the-help-of-copilot-studio
-https://jfrog.com/blog/cve-2024-38428-wget-vuln-all-you-need-to-know/
-https://blog.orange.tw/posts/2024-08-confusion-attacks-en/
-https://portswigger.net/research/listen-to-the-whispers-web-timing-attacks-that-actually-work
-https://uchihamrx.medium.com/the-pdf-trojan-horse-leveraging-html-injection-for-ssrf-and-internal-resource-access-fbf69efcb33d
-https://www.tenable.com/blog/these-services-shall-not-pass-abusing-service-tags-to-bypass-azure-firewall-rules-customer
-https://doyensec.com/resources/Doyensec_ThinkstCanaryTokensOSS_Report_Q22024_WithRetesting.pdf
-https://blog.chebuya.com/posts/server-side-request-forgery-on-havoc-c2/
-https://www.oligo.security/blog/shelltorch-explained-multiple-vulnerabilities-in-pytorch-model-server
-https://medium.com/@oXnoOneXo/a-story-of-a-nice-ssrf-vulnerability-51e16ff6a33f
-https://medium.com/@mohamed0xmuslim/how-i-get-an-easy-blind-ssrf-by-just-reading-writeups-a5459bbdf96d
-https://www.assetnote.io/resources/research/digging-for-ssrf-in-nextjs-apps
-https://www.sonarsource.com/blog/micro-services-major-headaches-detecting-vulnerabilities-in-erxes-microservices/
-https://bergee.it/blog/the-story-of-exposed-service-ssrf-csp-bypass-and-credentials-stealing-via-xss/
-https://tantosec.com/blog/judge0/
-https://frycos.github.io/vulns4free/2024/02/19/tableau-server-no-vulns.html
-https://doyensec.com/resources/Doyensec_Zeal_SecurityReport_Q32023_v5_AfterRetest.pdf
-https://medium.com/@Nightbloodz/ssrf-on-a-headless-browser-becomes-critical-c08daaa1017e
-https://www.assetnote.io/resources/research/ivantis-pulse-connect-secure-auth-bypass-round-two
-https://github.com/Sudistark/BB-Writeups/blob/main/2023/CVE-2023-33733-rce-via-htmli-in-reportlab.md
-https://i.blackhat.com/BH-US-23/Presentations/US-23-Genuer-chained-to-hit-discovering-new-vectors-to-gain-remote-and-root-access-in-sap-enterprise-software-wp.pdf
-https://vin01.github.io/piptagole/gitlab/ssrf/security/bugbounty/2021/06/15/gitlab-ssrf.html
-https://www.hoyahaxa.com/2021/04/ssrf-in-coldfusioncfml-tags-and.html
-https://www.agarri.fr/blog/archives/2014/09/11/trying_to_hack_redis_via_http_requests/index.html
-https://www.blackhillsinfosec.com/hunting-for-ssrf-bugs-in-pdf-generators/
-https://osintteam.blog/how-i-discovered-ssrf-on-hackerone-program-7bbe72334f74
-https://medium.com/@fuadahmad062/weird-bug-to-steal-users-credentials-5e80c5d4565f
-https://github.blog/security/vulnerability-research/securing-our-home-labs-frigate-code-review/
-https://www.ambionics.io/blog/wrapwrap-php-filters-suffix
-https://sanderwind.medium.com/unleashing-the-power-of-css-injection-the-access-key-to-an-internal-api-789b166d0527
-https://medium.com/@kerstan/how-i-automatically-discovered-ssrf-in-hackerone-program-2ae0b7a6ef1b
-https://bishopfox.com/blog/ray-versions-2-6-3-2-8-0
-https://rhinosecuritylabs.com/research/extreme-networks-extremexos-vulnerabilities/
-https://rafa.hashnode.dev/exploiting-http-parsers-inconsistencies
-https://github.blog/security/vulnerability-research/mtls-when-certificate-authentication-is-done-wrong/
-https://kuldeep.io/posts/escalating-privileges-with-ssrf/
-https://infosecwriteups.com/exploiting-non-cloud-ssrf-for-more-fun-profit-3597934518c8
-https://www.klogixsecurity.com/scorpion-labs-blog/chaining-for-critical-unauthorized-to-cloud-administrator
-https://github.com/W0rty/libcurl-crlf
-https://www.synacktiv.com/sites/default/files/2023-06/Synacktiv-3DS-Delmia_Apriso_2017_to_2022-Multiple-Vulnerabilities.pdf
-https://claroty.com/team82/research/triple-threat-breaking-teltonika-routers-three-ways
-https://corben.io/blog/17-12-17-hackertarget
-https://goziem.medium.com/my-first-case-of-ssrf-using-dirsearch-b916f0f1e94b
-https://www.tenable.com/blog/uncovering-3-azure-api-management-vulnerabilities-when-good-apis-go-bad
-https://kuldeep.io/posts/holiday-hunting-with-aquatone/
-https://webs3c.com/t/from-nothing-to-aws-credentials/220
-https://medium.com/manomano-tech/the-tale-of-a-click-leading-to-rce-8f68fe93545d
-https://systemweakness.com/story-about-escalation-of-html-injection-to-ec2-instance-credentials-leak-e2cbd7343a83
-https://www.mdsec.co.uk/2022/10/microsoft-office-online-server-remote-code-execution/
-https://bishopfox.com/blog/jira-align-advisory
-https://raymondlind.medium.com/ssrf-lfi-in-uploads-feature-a134aa467abf
-https://raymondlind.medium.com/ssrf-bug-leads-to-aws-metadata-exposure-f2ee7d43c6c3
-https://logicbomb.medium.com/a-bug-worth-1-75lacs-aws-ssrf-to-rce-8d43d5fda899
-https://infosecwriteups.com/blind-ssrf-in-skype-microsoft-6639f4961052
-https://priyankn.github.io/2021-02-26-CVE-2020-13956/
-https://starlabs.sg/blog/2022/10-sharepoint-post-authenticated-ssrf-vulnerability/
-https://www.assetnote.io/resources/research/exploiting-static-site-generators-when-static-is-not-actually-static
-https://www.zerodayinitiative.com/blog/2022/10/28/vulnerabilities-in-apache-batik-default-security-controls-ssrf-and-rce-through-remote-class-loading
-https://infosecwriteups.com/story-of-a-1k-bounty-ssrf-d5c4868680f5
-https://zetc0de.github.io/post/authenticated-rce-ssrf-wondercms/
-https://www.sonarsource.com/blog/checkmk-rce-chain-1/
-https://www.sonarsource.com/blog/checkmk-rce-chain-2/
-https://www.sonarsource.com/blog/checkmk-rce-chain-3/
-https://infosecwriteups.com/ssrf-via-dns-rebinding-cve-2022-4096-b7bf75928bb2
-https://samcurry.net/hacking-apple
-https://starlabs.sg/blog/2022/12-multiple-vulnerabilites-in-proxmox-ve--proxmox-mail-gateway/
-https://infosecwriteups.com/the-most-underrated-injection-of-all-time-cypher-injection-fa2018ba0de8
-https://infosecwriteups.com/how-i-found-my-first-rce-c063546114ef
-https://www.shielder.com/advisories/cisco-broadworks-commpilot-ssrf/
-https://jinone.github.io/bugbounty-a-simple-ssrf/
-https://www.lrqa.com/en/cyber-labs/cve-2022-25026-cve-2022-25027-vulnerabilities-in-rocket-trufusion-enterprise/
-https://appcheck-ng.com/dnn-cms-server-side-request-forgery-cve-2021-40186/
-https://github.com/blasty/lexmark/blob/main/writeup/writeup.md
-https://dhakalbibek.medium.com/2022-a-year-of-fascinating-discoveries-d3277dfb006f
-https://orca.security/resources/blog/ssrf-vulnerabilities-in-four-azure-services/
-https://melotover.medium.com/bypassing-e2e-encryption-leads-to-multiple-high-vulnerabilities-65b708e5ad84
-https://blog.viettelcybersecurity.com/tabshell-owassrf/
-https://akashc99.medium.com/blind-xss-to-ssrf-e2bc579976d
-https://infosecwriteups.com/ssrf-that-allowed-us-to-access-whole-infra-web-services-and-many-more-3424f8efa0e4
-https://www.synack.com/blog/exploits-explained-using-apis-to-execute-a-server-side-request-forgery/
-https://lude.rs/h4ck1ng/draw.io_cves.html
-https://tomcope.com/exploit/2020/10/21/ibm-datapower-exploit-cve-2020-5014.html
-https://medium.com/@_yldrm/host-header-injection-to-complete-organization-takeover-67a8a2ddb188
-https://cristivlad.medium.com/exfiltrating-aws-credentials-via-pdf-rendering-of-unsanitized-input-63f39d60d963
-https://github.blog/security/vulnerability-research/github-security-lab-audited-datahub-heres-what-they-found/
-https://gosecure.ai/blog/2018/04/03/beyond-xss-edge-side-include-injection/
-https://gosecure.ai/blog/2019/05/02/esi-injection-part-2-abusing-specific-implementations/
-https://crypt0g30rgy.github.io/post/SSRFtoDos
-https://www.securifera.com/blog/2023/03/06/attacking-net-web-services/
-https://medium.com/@rajqureshi07/the-story-of-how-i-was-able-to-chain-ssrf-with-command-injection-vulnerability-ef31feb30ea9
-https://blog.doyensec.com/2023/03/16/ssrf-remediation-bypass.html
-https://notifybugme.medium.com/how-i-got-access-to-essilor-international-company-customer-pii-info-by-aws-metadata-access-through-3da02f4c79f0
-https://xelkomy.medium.com/found-ssrf-and-lfi-in-just-10-minutes-of-using-burp-492fddef3f3e
-https://www.assetnote.io/resources/research/stealing-administrative-jwts-through-post-auth-ssrf-cve-2021-22056
-https://signal-labs.com/vmware-driver-0day-reversing/
-https://sirleeroyjenkins.medium.com/bypassing-ssrf-protection-to-exfiltrate-aws-metadata-from-larksuite-bf99a3599462
-https://infosecwriteups.com/multiple-http-redirects-to-bypass-ssrf-protections-45c894e5d41c
-https://jub0bs.com/posts/2022-02-08-cve-2022-21703-writeup/
-https://orca.security/resources/blog/oracle-server-side-request-forgery-ssrf-attack-metadata/
-https://swarm.ptsecurity.com/catching-bugs-in-vmware-carbon-black-cloud-workload-appliance-and-vrealize-operations-manager/
-https://web.archive.org/web/20220315080229/https://medium.com/@raymond-lind/ssrf-lfi-in-uploads-feature-321d83b93ec0
-https://www.yassineaboukir.com/blog/exploiting-a-double-edged-SSRF-for-server-and-client-side-impact/
-https://medium.com/stolabs/cloud-ssrf-exploitation-1f256bdc145f
-https://tech-blog.cymetrics.io/en/posts/huli/erpnext-ssrf-and-xss-to-account-takeover/
-https://infosecwriteups.com/svg-ssrfs-and-saga-of-bypasses-777e035a17a7
-https://github.com/cloudflarearchive/odoh-server-go/issues/30
-https://www.tnirmal.com.np/2022/04/adventures-into-meowcorp-bug-bounty.html
-https://www.assetnote.io/resources/research/encrypting-our-way-to-ssrf-in-vmware-workspace-one-uem-cve-2021-22054
-https://www.yassineaboukir.com//blog/exploitation-of-an-SSRF-vulnerability-against-EC2-IMDSv2/
-https://blog.stazot.com/stealing-google-drive-oauth-tokens-from-dropbox/
-https://medium.com/@byq/from-open-redirect-to-rce-in-one-week-66a7f73fd082
-https://gccybermonks.com/posts/ssrfvision/
-https://www.assetnote.io/resources/research/chaining-vulnerabilities-to-criticality-in-progress-whatsup-gold
-https://medium.com/@joshibeast/from-blind-ssrf-to-localhost-dirbusting-and-asset-enumeration-dc0179310038
-https://haxatron.gitbook.io/vulnerability-research/vr2
-https://blog.viettelcybersecurity.com/pwn2own-2021-microsoft-exchange-exploit-chain/
-https://peterjson.medium.com/miracle-one-vulnerability-to-rule-them-all-c3aed9edeea2
-https://www.assetnote.io/resources/research/abusing-functionality-to-exploit-a-super-ssrf-in-jira-server-cve-2022-26135
-https://www.horizon3.ai/attack-research/disclosures/red-team-blog-cve-2022-28219/
-https://medium.com/@soufianehabti/write-up-1-hellosign-integration-full-read-ssrf-df5e1a5bc627
-https://ibraradi.gitbook.io/write-up/came-looking-for-ssrf-and-found-xss
-https://apth3hack3r.medium.com/ssrf-google-hof-hall-of-fame-2c159dda04e3
-https://infosecwriteups.com/ssrf-leads-to-access-aws-metadata-21952c220aeb
-https://medium.com/@0x0Asif/how-i-found-my-first-rce-8f8033883dc4
-https://systemweakness.com/bug-bounty-how-i-found-an-ssrf-reconnaissance-7b1821a1b1fd
-https://www.sonarsource.com/blog/wordpress-core-unauthenticated-blind-ssrf/
-https://0xmahmoudjo0.medium.com/exploiting-out-of-band-xxe-in-the-wild-16fc6dad9ee2
-https://0x01alka.medium.com/ssrf-g-vrp-for-5000-d08c8f515c95
-https://medium.com/@Parag_Bagul/ssrf-attack-leading-to-aws-metadata-e95155fa6c6f
-https://www.sonarsource.com/blog/onedev-remote-code-execution/
-https://samcurry.net/universal-xss-on-netlifys-next-js-library
-https://fortbridge.co.uk/research/multiple-vulnerabilities-in-concrete-cms-part2/
-https://thinkloveshare.com/hacking/preauth_remote_code_execution_web_page_test/
-https://frycos.github.io/vulns4free/2022/09/26/skype-audit-part2.html
-https://itnext.io/a-deep-dive-of-cve-2022-33987-got-allows-a-redirect-to-a-unix-socket-cdeed53944f7
-https://sanderwind.medium.com/escalating-ssrf-to-rce-7c0147371c40
-https://ltsirkov.medium.com/gitlab-just-another-ssrf-issue-483bc040392b
-https://ltsirkov.medium.com/gitlab-server-side-request-forgery-in-project-import-page-6fdb9ef423e4
-https://blog.deesee.xyz/fuzzing/security/2021/02/26/ssrf-bypassing-hostname-restrictions-fuzzing.html
-https://zonduu.medium.com/ssrf-to-fetch-aws-credentials-with-full-access-to-various-services-18cd08194e91
-https://cirius.medium.com/exploiting-a-hidden-and-forgotten-bug-49ce7ad4de39
-https://omespino.com/write-up-google-vrp-n-a-ssrf-bypass-with-quadzero-in-google-cloud-monitoring/
-https://secureitmania.medium.com/an-unknown-linux-secret-that-turned-ssrf-to-os-command-injection-6fe2f4edc202
-https://infosecwriteups.com/how-i-hacked-facebook-part-two-ffab96d57b19
-https://notifybugme.medium.com/chaining-an-blind-ssrf-bug-to-get-an-rce-92c09de3c0ba
-https://benjamin-mauss.medium.com/cookie-poisoning-leads-to-dos-and-privacy-violation-8aa773547c96
-https://pharish4948.medium.com/blind-ssrf-to-port-scanning-through-response-time-d7336667299d
-https://notifybugme.medium.com/aws-internal-metadata-accessed-through-ssrf-by-chaining-an-open-redirect-bug-c4b0e4838dc
-https://bughunter25.medium.com/a-tale-of-html-to-pdf-converter-ssrf-and-various-bypasses-4a3e11030c77
-https://blog.usamav.dev/how-i-got-400-usd-for-my-first-ssrf-bug
-https://github.com/JoshuaMart
-https://sirleeroyjenkins.medium.com/just-gopher-it-escalating-a-blind-ssrf-to-rce-for-15k-f5329a974530
-https://notifybugme.medium.com/escalating-ssrf-to-accessing-all-user-pii-information-by-aws-metadata-aabcfd5a3e0e
-https://notifybugme.medium.com/escalating-ssrf-to-accessing-all-user-pii-information-by-aws-metadata-aabcfd5a3e0e
-https://shahjerry33.medium.com/server-side-request-forgery-a-forged-document-6359ef25058d
-https://notifybugme.medium.com/how-github-recon-help-me-to-find-nine-full-ssrf-vulnerability-with-aws-metadata-access-531d931413a5
-https://infosecwriteups.com/story-of-my-first-cash-bounty-on-hackerone-acad282ae962
-https://infosecwriteups.com/an-exciting-journey-to-find-ssrf-bypass-cloudflare-and-extract-aws-metadata-fdb8be0b5f79
-https://blog.tyage.net/posts/2021-06-27-dependabot-rce/
-https://medium.com/bug-bounty/telegram-report-ssrf-leads-to-dos-attack-908bea5f5802
-https://yasshk.medium.com/blind-ssrf-in-url-validator-93cbe7521c68
-https://notifybugme.medium.com/finding-multiple-ssrf-with-aws-metadata-access-on-a-bank-system-7e73ac28e50a
-https://caesarevan23.medium.com/ssrf-external-service-interaction-for-find-real-ip-cloudflare-and-leads-to-sql-injection-c22c02243299
-https://xhzeem.me/posts/SSRF-in-PDF-export-with-PhantomJs/read
-https://infosecwriteups.com/chaining-bugs-for-better-bounties-f14d6b2129de
-https://vanshal.medium.com/pre-auth-ssrf-to-full-mailbox-access-microsoft-exchange-server-exploit-a62c8ac04b47
-https://medium.com/@mfocuz/hacking-netflix-eureka-8e5957b2f539
-https://r0.haxors.org/posts?id=20
-https://itsfading.github.io/posts/Unrestricted-File-Upload-Leads-to-SSRF-and-RCE/
-https://www.youtube.com/watch?v=UyemBjyQ4qA
-https://feed.bugs.xdavidhu.me/bugs/0008
-https://github.com/l0ggg/VMware_vCenter
-https://nechudav.blogspot.com/2021/12/ssrf-vulnerability-in-appsheet-google.html
-https://infosecwriteups.com/a-story-about-a-not-so-direct-ssrf-b2b98e128af0
-https://web.archive.org/web/20221128052252/https://wya.pl/2021/12/20/bring-your-own-ssrf-the-gateway-actuator/
-https://positive.security/blog/ms-teams-1-feature-4-vulns
-https://www.assetnote.io/resources/research/turning-bad-ssrf-to-good-ssrf-websphere-portal-cve-2021-27748
-https://bugs.xdavidhu.me/google/2021/12/31/fixing-the-unfixable-story-of-a-google-cloud-ssrf/
-https://ian.sh/redash
-https://kuldeep.io/posts/120-days-of-high-frequency-hunting/
-https://www.openbugbounty.org/blog/ssrf-reading-local-files-from-downnotifier-server/
-https://buer.haus/2019/10/18/a-tale-of-exploitation-in-spreadsheet-file-conversions/
-https://jinone.github.io/bugbounty-a-simple-ssrf/
-https://geleta.eu/2019/my-first-ssrf-using-dns-rebinfing/
-https://web.archive.org/web/20200908050502/https://kntx.xyz/Blind-SSRF-due-to-Sentry-Misconfiguration/
-https://medium.com/@pflash0x0punk/ssrf-via-ffmpeg-hls-processing-a04e0288a8c5
-https://dphoeniixx.medium.com/vimeo-upload-function-ssrf-7466d8630437
-https://ngailong.wordpress.com/2019/12/19/google-vrp-ssrf-in-google-cloud-platform-stackdriver/
-https://xvnpw.github.io/posts/from-dot-in-regex-to-ssrf-part-1/
-https://medium.com/@know.0nix/hunting-good-bugs-with-only-html-d8fd40d17b38
-https://xvnpw.github.io/posts/from-dot-in-regex-to-ssrf-part-2/
-https://techkranti.com/ssrf-aws-metadata-leakage
-https://medium.com/@Mr.Daman.Singh/how-i-found-3-ssrf-in-one-day-on-different-bug-bounty-targets-62e91b4268f8
-https://medium.com/@michan001/ssrf-on-pdf-generator-36b81e16d67b
-https://medium.com/a-bugz-life/exploiting-an-ssrf-trials-and-tribulations-14c5d8dbd69a
-https://eslam.io/posts/uppy-js-ssrf-vulnerability/
-https://ozguralp.medium.com/using-vulnerability-analytics-feature-like-a-boss-655fc1f1543b
-https://www.enablesecurity.com/blog/slack-webrtc-turn-compromise-and-bug-bounty/
-https://d0nut.medium.com/piercing-the-veal-short-stories-to-read-with-friends-4aa86d606fc5
-https://medium.com/@rooterkaustubh/the-story-of-blind-ssrf-leads-to-internal-host-discovery-ee65b9b91e23
-https://web.archive.org/web/20210117211634/https://kurtikleiton.medium.com/blind-ssrf-on-coda-io-c7063f304455
-https://www.ezequiel.tech/2020/05/rce-in-cloud-dm.html
-https://andrei-abakumov.medium.com/how-dangerous-is-request-splitting-a-vulnerability-in-golang-or-how-we-found-the-rce-in-portainer-7339ba24c871
-https://www.nahamsec.com/posts/my-expense-report-resulted-in-a-server-side-request-forgery-ssrf-on-lyft
-https://medium.com/@win3zz/how-i-made-31500-by-submitting-a-bug-to-facebook-d31bb046e204
-https://www.enablesecurity.com/blog/bug-bounty-bout-0x01-webrtc-edition/
-https://jub0bs.com/posts/2020-06-23-ssrf/
-https://infosecwriteups.com/a-tale-of-my-first-ever-full-ssrf-bug-4fe71a76e9c4
-https://infosecwriteups.com/story-of-a-2-5k-bounty-ssrf-on-zimbra-led-to-dump-all-credentials-in-clear-text-6fe826005ccc
-https://thehackerish.com/bug-bounty-write-up-from-ssrf-to-4000/
-https://infosecwriteups.com/my-first-bug-blind-ssrf-through-profile-picture-upload-72f00fd27bc6
-https://xvnpw.github.io/posts/from-dot-in-regex-to-ssrf-part-3/
-https://lopseg.medium.com/ssrf-in-import-file-function-d0f1c6397262
-https://rhynorater.github.io/CVE-2020-13379-Write-Up
-https://web.archive.org/web/20201125190336/https://tox7cv3nom.github.io/2020-08-05-how_i_was_able_to_pawned_website_via_escilating_webcache-deception-to-rce/
-https://blog.surajdisoja.me/2020-10-05-open-redir-to-ato/
-https://shahjerry33.medium.com/blind-ssrf-the-hide-seek-game-da9d0ecef2fb
-https://medium.com/techfenix/ssrf-server-side-request-forgery-worth-4913-my-highest-bounty-ever-7d733bb368cb
-https://nechudav.blogspot.com/2020/11/31k-ssrf-in-google-cloud-monitoring.html
-https://logicbomb.medium.com/tale-of-3-vulnerabilities-to-account-takeover-44ba631a0304
-https://medium.com/realmodelabs/sd-pwn-part-3-cisco-vmanage-another-day-another-network-takeover-15731a4d75b7
-https://amineaboud.medium.com/10000-facebook-ssrf-bug-bounty-402bd21e58e5
-https://infosecwriteups.com/story-of-a-really-cool-ssrf-bug-cf88a3800efc
-https://r4id3n.medium.com/ssrf-exploitation-in-spreedsheet-to-pdf-converter-2c7eacdac781
-https://systemweakness.com/story-behind-sweet-ssrf-40c705f13053
-https://infosecwriteups.com/finding-ssrf-by-full-automation-7d2680091d68
-https://infosecwriteups.com/bragging-rights-part-1-short-story-of-a-bug-wave-dbb88f48b604
-https://buer.haus/2016/04/18/esea-server-side-request-forgery-and-querying-aws-meta-data/
-https://www.rcesecurity.com/2017/03/ok-google-give-me-all-your-internal-dns-information/
-https://buer.haus/2017/03/09/airbnb-chaining-third-party-open-redirect-into-server-side-request-forgery-ssrf-via-liveperson-chat/
-https://www.kernelpicnic.net/2017/05/29/Pivoting-from-blind-SSRF-to-RCE-with-Hashicorp-Consul.html
-https://dos.sh/blog/2017/6/21/yahoo-small-business-luminate-and-the-not-so-secret-keys
-https://buer.haus/2017/06/29/escalating-xss-in-phantomjs-image-rendering-to-ssrflocal-file-read/
-https://portswigger.net/research/cracking-the-lens-targeting-https-hidden-attack-surface
-https://blog.orange.tw/posts/2017-07-how-i-chained-4-vulnerabilities-on/
-https://www.ansariosama.com/2017/09/exploiting-single-request-for-multiple.html
-https://medium.com/@neerajedwards/reading-internal-files-using-ssrf-vulnerability-703c5706eefb
-https://medium.com/@th3g3nt3l/how-i-found-an-ssrf-in-yahoo-guesthouse-recon-wins-8722672e41d4
-https://medium.com/@tungpun/from-ssrf-to-local-file-disclosure-58962cdc589f
-https://infosecwriteups.com/bug-bounty-fastmail-feeda67905f5
-https://mike-n1.github.io/SSRF_P4toP2
-https://w00troot.blogspot.com/2017/12/how-i-found-ssrf-on-thefacebookcom.html
-https://s1gnalcha0s.github.io/dspl/2018/03/07/Stored-XSS-and-SSRF-Google.html
-https://medium.com/securitywall/exploiting-a-single-parameter-6f4ba2acf523
-https://infosecwriteups.com/piercing-the-veil-server-side-request-forgery-to-niprnet-access-c358fd5e249a
-https://medium.com/@D0rkerDevil/how-i-convert-ssrf-to-xss-in-a-ssrf-vulnerable-jira-e9f37ad5b158
-https://web.archive.org/web/20210117211538/https://medium.com/@adeshkolte/how-i-found-xss-via-ssrf-vulnerability-adesh-kolte-873b30a6b89f
-https://www.coengoedegebure.com/how-i-got-access-to-local-aws-info-via-jira/
-https://www.linkedin.com/feed/update/urn:li:activity:6421357227923337216/
-https://opnsec.com/2018/07/into-the-borg-ssrf-inside-google-production-network/
-https://medium.com/@sivakrishnasamireddi/just-another-tale-of-severe-bugs-on-a-private-program-405870b03532
-https://10degres.net/aws-takeover-through-ssrf-in-javascript/
-https://medium.com/@Skylinearafat/how-outdated-jira-instances-suffers-from-multiple-security-vulnerabilities-6a88c45e9ec6
-https://medium.com/@zain.sabahat/exploiting-ssrf-like-a-boss-c090dc63d326
-https://medium.com/@putracraft.theworld/server-side-request-forgery-in-openid-support-defcc64d5e41
-https://web.archive.org/web/20200929022152/https://www.mohamedharon.com/2019/02/ssrf-server-side-request-forgery-in.html
-https://elbs.medium.com/1-000-ssrf-in-slack-7737935d3884
-https://logicbomb.medium.com/chain-of-hacks-leading-to-database-compromise-b2bc2b883915
-https://infosecwriteups.com/vimeo-ssrf-with-code-execution-potential-68c774ba7c1e
-https://philippeharewood.com/cve-2018-16794-on-fs-thefacebook-com/
-https://archive.ingredous.com/notes/downnotifer-ssrf/
-https://ngailong.wordpress.com/2019/04/07/old-but-gold-dot-dot-slash-to-get-the-flag-uber-microservice/
-https://elbs.medium.com/ssrf-trick-ssrf-xspa-in-microsofts-bing-webmaster-central-8015b5d487fb
-https://medium.com/@armaanpathan/pdfreacter-ssrf-to-root-level-local-file-read-which-led-to-rce-eb460ffb3129
-https://medium.com/@pratiky054/ssrf-to-read-local-files-and-abusing-the-aws-metadata-8621a4bf382
-https://logicbomb.medium.com/the-journey-of-web-cache-firewall-bypass-to-ssrf-to-aws-credentials-compromise-b250fb40af82
-https://medium.com/@w_hat_boy/server-side-request-forgery-ssrf-port-issue-hidden-approch-f4e67bd8cc86
-https://web.archive.org/web/20190515123715/https://medium.com/@0ktavandi/blind-ssrf-in-stripe-com-due-to-sentry-misconfiguration-60ebb6a40b5
-https://logicbomb.medium.com/the-unusual-case-of-open-redirection-to-aws-security-credentials-compromise-59acc312f02b
-https://lf.lc/vrp/135276622/
-https://medium.com/@androgaming1912/gain-adfly-smtp-access-with-ssrf-via-gopher-protocol-26a26d0ec2cb
-https://medium.com/a-bugz-life/the-bugs-are-out-there-hiding-in-plain-sight-12d056613ea3
-https://initblog.com/2019/switcheroo/
-https://blog.evanricafort.com/2019/08/ssrf-vulnerability-in.html
-https://medium.com/@GeneralEG/escalating-ssrf-to-rce-f28c482eb8b9
-
-#Hackerone 
-
-https://hackerone.com/reports/215105
-https://hackerone.com/reports/895824
-https://hackerone.com/reports/713
-https://hackerone.com/reports/223203
-https://hackerone.com/reports/644238
-https://hackerone.com/reports/793704
-https://hackerone.com/reports/236301
-https://hackerone.com/reports/265050
-https://hackerone.com/reports/358119
-https://hackerone.com/reports/549882
-https://hackerone.com/reports/925527
-https://hackerone.com/reports/776017
-https://hackerone.com/reports/178184
-https://hackerone.com/reports/204513
-https://hackerone.com/reports/206894
-https://hackerone.com/reports/243865
-https://hackerone.com/reports/180434
-https://hackerone.com/reports/374818
-https://hackerone.com/reports/776634
-https://hackerone.com/reports/756149
-https://hackerone.com/reports/247680
-https://hackerone.com/reports/508459
-https://hackerone.com/reports/1004847
-https://hackerone.com/reports/272095
-https://hackerone.com/reports/643622
-https://hackerone.com/reports/850114
-https://hackerone.com/reports/783392
-https://hackerone.com/reports/305974
-https://hackerone.com/reports/771465
-https://hackerone.com/reports/1055823
-https://hackerone.com/reports/1062888
-https://hackerone.com/reports/826097
-https://hackerone.com/reports/1189367
-https://hackerone.com/reports/978823
-https://hackerone.com/reports/863221
+1. https://research.aurainfosec.io/disclosure/sagecrm2/
+2. https://medium.com/@omarahmed_13016/iis-welcome-page-to-source-code-review-to-lfi-23ec581049f5
+3. https://www.horizon3.ai/attack-research/disclosures/ntlm-credential-theft-in-python-windows-applications/
+4. https://www.anvilsecure.com/blog/vulnerabilities-in-homepage-dashboard.html
+5. https://www.tenable.com/blog/ssrfing-the-web-with-the-help-of-copilot-studio
+6. https://jfrog.com/blog/cve-2024-38428-wget-vuln-all-you-need-to-know/
+7. https://blog.orange.tw/posts/2024-08-confusion-attacks-en/
+8. https://portswigger.net/research/listen-to-the-whispers-web-timing-attacks-that-actually-work
+9. https://uchihamrx.medium.com/the-pdf-trojan-horse-leveraging-html-injection-for-ssrf-and-internal-resource-access-fbf69efcb33d
+10. https://www.tenable.com/blog/these-services-shall-not-pass-abusing-service-tags-to-bypass-azure-firewall-rules-customer
+11. https://doyensec.com/resources/Doyensec_ThinkstCanaryTokensOSS_Report_Q22024_WithRetesting.pdf
+12. https://blog.chebuya.com/posts/server-side-request-forgery-on-havoc-c2/
+13. https://www.oligo.security/blog/shelltorch-explained-multiple-vulnerabilities-in-pytorch-model-server
+14. https://medium.com/@oXnoOneXo/a-story-of-a-nice-ssrf-vulnerability-51e16ff6a33f
+15. https://medium.com/@mohamed0xmuslim/how-i-get-an-easy-blind-ssrf-by-just-reading-writeups-a5459bbdf96d
+16. https://www.assetnote.io/resources/research/digging-for-ssrf-in-nextjs-apps
+17. https://www.sonarsource.com/blog/micro-services-major-headaches-detecting-vulnerabilities-in-erxes-microservices/
+18. https://bergee.it/blog/the-story-of-exposed-service-ssrf-csp-bypass-and-credentials-stealing-via-xss/
+19. https://tantosec.com/blog/judge0/
+20. https://frycos.github.io/vulns4free/2024/02/19/tableau-server-no-vulns.html
+21. https://doyensec.com/resources/Doyensec_Zeal_SecurityReport_Q32023_v5_AfterRetest.pdf
+22. https://medium.com/@Nightbloodz/ssrf-on-a-headless-browser-becomes-critical-c08daaa1017e
+23. https://www.assetnote.io/resources/research/ivantis-pulse-connect-secure-auth-bypass-round-two
+24. https://github.com/Sudistark/BB-Writeups/blob/main/2023/CVE-2023-33733-rce-via-htmli-in-reportlab.md
+25. https://i.blackhat.com/BH-US-23/Presentations/US-23-Genuer-chained-to-hit-discovering-new-vectors-to-gain-remote-and-root-access-in-sap-enterprise-software-wp.pdf
+26. https://vin01.github.io/piptagole/gitlab/ssrf/security/bugbounty/2021/06/15/gitlab-ssrf.html
+27. https://www.hoyahaxa.com/2021/04/ssrf-in-coldfusioncfml-tags-and.html
+28. https://www.agarri.fr/blog/archives/2014/09/11/trying_to_hack_redis_via_http_requests/index.html
+29. https://www.blackhillsinfosec.com/hunting-for-ssrf-bugs-in-pdf-generators/
+30. https://osintteam.blog/how-i-discovered-ssrf-on-hackerone-program-7bbe72334f74
+31. https://medium.com/@fuadahmad062/weird-bug-to-steal-users-credentials-5e80c5d4565f
+32. https://github.blog/security/vulnerability-research/securing-our-home-labs-frigate-code-review/
+33. https://www.ambionics.io/blog/wrapwrap-php-filters-suffix
+34. https://sanderwind.medium.com/unleashing-the-power-of-css-injection-the-access-key-to-an-internal-api-789b166d0527
+35. https://medium.com/@kerstan/how-i-automatically-discovered-ssrf-in-hackerone-program-2ae0b7a6ef1b
+36. https://bishopfox.com/blog/ray-versions-2-6-3-2-8-0
+37. https://rhinosecuritylabs.com/research/extreme-networks-extremexos-vulnerabilities/
+38. https://rafa.hashnode.dev/exploiting-http-parsers-inconsistencies
+39. https://github.blog/security/vulnerability-research/mtls-when-certificate-authentication-is-done-wrong/
+40. https://kuldeep.io/posts/escalating-privileges-with-ssrf/
+41. https://infosecwriteups.com/exploiting-non-cloud-ssrf-for-more-fun-profit-3597934518c8
+42. https://www.klogixsecurity.com/scorpion-labs-blog/chaining-for-critical-unauthorized-to-cloud-administrator
+43. https://github.com/W0rty/libcurl-crlf
+44. https://www.synacktiv.com/sites/default/files/2023-06/Synacktiv-3DS-Delmia_Apriso_2017_to_2022-Multiple-Vulnerabilities.pdf
+45. https://claroty.com/team82/research/triple-threat-breaking-teltonika-routers-three-ways
+46. https://corben.io/blog/17-12-17-hackertarget
+47. https://goziem.medium.com/my-first-case-of-ssrf-using-dirsearch-b916f0f1e94b
+48. https://www.tenable.com/blog/uncovering-3-azure-api-management-vulnerabilities-when-good-apis-go-bad
+49. https://kuldeep.io/posts/holiday-hunting-with-aquatone/
+50. https://webs3c.com/t/from-nothing-to-aws-credentials/220
+51. https://medium.com/manomano-tech/the-tale-of-a-click-leading-to-rce-8f68fe93545d
+52. https://systemweakness.com/story-about-escalation-of-html-injection-to-ec2-instance-credentials-leak-e2cbd7343a83
+53. https://www.mdsec.co.uk/2022/10/microsoft-office-online-server-remote-code-execution/
+54. https://bishopfox.com/blog/jira-align-advisory
+55. https://raymondlind.medium.com/ssrf-lfi-in-uploads-feature-a134aa467abf
+56. https://raymondlind.medium.com/ssrf-bug-leads-to-aws-metadata-exposure-f2ee7d43c6c3
+57. https://logicbomb.medium.com/a-bug-worth-1-75lacs-aws-ssrf-to-rce-8d43d5fda899
+58. https://infosecwriteups.com/blind-ssrf-in-skype-microsoft-6639f4961052
+59. https://priyankn.github.io/2021-02-26-CVE-2020-13956/
+60. https://starlabs.sg/blog/2022/10-sharepoint-post-authenticated-ssrf-vulnerability/
+61. https://www.assetnote.io/resources/research/exploiting-static-site-generators-when-static-is-not-actually-static
+62. https://www.zerodayinitiative.com/blog/2022/10/28/vulnerabilities-in-apache-batik-default-security-controls-ssrf-and-rce-through-remote-class-loading
+63. https://infosecwriteups.com/story-of-a-1k-bounty-ssrf-d5c4868680f5
+64. https://zetc0de.github.io/post/authenticated-rce-ssrf-wondercms/
+65. https://www.sonarsource.com/blog/checkmk-rce-chain-1/
+66. https://www.sonarsource.com/blog/checkmk-rce-chain-2/
+67. https://www.sonarsource.com/blog/checkmk-rce-chain-3/
+68. https://infosecwriteups.com/ssrf-via-dns-rebinding-cve-2022-4096-b7bf75928bb2
+69. https://samcurry.net/hacking-apple
+70. https://starlabs.sg/blog/2022/12-multiple-vulnerabilites-in-proxmox-ve--proxmox-mail-gateway/
+71. https://infosecwriteups.com/the-most-underrated-injection-of-all-time-cypher-injection-fa2018ba0de8
+72. https://infosecwriteups.com/how-i-found-my-first-rce-c063546114ef
+73. https://www.shielder.com/advisories/cisco-broadworks-commpilot-ssrf/
+74. https://jinone.github.io/bugbounty-a-simple-ssrf/
+75. https://www.lrqa.com/en/cyber-labs/cve-2022-25026-cve-2022-25027-vulnerabilities-in-rocket-trufusion-enterprise/
+76. https://appcheck-ng.com/dnn-cms-server-side-request-forgery-cve-2021-40186/
+77. https://github.com/blasty/lexmark/blob/main/writeup/writeup.md
+78. https://dhakalbibek.medium.com/2022-a-year-of-fascinating-discoveries-d3277dfb006f
+79. https://orca.security/resources/blog/ssrf-vulnerabilities-in-four-azure-services/
+80. https://melotover.medium.com/bypassing-e2e-encryption-leads-to-multiple-high-vulnerabilities-65b708e5ad84
+81. https://blog.viettelcybersecurity.com/tabshell-owassrf/
+82. https://akashc99.medium.com/blind-xss-to-ssrf-e2bc579976d
+83. https://infosecwriteups.com/ssrf-that-allowed-us-to-access-whole-infra-web-services-and-many-more-3424f8efa0e4
+84. https://www.synack.com/blog/exploits-explained-using-apis-to-execute-a-server-side-request-forgery/
+85. https://lude.rs/h4ck1ng/draw.io_cves.html
+86. https://tomcope.com/exploit/2020/10/21/ibm-datapower-exploit-cve-2020-5014.html
+87. https://medium.com/@_yldrm/host-header-injection-to-complete-organization-takeover-67a8a2ddb188
+88. https://cristivlad.medium.com/exfiltrating-aws-credentials-via-pdf-rendering-of-unsanitized-input-63f39d60d963
+89. https://github.blog/security/vulnerability-research/github-security-lab-audited-datahub-heres-what-they-found/
+90. https://gosecure.ai/blog/2018/04/03/beyond-xss-edge-side-include-injection/
+91. https://gosecure.ai/blog/2019/05/02/esi-injection-part-2-abusing-specific-implementations/
+92. https://crypt0g30rgy.github.io/post/SSRFtoDos
+93. https://www.securifera.com/blog/2023/03/06/attacking-net-web-services/
+94. https://medium.com/@rajqureshi07/the-story-of-how-i-was-able-to-chain-ssrf-with-command-injection-vulnerability-ef31feb30ea9
+95. https://blog.doyensec.com/2023/03/16/ssrf-remediation-bypass.html
+96. https://notifybugme.medium.com/how-i-got-access-to-essilor-international-company-customer-pii-info-by-aws-metadata-access-through-3da02f4c79f0
+97. https://xelkomy.medium.com/found-ssrf-and-lfi-in-just-10-minutes-of-using-burp-492fddef3f3e
+98. https://www.assetnote.io/resources/research/stealing-administrative-jwts-through-post-auth-ssrf-cve-2021-22056
+99. https://signal-labs.com/vmware-driver-0day-reversing/
+100. https://sirleeroyjenkins.medium.com/bypassing-ssrf-protection-to-exfiltrate-aws-metadata-from-larksuite-bf99a3599462
+101. https://infosecwriteups.com/multiple-http-redirects-to-bypass-ssrf-protections-45c894e5d41c
+102. https://jub0bs.com/posts/2022-02-08-cve-2022-21703-writeup/
+103. https://orca.security/resources/blog/oracle-server-side-request-forgery-ssrf-attack-metadata/
+104. https://swarm.ptsecurity.com/catching-bugs-in-vmware-carbon-black-cloud-workload-appliance-and-vrealize-operations-manager/
+105. https://web.archive.org/web/20220315080229/https://medium.com/@raymond-lind/ssrf-lfi-in-uploads-feature-321d83b93ec0
+106. https://www.yassineaboukir.com/blog/exploiting-a-double-edged-SSRF-for-server-and-client-side-impact/
+107. https://medium.com/stolabs/cloud-ssrf-exploitation-1f256bdc145f
+108. https://tech-blog.cymetrics.io/en/posts/huli/erpnext-ssrf-and-xss-to-account-takeover/
+109. https://infosecwriteups.com/svg-ssrfs-and-saga-of-bypasses-777e035a17a7
+110. https://github.com/cloudflarearchive/odoh-server-go/issues/30
+111. https://www.tnirmal.com.np/2022/04/adventures-into-meowcorp-bug-bounty.html
+112. https://www.assetnote.io/resources/research/encrypting-our-way-to-ssrf-in-vmware-workspace-one-uem-cve-2021-22054
+113. https://www.yassineaboukir.com//blog/exploitation-of-an-SSRF-vulnerability-against-EC2-IMDSv2/
+114. https://blog.stazot.com/stealing-google-drive-oauth-tokens-from-dropbox/
+115. https://medium.com/@byq/from-open-redirect-to-rce-in-one-week-66a7f73fd082
+116. https://gccybermonks.com/posts/ssrfvision/
+117. https://www.assetnote.io/resources/research/chaining-vulnerabilities-to-criticality-in-progress-whatsup-gold
+118. https://medium.com/@joshibeast/from-blind-ssrf-to-localhost-dirbusting-and-asset-enumeration-dc0179310038
+119. https://haxatron.gitbook.io/vulnerability-research/vr2
+120. https://blog.viettelcybersecurity.com/pwn2own-2021-microsoft-exchange-exploit-chain/
+121. https://peterjson.medium.com/miracle-one-vulnerability-to-rule-them-all-c3aed9edeea2
+122. https://www.assetnote.io/resources/research/abusing-functionality-to-exploit-a-super-ssrf-in-jira-server-cve-2022-26135
+123. https://www.horizon3.ai/attack-research/disclosures/red-team-blog-cve-2022-28219/
+124. https://medium.com/@soufianehabti/write-up-1-hellosign-integration-full-read-ssrf-df5e1a5bc627
+125. https://ibraradi.gitbook.io/write-up/came-looking-for-ssrf-and-found-xss
+126. https://apth3hack3r.medium.com/ssrf-google-hof-hall-of-fame-2c159dda04e3
+127. https://infosecwriteups.com/ssrf-leads-to-access-aws-metadata-21952c220aeb
+128. https://medium.com/@0x0Asif/how-i-found-my-first-rce-8f8033883dc4
+129. https://systemweakness.com/bug-bounty-how-i-found-an-ssrf-reconnaissance-7b1821a1b1fd
+130. https://www.sonarsource.com/blog/wordpress-core-unauthenticated-blind-ssrf/
+131. https://0xmahmoudjo0.medium.com/exploiting-out-of-band-xxe-in-the-wild-16fc6dad9ee2
+132. https://0x01alka.medium.com/ssrf-g-vrp-for-5000-d08c8f515c95
+133. https://medium.com/@Parag_Bagul/ssrf-attack-leading-to-aws-metadata-e95155fa6c6f
+134. https://www.sonarsource.com/blog/onedev-remote-code-execution/
+135. https://samcurry.net/universal-xss-on-netlifys-next-js-library
+136. https://fortbridge.co.uk/research/multiple-vulnerabilities-in-concrete-cms-part2/
+137. https://thinkloveshare.com/hacking/preauth_remote_code_execution_web_page_test/
+138. https://frycos.github.io/vulns4free/2022/09/26/skype-audit-part2.html
+139. https://itnext.io/a-deep-dive-of-cve-2022-33987-got-allows-a-redirect-to-a-unix-socket-cdeed53944f7
+140. https://sanderwind.medium.com/escalating-ssrf-to-rce-7c0147371c40
+141. https://ltsirkov.medium.com/gitlab-just-another-ssrf-issue-483bc040392b
+142. https://ltsirkov.medium.com/gitlab-server-side-request-forgery-in-project-import-page-6fdb9ef423e4
+143. https://blog.deesee.xyz/fuzzing/security/2021/02/26/ssrf-bypassing-hostname-restrictions-fuzzing.html
+144. https://zonduu.medium.com/ssrf-to-fetch-aws-credentials-with-full-access-to-various-services-18cd08194e91
+145. https://cirius.medium.com/exploiting-a-hidden-and-forgotten-bug-49ce7ad4de39
+146. https://omespino.com/write-up-google-vrp-n-a-ssrf-bypass-with-quadzero-in-google-cloud-monitoring/
+147. https://secureitmania.medium.com/an-unknown-linux-secret-that-turned-ssrf-to-os-command-injection-6fe2f4edc202
+148. https://infosecwriteups.com/how-i-hacked-facebook-part-two-ffab96d57b19
+149. https://notifybugme.medium.com/chaining-an-blind-ssrf-bug-to-get-an-rce-92c09de3c0ba
+150. https://benjamin-mauss.medium.com/cookie-poisoning-leads-to-dos-and-privacy-violation-8aa773547c96
+151. https://pharish4948.medium.com/blind-ssrf-to-port-scanning-through-response-time-d7336667299d
+152. https://notifybugme.medium.com/aws-internal-metadata-accessed-through-ssrf-by-chaining-an-open-redirect-bug-c4b0e4838dc
+153. https://bughunter25.medium.com/a-tale-of-html-to-pdf-converter-ssrf-and-various-bypasses-4a3e11030c77
+154. https://blog.usamav.dev/how-i-got-400-usd-for-my-first-ssrf-bug
+155. https://github.com/JoshuaMart
+156. https://sirleeroyjenkins.medium.com/just-gopher-it-escalating-a-blind-ssrf-to-rce-for-15k-f5329a974530
+157. https://notifybugme.medium.com/escalating-ssrf-to-accessing-all-user-pii-information-by-aws-metadata-aabcfd5a3e0e
+158. https://notifybugme.medium.com/escalating-ssrf-to-accessing-all-user-pii-information-by-aws-metadata-aabcfd5a3e0e
+159. https://shahjerry33.medium.com/server-side-request-forgery-a-forged-document-6359ef25058d
+160. https://notifybugme.medium.com/how-github-recon-help-me-to-find-nine-full-ssrf-vulnerability-with-aws-metadata-access-531d931413a5
+161. https://infosecwriteups.com/story-of-my-first-cash-bounty-on-hackerone-acad282ae962
+162. https://infosecwriteups.com/an-exciting-journey-to-find-ssrf-bypass-cloudflare-and-extract-aws-metadata-fdb8be0b5f79
+163. https://blog.tyage.net/posts/2021-06-27-dependabot-rce/
+164. https://medium.com/bug-bounty/telegram-report-ssrf-leads-to-dos-attack-908bea5f5802
+165. https://yasshk.medium.com/blind-ssrf-in-url-validator-93cbe7521c68
+166. https://notifybugme.medium.com/finding-multiple-ssrf-with-aws-metadata-access-on-a-bank-system-7e73ac28e50a
+167. https://caesarevan23.medium.com/ssrf-external-service-interaction-for-find-real-ip-cloudflare-and-leads-to-sql-injection-c22c02243299
+168. https://xhzeem.me/posts/SSRF-in-PDF-export-with-PhantomJs/read
+169. https://infosecwriteups.com/chaining-bugs-for-better-bounties-f14d6b2129de
+170. https://vanshal.medium.com/pre-auth-ssrf-to-full-mailbox-access-microsoft-exchange-server-exploit-a62c8ac04b47
+171. https://medium.com/@mfocuz/hacking-netflix-eureka-8e5957b2f539
+172. https://r0.haxors.org/posts?id=20
+173. https://itsfading.github.io/posts/Unrestricted-File-Upload-Leads-to-SSRF-and-RCE/
+174. https://www.youtube.com/watch?v=UyemBjyQ4qA
+175. https://feed.bugs.xdavidhu.me/bugs/0008
+176. https://github.com/l0ggg/VMware_vCenter
+177. https://nechudav.blogspot.com/2021/12/ssrf-vulnerability-in-appsheet-google.html
+178. https://infosecwriteups.com/a-story-about-a-not-so-direct-ssrf-b2b98e128af0
+179. https://web.archive.org/web/20221128052252/https://wya.pl/2021/12/20/bring-your-own-ssrf-the-gateway-actuator/
+180. https://positive.security/blog/ms-teams-1-feature-4-vulns
+181. https://www.assetnote.io/resources/research/turning-bad-ssrf-to-good-ssrf-websphere-portal-cve-2021-27748
+182. https://bugs.xdavidhu.me/google/2021/12/31/fixing-the-unfixable-story-of-a-google-cloud-ssrf/
+183. https://ian.sh/redash
+184. https://kuldeep.io/posts/120-days-of-high-frequency-hunting/
+185. https://www.openbugbounty.org/blog/ssrf-reading-local-files-from-downnotifier-server/
+186. https://buer.haus/2019/10/18/a-tale-of-exploitation-in-spreadsheet-file-conversions/
+187. https://jinone.github.io/bugbounty-a-simple-ssrf/
+188. https://geleta.eu/2019/my-first-ssrf-using-dns-rebinfing/
+189. https://web.archive.org/web/20200908050502/https://kntx.xyz/Blind-SSRF-due-to-Sentry-Misconfiguration/
+190. https://medium.com/@pflash0x0punk/ssrf-via-ffmpeg-hls-processing-a04e0288a8c5
+191. https://dphoeniixx.medium.com/vimeo-upload-function-ssrf-7466d8630437
+192. https://ngailong.wordpress.com/2019/12/19/google-vrp-ssrf-in-google-cloud-platform-stackdriver/
+193. https://xvnpw.github.io/posts/from-dot-in-regex-to-ssrf-part-1/
+194. https://medium.com/@know.0nix/hunting-good-bugs-with-only-html-d8fd40d17b38
+195. https://xvnpw.github.io/posts/from-dot-in-regex-to-ssrf-part-2/
+196. https://techkranti.com/ssrf-aws-metadata-leakage
+197. https://medium.com/@Mr.Daman.Singh/how-i-found-3-ssrf-in-one-day-on-different-bug-bounty-targets-62e91b4268f8
+198. https://medium.com/@michan001/ssrf-on-pdf-generator-36b81e16d67b
+199. https://medium.com/a-bugz-life/exploiting-an-ssrf-trials-and-tribulations-14c5d8dbd69a
+200. https://eslam.io/posts/uppy-js-ssrf-vulnerability/
+201. https://ozguralp.medium.com/using-vulnerability-analytics-feature-like-a-boss-655fc1f1543b
+202. https://www.enablesecurity.com/blog/slack-webrtc-turn-compromise-and-bug-bounty/
+203. https://d0nut.medium.com/piercing-the-veal-short-stories-to-read-with-friends-4aa86d606fc5
+204. https://medium.com/@rooterkaustubh/the-story-of-blind-ssrf-leads-to-internal-host-discovery-ee65b9b91e23
+205. https://web.archive.org/web/20210117211634/https://kurtikleiton.medium.com/blind-ssrf-on-coda-io-c7063f304455
+206. https://www.ezequiel.tech/2020/05/rce-in-cloud-dm.html
+207. https://andrei-abakumov.medium.com/how-dangerous-is-request-splitting-a-vulnerability-in-golang-or-how-we-found-the-rce-in-portainer-7339ba24c871
+208. https://www.nahamsec.com/posts/my-expense-report-resulted-in-a-server-side-request-forgery-ssrf-on-lyft
+209. https://medium.com/@win3zz/how-i-made-31500-by-submitting-a-bug-to-facebook-d31bb046e204
+210. https://www.enablesecurity.com/blog/bug-bounty-bout-0x01-webrtc-edition/
+211. https://jub0bs.com/posts/2020-06-23-ssrf/
+212. https://infosecwriteups.com/a-tale-of-my-first-ever-full-ssrf-bug-4fe71a76e9c4
+213. https://infosecwriteups.com/story-of-a-2-5k-bounty-ssrf-on-zimbra-led-to-dump-all-credentials-in-clear-text-6fe826005ccc
+214. https://thehackerish.com/bug-bounty-write-up-from-ssrf-to-4000/
+215. https://infosecwriteups.com/my-first-bug-blind-ssrf-through-profile-picture-upload-72f00fd27bc6
+216. https://xvnpw.github.io/posts/from-dot-in-regex-to-ssrf-part-3/
+217. https://lopseg.medium.com/ssrf-in-import-file-function-d0f1c6397262
+218. https://rhynorater.github.io/CVE-2020-13379-Write-Up
+219. https://web.archive.org/web/20201125190336/https://tox7cv3nom.github.io/2020-08-05-how_i_was_able_to_pawned_website_via_escilating_webcache-deception-to-rce/
+220. https://blog.surajdisoja.me/2020-10-05-open-redir-to-ato/
+221. https://shahjerry33.medium.com/blind-ssrf-the-hide-seek-game-da9d0ecef2fb
+222. https://medium.com/techfenix/ssrf-server-side-request-forgery-worth-4913-my-highest-bounty-ever-7d733bb368cb
+223. https://nechudav.blogspot.com/2020/11/31k-ssrf-in-google-cloud-monitoring.html
+224. https://logicbomb.medium.com/tale-of-3-vulnerabilities-to-account-takeover-44ba631a0304
+225. https://medium.com/realmodelabs/sd-pwn-part-3-cisco-vmanage-another-day-another-network-takeover-15731a4d75b7
+226. https://amineaboud.medium.com/10000-facebook-ssrf-bug-bounty-402bd21e58e5
+227. https://infosecwriteups.com/story-of-a-really-cool-ssrf-bug-cf88a3800efc
+228. https://r4id3n.medium.com/ssrf-exploitation-in-spreedsheet-to-pdf-converter-2c7eacdac781
+229. https://systemweakness.com/story-behind-sweet-ssrf-40c705f13053
+230. https://infosecwriteups.com/finding-ssrf-by-full-automation-7d2680091d68
+231. https://infosecwriteups.com/bragging-rights-part-1-short-story-of-a-bug-wave-dbb88f48b604
+232. https://buer.haus/2016/04/18/esea-server-side-request-forgery-and-querying-aws-meta-data/
+233. https://www.rcesecurity.com/2017/03/ok-google-give-me-all-your-internal-dns-information/
+234. https://buer.haus/2017/03/09/airbnb-chaining-third-party-open-redirect-into-server-side-request-forgery-ssrf-via-liveperson-chat/
+235. https://www.kernelpicnic.net/2017/05/29/Pivoting-from-blind-SSRF-to-RCE-with-Hashicorp-Consul.html
+236. https://dos.sh/blog/2017/6/21/yahoo-small-business-luminate-and-the-not-so-secret-keys
+237. https://buer.haus/2017/06/29/escalating-xss-in-phantomjs-image-rendering-to-ssrflocal-file-read/
+238. https://portswigger.net/research/cracking-the-lens-targeting-https-hidden-attack-surface
+239. https://blog.orange.tw/posts/2017-07-how-i-chained-4-vulnerabilities-on/
+240. https://www.ansariosama.com/2017/09/exploiting-single-request-for-multiple.html
+241. https://medium.com/@neerajedwards/reading-internal-files-using-ssrf-vulnerability-703c5706eefb
+242. https://medium.com/@th3g3nt3l/how-i-found-an-ssrf-in-yahoo-guesthouse-recon-wins-8722672e41d4
+243. https://medium.com/@tungpun/from-ssrf-to-local-file-disclosure-58962cdc589f
+244. https://infosecwriteups.com/bug-bounty-fastmail-feeda67905f5
+245. https://mike-n1.github.io/SSRF_P4toP2
+246. https://w00troot.blogspot.com/2017/12/how-i-found-ssrf-on-thefacebookcom.html
+247. https://s1gnalcha0s.github.io/dspl/2018/03/07/Stored-XSS-and-SSRF-Google.html
+248. https://medium.com/securitywall/exploiting-a-single-parameter-6f4ba2acf523
+249. https://infosecwriteups.com/piercing-the-veil-server-side-request-forgery-to-niprnet-access-c358fd5e249a
+250. https://medium.com/@D0rkerDevil/how-i-convert-ssrf-to-xss-in-a-ssrf-vulnerable-jira-e9f37ad5b158
+251. https://web.archive.org/web/20210117211538/https://medium.com/@adeshkolte/how-i-found-xss-via-ssrf-vulnerability-adesh-kolte-873b30a6b89f
+252. https://www.coengoedegebure.com/how-i-got-access-to-local-aws-info-via-jira/
+253. https://www.linkedin.com/feed/update/urn:li:activity:6421357227923337216/
+254. https://opnsec.com/2018/07/into-the-borg-ssrf-inside-google-production-network/
+255. https://medium.com/@sivakrishnasamireddi/just-another-tale-of-severe-bugs-on-a-private-program-405870b03532
+256. https://10degres.net/aws-takeover-through-ssrf-in-javascript/
+257. https://medium.com/@Skylinearafat/how-outdated-jira-instances-suffers-from-multiple-security-vulnerabilities-6a88c45e9ec6
+258. https://medium.com/@zain.sabahat/exploiting-ssrf-like-a-boss-c090dc63d326
+259. https://medium.com/@putracraft.theworld/server-side-request-forgery-in-openid-support-defcc64d5e41
+260. https://web.archive.org/web/20200929022152/https://www.mohamedharon.com/2019/02/ssrf-server-side-request-forgery-in.html
+261. https://elbs.medium.com/1-000-ssrf-in-slack-7737935d3884
+262. https://logicbomb.medium.com/chain-of-hacks-leading-to-database-compromise-b2bc2b883915
+263. https://infosecwriteups.com/vimeo-ssrf-with-code-execution-potential-68c774ba7c1e
+264. https://philippeharewood.com/cve-2018-16794-on-fs-thefacebook-com/
+265. https://archive.ingredous.com/notes/downnotifer-ssrf/
+266. https://ngailong.wordpress.com/2019/04/07/old-but-gold-dot-dot-slash-to-get-the-flag-uber-microservice/
+267. https://elbs.medium.com/ssrf-trick-ssrf-xspa-in-microsofts-bing-webmaster-central-8015b5d487fb
+268. https://medium.com/@armaanpathan/pdfreacter-ssrf-to-root-level-local-file-read-which-led-to-rce-eb460ffb3129
+269. https://medium.com/@pratiky054/ssrf-to-read-local-files-and-abusing-the-aws-metadata-8621a4bf382
+270. https://logicbomb.medium.com/the-journey-of-web-cache-firewall-bypass-to-ssrf-to-aws-credentials-compromise-b250fb40af82
+271. https://medium.com/@w_hat_boy/server-side-request-forgery-ssrf-port-issue-hidden-approch-f4e67bd8cc86
+272. https://web.archive.org/web/20190515123715/https://medium.com/@0ktavandi/blind-ssrf-in-stripe-com-due-to-sentry-misconfiguration-60ebb6a40b5
+273. https://logicbomb.medium.com/the-unusual-case-of-open-redirection-to-aws-security-credentials-compromise-59acc312f02b
+274. https://lf.lc/vrp/135276622/
+275. https://medium.com/@androgaming1912/gain-adfly-smtp-access-with-ssrf-via-gopher-protocol-26a26d0ec2cb
+276. https://medium.com/a-bugz-life/the-bugs-are-out-there-hiding-in-plain-sight-12d056613ea3
+277. https://initblog.com/2019/switcheroo/
+278. https://blog.evanricafort.com/2019/08/ssrf-vulnerability-in.html
+279. https://medium.com/@GeneralEG/escalating-ssrf-to-rce-f28c482eb8b9
+280. 
+281. #Hackerone 
+282. 
+283. https://hackerone.com/reports/215105
+284. https://hackerone.com/reports/895824
+285. https://hackerone.com/reports/713
+286. https://hackerone.com/reports/223203
+287. https://hackerone.com/reports/644238
+288. https://hackerone.com/reports/793704
+289. https://hackerone.com/reports/236301
+290. https://hackerone.com/reports/265050
+291. https://hackerone.com/reports/358119
+292. https://hackerone.com/reports/549882
+293. https://hackerone.com/reports/925527
+294. https://hackerone.com/reports/776017
+295. https://hackerone.com/reports/178184
+296. https://hackerone.com/reports/204513
+297. https://hackerone.com/reports/206894
+298. https://hackerone.com/reports/243865
+299. https://hackerone.com/reports/180434
+300. https://hackerone.com/reports/374818
+301. https://hackerone.com/reports/776634
+302. https://hackerone.com/reports/756149
+303. https://hackerone.com/reports/247680
+304. https://hackerone.com/reports/508459
+305. https://hackerone.com/reports/1004847
+306. https://hackerone.com/reports/272095
+307. https://hackerone.com/reports/643622
+308. https://hackerone.com/reports/850114
+309. https://hackerone.com/reports/783392
+310. https://hackerone.com/reports/305974
+311. https://hackerone.com/reports/771465
+312. https://hackerone.com/reports/1055823
+313. https://hackerone.com/reports/1062888
+314. https://hackerone.com/reports/826097
+315. https://hackerone.com/reports/1189367
+316. https://hackerone.com/reports/978823
+317. https://hackerone.com/reports/863221

@@ -1,242 +1,242 @@
-https://research.aurainfosec.io/disclosure/sagecrm2/
-https://www.netspi.com/blog/technical-blog/network-pentesting/hijacking-sql-server-credentials-with-agent-jobs-for-domain-privilege-escalation/
-https://summoning.team/blog/progress-whatsup-gold-sqli-cve-2024-6670/
-https://ian.sh/tsa
-https://medium.com/@0xold/null-byte-on-steroids-23f8104a25ec
-https://medium.com/@pranshux0x/super-blind-sql-injection-20000-bounty-thousands-of-targets-still-vulnerable-f9b013765448
-https://sklnhunt.github.io/posts/xpathinjectionerrorbased/
-https://phrack.org/issues/71/8#article
-https://sec.stealthcopter.com/ninja-contact-forms/
-https://nowotarski.info/wordpress-nonce-authorization/
-https://cyku.tw/no-database-mssql-injection/
-https://sensepost.com/blog/2024/from-a-glpi-patch-bypass-to-rce/
-https://medium.com/@gguzelkokar.mdbf15/from-long-term-hacking-to-instant-rewards-finding-sqli-in-3-minutes-worth-3125-ac36c6e950bf
-https://blog.voorivex.team/20300-bounties-from-a-200-hour-hacking-challenge
-https://soroush.me/blog/2024/06/mongodb-nosql-injection-with-aggregation-pipelines/
-https://machiavellli.medium.com/how-i-got-my-first-bounty-65ad8a1763de
-https://projectdiscovery.io/blog/hacking-apple-with-sql-injection
-https://medium.com/@HX007/subdomain-fuzzing-worth-35k-bounty-daebcb56d9bc
-https://kuldeep.io/posts/defeating-length-filters-to-dump-the-database-sqli/
-https://i.blackhat.com/BH-US-23/Presentations/US-23-Genuer-chained-to-hit-discovering-new-vectors-to-gain-remote-and-root-access-in-sap-enterprise-software-wp.pdf
-https://www.agarri.fr/blog/archives/2012/08/28/all_your_postgresql_databases_are_belong_to_us/index.html
-https://adepts.of0x.cc/gtbcc-pwned/
-https://www.synacktiv.com/advisories/multiple-vulnerabilities-on-gestsup-3244
-https://medium.com/@zatikyan.sevada/leaked-sql-error-leading-to-xss-and-another-bsqli-cdadde032687
-https://medium.com/@zatikyan.sevada/blind-boolean-based-sqli-by-manipulating-url-96e1e086378c
-https://gergelykalman.com/sqlol-CVE-2023-32422-a-macos-tcc-bypass.html
-https://shubhamchaskar.com/sqli-to-ntlm/
-https://medium.com/@yagizkocer/sql-injection-on-postgresql-8c8f823e44aa
-https://infosecwriteups.com/hacking-into-grpc-web-a54053757a45
-https://ajakcybersecurity.medium.com/a-straight-5-hour-escalation-exploiting-boolean-based-sql-injection-5d828fd3dacf
-https://medium.com/@medz20876/blog-post-bypassing-an-admin-panel-with-sql-injection-20b844442711
-https://medium.com/@bug4y0u/how-i-got-4-sqli-vulnerabilities-at-one-target-manually-using-the-repeater-tab-ed4eb1f84147
-https://rafa.hashnode.dev/influxdb-nosql-injection
-https://medium.com/@anirudhkrishna012/how-2-cute-bugs-offered-me-a-reward-of-650-7f13abf36c65
-https://starlabs.sg/advisories/23/23-32530/
-https://sokarepo.github.io/web/2023/08/24/implement-blind-sqlite-sqlmap.html
-https://soatok.blog/2021/08/20/lobste-rs-password-reset-vulnerability/
-https://aryasec.medium.com/my-first-critical-on-hackerone-with-a-6-400-bounty-sql-injection-913566a12c6b
-https://www.assetnote.io/resources/research/chaining-our-way-to-pre-auth-rce-in-metabase-cve-2023-38646
-https://www.zerodayinitiative.com/blog/2023/7/19/cve-2023-36934-progress-software-moveit-transfer-sql-injection-remote-code-execution-vulnerability
-https://kair0s3.medium.com/blind-sql-injection-with-a-little-waf-871e69d06e2c
-https://infosecwriteups.com/unexpected-zero-in-mysql-injection-511f632714b0
-https://www.sonarsource.com/blog/why-orms-and-prepared-statements-cant-always-win/
-https://projectdiscovery.io/blog/moveit-transfer-sql-injection
-https://infosecwriteups.com/sql-injection-in-the-http-custom-header-fd117ba1435e
-https://www.assetnote.io/resources/research/moveit-transfer-rce-part-two-cve-2023-34362
-https://medium.com/@0xnaeem/how-i-found-a-sql-injection-bug-in-using-my-cellphone-5b5193fdc314
-https://www.assetnote.io/resources/research/patch-diffing-progress-moveit-transfer-rce-cve-2023-34362
-https://medium.com/@karimelsayed0x1/my-first-bug-is-rce-via-sql-injection-dfee9c4d4c01
-https://gosecure.ai/blog/2023/06/21/aws-waf-clients-left-vulnerable-to-sql-injection-due-to-unorthodox-mssql-design-choice/
-https://gosecure.ai/blog/2023/06/21/aws-waf-clients-left-vulnerable-to-sql-injection-due-to-unorthodox-mssql-design-choice/
-https://blog.stratumsecurity.com/2022/10/24/abusing-apache-spark-sql-to-get-code-execution/
-https://medium.com/@jawadmahdi/blind-sql-injection-on-delete-request-486770af75a6
-https://thegrayarea.tech/fuzzing-for-hidden-params-671724bf3fd7
-https://foxglovesecurity.com/2017/02/07/type-juggling-and-php-object-injection-and-sqli-oh-my/
-https://medium.com/@umeryousuf26/sleep-sql-injection-on-name-parameter-while-updating-profile-2bbac9f47336
-https://ssd-disclosure.com/ssd-advisory-cisco-secure-manager-appliance-remediation_request_utils-sql-injection-remote-code-execution/
-https://www.varonis.com/blog/zendesk-sql-injection-and-access-flaws
-https://0xelkot.medium.com/how-i-get-10-sqli-and-30-xss-via-automation-tool-cebbd9104479
-https://www.zerodayinitiative.com/blog/2022/11/22/cve-2022-40300-sql-injection-in-manageengine-privileged-access-management
-https://samcurry.net/hacking-apple
-https://infosecwriteups.com/a-great-weekend-hack-worth-8k-9bfda8ab65b9
-https://www.wiz.io/blog/hells-keychain-supply-chain-attack-in-ibm-cloud-databases-for-postgresql
-https://outpost24.com/blog/
-https://tusharvaidya16.medium.com/a03-2021-injection-sql-injection-through-internal-directory-disclose-ecdef5230131
-https://claroty.com/team82/research/js-on-security-off-abusing-json-based-sql-to-bypass-waf
-https://www.vaadata.com/blog/exploiting-an-sql-injection-with-waf-bypass/
-https://www.rcesecurity.com/2022/12/from-zero-to-hero-part-2-intel-dcm-sql-injection-to-rce-cve-2022-21225/
-https://bergee.it/blog/how-i-found-multiple-critical-bugs-in-red-bull/
-https://systemweakness.com/hooking-secret-key-to-building-custom-burp-extension-c6aeb6fd312a
-https://timeofcheck.com/time-based-blind-sqli-on-news-starbucks-com/
-https://infosecwriteups.com/cve-2022-38627-a-journey-through-sqlite-injection-to-compromise-the-whole-enterprise-building-15cebd072ed6
-https://samcurry.net/web-hackers-vs-the-auto-industry
-https://blog.hckrt.com/blog/thisclosed_2/
-https://swarm.ptsecurity.com/mybb-1-8-31-remote-code-execution-chain/
-https://medium.com/@kartikhunt3r/blind-time-based-sql-injection-vulnerability-in-an-indian-government-website-6bf3bb7daf25
-https://mahmoudsec.blogspot.com/2023/02/sql-injection-utilizing-xml-functions.html
-https://www.synacktiv.com/sites/default/files/2022-12/sage_xrt_multiple_sqli_1.pdf
-https://infosecwriteups.com/how-i-got-owned-a-multi-billion-dollar-retailers-mysql-databases-using-simple-sql-injection-30f8b0dfd9ce
-https://infosecwriteups.com/i-earned-3500-and-40-points-for-a-graphql-blind-sql-injection-vulnerability-5b7e428c477d
-https://www.dsecbypass.com/en/dolibarr-pre-auth-contact-database-dump/
-https://www.sjoerdlangkemper.nl/2023/03/15/textcube-sql-injection-session-ip-spoofing/
-https://medium.com/@yousefamery/emotional-rollercoaster-a-unique-case-study-of-bypassing-antivirus-and-firewall-by-abusing-2b36d8f6553c
-https://shahjerry33.medium.com/sql-wildcard-dos-hang-till-death-adbae66d1f7b
-https://goziem.medium.com/how-i-chained-an-information-disclosure-bug-to-sql-injection-bca936d90fb1
-https://medium.com/@janirudransh/automating-sql-injection-on-encrypted-request-21a43aa2e7ef
-https://web.archive.org/web/20220217212342/https://castilho101.github.io/posts/cve-2022-0478-woocommerce-event-manager-plugin-sql-injection/
-https://www.sonarsource.com/blog/pimcore-one-click-two-security-vulnerabilities/
-https://corben.io/blog/17-11-30-asus-sqli
-https://infosecwriteups.com/exploiting-sql-error-sqlstate-42000-to-own-mariadb-of-a-large-eu-based-online-media-and-cf7396c43bbf
-https://infosecwriteups.com/i-helped-a-top-indian-health-benefits-management-platform-from-major-pii-leak-by-hacking-their-sql-b42caeca9729
-https://www.paloaltonetworks.com/prisma/cloud/cloud-data-security
-https://medium.com/@ar_hawk/utilizing-historical-urls-of-an-organization-to-successfully-execute-sql-queries-blind-sqli-3526d9c3863d
-https://zxsecurity.co.nz/research/advisories/kramer-via-go-2-rce-and-other-vulns/
-https://blog.stratumsecurity.com/2023/06/01/sqli-the-road-to-bypassing-an-industry-leading-waf/
-https://www.tarlogic.com/blog/linked-servers-adsi-passwords/
-https://kuldeep.io/posts/120-days-of-high-frequency-hunting/
-https://www.zerodayinitiative.com/blog/2022/1/18/cve-2021-21661-exposing-database-info-via-wordpress-sql-injection
-https://kazet.cc/2022/02/03/fuzzing-wordpress-plugins.html
-https://mrempy.medium.com/how-i-found-a-critical-p1-bug-in-5-minutes-using-a-cellphone-bug-bounty-303ebec3edd6
-https://web.archive.org/web/20220214063345/https://7odamo.medium.com/sql-injection-reflected-xss-and-information-disclosure-in-one-subdomain-in-just-10-minutes-f2ce877b43d4
-https://www.zerodayinitiative.com/blog/2022/2/10/mindshare-when-mysql-cluster-encounters-taint-analysis
-https://ozguralp.medium.com/bigquery-sql-injection-cheat-sheet-65ad70e11eac
-https://www.zerodayinitiative.com/blog/2022/2/14/static-taint-analysis-using-binary-ninja-a-case-study-of-mysql-cluster-vulnerabilities
-https://flattsecurity.medium.com/finding-an-unseen-sql-injection-by-bypassing-escape-functions-in-mysqljs-mysql-90b27f6542b4
-https://goktugkaya.medium.com/how-i-hacked-the-dutch-government-and-won-the-famous-t-shirt-b45cdf5dfaa1
-https://muffsec.com/blog/moodle-2nd-order-sqli/
-https://web.archive.org/web/20220315141258/https://eslam3kl.medium.com/sql-injection-at-spotify-d19e0861ddf0
-https://medium.com/@vamshivaran110/my-first-blind-sql-injection-7db4b5e5c66d
-https://www.sentinelone.com/labs/pwning-microsoft-azure-defender-for-iot-multiple-flaws-allow-remote-code-execution-for-all/
-https://kuldeep.io/posts/nosql-injection-in-plain-sight/
-https://blog.viettelcybersecurity.com/moveit-transfer-cve/
-https://haxatron.gitbook.io/vulnerability-research/vr1
-https://infosecwriteups.com/how-a-youtube-video-lead-to-pwning-a-web-application-via-sql-injection-worth-4324-bounty-285f0a9b9f6c
-https://medium.com/pentesternepal/sql-injection-in-harvards-subdomain-c3148f8be156
-https://www.wiz.io/blog/wiz-research-discovers-extrareplica-cross-account-database-vulnerability-in-azure-postgresql
-https://www.pmnh.site/post/advanced-sqlmap-case-study-1/
-https://cyllective.com/blog/posts/wordpress-audit-plugins
-https://corben.io/blog/a-simple-sql-injection-in-an-air-force-website
-https://systemweakness.com/sql-injection-to-remote-command-execution-rce-dd9a75292d1d
-https://bugs.php.net/bug.php?id=81719
-https://www.rapid7.com/blog/post/2022/06/28/cve-2021-3779-ruby-mysql-gem-client-file-read-fixed/
-https://pentest.blog/advisory-glpi-service-management-software-sql-injection-remote-code-execution-and-local-file-inclusion/
-https://www.techncyber.com/2022/07/sql-injection-at-authorization-token.html
-https://nirmaldahal.com.np/posts/2022/07/leveraging-the-sql-injection-to-execute-the-xss-by-evading-csp/
-https://www.rcesecurity.com/2022/07/WordPress-Transposh-Exploiting-a-Blind-SQL-Injection-via-XSS/
-https://labs.jumpsec.com/zoho-manage-engine-desktop-central-sql-injection-arbitrary-file-write/
-https://petrusviet.medium.com/dancing-on-the-architecture-of-vmware-workspace-one-access-eng-ad592ae1b6dd
-https://www.wiz.io/blog/the-cloud-has-an-isolation-problem-postgresql-vulnerabilities
-https://www.cyberark.com/resources/threat-research-blog/trust-me-i-m-a-robot-can-we-trust-rpa-with-our-most-guarded-secrets
-https://mehedishakeel.medium.com/found-sql-injection-vulnerability-on-government-organization-website-3eb33c0c49a4
-https://medium.com/@cyberali/blind-xss-and-time-based-sql-injection-to-admin-panel-control-and-database-takeover-9b7645a53748
-https://doyensec.com/resources/Doyensec_Advisory_TypeORM_Q32022.pdf
-https://xthemo.medium.com/how-can-i-get-sql-injection-b8337c2c2bef
-https://infosecwriteups.com/how-i-found-multiple-sql-injections-in-5-minutes-in-bug-bounty-40155964c498
-https://c0nqr0r.medium.com/error-based-sql-injection-with-waf-bypass-manual-exploit-100-bab36b769005
-https://medium.com/stolabs/cve-2022-36635-a-sql-injection-in-zksecuritybio-to-rce-c5bde2962d47
-https://0xgad.medium.com/sql-injection-in-graphql-2859c96547a8
-https://blog.infiltrateops.io/the-castles-latrine-10f9c16548bd
-https://www.code-intelligence.com/blog/potential-remote-code-execution-in-hsqldb
-https://blog.trailofbits.com/2022/10/25/sqlite-vulnerability-july-2022-library-api/
-https://cybrr-warrior-official.medium.com/how-i-made-2000-with-url-redirection-b1b5f4e7a678
-https://medium.com/@z.x/how-i-got-450-just-in-one-google-search-sqli-rxss-8c7c28ceba79
-https://infosecwriteups.com/from-sql-injection-to-hall-of-fame-96a08c869acd
-https://offensi.com/2020/08/18/how-to-contact-google-sre-dropping-a-shell-in-cloud-sql/
-https://infosecwriteups.com/accessing-the-website-directly-through-its-ip-address-a-case-of-a-poorly-hidden-sql-injection-82833defbbc3
-https://shahjerry33.medium.com/sql-injection-remote-code-execution-double-p1-6038ca88a2ec
-https://sheshasai.medium.com/emoji-error-handling-ba11f1bdb8a6
-https://thinkloveshare.com/hacking/rce_on_spip_and_root_me/
-https://ynoof.medium.com/error-based-sql-injection-on-a-wordpress-website-and-extract-more-than-150k-user-details-f65f987c2cc0
-https://medium.com/realmodelabs/silver-peak-unity-orchestrator-rce-2928d65ef749
-https://infosecwriteups.com/interesting-case-of-sqli-84cc3f4a5255
-http://firstsight.me/2020/11/optimizing-hunting-results-in-vdp-for-use-in-bug-bounty-programs-from-sensitive-information-disclosure-to-accessing-hidden-apis-which-can-be-used-to-retrieve-customer-data/
-https://ozguralp.medium.com/turning-blind-error-based-sql-injection-into-an-exploitable-boolean-one-85d6be3ca23b
-https://medium.com/realmodelabs/sd-pwn-part-4-vmware-velocloud-the-last-takeover-a7016f9a9175
-https://rafipiun.medium.com/how-i-got-easy-for-sql-injection-bug-7ff622236e4c
-https://shellbr3ak.medium.com/the-story-of-my-first-critical-bug-93a5920d6c43
-https://marxchryz.medium.com/my-bug-bounty-journey-and-my-first-critical-bug-time-based-blind-sql-injection-aa91d8276e41
-https://hajarerutik9.medium.com/sql-injection-via-hidden-parameter-6da7699248fc
-https://irsl.medium.com/dropping-a-shell-in-googles-cloud-sql-the-speckle-umbrella-story-f9375bd4960d
-https://neroli.medium.com/is-math-random-safe-from-missing-rate-limit-to-bypass-2fa-and-possible-sqli-2a4ea66f82c5
-https://medium.com/@ratnadip1998/admin-panel-accessed-via-sql-injection-ezy-boooom-57dc60c2815f
-https://ahmadaabdulla.medium.com/how-i-found-sql-injection-on-8x8-cengage-comodo-automattic-20-company-c296d1a09f63
-https://infosecwriteups.com/fun-sql-injection-mod-security-bypass-644b54b0c445
-https://ahmadaabdulla.medium.com/how-i-found-sql-injection-on-intensedebate-com-h1-in-5-minute-350-a36c2890882d
-https://kailashbohara.com.np/blog/2021/05/16/MSSQL-Injection-in-JSON-request/
-https://www.sonarsource.com/blog/nosql-injections-in-rocket-chat/
-https://thevillagehacker.medium.com/time-based-sql-injection-to-dumping-the-database-da0e5bcaa9df
-https://medium.com/@jawadmahdi/how-i-found-blind-sql-injection-just-by-browsing-and-getting-a-unique-url-ed87fa1f35ed
-https://orwaatyat.medium.com/how-i-found-multiple-bugs-on-facebook-in-1-month-and-a-part-for-my-methodology-tools-58a677a9040c
-https://caesarevan23.medium.com/ssrf-external-service-interaction-for-find-real-ip-cloudflare-and-leads-to-sql-injection-c22c02243299
-https://www-leavesongs-com.translate.goog/PENETRATION/cachet-from-laravel-sqli-to-bug-bounty.html?_x_tr_sl=zh-CN&_x_tr_tl=en&_x_tr_hl=en&_x_tr_pto=sc
-https://tomorrowisnew.com/posts/sql-injection-in-harvard-subdomain/
-https://www.zerodayinitiative.com/blog/2021/9/2/cve-2021-2429-a-heap-based-buffer-overflow-bug-in-the-mysql-innodb-memcached-plugin
-https://noob3xploiter.medium.com/sql-injection-in-harvard-subdomain-be67a5dbf664
-https://www.gremwell.com/spring-n1ql-injection
-https://infosecwriteups.com/how-i-escalated-a-time-based-sql-injection-to-rce-bbf0d68cb398
-https://gosecure.ai/blog/2021/10/19/a-scientific-notation-bug-in-mysql-left-aws-waf-clients-vulnerable-to-sql-injection/
-https://xdev05.github.io/How-i-Got-3-SQLI-in-just-10-minutes/
-https://0xmahmoudjo0.medium.com/how-i-found-multiple-sql-injection-with-ffuf-and-sqlmap-in-a-few-minutes-9c3bb3780e8f
-https://starlabs.sg/blog/2021/11-diving-into-open-source-lms-ccodebases/
-https://r0.haxors.org/posts?id=26
-https://hector0x.medium.com/easy-sqli-in-amazon-subsidiary-using-sqlmap-ff469013671b
-https://devnack.medium.com/how-i-bypassed-incapsula-waf-db0498b3a021
-https://shahjerry33.medium.com/sql-injection-the-file-upload-playground-6580b089d013
-https://infosecwriteups.com/sql-injection-with-load-file-and-into-outfile-c62f7d92c4e2
-https://medium.com/@nuraalamdipu/union-based-sql-injection-write-up-a-private-company-site-273f89a49ed9
-https://web.archive.org/web/20201022201335/https://www.mohamedharon.com/2018/04/my-best-small-report-bounty-report-in.html
-https://medium.com/@rojanrijal/source-code-analysis-in-ysurvey-luminate-bug-c86dc29b70c4
-https://web.archive.org/web/20191217083137/http://blog.jr0ch17.com/2018/Please-email-me-your-password/
-https://web.archive.org/web/20200904133318/https://medium.com/bugbountywriteup/a-five-minute-sql-i-16ab75b20fe4
-https://logicbomb.medium.com/bugbounty-database-hacked-of-indias-popular-sports-company-bypassing-host-header-to-sql-7b9af997c610
-https://medium.com/@SQLiBasic/bug-bounty-at-bangladeshi-site-21da8b7eb687
-https://medium.com/@vishnu0002/attacking-postgresql-database-834a9a3471bc
-https://mahmoudsec.blogspot.com/2018/07/sql-injection-and-silly-waf.html
-https://medium.com/@tomnomnom/making-a-blind-sql-injection-a-little-less-blind-428dcb614ba8
-https://web.archive.org/web/20200829220607/https://medium.com/@adeshkolte/sql-injection-vulnerability-in-university-of-cambridge-b4c8d0381e1
-https://blog.securitybreached.org/2018/09/08/sqli-bootcampnutanix-com-bug-bounty-poc/
-https://blog.securitybreached.org/2018/09/09/zol-zimbabwe-authbypass-sqli-xss/
-https://blog.securitybreached.org/2018/09/10/sqli-login-bypass-autotraders/
-https://medium.com/@mahitman1/hacking-a-crypto-debit-card-service-730f287aaee7
-https://renaudmarti.net/posts/first-bug-bounty-submission/
-https://www.vesiluoma.com/abusing-mysql-clients/
-https://sunilyedla.medium.com/sql-injection-for-50-bounty-but-still-worth-reading-468442c1cc1a
-https://blog.redforce.io/sql-injection-in-insert-update-query-without-comma/
-https://medium.com/@frostnull/sql-injection-through-user-agent-44a1150f6888
-https://saadahmedx.medium.com/sql-injection-c87a390afdd3
-https://jspin.re/fileupload-blind-sqli/
-https://medium.com/@ariffadhlullah2310/sql-injection-bug-bounty-110e92e71ec3
-https://medium.com/@kgaber99/sql-injection-in-forget-password-function-3c945512e3cb
-https://www.noob.ninja/2019/07/exploiting-tricky-blind-sql-injection.html
-https://web.archive.org/web/20200928234656/https://www.mohamedharon.com/2019/07/sql-injection-in-private-sitecomloginphp.html
-https://aaronesau.com/blog/posts/5
-
-#Hackerone 
-https://hackerone.com/reports/198292
-https://hackerone.com/reports/311244
-https://hackerone.com/reports/923020
-https://hackerone.com/reports/117073
-https://hackerone.com/reports/59664
-https://hackerone.com/reports/761304
-https://hackerone.com/reports/1216408
-https://hackerone.com/reports/17227
-https://hackerone.com/reports/81701
-https://hackerone.com/reports/374027
-https://hackerone.com/reports/1039315
-https://hackerone.com/reports/31756
-https://hackerone.com/reports/86468
-https://hackerone.com/reports/115304
-https://hackerone.com/reports/144359
-https://hackerone.com/reports/116764
-https://hackerone.com/reports/221757
-https://hackerone.com/reports/211988
-https://hackerone.com/reports/179920
-https://hackerone.com/reports/273946
-https://hackerone.com/reports/319279
-https://hackerone.com/reports/298176
-https://hackerone.com/reports/310280
-https://hackerone.com/reports/297478
-https://hackerone.com/reports/433792
-https://hackerone.com/reports/639876
-https://hackerone.com/reports/435066
+1. https://research.aurainfosec.io/disclosure/sagecrm2/
+2. https://www.netspi.com/blog/technical-blog/network-pentesting/hijacking-sql-server-credentials-with-agent-jobs-for-domain-privilege-escalation/
+3. https://summoning.team/blog/progress-whatsup-gold-sqli-cve-2024-6670/
+4. https://ian.sh/tsa
+5. https://medium.com/@0xold/null-byte-on-steroids-23f8104a25ec
+6. https://medium.com/@pranshux0x/super-blind-sql-injection-20000-bounty-thousands-of-targets-still-vulnerable-f9b013765448
+7. https://sklnhunt.github.io/posts/xpathinjectionerrorbased/
+8. https://phrack.org/issues/71/8#article
+9. https://sec.stealthcopter.com/ninja-contact-forms/
+10. https://nowotarski.info/wordpress-nonce-authorization/
+11. https://cyku.tw/no-database-mssql-injection/
+12. https://sensepost.com/blog/2024/from-a-glpi-patch-bypass-to-rce/
+13. https://medium.com/@gguzelkokar.mdbf15/from-long-term-hacking-to-instant-rewards-finding-sqli-in-3-minutes-worth-3125-ac36c6e950bf
+14. https://blog.voorivex.team/20300-bounties-from-a-200-hour-hacking-challenge
+15. https://soroush.me/blog/2024/06/mongodb-nosql-injection-with-aggregation-pipelines/
+16. https://machiavellli.medium.com/how-i-got-my-first-bounty-65ad8a1763de
+17. https://projectdiscovery.io/blog/hacking-apple-with-sql-injection
+18. https://medium.com/@HX007/subdomain-fuzzing-worth-35k-bounty-daebcb56d9bc
+19. https://kuldeep.io/posts/defeating-length-filters-to-dump-the-database-sqli/
+20. https://i.blackhat.com/BH-US-23/Presentations/US-23-Genuer-chained-to-hit-discovering-new-vectors-to-gain-remote-and-root-access-in-sap-enterprise-software-wp.pdf
+21. https://www.agarri.fr/blog/archives/2012/08/28/all_your_postgresql_databases_are_belong_to_us/index.html
+22. https://adepts.of0x.cc/gtbcc-pwned/
+23. https://www.synacktiv.com/advisories/multiple-vulnerabilities-on-gestsup-3244
+24. https://medium.com/@zatikyan.sevada/leaked-sql-error-leading-to-xss-and-another-bsqli-cdadde032687
+25. https://medium.com/@zatikyan.sevada/blind-boolean-based-sqli-by-manipulating-url-96e1e086378c
+26. https://gergelykalman.com/sqlol-CVE-2023-32422-a-macos-tcc-bypass.html
+27. https://shubhamchaskar.com/sqli-to-ntlm/
+28. https://medium.com/@yagizkocer/sql-injection-on-postgresql-8c8f823e44aa
+29. https://infosecwriteups.com/hacking-into-grpc-web-a54053757a45
+30. https://ajakcybersecurity.medium.com/a-straight-5-hour-escalation-exploiting-boolean-based-sql-injection-5d828fd3dacf
+31. https://medium.com/@medz20876/blog-post-bypassing-an-admin-panel-with-sql-injection-20b844442711
+32. https://medium.com/@bug4y0u/how-i-got-4-sqli-vulnerabilities-at-one-target-manually-using-the-repeater-tab-ed4eb1f84147
+33. https://rafa.hashnode.dev/influxdb-nosql-injection
+34. https://medium.com/@anirudhkrishna012/how-2-cute-bugs-offered-me-a-reward-of-650-7f13abf36c65
+35. https://starlabs.sg/advisories/23/23-32530/
+36. https://sokarepo.github.io/web/2023/08/24/implement-blind-sqlite-sqlmap.html
+37. https://soatok.blog/2021/08/20/lobste-rs-password-reset-vulnerability/
+38. https://aryasec.medium.com/my-first-critical-on-hackerone-with-a-6-400-bounty-sql-injection-913566a12c6b
+39. https://www.assetnote.io/resources/research/chaining-our-way-to-pre-auth-rce-in-metabase-cve-2023-38646
+40. https://www.zerodayinitiative.com/blog/2023/7/19/cve-2023-36934-progress-software-moveit-transfer-sql-injection-remote-code-execution-vulnerability
+41. https://kair0s3.medium.com/blind-sql-injection-with-a-little-waf-871e69d06e2c
+42. https://infosecwriteups.com/unexpected-zero-in-mysql-injection-511f632714b0
+43. https://www.sonarsource.com/blog/why-orms-and-prepared-statements-cant-always-win/
+44. https://projectdiscovery.io/blog/moveit-transfer-sql-injection
+45. https://infosecwriteups.com/sql-injection-in-the-http-custom-header-fd117ba1435e
+46. https://www.assetnote.io/resources/research/moveit-transfer-rce-part-two-cve-2023-34362
+47. https://medium.com/@0xnaeem/how-i-found-a-sql-injection-bug-in-using-my-cellphone-5b5193fdc314
+48. https://www.assetnote.io/resources/research/patch-diffing-progress-moveit-transfer-rce-cve-2023-34362
+49. https://medium.com/@karimelsayed0x1/my-first-bug-is-rce-via-sql-injection-dfee9c4d4c01
+50. https://gosecure.ai/blog/2023/06/21/aws-waf-clients-left-vulnerable-to-sql-injection-due-to-unorthodox-mssql-design-choice/
+51. https://gosecure.ai/blog/2023/06/21/aws-waf-clients-left-vulnerable-to-sql-injection-due-to-unorthodox-mssql-design-choice/
+52. https://blog.stratumsecurity.com/2022/10/24/abusing-apache-spark-sql-to-get-code-execution/
+53. https://medium.com/@jawadmahdi/blind-sql-injection-on-delete-request-486770af75a6
+54. https://thegrayarea.tech/fuzzing-for-hidden-params-671724bf3fd7
+55. https://foxglovesecurity.com/2017/02/07/type-juggling-and-php-object-injection-and-sqli-oh-my/
+56. https://medium.com/@umeryousuf26/sleep-sql-injection-on-name-parameter-while-updating-profile-2bbac9f47336
+57. https://ssd-disclosure.com/ssd-advisory-cisco-secure-manager-appliance-remediation_request_utils-sql-injection-remote-code-execution/
+58. https://www.varonis.com/blog/zendesk-sql-injection-and-access-flaws
+59. https://0xelkot.medium.com/how-i-get-10-sqli-and-30-xss-via-automation-tool-cebbd9104479
+60. https://www.zerodayinitiative.com/blog/2022/11/22/cve-2022-40300-sql-injection-in-manageengine-privileged-access-management
+61. https://samcurry.net/hacking-apple
+62. https://infosecwriteups.com/a-great-weekend-hack-worth-8k-9bfda8ab65b9
+63. https://www.wiz.io/blog/hells-keychain-supply-chain-attack-in-ibm-cloud-databases-for-postgresql
+64. https://outpost24.com/blog/
+65. https://tusharvaidya16.medium.com/a03-2021-injection-sql-injection-through-internal-directory-disclose-ecdef5230131
+66. https://claroty.com/team82/research/js-on-security-off-abusing-json-based-sql-to-bypass-waf
+67. https://www.vaadata.com/blog/exploiting-an-sql-injection-with-waf-bypass/
+68. https://www.rcesecurity.com/2022/12/from-zero-to-hero-part-2-intel-dcm-sql-injection-to-rce-cve-2022-21225/
+69. https://bergee.it/blog/how-i-found-multiple-critical-bugs-in-red-bull/
+70. https://systemweakness.com/hooking-secret-key-to-building-custom-burp-extension-c6aeb6fd312a
+71. https://timeofcheck.com/time-based-blind-sqli-on-news-starbucks-com/
+72. https://infosecwriteups.com/cve-2022-38627-a-journey-through-sqlite-injection-to-compromise-the-whole-enterprise-building-15cebd072ed6
+73. https://samcurry.net/web-hackers-vs-the-auto-industry
+74. https://blog.hckrt.com/blog/thisclosed_2/
+75. https://swarm.ptsecurity.com/mybb-1-8-31-remote-code-execution-chain/
+76. https://medium.com/@kartikhunt3r/blind-time-based-sql-injection-vulnerability-in-an-indian-government-website-6bf3bb7daf25
+77. https://mahmoudsec.blogspot.com/2023/02/sql-injection-utilizing-xml-functions.html
+78. https://www.synacktiv.com/sites/default/files/2022-12/sage_xrt_multiple_sqli_1.pdf
+79. https://infosecwriteups.com/how-i-got-owned-a-multi-billion-dollar-retailers-mysql-databases-using-simple-sql-injection-30f8b0dfd9ce
+80. https://infosecwriteups.com/i-earned-3500-and-40-points-for-a-graphql-blind-sql-injection-vulnerability-5b7e428c477d
+81. https://www.dsecbypass.com/en/dolibarr-pre-auth-contact-database-dump/
+82. https://www.sjoerdlangkemper.nl/2023/03/15/textcube-sql-injection-session-ip-spoofing/
+83. https://medium.com/@yousefamery/emotional-rollercoaster-a-unique-case-study-of-bypassing-antivirus-and-firewall-by-abusing-2b36d8f6553c
+84. https://shahjerry33.medium.com/sql-wildcard-dos-hang-till-death-adbae66d1f7b
+85. https://goziem.medium.com/how-i-chained-an-information-disclosure-bug-to-sql-injection-bca936d90fb1
+86. https://medium.com/@janirudransh/automating-sql-injection-on-encrypted-request-21a43aa2e7ef
+87. https://web.archive.org/web/20220217212342/https://castilho101.github.io/posts/cve-2022-0478-woocommerce-event-manager-plugin-sql-injection/
+88. https://www.sonarsource.com/blog/pimcore-one-click-two-security-vulnerabilities/
+89. https://corben.io/blog/17-11-30-asus-sqli
+90. https://infosecwriteups.com/exploiting-sql-error-sqlstate-42000-to-own-mariadb-of-a-large-eu-based-online-media-and-cf7396c43bbf
+91. https://infosecwriteups.com/i-helped-a-top-indian-health-benefits-management-platform-from-major-pii-leak-by-hacking-their-sql-b42caeca9729
+92. https://www.paloaltonetworks.com/prisma/cloud/cloud-data-security
+93. https://medium.com/@ar_hawk/utilizing-historical-urls-of-an-organization-to-successfully-execute-sql-queries-blind-sqli-3526d9c3863d
+94. https://zxsecurity.co.nz/research/advisories/kramer-via-go-2-rce-and-other-vulns/
+95. https://blog.stratumsecurity.com/2023/06/01/sqli-the-road-to-bypassing-an-industry-leading-waf/
+96. https://www.tarlogic.com/blog/linked-servers-adsi-passwords/
+97. https://kuldeep.io/posts/120-days-of-high-frequency-hunting/
+98. https://www.zerodayinitiative.com/blog/2022/1/18/cve-2021-21661-exposing-database-info-via-wordpress-sql-injection
+99. https://kazet.cc/2022/02/03/fuzzing-wordpress-plugins.html
+100. https://mrempy.medium.com/how-i-found-a-critical-p1-bug-in-5-minutes-using-a-cellphone-bug-bounty-303ebec3edd6
+101. https://web.archive.org/web/20220214063345/https://7odamo.medium.com/sql-injection-reflected-xss-and-information-disclosure-in-one-subdomain-in-just-10-minutes-f2ce877b43d4
+102. https://www.zerodayinitiative.com/blog/2022/2/10/mindshare-when-mysql-cluster-encounters-taint-analysis
+103. https://ozguralp.medium.com/bigquery-sql-injection-cheat-sheet-65ad70e11eac
+104. https://www.zerodayinitiative.com/blog/2022/2/14/static-taint-analysis-using-binary-ninja-a-case-study-of-mysql-cluster-vulnerabilities
+105. https://flattsecurity.medium.com/finding-an-unseen-sql-injection-by-bypassing-escape-functions-in-mysqljs-mysql-90b27f6542b4
+106. https://goktugkaya.medium.com/how-i-hacked-the-dutch-government-and-won-the-famous-t-shirt-b45cdf5dfaa1
+107. https://muffsec.com/blog/moodle-2nd-order-sqli/
+108. https://web.archive.org/web/20220315141258/https://eslam3kl.medium.com/sql-injection-at-spotify-d19e0861ddf0
+109. https://medium.com/@vamshivaran110/my-first-blind-sql-injection-7db4b5e5c66d
+110. https://www.sentinelone.com/labs/pwning-microsoft-azure-defender-for-iot-multiple-flaws-allow-remote-code-execution-for-all/
+111. https://kuldeep.io/posts/nosql-injection-in-plain-sight/
+112. https://blog.viettelcybersecurity.com/moveit-transfer-cve/
+113. https://haxatron.gitbook.io/vulnerability-research/vr1
+114. https://infosecwriteups.com/how-a-youtube-video-lead-to-pwning-a-web-application-via-sql-injection-worth-4324-bounty-285f0a9b9f6c
+115. https://medium.com/pentesternepal/sql-injection-in-harvards-subdomain-c3148f8be156
+116. https://www.wiz.io/blog/wiz-research-discovers-extrareplica-cross-account-database-vulnerability-in-azure-postgresql
+117. https://www.pmnh.site/post/advanced-sqlmap-case-study-1/
+118. https://cyllective.com/blog/posts/wordpress-audit-plugins
+119. https://corben.io/blog/a-simple-sql-injection-in-an-air-force-website
+120. https://systemweakness.com/sql-injection-to-remote-command-execution-rce-dd9a75292d1d
+121. https://bugs.php.net/bug.php?id=81719
+122. https://www.rapid7.com/blog/post/2022/06/28/cve-2021-3779-ruby-mysql-gem-client-file-read-fixed/
+123. https://pentest.blog/advisory-glpi-service-management-software-sql-injection-remote-code-execution-and-local-file-inclusion/
+124. https://www.techncyber.com/2022/07/sql-injection-at-authorization-token.html
+125. https://nirmaldahal.com.np/posts/2022/07/leveraging-the-sql-injection-to-execute-the-xss-by-evading-csp/
+126. https://www.rcesecurity.com/2022/07/WordPress-Transposh-Exploiting-a-Blind-SQL-Injection-via-XSS/
+127. https://labs.jumpsec.com/zoho-manage-engine-desktop-central-sql-injection-arbitrary-file-write/
+128. https://petrusviet.medium.com/dancing-on-the-architecture-of-vmware-workspace-one-access-eng-ad592ae1b6dd
+129. https://www.wiz.io/blog/the-cloud-has-an-isolation-problem-postgresql-vulnerabilities
+130. https://www.cyberark.com/resources/threat-research-blog/trust-me-i-m-a-robot-can-we-trust-rpa-with-our-most-guarded-secrets
+131. https://mehedishakeel.medium.com/found-sql-injection-vulnerability-on-government-organization-website-3eb33c0c49a4
+132. https://medium.com/@cyberali/blind-xss-and-time-based-sql-injection-to-admin-panel-control-and-database-takeover-9b7645a53748
+133. https://doyensec.com/resources/Doyensec_Advisory_TypeORM_Q32022.pdf
+134. https://xthemo.medium.com/how-can-i-get-sql-injection-b8337c2c2bef
+135. https://infosecwriteups.com/how-i-found-multiple-sql-injections-in-5-minutes-in-bug-bounty-40155964c498
+136. https://c0nqr0r.medium.com/error-based-sql-injection-with-waf-bypass-manual-exploit-100-bab36b769005
+137. https://medium.com/stolabs/cve-2022-36635-a-sql-injection-in-zksecuritybio-to-rce-c5bde2962d47
+138. https://0xgad.medium.com/sql-injection-in-graphql-2859c96547a8
+139. https://blog.infiltrateops.io/the-castles-latrine-10f9c16548bd
+140. https://www.code-intelligence.com/blog/potential-remote-code-execution-in-hsqldb
+141. https://blog.trailofbits.com/2022/10/25/sqlite-vulnerability-july-2022-library-api/
+142. https://cybrr-warrior-official.medium.com/how-i-made-2000-with-url-redirection-b1b5f4e7a678
+143. https://medium.com/@z.x/how-i-got-450-just-in-one-google-search-sqli-rxss-8c7c28ceba79
+144. https://infosecwriteups.com/from-sql-injection-to-hall-of-fame-96a08c869acd
+145. https://offensi.com/2020/08/18/how-to-contact-google-sre-dropping-a-shell-in-cloud-sql/
+146. https://infosecwriteups.com/accessing-the-website-directly-through-its-ip-address-a-case-of-a-poorly-hidden-sql-injection-82833defbbc3
+147. https://shahjerry33.medium.com/sql-injection-remote-code-execution-double-p1-6038ca88a2ec
+148. https://sheshasai.medium.com/emoji-error-handling-ba11f1bdb8a6
+149. https://thinkloveshare.com/hacking/rce_on_spip_and_root_me/
+150. https://ynoof.medium.com/error-based-sql-injection-on-a-wordpress-website-and-extract-more-than-150k-user-details-f65f987c2cc0
+151. https://medium.com/realmodelabs/silver-peak-unity-orchestrator-rce-2928d65ef749
+152. https://infosecwriteups.com/interesting-case-of-sqli-84cc3f4a5255
+153. http://firstsight.me/2020/11/optimizing-hunting-results-in-vdp-for-use-in-bug-bounty-programs-from-sensitive-information-disclosure-to-accessing-hidden-apis-which-can-be-used-to-retrieve-customer-data/
+154. https://ozguralp.medium.com/turning-blind-error-based-sql-injection-into-an-exploitable-boolean-one-85d6be3ca23b
+155. https://medium.com/realmodelabs/sd-pwn-part-4-vmware-velocloud-the-last-takeover-a7016f9a9175
+156. https://rafipiun.medium.com/how-i-got-easy-for-sql-injection-bug-7ff622236e4c
+157. https://shellbr3ak.medium.com/the-story-of-my-first-critical-bug-93a5920d6c43
+158. https://marxchryz.medium.com/my-bug-bounty-journey-and-my-first-critical-bug-time-based-blind-sql-injection-aa91d8276e41
+159. https://hajarerutik9.medium.com/sql-injection-via-hidden-parameter-6da7699248fc
+160. https://irsl.medium.com/dropping-a-shell-in-googles-cloud-sql-the-speckle-umbrella-story-f9375bd4960d
+161. https://neroli.medium.com/is-math-random-safe-from-missing-rate-limit-to-bypass-2fa-and-possible-sqli-2a4ea66f82c5
+162. https://medium.com/@ratnadip1998/admin-panel-accessed-via-sql-injection-ezy-boooom-57dc60c2815f
+163. https://ahmadaabdulla.medium.com/how-i-found-sql-injection-on-8x8-cengage-comodo-automattic-20-company-c296d1a09f63
+164. https://infosecwriteups.com/fun-sql-injection-mod-security-bypass-644b54b0c445
+165. https://ahmadaabdulla.medium.com/how-i-found-sql-injection-on-intensedebate-com-h1-in-5-minute-350-a36c2890882d
+166. https://kailashbohara.com.np/blog/2021/05/16/MSSQL-Injection-in-JSON-request/
+167. https://www.sonarsource.com/blog/nosql-injections-in-rocket-chat/
+168. https://thevillagehacker.medium.com/time-based-sql-injection-to-dumping-the-database-da0e5bcaa9df
+169. https://medium.com/@jawadmahdi/how-i-found-blind-sql-injection-just-by-browsing-and-getting-a-unique-url-ed87fa1f35ed
+170. https://orwaatyat.medium.com/how-i-found-multiple-bugs-on-facebook-in-1-month-and-a-part-for-my-methodology-tools-58a677a9040c
+171. https://caesarevan23.medium.com/ssrf-external-service-interaction-for-find-real-ip-cloudflare-and-leads-to-sql-injection-c22c02243299
+172. https://www-leavesongs-com.translate.goog/PENETRATION/cachet-from-laravel-sqli-to-bug-bounty.html?_x_tr_sl=zh-CN&_x_tr_tl=en&_x_tr_hl=en&_x_tr_pto=sc
+173. https://tomorrowisnew.com/posts/sql-injection-in-harvard-subdomain/
+174. https://www.zerodayinitiative.com/blog/2021/9/2/cve-2021-2429-a-heap-based-buffer-overflow-bug-in-the-mysql-innodb-memcached-plugin
+175. https://noob3xploiter.medium.com/sql-injection-in-harvard-subdomain-be67a5dbf664
+176. https://www.gremwell.com/spring-n1ql-injection
+177. https://infosecwriteups.com/how-i-escalated-a-time-based-sql-injection-to-rce-bbf0d68cb398
+178. https://gosecure.ai/blog/2021/10/19/a-scientific-notation-bug-in-mysql-left-aws-waf-clients-vulnerable-to-sql-injection/
+179. https://xdev05.github.io/How-i-Got-3-SQLI-in-just-10-minutes/
+180. https://0xmahmoudjo0.medium.com/how-i-found-multiple-sql-injection-with-ffuf-and-sqlmap-in-a-few-minutes-9c3bb3780e8f
+181. https://starlabs.sg/blog/2021/11-diving-into-open-source-lms-ccodebases/
+182. https://r0.haxors.org/posts?id=26
+183. https://hector0x.medium.com/easy-sqli-in-amazon-subsidiary-using-sqlmap-ff469013671b
+184. https://devnack.medium.com/how-i-bypassed-incapsula-waf-db0498b3a021
+185. https://shahjerry33.medium.com/sql-injection-the-file-upload-playground-6580b089d013
+186. https://infosecwriteups.com/sql-injection-with-load-file-and-into-outfile-c62f7d92c4e2
+187. https://medium.com/@nuraalamdipu/union-based-sql-injection-write-up-a-private-company-site-273f89a49ed9
+188. https://web.archive.org/web/20201022201335/https://www.mohamedharon.com/2018/04/my-best-small-report-bounty-report-in.html
+189. https://medium.com/@rojanrijal/source-code-analysis-in-ysurvey-luminate-bug-c86dc29b70c4
+190. https://web.archive.org/web/20191217083137/http://blog.jr0ch17.com/2018/Please-email-me-your-password/
+191. https://web.archive.org/web/20200904133318/https://medium.com/bugbountywriteup/a-five-minute-sql-i-16ab75b20fe4
+192. https://logicbomb.medium.com/bugbounty-database-hacked-of-indias-popular-sports-company-bypassing-host-header-to-sql-7b9af997c610
+193. https://medium.com/@SQLiBasic/bug-bounty-at-bangladeshi-site-21da8b7eb687
+194. https://medium.com/@vishnu0002/attacking-postgresql-database-834a9a3471bc
+195. https://mahmoudsec.blogspot.com/2018/07/sql-injection-and-silly-waf.html
+196. https://medium.com/@tomnomnom/making-a-blind-sql-injection-a-little-less-blind-428dcb614ba8
+197. https://web.archive.org/web/20200829220607/https://medium.com/@adeshkolte/sql-injection-vulnerability-in-university-of-cambridge-b4c8d0381e1
+198. https://blog.securitybreached.org/2018/09/08/sqli-bootcampnutanix-com-bug-bounty-poc/
+199. https://blog.securitybreached.org/2018/09/09/zol-zimbabwe-authbypass-sqli-xss/
+200. https://blog.securitybreached.org/2018/09/10/sqli-login-bypass-autotraders/
+201. https://medium.com/@mahitman1/hacking-a-crypto-debit-card-service-730f287aaee7
+202. https://renaudmarti.net/posts/first-bug-bounty-submission/
+203. https://www.vesiluoma.com/abusing-mysql-clients/
+204. https://sunilyedla.medium.com/sql-injection-for-50-bounty-but-still-worth-reading-468442c1cc1a
+205. https://blog.redforce.io/sql-injection-in-insert-update-query-without-comma/
+206. https://medium.com/@frostnull/sql-injection-through-user-agent-44a1150f6888
+207. https://saadahmedx.medium.com/sql-injection-c87a390afdd3
+208. https://jspin.re/fileupload-blind-sqli/
+209. https://medium.com/@ariffadhlullah2310/sql-injection-bug-bounty-110e92e71ec3
+210. https://medium.com/@kgaber99/sql-injection-in-forget-password-function-3c945512e3cb
+211. https://www.noob.ninja/2019/07/exploiting-tricky-blind-sql-injection.html
+212. https://web.archive.org/web/20200928234656/https://www.mohamedharon.com/2019/07/sql-injection-in-private-sitecomloginphp.html
+213. https://aaronesau.com/blog/posts/5
+214. 
+215. #Hackerone 
+216. https://hackerone.com/reports/198292
+217. https://hackerone.com/reports/311244
+218. https://hackerone.com/reports/923020
+219. https://hackerone.com/reports/117073
+220. https://hackerone.com/reports/59664
+221. https://hackerone.com/reports/761304
+222. https://hackerone.com/reports/1216408
+223. https://hackerone.com/reports/17227
+224. https://hackerone.com/reports/81701
+225. https://hackerone.com/reports/374027
+226. https://hackerone.com/reports/1039315
+227. https://hackerone.com/reports/31756
+228. https://hackerone.com/reports/86468
+229. https://hackerone.com/reports/115304
+230. https://hackerone.com/reports/144359
+231. https://hackerone.com/reports/116764
+232. https://hackerone.com/reports/221757
+233. https://hackerone.com/reports/211988
+234. https://hackerone.com/reports/179920
+235. https://hackerone.com/reports/273946
+236. https://hackerone.com/reports/319279
+237. https://hackerone.com/reports/298176
+238. https://hackerone.com/reports/310280
+239. https://hackerone.com/reports/297478
+240. https://hackerone.com/reports/433792
+241. https://hackerone.com/reports/639876
+242. https://hackerone.com/reports/435066
