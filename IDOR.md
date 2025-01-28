@@ -514,3 +514,15 @@
 514. https://hackerone.com/reports/1061292
 515. https://hackerone.com/reports/1323406
 516. https://hackerone.com/reports/1213237
+---
+
+# Top IDOR reports 
+https://github.com/reddelexc/hackerone-reports/blob/master/tops_by_bug_type/TOPIDOR.md?source=post_page-----84e44052f70c--------------------------------
+
+
+# Most disclosed reports 
+https://github.com/maverickNerd/HackerOneReports/tree/master/InsecureDirectObjectReferenceIDOR?source=post_page-----84e44052f70c--------------------------------
+
+
+
+
